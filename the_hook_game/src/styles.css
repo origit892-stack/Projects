@@ -1,0 +1,365 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #090a0d;
+  color: #f4f0e8;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+#app,
+#game {
+  width: 100%;
+  height: 100%;
+}
+
+#game {
+  display: block;
+  cursor: crosshair;
+}
+
+.hud {
+  position: fixed;
+  inset: 22px auto auto 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 14px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  background: rgb(10 12 15 / 72%);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 42px rgb(0 0 0 / 34%);
+  pointer-events: none;
+}
+
+.hud.combo-pop {
+  animation: combo-pop 620ms ease;
+  border-color: rgb(121 219 255 / 58%);
+  box-shadow:
+    0 16px 42px rgb(0 0 0 / 34%),
+    0 0 34px rgb(68 188 255 / 28%);
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 66% 32%, rgb(60 150 180 / 18%), transparent 34%),
+    rgb(5 7 10 / 78%);
+  backdrop-filter: blur(12px);
+}
+
+.intro[hidden] {
+  display: none;
+}
+
+.intro-panel {
+  width: min(620px, 100%);
+  padding: 28px;
+  border: 1px solid rgb(255 255 255 / 14%);
+  background: rgb(10 13 17 / 82%);
+  box-shadow: 0 28px 90px rgb(0 0 0 / 46%);
+}
+
+.intro-kicker {
+  margin: 0 0 10px;
+  color: #7fd8ff;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.intro h1 {
+  margin: 0 0 22px;
+  font-size: clamp(36px, 6vw, 62px);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.tutorial-list {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 18px;
+  color: #d8e0de;
+}
+
+.tutorial-list p {
+  margin: 0;
+  padding: 11px 12px;
+  border-left: 3px solid #3fc7ed;
+  background: rgb(255 255 255 / 5%);
+}
+
+.tutorial-list strong {
+  color: #ffffff;
+}
+
+.start-button {
+  width: 100%;
+  min-height: 58px;
+  border: 0;
+  background: #f3f0e7;
+  color: #080b0f;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 12px 34px rgb(127 216 255 / 22%);
+}
+
+.start-button:hover {
+  background: #ffffff;
+}
+
+.wallet-line {
+  display: inline-flex;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 8px 10px;
+  background: rgb(127 216 255 / 10%);
+  color: #cfeeff;
+  font-weight: 800;
+}
+
+.shop {
+  margin: 0 0 18px;
+}
+
+.shop h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.shop-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 42px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  background: rgb(255 255 255 / 6%);
+  color: #f8f5ec;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.shop-item span {
+  color: #7fd8ff;
+}
+
+.shop-item.owned {
+  border-color: rgb(127 216 255 / 48%);
+  color: #7fd8ff;
+}
+
+.brand {
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #faf6eb;
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  color: #bfc7c9;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.stats strong {
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+#score.combo-score,
+#combo.combo-score {
+  animation: score-flash 900ms ease;
+}
+
+.status {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 8px;
+  width: min(320px, calc(100vw - 40px));
+  padding: 18px;
+  border: 1px solid rgb(255 255 255 / 14%);
+  background: rgb(13 15 18 / 82%);
+  text-align: center;
+  box-shadow: 0 26px 70px rgb(0 0 0 / 52%);
+}
+
+@keyframes combo-pop {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  32% {
+    transform: translateY(-2px) scale(1.035);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes score-flash {
+  0% {
+    color: #ffffff;
+    text-shadow: none;
+  }
+  30% {
+    color: #7fd8ff;
+    text-shadow: 0 0 18px rgb(127 216 255 / 85%);
+  }
+  62% {
+    color: #ffe58a;
+    text-shadow: 0 0 22px rgb(255 229 138 / 80%);
+  }
+  100% {
+    color: #ffffff;
+    text-shadow: none;
+  }
+}
+
+.status[hidden] {
+  display: none;
+}
+
+.status strong {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.status span {
+  color: #bcc4c6;
+}
+
+.missions {
+  position: fixed;
+  right: 18px;
+  top: 22px;
+  z-index: 2;
+  display: grid;
+  gap: 8px;
+  width: min(330px, calc(100vw - 36px));
+  pointer-events: none;
+}
+
+.mission {
+  padding: 10px 12px;
+  border: 1px solid rgb(255 255 255 / 10%);
+  background: rgb(10 13 17 / 62%);
+  color: #d9e1df;
+  font-size: 13px;
+  box-shadow: 0 12px 34px rgb(0 0 0 / 22%);
+}
+
+.mission strong {
+  color: #ffffff;
+}
+
+.mission.complete {
+  border-color: rgb(127 216 255 / 58%);
+  color: #7fd8ff;
+}
+
+.boss-warning {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 50%, rgb(150 18 18 / 22%), rgb(10 0 0 / 42%));
+  color: #fff0e8;
+  font-size: clamp(42px, 8vw, 110px);
+  font-weight: 950;
+  pointer-events: none;
+  text-shadow: 0 0 32px rgb(255 80 60 / 70%);
+}
+
+.boss-warning[hidden] {
+  display: none;
+}
+
+.reticle {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.reticle::before,
+.reticle::after {
+  content: "";
+  position: absolute;
+  background: rgb(255 255 255 / 45%);
+}
+
+.reticle::before {
+  left: 50%;
+  top: -7px;
+  width: 1px;
+  height: 5px;
+}
+
+.reticle::after {
+  left: -7px;
+  top: 50%;
+  width: 5px;
+  height: 1px;
+}
+
+@media (max-width: 720px) {
+  .hud {
+    inset: 12px 12px auto 12px;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .stats {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px 10px;
+    white-space: normal;
+  }
+
+  .missions {
+    top: auto;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+}

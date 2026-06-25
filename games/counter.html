@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber-Scribe: Neon Pulse</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; overflow: hidden; font-family: 'Courier New', monospace; user-select: none; }
+    canvas { display: block; cursor: crosshair; }
+
+    #ui {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 14px 22px; pointer-events: none;
+    }
+    .ui-panel { color: #0ff; text-shadow: 0 0 8px #0ff; line-height: 1.5; }
+    .ui-value { font-size: 1.5rem; font-weight: bold; }
+    .ui-label { font-size: 0.65rem; letter-spacing: 3px; opacity: 0.65; }
+    #lives-container { display: flex; gap: 8px; margin-top: 4px; }
+    .life { width: 13px; height: 13px; border-radius: 50%; background: #f0f; box-shadow: 0 0 10px #f0f; transition: all 0.3s; }
+    .life.lost { background: #1a1a1a; box-shadow: none; }
+
+    #overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      background: rgba(0,0,5,0.9);
+    }
+    .game-title { font-size: clamp(2rem, 5vw, 3.8rem); color: #0ff; text-shadow: 0 0 20px #0ff, 0 0 60px #0ff; letter-spacing: 5px; margin-bottom: 4px; }
+    .game-sub   { font-size: clamp(0.8rem, 2vw, 1.1rem); color: #f0f; text-shadow: 0 0 12px #f0f; letter-spacing: 10px; margin-bottom: 50px; }
+    .mbtn {
+      display: block; margin: 7px auto; padding: 13px 36px; width: 290px;
+      background: transparent; border: 1px solid #0ff; color: #0ff;
+      font-family: 'Courier New', monospace; font-size: 0.9rem; letter-spacing: 2px;
+      cursor: pointer; text-align: left;
+      text-shadow: 0 0 8px #0ff;
+      box-shadow: 0 0 12px rgba(0,255,255,0.2), inset 0 0 12px rgba(0,255,255,0.04);
+      transition: all 0.18s;
+    }
+    .mbtn:hover { background: rgba(0,255,255,0.08); box-shadow: 0 0 22px rgba(0,255,255,0.4), inset 0 0 20px rgba(0,255,255,0.08); transform: translateX(6px); }
+    .mbtn small { display: block; font-size: 0.72rem; opacity: 0.45; margin-top: 3px; letter-spacing: 1px; }
+    #final-score { color: #ff0; text-shadow: 0 0 12px #ff0; margin-top: 28px; font-size: 1.1rem; letter-spacing: 2px; display: none; }
+
+    #flash { position: fixed; top:0; left:0; right:0; bottom:0; pointer-events: none; opacity:0; transition: opacity 0.1s; }
+    #frozen-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(110,0,200,0.12); border: 3px solid #a0f; box-shadow: inset 0 0 80px rgba(160,0,255,0.25); pointer-events: none; display: none; }
+    #center-msg { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: clamp(1.2rem,3vw,2rem); font-weight: bold; letter-spacing: 3px; pointer-events: none; opacity:0; transition: opacity 0.4s; text-align:center; white-space:nowrap; }
+    #popup-layer { position: fixed; top:0; left:0; right:0; bottom:0; pointer-events:none; overflow:hidden; }
+    .spop { position: absolute; font-family: 'Courier New', monospace; font-size: 1.2rem; font-weight: bold; pointer-events: none; animation: floatUp 0.9s ease-out forwards; }
+    @keyframes floatUp { 0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-70px)} }
+    #legend { position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; pointer-events: none; opacity: 0.5; font-size: 0.65rem; letter-spacing: 1px; color: #888; }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="flash"></div>
+<div id="frozen-overlay"></div>
+<div id="popup-layer"></div>
+<div id="center-msg"></div>
+
+<div id="ui" style="display:none">
+  <div class="ui-panel">
+    <div class="ui-label">SCORE</div>
+    <div class="ui-value" id="sv">0</div>
+    <div id="mult-row" style="display:none;color:#ff0;text-shadow:0 0 8px #ff0;font-size:0.7rem;letter-spacing:2px">×<span id="mv">1</span> MULTIPLIER</div>
+  </div>
+  <div class="ui-panel" style="text-align:center">
+    <div class="ui-label" id="mode-lbl">SURVIVAL</div>
+    <div class="ui-value" id="timer-v" style="display:none">1:00</div>
+    <div class="ui-label" id="status-lbl">MISSES: 0/3</div>
+  </div>
+  <div class="ui-panel" style="text-align:right">
+    <div class="ui-label">SYSTEM INTEGRITY</div>
+    <div id="lives-container">
+      <div class="life" id="lf0"></div>
+      <div class="life" id="lf1"></div>
+      <div class="life" id="lf2"></div>
+    </div>
+  </div>
+</div>
+
+<div id="overlay">
+  <div class="game-title">CYBER-SCRIBE</div>
+  <div class="game-sub">◈ NEON PULSE ◈</div>
+  <button class="mbtn" onclick="startGame('survival')">[01] SURVIVAL MODE<small>Slash viruses. 3 misses = system crash.</small></button>
+  <button class="mbtn" onclick="startGame('60sec')">[02] 60-SEC HACK<small>Max score in 60 seconds. No bombs.</small></button>
+  <button class="mbtn" onclick="startGame('boss')">[03] BOSS PROTOCOL<small>Defeat boss nodes before they escape.</small></button>
+  <div id="final-score"></div>
+</div>
+
+<div id="legend">
+  <span style="color:#0af">▲ DATA NODE = +100</span>
+  <span style="color:#f00">⚠ FIREWALL = avoid</span>
+  <span style="color:#a0f">❄ FREEZE = avoid</span>
+  <span style="color:#ff0">💾 GOLDEN = FRENZY</span>
+  <span style="color:#f0f">◈ BOSS = slash many times</span>
+</div>
+
+<script>
+// ── Canvas ──────────────────────────────────────────────────────────────────
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
+function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+resize();
+addEventListener('resize', resize);
+
+// ── Audio ────────────────────────────────────────────────────────────────────
+let ac = null;
+function getAC() { if (!ac) ac = new (AudioContext || webkitAudioContext)(); return ac; }
+
+function tone(freq, type, dur, vol = 0.25, freqEnd = null) {
+  try {
+    const a = getAC();
+    const o = a.createOscillator(), g = a.createGain();
+    o.connect(g); g.connect(a.destination);
+    o.type = type;
+    o.frequency.setValueAtTime(freq, a.currentTime);
+    if (freqEnd) o.frequency.exponentialRampToValueAtTime(freqEnd, a.currentTime + dur);
+    g.gain.setValueAtTime(vol, a.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, a.currentTime + dur);
+    o.start(); o.stop(a.currentTime + dur);
+  } catch(e) {}
+}
+
+const sfx = {
+  slash:   () => tone(700, 'sawtooth', 0.08, 0.18, 120),
+  bomb:    () => tone(100, 'square', 0.35, 0.4, 40),
+  freeze:  () => tone(280, 'sine', 0.5, 0.28, 900),
+  golden:  () => [500,700,900,1200].forEach((f,i) => setTimeout(() => tone(f,'sine',0.14,0.22), i*55)),
+  clock:   () => [400,600,800,1000,1400].forEach((f,i) => setTimeout(() => tone(f,'triangle',0.1,0.18), i*45)),
+  bossHit: () => tone(380, 'square', 0.06, 0.14, 190),
+  bossDie: () => [900,700,500,300].forEach((f,i) => setTimeout(() => tone(f,'sawtooth',0.18,0.28), i*75)),
+};
+
+// ── State ────────────────────────────────────────────────────────────────────
+let gMode, gActive = false, score, lives, misses, timeLeft;
+let frozen, freezeTimer, frenzy, frenzyTimer, mult, clockTimer;
+let nodes, particles, trail, slashSet;
+let bossActive, lastBossSpawn, spawnClock, lastFrameT, gameTime;
+let gridOff = 0;
+let animId = null;
+let centerMsgTO = null;
+
+// ── Node ─────────────────────────────────────────────────────────────────────
+const NCOL = {
+  data:     { stroke:'#00aaff', fill:'rgba(0,120,255,0.2)',  shadow:'#00aaff' },
+  firewall: { stroke:'#ff2200', fill:'rgba(255,40,0,0.22)', shadow:'#ff2200' },
+  freeze:   { stroke:'#cc00ff', fill:'rgba(150,0,255,0.18)',shadow:'#cc00ff' },
+  golden:   { stroke:'#ffee00', fill:'rgba(255,210,0,0.25)',shadow:'#ffee00' },
+  boss:     { stroke:'#ff00ff', fill:'rgba(255,0,255,0.12)', shadow:'#ff00ff' },
+};
+const NSIDES = { data:6, firewall:0, freeze:4, golden:5, boss:8 };
+
+class GNode {
+  constructor(type, opts={}) {
+    this.type = type;
+    const isBoss = type==='boss';
+    this.r   = isBoss ? 68 : type==='golden' ? 33 : 27;
+    this.x   = opts.x ?? (Math.random()*canvas.width*0.7 + canvas.width*0.15);
+    this.y   = opts.y ?? canvas.height + 60;
+    this.vx  = opts.vx ?? (Math.random()-0.5)*(isBoss ? 1.4 : 3.2);
+    this.vy  = opts.vy ?? -(Math.random()*6+10);
+    this.grav= opts.grav ?? 0.24;
+    this.rot = Math.random()*Math.PI*2;
+    this.rotS= (Math.random()-0.5)*0.04;
+    this.maxH= isBoss ? 15 : 1;
+    this.hits= this.maxH;
+    this.alive = true;
+    this.pulse = Math.random()*Math.PI*2;
+    this.col  = NCOL[type];
+    this.sides= NSIDES[type];
+    // boss specific
+    this.bounceX = opts.bounceX ?? false;
+    this.bossTimer = 0;
+  }
+
+  update(dt) {
+    const slow = frenzy && this.type !== 'firewall' && this.type !== 'boss';
+    if (frozen && this.type !== 'freeze') return;
+    const spd = slow ? 0.38 : 1;
+    this.x  += this.vx * spd;
+    this.y  += this.vy * spd;
+    this.vy += this.grav * spd;
+    this.rot += this.rotS;
+    this.pulse += 0.05;
+    if (this.bounceX) {
+      if (this.x < this.r+10 || this.x > canvas.width-this.r-10) this.vx *= -1;
+      this.bossTimer += dt;
+    }
+  }
+
+  offScreen() {
+    if (this.bounceX) return false; // boss never off-screen sideways
+    return this.y > canvas.height+120 || this.x < -200 || this.x > canvas.width+200;
+  }
+
+  draw() {
+    if (!this.alive) return;
+    const sc = 1 + Math.sin(this.pulse)*0.05;
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot);
+    ctx.scale(sc, sc);
+    const c = this.col;
+    ctx.shadowBlur  = 22;
+    ctx.shadowColor = c.shadow;
+    ctx.strokeStyle = c.stroke;
+    ctx.fillStyle   = c.fill;
+    ctx.lineWidth   = this.type==='boss' ? 3 : 2;
+
+    if (this.type === 'firewall') {
+      ctx.beginPath();
+      ctx.arc(0, 0, this.r, 0, Math.PI*2);
+      ctx.fill(); ctx.stroke();
+      ctx.shadowBlur = 0;
+      ctx.font = `${this.r*1.1}px Arial`;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#fff'; ctx.fillText('⚠', 0, 3);
+    } else {
+      ctx.beginPath();
+      for (let i=0; i<this.sides; i++) {
+        const a = (i/this.sides)*Math.PI*2 - Math.PI/2;
+        i===0 ? ctx.moveTo(Math.cos(a)*this.r, Math.sin(a)*this.r)
+              : ctx.lineTo(Math.cos(a)*this.r, Math.sin(a)*this.r);
+      }
+      ctx.closePath();
+      ctx.fill(); ctx.stroke();
+
+      // Boss internals
+      if (this.type==='boss') {
+        ctx.globalAlpha = 0.3;
+        ctx.lineWidth = 1;
+        for (let i=0; i<8; i++) {
+          const a = (i/8)*Math.PI*2;
+          ctx.beginPath();
+          ctx.moveTo(0,0);
+          ctx.lineTo(Math.cos(a)*this.r*0.65, Math.sin(a)*this.r*0.65);
+          ctx.stroke();
+        }
+        ctx.globalAlpha = 1;
+        ctx.shadowBlur = 22; ctx.shadowColor = c.shadow;
+        // HP bar
+        const bw = this.r*2.2;
+        ctx.fillStyle='#300'; ctx.shadowBlur=0;
+        ctx.fillRect(-bw/2, this.r+12, bw, 7);
+        ctx.fillStyle='#0f0'; ctx.shadowColor='#0f0'; ctx.shadowBlur=6;
+        ctx.fillRect(-bw/2, this.r+12, bw*(this.hits/this.maxH), 7);
+        // Timer bar
+        const tpct = Math.max(0, 1 - this.bossTimer/14000);
+        ctx.fillStyle='#500'; ctx.shadowBlur=0;
+        ctx.fillRect(-bw/2, this.r+22, bw, 4);
+        ctx.fillStyle= tpct > 0.4 ? '#f80' : '#f00';
+        ctx.fillRect(-bw/2, this.r+22, bw*tpct, 4);
+      }
+
+      ctx.shadowBlur = 0;
+      const labels = { data:'01', freeze:'❄', golden:'💾', boss:'BOSS' };
+      if (labels[this.type]) {
+        ctx.fillStyle = c.stroke;
+        ctx.font = `bold ${this.r*(this.type==='boss'?0.35:0.5)}px Courier New`;
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(labels[this.type], 0, 0);
+      }
+    }
+    ctx.restore();
+  }
+
+  hit(px, py) { return Math.hypot(px-this.x, py-this.y) < this.r; }
+}
+
+// ── Particles ────────────────────────────────────────────────────────────────
+class Particle {
+  constructor(x, y, color) {
+    this.x = x + (Math.random()-0.5)*14;
+    this.y = y + (Math.random()-0.5)*14;
+    this.vx = (Math.random()-0.5)*14;
+    this.vy = (Math.random()-0.5)*14 - 2;
+    this.life = 1;
+    this.decay = 0.022 + Math.random()*0.028;
+    this.color = color;
+    this.size = 1.5 + Math.random()*2.5;
+    this.char = Math.random()>0.5?'1':'0';
+    this.isChar = Math.random()>0.35;
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    this.vy += 0.28; this.vx *= 0.96;
+    this.life -= this.decay;
+  }
+  draw() {
+    ctx.globalAlpha = Math.max(0, this.life);
+    ctx.fillStyle = this.color;
+    ctx.shadowBlur = 5; ctx.shadowColor = this.color;
+    if (this.isChar) {
+      ctx.font = `${8+this.size*3}px Courier New`;
+      ctx.textAlign = 'left';
+      ctx.fillText(this.char, this.x, this.y);
+    } else {
+      ctx.fillRect(this.x-this.size, this.y-this.size, this.size*2, this.size*2);
+    }
+    ctx.shadowBlur = 0;
+  }
+  dead() { return this.life <= 0; }
+}
+
+function burst(x, y, color, n=20) {
+  for (let i=0; i<n; i++) particles.push(new Particle(x, y, color));
+}
+
+// ── Geometry helper ───────────────────────────────────────────────────────────
+function segCircle(ax,ay,bx,by,cx,cy,r) {
+  const dx=bx-ax, dy=by-ay, fx=ax-cx, fy=ay-cy;
+  const a=dx*dx+dy*dy; if (!a) return false;
+  const b=2*(fx*dx+fy*dy), c=fx*fx+fy*fy-r*r;
+  let d=b*b-4*a*c; if (d<0) return false;
+  d=Math.sqrt(d);
+  const t1=(-b-d)/(2*a), t2=(-b+d)/(2*a);
+  return (t1>=0&&t1<=1)||(t2>=0&&t2<=1)||(t1<=0&&t2>=1);
+}
+
+// ── Background ────────────────────────────────────────────────────────────────
+function drawBG() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const bg = ctx.createLinearGradient(0,0,0,canvas.height);
+  bg.addColorStop(0,'#000005'); bg.addColorStop(1,'#00000c');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  gridOff = (gridOff+0.4)%60;
+  const hy = canvas.height*0.55;
+  ctx.save();
+  ctx.globalAlpha = 0.13;
+  ctx.strokeStyle = '#00ff44';
+  ctx.lineWidth = 1;
+  ctx.shadowBlur = 3; ctx.shadowColor = '#00ff44';
+
+  // Horizontals
+  for (let y=hy; y<canvas.height+65; y+=55) {
+    const gy=y+gridOff; if(gy<hy) continue;
+    ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(canvas.width,gy); ctx.stroke();
+  }
+  // Verticals converging to horizon
+  const vp = canvas.width/2;
+  for (let i=0; i<=14; i++) {
+    const bx = (canvas.width/14)*i;
+    ctx.beginPath(); ctx.moveTo(vp,hy); ctx.lineTo(bx,canvas.height); ctx.stroke();
+  }
+  ctx.restore();
+
+  // Scanlines
+  ctx.save();
+  ctx.globalAlpha=0.025; ctx.fillStyle='#000';
+  for (let y=0; y<canvas.height; y+=4) ctx.fillRect(0,y,canvas.width,2);
+  ctx.restore();
+}
+
+// ── Slash trail ───────────────────────────────────────────────────────────────
+function drawTrail() {
+  if (trail.length<2) return;
+  for (let i=1; i<trail.length; i++) {
+    const p0=trail[i-1], p1=trail[i];
+    const a = (i/trail.length)*p1.life;
+    ctx.save();
+    ctx.globalAlpha = a*0.85;
+    ctx.strokeStyle = '#ffffff';
+    ctx.shadowBlur = 18; ctx.shadowColor = '#00ccff';
+    ctx.lineWidth = 3.5*(i/trail.length);
+    ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(p0.x,p0.y); ctx.lineTo(p1.x,p1.y); ctx.stroke();
+    ctx.restore();
+  }
+  trail.forEach(p => p.life -= 0.05);
+  while (trail.length && trail[0].life<=0) trail.shift();
+}
+
+// ── HUD ───────────────────────────────────────────────────────────────────────
+function updateHUD() {
+  document.getElementById('sv').textContent = score.toLocaleString();
+  for (let i=0;i<3;i++) {
+    const e=document.getElementById(`lf${i}`);
+    e.className = 'life'+(i>=lives?' lost':'');
+  }
+  const tv=document.getElementById('timer-v');
+  if (gMode==='60sec') {
+    tv.style.display='';
+    const s=Math.max(0,Math.ceil(timeLeft));
+    tv.textContent=`0:${s.toString().padStart(2,'0')}`;
+    tv.style.color=s<=10?'#f44':'#0ff';
+    tv.style.textShadow=s<=10?'0 0 10px #f44':'0 0 10px #0ff';
+  } else tv.style.display='none';
+
+  const sl=document.getElementById('status-lbl');
+  if (gMode==='survival') { sl.textContent=`MISSES: ${misses}/3`; sl.style.color=misses>=2?'#f44':'#0ff'; }
+  else if (gMode==='boss') { sl.textContent=bossActive?'◉ BOSS ACTIVE':'◌ STANDBY'; sl.style.color=bossActive?'#f0f':'#0ff'; }
+  else sl.style.display='none';
+
+  const mr=document.getElementById('mult-row');
+  if (mult>1) { mr.style.display=''; document.getElementById('mv').textContent=mult; }
+  else mr.style.display='none';
+}
+
+// ── Popups ────────────────────────────────────────────────────────────────────
+function scorePopup(x, y, txt, color) {
+  const el=document.createElement('div');
+  el.className='spop'; el.textContent=txt;
+  el.style.left=`${x-20}px`; el.style.top=`${y-20}px`;
+  el.style.color=color; el.style.textShadow=`0 0 8px ${color}`;
+  document.getElementById('popup-layer').appendChild(el);
+  setTimeout(()=>el.remove(), 900);
+}
+
+function centerMsg(txt, color='#ff0', dur=1400) {
+  const e=document.getElementById('center-msg');
+  e.textContent=txt; e.style.color=color;
+  e.style.textShadow=`0 0 20px ${color}, 0 0 40px ${color}`;
+  e.style.opacity='1';
+  if(centerMsgTO) clearTimeout(centerMsgTO);
+  centerMsgTO=setTimeout(()=>e.style.opacity='0', dur);
+}
+
+function flash(color) {
+  const e=document.getElementById('flash');
+  e.style.background=color; e.style.opacity='0.42';
+  setTimeout(()=>e.style.opacity='0',110);
+}
+
+// ── Spawning ──────────────────────────────────────────────────────────────────
+function spawnNode() {
+  if (!gActive) return;
+  const r=Math.random();
+  let type;
+  if (gMode==='60sec') {
+    type = r<0.05?'golden': r<0.11?'freeze': 'data';
+  } else {
+    type = r<0.04?'golden': r<0.1?'freeze': r<0.23?'firewall': 'data';
+  }
+  nodes.push(new GNode(type));
+  if (Math.random()<0.32) setTimeout(()=>{ if(gActive) nodes.push(new GNode('data')); },170);
+  if (Math.random()<0.16) setTimeout(()=>{ if(gActive) nodes.push(new GNode('data')); },330);
+}
+
+function spawnBoss() {
+  const boss = new GNode('boss', {
+    x: canvas.width/2 + (Math.random()-0.5)*200,
+    y: canvas.height*0.28,
+    vx: (Math.random()>0.5?1:-1)*1.6,
+    vy: 0, grav: 0, bounceX: true
+  });
+  nodes.push(boss);
+  bossActive = true;
+  centerMsg('⚠ BOSS PROTOCOL INITIATED ⚠','#f0f',2200);
+  flash('rgba(255,0,255,0.25)');
+}
+
+// ── Hit handling ──────────────────────────────────────────────────────────────
+function addScore(pts, x, y, color) {
+  score += pts;
+  scorePopup(x, y, `+${pts}`, color);
+}
+
+let swipeHits = 0; // data nodes hit this swipe
+
+function handleHit(node) {
+  if (!node.alive) return;
+
+  if (node.type==='firewall') {
+    node.alive = false;
+    lives--;
+    flash('rgba(255,0,0,0.55)');
+    sfx.bomb();
+    burst(node.x,node.y,'#f00',30);
+    centerMsg('⚡ FIREWALL BREACH ⚡','#f44');
+    if (lives<=0) endGame(); return;
+  }
+
+  if (node.type==='freeze') {
+    node.alive=false;
+    frozen=true; freezeTimer=2000;
+    flash('rgba(150,0,255,0.45)');
+    sfx.freeze();
+    burst(node.x,node.y,'#a0f',22);
+    centerMsg('❄ SYSTEM FROZEN ❄','#c0f');
+    document.getElementById('frozen-overlay').style.display='block'; return;
+  }
+
+  if (node.type==='golden') {
+    node.alive=false;
+    frenzy=true; frenzyTimer=8000; mult=3;
+    sfx.golden();
+    burst(node.x,node.y,'#ff0',45);
+    centerMsg('★ FRENZY MODE ★','#ff0',2200);
+    flash('rgba(255,220,0,0.3)');
+    for(let i=0;i<6;i++) setTimeout(()=>{ if(gActive) nodes.push(new GNode('data')); },i*180);
+    addScore(500,node.x,node.y,'#ff0'); return;
+  }
+
+  if (node.type==='boss') {
+    const dead=!!(--node.hits<=0);
+    sfx.bossHit();
+    burst(node.x,node.y,'#f0f',10);
+    if (dead) {
+      node.alive=false; bossActive=false;
+      sfx.bossDie();
+      burst(node.x,node.y,'#f0f',60);
+      centerMsg('✓ BOSS NEUTRALIZED','#0f0',2000);
+      flash('rgba(255,0,255,0.3)');
+      addScore(1000,node.x,node.y,'#f0f');
+    } else {
+      addScore(50,node.x,node.y,'#f0f');
+    }
+    return;
+  }
+
+  // data node
+  node.alive=false;
+  sfx.slash();
+  burst(node.x,node.y,'#0af',16);
+  swipeHits++;
+
+  const pts=100*mult;
+  addScore(pts,node.x,node.y,'#0af');
+
+  if (swipeHits>=3) {
+    const newMult = Math.min(mult+1,5);
+    if (newMult>mult) { mult=newMult; clockTimer=3500; }
+    sfx.clock();
+    centerMsg(`⚡ SYSTEM OVERCLOCK ×${mult} ⚡`,'#ff0');
+    flash('rgba(255,240,0,0.18)');
+  }
+}
+
+function handleMiss(node) {
+  if (gMode==='survival' && (node.type==='data'||node.type==='golden')) {
+    misses++;
+    flash('rgba(255,120,0,0.25)');
+    if (misses>=3) endGame();
+  } else if (gMode==='boss' && node.type==='boss') {
+    bossActive=false; lives--;
+    flash('rgba(255,0,0,0.5)');
+    centerMsg('✗ BOSS ESCAPED','#f44');
+    if (lives<=0) endGame();
+  }
+}
+
+// ── Game loop ─────────────────────────────────────────────────────────────────
+function gameLoop(ts) {
+  const dt=Math.min(ts-lastFrameT,50);
+  lastFrameT=ts; gameTime+=dt;
+
+  drawBG();
+
+  if (gActive) {
+    // Timers
+    if (frozen) { freezeTimer-=dt; if(freezeTimer<=0){ frozen=false; document.getElementById('frozen-overlay').style.display='none'; } }
+    if (frenzy) { frenzyTimer-=dt; if(frenzyTimer<=0){ frenzy=false; if(!clockTimer) mult=1; } }
+    if (clockTimer>0) { clockTimer-=dt; if(clockTimer<=0&&!frenzy) mult=1; }
+    if (gMode==='60sec') { timeLeft-=dt/1000; if(timeLeft<=0) endGame(); }
+
+    // Spawn
+    spawnClock-=dt;
+    if (spawnClock<=0) {
+      spawnClock=(frenzy?550:1100);
+      spawnNode();
+    }
+
+    // Boss spawn (boss mode)
+    if (gMode==='boss' && !bossActive && ts-lastBossSpawn>12000) {
+      lastBossSpawn=ts; spawnBoss();
+    }
+    // Boss timeout
+    nodes.forEach(n => {
+      if (n.type==='boss' && n.alive && n.bossTimer>14000) {
+        n.alive=false;
+        handleMiss(n);
+      }
+    });
+
+    // Update nodes
+    nodes.forEach(n=>n.update(dt));
+    nodes=nodes.filter(n=>{
+      if(!n.alive) return false;
+      if(n.offScreen()){ handleMiss(n); return false; }
+      return true;
+    });
+
+    // Draw nodes (back to front)
+    nodes.forEach(n=>n.draw());
+
+    // Particles
+    particles.forEach(p=>{p.update();p.draw();});
+    particles=particles.filter(p=>!p.dead());
+    ctx.globalAlpha=1; ctx.shadowBlur=0;
+
+    // Slash trail
+    drawTrail();
+
+    // Frenzy border pulse
+    if (frenzy) {
+      ctx.save();
+      ctx.strokeStyle='#ff0'; ctx.lineWidth=4;
+      ctx.shadowBlur=18; ctx.shadowColor='#ff0';
+      ctx.globalAlpha=0.45+0.25*Math.sin(gameTime*0.01);
+      ctx.strokeRect(3,3,canvas.width-6,canvas.height-6);
+      ctx.restore();
+    }
+
+    updateHUD();
+  }
+
+  animId=requestAnimationFrame(gameLoop);
+}
+
+// ── Input ─────────────────────────────────────────────────────────────────────
+let pressing=false, prevX=0, prevY=0, slashedThisSwipe=new Set();
+
+function getXY(e) {
+  const t=e.touches?e.touches[0]:e;
+  return [t.clientX,t.clientY];
+}
+
+function onDown(e) {
+  if(ac&&ac.state==='suspended') ac.resume();
+  pressing=true; swipeHits=0; slashedThisSwipe=new Set();
+  const [x,y]=getXY(e); prevX=x; prevY=y;
+  trail.push({x,y,life:1});
+  e.preventDefault();
+}
+
+function onMove(e) {
+  if(!pressing) return;
+  const [x,y]=getXY(e);
+  trail.push({x,y,life:1});
+  if(trail.length>22) trail.shift();
+
+  if(gActive) {
+    nodes.forEach(n=>{
+      if(!n.alive) return;
+      if(n.type!=='boss'&&slashedThisSwipe.has(n)) return;
+      if(segCircle(prevX,prevY,x,y,n.x,n.y,n.r)) {
+        if(n.type!=='boss') slashedThisSwipe.add(n);
+        handleHit(n);
+      }
+    });
+  }
+
+  prevX=x; prevY=y;
+  e.preventDefault();
+}
+
+function onUp(e) {
+  pressing=false; slashedThisSwipe=new Set();
+  e.preventDefault();
+}
+
+canvas.addEventListener('mousedown',  onDown);
+canvas.addEventListener('mousemove',  onMove);
+canvas.addEventListener('mouseup',    onUp);
+canvas.addEventListener('touchstart', onDown, {passive:false});
+canvas.addEventListener('touchmove',  onMove, {passive:false});
+canvas.addEventListener('touchend',   onUp,   {passive:false});
+
+// ── Start / End ───────────────────────────────────────────────────────────────
+function startGame(mode) {
+  gMode=mode; gActive=true;
+  score=0; lives=3; misses=0; timeLeft=60;
+  frozen=false; freezeTimer=0;
+  frenzy=false; frenzyTimer=0;
+  mult=1; clockTimer=0;
+  nodes=[]; particles=[]; trail=[]; slashedThisSwipe=new Set();
+  bossActive=false; lastBossSpawn=performance.now();
+  spawnClock=800; gameTime=0; lastFrameT=performance.now();
+
+  document.getElementById('overlay').style.display='none';
+  document.getElementById('ui').style.display='flex';
+  document.getElementById('mode-lbl').textContent={survival:'SURVIVAL','60sec':'60-SEC HACK',boss:'BOSS PROTOCOL'}[mode];
+  document.getElementById('final-score').style.display='none';
+  document.getElementById('frozen-overlay').style.display='none';
+  document.getElementById('center-msg').style.opacity='0';
+  document.getElementById('status-lbl').style.display='';
+
+  if(animId) cancelAnimationFrame(animId);
+  animId=requestAnimationFrame(t=>{lastFrameT=t; gameLoop(t);});
+}
+
+function endGame() {
+  gActive=false;
+  document.getElementById('ui').style.display='none';
+  document.getElementById('overlay').style.display='flex';
+  const fs=document.getElementById('final-score');
+  fs.style.display='block';
+  fs.innerHTML=`FINAL SCORE: ${score.toLocaleString()} pts`;
+}
+
+// Start idle background loop
+animId=requestAnimationFrame(t=>{lastFrameT=t; gameLoop(t);});
+</script>
+</body>
+</html>

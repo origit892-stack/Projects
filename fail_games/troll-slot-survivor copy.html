@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Magic Tiles - Believer Edition</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#050505; overflow:hidden; font-family: 'Segoe UI', sans-serif; }
+    canvas { display:block; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>'use strict';
+
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
+let W = canvas.width  = window.innerWidth;
+let H = canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    computeGeo();
+});
+
+// ── Audio Engine (Deep Piano Synth) ────────────────────────────────────────
+let audioCtx, masterGain;
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        masterGain = audioCtx.createGain();
+        masterGain.gain.value = 0.7;
+        masterGain.connect(audioCtx.destination);
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function playPianoNote(freq) {
+    const t = audioCtx.currentTime;
+    const duration = 1.2;
+    
+    // Deeper harmonics for Believer's heavy sound
+    [1, 2, 4].forEach((h, i) => {
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = i === 0 ? 'triangle' : 'sine'; // Triangle gives that "punch"
+        osc.frequency.value = freq * h;
+        
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(0.3 / (i + 1), t + 0.005);
+        g.gain.exponentialRampToValueAtTime(0.001, t + duration);
+        
+        osc.connect(g);
+        g.connect(masterGain);
+        osc.start(t);
+        osc.stop(t + duration);
+    });
+}
+
+const NF = {
+    'F3':174.61, 'Gb3':185.00, 'Ab3':207.65, 'Bb3':233.08, 'Db4':277.18
+};
+
+// ── Song Data (Believer Full Melody) ─────────────────────────────────
+const BELIEVER = {
+    bpm: 125,
+    n2l: {'F3':0, 'Gb3':0, 'Ab3':1, 'Bb3':2, 'Db4':3},
+    beats: [
+        // Verse: "First things first..."
+        {n:'Bb3',d:.5}, {n:'_',d:.5},
+        {n:'Db4',d:.5}, {n:'Db4',d:.5}, {n:'Db4',d:.5}, {n:'Bb3',d:1.5},
+        {n:'Bb3',d:.5}, {n:'Bb3',d:.5}, {n:'Bb3',d:.25}, {n:'Ab3',d:.25}, {n:'Gb3',d:1.5},
+        {n:'F3',d:.5}, {n:'F3',d:.5}, {n:'F3',d:.5}, {n:'F3',d:2},
+        
+        // Verse Repeat: "Second things second..."
+        {n:'Bb3',d:.5}, {n:'_',d:.5},
+        {n:'Db4',d:.5}, {n:'Db4',d:.5}, {n:'Db4',d:.5}, {n:'Bb3',d:1.5},
+        {n:'Bb3',d:.5}, {n:'Bb3',d:.5}, {n:'Bb3',d:.25}, {n:'Ab3',d:.25}, {n:'Gb3',d:1.5},
+        {n:'F3',d:.5}, {n:'F3',d:.5}, {n:'F3',d:.5}, {n:'F3',d:2},
+
+        // Hook: "PAIN!"
+        {n:'Bb3',d:1}, {n:'Bb3',d:.5}, {n:'Bb3',d:.5}, {n:'Db4',d:.5}, {n:'Bb3',d:1.5},
+        {n:'Bb3',d:1}, {n:'Bb3',d:.5}, {n:'Bb3',d:.5}, {n:'Db4',d:.5}, {n:'Bb3',d:1.5},
+        
+        // Chorus: "You made me a believer..."
+        {n:'Bb3',d:.5}, {n:'Bb3',d:.5}, {n:'Bb3',d:.5}, {n:'Db4',d:.5},
+        {n:'Bb3',d:.5}, {n:'Ab3',d:.5}, {n:'Gb3',d:.5}, {n:'F3',d:1.5},
+        {n:'Bb3',d:.5}, {n:'Bb3',d:.5}, {n:'Bb3',d:.5}, {n:'Db4',d:.5},
+        {n:'Bb3',d:2}
+    ]
+};
+
+// ── Game Logic ──────────────────────────────────────────────────────────────
+let fX, fW, lW, hitY;
+const TILE_H = 110;
+const SONG_SPD = 5.5; 
+let tiles = [];
+let score = 0;
+let state = 'MENU';
+let songStart = 0;
+let totalSpawned = 0;
+
+function computeGeo() {
+    fW = Math.min(W * 0.85, 450);
+    fX = (W - fW) / 2;
+    lW = fW / 4;
+    hitY = H * 0.82;
+}
+computeGeo();
+
+function buildNotes(song) {
+    let t = 0;
+    const beatMs = 60000 / song.bpm;
+    return song.beats.map(b => {
+        let note = { hitTime: t * beatMs, lane: song.n2l[b.n], freq: NF[b.n], n: b.n };
+        t += b.d;
+        return note;
+    }).filter(b => b.n !== '_');
+}
+
+const activeNotes = buildNotes(BELIEVER);
+
+function spawnUpdate() {
+    const now = performance.now() - songStart;
+    const leadTime = (hitY + TILE_H) / SONG_SPD * 16.6; 
+
+    while (totalSpawned < activeNotes.length) {
+        let note = activeNotes[totalSpawned];
+        if (now + leadTime < note.hitTime) break;
+        tiles.push({ ...note, y: -TILE_H, active: true });
+        totalSpawned++;
+    }
+}
+
+function pressLane(ln) {
+    initAudio();
+    let hit = false;
+    for (let t of tiles) {
+        if (t.lane === ln && t.active) {
+            const dist = Math.abs(t.y + TILE_H - hitY);
+            if (dist < 80) {
+                t.active = false;
+                score += 100;
+                playPianoNote(t.freq);
+                hit = true;
+                break;
+            }
+        }
+    }
+}
+
+// ── Render ──────────────────────────────────────────────────────────────────
+function draw() {
+    ctx.fillStyle = '#050505';
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle Lanes
+    for (let i = 0; i < 4; i++) {
+        ctx.fillStyle = i % 2 === 0 ? '#0a0a0a' : '#0f0f0f';
+        ctx.fillRect(fX + i * lW, 0, lW, H);
+    }
+
+    // Hit Zone
+    ctx.fillStyle = 'rgba(74, 144, 224, 0.2)';
+    ctx.fillRect(fX, hitY - 10, fW, 20);
+    ctx.strokeStyle = '#4a90e0';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(fX, hitY - 10, fW, 20);
+
+    if (state === 'PLAYING') {
+        spawnUpdate();
+        tiles.forEach(t => {
+            if (t.active) {
+                t.y += SONG_SPD;
+                ctx.fillStyle = '#4a90e0';
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = '#4a90e0';
+                
+                ctx.beginPath();
+                ctx.roundRect(fX + t.lane * lW + 8, t.y, lW - 16, TILE_H, 12);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                if (t.y > H) t.active = false;
+            }
+        });
+
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 40px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(score, W/2, 60);
+    } else {
+        ctx.fillStyle = '#4a90e0';
+        ctx.font = 'bold 28px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText("BELIEVER - IMAGINE DRAGONS", W/2, H/2 - 40);
+        ctx.fillStyle = 'white';
+        ctx.font = '20px Arial';
+        ctx.fillText("TAP TO START", W/2, H/2 + 20);
+    }
+
+    requestAnimationFrame(draw);
+}
+
+window.addEventListener('mousedown', (e) => {
+    if (state === 'MENU') {
+        state = 'PLAYING';
+        songStart = performance.now();
+    } else {
+        const ln = Math.floor((e.clientX - fX) / lW);
+        if (ln >= 0 && ln < 4) pressLane(ln);
+    }
+});
+
+window.addEventListener('keydown', (e) => {
+    const keys = {'d':0, 'f':1, 'j':2, 'k':3};
+    if (keys[e.key] !== undefined) pressLane(keys[e.key]);
+});
+
+draw();
+
+</script>
+</body>
+</html>

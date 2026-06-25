@@ -1,0 +1,21 @@
+{
+  "name": "the_hook_game",
+  "version": "1.0.0",
+  "description": "A Three.js endless runner with grappling hook combat.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "vite": "^8.0.16"
+  },
+  "dependencies": {
+    "three": "^0.184.0"
+  }
+}

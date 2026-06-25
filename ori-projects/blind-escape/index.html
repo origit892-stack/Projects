@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blind Escape</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main id="game-shell">
+      <canvas id="game"></canvas>
+
+      <section id="start-screen" class="overlay">
+        <div class="grain"></div>
+        <div class="panel">
+          <h1>Blind Escape</h1>
+          <p>מצא את המפתח הריאליסטי והשתמש בו כדי לפתוח את הדלת המרכזית לבריחה. היזהר מהעיניים האדומות הזוהרות שמופיעות כשהסכנה קרובה.</p>
+          <p>השתמש ב-WASD או בחצים כדי לזוז ובעכבר כדי להסתכל מסביב.</p>
+          <button id="start-button">התחל משחק</button>
+        </div>
+      </section>
+
+      <section id="game-over-screen" class="overlay hidden">
+        <div class="grain"></div>
+        <div class="panel danger">
+          <h1>Game Over</h1>
+          <button id="retry-button">נסה שוב</button>
+        </div>
+      </section>
+
+      <section id="win-screen" class="overlay hidden">
+        <div class="grain"></div>
+        <div class="panel success">
+          <h1>ברחת!</h1>
+          <p>הדלת הראשית נפתחה והמבוך נשאר מאחור.</p>
+          <button id="play-again-button">שחק שוב</button>
+        </div>
+      </section>
+
+      <div id="hud">
+        <div id="crosshair"></div>
+        <div id="status">WASD / חיצים לתנועה, עכבר להסתכלות</div>
+      </div>
+    </main>
+
+    <script>
+      window.addEventListener("error", (event) => {
+        document.body.dataset.error = event.message;
+      });
+      window.addEventListener("unhandledrejection", (event) => {
+        document.body.dataset.error = event.reason?.message || String(event.reason);
+      });
+    </script>
+    <script type="module" src="./src/game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Last Survivor - ניהול בונקר</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="dayFlash" class="day-flash" aria-hidden="true"></div>
+
+  <main id="gameShell" class="bunker-shell">
+    <header class="topbar">
+      <div>
+        <p class="system-kicker">BUNKER CONTROL // SURVIVAL MODE</p>
+        <h1>הניצול האחרון</h1>
+        <p class="subtitle">נהל אספקה, החלטות ואנשים מתחת לאדמה.</p>
+      </div>
+
+      <div class="day-counter" aria-live="polite">
+        <span class="day-label">יום</span>
+        <span id="dayNumber" class="day-number">1</span>
+      </div>
+    </header>
+
+    <section class="status-grid" aria-label="מדדי הבונקר">
+      <article class="stat-card stat-food">
+        <div class="stat-top">
+          <span class="stat-label">אוכל</span>
+          <span id="foodValue" class="stat-value">20/20</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="אוכל" aria-valuemin="0" aria-valuemax="20" aria-valuenow="20">
+          <div id="foodFill" class="progress-fill"></div>
+        </div>
+      </article>
+
+      <article class="stat-card stat-water">
+        <div class="stat-top">
+          <span class="stat-label">מים</span>
+          <span id="waterValue" class="stat-value">20/20</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="מים" aria-valuemin="0" aria-valuemax="20" aria-valuenow="20">
+          <div id="waterFill" class="progress-fill"></div>
+        </div>
+      </article>
+
+      <article class="stat-card stat-morale">
+        <div class="stat-top">
+          <span class="stat-label">מורל</span>
+          <span id="moraleValue" class="stat-value">100/100</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="מורל" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+          <div id="moraleFill" class="progress-fill"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="inventory-panel" aria-label="ציוד הבונקר">
+      <div class="inventory-title">ציוד</div>
+      <div id="inventorySlots" class="inventory-slots">
+        <div class="inventory-slot empty">ריק</div>
+        <div class="inventory-slot empty">ריק</div>
+        <div class="inventory-slot empty">ריק</div>
+      </div>
+      <div id="managementActions" class="management-actions"></div>
+    </section>
+
+    <section class="command-zone">
+      <div class="bunker-visual" aria-label="חתך צד של הבונקר">
+        <div id="routineStatus" class="routine-status">יום 1 - השגרה נמשכת...</div>
+        <div class="bunker-rooms">
+          <div class="room room-bunks" data-room="bunks">
+            <span class="room-label">מגורים</span>
+            <span class="bunk bed-a"></span>
+            <span class="bunk bed-b"></span>
+            <span class="survivor survivor-a" data-survivor="noa"><span class="mood-pop"></span><span class="speech-bubble"></span></span>
+          </div>
+          <div class="room room-food" data-room="food">
+            <span class="room-label">חדר אוכל</span>
+            <span class="table"></span>
+            <span class="survivor survivor-b" data-survivor="amir"><span class="mood-pop"></span><span class="speech-bubble"></span></span>
+          </div>
+          <div class="room room-machines" data-room="machines">
+            <span class="room-label">מכונות</span>
+            <div class="hatch">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span class="survivor survivor-c" data-survivor="dana"><span class="mood-pop"></span><span class="speech-bubble"></span></span>
+          </div>
+        </div>
+      </div>
+
+      <article class="event-card" aria-live="polite">
+        <div class="event-label" id="eventLabel">אירוע יומי</div>
+        <p id="eventBankCount" class="event-bank-count"></p>
+        <h2 id="eventTitle">רעש מאחורי דלת הפלדה</h2>
+        <p id="eventStory" class="story"></p>
+        <p id="result" class="result"></p>
+
+        <div id="choices" class="choices"></div>
+        <div class="action-row">
+          <button id="nextButton" class="primary-button hidden" type="button">המשך ליום הבא</button>
+          <button id="restartButton" class="primary-button hidden" type="button">התחל מחדש</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <section id="gameOverScreen" class="game-over-screen hidden" aria-live="assertive">
+    <div class="collapse-card">
+      <p class="system-kicker danger-kicker">SYSTEM FAILURE // BUNKER LOST</p>
+      <h2>הבונקר קרס</h2>
+      <p id="survivedText" class="survived-text">שרדת 0 ימים</p>
+      <p id="deathReason" class="death-reason"></p>
+      <button id="tryAgainButton" class="try-again-button" type="button">נסה שוב</button>
+    </div>
+  </section>
+
+  <script src="events.js"></script>
+  <script src="config.js"></script>
+  <script src="ai-events.js"></script>
+  <script src="audio.js"></script>
+  <script src="ui.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

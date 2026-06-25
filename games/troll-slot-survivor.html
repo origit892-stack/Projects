@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TROLL SLOT SURVIVOR</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: radial-gradient(ellipse at center, #0a0a1e 0%, #020208 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Courier New', monospace;
+  color: #fff;
+}
+canvas {
+  display: block;
+  border: 2px solid rgba(0,255,200,0.25);
+  box-shadow: 0 0 60px rgba(0,200,255,0.15), 0 0 120px rgba(160,68,255,0.08);
+  border-radius: 4px;
+}
+#slot-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#slot-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+#slot-machine {
+  background: #111;
+  border: 2px solid #ff8800;
+  border-radius: 12px;
+  padding: 30px 40px;
+  text-align: center;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  box-shadow: 0 0 40px rgba(255,136,0,0.5);
+  min-width: 380px;
+  transform: translateY(-120%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#slot-overlay.visible #slot-machine {
+  transform: translateY(0);
+}
+.slot-title {
+  font-size: 1.4rem;
+  color: #ff8800;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255,136,0,0.8);
+}
+#reels {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+.reel {
+  width: 90px;
+  height: 90px;
+  border: 2px solid #ff8800;
+  border-radius: 8px;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 8px;
+  background: #0a0a0a;
+  position: relative;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+}
+.reel::before, .reel::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 20px;
+  z-index: 2;
+  pointer-events: none;
+}
+.reel::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+}
+.reel::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+.reel-strip {
+  font-size: 2.5rem;
+  line-height: 90px;
+  text-align: center;
+  will-change: transform;
+}
+.reel-strip span {
+  display: block;
+  height: 90px;
+  line-height: 90px;
+}
+.slot-subtitle {
+  font-size: 0.75rem;
+  color: #888;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+#slot-result {
+  font-size: 1.1rem;
+  min-height: 28px;
+  margin-top: 16px;
+  color: #00ffcc;
+  text-shadow: 0 0 8px rgba(0,255,200,0.6);
+  letter-spacing: 1px;
+}
+#slot-spin-btn {
+  margin-top: 20px;
+  padding: 10px 40px;
+  background: #ff8800;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 2px;
+  box-shadow: 0 0 20px rgba(255,136,0,0.6);
+  transition: background 0.2s, transform 0.1s;
+}
+#slot-spin-btn:hover:not(:disabled) {
+  background: #ffaa33;
+  transform: scale(1.05);
+}
+#slot-spin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+#game-title {
+  font-size: 1rem;
+  color: transparent;
+  background: linear-gradient(90deg, #aa44ff, #00ffcc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  filter: drop-shadow(0 0 8px rgba(0,255,200,0.5));
+}
+</style>
+</head>
+<body>
+<div id="game-title">TROLL SLOT SURVIVOR</div>
+<canvas id="gameCanvas" width="800" height="500"></canvas>
+
+<div id="slot-overlay">
+  <div id="slot-machine">
+    <div class="slot-title">⚡ FATE MACHINE ⚡</div>
+    <div class="slot-subtitle">YOUR DESTINY AWAITS</div>
+    <div id="reels">
+      <div class="reel" id="reel0"><div class="reel-strip" id="strip0"></div></div>
+      <div class="reel" id="reel1"><div class="reel-strip" id="strip1"></div></div>
+      <div class="reel" id="reel2"><div class="reel-strip" id="strip2"></div></div>
+    </div>
+    <div id="slot-result"></div>
+    <button id="slot-spin-btn">SPIN!</button>
+  </div>
+</div>
+
+<script>
+// ==================== CONSTANTS ====================
+const CANVAS_W = 800;
+const CANVAS_H = 500;
+const LEVEL_W = 5000;
+const LEVEL_H = 500;
+const GRAVITY_NORMAL = 0.55;
+const GRAVITY_LOW = 0.3;
+const JUMP_FORCE_NORMAL = -12.5;
+const JUMP_FORCE_LOW = -17;
+const MOVE_SPEED_NORMAL = 4.5;
+const MOVE_SPEED_BOOST = 6.75;
+const MAX_FALL = 14;
+const PLAYER_W = 22;
+const PLAYER_H = 22;
+const SLOT_INTERVAL = 20000;
+const CHECKPOINT_INTERVAL = 800;
+
+// ==================== BACKGROUND STARS ====================
+const BG_STARS = [];
+(function() {
+  for (let i = 0; i < 200; i++) {
+    BG_STARS.push({
+      x: Math.random() * (LEVEL_W + CANVAS_W),
+      y: Math.random() * CANVAS_H,
+      size: Math.random() < 0.7 ? 0.7 : (Math.random() < 0.5 ? 1.3 : 2.0),
+      parallax: 0.04 + Math.random() * 0.3,
+      opacity: 0.15 + Math.random() * 0.55,
+      twinkle: Math.random() * Math.PI * 2
+    });
+  }
+})();
+
+// ==================== CANVAS SETUP ====================
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// ==================== AUDIO ====================
+let audioCtx = null;
+function getAC() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+function playTone(freq, type, vol, dur, delay=0) {
+  try {
+    const ac = getAC();
+    const osc = ac.createOscillator();
+    const gain = ac.createGain();
+    osc.connect(gain);
+    gain.connect(ac.destination);
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ac.currentTime + delay);
+    gain.gain.setValueAtTime(0, ac.currentTime + delay);
+    gain.gain.linearRampToValueAtTime(vol, ac.currentTime + delay + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + delay + dur);
+    osc.start(ac.currentTime + delay);
+    osc.stop(ac.currentTime + delay + dur + 0.05);
+  } catch(e) {}
+}
+function soundJump() { playTone(400, 'square', 0.08, 0.1); playTone(600, 'square', 0.05, 0.08, 0.05); }
+function soundLand() { playTone(80, 'sine', 0.12, 0.1); }
+function soundDeath() {
+  playTone(300, 'sawtooth', 0.1, 0.15);
+  playTone(200, 'sawtooth', 0.1, 0.15, 0.1);
+  playTone(100, 'sawtooth', 0.1, 0.2, 0.2);
+}
+function soundSlotSpin() {
+  for (let i = 0; i < 12; i++) {
+    playTone(200 + i * 60, 'square', 0.04, 0.08, i * 0.07);
+  }
+}
+function soundSlotWin() {
+  [523, 659, 784, 1047].forEach((f, i) => playTone(f, 'sine', 0.1, 0.3, i * 0.1));
+}
+function soundSlotTroll() {
+  [200, 180, 160, 140].forEach((f, i) => playTone(f, 'sawtooth', 0.1, 0.25, i * 0.08));
+}
+function soundPickup() { playTone(880, 'sine', 0.1, 0.15); playTone(1100, 'sine', 0.08, 0.1, 0.1); }
+function soundFakeFlagLaugh() {
+  [600, 400, 600, 400, 800].forEach((f, i) => playTone(f, 'square', 0.06, 0.12, i * 0.1));
+}
+function soundBounce() { playTone(600, 'sine', 0.1, 0.2); playTone(900, 'sine', 0.08, 0.15, 0.05); }
+function soundSpike() {
+  playTone(150, 'sawtooth', 0.08, 0.1);
+  playTone(100, 'sawtooth', 0.06, 0.15, 0.08);
+}
+function soundControlsInverted() {
+  [800, 400, 800, 400, 200].forEach((f,i) => playTone(f,'square',0.07,0.1,i*0.08));
+}
+
+// ==================== BACKGROUND MUSIC ====================
+let musicPlaying = false;
+let musicMuted = false;
+let musicScheduler = null;
+let nextNoteTime = 0;
+let musicStep = 0;
+
+const BPM = 130;
+const S16 = 60 / BPM / 4; // 16th note duration (seconds)
+
+const N = { // note frequencies
+  C2:65.4, E2:82.4, G2:98, A2:110, B2:123.5,
+  C3:130.8, D3:146.8, E3:164.8, F3:174.6, G3:196, A3:220, B3:246.9,
+  C4:261.6, D4:293.7, E4:329.6, F4:349.2, G4:392, A4:440, B4:493.9,
+  C5:523.3
+};
+
+// 16-step patterns (null = rest)
+const BASS = [
+  N.C2, null, null, N.C2,  N.G2, null, N.G2, null,
+  N.A2, null, null, N.A2,  N.F2||87.3, null, N.G2, null
+];
+const MELODY = [
+  N.E4, null, N.G4, null,  N.A4, null, null, N.G4,
+  N.E4, null, N.D4, null,  N.C4, null, null, null
+];
+const CHORD = [ // pads on beats 1,3,5,7
+  N.C3, null, N.E3, null,  N.G3, null, N.E3, null,
+  N.A3, null, null, null,  N.F3, null, N.G3, null
+];
+const HIHAT = [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0];
+const KICK  = [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0];
+
+function schedMusicNote(freq, type, vol, t, dur) {
+  if (musicMuted) return;
+  try {
+    const ac = getAC();
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.connect(g); g.connect(ac.destination);
+    o.type = type; o.frequency.value = freq;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vol, t + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.start(t); o.stop(t + dur + 0.05);
+  } catch(e) {}
+}
+
+function scheduleMusicStep(t, step) {
+  const s = step % 16;
+  if (BASS[s])   schedMusicNote(BASS[s],   'square',   0.07,  t, S16 * 1.8);
+  if (MELODY[s]) schedMusicNote(MELODY[s], 'triangle', 0.06,  t, S16 * 0.75);
+  if (CHORD[s])  schedMusicNote(CHORD[s],  'sine',     0.035, t, S16 * 3.5);
+  if (HIHAT[s])  schedMusicNote(6000 + Math.random()*1500, 'sawtooth', 0.018, t, S16 * 0.08);
+  if (KICK[s])   schedMusicNote(60, 'sine', 0.12, t, S16 * 0.3);
+}
+
+function musicTick() {
+  if (!musicPlaying) return;
+  try {
+    const ac = getAC();
+    while (nextNoteTime < ac.currentTime + 0.12) {
+      scheduleMusicStep(nextNoteTime, musicStep++);
+      nextNoteTime += S16;
+    }
+  } catch(e) {}
+  musicScheduler = setTimeout(musicTick, 40);
+}
+
+function startMusic() {
+  if (musicPlaying) return;
+  musicPlaying = true;
+  try {
+    const ac = getAC();
+    if (ac.state === 'suspended') ac.resume();
+    nextNoteTime = ac.currentTime + 0.15;
+    musicStep = 0;
+    musicTick();
+  } catch(e) {}
+}
+
+function stopMusic() {
+  musicPlaying = false;
+  if (musicScheduler) { clearTimeout(musicScheduler); musicScheduler = null; }
+}
+
+function toggleMute() {
+  musicMuted = !musicMuted;
+}
+
+// ==================== PARTICLES ====================
+let particles = [];
+function emitParticles(x, y, color, count, speed, life) {
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const spd = speed * (0.3 + Math.random() * 0.7);
+    particles.push({
+      x, y,
+      vx: Math.cos(angle) * spd,
+      vy: Math.sin(angle) * spd,
+      color,
+      life: life * (0.7 + Math.random() * 0.3),
+      maxLife: life,
+      size: 2 + Math.random() * 4
+    });
+  }
+  if (particles.length > 200) particles.splice(0, particles.length - 200);
+}
+function emitConfetti(x, y) {
+  const colors = ['#ff4444','#44ff44','#4444ff','#ffff44','#ff44ff','#44ffff','#ff8800'];
+  for (let i = 0; i < 40; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const spd = 2 + Math.random() * 8;
+    const c = colors[Math.floor(Math.random() * colors.length)];
+    particles.push({
+      x, y,
+      vx: Math.cos(angle) * spd,
+      vy: Math.sin(angle) * spd - 3,
+      color: c,
+      life: 80 + Math.random() * 60,
+      maxLife: 140,
+      size: 3 + Math.random() * 5
+    });
+  }
+  if (particles.length > 200) particles.splice(0, particles.length - 200);
+}
+function updateParticles() {
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.15;
+    p.vx *= 0.97;
+    p.life--;
+    if (p.life <= 0) particles.splice(i, 1);
+  }
+}
+function drawParticles(offsetX) {
+  for (const p of particles) {
+    const alpha = p.life / p.maxLife;
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x - offsetX, p.y, p.size * alpha, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ==================== SCREEN SHAKE ====================
+let shakeX = 0, shakeY = 0, shakePow = 0;
+function applyShake(pow) { shakePow = Math.max(shakePow, pow); }
+function updateShake() {
+  if (shakePow > 0.3) {
+    shakeX = (Math.random() - 0.5) * shakePow;
+    shakeY = (Math.random() - 0.5) * shakePow;
+    shakePow *= 0.87;
+  } else {
+    shakeX = 0; shakeY = 0; shakePow = 0;
+  }
+}
+
+// ==================== LEVEL DATA ====================
+function buildLevel() {
+  const platforms = [];
+  const spikes = [];
+
+  // ---- SECTION 1: Tutorial (x 0-800) ----
+  // Ground
+  platforms.push({x:0, y:440, w:700, h:50, type:'solid', color:'#ffffff', opacity:1});
+  // Simple platforms
+  platforms.push({x:150, y:360, w:120, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:340, y:300, w:100, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:520, y:340, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  // Falling platform
+  platforms.push({x:630, y:380, w:90, h:14, type:'fall', color:'#ffaa44', opacity:1,
+    fallState:0, fallTimer:0, shakeOffset:0});
+  // Gap: ground ends at 700, next ground starts at 750
+  platforms.push({x:760, y:440, w:300, h:50, type:'solid', color:'#ffffff', opacity:1});
+
+  // ---- SECTION 2: Spike zone (x 800-1600) ----
+  platforms.push({x:800, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  // Floating platforms with gaps
+  platforms.push({x:900, y:380, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:1020, y:320, w:50, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:1110, y:370, w:60, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:1200, y:300, w:50, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:1280, y:360, w:70, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:1380, y:310, w:60, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:1470, y:370, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:1560, y:420, w:100, h:50, type:'solid', color:'#ffffff', opacity:1});
+  // Hidden spikes (appear when player within 120px horizontally)
+  spikes.push({x:950, y:426, w:20, h:16, hidden:true, activated:false, type:'hidden', dropState:0});
+  spikes.push({x:1060, y:426, w:20, h:16, hidden:true, activated:false, type:'hidden', dropState:0});
+  spikes.push({x:1160, y:426, w:20, h:16, hidden:true, activated:false, type:'hidden', dropState:0});
+  spikes.push({x:1340, y:426, w:20, h:16, hidden:true, activated:false, type:'hidden', dropState:0});
+
+  // ---- SECTION 3: Moving platforms (x 1600-2400) ----
+  // Pit with spikes at bottom
+  spikes.push({x:1680, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1710, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1740, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1770, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1800, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1830, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1860, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1890, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1920, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1950, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:1980, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:2010, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:2040, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:2070, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:2100, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:2130, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:2160, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:2190, y:464, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  // Solid ground before and after pit
+  platforms.push({x:1600, y:420, w:80, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2220, y:420, w:80, h:50, type:'solid', color:'#ffffff', opacity:1});
+  // Moving horizontal platforms
+  platforms.push({x:1680, y:370, w:80, h:14, type:'moving', color:'#aaffaa', opacity:1,
+    moveAxis:'h', moveRange:120, moveSpeed:1.2, moveDir:1, moveOrigin:1680, moveT:0});
+  platforms.push({x:1850, y:330, w:80, h:14, type:'moving', color:'#aaffaa', opacity:1,
+    moveAxis:'h', moveRange:120, moveSpeed:1.4, moveDir:-1, moveOrigin:1850, moveT:60});
+  platforms.push({x:2020, y:360, w:80, h:14, type:'moving', color:'#aaffaa', opacity:1,
+    moveAxis:'h', moveRange:100, moveSpeed:1.0, moveDir:1, moveOrigin:2020, moveT:30});
+  // Moving vertical platform
+  platforms.push({x:2130, y:350, w:80, h:14, type:'moving', color:'#aaffff', opacity:1,
+    moveAxis:'v', moveRange:100, moveSpeed:1.0, moveDir:1, moveOrigin:350, moveT:0});
+  // More stepping stones
+  platforms.push({x:2300, y:390, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+
+  // ---- SECTION 4: Fake floor zone (x 2400-3200) ----
+  // Apparent ground - some tiles are fake (no collision)
+  platforms.push({x:2400, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2460, y:440, w:60, h:50, type:'fake', color:'#ffffff', opacity:1, revealed:false});
+  platforms.push({x:2520, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2580, y:440, w:60, h:50, type:'fake', color:'#ffffff', opacity:1, revealed:false});
+  platforms.push({x:2640, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2700, y:440, w:60, h:50, type:'fake', color:'#ffffff', opacity:1, revealed:false});
+  platforms.push({x:2760, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2820, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2880, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2940, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:3000, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:3060, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:3120, y:440, w:60, h:50, type:'solid', color:'#ffffff', opacity:1});
+  // Some upper platforms
+  platforms.push({x:2450, y:340, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2600, y:290, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2750, y:320, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:2900, y:280, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:3050, y:340, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  // Ceiling drop spikes
+  spikes.push({x:2500, y:0, w:20, h:16, hidden:true, activated:false, type:'ceiling_drop', dropY:440, dropState:0, currentY:0});
+  spikes.push({x:2650, y:0, w:20, h:16, hidden:true, activated:false, type:'ceiling_drop', dropY:440, dropState:0, currentY:0});
+  spikes.push({x:2800, y:0, w:20, h:16, hidden:true, activated:false, type:'ceiling_drop', dropY:440, dropState:0, currentY:0});
+  spikes.push({x:2950, y:0, w:20, h:16, hidden:true, activated:false, type:'ceiling_drop', dropY:440, dropState:0, currentY:0});
+
+  // ---- SECTION 5: Chaos zone (x 3200-4000) ----
+  // Ground
+  platforms.push({x:3180, y:440, w:100, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:3400, y:440, w:200, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:3750, y:440, w:200, h:50, type:'solid', color:'#ffffff', opacity:1});
+  // Various platforms
+  platforms.push({x:3280, y:380, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:3380, y:330, w:70, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:3480, y:370, w:80, h:14, type:'moving', color:'#aaffaa', opacity:1,
+    moveAxis:'h', moveRange:100, moveSpeed:1.5, moveDir:1, moveOrigin:3480, moveT:0});
+  platforms.push({x:3600, y:310, w:70, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:3700, y:360, w:80, h:14, type:'solid', color:'#ffffff', opacity:1});
+  // Bounce pads (yellow)
+  platforms.push({x:3320, y:440, w:60, h:12, type:'bounce', color:'#ffee00', opacity:1});
+  platforms.push({x:3680, y:440, w:60, h:12, type:'bounce', color:'#ffee00', opacity:1});
+  // Spikes
+  spikes.push({x:3340, y:424, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:3370, y:424, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:3630, y:424, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:3660, y:424, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  // More spikes with hidden
+  spikes.push({x:3800, y:424, w:20, h:16, hidden:true, activated:false, type:'hidden', dropState:0});
+  spikes.push({x:3850, y:424, w:20, h:16, hidden:true, activated:false, type:'hidden', dropState:0});
+
+  // ---- SECTION 6: Final approach (x 4000-4800) ----
+  platforms.push({x:3950, y:440, w:100, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:4100, y:440, w:80, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:4230, y:440, w:100, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:4380, y:440, w:80, h:50, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:4500, y:440, w:300, h:50, type:'solid', color:'#ffffff', opacity:1});
+  // Floating platforms
+  platforms.push({x:4050, y:370, w:60, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:4160, y:320, w:60, h:14, type:'solid', color:'#ffffff', opacity:1});
+  platforms.push({x:4280, y:360, w:70, h:14, type:'moving', color:'#aaffaa', opacity:1,
+    moveAxis:'h', moveRange:80, moveSpeed:1.3, moveDir:1, moveOrigin:4280, moveT:0});
+  platforms.push({x:4420, y:340, w:60, h:14, type:'solid', color:'#ffffff', opacity:1});
+  // Tough spikes final approach
+  spikes.push({x:4030, y:424, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:4060, y:424, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:4140, y:424, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:4200, y:424, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:4260, y:424, w:20, h:16, hidden:false, activated:true, type:'static', dropState:0});
+  spikes.push({x:4350, y:424, w:20, h:16, hidden:true, activated:false, type:'hidden', dropState:0});
+  spikes.push({x:4460, y:424, w:20, h:16, hidden:true, activated:false, type:'hidden', dropState:0});
+
+  return { platforms, spikes };
+}
+
+// ==================== GRAVITY ZONES ====================
+const gravityZones = [
+  {x:3180, y:0, w:220, h:500, active:true} // Inverted gravity zone in section 5
+];
+
+// ==================== GAME STATE ====================
+let gameState = 'menu'; // 'menu','playing','slots','dead','gameover','win'
+let player;
+let platforms, spikes;
+let cameraX = 0;
+let lives = 3;
+let deathCount = 0;
+let slotTimer = SLOT_INTERVAL;
+let activeEffects = new Map();
+let controlsInverted = false;
+let gravityMultiplier = 1.0;
+let jumpForceMultiplier = 1.0;
+let deadTimer = 0;
+let checkpoints = [80]; // x positions of checkpoints
+let currentCheckpoint = 0;
+let keys = {};
+let frameCount = 0;
+let lastJumpPressed = false;
+let inGravityZone = false;
+let gravityReversed = false;
+let deathPlayerX = 80;
+let invertedWarningFlash = 0;
+let fakeFlag = {x: 4400, y: 395, runAway: false, hahaTimer: 0};
+let goalFlag = {x: 4700, y: 380};
+let floatingTexts = [];
+
+function initPlayer() {
+  player = {
+    x: checkpoints[currentCheckpoint], y: 380,
+    w: PLAYER_W, h: PLAYER_H,
+    vx: 0, vy: 0,
+    onGround: false,
+    jumpsLeft: 1,
+    maxJumps: 1,
+    dead: false,
+    alpha: 1.0,
+    shielded: false,
+    onMovingPlatform: null
+  };
+}
+
+function initGame() {
+  const level = buildLevel();
+  platforms = level.platforms;
+  spikes = level.spikes;
+  lives = 3;
+  deathCount = 0;
+  slotTimer = SLOT_INTERVAL;
+  activeEffects.clear();
+  controlsInverted = false;
+  gravityMultiplier = 1.0;
+  jumpForceMultiplier = 1.0;
+  currentCheckpoint = 0;
+  checkpoints = [80];
+  for (let cp = 1; cp <= 6; cp++) {
+    checkpoints.push(cp * CHECKPOINT_INTERVAL);
+  }
+  inGravityZone = false;
+  gravityReversed = false;
+  fakeFlag = {x: 4400, y: 395, runAway: false, hahaTimer: 0};
+  particles = [];
+  floatingTexts = [];
+  cameraX = 0;
+  initPlayer();
+  gameState = 'playing';
+  if (musicStarted && !musicPlaying) startMusic();
+  // Reset fake platforms
+  platforms.forEach(p => { if (p.type === 'fake') { p.revealed = false; p.opacity = 1; } });
+  // Reset ceiling drop spikes
+  spikes.forEach(s => { if (s.type === 'ceiling_drop') { s.currentY = 0; s.dropState = 0; s.activated = false; s.hidden = true; } });
+}
+
+function addFloatingText(x, y, text, color, life=90) {
+  floatingTexts.push({x, y, text, color, life, maxLife:life, vy:-1.2});
+}
+
+// ==================== EFFECTS ====================
+function applyEffect(name, data) {
+  activeEffects.set(name, data);
+  switch(name) {
+    case 'double_jump': player.maxJumps = 2; break;
+    case 'shield': player.shielded = true; break;
+    case 'low_gravity': gravityMultiplier = GRAVITY_LOW / GRAVITY_NORMAL; jumpForceMultiplier = JUMP_FORCE_LOW / JUMP_FORCE_NORMAL; break;
+    case 'invert_controls': controlsInverted = true; applyShake(8); soundControlsInverted(); invertedWarningFlash = 180; break;
+    case 'ghost': player.alpha = 0.15; break;
+    case 'speed_boost': break;
+  }
+  soundPickup();
+}
+
+function removeEffect(name) {
+  activeEffects.delete(name);
+  switch(name) {
+    case 'double_jump': player.maxJumps = 1; break;
+    case 'shield': player.shielded = false; break;
+    case 'low_gravity': gravityMultiplier = 1.0; jumpForceMultiplier = 1.0; break;
+    case 'invert_controls': controlsInverted = false; break;
+    case 'ghost': player.alpha = 1.0; break;
+    case 'speed_boost': break;
+  }
+}
+
+function updateEffects(dt) {
+  for (const [name, data] of activeEffects) {
+    if (data.timer !== undefined && data.timer !== Infinity) {
+      data.timer -= dt;
+      if (data.timer <= 0) removeEffect(name);
+    }
+  }
+}
+
+function getMoveSpeed() {
+  return activeEffects.has('speed_boost') ? MOVE_SPEED_BOOST : MOVE_SPEED_NORMAL;
+}
+function getGravity() {
+  const base = GRAVITY_NORMAL * gravityMultiplier;
+  return gravityReversed ? -base : base;
+}
+function getJumpForce() {
+  const base = JUMP_FORCE_NORMAL * jumpForceMultiplier;
+  return gravityReversed ? -base : base;
+}
+
+// ==================== COLLISION ====================
+function aabbOverlap(ax, ay, aw, ah, bx, by, bw, bh) {
+  return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
+}
+
+function resolvePlatformCollision(p) {
+  if (p.type === 'fake') return; // No collision for fake
+  if (!aabbOverlap(player.x, player.y, player.w, player.h, p.x, p.y, p.w, p.h)) return false;
+
+  const overlapLeft = (player.x + player.w) - p.x;
+  const overlapRight = (p.x + p.w) - player.x;
+  const overlapTop = (player.y + player.h) - p.y;
+  const overlapBottom = (p.y + p.h) - player.y;
+  const minOverlap = Math.min(overlapLeft, overlapRight, overlapTop, overlapBottom);
+
+  if (minOverlap === overlapTop && player.vy >= 0) {
+    player.y = p.y - player.h;
+    if (!player.onGround) soundLand();
+    player.onGround = true;
+    player.jumpsLeft = player.maxJumps;
+    if (player.vy > 0) player.vy = 0;
+    // Falling platform
+    if (p.type === 'fall' && p.fallState === 0) {
+      p.fallState = 1;
+      p.fallTimer = 18; // frames before falling
+    }
+    if (p.type === 'moving') {
+      player.onMovingPlatform = p;
+    }
+    if (p.type === 'bounce') {
+      player.vy = getJumpForce() * 2.0;
+      player.onGround = false;
+      emitParticles(player.x + player.w/2, player.y + player.h, '#ffee00', 15, 5, 30);
+      soundBounce();
+    }
+  } else if (minOverlap === overlapBottom && player.vy < 0) {
+    player.y = p.y + p.h;
+    player.vy = 0;
+  } else if (minOverlap === overlapLeft) {
+    player.x = p.x - player.w;
+    player.vx = 0;
+  } else if (minOverlap === overlapRight) {
+    player.x = p.x + p.w;
+    player.vx = 0;
+  }
+  return true;
+}
+
+// ==================== PHYSICS UPDATE ====================
+function updatePlayer(dt) {
+  if (player.dead) return;
+
+  // Input
+  let moveLeft = keys['ArrowLeft'] || keys['a'] || keys['A'];
+  let moveRight = keys['ArrowRight'] || keys['d'] || keys['D'];
+  if (controlsInverted) { [moveLeft, moveRight] = [moveRight, moveLeft]; }
+
+  const spd = getMoveSpeed();
+  if (moveLeft) player.vx = -spd;
+  else if (moveRight) player.vx = spd;
+  else player.vx *= 0.7;
+
+  // Jump
+  const jumpPressed = keys['Space'] || keys['ArrowUp'] || keys['w'] || keys['W'];
+  if (jumpPressed && !lastJumpPressed) {
+    if (player.jumpsLeft > 0) {
+      const wasDouble = player.jumpsLeft < player.maxJumps;
+      player.vy = getJumpForce();
+      player.jumpsLeft--;
+      player.onGround = false;
+      soundJump();
+      if (wasDouble) {
+        emitParticles(player.x + player.w/2, player.y + player.h/2, '#00ffff', 12, 3, 25);
+      }
+    }
+  }
+  lastJumpPressed = jumpPressed;
+
+  // Gravity
+  const grav = getGravity();
+  player.vy += grav;
+  if (!gravityReversed) {
+    if (player.vy > MAX_FALL) player.vy = MAX_FALL;
+  } else {
+    if (player.vy < -MAX_FALL) player.vy = -MAX_FALL;
+  }
+
+  // Speed boost trail
+  if (activeEffects.has('speed_boost') && frameCount % 3 === 0) {
+    emitParticles(player.x + player.w/2, player.y + player.h/2, '#ff8800', 3, 1.5, 15);
+  }
+  // Wing trail
+  if (activeEffects.has('low_gravity') && frameCount % 4 === 0) {
+    emitParticles(player.x + player.w/2, player.y + player.h, '#aaffff', 2, 1, 20);
+  }
+
+  // Move X
+  player.onMovingPlatform = null;
+  player.x += player.vx;
+  // Constrain in level
+  if (player.x < 0) { player.x = 0; player.vx = 0; }
+  if (player.x + player.w > LEVEL_W) { player.x = LEVEL_W - player.w; player.vx = 0; }
+
+  // Resolve X collisions
+  for (const p of platforms) {
+    if (p.type === 'fake') continue;
+    if (!aabbOverlap(player.x, player.y, player.w, player.h, p.x, p.y, p.w, p.h)) continue;
+    const overlapLeft = (player.x + player.w) - p.x;
+    const overlapRight = (p.x + p.w) - player.x;
+    if (overlapLeft < overlapRight && player.vx > 0) { player.x = p.x - player.w; player.vx = 0; }
+    else if (overlapRight <= overlapLeft && player.vx < 0) { player.x = p.x + p.w; player.vx = 0; }
+  }
+
+  // Move Y
+  const prevOnGround = player.onGround;
+  player.onGround = false;
+  player.y += player.vy;
+
+  // Resolve Y collisions
+  for (const p of platforms) {
+    resolvePlatformCollision(p);
+  }
+
+  // Moving platform attachment
+  if (player.onMovingPlatform) {
+    const mp = player.onMovingPlatform;
+    const prevPX = mp.x, prevPY = mp.y;
+    // movement already applied, just track
+  }
+
+  // Check gravity zone
+  const px = player.x + player.w/2;
+  let wasInZone = inGravityZone;
+  inGravityZone = false;
+  for (const gz of gravityZones) {
+    if (px > gz.x && px < gz.x + gz.w && player.y + player.h > gz.y && player.y < gz.y + gz.h) {
+      inGravityZone = true;
+      break;
+    }
+  }
+  if (inGravityZone !== wasInZone) {
+    gravityReversed = inGravityZone;
+    if (inGravityZone) {
+      addFloatingText(player.x, player.y - 20, 'GRAVITY FLIP!', '#ff44ff', 90);
+      emitParticles(player.x + player.w/2, player.y + player.h/2, '#ff44ff', 20, 4, 40);
+    }
+  }
+
+  // Fall out of level
+  if (!gravityReversed && player.y > CANVAS_H + 10) killPlayer();
+  if (gravityReversed && player.y + player.h < -10) killPlayer();
+
+  // Spike collision
+  for (const s of spikes) {
+    if (s.hidden && !s.activated) continue;
+    let sy = s.type === 'ceiling_drop' ? s.currentY : s.y;
+    if (aabbOverlap(player.x + 2, player.y + 2, player.w - 4, player.h - 4, s.x, sy, s.w, s.h)) {
+      if (player.shielded) {
+        player.shielded = false;
+        removeEffect('shield');
+        emitParticles(player.x + player.w/2, player.y + player.h/2, '#00aaff', 20, 5, 30);
+        applyShake(6);
+        soundPickup();
+      } else {
+        killPlayer();
+      }
+      break;
+    }
+  }
+
+  // Fake flag approach
+  if (!fakeFlag.runAway && Math.abs(player.x - fakeFlag.x) < 80) {
+    fakeFlag.x += 200;
+    fakeFlag.runAway = true;
+    fakeFlag.hahaTimer = 120;
+    addFloatingText(fakeFlag.x - 100, fakeFlag.y - 30, 'HAHA! NO FLAG FOR YOU!', '#ffff00', 120);
+    soundFakeFlagLaugh();
+  }
+  if (fakeFlag.hahaTimer > 0) fakeFlag.hahaTimer--;
+
+  // Goal flag
+  if (Math.abs(player.x - goalFlag.x) < 60 && player.y < goalFlag.y + 80) {
+    triggerWin();
+  }
+}
+
+function killPlayer() {
+  if (player.dead || gameState === 'dead' || gameState === 'gameover' || gameState === 'win') return;
+  deathPlayerX = player.x;
+  player.dead = true;
+  deathCount++;
+  lives--;
+  gameState = 'dead';
+  deadTimer = 50;
+  applyShake(15);
+  soundDeath();
+  emitParticles(player.x + player.w/2, player.y + player.h/2, '#ff2222', 30, 8, 50);
+  emitParticles(player.x + player.w/2, player.y + player.h/2, '#ff8800', 15, 5, 40);
+}
+
+function respawn() {
+  // Reset fake floors on respawn
+  platforms.forEach(p => { if (p.type === 'fake') { p.revealed = false; p.opacity = 1; } });
+  // Reset falling platforms
+  platforms.forEach(p => {
+    if (p.type === 'fall') {
+      p.fallState = 0; p.fallTimer = 0;
+      if (p.origY !== undefined) p.y = p.origY;
+    }
+  });
+
+  // Find best checkpoint <= death position
+  let cpX = 80;
+  for (let cp of checkpoints) {
+    if (cp <= deathPlayerX + 100) cpX = cp;
+  }
+  initPlayer();
+  player.x = cpX;
+  player.y = 300;
+  gravityReversed = false;
+  inGravityZone = false;
+  gameState = 'playing';
+}
+
+function triggerWin() {
+  gameState = 'win';
+  emitConfetti(player.x + player.w/2, player.y);
+  soundSlotWin();
+}
+
+// ==================== PLATFORM UPDATE ====================
+function updatePlatforms() {
+  for (const p of platforms) {
+    // Store origin y for fall platforms
+    if (p.type === 'fall' && p.origY === undefined) p.origY = p.y;
+
+    if (p.type === 'moving') {
+      if (p.moveAxis === 'h') {
+        p.moveT = (p.moveT || 0) + p.moveSpeed * p.moveDir;
+        if (Math.abs(p.moveT - p.moveOrigin) >= p.moveRange || Math.abs(p.moveT) >= p.moveRange) {
+          p.moveDir *= -1;
+        }
+        const newX = p.moveOrigin + Math.sin(p.moveT * 0.02) * p.moveRange;
+        const dx = newX - p.x;
+        p.x = newX;
+        if (player.onMovingPlatform === p) player.x += dx;
+      } else if (p.moveAxis === 'v') {
+        p.moveT = (p.moveT || 0) + p.moveSpeed;
+        const newY = p.moveOrigin + Math.sin(p.moveT * 0.02) * p.moveRange;
+        const dy = newY - p.y;
+        p.y = newY;
+        if (player.onMovingPlatform === p) player.y += dy;
+      }
+    }
+
+    if (p.type === 'fall') {
+      if (p.fallState === 1) {
+        p.fallTimer--;
+        p.shakeOffset = Math.sin(p.fallTimer * 0.8) * 3;
+        if (p.fallTimer <= 0) p.fallState = 2;
+      }
+      if (p.fallState === 2) {
+        p.vy = (p.vy || 0) + 0.4;
+        p.y += p.vy;
+        if (p.y > CANVAS_H + 100) {
+          p.y = p.origY;
+          p.vy = 0;
+          p.fallState = 0;
+          p.fallTimer = 0;
+        }
+      }
+    }
+  }
+}
+
+// ==================== SPIKE UPDATE ====================
+function updateSpikes() {
+  const px = player.x + player.w/2;
+  for (const s of spikes) {
+    if (s.type === 'hidden' && !s.activated) {
+      if (Math.abs(px - (s.x + s.w/2)) < 120) {
+        s.activated = true;
+        s.hidden = false;
+        soundSpike();
+        emitParticles(s.x + s.w/2, s.y, '#ff2222', 8, 3, 20);
+      }
+    }
+    if (s.type === 'ceiling_drop') {
+      if (!s.activated && Math.abs(px - (s.x + s.w/2)) < 120) {
+        s.activated = true;
+        s.hidden = false;
+        s.currentY = 0;
+        s.dropState = 1;
+        soundSpike();
+      }
+      if (s.dropState === 1) {
+        s.dropVY = (s.dropVY || 0) + 0.6;
+        s.currentY += s.dropVY;
+        if (s.currentY >= s.dropY) {
+          s.currentY = s.dropY;
+          s.dropState = 2;
+        }
+      }
+    }
+  }
+}
+
+// ==================== CAMERA ====================
+function updateCamera() {
+  const targetX = player.x - CANVAS_W / 3;
+  cameraX += (targetX - cameraX) * 0.08;
+  if (cameraX < 0) cameraX = 0;
+  if (cameraX > LEVEL_W - CANVAS_W) cameraX = LEVEL_W - CANVAS_W;
+}
+
+// ==================== SLOT MACHINE ====================
+const SLOT_SYMBOLS = [
+  {emoji:'🥾', name:'BOOTS'},
+  {emoji:'🛡', name:'SHIELD'},
+  {emoji:'🪽', name:'WINGS'},
+  {emoji:'💀', name:'SKULL'},
+  {emoji:'👻', name:'GHOST'},
+  {emoji:'⚡', name:'ZAP'},
+  {emoji:'💎', name:'GEM'}
+];
+let spinResults = [0,0,0];
+let slotSpinning = false;
+
+function startSlot() {
+  gameState = 'slots';
+  const overlay = document.getElementById('slot-overlay');
+  overlay.classList.add('visible');
+  document.getElementById('slot-result').textContent = '';
+  document.getElementById('slot-spin-btn').disabled = false;
+  document.getElementById('slot-spin-btn').textContent = 'SPIN!';
+  // Init reels with random symbols
+  for (let i = 0; i < 3; i++) {
+    const strip = document.getElementById('strip' + i);
+    let html = '';
+    for (let j = 0; j < 20; j++) {
+      const sym = SLOT_SYMBOLS[Math.floor(Math.random() * SLOT_SYMBOLS.length)];
+      html += `<span>${sym.emoji}</span>`;
+    }
+    strip.innerHTML = html;
+    strip.style.transition = 'none';
+    strip.style.transform = 'translateY(0)';
+  }
+}
+
+function doSpin() {
+  if (slotSpinning) return;
+  slotSpinning = true;
+  document.getElementById('slot-spin-btn').disabled = true;
+  document.getElementById('slot-result').textContent = 'Spinning...';
+  soundSlotSpin();
+
+  spinResults = [
+    Math.floor(Math.random() * SLOT_SYMBOLS.length),
+    Math.floor(Math.random() * SLOT_SYMBOLS.length),
+    Math.floor(Math.random() * SLOT_SYMBOLS.length)
+  ];
+
+  // Build strips and animate
+  for (let i = 0; i < 3; i++) {
+    const strip = document.getElementById('strip' + i);
+    const resultIdx = spinResults[i];
+    let html = '';
+    // 20 random + landing symbol
+    const symbols = [];
+    for (let j = 0; j < 25; j++) symbols.push(SLOT_SYMBOLS[Math.floor(Math.random() * SLOT_SYMBOLS.length)]);
+    symbols.push(SLOT_SYMBOLS[resultIdx]);
+    symbols.forEach(s => { html += `<span>${s.emoji}</span>`; });
+    strip.innerHTML = html;
+    strip.style.transition = 'none';
+    strip.style.transform = 'translateY(0)';
+    // Force reflow
+    strip.getBoundingClientRect();
+    const totalItems = symbols.length;
+    const targetTranslate = -(totalItems - 1) * 90;
+    const delay = i * 400;
+    setTimeout(() => {
+      strip.style.transition = `transform ${1.2 - i * 0.1}s cubic-bezier(0.17, 0.67, 0.25, 1.0)`;
+      strip.style.transform = `translateY(${targetTranslate}px)`;
+    }, 100 + delay);
+  }
+
+  setTimeout(() => {
+    applySlotResult();
+    slotSpinning = false;
+  }, 3000);
+}
+
+function applySlotResult() {
+  const r0 = spinResults[0], r1 = spinResults[1], r2 = spinResults[2];
+  const s0 = SLOT_SYMBOLS[r0], s1 = SLOT_SYMBOLS[r1], s2 = SLOT_SYMBOLS[r2];
+  let resultText = '';
+  let isTroll = false;
+
+  if (r0 === r1 && r1 === r2) {
+    // Triple match
+    const sym = s0.name;
+    switch (sym) {
+      case 'BOOTS':
+        applyEffect('double_jump', {timer: 15000});
+        resultText = '3x BOOTS! Double Jump for 15s!';
+        emitConfetti(CANVAS_W/2, CANVAS_H/2);
+        soundSlotWin();
+        break;
+      case 'SHIELD':
+        applyEffect('shield', {timer: 10000});
+        resultText = '3x SHIELD! Spike immunity for 10s!';
+        emitConfetti(CANVAS_W/2, CANVAS_H/2);
+        soundSlotWin();
+        break;
+      case 'WINGS':
+        applyEffect('low_gravity', {timer: 10000});
+        resultText = '3x WINGS! Low gravity for 10s!';
+        emitConfetti(CANVAS_W/2, CANVAS_H/2);
+        soundSlotWin();
+        break;
+      case 'SKULL':
+        applyEffect('invert_controls', {timer: 10000});
+        resultText = '3x SKULL! Controls inverted for 10s! HAHA!';
+        isTroll = true;
+        soundSlotTroll();
+        break;
+      case 'GHOST':
+        applyEffect('ghost', {timer: 5000});
+        resultText = '3x GHOST! You are invisible for 5s!';
+        isTroll = true;
+        soundSlotTroll();
+        break;
+      case 'ZAP':
+        applyEffect('speed_boost', {timer: 8000});
+        resultText = '3x ZAP! Speed boost for 8s!';
+        emitConfetti(CANVAS_W/2, CANVAS_H/2);
+        soundSlotWin();
+        break;
+      case 'GEM':
+        lives++;
+        resultText = '3x GEM! +1 Extra life!';
+        emitConfetti(CANVAS_W/2, CANVAS_H/2);
+        soundSlotWin();
+        break;
+    }
+  } else if (r0 === r1 || r1 === r2 || r0 === r2) {
+    applyEffect('speed_boost', {timer: 5000});
+    resultText = 'Pair! Small speed boost for 5s.';
+    soundPickup();
+  } else {
+    resultText = 'Better luck next time!';
+    isTroll = true;
+    soundSlotTroll();
+  }
+
+  document.getElementById('slot-result').textContent = resultText;
+  document.getElementById('slot-result').style.color = isTroll ? '#ff4444' : '#00ffcc';
+
+  setTimeout(() => {
+    closeSlot();
+  }, 2500);
+}
+
+function closeSlot() {
+  const overlay = document.getElementById('slot-overlay');
+  overlay.classList.remove('visible');
+  slotTimer = SLOT_INTERVAL;
+  gameState = 'playing';
+}
+
+// ==================== DRAWING ====================
+function drawBackground() {
+  // Gradient sky
+  const grad = ctx.createLinearGradient(0, 0, 0, CANVAS_H);
+  grad.addColorStop(0,   '#050512');
+  grad.addColorStop(0.5, '#080810');
+  grad.addColorStop(1,   '#0d0a12');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+
+  // Parallax stars
+  for (const s of BG_STARS) {
+    s.twinkle += 0.018;
+    const a = s.opacity * (0.65 + 0.35 * Math.sin(s.twinkle));
+    const raw = s.x - cameraX * s.parallax;
+    const span = CANVAS_W + 200;
+    const drawX = ((raw % span) + span) % span;
+    ctx.globalAlpha = a;
+    ctx.fillStyle = s.size > 1.2 ? '#ccddff' : '#ffffff';
+    if (s.size > 1.5) { ctx.shadowBlur = 5; ctx.shadowColor = '#8899ff'; }
+    ctx.beginPath();
+    ctx.arc(drawX, s.y, s.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  ctx.globalAlpha = 1;
+
+  // Subtle dot grid
+  ctx.fillStyle = 'rgba(255,255,255,0.025)';
+  const dotSpacing = 40;
+  const offsetX = cameraX % dotSpacing;
+  for (let x = -offsetX; x < CANVAS_W + dotSpacing; x += dotSpacing) {
+    for (let y = 0; y < CANVAS_H; y += dotSpacing) {
+      ctx.beginPath();
+      ctx.arc(x, y, 0.8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+function drawGravityZones(camX) {
+  for (const gz of gravityZones) {
+    ctx.fillStyle = 'rgba(255,0,255,0.04)';
+    ctx.fillRect(gz.x - camX, gz.y, gz.w, gz.h);
+    ctx.strokeStyle = 'rgba(255,0,255,0.3)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([8, 8]);
+    ctx.strokeRect(gz.x - camX, gz.y, gz.w, gz.h);
+    ctx.setLineDash([]);
+    // Label
+    ctx.fillStyle = 'rgba(255,0,255,0.5)';
+    ctx.font = '10px Courier New';
+    ctx.fillText('↕ GRAVITY FLIP ZONE', gz.x - camX + 5, gz.y + 15);
+  }
+}
+
+function drawPlatform(p, camX) {
+  const drawX = p.x - camX + (p.shakeOffset || 0);
+  const drawY = p.y;
+
+  if (p.type === 'fake') {
+    if (p.revealed) {
+      // Cracked appearance
+      ctx.globalAlpha = 0.4;
+      ctx.strokeStyle = '#ff4444';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(drawX, drawY, p.w, p.h);
+      ctx.globalAlpha = 0.15;
+      ctx.fillStyle = '#ff4444';
+      ctx.fillRect(drawX, drawY, p.w, p.h);
+      ctx.globalAlpha = 1;
+      // Crack lines
+      ctx.strokeStyle = 'rgba(255,68,68,0.6)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(drawX + p.w * 0.3, drawY);
+      ctx.lineTo(drawX + p.w * 0.5, drawY + p.h);
+      ctx.stroke();
+    } else {
+      // Looks solid but is fake
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = 'rgba(255,255,255,0.5)';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(drawX, drawY, p.w, p.h);
+      ctx.shadowBlur = 0;
+    }
+    return;
+  }
+
+  ctx.save();
+  const col = p.color || '#ffffff';
+  const alpha = p.opacity !== undefined ? p.opacity : 1;
+  ctx.globalAlpha = alpha;
+
+  if (p.type === 'bounce') {
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = '#ffee00';
+    ctx.fillStyle = '#ffee00';
+    ctx.fillRect(drawX, drawY, p.w, p.h);
+    // Stripes
+    ctx.fillStyle = 'rgba(0,0,0,0.3)';
+    for (let sx = 0; sx < p.w; sx += 12) {
+      ctx.fillRect(drawX + sx, drawY, 6, p.h);
+    }
+  } else if (p.type === 'moving') {
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = col;
+    ctx.fillStyle = col;
+    ctx.fillRect(drawX, drawY, p.w, p.h);
+    // Arrow indicators
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = 'rgba(0,0,0,0.4)';
+    if (p.moveAxis === 'h') {
+      ctx.fillText('◄ ►', drawX + p.w/2 - 12, drawY + 10);
+    } else {
+      ctx.fillText('▲ ▼', drawX + p.w/2 - 12, drawY + 10);
+    }
+  } else {
+    const isFalling = p.type === 'fall' && p.fallState === 1;
+    ctx.shadowBlur = isFalling ? 20 : 10;
+    ctx.shadowColor = p.type === 'fall' ? '#ffaa44' : 'rgba(200,220,255,0.6)';
+    // Gradient fill for depth
+    const pfGrad = ctx.createLinearGradient(drawX, drawY, drawX, drawY + p.h);
+    pfGrad.addColorStop(0, col);
+    pfGrad.addColorStop(1, p.type === 'fall' ? '#cc7722' : 'rgba(180,190,210,0.85)');
+    ctx.fillStyle = pfGrad;
+    ctx.fillRect(drawX, drawY, p.w, p.h);
+    // Bright top-edge highlight
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = p.type === 'fall' ? 'rgba(255,220,150,0.9)' : 'rgba(255,255,255,0.9)';
+    ctx.fillRect(drawX, drawY, p.w, 2);
+  }
+
+  ctx.restore();
+}
+
+function drawSpike(s, camX) {
+  if (s.hidden && !s.activated) return;
+  const sx = s.x - camX;
+  const sy = s.type === 'ceiling_drop' ? s.currentY : s.y;
+
+  ctx.save();
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = '#ff2222';
+  ctx.fillStyle = '#ff2222';
+
+  // Draw spike triangles
+  const numSpikes = Math.max(1, Math.floor(s.w / 10));
+  const spikeW = s.w / numSpikes;
+  for (let i = 0; i < numSpikes; i++) {
+    ctx.beginPath();
+    if (s.type === 'ceiling_drop') {
+      // Pointing down
+      ctx.moveTo(sx + i * spikeW, sy);
+      ctx.lineTo(sx + i * spikeW + spikeW, sy);
+      ctx.lineTo(sx + i * spikeW + spikeW/2, sy + s.h);
+    } else {
+      // Pointing up
+      ctx.moveTo(sx + i * spikeW, sy + s.h);
+      ctx.lineTo(sx + i * spikeW + spikeW, sy + s.h);
+      ctx.lineTo(sx + i * spikeW + spikeW/2, sy);
+    }
+    ctx.closePath();
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawPlayer(camX) {
+  const drawX = player.x - camX;
+  const drawY = player.y;
+
+  ctx.save();
+  ctx.globalAlpha = player.alpha;
+
+  // Shield ring
+  if (player.shielded) {
+    ctx.strokeStyle = '#00aaff';
+    ctx.lineWidth = 2;
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = '#00aaff';
+    ctx.beginPath();
+    ctx.arc(drawX + player.w/2, drawY + player.h/2, 22 + Math.sin(frameCount * 0.1) * 2, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  }
+
+  // Ground shadow
+  if (player.onGround) {
+    ctx.save();
+    ctx.globalAlpha = 0.2 * player.alpha;
+    ctx.fillStyle = '#000';
+    ctx.beginPath();
+    ctx.ellipse(drawX + player.w/2, drawY + player.h + 3, player.w * 0.45, 4, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Player body glow
+  const glowCol = gravityReversed ? '#ff44ff' : (activeEffects.has('speed_boost') ? '#ff8800' : '#00ffff');
+  ctx.shadowBlur = 16;
+  ctx.shadowColor = glowCol;
+  // Gradient body
+  const bodyGrad = ctx.createLinearGradient(drawX, drawY, drawX + player.w, drawY + player.h);
+  bodyGrad.addColorStop(0, '#ffffff');
+  bodyGrad.addColorStop(1, activeEffects.has('speed_boost') ? '#ffcc88' : '#ccddff');
+  ctx.fillStyle = bodyGrad;
+  ctx.fillRect(drawX, drawY, player.w, player.h);
+
+  // Ghost effect tint
+  if (activeEffects.has('ghost')) {
+    ctx.fillStyle = 'rgba(0,200,255,0.3)';
+    ctx.fillRect(drawX, drawY, player.w, player.h);
+  }
+
+  // Eyes
+  ctx.shadowBlur = 0;
+  const eyeShift = player.vx > 1 ? 2 : (player.vx < -1 ? -1 : 0);
+  const eyeY = drawY + 7;
+  // Eye whites
+  ctx.fillStyle = '#111';
+  ctx.beginPath(); ctx.arc(drawX + 7 + eyeShift, eyeY, 3.5, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(drawX + 15 + eyeShift, eyeY, 3.5, 0, Math.PI * 2); ctx.fill();
+  // Pupils (cyan glowing)
+  const pupilX = player.vx > 0.5 ? 1 : (player.vx < -0.5 ? -1 : 0);
+  const pupilY = gravityReversed ? -1 : 1;
+  ctx.fillStyle = glowCol;
+  ctx.shadowBlur = 6; ctx.shadowColor = glowCol;
+  ctx.beginPath(); ctx.arc(drawX + 7 + eyeShift + pupilX, eyeY + pupilY, 1.8, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(drawX + 15 + eyeShift + pupilX, eyeY + pupilY, 1.8, 0, Math.PI * 2); ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // Speed lines
+  if (activeEffects.has('speed_boost') && (player.vx < -1 || player.vx > 1)) {
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = 'rgba(255,136,0,0.6)';
+    ctx.lineWidth = 1.5;
+    const dir = player.vx > 0 ? -1 : 1;
+    for (let i = 0; i < 3; i++) {
+      const ly = drawY + 5 + i * 6;
+      ctx.beginPath();
+      ctx.moveTo(drawX + (player.vx > 0 ? 0 : player.w), ly);
+      ctx.lineTo(drawX + (player.vx > 0 ? 0 : player.w) + dir * (15 + i * 5), ly);
+      ctx.stroke();
+    }
+  }
+
+  // Low gravity wing sparkles
+  if (activeEffects.has('low_gravity')) {
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = '#aaffff';
+    ctx.fillStyle = '#aaffff';
+    const wOff = Math.sin(frameCount * 0.15) * 5;
+    ctx.beginPath();
+    ctx.moveTo(drawX - 6, drawY + 6 + wOff);
+    ctx.lineTo(drawX - 14, drawY + 2);
+    ctx.lineTo(drawX - 10, drawY + 12);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(drawX + player.w + 6, drawY + 6 + wOff);
+    ctx.lineTo(drawX + player.w + 14, drawY + 2);
+    ctx.lineTo(drawX + player.w + 10, drawY + 12);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+function drawFlag(flag, camX, color, label) {
+  const fx = flag.x - camX;
+  const fy = flag.y;
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = color;
+  // Pole
+  ctx.beginPath();
+  ctx.moveTo(fx, fy + 60);
+  ctx.lineTo(fx, fy);
+  ctx.stroke();
+  // Flag
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(fx, fy);
+  ctx.lineTo(fx + 25, fy + 10);
+  ctx.lineTo(fx, fy + 20);
+  ctx.closePath();
+  ctx.fill();
+  // Wave animation
+  ctx.fillStyle = 'rgba(0,0,0,0.3)';
+  ctx.beginPath();
+  const wave = Math.sin(frameCount * 0.1) * 4;
+  ctx.moveTo(fx, fy);
+  ctx.quadraticCurveTo(fx + 15, fy + 10 + wave, fx + 25, fy + 10);
+  ctx.quadraticCurveTo(fx + 15, fy + 10 + wave, fx, fy + 20);
+  ctx.fill();
+  // Label
+  ctx.font = 'bold 10px Courier New';
+  ctx.fillStyle = color;
+  ctx.fillText(label, fx - 5, fy - 5);
+  ctx.restore();
+}
+
+function drawHUD() {
+  // Lives
+  ctx.save();
+  ctx.font = 'bold 14px Courier New';
+  ctx.fillStyle = '#fff';
+  ctx.fillText('LIVES:', 10, 25);
+  for (let i = 0; i < lives; i++) {
+    ctx.save();
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = '#ff4444';
+    ctx.fillStyle = '#ff4444';
+    // Heart shape (simple)
+    const hx = 65 + i * 22;
+    const hy = 14;
+    ctx.beginPath();
+    ctx.arc(hx - 4, hy, 5, 0, Math.PI * 2);
+    ctx.arc(hx + 4, hy, 5, 0, Math.PI * 2);
+    ctx.moveTo(hx - 9, hy + 3);
+    ctx.lineTo(hx, hy + 13);
+    ctx.lineTo(hx + 9, hy + 3);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Death count
+  ctx.font = '11px Courier New';
+  ctx.fillStyle = '#888';
+  ctx.fillText('Deaths: ' + deathCount, CANVAS_W - 80, 15);
+
+  // Active effects (top right)
+  let effectY = 35;
+  ctx.font = '10px Courier New';
+  for (const [name, data] of activeEffects) {
+    const effectNames = {
+      double_jump: '🥾 BOOTS',
+      shield: '🛡 SHIELD',
+      low_gravity: '🪽 WINGS',
+      invert_controls: '💀 INVERT',
+      ghost: '👻 GHOST',
+      speed_boost: '⚡ SPEED',
+    };
+    const label = effectNames[name] || name;
+    const timerSec = data.timer !== Infinity ? Math.ceil(data.timer / 1000) : '∞';
+    const barWidth = 80;
+    const maxTimer = {double_jump:15000, shield:10000, low_gravity:10000, invert_controls:10000, ghost:5000, speed_boost:8000}[name] || 10000;
+    const ratio = Math.min(1, data.timer / maxTimer);
+
+    ctx.fillStyle = 'rgba(0,0,0,0.6)';
+    ctx.fillRect(CANVAS_W - 100, effectY - 12, 95, 18);
+
+    ctx.fillStyle = '#fff';
+    ctx.fillText(label + ' ' + timerSec + 's', CANVAS_W - 98, effectY);
+
+    // Progress bar
+    ctx.fillStyle = '#333';
+    ctx.fillRect(CANVAS_W - 100, effectY + 2, barWidth, 3);
+    ctx.fillStyle = name === 'invert_controls' ? '#ff4444' : '#00ffcc';
+    ctx.fillRect(CANVAS_W - 100, effectY + 2, barWidth * ratio, 3);
+
+    effectY += 22;
+  }
+
+  // Controls inverted warning
+  if (controlsInverted && invertedWarningFlash > 0) {
+    invertedWarningFlash--;
+    if (Math.floor(frameCount / 10) % 2 === 0) {
+      ctx.save();
+      ctx.font = 'bold 16px Courier New';
+      ctx.fillStyle = '#ff0000';
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#ff0000';
+      const warnText = '⚠ CONTROLS INVERTED ⚠';
+      const ww = ctx.measureText(warnText).width;
+      ctx.fillText(warnText, CANVAS_W/2 - ww/2, 30);
+      ctx.restore();
+    }
+  }
+
+  // Music toggle hint
+  ctx.font = '10px Courier New';
+  ctx.fillStyle = musicMuted ? 'rgba(255,80,80,0.6)' : 'rgba(0,255,180,0.5)';
+  ctx.fillText(musicMuted ? '♪ M: unmute' : '♪ M: mute', 10, CANVAS_H - 8);
+
+  // Slot countdown
+  const nextSpin = Math.ceil(slotTimer / 1000);
+  ctx.font = '11px Courier New';
+  ctx.fillStyle = nextSpin <= 5 ? '#ff8800' : '#666';
+  ctx.fillText('NEXT SPIN: ' + nextSpin + 's', CANVAS_W - 105, CANVAS_H - 8);
+
+  // Progress bar
+  const progress = Math.min(1, (player.x) / 4700);
+  const barX = CANVAS_W/2 - 150;
+  const barW = 300;
+  ctx.fillStyle = 'rgba(0,0,0,0.6)';
+  ctx.fillRect(barX - 2, CANVAS_H - 18, barW + 4, 12);
+  ctx.fillStyle = '#333';
+  ctx.fillRect(barX, CANVAS_H - 16, barW, 8);
+  ctx.fillStyle = '#00ff88';
+  ctx.shadowBlur = 6;
+  ctx.shadowColor = '#00ff88';
+  ctx.fillRect(barX, CANVAS_H - 16, barW * progress, 8);
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = '#888';
+  ctx.font = '9px Courier New';
+  ctx.fillText('PROGRESS ' + Math.floor(progress * 100) + '%', barX + barW/2 - 30, CANVAS_H - 20);
+
+  // Gravity zone indicator
+  if (gravityReversed) {
+    if (Math.floor(frameCount / 8) % 2 === 0) {
+      ctx.save();
+      ctx.font = 'bold 12px Courier New';
+      ctx.fillStyle = '#ff44ff';
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = '#ff44ff';
+      ctx.fillText('↕ GRAVITY REVERSED', CANVAS_W/2 - 70, 50);
+      ctx.restore();
+    }
+  }
+
+  ctx.restore();
+}
+
+function drawFloatingTexts(camX) {
+  ctx.save();
+  for (let i = floatingTexts.length - 1; i >= 0; i--) {
+    const ft = floatingTexts[i];
+    ft.y += ft.vy;
+    ft.life--;
+    if (ft.life <= 0) { floatingTexts.splice(i, 1); continue; }
+    const alpha = ft.life / ft.maxLife;
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = ft.color;
+    ctx.font = 'bold 12px Courier New';
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = ft.color;
+    ctx.fillText(ft.text, ft.x - camX, ft.y);
+  }
+  ctx.restore();
+}
+
+// ==================== INSTRUCTIONS SCREEN ====================
+let menuPulse = 0;
+function drawInstructions() {
+  menuPulse += 0.04;
+
+  // Dark overlay
+  ctx.fillStyle = 'rgba(0,0,10,0.82)';
+  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+
+  // Panel
+  const pw = 680, ph = 400, px = CANVAS_W/2 - pw/2, py = CANVAS_H/2 - ph/2;
+  ctx.save();
+  ctx.strokeStyle = 'rgba(0,255,200,0.4)';
+  ctx.lineWidth = 1.5;
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = 'rgba(0,255,200,0.3)';
+  ctx.fillStyle = 'rgba(5,5,20,0.9)';
+  ctx.beginPath(); ctx.roundRect(px, py, pw, ph, 8); ctx.fill(); ctx.stroke();
+  ctx.restore();
+
+  // Title
+  ctx.save();
+  ctx.font = 'bold 30px Courier New';
+  ctx.textAlign = 'center';
+  ctx.shadowBlur = 25; ctx.shadowColor = '#aa44ff';
+  const titleGrad = ctx.createLinearGradient(CANVAS_W/2 - 160, 0, CANVAS_W/2 + 160, 0);
+  titleGrad.addColorStop(0, '#aa44ff');
+  titleGrad.addColorStop(1, '#00ffcc');
+  ctx.fillStyle = titleGrad;
+  ctx.fillText('TROLL SLOT SURVIVOR', CANVAS_W/2, py + 44);
+  ctx.restore();
+
+  // Divider
+  ctx.strokeStyle = 'rgba(0,255,200,0.2)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(px + 20, py + 58); ctx.lineTo(px + pw - 20, py + 58); ctx.stroke();
+
+  // Two-column layout
+  const col1 = px + 32, col2 = px + pw/2 + 16, rowH = 22, startY = py + 82;
+
+  function sectionLabel(x, y, text, color) {
+    ctx.save();
+    ctx.font = 'bold 11px Courier New';
+    ctx.fillStyle = color;
+    ctx.shadowBlur = 8; ctx.shadowColor = color;
+    ctx.textAlign = 'left';
+    ctx.fillText(text, x, y);
+    ctx.restore();
+  }
+  function row(x, y, icon, label, color='#ccc') {
+    ctx.save();
+    ctx.font = '12px Courier New';
+    ctx.textAlign = 'left';
+    ctx.fillStyle = 'rgba(0,255,200,0.8)';
+    ctx.fillText(icon, x, y);
+    ctx.fillStyle = color;
+    ctx.fillText(label, x + 28, y);
+    ctx.restore();
+  }
+
+  // ---- LEFT COLUMN: Controls ----
+  sectionLabel(col1, startY, '— CONTROLS —', '#00ffcc');
+  row(col1, startY + rowH*1, '←→', 'A / D  or  Arrow Keys');
+  row(col1, startY + rowH*2, '↑', 'Space / W / Up  =  Jump');
+  row(col1, startY + rowH*3, '♪', 'M  =  Toggle Music');
+
+  sectionLabel(col1, startY + rowH*4.5, '— TRAPS —', '#ff4444');
+  row(col1, startY + rowH*5.5, '🔴', 'Spikes — appear without warning', '#ff8888');
+  row(col1, startY + rowH*6.5, '🟠', 'Falling platforms — run fast!', '#ffaa66');
+  row(col1, startY + rowH*7.5, '⬜', 'Fake floor — trust nothing', '#ffcccc');
+  row(col1, startY + rowH*8.5, '↕', 'Gravity flip zone — ceiling = floor', '#ff88ff');
+  row(col1, startY + rowH*9.5, '🚩', 'Fake flag — it will run away. Twice.', '#ffff66');
+
+  // ---- RIGHT COLUMN: Slot Machine ----
+  sectionLabel(col2, startY, '— SLOT MACHINE (every 20s) —', '#ff8800');
+  row(col2, startY + rowH*1, '🥾', 'BOOTS  →  Double Jump  15s');
+  row(col2, startY + rowH*2, '🛡', 'SHIELD  →  Spike immunity  10s');
+  row(col2, startY + rowH*3, '🪽', 'WINGS  →  Low gravity  10s');
+  row(col2, startY + rowH*4, '⚡', 'ZAP  →  Speed boost  8s');
+  row(col2, startY + rowH*5, '💎', 'GEM  →  +1 Extra life');
+
+  sectionLabel(col2, startY + rowH*6.2, '— TROLLS —', '#ff4444');
+  row(col2, startY + rowH*7.2, '💀', 'SKULL  →  Controls inverted  10s', '#ff8888');
+  row(col2, startY + rowH*8.2, '👻', 'GHOST  →  You go invisible  5s', '#ff8888');
+  row(col2, startY + rowH*9.2, '❌', 'No match  →  Better luck next time!', '#ff8888');
+
+  // Pulse "press to start"
+  const alpha = 0.55 + 0.45 * Math.sin(menuPulse);
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.font = 'bold 15px Courier New';
+  ctx.textAlign = 'center';
+  ctx.shadowBlur = 15; ctx.shadowColor = '#00ffcc';
+  ctx.fillStyle = '#00ffcc';
+  ctx.fillText('▶  CLICK OR PRESS SPACE TO START  ◀', CANVAS_W/2, py + ph - 18);
+  ctx.restore();
+}
+
+function drawGameOver() {
+  ctx.save();
+  ctx.fillStyle = 'rgba(0,0,0,0.85)';
+  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+
+  ctx.shadowBlur = 30;
+  ctx.shadowColor = '#ff2222';
+  ctx.fillStyle = '#ff2222';
+  ctx.font = 'bold 64px Courier New';
+  const t = 'GAME OVER';
+  const tw = ctx.measureText(t).width;
+  ctx.fillText(t, CANVAS_W/2 - tw/2, CANVAS_H/2 - 40);
+
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = '#aaa';
+  ctx.font = '18px Courier New';
+  ctx.fillText('Deaths: ' + deathCount, CANVAS_W/2 - 50, CANVAS_H/2 + 10);
+
+  ctx.restore();
+}
+
+function drawWin() {
+  ctx.save();
+  ctx.fillStyle = 'rgba(0,0,0,0.8)';
+  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+
+  ctx.shadowBlur = 30;
+  ctx.shadowColor = '#00ff88';
+  ctx.fillStyle = '#00ff88';
+  ctx.font = 'bold 72px Courier New';
+  const t = 'YOU WIN!';
+  const tw = ctx.measureText(t).width;
+  ctx.fillText(t, CANVAS_W/2 - tw/2, CANVAS_H/2 - 40);
+
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = '#aaa';
+  ctx.font = '18px Courier New';
+  ctx.fillText('Deaths: ' + deathCount, CANVAS_W/2 - 50, CANVAS_H/2 + 15);
+
+  // Emit confetti from center periodically
+  if (frameCount % 10 === 0) emitConfetti(Math.random() * CANVAS_W, Math.random() * CANVAS_H * 0.5);
+  ctx.restore();
+}
+
+// ==================== BUTTONS ====================
+let buttons = [];
+function drawButton(label, x, y, w, h) {
+  ctx.save();
+  ctx.fillStyle = '#222';
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 2;
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = '#ffffff';
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 6);
+  ctx.fill();
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 16px Courier New';
+  const tw = ctx.measureText(label).width;
+  ctx.fillText(label, x + w/2 - tw/2, y + h/2 + 6);
+  ctx.restore();
+  buttons.push({label, x, y, w, h});
+}
+
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const cx = e.clientX - rect.left;
+  const cy = e.clientY - rect.top;
+  for (const btn of buttons) {
+    if (cx >= btn.x && cx <= btn.x + btn.w && cy >= btn.y && cy <= btn.y + btn.h) {
+      if (btn.label === 'TRY AGAIN' || btn.label === 'PLAY AGAIN') {
+        gameState = 'menu';
+      }
+    }
+  }
+});
+
+// ==================== FAKE FLOOR REVEAL ====================
+function checkFakeFloors() {
+  for (const p of platforms) {
+    if (p.type === 'fake' && !p.revealed) {
+      // Check if player passed through it (player y > p.y && player previously was above)
+      if (aabbOverlap(player.x, player.y, player.w, player.h + 20, p.x, p.y, p.w, p.h)) {
+        p.revealed = true;
+        emitParticles(p.x + p.w/2 - cameraX, p.y, '#ffffff', 15, 3, 30);
+        addFloatingText(p.x + p.w/2, p.y - 10, 'FAKE!', '#ff4444', 60);
+      }
+    }
+  }
+}
+
+// ==================== MAIN LOOP ====================
+let lastTime = 0;
+function gameLoop(timestamp) {
+  const dt = Math.min(timestamp - lastTime, 33);
+  lastTime = timestamp;
+  frameCount++;
+  buttons = [];
+
+  updateShake();
+  ctx.save();
+  ctx.translate(shakeX, shakeY);
+
+  drawBackground();
+
+  if (gameState === 'menu') {
+    updateParticles();
+    drawInstructions();
+    drawParticles(0);
+  } else if (gameState === 'playing' || gameState === 'dead' || gameState === 'slots') {
+    // Update game timer
+    if (gameState === 'playing') {
+      slotTimer -= dt;
+      if (slotTimer <= 0) startSlot();
+    }
+
+    if (gameState === 'playing') {
+      updateEffects(dt);
+      updatePlatforms();
+      updateSpikes();
+      checkFakeFloors();
+      updatePlayer(dt);
+      updateCamera();
+    }
+
+    updateParticles();
+
+    // Draw world
+    ctx.save();
+    ctx.translate(-cameraX, 0);
+
+    drawGravityZones(0); // already offset in fn
+
+    // Draw platforms
+    for (const p of platforms) drawPlatform(p, 0);
+
+    // Draw spikes
+    for (const s of spikes) drawSpike(s, 0);
+
+    // Draw fake flag
+    if (fakeFlag.x < cameraX + CANVAS_W + 100 && fakeFlag.x > cameraX - 100) {
+      drawFlag({x: fakeFlag.x, y: fakeFlag.y}, 0, '#ffff00', 'FLAG?');
+    }
+
+    // Draw goal flag
+    drawFlag(goalFlag, 0, '#00ff88', 'GOAL!');
+
+    // Draw particles
+    drawParticles(0);
+
+    // Draw floating texts
+    drawFloatingTexts(0);
+
+    if (gameState === 'playing') {
+      drawPlayer(0);
+    } else if (gameState === 'dead') {
+      // Dead animation
+      deadTimer--;
+      emitParticles(player.x, player.y + player.h/2, '#ff2222', 2, 4, 30);
+      if (deadTimer <= 0) {
+        if (lives <= 0) {
+          gameState = 'gameover';
+        } else {
+          deathPlayerX = player.x;
+          respawn();
+        }
+      }
+    }
+
+    ctx.restore(); // restore world transform
+
+    // HUD (screen space)
+    drawHUD();
+
+  } else if (gameState === 'gameover') {
+    updateParticles();
+    // Draw world behind
+    ctx.save();
+    ctx.translate(-cameraX, 0);
+    for (const p of platforms) drawPlatform(p, 0);
+    drawParticles(0);
+    ctx.restore();
+    drawGameOver();
+    drawButton('TRY AGAIN', CANVAS_W/2 - 80, CANVAS_H/2 + 40, 160, 44);
+
+  } else if (gameState === 'win') {
+    updateParticles();
+    ctx.save();
+    ctx.translate(-cameraX, 0);
+    for (const p of platforms) drawPlatform(p, 0);
+    drawFlag(goalFlag, 0, '#00ff88', 'GOAL!');
+    drawParticles(0);
+    ctx.restore();
+    drawWin();
+    drawButton('PLAY AGAIN', CANVAS_W/2 - 80, CANVAS_H/2 + 50, 160, 44);
+  }
+
+  ctx.restore(); // restore shake
+
+  requestAnimationFrame(gameLoop);
+}
+
+// ==================== INPUT ====================
+let musicStarted = false;
+document.addEventListener('keydown', e => {
+  keys[e.key] = true;
+  if (['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+    e.preventDefault();
+  }
+  if (e.key === 'm' || e.key === 'M') toggleMute();
+  if (!musicStarted) { musicStarted = true; startMusic(); }
+  if ((e.key === ' ' || e.key === 'Enter') && gameState === 'menu') {
+    initGame();
+  }
+});
+canvas.addEventListener('click', () => {
+  if (!musicStarted) { musicStarted = true; startMusic(); }
+  if (gameState === 'menu') initGame();
+});
+document.addEventListener('keyup', e => {
+  keys[e.key] = false;
+});
+
+// Slot spin button
+document.getElementById('slot-spin-btn').addEventListener('click', () => {
+  doSpin();
+});
+
+// ==================== INIT ====================
+// Patch roundRect for older browsers
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+    this.beginPath();
+    this.moveTo(x + r, y);
+    this.lineTo(x + w - r, y);
+    this.arcTo(x + w, y, x + w, y + r, r);
+    this.lineTo(x + w, y + h - r);
+    this.arcTo(x + w, y + h, x + w - r, y + h, r);
+    this.lineTo(x + r, y + h);
+    this.arcTo(x, y + h, x, y + h - r, r);
+    this.lineTo(x, y + r);
+    this.arcTo(x, y, x + r, y, r);
+    this.closePath();
+  };
+}
+
+// Start on menu screen; game initializes when player presses Space/clicks
+requestAnimationFrame(gameLoop);
+</script>
+</body>
+</html>

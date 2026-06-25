@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>משחק ביליארד תלת מימדי</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three.module.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main class="game-shell is-menu-open">
+      <div class="hud" aria-label="מצב משחק">
+        <div class="hud__controls">
+          <span id="controlHint">← / → כיוון | החזקת Space עוצמה</span>
+          <span id="turnLabel">שחקן 1</span>
+          <span id="scoreLabel">0 : 0</span>
+        </div>
+        <div class="power-meter" aria-label="מד עוצמת מכה">
+          <span>עוצמה</span>
+          <div class="power-meter__track">
+            <div class="power-meter__fill" id="powerFill"></div>
+          </div>
+        </div>
+        <div class="pocket-board" aria-label="כדורים שנשארו">
+          <div class="pocket-row">
+            <span class="pocket-name">חלקים 1-7</span>
+            <span class="pocket-dots" id="solidBalls"></span>
+          </div>
+          <div class="pocket-row">
+            <span class="pocket-name">פסים 9-15</span>
+            <span class="pocket-dots" id="stripeBalls"></span>
+          </div>
+        </div>
+      </div>
+      <div class="message" id="messageBox">בחרו סקינים והתחילו משחק</div>
+      <canvas id="gameCanvas" aria-label="שולחן ביליארד תלת מימדי"></canvas>
+      <section class="start-menu" id="startMenu" aria-label="תפריט פתיחה">
+        <div class="menu-panel">
+          <h1>ביליארד 8</h1>
+          <p>בחרו מצב משחק, סקינים, וקראו את ההוראות לפני הכניסה לשולחן.</p>
+
+          <div class="skin-section">
+            <h2>מצב משחק</h2>
+            <div class="mode-grid" data-mode-group>
+              <button class="mode-card is-selected" data-mode="local">
+                <strong>שני שחקנים מקומי</strong>
+                <span>שחקן 1 עם החצים ו-Space, שחקן 2 עם A/D ו-W.</span>
+              </button>
+              <button class="mode-card" data-mode="ai">
+                <strong>שחקן נגד מחשב</strong>
+                <span>אתם משחקים עם החצים ו-Space, והמחשב חובט אוטומטית בתורו.</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="skin-section">
+            <h2>כדור החבטה</h2>
+            <div class="skin-grid" data-skin-group="cueBall">
+              <button class="skin-card is-selected" data-skin="classic">
+                <span class="skin-dot skin-dot--classic"></span>
+                לבן קלאסי
+              </button>
+              <button class="skin-card" data-skin="fire">
+                <span class="skin-dot skin-dot--fire"></span>
+                כדור אש
+              </button>
+              <button class="skin-card" data-skin="gold">
+                <span class="skin-dot skin-dot--gold"></span>
+                זהב מבריק
+              </button>
+            </div>
+          </div>
+
+          <div class="skin-section">
+            <h2>מקל חבטה</h2>
+            <div class="skin-grid" data-skin-group="cueStick">
+              <button class="skin-card is-selected" data-skin="wood">
+                <span class="skin-stick skin-stick--wood"></span>
+                עץ
+              </button>
+              <button class="skin-card" data-skin="carbon">
+                <span class="skin-stick skin-stick--carbon"></span>
+                סיבי פחמן
+              </button>
+              <button class="skin-card" data-skin="gold">
+                <span class="skin-stick skin-stick--gold"></span>
+                זהב
+              </button>
+            </div>
+          </div>
+
+          <details class="instructions" open>
+            <summary>הוראות משחק</summary>
+            <ul>
+              <li>החזיקו את מקש החבטה כדי למלא את מד העוצמה, ושחררו כדי לחבוט.</li>
+              <li>במשחק מקומי: שחקן 1 מכוון עם ←/→ וחובט עם Space. שחקן 2 מכוון עם A/D וחובט עם W.</li>
+              <li>בכדור חופשי מזיזים את הכדור הלבן עם החצים או העכבר, ולוחצים Enter כדי לנעול.</li>
+              <li>השולחן פתוח עד שכדור חלק או פס נכנס. אחר כך כל שחקן ממשיך עם הקבוצה שלו.</li>
+              <li>הכניסו את כל כדורי הקבוצה שלכם לפני כדור 8. הכנסת כדור 8 מוקדם מדי מפסידה את המשחק.</li>
+            </ul>
+          </details>
+
+          <button class="start-button" id="startButton">התחל משחק</button>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

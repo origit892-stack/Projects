@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lava Temple</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+    <div class="hud">
+      <div class="mark">LAVA TEMPLE</div>
+      <div class="score" id="score">PILLAR 1</div>
+    </div>
+    <div class="veil" id="veil">
+      <div>
+        <h1>GAME OVER</h1>
+        <p>Press R to restart</p>
+      </div>
+    </div>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.165.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

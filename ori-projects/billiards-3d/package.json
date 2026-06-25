@@ -1,0 +1,16 @@
+{
+  "name": "biliard_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "python3 -m http.server 5179"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "three": "^0.184.0"
+  }
+}

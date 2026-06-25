@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>בריחה מצרפת, 1789</title>
+<style>
+  :root{
+    --bg:#050405;
+    --bg-soft:#120b0d;
+    --panel:#151012;
+    --panel-2:#1d1618;
+    --line:rgba(255,255,255,.08);
+    --text:#efe4d7;
+    --muted:#b39d8d;
+    --gold:#b08d57;
+    --red:#a84a4a;
+    --green:#5e8b6f;
+    --shadow:0 26px 70px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box}
+  html,body{
+    margin:0;
+    min-height:100%;
+    background:
+      radial-gradient(circle at top, rgba(176,141,87,.08), transparent 28%),
+      linear-gradient(180deg, #1a1113 0%, var(--bg-soft) 35%, var(--bg) 100%);
+    color:var(--text);
+    font-family:Georgia, "Times New Roman", serif;
+  }
+  body{overflow-x:hidden}
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255,255,255,.035), transparent 18%),
+      radial-gradient(circle at 84% 16%, rgba(176,141,87,.05), transparent 22%),
+      radial-gradient(circle at 70% 78%, rgba(168,74,74,.12), transparent 24%),
+      linear-gradient(120deg, transparent 0 46%, rgba(255,255,255,.015) 50%, transparent 54% 100%);
+    opacity:.65;
+  }
+
+  .wrap{
+    width:min(1180px, 94vw);
+    margin:0 auto;
+    padding:28px 0 40px;
+    position:relative;
+    z-index:1;
+  }
+
+  .hero,.panel,.modal,.victory-card{
+    box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.03);
+  }
+
+  .hero{
+    background:linear-gradient(180deg, rgba(19,14,16,.98), rgba(12,9,10,.98));
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:28px;
+    overflow:hidden;
+    position:relative;
+  }
+  .hero::before,.hero::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+  }
+  .hero::before{
+    inset:auto auto -60px -40px;
+    width:180px;height:180px;
+    background:radial-gradient(circle, rgba(168,74,74,.10), transparent 65%);
+  }
+  .hero::after{
+    inset:-50px -60px auto auto;
+    width:220px;height:220px;
+    background:radial-gradient(circle, rgba(176,141,87,.08), transparent 66%);
+  }
+
+  .eyebrow{
+    display:flex;align-items:center;gap:12px;
+    color:#d7c1ad;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.36em;
+    text-transform:uppercase;
+  }
+  .eyebrow::before,.eyebrow::after{
+    content:"";
+    height:1px;flex:1;
+    background:linear-gradient(90deg, transparent, rgba(176,141,87,.45), transparent);
+  }
+
+  h1{
+    margin:16px 0 12px;
+    font-size:clamp(2.4rem, 6vw, 5.2rem);
+    line-height:.95;
+    letter-spacing:-.04em;
+    color:#f4ede3;
+  }
+
+  .intro{
+    margin:0;
+    max-width:940px;
+    font-size:clamp(1rem, 1.9vw, 1.15rem);
+    line-height:1.9;
+    color:#ccb8a9;
+  }
+
+  .status{
+    margin-top:22px;
+    display:grid;
+    grid-template-columns:repeat(4, minmax(48px, 1fr));
+    gap:10px;
+    max-width:380px;
+  }
+  .slot{
+    height:58px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.03);
+    color:rgba(244,237,227,.2);
+    font-size:1.55rem;
+    font-weight:800;
+  }
+  .slot.filled{
+    background:linear-gradient(180deg, rgba(44,36,38,.98), rgba(22,17,18,.98));
+    color:#f6ede1;
+    border-color:rgba(176,141,87,.22);
+  }
+
+  .board{
+    display:grid;
+    grid-template-columns:1.35fr .95fr;
+    gap:18px;
+    margin-top:18px;
+  }
+
+  .panel{
+    background:linear-gradient(180deg, rgba(18,14,16,.98), rgba(12,9,10,.98));
+    border:1px solid var(--line);
+    border-radius:24px;
+    overflow:hidden;
+    position:relative;
+  }
+  .panel-head{
+    padding:18px 20px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  }
+  .panel-title{
+    margin:0;
+    font-size:1.05rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#d7c1ad;
+  }
+  .panel-sub{
+    margin-top:8px;
+    line-height:1.75;
+    font-size:.96rem;
+    color:#a58f80;
+  }
+
+  .map{
+    padding:18px;
+    display:grid;
+    gap:14px;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+  .card{
+    min-height:190px;
+    padding:18px 18px 16px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.05);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
+      linear-gradient(135deg, rgba(176,141,87,.04), transparent);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 14px 26px rgba(0,0,0,.18)}
+  .card.locked{opacity:.56;filter:saturate(.7)}
+  .card.solved{border-color:rgba(94,139,111,.28)}
+
+  .badge{
+    align-self:flex-start;
+    font-size:.7rem;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:#f1dfd1;
+    background:#5f2323;
+    border-radius:999px;
+    padding:6px 10px;
+  }
+  .card.solved .badge{background:var(--green)}
+  .card h2{
+    margin:14px 0 8px;
+    font-size:1.35rem;
+    color:#f2eadf;
+  }
+  .card p{
+    margin:0;
+    line-height:1.7;
+    font-size:.98rem;
+    color:#bda898;
+  }
+  .cta{
+    margin-top:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+  }
+  .mini{
+    color:#d5c0ae;
+    font-size:.78rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .open-btn,.close,.submit,.key,.door-btn{
+    font:inherit;
+  }
+  .open-btn,.door-btn,.submit{
+    border:none;
+    color:#f7ece2;
+    cursor:pointer;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .open-btn{
+    background:linear-gradient(180deg, #8d4040, #521718);
+    border-radius:999px;
+    padding:10px 16px;
+    font-size:.78rem;
+  }
+  .open-btn:disabled{background:linear-gradient(180deg, #6b5f59, #443836);cursor:not-allowed}
+
+  .side{padding:0;display:flex;flex-direction:column}
+  .side-body{padding:18px 20px 22px;display:grid;gap:14px}
+  .info{
+    background:rgba(255,255,255,.02);
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:16px;
+    padding:14px;
+    line-height:1.8;
+    color:#bda898;
+  }
+  .info strong{color:#f1e6d9}
+
+  .door{
+    background:linear-gradient(180deg, rgba(11,8,9,.98), rgba(6,4,5,.99));
+  }
+  .door .panel-head{
+    border-bottom-color:rgba(255,255,255,.05);
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  }
+  .door .panel-title,.door .panel-sub{color:#e7d7c6}
+
+  .feedback{
+    min-height:1.6em;
+    color:#d8c6b5;
+    font-size:.95rem;
+    line-height:1.6;
+  }
+  .feedback.good{color:#a9d6b8}
+  .feedback.bad{color:#efb1b1}
+
+  .modal-backdrop{
+    position:fixed;inset:0;
+    background:rgba(4,3,4,.86);
+    backdrop-filter:blur(8px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease;
+    z-index:20;
+  }
+  .modal-backdrop.active{opacity:1;pointer-events:auto}
+  .modal{
+    position:fixed;
+    inset:auto 50% 50% auto;
+    transform:translate(50%, 50%) scale(.98);
+    width:min(720px, 92vw);
+    max-height:min(86vh, 860px);
+    overflow:auto;
+    background:linear-gradient(180deg, rgba(17,13,15,.99), rgba(10,8,9,.99));
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:24px;
+    box-shadow:0 30px 80px rgba(0,0,0,.45);
+    z-index:30;
+    opacity:0;
+    pointer-events:none;
+    transition:transform .18s ease, opacity .18s ease;
+  }
+  .modal.active{
+    opacity:1;
+    pointer-events:auto;
+    transform:translate(50%, 50%) scale(1);
+  }
+  .modal-inner{padding:20px}
+  .modal-head{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+    margin-bottom:14px;
+  }
+  .modal-title{
+    margin:0;
+    font-size:1.35rem;
+    color:#f4ecdf;
+  }
+  .close{
+    border:none;
+    background:rgba(168,74,74,.16);
+    color:#e7d5c6;
+    border-radius:999px;
+    padding:10px 14px;
+    cursor:pointer;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:.78rem;
+  }
+  .modal-text{
+    margin:0 0 14px;
+    line-height:1.8;
+    color:#bda898;
+  }
+  .qbox{
+    display:grid;
+    gap:12px;
+    background:rgba(255,255,255,.02);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:18px;
+    padding:16px;
+  }
+  .qrow{display:flex;gap:10px;flex-wrap:wrap}
+  .qinput{
+    flex:1 1 220px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#120d0f;
+    padding:14px 16px;
+    font:inherit;
+    font-size:1.05rem;
+    color:#f4eadf;
+    outline:none;
+  }
+  .qinput:focus{border-color:rgba(176,141,87,.45);box-shadow:0 0 0 3px rgba(176,141,87,.08)}
+  .submit{
+    background:linear-gradient(180deg, #8d4040, #521718);
+    border-radius:14px;
+    padding:14px 18px;
+  }
+  .clue{
+    padding:12px 14px;
+    border-radius:16px;
+    background:rgba(255,255,255,.02);
+    border:1px solid rgba(255,255,255,.06);
+    color:#cdb8a6;
+    line-height:1.75;
+  }
+
+  .digits{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:10px;
+  }
+  .digit{
+    height:64px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#120d0f;
+    color:#f4eadf;
+    font-size:1.6rem;
+    font-weight:800;
+    text-align:center;
+    outline:none;
+  }
+  .digit:focus{border-color:rgba(176,141,87,.45);box-shadow:0 0 0 3px rgba(176,141,87,.08)}
+
+  .keypad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:10px;
+  }
+  .key{
+    height:54px;
+    border:none;
+    border-radius:14px;
+    background:rgba(255,255,255,.03);
+    color:#f2e5d2;
+    cursor:pointer;
+    font-size:1.05rem;
+    transition:transform .12s ease, background .12s ease;
+  }
+  .key:hover{background:rgba(255,255,255,.06)}
+  .key:active{transform:translateY(1px)}
+  .key.alt{
+    color:#d8b58a;
+    background:rgba(176,141,87,.08);
+  }
+
+  .victory{
+    position:fixed;inset:0;z-index:40;
+    display:grid;place-items:center;
+    background:radial-gradient(circle at center, rgba(176,141,87,.08), rgba(3,2,3,.92) 60%, rgba(2,2,2,.98) 100%);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease;
+  }
+  .victory.active{opacity:1;pointer-events:auto}
+  .victory-card{
+    width:min(760px, 92vw);
+    background:linear-gradient(180deg, rgba(16,12,13,.99), rgba(9,7,8,.99));
+    border-radius:28px;
+    border:1px solid rgba(255,255,255,.08);
+    padding:28px;
+    text-align:center;
+  }
+  .victory-card h2{
+    margin:0;
+    font-size:clamp(2rem, 5vw, 4rem);
+    color:#f4ecdf;
+  }
+  .victory-card p{
+    margin:12px auto 0;
+    max-width:620px;
+    line-height:1.9;
+    color:#bda898;
+    font-size:1.04rem;
+  }
+  .victory-actions{margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .door-btn{
+    flex:1 1 160px;
+    border-radius:999px;
+    padding:12px 16px;
+    background:linear-gradient(180deg, #8d4040, #521718);
+  }
+  .door-btn.secondary{background:linear-gradient(180deg, #5d534d, #3b332f)}
+
+  @media (max-width:900px){.board{grid-template-columns:1fr}}
+  @media (max-width:720px){
+    .hero{border-radius:22px;padding:20px}
+    .map{grid-template-columns:1fr}
+    .status{max-width:none}
+    .digits{grid-template-columns:repeat(2, minmax(0,1fr))}
+    .keypad{grid-template-columns:repeat(3, minmax(0,1fr))}
+    .card{min-height:auto}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">חדר בריחה היסטורי</div>
+      <h1>לברוח מצרפת לפני שהגיליוטינה סוגרת את השער</h1>
+      <p class="intro">
+        פריז, 1789. הרחובות רועשים, האצילים לחוצים, וההמון כבר מזיז את ההיסטוריה.
+        כדי לברוח צריך לעבור שלוש תחנות. בכל תחנה יש רמז אחד, ואת הפתרון תצטרך לזכור לבד.
+      </p>
+      <div class="status" aria-label="מד התקדמות">
+        <div class="slot" id="slot-0">•</div>
+        <div class="slot" id="slot-1">•</div>
+        <div class="slot" id="slot-2">•</div>
+      </div>
+    </section>
+
+    <section class="board">
+      <div class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">תחנות הבריחה</h2>
+          <p class="panel-sub">הכל נפתח לפי הסדר. פתרון כל תחנה חושף רק את ההתקדמות, לא את התשובה הבאה.</p>
+        </div>
+        <div class="map">
+          <article class="card" id="card-estates">
+            <div class="badge">תחנה 1</div>
+            <div>
+              <h2>אולם המעמדות</h2>
+              <p>כמה מעמדות היו בצרפת לפני המהפכה?</p>
+            </div>
+            <div class="cta">
+              <span class="mini" id="mini-estates">פתוח עכשיו</span>
+              <button class="open-btn" onclick="openModal('estates')">לפתור</button>
+            </div>
+          </article>
+
+          <article class="card locked" id="card-tennis">
+            <div class="badge">תחנה 2</div>
+            <div>
+              <h2>שבועת מגרש הטניס</h2>
+              <p>ההתכנסות ההיא קרתה ביום קיץ ב-1789. צריך את מספר החודש.</p>
+            </div>
+            <div class="cta">
+              <span class="mini" id="mini-tennis">נעול</span>
+              <button class="open-btn" id="btn-tennis" onclick="openModal('tennis')" disabled>לפתור</button>
+            </div>
+          </article>
+
+          <article class="card locked" id="card-bastille">
+            <div class="badge">תחנה 3</div>
+            <div>
+              <h2>הבסטיליה</h2>
+              <p>בפריצה ששינתה את ההיסטוריה שוחררו מעט אנשים. כמה?</p>
+            </div>
+            <div class="cta">
+              <span class="mini" id="mini-bastille">נעול</span>
+              <button class="open-btn" id="btn-bastille" onclick="openModal('bastille')" disabled>לפתור</button>
+            </div>
+          </article>
+
+          <article class="card" id="card-door">
+            <div class="badge">שער היציאה</div>
+            <div>
+              <h2>המעבר אל החופש</h2>
+              <p>אחרי שסיימת את כל התחנות, אפשר להכניס את הקוד הסופי ולברוח.</p>
+            </div>
+            <div class="cta">
+              <span class="mini">קוד סופי</span>
+              <button class="open-btn" onclick="openDoor()">לגשת</button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="panel side door">
+        <div class="panel-head">
+          <h2 class="panel-title">לוח בקרה</h2>
+          <p class="panel-sub">לא מרמזים על הפתרונות כאן. רק על המבנה של המסע.</p>
+        </div>
+        <div class="side-body">
+          <div class="info">
+            <strong>מה מחפשים:</strong><br>
+            מספר המעמדות, חודש של אירוע היסטורי, ומספר האסירים ששוחררו.
+          </div>
+          <div class="info">
+            <strong>הסדר:</strong><br>
+            מתחילים במעמדות, ממשיכים לטניס, ומסיימים בבסטיליה.
+          </div>
+          <div class="feedback" id="main-feedback">התחל בתחנה 1.</div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="backdrop" onclick="closeModal()"></div>
+
+  <section class="modal" id="modal-estates" aria-hidden="true">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <h3 class="modal-title">אולם המעמדות</h3>
+        <button class="close" onclick="closeModal()">סגור</button>
+      </div>
+      <p class="modal-text">כמה מעמדות היו בצרפת לפני המהפכה?</p>
+      <div class="qbox">
+        <div class="clue">חפש את המספר שמופיע בתחילת הסיכום.</div>
+        <div class="qrow">
+          <input class="qinput" id="estates-input" inputmode="numeric" placeholder="הקלד את המספר">
+          <button class="submit" onclick="checkEstate()">בדוק</button>
+        </div>
+        <div class="feedback" id="estate-feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="modal" id="modal-tennis" aria-hidden="true">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <h3 class="modal-title">שבועת מגרש הטניס</h3>
+        <button class="close" onclick="closeModal()">סגור</button>
+      </div>
+      <p class="modal-text">באיזה מספר חודש קרה האירוע של 20 ביוני 1789?</p>
+      <div class="qbox">
+        <div class="clue">הסתכל על התאריך וחשוב על מספר החודש.</div>
+        <div class="qrow">
+          <input class="qinput" id="tennis-input" inputmode="numeric" placeholder="הקלד את החודש">
+          <button class="submit" onclick="checkTennis()">בדוק</button>
+        </div>
+        <div class="feedback" id="tennis-feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="modal" id="modal-bastille" aria-hidden="true">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <h3 class="modal-title">הבסטיליה</h3>
+        <button class="close" onclick="closeModal()">סגור</button>
+      </div>
+      <p class="modal-text">כמה אסירים שוחררו בזמן הפריצה לבסטיליה?</p>
+      <div class="qbox">
+        <div class="clue">המספר מופיע בסיכום שניתן לך.</div>
+        <div class="qrow">
+          <input class="qinput" id="bastille-input" inputmode="numeric" placeholder="הקלד את המספר">
+          <button class="submit" onclick="checkBastille()">בדוק</button>
+        </div>
+        <div class="feedback" id="bastille-feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="modal" id="modal-door" aria-hidden="true">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <h3 class="modal-title">שער הבריחה</h3>
+        <button class="close" onclick="closeModal()">סגור</button>
+      </div>
+      <p class="modal-text">כאן מכניסים את הקוד הסופי. הוא מורכב מהפתרונות לפי סדר התחנות.</p>
+      <div class="qbox">
+        <div class="clue">אם לא פתרת את הכול, השער לא ייפתח.</div>
+        <div class="digits" aria-label="קוד בריחה">
+          <input class="digit" id="d0" maxlength="1" inputmode="numeric">
+          <input class="digit" id="d1" maxlength="1" inputmode="numeric">
+          <input class="digit" id="d2" maxlength="1" inputmode="numeric">
+        </div>
+        <div class="keypad" aria-label="לוח מקשים">
+          <button class="key" onclick="tap('1')">1</button>
+          <button class="key" onclick="tap('2')">2</button>
+          <button class="key" onclick="tap('3')">3</button>
+          <button class="key" onclick="tap('4')">4</button>
+          <button class="key" onclick="tap('5')">5</button>
+          <button class="key" onclick="tap('6')">6</button>
+          <button class="key" onclick="tap('7')">7</button>
+          <button class="key" onclick="tap('8')">8</button>
+          <button class="key" onclick="tap('9')">9</button>
+          <button class="key alt" onclick="clearCode()">נקה</button>
+          <button class="key" onclick="tap('0')">0</button>
+          <button class="key alt" onclick="submitCode()">פתח</button>
+        </div>
+        <div class="feedback" id="door-feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="victory" id="victory">
+    <div class="victory-card">
+      <h2>ברחת מצרפת</h2>
+      <p>הדלת נפתחה בזמן. לא השארת תשובות על המסך, רק את ההרגשה שהצלחת לחשוב כמו המהפכנים.</p>
+      <div class="victory-actions">
+        <button class="door-btn" onclick="location.reload()">שחק שוב</button>
+        <button class="door-btn secondary" onclick="closeVictory()">חזור למסך</button>
+      </div>
+    </div>
+  </section>
+
+<script>
+const solution = { estates: '3', tennis: '6', bastille: '7', final: '367' };
+const state = { estates:false, tennis:false, bastille:false, activeModal:null };
+const order = ['estates', 'tennis', 'bastille'];
+
+function setFeedback(id, text, kind='') {
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = 'feedback' + (kind ? ' ' + kind : '');
+}
+
+function updateSlots() {
+  const filled = [state.estates, state.tennis, state.bastille];
+  filled.forEach((on, i) => {
+    const el = document.getElementById('slot-' + i);
+    el.textContent = on ? '◆' : '•';
+    el.classList.toggle('filled', on);
+  });
+}
+
+function markSolved(name) {
+  const card = document.getElementById('card-' + name);
+  card.classList.remove('locked');
+  card.classList.add('solved');
+}
+
+function unlockNext(current) {
+  const idx = order.indexOf(current);
+  const next = order[idx + 1];
+  if (!next) return;
+  document.getElementById('card-' + next).classList.remove('locked');
+  document.getElementById('btn-' + next).disabled = false;
+  document.getElementById('mini-' + next).textContent = 'פתוח עכשיו';
+}
+
+function openModal(name) {
+  if (name === 'tennis' && !state.estates) return;
+  if (name === 'bastille' && !state.tennis) return;
+  if (name === 'door' && !(state.estates && state.tennis && state.bastille)) {
+    setFeedback('main-feedback', 'צריך לפתור קודם את שלוש התחנות.', 'bad');
+    return;
+  }
+
+  closeModal();
+  state.activeModal = name;
+  document.getElementById('backdrop').classList.add('active');
+  const modal = document.getElementById('modal-' + name);
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+
+  const focusMap = { estates:'estates-input', tennis:'tennis-input', bastille:'bastille-input', door:'d0' };
+  setTimeout(() => document.getElementById(focusMap[name]).focus(), 50);
+}
+
+function openDoor() {
+  openModal('door');
+}
+
+function closeModal() {
+  if (!state.activeModal) return;
+  document.getElementById('modal-' + state.activeModal).classList.remove('active');
+  document.getElementById('modal-' + state.activeModal).setAttribute('aria-hidden', 'true');
+  document.getElementById('backdrop').classList.remove('active');
+  state.activeModal = null;
+}
+
+function checkEstate() {
+  const input = document.getElementById('estates-input');
+  if (state.estates) return;
+  if (input.value.trim() === solution.estates) {
+    state.estates = true;
+    markSolved('estates');
+    updateSlots();
+    unlockNext('estates');
+    setFeedback('estate-feedback', 'נכון. תחנה 1 נפתחה.', 'good');
+    setFeedback('main-feedback', 'תחנה 1 הושלמה.');
+    input.disabled = true;
+  } else {
+    setFeedback('estate-feedback', 'לא מדויק. חזור לרמזים.', 'bad');
+  }
+}
+
+function checkTennis() {
+  const input = document.getElementById('tennis-input');
+  if (!state.estates) {
+    setFeedback('tennis-feedback', 'צריך לפתוח קודם את תחנה 1.', 'bad');
+    return;
+  }
+  if (state.tennis) return;
+  if (input.value.trim() === solution.tennis) {
+    state.tennis = true;
+    markSolved('tennis');
+    updateSlots();
+    unlockNext('tennis');
+    setFeedback('tennis-feedback', 'נכון. תחנה 2 נפתחה.', 'good');
+    setFeedback('main-feedback', 'תחנה 2 הושלמה.');
+    input.disabled = true;
+  } else {
+    setFeedback('tennis-feedback', 'לא נכון. בדוק את התאריך שוב.', 'bad');
+  }
+}
+
+function checkBastille() {
+  const input = document.getElementById('bastille-input');
+  if (!state.tennis) {
+    setFeedback('bastille-feedback', 'צריך לפתוח קודם את תחנה 2.', 'bad');
+    return;
+  }
+  if (state.bastille) return;
+  if (input.value.trim() === solution.bastille) {
+    state.bastille = true;
+    markSolved('bastille');
+    updateSlots();
+    setFeedback('bastille-feedback', 'נכון. כל התחנות פתוחות.', 'good');
+    setFeedback('main-feedback', 'אפשר לגשת לשער היציאה.');
+    input.disabled = true;
+  } else {
+    setFeedback('bastille-feedback', 'לא נכון. חפש את המספר המדויק.', 'bad');
+  }
+}
+
+function tap(d) {
+  const inputs = [...document.querySelectorAll('#modal-door .digit')];
+  const firstEmpty = inputs.find(i => !i.value);
+  if (!firstEmpty) return;
+  firstEmpty.value = d;
+}
+
+function clearCode() {
+  document.querySelectorAll('#modal-door .digit').forEach(i => i.value = '');
+  setFeedback('door-feedback', '');
+}
+
+function submitCode() {
+  if (!(state.estates && state.tennis && state.bastille)) {
+    setFeedback('door-feedback', 'צריך לפתור את כל התחנות קודם.', 'bad');
+    return;
+  }
+  const entered = [...document.querySelectorAll('#modal-door .digit')].map(i => i.value.trim()).join('');
+  if (entered === solution.final) {
+    setFeedback('door-feedback', 'השער נפתח.', 'good');
+    setTimeout(showVictory, 450);
+  } else {
+    setFeedback('door-feedback', 'הקוד לא נכון. נסה שוב.', 'bad');
+    clearCode();
+  }
+}
+
+function showVictory() {
+  closeModal();
+  document.getElementById('victory').classList.add('active');
+}
+
+function closeVictory() {
+  document.getElementById('victory').classList.remove('active');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeVictory();
+  }
+  if (!state.activeModal) return;
+
+  if (state.activeModal === 'estates' && e.key === 'Enter') checkEstate();
+  if (state.activeModal === 'tennis' && e.key === 'Enter') checkTennis();
+  if (state.activeModal === 'bastille' && e.key === 'Enter') checkBastille();
+  if (state.activeModal === 'door') {
+    if (/^[0-9]$/.test(e.key)) tap(e.key);
+    if (e.key === 'Backspace') {
+      const inputs = [...document.querySelectorAll('#modal-door .digit')];
+      const filled = inputs.filter(i => i.value);
+      if (filled.length) filled[filled.length - 1].value = '';
+    }
+    if (e.key === 'Enter') submitCode();
+  }
+});
+
+document.querySelectorAll('#modal-door .digit').forEach((input, idx, arr) => {
+  input.addEventListener('input', () => {
+    input.value = input.value.replace(/[^0-9]/g, '').slice(0,1);
+    if (input.value && arr[idx + 1]) arr[idx + 1].focus();
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Backspace' && !input.value && arr[idx - 1]) arr[idx - 1].focus();
+  });
+});
+
+updateSlots();
+setFeedback('main-feedback', 'התחל בתחנה 1.');
+</script>
+</body>
+</html>

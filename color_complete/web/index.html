@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color Complete</title>
+  <style>
+    :root {
+      --bg: #fff5dc;
+      --ink: #1c1f26;
+      --muted: #606978;
+      --panel: #ffffff;
+      --line: #c7d0dc;
+      --pink: #ff5b7a;
+      --blue: #41a0ff;
+      --yellow: #ffd34d;
+      --green: #40c484;
+      --purple: #8e5fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      overflow: hidden;
+    }
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      inset: auto auto 32px -80px;
+      width: 320px;
+      height: 78px;
+      border-radius: 18px;
+      background: #62d996;
+      z-index: -1;
+    }
+    body::after {
+      inset: 130px -80px auto auto;
+      background: #5fcfff;
+    }
+    button, input, select {
+      font: inherit;
+      border-radius: 8px;
+      border: 2px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+    }
+    button {
+      min-height: 42px;
+      padding: 0 18px;
+      cursor: pointer;
+    }
+    button.active, button.primary {
+      color: #fff;
+      border-color: #d23254;
+      background: var(--pink);
+      font-weight: 700;
+    }
+    input {
+      height: 42px;
+      padding: 0 12px;
+      min-width: 0;
+    }
+    .screen {
+      width: 100vw;
+      height: 100vh;
+      display: none;
+    }
+    .screen.active { display: block; }
+    .menu {
+      padding: 46px 24px 24px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 44px;
+      line-height: 1.05;
+    }
+    .subtitle {
+      margin: 12px 0 14px;
+      color: var(--muted);
+      font-size: 22px;
+    }
+    .lobby, .prompt {
+      width: min(650px, calc(100vw - 36px));
+      margin: 0 auto 22px;
+      background: var(--panel);
+      border-radius: 8px;
+    }
+    .lobby {
+      padding: 14px 12px 10px;
+      border: 3px solid var(--blue);
+      display: grid;
+      grid-template-columns: minmax(150px, 1fr) 130px auto auto;
+      gap: 10px;
+      align-items: center;
+    }
+    .status {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .prompt {
+      border: 4px solid var(--yellow);
+      padding: 12px 18px;
+      text-align: left;
+    }
+    .prompt span {
+      display: block;
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .prompt strong {
+      display: block;
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.1;
+    }
+    .group {
+      margin: 20px auto 0;
+    }
+    .group h2 {
+      margin: 0 0 14px;
+      font-size: 30px;
+      line-height: 1.1;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .choice {
+      width: 74px;
+    }
+    .actions {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .actions button {
+      min-width: 160px;
+      font-size: 22px;
+    }
+    .debugPanel {
+      width: min(650px, calc(100vw - 36px));
+      margin: 18px auto 0;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.92);
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .debugPanel summary {
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .debugBody {
+      border-top: 1px solid var(--line);
+      padding: 10px 14px 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      color: #222;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 220px;
+      overflow: auto;
+    }
+    .draw {
+      position: relative;
+      padding-top: 88px;
+    }
+    .toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 88px;
+      padding: 10px 24px;
+      display: grid;
+      grid-template-columns: 280px 1fr 150px;
+      gap: 18px;
+      align-items: center;
+      background: var(--panel);
+      border-top: 6px solid #fff078;
+      border-bottom: 2px solid var(--line);
+      z-index: 5;
+    }
+    .turnInfo strong { display: block; font-size: 26px; }
+    .turnInfo span { display: block; color: var(--muted); font-size: 15px; }
+    .ideaPill {
+      display: inline-block;
+      margin-top: 3px;
+      max-width: 280px;
+      padding: 3px 9px;
+      background: #fff;
+      border: 1px solid var(--yellow);
+      border-radius: 8px;
+      color: #000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 15px;
+    }
+    .tools {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+    .swatches, .sizes {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 3px solid var(--line);
+      cursor: pointer;
+    }
+    .swatch.active { border-color: #111; }
+    .size {
+      width: 40px;
+      height: 30px;
+      padding: 0;
+      position: relative;
+    }
+    .size::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: var(--dot);
+      height: var(--dot);
+      transform: translate(-50%, -50%);
+      background: #111;
+      border-radius: 50%;
+    }
+    .timer {
+      text-align: right;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .timer.panic {
+      color: #e52037;
+      animation: flash 0.35s infinite alternate;
+    }
+    .stage {
+      height: calc(100vh - 88px);
+      display: grid;
+      place-items: center;
+    }
+    .canvasFrame {
+      width: min(960px, calc(100vw - 40px));
+      height: min(560px, calc(100vh - 130px));
+      padding: 8px;
+      background: #ffb44e;
+      border-radius: 14px;
+    }
+    .canvasFrame.panic {
+      background: #eb273c;
+      animation: flash 0.25s infinite alternate;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border: 2px solid #111;
+      touch-action: none;
+    }
+    .gallery {
+      padding: 28px 42px;
+      overflow: hidden;
+    }
+    .gallery h1 { font-size: 42px; }
+    .galleryHint {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 20px;
+    }
+    .strip {
+      display: flex;
+      gap: 70px;
+      margin-top: 46px;
+      transition: transform 0.18s ease;
+    }
+    .card {
+      flex: 0 0 720px;
+      max-width: calc(100vw - 84px);
+      height: 500px;
+      padding: 18px 24px 24px;
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+    }
+    .card h2 { margin: 0; font-size: 30px; }
+    .card p {
+      margin: 5px 0 10px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .preview {
+      width: 100%;
+      height: 390px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    @keyframes flash {
+      from { opacity: 1; }
+      to { opacity: 0.55; }
+    }
+    @media (max-width: 760px) {
+      body { overflow: auto; }
+      .screen { height: auto; min-height: 100vh; }
+      .menu { padding-top: 28px; }
+      .lobby { grid-template-columns: 1fr 1fr; }
+      .lobby button { width: 100%; }
+      .toolbar {
+        height: auto;
+        grid-template-columns: 1fr;
+        position: static;
+      }
+      .draw { padding-top: 0; }
+      .stage { height: auto; padding: 16px 0; }
+      .canvasFrame { height: 58vh; }
+      .timer { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <section id="menu" class="screen menu active">
+    <h1>Color Complete</h1>
+    <p class="subtitle">Pass drawings, remix ideas, and make one wonderfully weird gallery.</p>
+
+    <div class="lobby">
+      <input id="nameInput" maxlength="16" value="Player 1" aria-label="Your name">
+      <input id="codeInput" maxlength="5" placeholder="Join code" aria-label="Join code">
+      <button id="hostBtn">Host</button>
+      <button id="joinBtn">Join</button>
+      <div class="status">
+        <span id="lobbyCode">Lobby: -----</span>
+        <span id="networkStatus">Ready</span>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <span>Today's prompt</span>
+      <strong id="promptText"></strong>
+    </div>
+
+    <div class="group">
+      <h2>Players</h2>
+      <div id="playerButtons" class="row"></div>
+    </div>
+    <div class="group">
+      <h2>Seconds per turn</h2>
+      <div id="timeButtons" class="row"></div>
+    </div>
+    <div class="group">
+      <h2>Rounds</h2>
+      <div id="roundButtons" class="row"></div>
+    </div>
+    <div class="actions">
+      <button id="newIdeaBtn">New idea</button>
+      <button id="startBtn" class="primary">Start</button>
+    </div>
+    <details class="debugPanel" open>
+      <summary>Connection debug</summary>
+      <div id="debugBody" class="debugBody"></div>
+    </details>
+  </section>
+
+  <section id="draw" class="screen draw">
+    <div class="toolbar">
+      <div class="turnInfo">
+        <strong id="roundInfo">Round 1/4</strong>
+        <span id="turnInfo">Player 1's turn</span>
+        <div id="ideaPill" class="ideaPill"></div>
+      </div>
+      <div class="tools">
+        <div>
+          <div id="swatches" class="swatches"></div>
+          <div id="sizes" class="sizes"></div>
+        </div>
+        <button id="nextBtn">End turn</button>
+      </div>
+      <div id="timer" class="timer">30s</div>
+    </div>
+    <div class="stage">
+      <div id="canvasFrame" class="canvasFrame">
+        <canvas id="canvas" width="960" height="560"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="screen gallery">
+    <h1>Final Gallery</h1>
+    <div id="galleryHint" class="galleryHint"></div>
+    <div id="galleryStrip" class="strip"></div>
+  </section>
+
+  <script>
+    const prompts = [
+      "Astronaut cat eating pizza",
+      "Robot building a sandcastle",
+      "Dragon learning to skateboard",
+      "Penguin DJ at a birthday party",
+      "Wizard opening a tiny bakery",
+      "Dinosaur riding a rainbow bus",
+      "Superhero brushing a giant tooth",
+      "Moon picnic with flying snacks",
+      "Pirate searching for lost socks",
+      "Alien trying ice cream for the first time"
+    ];
+    const palette = [
+      "#16181d", "#ffffff", "#e63946", "#f4a261", "#e9c46a", "#2a9d8f",
+      "#264653", "#457b9d", "#8338ec", "#ff5b7a", "#40c484", "#ffd34d"
+    ];
+    const state = {
+      ws: null,
+      playerId: null,
+      playerCount: 4,
+      roundSeconds: 30,
+      totalRounds: 4,
+      currentTurn: 0,
+      currentRound: 1,
+      assignments: [],
+      contributions: [],
+      playerNames: ["Player 1", "Player 2", "Player 3", "Player 4"],
+      prompt: prompts[Math.floor(Math.random() * prompts.length)],
+      roomCode: "-----",
+      turnStartedAt: Date.now() / 1000,
+      brushColor: palette[0],
+      brushSize: 8,
+      drawing: false,
+      lastPoint: null,
+      galleryIndex: 0,
+      canvases: [],
+      contexts: [],
+      debugLog: []
+    };
+    const $ = (id) => document.getElementById(id);
+    const canvas = $("canvas");
+    const ctx = canvas.getContext("2d");
+
+    function wsStateName(value) {
+      return ["CONNECTING", "OPEN", "CLOSING", "CLOSED"][value] || "NO_SOCKET";
+    }
+    function debug(message, data = null) {
+      const stamp = new Date().toLocaleTimeString();
+      const suffix = data ? ` ${JSON.stringify(data)}` : "";
+      state.debugLog.unshift(`[${stamp}] ${message}${suffix}`);
+      state.debugLog = state.debugLog.slice(0, 18);
+      renderDebug();
+    }
+    function renderDebug() {
+      const socketState = state.ws ? wsStateName(state.ws.readyState) : "NO_SOCKET";
+      const lines = [
+        `Page URL: ${location.href}`,
+        `Computed WebSocket URL: ${wsUrl()}`,
+        `Socket state: ${socketState}`,
+        `Room code: ${state.roomCode}`,
+        `Player ID: ${state.playerId === null ? "none" : state.playerId}`,
+        location.protocol === "file:" ? "Warning: opened as file://. Run python3 web_server.py and open http://localhost:8080 instead." : "",
+        "",
+        "Recent events:",
+        ...state.debugLog
+      ];
+      $("debugBody").textContent = lines.join("\n");
+    }
+
+    function wsUrl() {
+      const params = new URLSearchParams(location.search);
+      const customUrl = params.get("ws");
+      if (customUrl) return customUrl;
+      if (location.protocol === "file:") return "ws://localhost:8080/ws";
+      const protocol = location.protocol === "https:" ? "wss:" : "ws:";
+      return `${protocol}//${location.host}/ws`;
+    }
+    function show(id) {
+      for (const section of document.querySelectorAll(".screen")) section.classList.remove("active");
+      $(id).classList.add("active");
+    }
+    function code() {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      return Array.from({length: 5}, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+    }
+    function settings() {
+      return {
+        player_count: state.playerCount,
+        round_seconds: state.roundSeconds,
+        total_rounds: state.totalRounds
+      };
+    }
+    function send(message) {
+      if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+        debug("send", {type: message.type});
+        state.ws.send(JSON.stringify(message));
+      } else {
+        debug("send blocked; socket is not open", {type: message.type});
+      }
+    }
+    function connect(createRoom) {
+      const name = $("nameInput").value.trim() || "Player";
+      state.roomCode = createRoom ? code() : $("codeInput").value.trim().toUpperCase().slice(0, 5);
+      if (!state.roomCode) return;
+      $("networkStatus").textContent = createRoom ? `Creating ${state.roomCode}...` : `Joining ${state.roomCode}...`;
+      $("lobbyCode").textContent = `Lobby: ${state.roomCode}`;
+      const target = wsUrl();
+      debug("opening websocket", {url: target, mode: createRoom ? "host" : "join"});
+      try {
+        state.ws = new WebSocket(target);
+      } catch (error) {
+        $("networkStatus").textContent = "Invalid WebSocket URL";
+        debug("new WebSocket failed", {message: error.message});
+        return;
+      }
+      renderDebug();
+      state.ws.onopen = () => {
+        debug("websocket open");
+        send({
+          type: createRoom ? "create_room" : "join_room",
+          room_code: state.roomCode,
+          name,
+          settings: settings(),
+          prompt: state.prompt
+        });
+      };
+      state.ws.onmessage = (event) => {
+        debug("message received", {bytes: event.data.length});
+        try {
+          handleMessage(JSON.parse(event.data));
+        } catch (error) {
+          debug("message parse failed", {message: error.message, raw: event.data.slice(0, 180)});
+        }
+      };
+      state.ws.onclose = (event) => {
+        $("networkStatus").textContent = "No WebSocket server at this address";
+        debug("websocket closed", {
+          code: event.code,
+          reason: event.reason || "(none)",
+          wasClean: event.wasClean
+        });
+        renderDebug();
+      };
+      state.ws.onerror = () => {
+        $("networkStatus").textContent = "WebSocket connection failed";
+        debug("websocket error event");
+        renderDebug();
+      };
+    }
+    function handleMessage(message) {
+      if (message.type === "welcome") {
+        debug("welcome", {player_id: message.player_id, lobby_code: message.lobby_code});
+        state.playerId = message.player_id;
+        state.roomCode = message.lobby_code;
+        state.prompt = message.prompt || state.prompt;
+        applySettings(message.settings || {});
+        $("lobbyCode").textContent = `Lobby: ${state.roomCode}`;
+        $("networkStatus").textContent = `Connected as Player ${state.playerId + 1}`;
+        renderMenu();
+      } else if (message.type === "lobby") {
+        debug("lobby update", {connected_count: message.connected_count});
+        state.roomCode = message.lobby_code;
+        state.playerNames = message.players || state.playerNames;
+        state.prompt = message.prompt || state.prompt;
+        applySettings(message.settings || {});
+        $("lobbyCode").textContent = `Lobby: ${state.roomCode}`;
+        $("networkStatus").textContent = `${message.connected_count}/${state.playerCount} connected`;
+        renderMenu();
+      } else if (message.type === "start_game") {
+        debug("start game");
+        state.playerNames = message.player_names || state.playerNames;
+        state.prompt = message.prompt || state.prompt;
+        applySettings(message.settings || {});
+        startLocalGame();
+      } else if (message.type === "turn") {
+        debug("turn update", {turn: message.current_turn, round: message.current_round});
+        state.currentTurn = message.current_turn;
+        state.currentRound = message.current_round;
+        state.assignments = message.assignments;
+        state.contributions = message.contributions || state.contributions;
+        state.turnStartedAt = message.turn_started_at;
+        state.lastPoint = null;
+      } else if (message.type === "stroke") {
+        if (message.sender_id !== state.playerId) drawStroke(message.canvas_index, message.previous, message.point, message.color, message.size);
+      } else if (message.type === "gallery") {
+        debug("gallery");
+        state.contributions = message.contributions || state.contributions;
+        showGallery();
+      } else if (message.type === "error") {
+        $("networkStatus").textContent = message.message;
+        debug("server error", {message: message.message});
+      }
+    }
+    function applySettings(next) {
+      state.playerCount = Number(next.player_count || state.playerCount);
+      state.roundSeconds = Number(next.round_seconds || state.roundSeconds);
+      state.totalRounds = Number(next.total_rounds || state.totalRounds);
+    }
+    function renderMenu() {
+      $("promptText").textContent = state.prompt;
+      renderChoices("playerButtons", [1,2,3,4], state.playerCount, (value) => {
+        state.playerCount = value;
+        send({type: "settings", settings: settings()});
+        renderMenu();
+      });
+      renderChoices("timeButtons", [15,30,45,60], state.roundSeconds, (value) => {
+        state.roundSeconds = value;
+        send({type: "settings", settings: settings()});
+        renderMenu();
+      }, (value) => `${value}s`);
+      renderChoices("roundButtons", [1,2,3,4], state.totalRounds, (value) => {
+        state.totalRounds = value;
+        send({type: "settings", settings: settings()});
+        renderMenu();
+      });
+    }
+    function renderChoices(containerId, values, selected, onClick, label = (v) => String(v)) {
+      const container = $(containerId);
+      container.innerHTML = "";
+      for (const value of values) {
+        const btn = document.createElement("button");
+        btn.className = `choice ${value === selected ? "active" : ""}`;
+        btn.textContent = label(value);
+        btn.onclick = () => onClick(value);
+        container.appendChild(btn);
+      }
+    }
+    function startLocalGame() {
+      state.canvases = [];
+      state.contexts = [];
+      state.assignments = Array.from({length: state.playerCount}, () => 0);
+      state.contributions = [[]];
+      for (let i = 0; i < 1; i++) {
+        const c = document.createElement("canvas");
+        c.width = canvas.width;
+        c.height = canvas.height;
+        const cctx = c.getContext("2d");
+        cctx.fillStyle = "#fff";
+        cctx.fillRect(0, 0, c.width, c.height);
+        state.canvases.push(c);
+        state.contexts.push(cctx);
+      }
+      show("draw");
+      renderTools();
+      updateCanvas();
+    }
+    function renderTools() {
+      $("swatches").innerHTML = "";
+      for (const color of palette) {
+        const swatch = document.createElement("div");
+        swatch.className = `swatch ${color === state.brushColor ? "active" : ""}`;
+        swatch.style.background = color;
+        swatch.onclick = () => { state.brushColor = color; renderTools(); };
+        $("swatches").appendChild(swatch);
+      }
+      $("sizes").innerHTML = "";
+      for (const size of [4, 8, 14, 22]) {
+        const btn = document.createElement("button");
+        btn.className = `size ${size === state.brushSize ? "active" : ""}`;
+        btn.style.setProperty("--dot", `${Math.max(4, size)}px`);
+        btn.onclick = () => { state.brushSize = size; renderTools(); };
+        $("sizes").appendChild(btn);
+      }
+    }
+    function isMyTurn() {
+      return state.playerId === null || state.playerId === state.currentTurn;
+    }
+    function activeCanvasIndex() {
+      return 0;
+    }
+    function updateCanvas() {
+      if (!state.canvases.length) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(state.canvases[activeCanvasIndex()], 0, 0);
+      $("roundInfo").textContent = `Round ${state.currentRound}/${state.totalRounds}`;
+      const name = state.playerNames[state.currentTurn] || `Player ${state.currentTurn + 1}`;
+      $("turnInfo").textContent = isMyTurn() ? `${name}'s turn - continue the drawing` : `Watching ${name} continue the drawing`;
+      $("ideaPill").textContent = `Idea: ${state.prompt}`;
+      const left = Math.max(0, Math.ceil(state.roundSeconds - (Date.now() / 1000 - state.turnStartedAt)));
+      $("timer").textContent = `${left}s`;
+      $("timer").classList.toggle("panic", left <= 5);
+      $("canvasFrame").classList.toggle("panic", left <= 5);
+      requestAnimationFrame(updateCanvas);
+    }
+    function pointerPoint(event) {
+      const rect = canvas.getBoundingClientRect();
+      return [
+        Math.round((event.clientX - rect.left) * canvas.width / rect.width),
+        Math.round((event.clientY - rect.top) * canvas.height / rect.height)
+      ];
+    }
+    function drawStroke(canvasIndex, previous, point, color, size) {
+      const cctx = state.contexts[canvasIndex];
+      if (!cctx) return;
+      cctx.strokeStyle = color;
+      cctx.fillStyle = color;
+      cctx.lineWidth = size;
+      cctx.lineCap = "round";
+      cctx.lineJoin = "round";
+      if (!previous) {
+        cctx.beginPath();
+        cctx.arc(point[0], point[1], size / 2, 0, Math.PI * 2);
+        cctx.fill();
+      } else {
+        cctx.beginPath();
+        cctx.moveTo(previous[0], previous[1]);
+        cctx.lineTo(point[0], point[1]);
+        cctx.stroke();
+      }
+    }
+    canvas.addEventListener("pointerdown", (event) => {
+      if (!isMyTurn()) return;
+      state.drawing = true;
+      state.lastPoint = null;
+      canvas.setPointerCapture(event.pointerId);
+      paint(event);
+    });
+    canvas.addEventListener("pointermove", paint);
+    canvas.addEventListener("pointerup", () => {
+      state.drawing = false;
+      state.lastPoint = null;
+    });
+    function paint(event) {
+      if (!state.drawing || !isMyTurn()) return;
+      const point = pointerPoint(event);
+      const previous = state.lastPoint;
+      const canvasIndex = activeCanvasIndex();
+      drawStroke(canvasIndex, previous, point, state.brushColor, state.brushSize);
+      send({type: "stroke", previous, point, color: state.brushColor, size: state.brushSize});
+      state.lastPoint = point;
+    }
+    function showGallery() {
+      show("gallery");
+      $("galleryHint").textContent = `Prompt: ${state.prompt}`;
+      const strip = $("galleryStrip");
+      strip.innerHTML = "";
+      state.canvases.forEach((source, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        const title = document.createElement("h2");
+        title.textContent = `Drawing ${index + 1}`;
+        const artists = document.createElement("p");
+        artists.textContent = `Created by: ${(state.contributions[index] || ["No strokes"]).join(" -> ")}`;
+        const preview = document.createElement("canvas");
+        preview.className = "preview";
+        preview.width = 672;
+        preview.height = 390;
+        preview.getContext("2d").drawImage(source, 0, 0, preview.width, preview.height);
+        card.append(title, artists, preview);
+        strip.appendChild(card);
+      });
+      state.galleryIndex = 0;
+      updateGalleryOffset();
+    }
+    function updateGalleryOffset() {
+      $("galleryStrip").style.transform = `translateX(${-state.galleryIndex * 790}px)`;
+    }
+    document.addEventListener("keydown", (event) => {
+      if ($("gallery").classList.contains("active")) {
+        if (event.key === "ArrowRight") state.galleryIndex = Math.min(state.galleryIndex + 1, state.canvases.length - 1);
+        if (event.key === "ArrowLeft") state.galleryIndex = Math.max(state.galleryIndex - 1, 0);
+        updateGalleryOffset();
+      }
+      if ($("draw").classList.contains("active") && event.key.toLowerCase() === "n") send({type: "end_turn"});
+    });
+    $("hostBtn").onclick = () => connect(true);
+    $("joinBtn").onclick = () => connect(false);
+    $("startBtn").onclick = () => send({type: "start_game"});
+    $("nextBtn").onclick = () => send({type: "end_turn"});
+    $("newIdeaBtn").onclick = () => {
+      const options = prompts.filter((item) => item !== state.prompt);
+      state.prompt = options[Math.floor(Math.random() * options.length)];
+      send({type: "prompt", prompt: state.prompt});
+      renderMenu();
+    };
+    renderMenu();
+    renderDebug();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2687 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coffee Manager: Robot Evolution</title>
+  <style>
+    :root {
+      --ink: #223044;
+      --muted: #64748b;
+      --panel: rgba(255, 255, 255, 0.78);
+      --line: rgba(100, 116, 139, 0.24);
+      --blue: #38bdf8;
+      --green: #22c55e;
+      --yellow: #facc15;
+      --red: #fb7185;
+      --coffee: #a16207;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      color: var(--ink);
+      background: linear-gradient(180deg, #dbeafe 0%, #fef3c7 100%);
+      font-family: Arial, "Noto Sans Hebrew", system-ui, sans-serif;
+    }
+
+    canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+
+    .hud {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      display: grid;
+      grid-template-columns: 330px 1fr 320px;
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .panel,
+    .modal-card {
+      pointer-events: auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 18px 44px rgba(100, 116, 139, 0.18);
+      backdrop-filter: blur(14px);
+      padding: 16px;
+    }
+
+    .left { align-self: stretch; overflow-y: auto; }
+    .top { align-self: start; justify-self: center; width: min(660px, 100%); }
+    .right { align-self: start; max-height: calc(100vh - 32px); overflow-y: auto; }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: 1.28rem; }
+    h2 {
+      margin: 16px 0 10px;
+      font-size: 0.86rem;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .muted {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.42;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .stat,
+    .row {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .stat { min-height: 64px; padding: 10px; }
+    .stat small { display: block; color: var(--muted); margin-bottom: 4px; }
+    .stat strong { font-size: 1.2rem; }
+
+    .stock-alert {
+      border-color: rgba(248, 113, 113, .72);
+      animation: flash 1.25s ease-in-out infinite;
+    }
+
+    @keyframes flash {
+      0%, 100% {
+        background: rgba(255, 255, 255, 0.56);
+        box-shadow: 0 0 0 rgba(248, 113, 113, 0);
+      }
+      50% {
+        background: rgba(254, 226, 226, 0.84);
+        box-shadow: 0 0 18px rgba(248, 113, 113, .28);
+      }
+    }
+
+    button {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid rgba(14, 165, 233, 0.48);
+      border-radius: 8px;
+      color: #075985;
+      background: rgba(186, 230, 253, 0.72);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 120ms ease, background 120ms ease;
+    }
+
+    button:hover { transform: translateY(-1px); background: rgba(125, 211, 252, 0.82); }
+    button:disabled { cursor: not-allowed; opacity: 0.45; transform: none; }
+    .primary { color: white; border-color: rgba(34,197,94,.7); background: #22c55e; }
+    .danger { color: white; border-color: rgba(251,113,133,.7); background: #fb7185; }
+    .ghost { background: rgba(255,255,255,.66); color: var(--ink); }
+
+    .list { display: grid; gap: 9px; }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .row button { width: auto; min-width: 78px; min-height: 34px; padding: 0 10px; white-space: nowrap; }
+    .row strong { display: block; font-size: 0.94rem; }
+    .row small { color: var(--muted); line-height: 1.35; }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 900;
+      color: #334155;
+    }
+
+    input[type="range"] { width: 100%; accent-color: var(--red); }
+
+    .meter {
+      height: 8px;
+      margin-top: 10px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(100,116,139,.16);
+    }
+
+    .meter span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform-origin: left;
+      background: linear-gradient(90deg, #22c55e, #facc15, #fb7185);
+    }
+
+    .rank {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rank > span:first-child {
+      text-align: center;
+    }
+
+    .rank small {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .rank:last-child { border-bottom: 0; }
+    .board-section {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .board-section:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .board-label {
+      margin-bottom: 3px;
+      color: #64748b;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .rank.objective {
+      margin: 6px 0 4px;
+      padding: 10px;
+      border: 1px solid rgba(34, 197, 94, .28);
+      border-radius: 8px;
+      background: rgba(240, 253, 244, .58);
+    }
+
+    .rank.objective.done {
+      border-color: rgba(34, 197, 94, .58);
+      background: rgba(220, 252, 231, .78);
+    }
+
+    .rank.info {
+      color: #475569;
+      border-bottom-color: rgba(100, 116, 139, .16);
+    }
+
+    .rank.info strong {
+      color: #334155;
+    }
+
+    .money { color: #16a34a; font-weight: 900; }
+    .stars { color: #f59e0b; font-weight: 900; letter-spacing: 0; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(191,219,254,.9), rgba(254,243,199,.94));
+    }
+
+    .modal-card {
+      width: min(460px, 100%);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+    }
+
+    .login-card {
+      padding: 26px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.94), rgba(240,249,255,.86)),
+        rgba(255,255,255,.85);
+      box-shadow: 0 24px 80px rgba(15, 23, 42, .18);
+    }
+    .modal-card input {
+      width: 100%;
+      min-height: 44px;
+      margin: 10px 0;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .qa-toolbar {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      z-index: 3;
+      width: min(560px, calc(100vw - 28px));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid rgba(148,163,184,.28);
+      border-radius: 8px;
+      background: rgba(15, 23, 42, .72);
+      box-shadow: 0 18px 48px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(16px);
+      pointer-events: auto;
+      transform: translateX(-50%);
+    }
+
+    .qa-toolbar button {
+      min-height: 40px;
+      color: #e0f2fe;
+      border-color: rgba(125,211,252,.34);
+      background: rgba(30,41,59,.78);
+    }
+
+    .qa-toolbar button.active {
+      color: #042f2e;
+      border-color: rgba(45,212,191,.76);
+      background: linear-gradient(180deg, #5eead4, #22c55e);
+    }
+
+    .qa-report {
+      direction: rtl;
+      text-align: right;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(56,189,248,.22), transparent 34%),
+        linear-gradient(180deg, rgba(15,23,42,.86), rgba(15,23,42,.72));
+    }
+
+    .qa-report .modal-card {
+      width: min(760px, 100%);
+      max-height: calc(100vh - 42px);
+      overflow-y: auto;
+      color: #e5edf8;
+      border-color: rgba(148,163,184,.28);
+      background: rgba(15,23,42,.76);
+      box-shadow: 0 28px 90px rgba(2,6,23,.48);
+    }
+
+    .qa-report .muted { color: #bfd0e4; }
+    .qa-report h2 { color: #f8fafc; }
+
+    .report-section {
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px solid rgba(148,163,184,.2);
+      border-radius: 8px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .report-section ul {
+      margin: 8px 0 0;
+      padding: 0 18px 0 0;
+      line-height: 1.55;
+    }
+
+    .qa-flash {
+      animation: qaFlash 260ms ease;
+    }
+
+    @keyframes qaFlash {
+      0% { transform: scale(1); filter: brightness(1); }
+      45% { transform: scale(1.05); filter: brightness(1.35); }
+      100% { transform: scale(1); filter: brightness(1); }
+    }
+
+    .hidden { display: none; }
+
+    .map {
+      position: fixed;
+      inset: 0;
+      z-index: 4;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 18% 24%, rgba(56,189,248,.22), transparent 32%),
+        radial-gradient(circle at 82% 72%, rgba(250,204,21,.16), transparent 30%),
+        linear-gradient(180deg, rgba(15,23,42,.96), rgba(30,41,59,.94));
+    }
+
+    .map.hidden { display: none; }
+
+    .map-shell {
+      width: min(1120px, 100%);
+      max-height: calc(100vh - 44px);
+      overflow-y: auto;
+      padding: 22px;
+      border: 1px solid rgba(148,163,184,.22);
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 24px 90px rgba(2, 6, 23, .42);
+      color: #e5edf8;
+    }
+
+    .map-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 14px;
+    }
+
+    .level-card {
+      min-height: 190px;
+      display: grid;
+      align-content: space-between;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(148,163,184,.22);
+      border-radius: 8px;
+      color: #e5edf8;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 18px 44px rgba(2,6,23,.2);
+      background:
+        linear-gradient(180deg, rgba(30,41,59,.92), rgba(15,23,42,.74)),
+        rgba(15,23,42,.85);
+    }
+
+    .level-card:hover { transform: translateY(-2px); }
+    .level-card.locked {
+      cursor: not-allowed;
+      filter: grayscale(.95);
+      opacity: .52;
+      background:
+        linear-gradient(180deg, rgba(51,65,85,.72), rgba(15,23,42,.64)),
+        rgba(15,23,42,.7);
+    }
+
+    .map-shell .muted { color: #bfd0e4; }
+    .level-card h2 { color: #f8fafc; }
+    .level-card.locked h2,
+    .level-card.locked .muted { color: #94a3b8; }
+
+    .level-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: white;
+      background: #0ea5e9;
+      font-weight: 900;
+    }
+
+    .level-stars {
+      color: #f59e0b;
+      font-size: 1.08rem;
+      letter-spacing: 0;
+    }
+
+    .lock {
+      color: #64748b;
+      font-weight: 900;
+    }
+
+    @media (max-width: 1000px) {
+      .map-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .map-header { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 1000px) {
+      .hud { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; }
+      .left, .right { width: min(390px, calc(100vw - 24px)); max-height: 42vh; }
+      .right { justify-self: end; }
+    }
+  </style>
+</head>
+<body>
+  <div class="modal" id="login">
+    <div class="modal-card login-card">
+      <h1>Coffee Manager: Robot Evolution</h1>
+      <p class="muted">Enter a coffee shop name and password. Your campaign is saved locally after refresh.</p>
+      <input id="cafeName" autocomplete="username" placeholder="Coffee shop name" />
+      <input id="cafePass" autocomplete="current-password" placeholder="Password" type="password" />
+      <div class="actions">
+        <button id="loginBtn" class="primary">Load</button>
+        <button id="newSaveBtn" class="ghost">New Game</button>
+      </div>
+      <p class="muted" id="loginMsg"></p>
+    </div>
+  </div>
+
+  <div class="map hidden" id="levelMap">
+    <div class="map-shell">
+      <div class="map-header">
+        <div>
+          <h1>Coffee Manager: Robot Evolution</h1>
+          <p class="muted" id="mapSubtitle">Choose a stage. Win tournaments to unlock the campaign route.</p>
+        </div>
+        <button id="logoutBtn" class="ghost">Back to Login</button>
+      </div>
+      <div class="map-grid" id="levelGrid"></div>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="complete">
+    <div class="modal-card">
+      <h1 id="completeTitle">Stage Complete</h1>
+      <p class="muted" id="completeText"></p>
+      <h2>Rating</h2>
+      <div class="stats">
+        <div class="stat"><small>Task Progress</small><strong id="starEfficiency">-</strong></div>
+        <div class="stat"><small>All Tasks</small><strong id="starWaste">-</strong></div>
+        <div class="stat"><small>Tournament Win</small><strong id="starRevenue">-</strong></div>
+        <div class="stat"><small>Total</small><strong id="starTotal">-</strong></div>
+      </div>
+      <div class="actions">
+        <button id="nextStageBtn" class="primary">Campaign Map</button>
+        <button id="retryStageBtn" class="ghost">Select Stage</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal qa-report hidden" id="qaReport">
+    <div class="modal-card">
+      <h1>סיכום משחק - בוט בדיקה</h1>
+      <p class="muted" id="qaReportIntro">הדו"ח נוצר מתוך הריצה האחרונה של הבוט והמדדים שנאספו בזמן אמת.</p>
+      <div id="qaReportBody"></div>
+      <div class="actions">
+        <button id="qaCloseBtn" class="primary">חזרה למשחק</button>
+        <button id="qaResetBtn" class="ghost">איפוס מדדים</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="game"></canvas>
+
+  <div class="hud">
+    <aside class="panel left">
+      <h1 id="shopTitle">Coffee Shop</h1>
+      <p class="muted" id="modeText">Stand Management</p>
+
+      <div class="stats">
+        <div class="stat"><small>Cash</small><strong id="cash">₪0</strong></div>
+        <div class="stat"><small>Served</small><strong id="served">0</strong></div>
+        <div class="stat"><small>Queue</small><strong id="queue">0/0</strong></div>
+        <div class="stat"><small>Stock</small><strong id="stock">0/0</strong></div>
+      </div>
+
+      <h2>Manual Service</h2>
+      <button id="serveBtn" class="primary">Serve Coffee</button>
+      <p class="muted">Spacebar serves. Q buys beans. E buys milk.</p>
+
+      <h2>Price</h2>
+      <label for="price"><span>Cup Price</span><span id="priceLabel">₪12</span></label>
+      <input id="price" type="range" min="6" max="28" value="12" step="1" />
+
+      <h2>Fresh Inventory</h2>
+      <div class="list">
+        <div class="row" data-stock-card="beans"><div><strong>Coffee Beans</strong><small>20 portions. Expires after 20 seconds. Hotkey Q.</small></div><button data-stock="beans">₪18</button></div>
+        <div class="row" data-stock-card="milk"><div><strong>Milk Bottle</strong><small>20 portions. Expires after 20 seconds. Hotkey E.</small></div><button data-stock="milk">₪12</button></div>
+      </div>
+
+      <h2>Stand Upgrades</h2>
+      <div class="list">
+        <div class="row"><div><strong>Better Machine</strong><small>Faster serving and richer coffee quality.</small></div><button data-upgrade="machine">₪90</button></div>
+        <div class="row"><div><strong>Smiling Seller</strong><small>Faster manual service and calmer queues.</small></div><button data-upgrade="seller">₪110</button></div>
+        <div class="row"><div><strong>Welcoming Entrance</strong><small>Raises queue capacity and customer patience.</small></div><button data-upgrade="welcome">₪80</button></div>
+        <div class="row"><div><strong>Colorful Stand</strong><small>Improves attraction and visual appeal.</small></div><button data-upgrade="stand">₪100</button></div>
+      </div>
+
+      <div id="robotPanel">
+        <h2>Helper Robot Matrix</h2>
+        <div class="list">
+          <div class="row"><div><strong>Bot Work Speed</strong><small>Auto-serves faster, reducing Spacebar pressure.</small></div><button data-robot="speed">Locked</button></div>
+          <div class="row"><div><strong>Bot Precision</strong><small>Reduces accidental ingredient waste.</small></div><button data-robot="precision">Locked</button></div>
+          <div class="row"><div><strong>Robot Hype</strong><small>Customers love futuristic coffee. Bigger attraction radius.</small></div><button data-robot="hype">Locked</button></div>
+        </div>
+      </div>
+
+      <h2>Loan</h2>
+      <div class="row"><div><strong>Working Capital Loan</strong><small id="loanText">Instant cash, fair automatic repayment per sale.</small></div><button id="loanBtn">₪250</button></div>
+    </aside>
+
+    <section class="panel top">
+      <h2 id="title">Stage 1</h2>
+      <p class="muted" id="eventText">Build your stand, then win the tournament to unlock the next stage.</p>
+      <div class="meter"><span id="meter"></span></div>
+    </section>
+
+    <aside class="panel right">
+      <h2 id="boardTitle">Campaign</h2>
+      <div id="board"></div>
+      <h2>Tournament</h2>
+      <button id="tournamentBtn" class="danger">Start Tournament</button>
+      <p class="muted">Tournament locks upgrades and inventory buying. Pricing and robot readiness matter.</p>
+    </aside>
+  </div>
+
+  <div class="qa-toolbar">
+    <button id="qaAutopilotBtn">הפעל בוט בדיקה (Autopilot)</button>
+    <button id="qaReportBtn">סיכום משחק והפקת דו"ח</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+    const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+
+    const ui = {
+      login: document.getElementById("login"),
+      cafeName: document.getElementById("cafeName"),
+      cafePass: document.getElementById("cafePass"),
+      loginBtn: document.getElementById("loginBtn"),
+      newSaveBtn: document.getElementById("newSaveBtn"),
+      loginMsg: document.getElementById("loginMsg"),
+      levelMap: document.getElementById("levelMap"),
+      levelGrid: document.getElementById("levelGrid"),
+      mapSubtitle: document.getElementById("mapSubtitle"),
+      logoutBtn: document.getElementById("logoutBtn"),
+      complete: document.getElementById("complete"),
+      completeTitle: document.getElementById("completeTitle"),
+      completeText: document.getElementById("completeText"),
+      starEfficiency: document.getElementById("starEfficiency"),
+      starWaste: document.getElementById("starWaste"),
+      starRevenue: document.getElementById("starRevenue"),
+      starTotal: document.getElementById("starTotal"),
+      nextStageBtn: document.getElementById("nextStageBtn"),
+      retryStageBtn: document.getElementById("retryStageBtn"),
+      shopTitle: document.getElementById("shopTitle"),
+      modeText: document.getElementById("modeText"),
+      cash: document.getElementById("cash"),
+      served: document.getElementById("served"),
+      queue: document.getElementById("queue"),
+      stock: document.getElementById("stock"),
+      serveBtn: document.getElementById("serveBtn"),
+      price: document.getElementById("price"),
+      priceLabel: document.getElementById("priceLabel"),
+      stockButtons: [...document.querySelectorAll("[data-stock]")],
+      upgradeButtons: [...document.querySelectorAll("[data-upgrade]")],
+      robotButtons: [...document.querySelectorAll("[data-robot]")],
+      loanBtn: document.getElementById("loanBtn"),
+      loanText: document.getElementById("loanText"),
+      robotPanel: document.getElementById("robotPanel"),
+      title: document.getElementById("title"),
+      eventText: document.getElementById("eventText"),
+      meter: document.getElementById("meter"),
+      boardTitle: document.getElementById("boardTitle"),
+      board: document.getElementById("board"),
+      tournamentBtn: document.getElementById("tournamentBtn"),
+      qaReport: document.getElementById("qaReport"),
+      qaReportBody: document.getElementById("qaReportBody"),
+      qaAutopilotBtn: document.getElementById("qaAutopilotBtn"),
+      qaReportBtn: document.getElementById("qaReportBtn"),
+      qaCloseBtn: document.getElementById("qaCloseBtn"),
+      qaResetBtn: document.getElementById("qaResetBtn"),
+    };
+
+    const stages = [
+      {
+        name: "Stage 1: First Cups",
+        target: "Serve 15 customers + reach ₪250",
+        targetType: "served",
+        targetValue: 15,
+        objectives: [
+          { key: "served", label: "Serve customers", target: 15 },
+          { key: "cash", label: "Reach cash once", target: 250 },
+        ],
+        revenueGoal: 180,
+        tournamentSeconds: 45,
+        standSpawn: 1.55,
+        tournamentSpawn: 0.5,
+        rivals: [
+          ["Pink Beans", "#fb7185", 11, { machine: 1, seller: 1, welcome: 1, stand: 1, robot: { speed: 0, precision: 0, hype: 0 } }],
+          ["Green Cup", "#84cc16", 13, { machine: 0, seller: 2, welcome: 1, stand: 1, robot: { speed: 0, precision: 0, hype: 0 } }],
+          ["Sunny Roast", "#f59e0b", 14, { machine: 1, seller: 0, welcome: 0, stand: 2, robot: { speed: 0, precision: 0, hype: 0 } }],
+        ],
+      },
+      {
+        name: "Stage 2: Market Rush",
+        target: "Serve 24 customers + reach ₪360",
+        targetType: "cash",
+        targetValue: 360,
+        objectives: [
+          { key: "served", label: "Serve customers", target: 24 },
+          { key: "cash", label: "Reach cash once", target: 360 },
+        ],
+        revenueGoal: 320,
+        tournamentSeconds: 55,
+        standSpawn: 1.08,
+        tournamentSpawn: 0.4,
+        rivals: [
+          ["Beach Latte", "#06b6d4", 12, { machine: 2, seller: 1, welcome: 2, stand: 1, robot: { speed: 0, precision: 0, hype: 0 } }],
+          ["Urban Milk", "#f97316", 15, { machine: 1, seller: 2, welcome: 1, stand: 2, robot: { speed: 0, precision: 0, hype: 0 } }],
+          ["Bean Parade", "#8b5cf6", 16, { machine: 2, seller: 1, welcome: 1, stand: 2, robot: { speed: 0, precision: 0, hype: 0 } }],
+        ],
+      },
+      {
+        name: "Stage 3: Robot Evolution",
+        target: "Earn ₪650 + build Robot Lvl 2",
+        targetType: "revenue",
+        targetValue: 650,
+        objectives: [
+          { key: "revenue", label: "Earn revenue", target: 650 },
+          { key: "cash", label: "Reach cash once", target: 520 },
+          { key: "robot", label: "Upgrade robot levels", target: 2 },
+        ],
+        revenueGoal: 620,
+        tournamentSeconds: 60,
+        standSpawn: 0.9,
+        tournamentSpawn: 0.34,
+        rivals: [
+          ["Urban Roast", "#ef4444", 14, { machine: 2, seller: 2, welcome: 2, stand: 2, robot: { speed: 1, precision: 1, hype: 1 } }],
+          ["Robo Latte", "#0f766e", 17, { machine: 3, seller: 1, welcome: 2, stand: 2, robot: { speed: 2, precision: 1, hype: 1 } }],
+          ["Queen Coffee", "#ec4899", 16, { machine: 2, seller: 3, welcome: 1, stand: 2, robot: { speed: 1, precision: 2, hype: 1 } }],
+        ],
+      },
+      {
+        name: "Stage 4: Neon Automation",
+        target: "Earn ₪900 + build Robot Lvl 4",
+        targetType: "revenue",
+        targetValue: 900,
+        objectives: [
+          { key: "revenue", label: "Earn revenue", target: 900 },
+          { key: "cash", label: "Reach cash once", target: 700 },
+          { key: "robot", label: "Upgrade robot levels", target: 4 },
+        ],
+        revenueGoal: 860,
+        tournamentSeconds: 65,
+        standSpawn: 0.78,
+        tournamentSpawn: 0.3,
+        rivals: [
+          ["Circuit Roast", "#2563eb", 17, { machine: 3, seller: 2, welcome: 2, stand: 3, robot: { speed: 2, precision: 2, hype: 2 } }],
+          ["Chrome Cup", "#64748b", 18, { machine: 3, seller: 3, welcome: 1, stand: 2, robot: { speed: 3, precision: 1, hype: 2 } }],
+          ["Future Foam", "#14b8a6", 16, { machine: 2, seller: 3, welcome: 3, stand: 2, robot: { speed: 2, precision: 3, hype: 1 } }],
+        ],
+      },
+      {
+        name: "Stage 5: Robot Grand Prix",
+        target: "Earn ₪1200 + build Robot Lvl 7",
+        targetType: "revenue",
+        targetValue: 1200,
+        objectives: [
+          { key: "revenue", label: "Earn revenue", target: 1200 },
+          { key: "cash", label: "Reach cash once", target: 900 },
+          { key: "robot", label: "Upgrade robot levels", target: 7 },
+        ],
+        revenueGoal: 1150,
+        tournamentSeconds: 70,
+        standSpawn: 0.68,
+        tournamentSpawn: 0.26,
+        rivals: [
+          ["Quantum Coffee", "#7c3aed", 20, { machine: 3, seller: 3, welcome: 3, stand: 3, robot: { speed: 3, precision: 3, hype: 2 } }],
+          ["Mega Barista", "#dc2626", 18, { machine: 3, seller: 3, welcome: 2, stand: 3, robot: { speed: 3, precision: 2, hype: 3 } }],
+          ["Star Bean AI", "#f59e0b", 21, { machine: 3, seller: 2, welcome: 3, stand: 3, robot: { speed: 2, precision: 3, hype: 3 } }],
+        ],
+      },
+    ];
+
+    let W = 0;
+    let H = 0;
+    let last = performance.now();
+    let mode = "login";
+    let saveKey = "";
+    let authenticated = false;
+    let stageIndex = 0;
+    let progress = [];
+    let spawnTimer = 0;
+    let tournamentTime = 0;
+    let botThinkTimer = 0;
+    let autoServeTimer = 0;
+    let stageRunTime = 0;
+    let saveTimer = 0;
+    let audioCtx = null;
+    let qaAdPulseUntil = 0;
+
+    let customers = [];
+    let particles = [];
+    let floaters = [];
+    let competitors = [];
+
+    const qa = {
+      active: false,
+      reportOpen: false,
+      elapsed: 0,
+      actionTimer: 0,
+      priceTimer: 0,
+      upgradeTimer: 0,
+      abilityTimer: 0,
+      inspectTimer: 0,
+      lastTournamentTime: null,
+      stuckTimer: 0,
+      fpsMin: 999,
+      fpsSum: 0,
+      fpsSamples: 0,
+      maxCustomers: 0,
+      maxQueue: 0,
+      minCash: 0,
+      stockSpend: 0,
+      salesRevenue: 0,
+      expirationAudit: [],
+      robotChecks: [],
+      loanStressEvents: [],
+      stageTransitions: [],
+      actions: { beans: 0, milk: 0, serve: 0, price: 0, ability: 0, upgrades: 0, loan: 0, tournament: 0 },
+      bugs: new Set(),
+      balance: new Set(),
+      suggestions: new Set(),
+    };
+
+    const skin = ["#f8d7b4", "#e9b887", "#c9824b", "#8d5524"];
+    const shirts = ["#60a5fa", "#fb7185", "#fbbf24", "#34d399", "#a78bfa", "#f97316"];
+    const STOCK_COSTS = { beans: 18, milk: 12 };
+    const MAX_CUSTOMERS = 170;
+    const MAX_PARTICLES = 220;
+    const MAX_FLOATERS = 36;
+
+    const player = {
+      name: "Your Coffee",
+      color: "#60a5fa",
+      cash: 160,
+      peakCash: 160,
+      revenue: 0,
+      served: 0,
+      wasted: 0,
+      lost: 0,
+      price: 12,
+      inventory: [],
+      queue: [],
+      loan: { debt: 0, taken: false },
+      upgrades: { machine: 0, seller: 0, welcome: 0, stand: 0, robot: { speed: 0, precision: 0, hype: 0 } },
+      x: 0,
+      y: 0,
+    };
+
+    function currentStage() {
+      return stages[stageIndex];
+    }
+
+    function cloneRival(data) {
+      const [name, color, price, upgrades] = data;
+      return {
+        name,
+        color,
+        price,
+        cash: 0,
+        revenue: 0,
+        served: 0,
+        queue: [],
+        cooldown: 0,
+        x: 0,
+        y: 0,
+        upgrades: {
+          machine: upgrades.machine,
+          seller: upgrades.seller,
+          welcome: upgrades.welcome,
+          stand: upgrades.stand,
+          robot: { ...upgrades.robot },
+        },
+      };
+    }
+
+    function defaultProgress() {
+      return stages.map((stage, index) => ({
+        unlocked: index === 0,
+        stars: 0,
+        highScore: 0,
+      }));
+    }
+
+    function ensureProgress() {
+      if (!Array.isArray(progress) || progress.length !== stages.length) {
+        const existing = Array.isArray(progress) ? progress : [];
+        progress = defaultProgress().map((entry, index) => ({ ...entry, ...(existing[index] || {}) }));
+      }
+      progress[0].unlocked = true;
+    }
+
+    function starString(count) {
+      const stars = Math.max(0, Math.min(3, Number(count) || 0));
+      return `${"⭐".repeat(stars)}${"☆".repeat(3 - stars)}`;
+    }
+
+    function showLevelMap() {
+      ensureProgress();
+      mode = "map";
+      customers = [];
+      player.queue = [];
+      competitors.forEach((shop) => { shop.queue = []; });
+      ui.login.classList.add("hidden");
+      ui.complete.classList.add("hidden");
+      ui.levelMap.classList.remove("hidden");
+      ui.mapSubtitle.textContent = `${player.name}: choose an unlocked stage. Stars and high scores are saved.`;
+      renderLevelMap();
+      saveGame();
+    }
+
+    function renderLevelMap() {
+      ensureProgress();
+      ui.levelGrid.innerHTML = stages.map((stage, index) => {
+        const state = progress[index];
+        const locked = !state.unlocked;
+        return `
+          <button class="level-card ${locked ? "locked" : ""}" data-stage="${index}" ${locked ? "disabled" : ""}>
+            <div>
+              <div class="level-number">${index + 1}</div>
+              <h2>${stage.name}</h2>
+              <p class="muted">${stage.target}</p>
+            </div>
+            <div>
+              <div class="level-stars">${locked ? "🔒 Locked" : starString(state.stars)}</div>
+              <p class="muted">Best score: ${money(state.highScore || 0)}</p>
+            </div>
+          </button>
+        `;
+      }).join("");
+      [...ui.levelGrid.querySelectorAll("[data-stage]")].forEach((button) => {
+        button.addEventListener("click", () => selectStage(Number(button.dataset.stage)));
+      });
+    }
+
+    function selectStage(index) {
+      ensureProgress();
+      if (!progress[index]?.unlocked) return;
+      stageIndex = index;
+      resetStage(false);
+      ui.levelMap.classList.add("hidden");
+      mode = "stand";
+      saveGame();
+    }
+
+    function resize() {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = Math.floor(W * dpr);
+      canvas.height = Math.floor(H * dpr);
+      canvas.style.width = `${W}px`;
+      canvas.style.height = `${H}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      layoutNodes();
+    }
+
+    function layoutNodes() {
+      if (mode === "tournament") {
+        const cx = W * 0.5;
+        const cy = H * 0.56;
+        const dx = Math.min(210, W * 0.14);
+        const dy = Math.min(150, H * 0.18);
+        player.x = cx - dx;
+        player.y = cy - dy * 0.42;
+        const slots = [
+          { x: cx + dx, y: cy - dy * 0.42 },
+          { x: cx - dx, y: cy + dy * 0.92 },
+          { x: cx + dx, y: cy + dy * 0.92 },
+        ];
+        competitors.forEach((shop, i) => {
+          shop.x = slots[i]?.x || cx;
+          shop.y = slots[i]?.y || cy;
+        });
+        return;
+      }
+
+      player.x = W * 0.5;
+      player.y = H * 0.58;
+      competitors.forEach((shop) => {
+        shop.x = W + 320;
+        shop.y = H + 320;
+      });
+    }
+
+    function money(value) {
+      return `₪${Math.floor(value).toLocaleString()}`;
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function stockUnits(type) {
+      return player.inventory.filter((lot) => lot.type === type).reduce((sum, lot) => sum + lot.units, 0);
+    }
+
+    function updatePeakCash() {
+      player.peakCash = Math.max(player.peakCash || 0, player.cash || 0);
+    }
+
+    function robotLevelTotal() {
+      return player.upgrades.robot.speed + player.upgrades.robot.precision + player.upgrades.robot.hype;
+    }
+
+    function objectiveCurrent(key) {
+      const current = {
+        served: player.served,
+        cash: player.peakCash || player.cash,
+        revenue: player.revenue,
+        robot: robotLevelTotal(),
+      };
+      return current[key] || 0;
+    }
+
+    function stageObjectives() {
+      const stage = currentStage();
+      const objectives = Array.isArray(stage.objectives) && stage.objectives.length
+        ? stage.objectives
+        : stage.targetType && Number.isFinite(Number(stage.targetValue))
+          ? [{ key: stage.targetType, label: "Complete target", target: stage.targetValue }]
+          : [];
+      if (!objectives.length) {
+        return [];
+      }
+      return objectives.map((objective) => ({
+        ...objective,
+        current: objectiveCurrent(objective.key),
+        target: Number(objective.target) || 1,
+      }));
+    }
+
+    function stageCompletion() {
+      const objectives = stageObjectives();
+      if (!objectives.length) return 1;
+      const total = objectives.reduce((sum, objective) => sum + clamp(objective.current / Math.max(1, objective.target), 0, 1), 0);
+      return total / objectives.length;
+    }
+
+    function stageReadyForTournament() {
+      return stageObjectives().every((objective) => objective.current >= objective.target);
+    }
+
+    function objectiveSummary() {
+      return stageObjectives()
+        .map((objective) => `${objective.label}: ${Math.floor(objective.current)}/${objective.target}`)
+        .join(" · ");
+    }
+
+    function canMakeCoffee() {
+      return stockUnits("beans") > 0 && stockUnits("milk") > 0;
+    }
+
+    function buyStock(type) {
+      if (mode !== "stand") return;
+      const cost = STOCK_COSTS[type];
+      if (player.cash < cost) return;
+      player.cash -= cost;
+      qa.stockSpend += cost;
+      player.inventory.push({ type, units: 20, age: 0, bornAt: qa.elapsed, expectedLife: 20, warned: false });
+      burst(player.x, player.y - 50, "#22c55e", 14);
+      floatText(player.x, player.y - 112, type === "beans" ? "Beans +20" : "Milk +20", "#16a34a");
+      saveGame();
+    }
+
+    function useInventory(shop) {
+      if (shop !== player) return true;
+      if (!canMakeCoffee()) return false;
+      consume("beans");
+      consume("milk");
+      const wasteChance = robotWasteChance();
+      if (player.upgrades.robot.speed > 0 && Math.random() < wasteChance && canMakeCoffee()) {
+        consume("beans");
+        consume("milk");
+        player.wasted += 3;
+        floatText(player.x - 50, player.y - 98, "Robot spill", "#f97316");
+      }
+      player.inventory = player.inventory.filter((lot) => lot.units > 0);
+      return true;
+    }
+
+    function consume(type) {
+      const lot = player.inventory.find((item) => item.type === type && item.units > 0);
+      if (lot) lot.units -= 1;
+    }
+
+    function ageInventory(dt) {
+      for (const lot of player.inventory) {
+        lot.age += dt;
+        if (!lot.warned && lot.age > 16) {
+          lot.warned = true;
+          sound("warn");
+          floatText(player.x - 40, player.y - 125, "Stock expiring", "#f59e0b");
+        }
+      }
+      const fresh = [];
+      for (const lot of player.inventory) {
+        if (lot.age >= 20) {
+          const loss = lot.units * (lot.type === "beans" ? 1.6 : 1.2);
+          qa.expirationAudit.push({
+            type: lot.type,
+            units: lot.units,
+            bornAt: Number(lot.bornAt || 0),
+            spoiledAt: qa.elapsed,
+            observedAge: lot.age,
+            expectedLife: 20,
+          });
+          player.wasted += loss;
+          player.cash = Math.max(0, player.cash - loss);
+          floatText(player.x - 42, player.y - 108, "Expired", "#ef4444");
+        } else {
+          fresh.push(lot);
+        }
+      }
+      player.inventory = fresh;
+    }
+
+    function maxQueue(shop) {
+      return 9 + shop.upgrades.welcome * 2 + shop.upgrades.seller + shop.upgrades.robot.hype;
+    }
+
+    function queueSpot(shop, index) {
+      const side = shop.x < W * 0.5 ? -1 : 1;
+      const vertical = mode === "tournament" && shop.y > H * 0.58 ? 1 : 0;
+      return {
+        x: shop.x + side * (104 + (index % 6) * 26),
+        y: shop.y + 18 + vertical * 20 + Math.floor(index / 6) * 34 + Math.sin(index) * 6,
+      };
+    }
+
+    function makePerson(x, y) {
+      const patienceBoost = stageIndex < 2 ? 1.25 : 1;
+      return {
+        x,
+        y,
+        vx: 0,
+        vy: 0,
+        skin: skin[Math.floor(Math.random() * skin.length)],
+        shirt: shirts[Math.floor(Math.random() * shirts.length)],
+        hair: Math.random() < 0.5 ? "#5b3a29" : "#7c2d12",
+        favorite: Math.random() < 0.5 ? "cheap" : "fast",
+        wait: 0,
+        patience: (8 + Math.random() * 3 + player.upgrades.welcome) * patienceBoost,
+        blink: Math.random() * 2,
+        state: "walking",
+        target: null,
+        shop: null,
+        counted: false,
+      };
+    }
+
+    function spawnCustomer() {
+      if (customers.length >= MAX_CUSTOMERS) return;
+      let start;
+      if (mode === "stand") {
+        const fromLeft = Math.random() < 0.5;
+        start = {
+          x: fromLeft ? -40 : W + 40,
+          y: H * 0.56 + (Math.random() - 0.5) * 190,
+        };
+      } else {
+        const roll = Math.random();
+        if (roll < 0.42) {
+          start = { x: W * 0.5 + (Math.random() - 0.5) * Math.min(210, W * 0.16), y: -45 };
+        } else if (roll < 0.84) {
+          start = { x: W * 0.5 + (Math.random() - 0.5) * Math.min(210, W * 0.16), y: H + 45 };
+        } else if (roll < 0.92) {
+          start = { x: -45, y: H * 0.56 + (Math.random() - 0.5) * Math.min(230, H * 0.26) };
+        } else {
+          start = { x: W + 45, y: H * 0.56 + (Math.random() - 0.5) * Math.min(230, H * 0.26) };
+        }
+      }
+      const c = makePerson(start.x, start.y);
+
+      if (mode === "stand") {
+        assignToShop(c, player);
+      } else {
+        assignToShop(c, chooseTournamentShop(c));
+      }
+      customers.push(c);
+    }
+
+    function nextSpawnInterval() {
+      const loadMultiplier = customers.length > MAX_CUSTOMERS * 0.78 ? 1.8 : customers.length > MAX_CUSTOMERS * 0.6 ? 1.35 : 1;
+      if (mode !== "stand") return currentStage().tournamentSpawn * loadMultiplier;
+      const earlyMultiplier = stageRunTime < 20 ? (stageIndex < 2 ? 1.42 : 1.22) : 1;
+      return currentStage().standSpawn * earlyMultiplier * loadMultiplier;
+    }
+
+    function assignToShop(customer, shop) {
+      if (mode === "tournament" && shop.queue.length >= maxQueue(shop)) {
+        const fallback = chooseCompetitorShop(customer, shop);
+        if (fallback && fallback.queue.length < maxQueue(fallback)) shop = fallback;
+      }
+      customer.shop = shop;
+      if (shop.queue.length >= maxQueue(shop)) {
+        customer.state = "leaving";
+        customer.vx = customer.x < W / 2 ? -120 : 120;
+        customer.vy = -20 + Math.random() * 40;
+        if (shop === player) player.lost += 1;
+        return;
+      }
+      customer.target = queueSpot(shop, shop.queue.length);
+      customer.state = "toQueue";
+      shop.queue.push(customer);
+    }
+
+    function chooseTournamentShop(customer) {
+      const shops = [player, ...competitors];
+      const weighted = shops.map((shop) => {
+        const playerQaBoost = qa.active && shop === player ? 1.45 : 1;
+        return { shop, weight: Math.max(0.03, attraction(shop, customer) * playerQaBoost) };
+      });
+      const total = weighted.reduce((sum, item) => sum + item.weight, 0);
+      let roll = Math.random() * total;
+      for (const item of weighted) {
+        roll -= item.weight;
+        if (roll <= 0) return item.shop;
+      }
+      return player;
+    }
+
+    function chooseCompetitorShop(customer, avoid = null) {
+      const weighted = competitors
+        .filter((shop) => shop !== avoid && shop.queue.length < maxQueue(shop))
+        .map((shop) => ({ shop, weight: Math.max(0.08, attraction(shop, customer)) }));
+      if (!weighted.length) return competitors.find((shop) => shop !== avoid) || player;
+      const total = weighted.reduce((sum, item) => sum + item.weight, 0);
+      let roll = Math.random() * total;
+      for (const item of weighted) {
+        roll -= item.weight;
+        if (roll <= 0) return item.shop;
+      }
+      return weighted[0].shop;
+    }
+
+    function queuePressure(shop) {
+      return shop.queue.length / Math.max(1, maxQueue(shop));
+    }
+
+    function playerServiceHealth() {
+      if (mode !== "tournament") return 1;
+      const pressure = queuePressure(player);
+      const stockHealth = canMakeCoffee() ? 1 : 0.08;
+      const backupHealth = pressure > 0.92 ? 0.06 : pressure > 0.72 ? 0.28 : pressure > 0.52 ? 0.62 : 1;
+      const readyBoost = player.queue.some((c) => c.state === "waiting") && !canMakeCoffee() ? 0.12 : 1;
+      return stockHealth * backupHealth * readyBoost;
+    }
+
+    function attraction(shop, customer) {
+      const cheap = Math.pow(12 / shop.price, 1.25);
+      const fast = 1 + shop.upgrades.machine * 0.16 + shop.upgrades.seller * 0.16 + shop.upgrades.robot.speed * 0.18;
+      const hype = 1 + shop.upgrades.stand * 0.1 + shop.upgrades.welcome * 0.18 + shop.upgrades.robot.hype * 0.45;
+      const pressure = queuePressure(shop);
+      const queue = clamp(1 - pressure * 1.12, shop === player ? 0.03 : 0.16, 1);
+      const taste = customer.favorite === "cheap" && shop.price <= 11 ? 1.22 : 1;
+      const upgradedPlayer = shop === player ? 1 + (shop.upgrades.machine + shop.upgrades.seller + shop.upgrades.welcome + shop.upgrades.stand) * 0.045 : 1;
+      const qaPulse = shop === player && performance.now() < qaAdPulseUntil ? 2.4 : 1;
+      const service = shop === player ? playerServiceHealth() : 1;
+      return cheap * fast * hype * queue * taste * upgradedPlayer * qaPulse * service;
+    }
+
+    function serviceDelay(shop) {
+      return Math.max(0.25, 1.25 - shop.upgrades.machine * 0.14 - shop.upgrades.seller * 0.16 - shop.upgrades.robot.speed * 0.22);
+    }
+
+    function servePlayer() {
+      if (mode !== "stand" && mode !== "tournament") return;
+      const customer = player.queue.find((c) => c.state === "waiting");
+      if (!customer) return;
+      if (!useInventory(player)) {
+        floatText(player.x, player.y - 104, "No stock", "#ef4444");
+        return;
+      }
+      completeSale(player, customer, true);
+    }
+
+    function completeSale(shop, customer, manual = false) {
+      if (shop === player && !manual && !useInventory(player)) {
+        removeFromQueue(shop, customer);
+        customer.state = "leaving";
+        customer.vx = -130;
+        customer.vy = -20;
+        player.lost += 1;
+        floatText(player.x, player.y - 108, "Out of stock", "#ef4444");
+        return;
+      }
+      removeFromQueue(shop, customer);
+      shop.cash += shop.price;
+      shop.revenue += shop.price;
+      shop.served += 1;
+      if (shop === player) qa.salesRevenue += shop.price;
+      if (shop === player) {
+        const repay = repayLoan(shop.price);
+        updatePeakCash();
+        sound("cash");
+        floatText(shop.x, shop.y - 98, repay ? `+${money(shop.price - repay)}` : `+${money(shop.price)}`, shop.color);
+      } else {
+        floatText(shop.x, shop.y - 98, `+${money(shop.price)}`, shop.color);
+      }
+      customer.state = "leaving";
+      customer.vx = customer.x < W / 2 ? -110 : 110;
+      customer.vy = -18 + Math.random() * 36;
+      burst(shop.x, shop.y - 40, shop.color, shop === player ? 18 : 10);
+      refreshQueue(shop);
+      saveGame();
+    }
+
+    function removeFromQueue(shop, customer) {
+      const index = shop.queue.indexOf(customer);
+      if (index >= 0) shop.queue.splice(index, 1);
+    }
+
+    function refreshQueue(shop) {
+      shop.queue.forEach((c, index) => {
+        c.target = queueSpot(shop, index);
+        if (c.state === "waiting") c.state = "toQueue";
+      });
+    }
+
+    function redirectCustomer(customer, newShop) {
+      if (!newShop || newShop === customer.shop || newShop.queue.length >= maxQueue(newShop)) return false;
+      removeFromQueue(customer.shop, customer);
+      customer.shop = newShop;
+      customer.wait = 0;
+      customer.target = queueSpot(newShop, newShop.queue.length);
+      customer.state = "toQueue";
+      newShop.queue.push(customer);
+      refreshQueue(player);
+      floatText(customer.x, customer.y - 42, "Redirect", "#f97316");
+      return true;
+    }
+
+    function updateCustomers(dt) {
+      for (const c of customers) {
+        c.blink += dt;
+        if (c.state === "toQueue" && c.target) {
+          if (mode === "tournament" && c.shop === player && (queuePressure(player) > 0.78 || !canMakeCoffee())) {
+            const fallback = chooseCompetitorShop(c, player);
+            if (redirectCustomer(c, fallback)) continue;
+          }
+          const dx = c.target.x - c.x;
+          const dy = c.target.y - c.y;
+          const d = Math.max(1, Math.hypot(dx, dy));
+          const speed = 115;
+          c.x += (dx / d) * speed * dt;
+          c.y += (dy / d) * speed * dt;
+          if (d < 8) {
+            c.x = c.target.x;
+            c.y = c.target.y;
+            c.state = "waiting";
+          }
+        } else if (c.state === "waiting") {
+          const index = c.shop.queue.indexOf(c);
+          c.wait += dt * (index === 0 ? 1 : 0.55);
+          if (c.shop === player && c.wait > c.patience) {
+            angryLeave(c);
+          }
+        } else if (c.state === "leaving") {
+          c.x += c.vx * dt;
+          c.y += c.vy * dt;
+        }
+      }
+      customers = customers.filter((c) => c.x > -100 && c.x < W + 100 && c.y > -100 && c.y < H + 100);
+    }
+
+    function angryLeave(customer) {
+      removeFromQueue(player, customer);
+      player.lost += 1;
+      customer.state = "leaving";
+      customer.vx = -135;
+      customer.vy = -35;
+      floatText(customer.x, customer.y - 44, "Angry", "#ef4444");
+      burst(customer.x, customer.y - 18, "#ef4444", 8);
+      sound("angry");
+      refreshQueue(player);
+    }
+
+    function autoServe(dt) {
+      for (const shop of [player, ...competitors]) {
+        shop.cooldown = Math.max(0, (shop.cooldown || 0) - dt);
+        const ready = shop.queue.find((c) => c.state === "waiting");
+        const robotEnabled = shop !== player || stageIndex >= 2 || shop.upgrades.robot.speed > 0;
+        if (ready && robotEnabled && shop.cooldown <= 0) {
+          shop.cooldown = serviceDelay(shop);
+          completeSale(shop, ready, false);
+        }
+      }
+    }
+
+    function buyUpgrade(kind) {
+      if (mode !== "stand") return;
+      const costs = {
+        machine: 90 + player.upgrades.machine * 75,
+        seller: 110 + player.upgrades.seller * 85,
+        welcome: 80 + player.upgrades.welcome * 70,
+        stand: 100 + player.upgrades.stand * 90,
+      };
+      if (player.upgrades[kind] >= 3 || player.cash < costs[kind]) return;
+      player.cash -= costs[kind];
+      player.upgrades[kind] += 1;
+      qa.actions.upgrades += 1;
+      burst(player.x, player.y - 50, player.color, 22);
+      saveGame();
+    }
+
+    function buyRobot(kind) {
+      if (mode !== "stand" || stageIndex < 2) return;
+      const cost = { speed: 180, precision: 160, hype: 210 }[kind] + player.upgrades.robot[kind] * 150;
+      if (player.upgrades.robot[kind] >= 3 || player.cash < cost) return;
+      const beforeLevel = player.upgrades.robot[kind];
+      const beforeDelay = serviceDelay(player);
+      const beforeWaste = robotWasteChance();
+      player.cash -= cost;
+      player.upgrades.robot[kind] += 1;
+      qa.robotChecks.push({
+        kind,
+        from: beforeLevel,
+        to: player.upgrades.robot[kind],
+        beforeDelay,
+        afterDelay: serviceDelay(player),
+        beforeWaste,
+        afterWaste: robotWasteChance(),
+      });
+      qa.actions.upgrades += 1;
+      burst(player.x, player.y - 42, "#0ea5e9", 28);
+      saveGame();
+    }
+
+    function robotWasteChance() {
+      return Math.max(0, 0.24 - player.upgrades.robot.precision * 0.08);
+    }
+
+    function buyLoan(force = false) {
+      if (mode !== "stand") return;
+      const count = player.loan.count || 0;
+      if (!force && player.loan.taken) return;
+      if (force && (stageIndex < 1 || count >= 3)) return;
+      const amount = Math.floor((250 + stageIndex * 120) * (1 + count * 0.35));
+      const interest = 1.25 + count * 0.16;
+      player.cash += amount;
+      updatePeakCash();
+      player.loan.debt = Math.floor((player.loan.debt || 0) + amount * interest);
+      player.loan.taken = true;
+      player.loan.count = count + 1;
+      qa.actions.loan += 1;
+      if (force) qa.loanStressEvents.push({ stage: stageIndex + 1, amount, debt: player.loan.debt, count: player.loan.count, cash: player.cash });
+      floatText(player.x, player.y - 116, `Loan ${money(amount)}`, "#0ea5e9");
+      saveGame();
+    }
+
+    function repayLoan(amount) {
+      if (player.loan.debt <= 0) return 0;
+      const pay = Math.min(player.loan.debt, Math.max(1, Math.floor(amount * 0.18)));
+      player.loan.debt -= pay;
+      player.cash -= pay;
+      return pay;
+    }
+
+    function startTournament() {
+      if (mode !== "stand") return;
+      if (!stageReadyForTournament()) {
+        floatText(player.x, player.y - 152, "Complete tasks first", "#ef4444");
+        return;
+      }
+      mode = "tournament";
+      tournamentTime = currentStage().tournamentSeconds;
+      spawnTimer = 0;
+      botThinkTimer = 2;
+      customers = [];
+      player.revenue = 0;
+      player.queue = [];
+      competitors = currentStage().rivals.map(cloneRival);
+      competitors.forEach((shop) => {
+        shop.revenue = 0;
+        shop.served = 0;
+        shop.queue = [];
+      });
+      qa.actions.tournament += 1;
+      layoutNodes();
+      ui.eventText.textContent = "Tournament started. Upgrades and inventory buying are locked. Adjust price and trust your robot.";
+    }
+
+    function finishTournament() {
+      const ranking = [player, ...competitors].sort((a, b) => b.revenue - a.revenue);
+      const won = ranking[0] === player;
+      const stars = calculateStars(won, ranking[1]);
+      const completedStage = stageIndex;
+      const state = progress[stageIndex];
+      state.stars = Math.max(state.stars || 0, stars.total);
+      state.highScore = Math.max(state.highScore || 0, player.revenue);
+      const nextStage = stageIndex + 1;
+      if (won && progress[nextStage]) {
+        progress[nextStage].unlocked = true;
+        qa.stageTransitions.push(`שלב ${completedStage + 1} -> שלב ${nextStage + 1}`);
+      }
+      saveGame();
+      if (qa.active && won && progress[nextStage]) {
+        stageIndex = nextStage;
+        resetStage(true);
+        mode = "stand";
+        ui.complete.classList.add("hidden");
+        ui.levelMap.classList.add("hidden");
+        ui.login.classList.add("hidden");
+        saveGame();
+        floatText(player.x || W / 2, (player.y || H / 2) - 145, `QA Stage ${nextStage + 1}`, "#14b8a6");
+        return;
+      }
+      mode = "complete";
+      showComplete(won, stars, ranking[0].name);
+      saveGame();
+    }
+
+    function calculateStars(won, topCpu) {
+      const objectives = stageObjectives();
+      const completed = objectives.filter((objective) => objective.current >= objective.target).length;
+      const ratio = objectives.length ? completed / objectives.length : 1;
+      const wasteRatio = player.wasted / Math.max(1, player.revenue + player.wasted);
+      const satisfaction = clamp(100 - player.lost * 5, 0, 100);
+      const firstTaskStar = ratio >= 0.5;
+      const allTaskStar = ratio >= 1;
+      const tournamentStar = won;
+      return {
+        won,
+        revenue: firstTaskStar,
+        waste: allTaskStar,
+        dominance: tournamentStar,
+        satisfaction,
+        wasteRatio,
+        taskRatio: ratio,
+        total: (firstTaskStar ? 1 : 0) + (allTaskStar ? 1 : 0) + (tournamentStar ? 1 : 0),
+      };
+    }
+
+    function showComplete(won, stars, winnerName) {
+      ui.complete.classList.remove("hidden");
+      ui.completeTitle.textContent = won ? "Stage Cleared" : "Tournament Failed";
+      ui.completeText.textContent = won
+        ? `You earned ${stars.total} star(s). The next stage is now visible on the campaign map.`
+        : `${winnerName} won. You kept your task stars, but the final star requires winning the tournament.`;
+      ui.starEfficiency.textContent = stars.revenue ? "★" : "☆";
+      ui.starWaste.textContent = stars.waste ? "★" : "☆";
+      ui.starRevenue.textContent = stars.dominance ? "★" : "☆";
+      ui.starTotal.textContent = starString(stars.total);
+      ui.nextStageBtn.disabled = false;
+    }
+
+    function resetStage(newRun = true) {
+      mode = "stand";
+      stageRunTime = 0;
+      const keepName = player.name;
+      const debt = player.loan.debt;
+      const startingCash = 160 + stageIndex * 70;
+      Object.assign(player, {
+        name: keepName,
+        color: "#60a5fa",
+        cash: startingCash,
+        peakCash: startingCash,
+        revenue: 0,
+        served: 0,
+        wasted: 0,
+        lost: 0,
+        price: 12 + stageIndex,
+        inventory: [],
+        queue: [],
+        loan: { debt: debt > 0 && !newRun ? debt : 0, taken: debt > 0 && !newRun },
+        upgrades: { machine: 0, seller: 0, welcome: 0, stand: 0, robot: { speed: 0, precision: 0, hype: 0 } },
+      });
+      competitors = currentStage().rivals.map(cloneRival);
+      customers = [];
+      particles = [];
+      floaters = [];
+      spawnTimer = 0;
+      ui.price.value = player.price;
+      layoutNodes();
+    }
+
+    function resetQaMetrics() {
+      qa.elapsed = 0;
+      qa.actionTimer = 0;
+      qa.priceTimer = 0;
+      qa.upgradeTimer = 0;
+      qa.abilityTimer = 0;
+      qa.inspectTimer = 0;
+      qa.lastTournamentTime = null;
+      qa.stuckTimer = 0;
+      qa.fpsMin = 999;
+      qa.fpsSum = 0;
+      qa.fpsSamples = 0;
+      qa.maxCustomers = 0;
+      qa.maxQueue = 0;
+      qa.minCash = player.cash;
+      qa.stockSpend = 0;
+      qa.salesRevenue = 0;
+      qa.expirationAudit = [];
+      qa.robotChecks = [];
+      qa.loanStressEvents = [];
+      qa.stageTransitions = [];
+      qa.actions = { beans: 0, milk: 0, serve: 0, price: 0, ability: 0, upgrades: 0, loan: 0, tournament: 0 };
+      qa.bugs = new Set();
+      qa.balance = new Set();
+      qa.suggestions = new Set();
+    }
+
+    function toggleAutopilot() {
+      qa.active = !qa.active;
+      if (qa.active && qa.elapsed === 0) resetQaMetrics();
+      ui.qaAutopilotBtn.classList.toggle("active", qa.active);
+      ui.qaAutopilotBtn.textContent = qa.active ? "עצור בוט בדיקה (Autopilot)" : "הפעל בוט בדיקה (Autopilot)";
+      floatText(player.x || W / 2, (player.y || H / 2) - 120, qa.active ? "QA Autopilot ON" : "QA Autopilot OFF", qa.active ? "#14b8a6" : "#64748b");
+    }
+
+    function flashQaControl(element) {
+      if (!element) return;
+      element.classList.remove("qa-flash");
+      void element.offsetWidth;
+      element.classList.add("qa-flash");
+      window.setTimeout(() => element.classList.remove("qa-flash"), 280);
+    }
+
+    function qaBuyStock(type) {
+      const before = player.inventory.length;
+      buyStock(type);
+      if (player.inventory.length !== before) {
+        qa.actions[type] += 1;
+        flashQaControl(ui.stockButtons.find((button) => button.dataset.stock === type));
+        floatText(player.x, player.y - 136, type === "beans" ? "QA: Q" : "QA: E", "#0f766e");
+      }
+    }
+
+    function qaServe() {
+      const before = player.served;
+      servePlayer();
+      if (player.served !== before) {
+        qa.actions.serve += 1;
+        flashQaControl(ui.serveBtn);
+        floatText(player.x + 62, player.y - 126, "QA: Space", "#2563eb");
+      }
+    }
+
+    function qaSetPrice(value) {
+      const next = Math.floor(clamp(value, Number(ui.price.min), Number(ui.price.max)));
+      if (next === player.price) return;
+      player.price = next;
+      ui.price.value = next;
+      qa.actions.price += 1;
+      flashQaControl(ui.price);
+      floatText(player.x, player.y - 144, `QA price ${money(next)}`, "#7c3aed");
+      saveGame();
+    }
+
+    function triggerQaAbility() {
+      qaAdPulseUntil = performance.now() + 3600;
+      qa.actions.ability += 1;
+      burst(player.x, player.y - 35, "#22d3ee", 20);
+      floatText(player.x, player.y - 162, "QA Ad Pulse", "#0891b2");
+      for (const c of customers.slice(0, 16)) {
+        const dx = player.x - c.x;
+        const dy = player.y - c.y;
+        const d = Math.max(1, Math.hypot(dx, dy));
+        particles.push({
+          x: c.x,
+          y: c.y - 24,
+          vx: (dx / d) * (55 + Math.random() * 70),
+          vy: (dy / d) * (55 + Math.random() * 70),
+          life: 0.55 + Math.random() * 0.35,
+          max: 0.9,
+          color: "#22d3ee",
+          size: 3 + Math.random() * 3,
+        });
+      }
+    }
+
+    function qaTryUpgrade() {
+      const standPriority = ["machine", "seller", "welcome", "machine", "seller", "stand", "welcome", "stand"];
+      const robotPriority = ["speed", "precision", "speed", "hype", "precision", "hype"];
+      const robotObjective = stageObjectives().find((objective) => objective.key === "robot" && objective.current < objective.target);
+      if (stageIndex >= 2 && robotObjective) {
+        for (const kind of robotPriority) {
+          const cost = { speed: 180, precision: 160, hype: 210 }[kind] + player.upgrades.robot[kind] * 150;
+          if (player.upgrades.robot[kind] < 3 && player.cash >= cost + 12) {
+            buyRobot(kind);
+            flashQaControl(ui.robotButtons.find((button) => button.dataset.robot === kind));
+            return;
+          }
+        }
+      }
+      for (const kind of standPriority) {
+        const cost = { machine: 90, seller: 110, welcome: 80, stand: 100 }[kind] + player.upgrades[kind] * { machine: 75, seller: 85, welcome: 70, stand: 90 }[kind];
+        if (player.upgrades[kind] < 3 && player.cash >= cost + 18) {
+          buyUpgrade(kind);
+          flashQaControl(ui.upgradeButtons.find((button) => button.dataset.upgrade === kind));
+          return;
+        }
+      }
+      if (stageIndex < 2) return;
+      for (const kind of robotPriority) {
+        const cost = { speed: 180, precision: 160, hype: 210 }[kind] + player.upgrades.robot[kind] * 150;
+        if (player.upgrades.robot[kind] < 3 && player.cash >= cost + 24) {
+          buyRobot(kind);
+          flashQaControl(ui.robotButtons.find((button) => button.dataset.robot === kind));
+          return;
+        }
+      }
+    }
+
+    function qaStressFinanceProbe() {
+      if (stageIndex < 1 || mode !== "stand" || !qa.active) return;
+      const loanCount = player.loan.count || 0;
+      if (loanCount < 3 && (qa.elapsed > 4 + loanCount * 6 || player.cash < 35)) {
+        buyLoan(true);
+        flashQaControl(ui.loanBtn);
+        while (player.cash >= 35 && player.inventory.length < 12) {
+          if (stockUnits("beans") <= stockUnits("milk")) qaBuyStock("beans");
+          else qaBuyStock("milk");
+          if (player.cash < 35) break;
+        }
+      }
+      if (loanCount >= 2 && player.cash < 20 && player.loan.debt > 900 && targetProgress() < 0.4) {
+        qa.balance.add("בדיקת ההלוואות יצרה לחץ חוב גבוה לפני שהשחקן התקדם מספיק. ייתכן שיש סכנת soft-lock בשלבים מתקדמים.");
+      }
+    }
+
+    function runAutopilot(dt) {
+      if (!qa.active || qa.reportOpen || mode === "login") return;
+      qa.elapsed += dt;
+
+      if (mode === "map") {
+        const unlocked = progress.reduce((best, entry, index) => entry.unlocked ? index : best, 0);
+        selectStage(unlocked);
+        return;
+      }
+
+      if (mode === "complete") {
+        showLevelMap();
+        return;
+      }
+
+      qa.actionTimer -= dt;
+      qa.upgradeTimer -= dt;
+      qa.priceTimer -= dt;
+      qa.abilityTimer -= dt;
+
+      if (mode === "stand") {
+        if (player.cash < 80 && (!player.loan.taken || stageIndex > 0) && (stockUnits("beans") < 10 || stockUnits("milk") < 10)) {
+          if (!player.loan.taken) buyLoan();
+          else qaStressFinanceProbe();
+        }
+        qaStressFinanceProbe();
+        const targetStock = stageReadyForTournament() ? 58 + stageIndex * 10 : 18 + stageIndex * 6;
+        if (stockUnits("beans") < targetStock) qaBuyStock("beans");
+        if (stockUnits("milk") < targetStock) qaBuyStock("milk");
+        if (qa.actionTimer <= 0) {
+          qa.actionTimer = player.queue.length > 4 ? 0.055 : 0.11;
+          let burstServes = player.queue.length > 6 ? 4 : 2;
+          while (burstServes > 0 && player.queue.some((c) => c.state === "waiting") && canMakeCoffee()) {
+            qaServe();
+            burstServes -= 1;
+          }
+        }
+        if (qa.upgradeTimer <= 0) {
+          qa.upgradeTimer = 0.55;
+          qaTryUpgrade();
+        }
+        if (stageReadyForTournament() && stockUnits("beans") >= 42 && stockUnits("milk") >= 42 && player.queue.length <= Math.max(3, maxQueue(player) * 0.45)) {
+          qaSetPrice(Math.max(8, 11 + stageIndex));
+          flashQaControl(ui.tournamentBtn);
+          startTournament();
+        }
+      }
+
+      if (mode === "tournament") {
+        if (qa.actionTimer <= 0) {
+          qa.actionTimer = player.queue.length > 5 ? 0.035 : 0.065;
+          let burstServes = player.queue.length > 7 ? 5 : 3;
+          while (burstServes > 0 && player.queue.some((c) => c.state === "waiting") && canMakeCoffee()) {
+            qaServe();
+            burstServes -= 1;
+          }
+        }
+        if (qa.priceTimer <= 0) {
+          qa.priceTimer = 0.8;
+          const topCpu = competitors.reduce((best, bot) => bot.revenue > best.revenue ? bot : best, competitors[0] || player);
+          const queuePressure = player.queue.length / Math.max(1, maxQueue(player));
+          const stockLow = stockUnits("beans") < 10 || stockUnits("milk") < 10;
+          let nextPrice = 10 + Math.min(4, stageIndex);
+          if (queuePressure > 0.72 || stockLow) nextPrice = Math.min(22, player.price + 2);
+          else if (topCpu.revenue > player.revenue + 25) nextPrice = Math.max(7, player.price - 2);
+          else if (player.revenue > topCpu.revenue + 80 && queuePressure < 0.38) nextPrice = Math.min(24, player.price + 1);
+          qaSetPrice(nextPrice);
+        }
+        if (qa.abilityTimer <= 0) {
+          qa.abilityTimer = 4.4;
+          triggerQaAbility();
+        }
+      }
+    }
+
+    function inspectQa(dt) {
+      if (!qa.active || qa.reportOpen || mode === "login") return;
+      qa.inspectTimer -= dt;
+      if (qa.inspectTimer > 0) return;
+      qa.inspectTimer = 0.5;
+      qa.maxCustomers = Math.max(qa.maxCustomers, customers.length);
+      qa.maxQueue = Math.max(qa.maxQueue, player.queue.length);
+      qa.minCash = Math.min(qa.minCash, player.cash);
+
+      if (player.cash < -0.01) qa.bugs.add("הכסף של השחקן ירד מתחת ל-0.");
+      if (player.loan.debt < 0) qa.bugs.add("חוב ההלוואה הפך לשלילי.");
+      if (player.inventory.some((lot) => lot.age > 20.8)) qa.bugs.add("נמצא מלאי שעבר את מגבלת ה-20 שניות ולא נמחק בזמן.");
+      for (const lot of qa.expirationAudit) {
+        if (lot.observedAge < 19.95) qa.bugs.add(`מלאי ${lot.type} התקלקל מוקדם מדי: ${lot.observedAge.toFixed(2)} שניות במקום 20.`);
+        if (lot.observedAge > 20.12) qa.bugs.add(`מלאי ${lot.type} התקלקל מאוחר מדי: ${lot.observedAge.toFixed(2)} שניות במקום 20.`);
+      }
+      for (const check of qa.robotChecks) {
+        if (check.kind === "speed" && check.afterDelay >= check.beforeDelay - 0.01) {
+          qa.bugs.add(`BUG: Robot Speed level ${check.to} did not decrease serve delay.`);
+        }
+        if (check.kind === "precision" && check.afterWaste >= check.beforeWaste - 0.001) {
+          qa.bugs.add(`BUG: Bot Precision level ${check.to} did not reduce ingredient waste chance.`);
+        }
+      }
+      if (customers.length > 360) qa.bugs.add("מספר הלקוחות על המסך גבוה מאוד ועלול לגרום לירידת ביצועים.");
+      if (player.queue.length > maxQueue(player)) qa.bugs.add("אורך התור עבר את קיבולת התור המוצהרת.");
+
+      if (mode === "tournament") {
+        if (player.queue.some((c) => c.state === "waiting") && canMakeCoffee() && qa.actions.serve === 0 && qa.elapsed > 3) {
+          qa.bugs.add("Autopilot לא ביצע פעולת Space בתחרות למרות שהיה לקוח ממתין ומלאי זמין.");
+        }
+        if (qa.lastTournamentTime !== null && Math.abs(tournamentTime - qa.lastTournamentTime) < 0.01) qa.stuckTimer += 0.5;
+        else qa.stuckTimer = 0;
+        qa.lastTournamentTime = tournamentTime;
+        if (qa.stuckTimer > 2) qa.bugs.add("טיימר התחרות נראה תקוע ליותר מ-2 שניות.");
+      } else {
+        qa.lastTournamentTime = null;
+        qa.stuckTimer = 0;
+      }
+
+      if (player.lost > Math.max(6, player.served * 0.35)) qa.balance.add("לקוחות עוזבים בקצב גבוה ביחס לכמות המכירות. ייתכן שסבלנות הלקוחות נמוכה מדי או שהשירות ההתחלתי איטי מדי.");
+      if (qa.stockSpend > Math.max(80, qa.salesRevenue * 0.7)) qa.balance.add("הוצאות המלאי גבוהות מאוד ביחס להכנסות. ייתכן שמחירי מלאי/תוקף מלאי עדיין קשוחים מדי.");
+      if (qa.maxQueue > maxQueue(player) * 0.85 && player.upgrades.machine < 2) qa.balance.add("התור כמעט מתמלא לפני שלשחקן יש מספיק כסף לשדרוג מכונה. כדאי לרכך את עומס ההתחלה.");
+      if (mode === "tournament" && queuePressure(player) > 0.75 && player.revenue < competitors.reduce((sum, bot) => sum + bot.revenue, 0) / Math.max(1, competitors.length)) {
+        qa.balance.add("בתחרות, כשהשחקן מגובה בתור, המתחרים מתחילים לקבל רוב לקוחות. זה תקין אם נובע מחוסר מלאי/מחיר גבוה, אבל קשה מדי אם קורה גם עם מחיר נמוך.");
+      }
+      if (qa.loanStressEvents.length >= 2 && player.loan.debt > player.cash + player.revenue * 2) {
+        qa.balance.add("בדיקת הלוואות כפולות מצאה חוב מצטבר גבוה מאוד ביחס להכנסות. כדאי להגביל ריבית או להציג אזהרה חזקה יותר.");
+      }
+      if (qa.fpsMin < 24) qa.bugs.add("נמדדה ירידת FPS משמעותית מתחת ל-24 בזמן הריצה.");
+    }
+
+    function trackQaFrame(dt) {
+      if (!qa.active || dt <= 0) return;
+      const fps = 1 / dt;
+      qa.fpsMin = Math.min(qa.fpsMin, fps);
+      qa.fpsSum += fps;
+      qa.fpsSamples += 1;
+    }
+
+    function listHtml(items, emptyText) {
+      const list = [...items];
+      if (!list.length) return `<p class="muted">${emptyText}</p>`;
+      return `<ul>${list.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+    }
+
+    function advancedAuditHtml() {
+      const robotRows = qa.robotChecks.length
+        ? qa.robotChecks.map((check) => {
+          const delayDelta = check.beforeDelay - check.afterDelay;
+          const wasteDelta = check.beforeWaste - check.afterWaste;
+          return `<li>${check.kind}: level ${check.from} → ${check.to}, serve delay ${check.beforeDelay.toFixed(2)}s → ${check.afterDelay.toFixed(2)}s, waste chance ${(check.beforeWaste * 100).toFixed(0)}% → ${(check.afterWaste * 100).toFixed(0)}%${delayDelta <= 0 && check.kind === "speed" ? " | חשוד: אין שיפור מהירות" : ""}${wasteDelta <= 0 && check.kind === "precision" ? " | חשוד: אין שיפור דיוק" : ""}</li>`;
+        }).join("")
+        : "<li>לא נקנו שדרוגי רובוט בריצה הזו.</li>";
+      const expiryRows = qa.expirationAudit.length
+        ? qa.expirationAudit.slice(-10).map((lot) => `<li>${lot.type}: ${lot.observedAge.toFixed(2)}s, יחידות שנזרקו: ${lot.units}</li>`).join("")
+        : "<li>עדיין לא נרשם מלאי שהגיע בדיוק לנקודת התפוגה.</li>";
+      const loanRows = qa.loanStressEvents.length
+        ? qa.loanStressEvents.map((loan) => `<li>שלב ${loan.stage}: הלוואה ${loan.count}, התקבל ${money(loan.amount)}, חוב מצטבר ${money(loan.debt)}, מזומן אחרי פעולה ${money(loan.cash)}</li>`).join("")
+        : "<li>בדיקת הלוואות מרובות מופעלת אוטומטית בשלבים 2+ בזמן Autopilot.</li>";
+      return `
+        <div class="report-section">
+          <h2>דיבאג לשלבים מתקדמים</h2>
+          <p class="muted">Robot Upgrade Verification</p>
+          <ul>${robotRows}</ul>
+          <p class="muted">20-Second Expiration Audit</p>
+          <ul>${expiryRows}</ul>
+          <p class="muted">Bankruptcy & Loan Loop Check</p>
+          <ul>${loanRows}</ul>
+        </div>
+      `;
+    }
+
+    function buildQaReport() {
+      const avgFps = qa.fpsSamples ? qa.fpsSum / qa.fpsSamples : 0;
+      const net = player.cash + player.revenue - qa.stockSpend - player.wasted;
+      const stageFlow = qa.stageTransitions.length ? qa.stageTransitions.join(" · ") : `שלב ${stageIndex + 1}`;
+      if (qa.elapsed < 8) qa.suggestions.add("כדאי להריץ את הבוט לפחות 30 שניות כדי לקבל דו\"ח איזון אמין יותר.");
+      if (stockUnits("beans") === 0 || stockUnits("milk") === 0) qa.suggestions.add("מומלץ להוסיף התרעה ויזואלית מהבהבת כשהמלאי מגיע ל-0.");
+      if (qa.actions.price < 2 && mode === "tournament") qa.suggestions.add("בתחרות כדאי לתת לשחקן פידבק ברור יותר שהמחיר הוא הכלי המרכזי לניצחון.");
+      if (qa.actions.ability === 0) qa.suggestions.add("כדאי להציג יכולות אקטיביות קבועות ליד סרגל המחיר, כדי שהשחקן יבין מתי להשתמש בהן.");
+      if (!qa.balance.size) qa.balance.add("לא זוהתה בעיית איזון חריפה בריצה הנוכחית.");
+
+      ui.qaReportBody.innerHTML = `
+        <div class="stats">
+          <div class="stat"><small>זמן בדיקה</small><strong>${Math.floor(qa.elapsed)}s</strong></div>
+          <div class="stat"><small>FPS ממוצע</small><strong>${avgFps ? Math.round(avgFps) : "-"}</strong></div>
+          <div class="stat"><small>לקוחות מקסימום</small><strong>${qa.maxCustomers}</strong></div>
+          <div class="stat"><small>תור מקסימלי</small><strong>${qa.maxQueue}</strong></div>
+        </div>
+        <div class="report-section">
+          <h2>התקדמות שלבים</h2>
+          <p class="muted">שלבים שנבדקו בהצלחה: ${stageFlow}</p>
+        </div>
+        <div class="report-section">
+          <h2>באגים שנמצאו</h2>
+          ${listHtml(qa.bugs, "לא נמצאו באגים קריטיים")}
+        </div>
+        <div class="report-section">
+          <h2>בעיות איזון וקושי</h2>
+          ${listHtml(qa.balance, "לא זוהו בעיות איזון משמעותיות")}
+        </div>
+        <div class="report-section">
+          <h2>הצעות לשיפור</h2>
+          ${listHtml(qa.suggestions, "אין הצעות מיוחדות כרגע")}
+        </div>
+        ${advancedAuditHtml()}
+        <div class="report-section">
+          <h2>נתוני פעולות הבוט</h2>
+          <p class="muted">Q פולים: ${qa.actions.beans} · E חלב: ${qa.actions.milk} · Space שירות: ${qa.actions.serve} · שינויי מחיר: ${qa.actions.price} · פולסי שיווק: ${qa.actions.ability} · שדרוגים: ${qa.actions.upgrades} · הלוואות: ${qa.actions.loan}</p>
+          <p class="muted">הכנסות מכירות: ${money(qa.salesRevenue)} · הוצאות מלאי: ${money(qa.stockSpend)} · בזבוז/קלקול: ${money(player.wasted)} · מדד נטו משוער: ${money(net)}</p>
+        </div>
+      `;
+    }
+
+    function openQaReport() {
+      qa.active = false;
+      qa.reportOpen = true;
+      ui.qaAutopilotBtn.classList.remove("active");
+      ui.qaAutopilotBtn.textContent = "הפעל בוט בדיקה (Autopilot)";
+      buildQaReport();
+      ui.qaReport.classList.remove("hidden");
+    }
+
+    function closeQaReport() {
+      qa.reportOpen = false;
+      ui.qaReport.classList.add("hidden");
+    }
+
+    function update(dt) {
+      if (qa.reportOpen) {
+        updateEffects(dt);
+        return;
+      }
+      runAutopilot(dt);
+      if (mode !== "stand" && mode !== "tournament") return;
+      stageRunTime += dt;
+      ageInventory(dt);
+      spawnTimer -= dt;
+      if (spawnTimer <= 0) {
+        spawnCustomer();
+        spawnTimer = nextSpawnInterval();
+      }
+      if (mode === "tournament") {
+        tournamentTime -= dt;
+        updateCompetitorBrains(dt);
+        if (tournamentTime <= 0) finishTournament();
+      }
+      autoServe(dt);
+      updateCustomers(dt);
+      updateEffects(dt);
+      inspectQa(dt);
+      saveTimer -= dt;
+      if (saveTimer <= 0) {
+        saveTimer = 3;
+        saveGame();
+      }
+    }
+
+    function updateCompetitorBrains(dt) {
+      botThinkTimer -= dt;
+      if (botThinkTimer > 0) return;
+      botThinkTimer = 3;
+      for (const bot of competitors) {
+        if (player.revenue > bot.revenue + 25) {
+          bot.price = Math.max(7, bot.price - 1);
+          if (bot.upgrades.machine < 3 && Math.random() < 0.55) bot.upgrades.machine += 1;
+          else if (bot.upgrades.seller < 3) bot.upgrades.seller += 1;
+          floatText(bot.x, bot.y - 112, "Counter!", bot.color);
+        } else if (bot.revenue > player.revenue + 35) {
+          bot.price = Math.min(26, bot.price + 1);
+          floatText(bot.x, bot.y - 112, `Price ${money(bot.price)}`, bot.color);
+        } else if (Math.random() < 0.35) {
+          bot.price = clamp(bot.price + (Math.random() < 0.5 ? -1 : 1), 7, 26);
+        }
+      }
+    }
+
+    function updateEffects(dt) {
+      for (const p of particles) {
+        p.life -= dt;
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+        p.vx *= 0.96;
+        p.vy *= 0.96;
+      }
+      particles = particles.filter((p) => p.life > 0);
+      if (particles.length > MAX_PARTICLES) particles.splice(0, particles.length - MAX_PARTICLES);
+      for (const f of floaters) {
+        f.life -= dt;
+        f.y -= 44 * dt;
+      }
+      floaters = floaters.filter((f) => f.life > 0);
+      if (floaters.length > MAX_FLOATERS) floaters.splice(0, floaters.length - MAX_FLOATERS);
+    }
+
+    function burst(x, y, color, amount) {
+      const room = Math.max(0, MAX_PARTICLES - particles.length);
+      const count = Math.min(amount, room);
+      for (let i = 0; i < count; i += 1) {
+        const a = Math.random() * Math.PI * 2;
+        const s = 35 + Math.random() * 115;
+        particles.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: 0.45 + Math.random() * 0.4, max: 0.85, color, size: 3 + Math.random() * 4 });
+      }
+    }
+
+    function floatText(x, y, text, color) {
+      if (floaters.length >= MAX_FLOATERS) floaters.shift();
+      floaters.push({ x, y, text, color, life: 1, max: 1 });
+    }
+
+    function sound(type) {
+      try {
+        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        gain.gain.setValueAtTime(0.0001, now);
+        if (type === "cash") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(760, now);
+          osc.frequency.exponentialRampToValueAtTime(1180, now + 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.07, now + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+          osc.start(now); osc.stop(now + 0.18);
+        } else if (type === "warn") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(420, now);
+          osc.frequency.setValueAtTime(350, now + 0.12);
+          gain.gain.exponentialRampToValueAtTime(0.052, now + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.28);
+          osc.start(now); osc.stop(now + 0.3);
+        } else {
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(180, now);
+          osc.frequency.exponentialRampToValueAtTime(90, now + 0.18);
+          gain.gain.exponentialRampToValueAtTime(0.05, now + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+          osc.start(now); osc.stop(now + 0.24);
+        }
+      } catch {
+        audioCtx = null;
+      }
+    }
+
+    function drawWorld() {
+      const stage = currentStage();
+      const sky = ctx.createLinearGradient(0, 0, 0, H);
+      sky.addColorStop(0, stageIndex === 0 ? "#c7ddff" : stageIndex === 1 ? "#b9f2ff" : "#d9ceff");
+      sky.addColorStop(0.52, stageIndex === 0 ? "#eaf7ff" : stageIndex === 1 ? "#d9fff7" : "#ffe4f1");
+      sky.addColorStop(1, "#fff4c8");
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, W, H);
+
+      const glow = ctx.createRadialGradient(W * 0.5, H * 0.55, 40, W * 0.5, H * 0.55, Math.max(W, H) * 0.65);
+      glow.addColorStop(0, mode === "tournament" ? "rgba(14,165,233,.18)" : "rgba(250,204,21,.22)");
+      glow.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.fillStyle = stageIndex === 1 ? "#fde68a" : "#b7f7cf";
+      ctx.fillRect(0, H * 0.43, W, H * 0.57);
+
+      const roadY = H * 0.56;
+      const roadH = Math.min(220, H * 0.24);
+      const road = ctx.createLinearGradient(0, roadY - roadH / 2, 0, roadY + roadH / 2);
+      road.addColorStop(0, "#d7e0eb");
+      road.addColorStop(0.5, "#c8d2df");
+      road.addColorStop(1, "#e8eef6");
+      ctx.fillStyle = road;
+      ctx.shadowColor = "rgba(15,23,42,.16)";
+      ctx.shadowBlur = 28;
+      roundRect(W * 0.05, roadY - roadH / 2, W * 0.9, roadH, 20);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = "rgba(71,85,105,.18)";
+      ctx.lineWidth = 3;
+      ctx.setLineDash([24, 22]);
+      ctx.beginPath();
+      ctx.moveTo(W * 0.08, roadY);
+      ctx.lineTo(W * 0.92, roadY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = "rgba(255,255,255,.9)";
+      for (let i = -3; i <= 3; i += 1) {
+        roundRect(W / 2 + i * 24 - 8, roadY - roadH / 2 + 14, 16, roadH - 28, 5);
+        ctx.fill();
+      }
+
+      if (mode === "tournament") {
+        ctx.fillStyle = "rgba(255,255,255,.52)";
+        roundRect(W * 0.47, H * 0.14, W * 0.06, H * 0.76, 18);
+        ctx.fill();
+      } else {
+        const stageLight = ctx.createRadialGradient(player.x, player.y, 35, player.x, player.y, Math.min(W, H) * 0.42);
+        stageLight.addColorStop(0, "rgba(255,255,255,.68)");
+        stageLight.addColorStop(0.58, "rgba(255,255,255,.28)");
+        stageLight.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = stageLight;
+        ctx.fillRect(0, 0, W, H);
+      }
+    }
+
+    function drawArenaBox(x, y, w, h, color, label, main = false) {
+      const t = performance.now() / 1000;
+      const pulse = 0.55 + Math.sin(t * 2.4 + x * 0.01) * 0.18;
+      ctx.save();
+      ctx.shadowColor = "rgba(15,23,42,.16)";
+      ctx.shadowBlur = 18;
+      const floor = ctx.createLinearGradient(x, y, x + w, y + h);
+      floor.addColorStop(0, "rgba(255,255,255,.22)");
+      floor.addColorStop(1, "rgba(255,255,255,.06)");
+      ctx.fillStyle = floor;
+      roundRect(x, y, w, h, 8);
+      ctx.fill();
+
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 12;
+      ctx.strokeStyle = color;
+      ctx.globalAlpha = pulse;
+      ctx.lineWidth = main ? 4 : 3;
+      roundRect(x + 4, y + 4, w - 8, h - 8, 8);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "rgba(15,23,42,.58)";
+      roundRect(x + 10, y + 10, main ? 104 : 116, 24, 8);
+      ctx.fill();
+      ctx.fillStyle = "#f8fafc";
+      ctx.font = "900 10px Arial";
+      ctx.textAlign = "left";
+      ctx.fillText(label, x + 20, y + 27);
+
+      ctx.fillStyle = "rgba(255,255,255,.55)";
+      for (let i = 0; i < 5; i += 1) {
+        const bx = x + 20 + i * (w - 40) / 4;
+        ctx.beginPath();
+        ctx.arc(bx, y + h - 18, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    function drawTournamentPlots() {
+      if (mode !== "tournament") return;
+      const shops = [player, ...competitors];
+      const minX = Math.min(...shops.map((shop) => shop.x)) - 170;
+      const maxX = Math.max(...shops.map((shop) => shop.x)) + 170;
+      const minY = Math.min(...shops.map((shop) => shop.y)) - 130;
+      const maxY = Math.max(...shops.map((shop) => shop.y)) + 128;
+      drawArenaBox(minX, minY, maxX - minX, maxY - minY, "#38bdf8", "COFFEE MARKET", true);
+    }
+
+    function drawStand(shop, main = false) {
+      const u = shop.upgrades;
+      const x = shop.x;
+      const y = shop.y;
+      const w = main ? 150 + u.stand * 14 : 126 + u.stand * 10;
+      const h = main ? 92 + u.stand * 6 : 78 + u.stand * 4;
+      const level = u.machine + u.seller + u.welcome + u.stand + u.robot.speed + u.robot.precision + u.robot.hype;
+      const pulse = 0.65 + Math.sin(performance.now() / 420 + level) * 0.25;
+      ctx.save();
+      ctx.shadowColor = "rgba(15,23,42,.18)";
+      ctx.shadowBlur = 18;
+      ctx.fillStyle = "rgba(71,85,105,.18)";
+      ctx.beginPath();
+      ctx.ellipse(x, y + h * 0.62, w * 0.62, 18, 0, 0, Math.PI * 2);
+      ctx.fill();
+      if (u.robot.hype > 0) {
+        ctx.shadowColor = "#38bdf8";
+        ctx.shadowBlur = 20 + u.robot.hype * 10;
+        ctx.fillStyle = `rgba(14,165,233,${0.07 + u.robot.hype * 0.035})`;
+        ctx.beginPath();
+        ctx.arc(x, y, 105 + u.robot.hype * 24, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      if (shop === player && performance.now() < qaAdPulseUntil) {
+        const pulseRadius = 135 + Math.sin(performance.now() / 120) * 12;
+        ctx.shadowColor = "#22d3ee";
+        ctx.shadowBlur = 26;
+        ctx.strokeStyle = "rgba(34,211,238,.58)";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(x, y, pulseRadius, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      ctx.shadowColor = shop.color;
+      ctx.shadowBlur = 12 + level * 3;
+      const body = ctx.createLinearGradient(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
+      body.addColorStop(0, "#ffffff");
+      body.addColorStop(0.55, "#fff7ed");
+      body.addColorStop(1, "#e0f2fe");
+      ctx.fillStyle = body;
+      ctx.strokeStyle = shop.color;
+      ctx.lineWidth = 3 + Math.min(3, level * 0.25);
+      roundRect(x - w / 2, y - h / 2, w, h, 8);
+      ctx.fill();
+      ctx.globalAlpha = pulse;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      ctx.fillStyle = shop.color;
+      ctx.beginPath();
+      ctx.moveTo(x - w * 0.58, y - h * 0.45);
+      ctx.lineTo(x, y - h * 0.88 - u.stand * 4);
+      ctx.lineTo(x + w * 0.58, y - h * 0.45);
+      ctx.closePath();
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "rgba(255,255,255,.76)";
+      roundRect(x - w * 0.42, y - h * 0.28, w * 0.84, h * 0.24, 7);
+      ctx.fill();
+      ctx.fillStyle = "rgba(15,23,42,.1)";
+      roundRect(x - w * 0.5, y + h * 0.32, w, h * 0.16, 6);
+      ctx.fill();
+      ctx.fillStyle = shop.color;
+      roundRect(x - w * 0.28, y - h * 0.76, w * 0.56, 20, 8);
+      ctx.fill();
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "900 10px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText(main ? "ROBOT CAFE" : "COFFEE", x, y - h * 0.62);
+      drawSteam(x - w * 0.24, y + h * 0.03, 24 + u.machine * 3);
+      drawCoffeeCup(x - w * 0.24, y + h * 0.18, 22 + u.machine * 3);
+      drawMachine(x + w * 0.22, y + h * 0.18, 28 + u.machine * 5, u.machine, shop.color);
+      drawSeller(x, y + h * 0.16, 34 + u.seller * 4, u.seller, shop.color);
+      if (u.robot.speed + u.robot.precision + u.robot.hype > 0) drawRobot(x + w * 0.45, y - h * 0.04, 28, u.robot);
+      ctx.fillStyle = "#27364a";
+      ctx.font = "900 13px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText(shop.name, x, y + h * 0.72);
+      ctx.fillStyle = "#64748b";
+      ctx.font = "800 11px Arial";
+      ctx.fillText(`${money(shop.price)} | ${shop.served} served`, x, y + h * 0.9);
+      ctx.restore();
+    }
+
+    function drawSteam(x, y, s) {
+      const t = performance.now() / 1000;
+      ctx.save();
+      ctx.strokeStyle = "rgba(255,255,255,.15)";
+      ctx.lineWidth = 2;
+      ctx.lineCap = "round";
+      ctx.shadowColor = "rgba(255,255,255,.35)";
+      ctx.shadowBlur = 10;
+      for (let i = 0; i < 3; i += 1) {
+        const off = (i - 1) * s * 0.18;
+        const phase = t * 1.7 + i * 1.4 + x * 0.01;
+        ctx.beginPath();
+        ctx.moveTo(x + off, y);
+        ctx.bezierCurveTo(
+          x + off + Math.sin(phase) * 8,
+          y - s * 0.38,
+          x + off - Math.cos(phase) * 8,
+          y - s * 0.78,
+          x + off + Math.sin(phase + 1.2) * 6,
+          y - s * 1.12
+        );
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function drawCoffeeCup(x, y, s) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.strokeStyle = "#a16207";
+      ctx.fillStyle = "#fef3c7";
+      ctx.lineWidth = 3;
+      roundRect(-s * 0.42, -s * 0.12, s * 0.72, s * 0.55, s * 0.12);
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(s * 0.32, s * 0.12, s * 0.17, -Math.PI / 2, Math.PI / 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawMachine(x, y, s, level, color) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.fillStyle = "#f1f5f9";
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.5;
+      roundRect(-s * 0.45, -s * 0.38, s * 0.9, s * 0.7, 7);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = color;
+      for (let i = 0; i <= level; i += 1) {
+        ctx.beginPath();
+        ctx.arc(-s * 0.22 + i * s * 0.17, -s * 0.15, s * 0.045, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    function drawSeller(x, y, s, level, color) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.fillStyle = "#f8d7b4";
+      ctx.beginPath();
+      ctx.arc(0, -s * 0.18, s * 0.26, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = color;
+      roundRect(-s * 0.22, -s * 0.52, s * 0.44, s * 0.16, 5);
+      ctx.fill();
+      ctx.fillStyle = "#334155";
+      ctx.beginPath();
+      ctx.arc(-s * 0.08, -s * 0.2, s * 0.028, 0, Math.PI * 2);
+      ctx.arc(s * 0.08, -s * 0.2, s * 0.028, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "#334155";
+      ctx.lineWidth = s * 0.035;
+      ctx.beginPath();
+      ctx.arc(0, -s * 0.13, s * 0.12, 0.1, Math.PI - 0.1);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawRobot(x, y, s, robot) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.fillStyle = "#e0f2fe";
+      ctx.strokeStyle = "#0284c7";
+      ctx.lineWidth = 2;
+      roundRect(-s * 0.35, -s * 0.28, s * 0.7, s * 0.56, 6);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = "#0ea5e9";
+      ctx.beginPath();
+      ctx.arc(-s * 0.12, -s * 0.06, 3 + robot.precision, 0, Math.PI * 2);
+      ctx.arc(s * 0.12, -s * 0.06, 3 + robot.precision, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "#0284c7";
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 0.28);
+      ctx.lineTo(0, -s * 0.48);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0, -s * 0.52, 4 + robot.hype, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawPerson(c) {
+      ctx.save();
+      const cycle = performance.now() / 135 + c.x * 0.045 + c.y * 0.015;
+      const walk = Math.sin(cycle) * 4.5;
+      const bob = Math.sin(cycle * 0.9) * 2;
+      ctx.translate(c.x, c.y + bob);
+      const panic = c.state === "waiting" && c.shop === player ? clamp(c.wait / c.patience, 0, 1) : 0;
+      const mood = panic < 0.65 ? c.shirt : panic < 0.9 ? "#facc15" : "#ef4444";
+      ctx.shadowColor = "rgba(15,23,42,.22)";
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetY = 4;
+      ctx.strokeStyle = panic > 0.9 ? "#991b1b" : "#27364a";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(-7, 18); ctx.lineTo(-11 + walk, 31);
+      ctx.moveTo(7, 18); ctx.lineTo(11 - walk, 31);
+      ctx.moveTo(-12, 3); ctx.lineTo(-22, 12 + walk * 0.3);
+      ctx.moveTo(12, 3); ctx.lineTo(22, 12 - walk * 0.3);
+      ctx.stroke();
+      ctx.shadowOffsetY = 0;
+      ctx.fillStyle = mood;
+      roundRect(-13, -4, 26, 26, 8);
+      ctx.fill();
+      ctx.fillStyle = c.skin;
+      ctx.beginPath();
+      ctx.arc(0, -18, 14, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = c.hair;
+      ctx.beginPath();
+      ctx.arc(0, -25, 13, Math.PI, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "#27364a";
+      ctx.beginPath();
+      ctx.arc(-5, -19, 2, 0, Math.PI * 2);
+      ctx.arc(6, -19, 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "#27364a";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(0, -14, 5, 0.2, Math.PI - 0.2);
+      ctx.stroke();
+      if (c.state === "waiting") {
+        ctx.fillStyle = "rgba(255,255,255,.9)";
+        ctx.strokeStyle = panic > 0.9 ? "#ef4444" : "#22c55e";
+        roundRect(-22, -58, 44, 20, 7);
+        ctx.fill();
+        ctx.stroke();
+        drawCoffeeCup(0, -48, 13);
+      }
+      ctx.restore();
+    }
+
+    function drawEffects() {
+      for (const p of particles) {
+        const a = clamp(p.life / p.max, 0, 1);
+        ctx.save();
+        ctx.globalAlpha = a;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(performance.now() / 280 + p.x * 0.02);
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 10;
+        ctx.fillStyle = p.color;
+        const size = p.size * a * 1.35;
+        ctx.fillRect(-size / 2, -size / 2, size, size);
+        ctx.restore();
+      }
+      ctx.globalAlpha = 1;
+      for (const f of floaters) {
+        ctx.globalAlpha = clamp(f.life / f.max, 0, 1);
+        ctx.shadowColor = "rgba(15,23,42,.22)";
+        ctx.shadowBlur = 8;
+        ctx.fillStyle = f.color;
+        ctx.font = "900 20px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText(f.text, f.x, f.y);
+      }
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+    }
+
+    function roundRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    function draw() {
+      drawWorld();
+      drawTournamentPlots();
+      drawStand(player, true);
+      if (mode === "tournament") competitors.forEach((shop) => drawStand(shop, false));
+      customers.forEach(drawPerson);
+      drawEffects();
+    }
+
+    function targetProgress() {
+      return stageCompletion();
+    }
+
+    function renderUi() {
+      ui.shopTitle.textContent = player.name;
+      ui.boardTitle.textContent = mode === "tournament" ? "Tournament" : "Campaign Objective";
+      ui.cash.textContent = money(player.cash);
+      ui.served.textContent = player.served;
+      ui.queue.textContent = `${player.queue.length}/${maxQueue(player)}`;
+      ui.stock.textContent = `${stockUnits("beans")}/${stockUnits("milk")}`;
+      ui.priceLabel.textContent = money(player.price);
+      ui.serveBtn.disabled = (mode !== "stand" && mode !== "tournament") || !player.queue.some((c) => c.state === "waiting") || !canMakeCoffee();
+      const readyForTournament = stageReadyForTournament();
+      ui.tournamentBtn.disabled = mode !== "stand" || !readyForTournament;
+      ui.tournamentBtn.textContent = readyForTournament ? "Start Tournament" : "Complete Tasks First";
+      ui.price.disabled = mode === "complete";
+      ui.robotPanel.style.display = stageIndex >= 2 ? "block" : "none";
+
+      ui.stockButtons.forEach((button) => {
+        const key = button.dataset.stock;
+        button.textContent = money(STOCK_COSTS[key]);
+        button.disabled = mode !== "stand" || player.cash < STOCK_COSTS[key];
+        const card = document.querySelector(`[data-stock-card="${key}"]`);
+        if (card) card.classList.toggle("stock-alert", stockUnits(key) === 0 && (mode === "stand" || mode === "tournament"));
+      });
+
+      const upgradeCosts = {
+        machine: 90 + player.upgrades.machine * 75,
+        seller: 110 + player.upgrades.seller * 85,
+        welcome: 80 + player.upgrades.welcome * 70,
+        stand: 100 + player.upgrades.stand * 90,
+      };
+      ui.upgradeButtons.forEach((button) => {
+        const key = button.dataset.upgrade;
+        const maxed = player.upgrades[key] >= 3;
+        button.textContent = maxed ? "MAX" : money(upgradeCosts[key]);
+        button.disabled = mode !== "stand" || maxed || player.cash < upgradeCosts[key];
+      });
+
+      ui.robotButtons.forEach((button) => {
+        const key = button.dataset.robot;
+        const cost = { speed: 180, precision: 160, hype: 210 }[key] + player.upgrades.robot[key] * 150;
+        const maxed = player.upgrades.robot[key] >= 3;
+        button.textContent = stageIndex < 2 ? "Locked" : maxed ? "MAX" : money(cost);
+        button.disabled = mode !== "stand" || stageIndex < 2 || maxed || player.cash < cost;
+      });
+
+      ui.loanBtn.textContent = player.loan.debt > 0 ? `Debt ${money(player.loan.debt)}` : player.loan.taken ? "Taken" : money(250 + stageIndex * 120);
+      ui.loanBtn.disabled = mode !== "stand" || player.loan.taken || player.loan.debt > 0;
+      ui.loanText.textContent = player.loan.debt > 0 ? `${money(player.loan.debt)} left, repaid per sale.` : "Instant cash, automatic repayment per sale.";
+
+      ui.title.textContent = currentStage().name;
+      ui.eventText.textContent = mode === "tournament"
+        ? `Tournament live: ${Math.ceil(tournamentTime)}s left. Customers flock by price, speed, queue, and robot hype.`
+        : `${objectiveSummary()}. Tournament unlocks at 100%.`;
+      ui.modeText.textContent = mode === "tournament" ? "Tournament: pricing only, no upgrades or stock buying." : "Stand Management: stock, upgrades, loans, and serving.";
+      ui.meter.style.transform = `scaleX(${mode === "tournament" ? tournamentTime / currentStage().tournamentSeconds : clamp(targetProgress(), 0, 1)})`;
+
+      const ranking = mode === "tournament" ? [player, ...competitors].sort((a, b) => b.revenue - a.revenue) : [player, ...competitors];
+      const objectives = stageObjectives();
+      const objectiveRows = objectives.length
+        ? objectives.map((objective) => {
+          const done = objective.current >= objective.target;
+          const percent = Math.floor(clamp(objective.current / Math.max(1, objective.target), 0, 1) * 100);
+          return `
+            <div class="rank objective ${done ? "done" : ""}">
+              <span>${done ? "✓" : "🎯"}</span>
+              <div><strong>${objective.label}</strong><small>${Math.floor(objective.current)}/${objective.target}</small></div>
+              <span>${percent}%</span>
+            </div>
+          `;
+        }).join("")
+        : `<div class="rank objective done"><span>✓</span><div><strong>Stage Task</strong><small>No active objective</small></div><span>100%</span></div>`;
+      const tournamentObjectiveRow = `
+        <div class="rank objective ${mode === "complete" ? "done" : ""}">
+          <span>⭐</span>
+          <div><strong>Final star</strong><small>Win the tournament after the tasks are complete</small></div>
+          <span>${mode === "tournament" ? "LIVE" : readyForTournament ? "READY" : "LOCKED"}</span>
+        </div>
+      `;
+      const robotInfo = stageIndex >= 2
+        ? `Speed ${player.upgrades.robot.speed}/3 · Precision ${player.upgrades.robot.precision}/3 · Hype ${player.upgrades.robot.hype}/3`
+        : "Locked until Stage 3. Not required for this stage.";
+      ui.board.innerHTML = `
+        <div class="board-section">
+          <div class="board-label">Active Objective</div>
+          ${objectiveRows}
+          ${tournamentObjectiveRow}
+        </div>
+        <div class="board-section">
+          <div class="board-label">Status Only</div>
+          <div class="rank info"><span>📦</span><div><strong>Freshness Info</strong><small>Beans/milk expire after exactly 20s. This is not a task.</small></div><span>${stockUnits("beans")}/${stockUnits("milk")}</span></div>
+          <div class="rank info"><span>🤖</span><div><strong>Robot Status</strong><small>${robotInfo}</small></div><span></span></div>
+        </div>
+        <div class="board-section">
+          <div class="board-label">${mode === "tournament" ? "Live Ranking" : "Coffee Stands"}</div>
+          ${ranking.map((shop, i) => `
+            <div class="rank">
+              <span>${i + 1}</span>
+              <div><strong>${shop.name}</strong><small>${shop.served} served · ${money(shop.price)} cup</small></div>
+              <span class="money">${money(mode === "tournament" ? shop.revenue : shop.cash || 0)}</span>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function loop(now) {
+      const dt = Math.min(0.033, (now - last) / 1000);
+      last = now;
+      trackQaFrame(dt);
+      update(dt);
+      draw();
+      renderUi();
+      requestAnimationFrame(loop);
+    }
+
+    function savePayload() {
+      return {
+        stageIndex,
+        progress,
+        player: {
+          name: player.name,
+          cash: player.cash,
+          peakCash: player.peakCash,
+          served: player.served,
+          price: player.price,
+          wasted: player.wasted,
+          lost: player.lost,
+          inventory: player.inventory,
+          loan: player.loan,
+          upgrades: player.upgrades,
+        },
+      };
+    }
+
+    function applySave(data) {
+      stageIndex = Math.floor(clamp(Number(data.stageIndex || 0), 0, stages.length - 1));
+      progress = Array.isArray(data.progress) ? data.progress : defaultProgress();
+      ensureProgress();
+      resetStage(false);
+      Object.assign(player, data.player || {});
+      player.peakCash = Math.max(Number(player.peakCash) || 0, Number(player.cash) || 0);
+      player.queue = [];
+      player.upgrades = {
+        machine: 0,
+        seller: 0,
+        welcome: 0,
+        stand: 0,
+        robot: { speed: 0, precision: 0, hype: 0 },
+        ...(data.player?.upgrades || {}),
+      };
+      player.upgrades.robot = { speed: 0, precision: 0, hype: 0, ...(data.player?.upgrades?.robot || {}) };
+      player.inventory = (data.player?.inventory || []).map((lot) => ({ ...lot }));
+      ui.price.value = player.price;
+      mode = "map";
+      layoutNodes();
+    }
+
+    function saveGame() {
+      if (!authenticated || !saveKey) return;
+      localStorage.setItem(saveKey, JSON.stringify(savePayload()));
+    }
+
+    function loginKey(name, pass) {
+      return `robot-coffee:${name.trim().toLowerCase()}:${pass}`;
+    }
+
+    function login(loadExisting) {
+      const name = ui.cafeName.value.trim();
+      const pass = ui.cafePass.value;
+      if (!name || !pass) {
+        ui.loginMsg.textContent = "Enter a shop name and password.";
+        return;
+      }
+      saveKey = loginKey(name, pass);
+      authenticated = true;
+      const raw = localStorage.getItem(saveKey);
+      if (loadExisting && raw) {
+        try {
+          applySave(JSON.parse(raw));
+        } catch {
+          progress = defaultProgress();
+          resetStage(true);
+        }
+      } else {
+        progress = defaultProgress();
+        stageIndex = 0;
+        resetStage(true);
+      }
+      player.name = name;
+      ui.login.classList.add("hidden");
+      showLevelMap();
+      saveGame();
+    }
+
+    ui.loginBtn.addEventListener("click", () => login(true));
+    ui.newSaveBtn.addEventListener("click", () => login(false));
+    ui.logoutBtn.addEventListener("click", () => {
+      saveGame();
+      authenticated = false;
+      saveKey = "";
+      mode = "login";
+      ui.levelMap.classList.add("hidden");
+      ui.login.classList.remove("hidden");
+    });
+    ui.cafePass.addEventListener("keydown", (event) => { if (event.key === "Enter") login(true); });
+    ui.serveBtn.addEventListener("click", servePlayer);
+    ui.price.addEventListener("input", () => { player.price = Number(ui.price.value); saveGame(); });
+    ui.tournamentBtn.addEventListener("click", startTournament);
+    ui.loanBtn.addEventListener("click", buyLoan);
+    ui.nextStageBtn.addEventListener("click", showLevelMap);
+    ui.retryStageBtn.addEventListener("click", showLevelMap);
+    ui.qaAutopilotBtn.addEventListener("click", toggleAutopilot);
+    ui.qaReportBtn.addEventListener("click", openQaReport);
+    ui.qaCloseBtn.addEventListener("click", closeQaReport);
+    ui.qaResetBtn.addEventListener("click", () => {
+      resetQaMetrics();
+      buildQaReport();
+    });
+    ui.stockButtons.forEach((button) => button.addEventListener("click", () => buyStock(button.dataset.stock)));
+    ui.upgradeButtons.forEach((button) => button.addEventListener("click", () => buyUpgrade(button.dataset.upgrade)));
+    ui.robotButtons.forEach((button) => button.addEventListener("click", () => buyRobot(button.dataset.robot)));
+    window.addEventListener("keydown", (event) => {
+      if (!ui.login.classList.contains("hidden") || !ui.complete.classList.contains("hidden") || qa.reportOpen) return;
+      if (event.code === "Space") {
+        event.preventDefault();
+        servePlayer();
+      } else if (event.key.toLowerCase() === "q") {
+        event.preventDefault();
+        buyStock("beans");
+      } else if (event.key.toLowerCase() === "e") {
+        event.preventDefault();
+        buyStock("milk");
+      }
+    });
+    window.addEventListener("resize", resize);
+
+    competitors = stages[0].rivals.map(cloneRival);
+    resize();
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

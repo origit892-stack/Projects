@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Survival Forest</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div class="hud">
+    <div class="hud__title">Pixel Survival Forest</div>
+    <div class="hud__row" id="inventory">Loading inventory...</div>
+    <div class="hud__row" id="tool">Loading tools...</div>
+    <div class="hud__row" id="status">Loading assets...</div>
+  </div>
+  <div class="panel panel--right">
+    <div class="panel__title">Instructions</div>
+    <div class="panel__row">Move: <span>WASD</span></div>
+    <div class="panel__row">Use tool: <span>Left Click</span></div>
+    <div class="panel__row">Axe / Bow: <span>1 / 2</span></div>
+    <div class="panel__row">Enter house: <span>E at door</span></div>
+    <div class="panel__row">Campfire: <span>Night only, build next</span></div>
+  </div>
+  <div class="banner" id="banner">
+    <div class="banner__title">Survive the Night</div>
+    <div class="banner__text" id="banner-text">Cut trees for wood, keep arrows ready, and head to the house when night falls.</div>
+  </div>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>

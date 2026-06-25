@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dungeon Crawler Lobby</title>
+  <meta http-equiv="refresh" content="0; url=/dungeon-crawler/">
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #080a14;
+      color: #eef2ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.24), transparent 36rem),
+        linear-gradient(135deg, #090b16 0%, #111827 48%, #060712 100%);
+    }
+
+    .card {
+      width: min(92vw, 520px);
+      padding: 32px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      border-radius: 22px;
+      background: rgba(15, 23, 42, 0.72);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+      text-align: center;
+      backdrop-filter: blur(18px);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 7vw, 54px);
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    p {
+      margin: 0 0 24px;
+      color: #b7c2d9;
+      line-height: 1.55;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 14px;
+      background: #f8fafc;
+      color: #101322;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 14px 40px rgba(248, 250, 252, 0.18);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Dungeon Crawler</h1>
+    <p>Opening the real online party lobby. Create a party, share the four-letter code, and play with friends.</p>
+    <a href="/dungeon-crawler/">Open Lobby</a>
+  </main>
+  <script>
+    window.location.replace('/dungeon-crawler/');
+  </script>
+</body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Magic Tiles - Perfect Edition</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0d1b2a; overflow:hidden; user-select: none; }
+canvas { display:block; touch-action: none; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>'use strict';
+
+// ── Canvas ───────────────────────────────────────────────────────────────────
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
+let W = canvas.width  = window.innerWidth;
+let H = canvas.height = window.innerHeight;
+window.addEventListener('resize', function() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  computeGeo();
+});
+
+function rrect(x, y, w, h, r) {
+  r = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  if (ctx.roundRect) {
+    ctx.roundRect(x, y, w, h, r);
+  } else {
+    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+    ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+    ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+    ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
+    ctx.closePath();
+  }
+}
+
+// ── Audio Engine (Optimized Grand Piano) ────────────────────────────────────
+let audioCtx, masterGain, comp;
+function getAC() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    comp = audioCtx.createDynamicsCompressor();
+    comp.threshold.value = -18; comp.ratio.value = 4;
+    masterGain = audioCtx.createGain(); masterGain.gain.value = 0.5;
+    masterGain.connect(comp); comp.connect(audioCtx.destination);
+  }
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+
+function playNote(freq, vel) {
+  vel = vel || 0.8;
+  const ac = getAC(), t = ac.currentTime;
+  
+  // Reduced to 3 harmonics for better performance during fast songs
+  const harm  = [1, 2, 3];
+  const amps  = [1, 0.4, 0.15];
+  const decay = [1.5, 1.0, 0.5];
+  const types = ['sine', 'sine', 'triangle'];
+  
+  harm.forEach(function(h, i) {
+    const osc = ac.createOscillator(), g = ac.createGain();
+    osc.type = types[i];
+    osc.frequency.value = freq * h;
+    
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vel * amps[i], t + 0.005);
+    g.gain.exponentialRampToValueAtTime(0.001, t + decay[i]);
+    
+    osc.connect(g); g.connect(masterGain);
+    osc.start(t); osc.stop(t + decay[i]);
+  });
+  
+  // Percussive hit (Hammer)
+  const tc = ac.createOscillator(), tg = ac.createGain();
+  tc.type = 'triangle'; tc.frequency.value = freq * 7;
+  tg.gain.setValueAtTime(vel * 0.05, t);
+  tg.gain.exponentialRampToValueAtTime(0.0001, t + 0.02);
+  tc.connect(tg); tg.connect(masterGain);
+  tc.start(t); tc.stop(t + 0.025);
+}
+
+// ── Note Frequencies ─────────────────────────────────────────────────────────
+const NF = {
+  'E3':164.81,'F3':174.61,'Gb3':185.00,'G3':196.00,'Ab3':207.65,'A3':220.00,
+  'Bb3':233.08,'B3':246.94,'C4':261.63,'Db4':277.18,'D4':293.66,'Eb4':311.13,
+  'E4':329.63,'F4':349.23,'F#4':369.99,'Gb4':369.99,'G4':392.00,'G#4':415.30,
+  'Ab4':415.30,'A4':440.00,'Bb4':466.16,'B4':493.88,'C5':523.25
+};
+
+// ── Songs Data ───────────────────────────────────────────────────────────────
+const SONGS = [
+  {
+    name: 'Blinding Lights', artist: 'The Weeknd', color: '#e8364c', bpm: 171,
+    laneFreq: [NF['Db4'], NF['Eb4'], NF['G4'], NF['Ab4']],
+    laneLabel: ['C · D♭', 'E♭', 'F · G', 'A♭ · B♭'],
+    n2l: {'C4':0,'Db4':0,'Eb4':1,'F4':2,'G4':2,'Ab4':3,'Bb4':3,'C5':3},
+    beats: [
+      {n:'F4',d:.5},{n:'F4',d:.5},{n:'Eb4',d:.75},{n:'_',d:.25},
+      {n:'F4',d:.5},{n:'G4',d:.5},{n:'Ab4',d:1.5},{n:'_',d:.5},
+      {n:'Eb4',d:.5},{n:'Eb4',d:.5},{n:'F4',d:.75},{n:'_',d:.25},
+      {n:'Db4',d:.5},{n:'Eb4',d:.5},{n:'C4',d:2},
+      {n:'F4',d:.5},{n:'F4',d:.5},{n:'F4',d:.5},{n:'_',d:.25},{n:'F4',d:.25},
+      {n:'_',d:.5},{n:'G4',d:.5},{n:'Ab4',d:2.5},
+      {n:'F4',d:.5},{n:'F4',d:.5},{n:'F4',d:.5},{n:'_',d:.25},{n:'F4',d:.25},
+      {n:'_',d:.5},{n:'G4',d:.5},{n:'Ab4',d:2.5},
+      {n:'Bb4',d:.5},{n:'Bb4',d:.5},{n:'Bb4',d:.5},{n:'Bb4',d:.5},
+      {n:'Ab4',d:.5},{n:'G4',d:.5},{n:'F4',d:2},
+      {n:'F4',d:.5},{n:'F4',d:.5},{n:'Eb4',d:.75},{n:'_',d:.25},
+      {n:'F4',d:.5},{n:'G4',d:.5},{n:'Ab4',d:1.5},{n:'_',d:.5},
+      {n:'Eb4',d:.5},{n:'Eb4',d:.5},{n:'F4',d:.75},{n:'_',d:.25},
+      {n:'Db4',d:.5},{n:'Eb4',d:.5},{n:'C4',d:2}
+    ]
+  },
+  {
+    name: 'Believer', artist: 'Imagine Dragons', color: '#4a90e0', bpm: 125,
+    laneFreq: [NF['F3'], NF['Ab3'], NF['Bb3'], NF['Db4']],
+    laneLabel: ['F · G♭', 'A♭', 'B♭', 'D♭'],
+    n2l: {'F3':0,'Gb3':0,'Ab3':1,'Bb3':2,'Db4':3},
+    beats: [
+      {n:'Bb3',d:.5},{n:'_',d:.5},
+      {n:'Db4',d:.5},{n:'Db4',d:.5},{n:'Db4',d:.5},{n:'Bb3',d:1.5},
+      {n:'Bb3',d:.5},{n:'Bb3',d:.5},{n:'Bb3',d:.25},{n:'Ab3',d:.25},{n:'Gb3',d:1.5},
+      {n:'F3',d:.5},{n:'F3',d:.5},{n:'F3',d:.5},{n:'F3',d:2},
+      {n:'Bb3',d:1},{n:'Bb3',d:.5},{n:'Bb3',d:.5},{n:'Db4',d:.5},{n:'Bb3',d:1.5},
+      {n:'Bb3',d:1},{n:'Bb3',d:.5},{n:'Bb3',d:.5},{n:'Db4',d:.5},{n:'Bb3',d:1.5},
+      {n:'Bb3',d:1},{n:'Bb3',d:.5},{n:'Bb3',d:.5},{n:'Db4',d:.5},{n:'Bb3',d:1.5},
+      {n:'Bb3',d:1},{n:'Bb3',d:.5},{n:'Bb3',d:.5},{n:'Db4',d:.5},{n:'Bb3',d:1.5}
+    ]
+  },
+  {
+    name: 'Dance Monkey', artist: 'Tones and I', color: '#2eca8a', bpm: 98,
+    laneFreq: [NF['E4'], NF['F#4'], NF['A4'], NF['B4']],
+    laneLabel: ['E', 'F#', 'G# · A', 'B'],
+    n2l: {'E4':0,'F#4':1,'Gb4':1,'G#4':2,'Ab4':2,'A4':2,'B4':3},
+    beats: [
+      {n:'F#4',d:.5},{n:'F#4',d:.5},{n:'F#4',d:.5},{n:'E4',d:.25},{n:'F#4',d:.25},
+      {n:'A4',d:.75},{n:'_',d:.25},{n:'F#4',d:.5},{n:'_',d:.5},
+      {n:'F#4',d:.5},{n:'E4',d:.25},{n:'F#4',d:.25},{n:'A4',d:.5},{n:'F#4',d:2},
+      {n:'F#4',d:.5},{n:'F#4',d:.5},{n:'F#4',d:.5},{n:'E4',d:.25},{n:'F#4',d:.25},
+      {n:'B4',d:.5},{n:'A4',d:.5},{n:'G#4',d:.5},{n:'F#4',d:2},
+      {n:'F#4',d:.5},{n:'F#4',d:.5},{n:'F#4',d:.5},{n:'E4',d:.25},{n:'F#4',d:.25},
+      {n:'A4',d:.75},{n:'_',d:.25},{n:'F#4',d:.5},{n:'_',d:.5},
+      {n:'F#4',d:.5},{n:'E4',d:.25},{n:'F#4',d:.25},{n:'A4',d:.5},{n:'F#4',d:2}
+    ]
+  }
+];
+
+function buildSongNotes(song) {
+  let beatMs = 60000 / song.bpm;
+  let t = 0, raw = [];
+  song.beats.forEach(beat => {
+    if (beat.n !== '_') {
+      raw.push({ hitTime: t * beatMs, lane: song.n2l[beat.n], freq: NF[beat.n] });
+    }
+    t += beat.d;
+  });
+  
+  const MIN_GAP = 120; // Reduced gap to allow fast 16th notes
+  let notes = raw.length ? [raw[0]] : [];
+  for (let i = 1; i < raw.length; i++) {
+    if (raw[i].hitTime - notes[notes.length - 1].hitTime >= MIN_GAP) {
+      notes.push(raw[i]);
+    }
+  }
+  return notes;
+}
+
+// ── Game Constants & State ──────────────────────────────────────────────────
+const TILE_H = 100;
+const HIT_RATIO = 0.82;
+const PERF_MS = 60;    
+const GOOD_MS = 120;    
+const INPUT_MS = 180;   
+const FALL_DURATION_MS = 2000; 
+const LANE_KEYS = ['KeyD','KeyF','KeyJ','KeyK'];
+const KEY_LABEL = ['D','F','J','K'];
+const MAX_LIVES = 5;
+
+let fX, fW, lW, hitY, hitZoneH;
+function computeGeo() {
+  fW = Math.min(Math.max(W * 0.52, 280), 500);
+  fX = (W - fW) / 2;
+  lW = fW / 4;
+  hitY = H * HIT_RATIO;
+  hitZoneH = Math.max(60, H * 0.1);
+}
+computeGeo();
+
+let state = 'instructions';
+let score = 0, dispScore = 0, combo = 0, maxCombo = 0, lives = MAX_LIVES;
+let totalN = 0, hitN = 0, perfectStreak = 0;
+let tiles = [], ripples = [], feedbacks = [], particles = [];
+let laneDown = [false,false,false,false];
+let bgHue = 210, shakePow = 0, shakeX = 0, shakeY = 0, newBest = false;
+
+let currentSong, songNotes, songStart, songStartAC, totalSpawned, totalSongMs, leadTime;
+let selectedSong = 0, countdownEnd = 0;
+let menuCardRects = [];
+
+// ── Input Handling ──────────────────────────────────────────────────────────
+const keysHeld = {};
+window.addEventListener('keydown', e => {
+  if (keysHeld[e.code]) return;
+  keysHeld[e.code] = true;
+  getAC();
+  
+  if (state === 'instructions') { state = 'menu'; return; }
+  if (state === 'countdown' && e.code === 'Escape') { state = 'menu'; return; }
+  if (state === 'menu') {
+    let n = parseInt(e.key);
+    if (n >= 1 && n <= SONGS.length) { startGame(n-1); return; }
+    if (e.code === 'ArrowDown') { selectedSong = (selectedSong+1) % SONGS.length; return; }
+    if (e.code === 'ArrowUp') { selectedSong = (selectedSong+SONGS.length-1) % SONGS.length; return; }
+    startGame(selectedSong);
+    return;
+  }
+  if (state === 'over') { state = 'menu'; return; }
+  
+  let ln = LANE_KEYS.indexOf(e.code);
+  if (ln >= 0) { laneDown[ln] = true; pressLane(ln); }
+  if (e.code === 'Escape') state = 'menu';
+});
+
+window.addEventListener('keyup', e => {
+  keysHeld[e.code] = false;
+  let ln = LANE_KEYS.indexOf(e.code);
+  if (ln >= 0) laneDown[ln] = false;
+});
+
+function handleTouch(x, y) {
+  getAC();
+  if (state === 'instructions') { state = 'menu'; return; }
+  if (state === 'countdown') return;
+  if (state === 'menu') {
+    for (let i = 0; i < menuCardRects.length; i++) {
+      let r = menuCardRects[i];
+      if (x >= r.x && x <= r.x+r.w && y >= r.y && y <= r.y+r.h) {
+        startGame(i); return;
+      }
+    }
+    startGame(selectedSong);
+    return;
+  }
+  if (state === 'over') { state = 'menu'; return; }
+  if (x >= fX && x <= fX + fW) {
+    let ln = Math.floor((x - fX) / lW);
+    laneDown[ln] = true; pressLane(ln);
+  }
+}
+
+canvas.addEventListener('mousedown', e => handleTouch(e.clientX, e.clientY));
+canvas.addEventListener('mouseup', e => {
+    if (e.clientX >= fX && e.clientX <= fX + fW) laneDown[Math.floor((e.clientX - fX) / lW)] = false;
+});
+canvas.addEventListener('touchstart', e => {
+  e.preventDefault();
+  for (let i=0; i<e.changedTouches.length; i++) handleTouch(e.changedTouches[i].clientX, e.changedTouches[i].clientY);
+}, {passive:false});
+canvas.addEventListener('touchend', e => {
+  e.preventDefault();
+  for (let i=0; i<e.changedTouches.length; i++) {
+      let x = e.changedTouches[i].clientX;
+      if (x >= fX && x <= fX + fW) laneDown[Math.floor((x - fX) / lW)] = false;
+  }
+}, {passive:false});
+
+function getBest(idx) { return parseInt(localStorage.getItem('mt_best_'+idx)||'0'); }
+function saveBest(idx, s) { 
+    if (s > getBest(idx)) { localStorage.setItem('mt_best_'+idx, s); return true; } 
+    return false; 
+}
+
+// ── Game Loop & Logic ───────────────────────────────────────────────────────
+function startGame(songIdx) {
+  computeGeo();
+  currentSong = SONGS[songIdx];
+  songNotes = buildSongNotes(currentSong);
+  totalSongMs = currentSong.beats.reduce((acc,b) => acc + b.d, 0) * (60000 / currentSong.bpm);
+  leadTime = FALL_DURATION_MS;
+  
+  score = dispScore = combo = maxCombo = totalN = hitN = perfectStreak = totalSpawned = 0;
+  lives = MAX_LIVES;
+  tiles = []; ripples = []; feedbacks = []; particles = [];
+  laneDown = [false,false,false,false];
+  shakePow = shakeX = shakeY = 0;
+  newBest = false;
+
+  getAC();
+  countdownEnd = performance.now() + 3000;
+  state = 'countdown';
+}
+
+function pressLane(ln) {
+  let cx = fX + ln*lW + lW/2;
+  let nowMs = (audioCtx.currentTime - songStartAC) * 1000;
+  let best = null, bestDiff = Infinity;
+  
+  for (let t of tiles) {
+    if (t.lane !== ln || t.state !== 'fall') continue;
+    let diff = Math.abs(nowMs - t.hitTime);
+    if (diff < bestDiff || (diff === bestDiff && t.hitTime > (best ? best.hitTime : 0))) {
+      bestDiff = diff; best = t;
+    }
+  }
+  
+  if (best && bestDiff < INPUT_MS) {
+    let perfect = bestDiff < PERF_MS, good = bestDiff < GOOD_MS;
+    best.state = 'hit'; best.age = 0; best.alpha = 1; best.scale = 1;
+    combo++; maxCombo = Math.max(maxCombo, combo); hitN++; totalN++;
+    
+    let mult = combo >= 60 ? 4 : combo >= 30 ? 3 : combo >= 10 ? 2 : 1;
+    score += (perfect ? 100 : good ? 60 : 30) * mult;
+    
+    if (perfect) { perfectStreak++; spawnPerfectParticles(cx, hitY); } 
+    else perfectStreak = 0;
+    
+    if (combo > 0 && combo % 30 === 0 && lives < MAX_LIVES) lives++;
+    
+    addFeedback(perfect ? 'Perfect!' : good ? 'Good' : 'OK', cx, hitY-40, perfect ? '#ffffff' : good ? '#b8d4ee' : '#8098b0');
+    addRipple(cx, hitY, perfect);
+    playNote(best.freq, perfect ? 0.9 : 0.75);
+  } else {
+    playNote(currentSong.laneFreq[ln], 0.22);
+    addRipple(cx, hitY, false);
+    perfectStreak = 0;
+  }
+}
+
+function spawnPerfectParticles(x, y) {
+  for (let i = 0; i < 12; i++) {
+    let a = Math.random() * Math.PI * 2, s = 1.5 + Math.random() * 4;
+    particles.push({x, y, vx:Math.cos(a)*s, vy:Math.sin(a)*s - 2, life:500, maxLife:500, size:1.5+Math.random()*2});
+  }
+}
+
+function addFeedback(text, x, y, color) { feedbacks.push({text,x,y,color,alpha:1,vy:-1,life:800,maxLife:800}); }
+function addRipple(x, y, perfect) { ripples.push({x,y,r:0,maxR:lW*0.6,alpha:perfect?1:0.6,life:350,maxLife:350,perfect}); }
+
+function update(dt) {
+  if (state === 'countdown') {
+    if (performance.now() >= countdownEnd) {
+      songStartAC = audioCtx.currentTime;
+      songStart = performance.now();
+      state = 'playing';
+    }
+    return;
+  }
+  if (state !== 'playing') return;
+
+  bgHue += dt * 0.001;
+  let nowMs = (audioCtx.currentTime - songStartAC) * 1000;
+
+  // Spawner
+  while (true) {
+    let idx = totalSpawned % songNotes.length;
+    let loopN = Math.floor(totalSpawned / songNotes.length);
+    let hitAt = songNotes[idx].hitTime + loopN * totalSongMs;
+    if (nowMs + leadTime < hitAt) break;
+    tiles.push({lane:songNotes[idx].lane, freq:songNotes[idx].freq, hitTime:hitAt, y:-TILE_H, state:'fall', age:0, alpha:1, scale:1});
+    totalSpawned++;
+  }
+
+  // Update Tiles
+  tiles.forEach(t => {
+    if (t.state === 'fall') {
+      t.y = hitY - ((t.hitTime - nowMs) / FALL_DURATION_MS) * hitY;
+      if (nowMs - t.hitTime > INPUT_MS) {
+        t.state = 'miss'; combo = 0; perfectStreak = 0; totalN++; lives--;
+        shakePow = Math.max(shakePow, 8);
+        addFeedback('Miss', fX+t.lane*lW+lW/2, hitY-40, '#ff4444');
+        if (lives <= 0) setTimeout(() => { if (state==='playing') { newBest = saveBest(SONGS.indexOf(currentSong), score); state = 'over'; } }, 300);
+      }
+    }
+    if (t.state === 'miss') { t.y += hitY * dt / FALL_DURATION_MS; t.alpha = Math.max(0, t.alpha - dt/200); }
+    if (t.state === 'hit') { t.age += dt; let p = Math.min(1, t.age/150); t.scale = 1+p*0.15; t.alpha = 1-p; }
+  });
+
+  tiles = tiles.filter(t => (t.state!=='hit' || t.age<=150) && (t.state!=='miss' || t.y<H+50));
+  
+  ripples.forEach(r => { r.life -= dt; r.r = r.maxR*(1-r.life/r.maxLife); r.alpha = (r.life/r.maxLife)*(r.perfect?0.8:0.4); });
+  ripples = ripples.filter(r => r.life>0);
+  
+  feedbacks.forEach(f => { f.life -= dt; f.y += f.vy*dt/16; f.alpha = Math.min(1, f.life/(f.maxLife*0.5)); });
+  feedbacks = feedbacks.filter(f => f.life>0);
+
+  if (shakePow > 0.5) { shakeX = (Math.random()-0.5)*shakePow*2; shakeY = (Math.random()-0.5)*shakePow; shakePow *= 0.8; } 
+  else { shakeX = shakeY = shakePow = 0; }
+
+  particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.1; p.vx *= 0.96; p.life -= dt; });
+  particles = particles.filter(p => p.life>0);
+
+  dispScore += (score - dispScore) * 0.1;
+}
+
+// ── Rendering functions ──────────────────────────────────────────────────────
+function renderBG() {
+  let g = ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0, `hsl(${200+(bgHue%40)}, 40%, 8%)`);
+  g.addColorStop(1, `hsl(${215+(bgHue%30)}, 45%, 6%)`);
+  ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+}
+
+function renderField() {
+  for (let i=0; i<4; i++) {
+    ctx.fillStyle = i%2===0 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.01)';
+    ctx.fillRect(fX+i*lW, 0, lW, H);
+  }
+  ctx.strokeStyle='rgba(100,150,200,0.3)'; ctx.lineWidth=1;
+  for (let i=1; i<4; i++) { ctx.beginPath(); ctx.moveTo(fX+i*lW,0); ctx.lineTo(fX+i*lW,H); ctx.stroke(); }
+  
+  ctx.fillStyle = 'rgba(74, 144, 224, 0.8)';
+  ctx.fillRect(fX, hitY-2, fW, 4);
+
+  ctx.font='bold 14px Arial'; ctx.textAlign='center';
+  for (let i=0; i<4; i++) {
+    let cx = fX+i*lW+lW/2;
+    ctx.fillStyle = laneDown[i] ? '#4a90e0' : 'rgba(255,255,255,0.3)';
+    ctx.fillText(KEY_LABEL[i], cx, hitY+30);
+  }
+}
+
+function renderTiles() {
+  tiles.forEach(t => {
+    if (t.alpha <= 0.05) return;
+    let cx = fX+t.lane*lW + lW/2, cy = t.y + TILE_H/2;
+    ctx.save(); ctx.globalAlpha = t.alpha;
+    ctx.translate(cx, cy); ctx.scale(t.scale, t.scale); ctx.translate(-cx, -cy);
+    
+    let glow = (perfectStreak >= 10 && t.state === 'fall');
+    if (glow) { ctx.shadowBlur = 20; ctx.shadowColor = '#4a90e0'; }
+    
+    ctx.fillStyle = t.state === 'miss' ? '#501010' : glow ? '#1e3c5c' : '#1a2e46';
+    rrect(fX+t.lane*lW+5, t.y, lW-10, TILE_H, 10); ctx.fill();
+    ctx.shadowBlur = 0;
+    
+    ctx.strokeStyle = glow ? '#4a90e0' : 'rgba(255,255,255,0.2)';
+    ctx.lineWidth = 2; ctx.stroke();
+    ctx.restore();
+  });
+}
+
+function glassPanel(px, py, pw, ph) {
+  ctx.fillStyle='rgba(10,20,35,0.9)'; rrect(px,py,pw,ph,15); ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,0.1)'; rrect(px,py,pw,ph,15); ctx.stroke();
+}
+
+function renderHUD() {
+  ctx.textAlign='center';
+  ctx.fillStyle='#fff'; ctx.font='bold 32px Arial';
+  ctx.fillText(Math.floor(dispScore).toString().padStart(6,'0'), W/2, 40);
+  
+  if (combo > 1) {
+    ctx.fillStyle = combo > 30 ? '#ffd700' : '#4a90e0';
+    ctx.font = 'italic 20px Arial';
+    ctx.fillText(combo + ' Combo', W/2, 70);
+  }
+  
+  ctx.font='20px Arial'; ctx.textAlign='left';
+  for (let i=0; i<MAX_LIVES; i++) {
+    ctx.fillStyle = i < lives ? '#ff4444' : '#333';
+    ctx.fillText('♥', fX+fW+20+(i*25), 40);
+  }
+}
+
+function renderCountdown() {
+  renderBG(); renderField();
+  let msLeft = countdownEnd - performance.now();
+  let sec = Math.ceil(msLeft / 1000);
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 80px Arial'; ctx.textAlign='center';
+  ctx.fillText(sec > 0 ? sec : 'GO!', W/2, H/2);
+}
+
+function renderMenu() {
+  renderBG();
+  let pw = Math.min(500,W*0.9), ph = 500, px = (W-pw)/2, py = (H-ph)/2;
+  glassPanel(px, py, pw, ph);
+  
+  ctx.fillStyle='#fff'; ctx.font='bold 40px Arial'; ctx.textAlign='center';
+  ctx.fillText('Magic Tiles', W/2, py+60);
+  
+  menuCardRects = [];
+  SONGS.forEach((s, i) => {
+    let cy = py + 120 + i*90;
+    menuCardRects.push({x:px+20, y:cy, w:pw-40, h:80});
+    ctx.fillStyle = selectedSong === i ? '#1e3c5c' : '#0d1b2a';
+    rrect(px+20, cy, pw-40, 80, 10); ctx.fill();
+    ctx.strokeStyle = selectedSong === i ? '#4a90e0' : '#333'; ctx.stroke();
+    
+    ctx.fillStyle = s.color; rrect(px+20, cy, 8, 80, 4); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 24px Arial'; ctx.textAlign='left';
+    ctx.fillText(s.name, px+50, cy+35);
+    ctx.fillStyle = '#aaa'; ctx.font = '16px Arial';
+    ctx.fillText(s.artist, px+50, cy+60);
+    
+    let best = getBest(i);
+    if (best > 0) {
+      ctx.fillStyle = '#ffd700'; ctx.textAlign='right'; ctx.font='14px Arial';
+      ctx.fillText('Best: ' + best, px+pw-30, cy+45);
+    }
+  });
+}
+
+function renderOver() {
+  ctx.fillStyle='rgba(0,0,0,0.8)'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#fff'; ctx.font='bold 50px Arial'; ctx.textAlign='center';
+  ctx.fillText('Game Over', W/2, H/2-50);
+  ctx.font='30px Arial'; ctx.fillText('Score: ' + score, W/2, H/2+10);
+  ctx.font='20px Arial'; ctx.fillStyle='#aaa'; ctx.fillText('Tap to return to menu', W/2, H/2+60);
+}
+
+function render() {
+  ctx.clearRect(0,0,W,H);
+  if (state === 'menu') { renderMenu(); return; }
+  if (state === 'countdown') { renderCountdown(); return; }
+  
+  ctx.save(); ctx.translate(shakeX, shakeY);
+  renderBG(); renderField(); renderTiles();
+  
+  particles.forEach(p => {
+    ctx.fillStyle = 'rgba(255,255,255,'+(p.life/p.maxLife)+')';
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+  });
+  
+  ripples.forEach(r => {
+    ctx.strokeStyle = 'rgba(100,200,255,'+r.alpha+')'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, Math.PI*2); ctx.stroke();
+  });
+  
+  feedbacks.forEach(f => {
+    ctx.fillStyle = f.color; ctx.globalAlpha = f.alpha; ctx.font='italic 20px Arial';
+    ctx.fillText(f.text, f.x, f.y);
+  });
+  
+  ctx.restore();
+  renderHUD();
+  if (state === 'over') renderOver();
+}
+
+let lastTs = performance.now();
+function loop(ts) {
+  let dt = Math.min(ts - lastTs, 50);
+  lastTs = ts;
+  update(dt);
+  render();
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+</script>
+</body>
+</html>

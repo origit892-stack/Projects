@@ -1,0 +1,17 @@
+{
+  "name": "the-dungeon-crawler",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.1"
+  }
+}

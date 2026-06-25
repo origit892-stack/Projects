@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gravity Runner</title>
+    <script type="module" crossorigin src="./assets/index-CN-SL8B6.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-x6BW2nFY.css">
+  </head>
+  <body>
+    <div id="game-ui">
+      <div id="hud">
+        <div id="score">Score: 0</div>
+        <div id="coins">Coins: 0</div>
+        <div id="turbo" class="hidden">TURBO</div>
+      </div>
+      <div id="hint">Space</div>
+    </div>
+
+    <div id="damage-flash"></div>
+
+    <div id="start-screen" role="dialog" aria-modal="true">
+      <div class="panel start-panel">
+        <h1>Gravity Runner</h1>
+        <p>Space מחליף נתיב. אסוף מטבעות, דרוך על ירוק לטורבו, ושרוד את התעלה.</p>
+        <p class="small">6 מטבעות מצילים אותך מפגיעה אחת. בטורבו אתה חסין ומפוצץ מכשולים.</p>
+        <button id="start-button" type="button">התחל</button>
+      </div>
+    </div>
+
+    <div id="game-over" class="hidden" role="dialog" aria-modal="true">
+      <div class="panel">
+        <h1>Game Over</h1>
+        <p id="final-score">Score: 0</p>
+        <button id="retry-button" type="button">נסה שוב</button>
+      </div>
+    </div>
+
+  </body>
+</html>

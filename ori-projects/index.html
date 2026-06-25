@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ori Projects Gallery</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg: #070b13;
+      --panel: rgba(15, 23, 42, 0.72);
+      --line: rgba(226, 232, 240, 0.14);
+      --text: #f8fafc;
+      --muted: #a9b8cc;
+      --cyan: #67e8f9;
+      --green: #86efac;
+      --gold: #facc15;
+      --pink: #fb7185;
+      --blue: #93c5fd;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(103, 232, 249, 0.18), transparent 28rem),
+        radial-gradient(circle at 86% 18%, rgba(251, 113, 133, 0.14), transparent 30rem),
+        radial-gradient(circle at 52% 90%, rgba(134, 239, 172, 0.12), transparent 34rem),
+        linear-gradient(145deg, #070b13 0%, #101827 54%, #070b13 100%);
+      color: var(--text);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0;
+    }
+
+    header {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid rgba(103, 232, 249, 0.28);
+      border-radius: 999px;
+      background: rgba(103, 232, 249, 0.08);
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 880px;
+      margin: 0;
+      font-size: clamp(46px, 8vw, 88px);
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.52);
+      backdrop-filter: blur(16px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      margin: 34px 0 14px;
+      color: #dbeafe;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 238px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(18px);
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(248, 250, 252, 0.1);
+      font-size: 24px;
+    }
+
+    .tag {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .age {
+      padding: 4px 8px;
+      border: 1px solid rgba(226, 232, 240, 0.14);
+      border-radius: 999px;
+      background: rgba(248, 250, 252, 0.07);
+    }
+
+    .age--new {
+      border-color: rgba(134, 239, 172, 0.36);
+      color: var(--green);
+      background: rgba(134, 239, 172, 0.1);
+    }
+
+    .age--old {
+      border-color: rgba(250, 204, 21, 0.28);
+      color: var(--gold);
+      background: rgba(250, 204, 21, 0.08);
+    }
+
+    h2 {
+      margin: 18px 0 8px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      margin-top: 18px;
+      padding: 0 16px;
+      border-radius: 14px;
+      background: #f8fafc;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 950;
+    }
+
+    .primary {
+      outline: 2px solid rgba(103, 232, 249, 0.36);
+      box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.16), 0 24px 80px rgba(103, 232, 249, 0.08);
+    }
+
+    footer {
+      margin-top: 42px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">Ori Projects</div>
+      <h1>One gallery for every project.</h1>
+      <p class="lead">Games, Python experiments, the coffee tycoon, Color Complete, and the trading dashboard. Everything is separated into its own project URL, gathered here in one clean place.</p>
+    </header>
+
+    <section class="stats">
+      <div class="stat"><strong>fun!</strong><span>playable pages and apps</span></div>
+      <div class="stat"><strong>4</strong><span>live services</span></div>
+      <div class="stat"><strong>1</strong><span>project gallery</span></div>
+    </section>
+
+    <h3 class="section-title">Main Projects</h3>
+    <section class="grid">
+      <article class="card primary" data-uploaded="2026-06-01">
+        <div>
+          <div class="top"><div class="icon">☕</div><div class="tag">Canvas Tycoon</div></div>
+          <h2>Coffee Manager</h2>
+          <p>Campaign-based coffee stand game with stages, tournaments, robot upgrades, inventory, and QA autopilot.</p>
+        </div>
+        <a href="https://coffee-manager.ganz26.top/">Open Coffee Manager</a>
+      </article>
+
+      <article class="card primary" data-uploaded="2026-06-01">
+        <div>
+          <div class="top"><div class="icon">🎮</div><div class="tag">Games Hub</div></div>
+          <h2>Games Gallery</h2>
+          <p>The full games collection: arcade HTML games, Dungeon Crawler, Stick Fight, Snake, Tetris, and more.</p>
+        </div>
+        <a href="https://games.ganz26.top/">Open Games</a>
+      </article>
+
+      <article class="card" data-uploaded="2026-06-01">
+        <div>
+          <div class="top"><div class="icon">📊</div><div class="tag">Streamlit</div></div>
+          <h2>Trading AI</h2>
+          <p>Market scanner dashboard with technical overlays, signals, risk/reward, and live chart analysis.</p>
+        </div>
+        <a href="https://trading-ai.ganz26.top/">Open Trading AI</a>
+      </article>
+
+      <article class="card" data-uploaded="2026-06-01">
+        <div>
+          <div class="top"><div class="icon">🐍</div><div class="tag">Python</div></div>
+          <h2>Python Projects</h2>
+          <p>Beginner Tkinter and Turtle projects hosted as a source gallery.</p>
+        </div>
+        <a href="https://python-projects.ganz26.top/">Open Python Projects</a>
+      </article>
+
+      <article class="card" data-uploaded="2026-06-01">
+        <div>
+          <div class="top"><div class="icon">🎨</div><div class="tag">Python / WebSocket</div></div>
+          <h2>Color Complete</h2>
+          <p>Collaborative drawing party game, deployed as its own Python-backed project.</p>
+        </div>
+        <a href="https://color-complete.ganz26.top/">Open Color Complete</a>
+      </article>
+    </section>
+
+    <h3 class="section-title">Direct Game Links</h3>
+    <section class="grid">
+      <article class="card primary" data-gallery-slug="deep-space-survivor" data-uploaded="2026-06-24">
+        <div><div class="top"><div class="icon">🚀</div><div class="tag">3D Space Action</div></div><h2>Deep Space Survivor</h2><p>A cinematic Three.js space survival game with lasers, asteroids, repair crystals, and a deep-space backdrop.</p></div>
+        <a href="./deep-space-survivor/">Open Deep Space Survivor</a>
+      </article>
+
+      <article class="card primary" data-gallery-slug="billiards-3d" data-uploaded="2026-06-24">
+        <div><div class="top"><div class="icon">🎱</div><div class="tag">Sports</div></div><h2>3D Billiards</h2><p>A cinematic 3D eight-ball billiards game with local and AI modes.</p></div>
+        <a href="./billiards-3d/">Open 3D Billiards</a>
+      </article>
+
+      <article class="card primary" data-gallery-slug="hookline-runner" data-uploaded="2026-06-18">
+        <div><div class="top"><div class="icon">🪝</div><div class="tag">3D Runner</div></div><h2>Hookline Runner</h2><p>A 3D grappling-hook endless runner with combo chains, shop upgrades, missions, bosses, and shifting biomes.</p></div>
+        <a href="./hookline-runner/">Open Hookline Runner</a>
+      </article>
+
+      <article class="card primary" data-gallery-slug="billiards-3d" data-uploaded="2026-06-24">
+        <div><div class="top"><div class="icon">🎱</div><div class="tag">Three.js 8-Ball</div></div><h2>Billiards 3D</h2><p>Realistic Three.js billiards with local two-player controls, player-vs-AI mode, charge shots, rules, pockets, and procedural sound.</p></div>
+        <a href="./billiards-3d/">Open Billiards 3D</a>
+      </article>
+
+      <article class="card primary" data-gallery-slug="gravity-runner" data-uploaded="2026-06-15">
+        <div><div class="top"><div class="icon">⬢</div><div class="tag">3D Runner</div></div><h2>Gravity Runner</h2><p>A fast neon 3D space runner with lane jumps, boosts, coins, and electronic audio.</p></div>
+        <a href="./gravity-runner/">Open Gravity Runner</a>
+      </article>
+
+      <article class="card primary" data-uploaded="2026-06-15">
+        <div><div class="top"><div class="icon">🔦</div><div class="tag">3D Horror</div></div><h2>Blind Escape</h2><p>First-person Three.js horror maze with keys, monsters, flashlights, and creepy procedural sound.</p></div>
+        <a href="./blind-escape/">Open Blind Escape</a>
+      </article>
+
+      <article class="card" data-uploaded="2026-06-01">
+        <div><div class="top"><div class="icon">⚔️</div><div class="tag">Online RPG</div></div><h2>Dungeon Crawler</h2><p>Create a party code and play online with friends.</p></div>
+        <a href="https://dungeon-crawler.ganz26.top/">Open Dungeon Crawler</a>
+      </article>
+
+      <article class="card" data-uploaded="2026-06-01">
+        <div><div class="top"><div class="icon">🥊</div><div class="tag">Online Fighter</div></div><h2>Stick Fight</h2><p>Multiplayer stick-fight arena served by its own Node service.</p></div>
+        <a href="https://stick-fight.ganz26.top/">Open Stick Fight</a>
+      </article>
+
+      <article class="card" data-uploaded="2026-06-01">
+        <div><div class="top"><div class="icon">🐍</div><div class="tag">Classic</div></div><h2>Snake</h2><p>Quick direct link from the games collection.</p></div>
+        <a href="https://games.ganz26.top/snake.html">Open Snake</a>
+      </article>
+
+      <article class="card" data-uploaded="2026-06-01">
+        <div><div class="top"><div class="icon">🧱</div><div class="tag">Puzzle</div></div><h2>Tetris</h2><p>Classic block stacking, available in the games hub.</p></div>
+        <a href="https://games.ganz26.top/tetris.html">Open Tetris</a>
+      </article>
+
+      <article class="card" data-uploaded="2026-06-01">
+        <div><div class="top"><div class="icon">🚀</div><div class="tag">Arcade</div></div><h2>Nexus Strike</h2><p>Fast arcade combat prototype from the games folder.</p></div>
+        <a href="https://games.ganz26.top/nexus-strike.html">Open Nexus Strike</a>
+      </article>
+
+      <article class="card" data-uploaded="2026-06-01">
+        <div><div class="top"><div class="icon">🔐</div><div class="tag">Puzzle</div></div><h2>Escape Room</h2><p>Sci-fi point-and-click escape room.</p></div>
+        <a href="https://games.ganz26.top/escape-room.html">Open Escape Room</a>
+      </article>
+    </section>
+
+    <footer>Hosted through Cloudflare Tunnel on webserver.</footer>
+  </main>
+  <script>
+    const DAY_MS = 24 * 60 * 60 * 1000;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    document.querySelectorAll("[data-uploaded]").forEach((card) => {
+      const uploaded = new Date(`${card.dataset.uploaded}T00:00:00`);
+      const days = Math.max(0, Math.floor((today - uploaded) / DAY_MS));
+      const isNew = days <= 7;
+      const text = days === 0 ? "Uploaded today" : `Uploaded ${days} day${days === 1 ? "" : "s"} ago`;
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      meta.innerHTML = `<span>${text}</span><span class="age ${isNew ? "age--new" : "age--old"}">${isNew ? "New" : "Old"}</span>`;
+      card.querySelector("p")?.after(meta);
+    });
+  </script>
+</body>
+</html>
