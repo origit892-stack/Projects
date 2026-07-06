@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>על מיזם MemoryLane AI</title>
+    <style>
+        :root {
+            --ink: #243332;
+            --muted: #5f6f6d;
+            --brand: #2a5c5a;
+            --accent: #d97736;
+            --soft: #eef4f1;
+            --paper: #ffffff;
+            --line: #d9e1df;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: var(--ink);
+            background: #f4f6f6;
+            line-height: 1.65;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 18px 48px;
+        }
+
+        .hero {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 34px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            font-weight: 700;
+            margin: 0 0 8px;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            color: var(--brand);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.15;
+        }
+
+        .lead {
+            max-width: 820px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.2rem;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 10px 18px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+
+        .button.primary {
+            background: var(--brand);
+            color: #fff;
+        }
+
+        .button.secondary {
+            color: var(--brand);
+            background: #fff;
+            border-color: var(--brand);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .card,
+        .section {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 22px;
+        }
+
+        .card h2,
+        .section h2 {
+            margin: 0 0 10px;
+            color: #1a3a38;
+            font-size: 1.25rem;
+        }
+
+        .card p,
+        .section p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .section {
+            margin-top: 18px;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        ul {
+            margin: 10px 0 0;
+            padding: 0 20px 0 0;
+            color: var(--muted);
+        }
+
+        li { margin: 8px 0; }
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .step {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .step strong {
+            display: block;
+            color: var(--brand);
+            margin-bottom: 6px;
+        }
+
+        .note {
+            margin-top: 18px;
+            padding: 16px;
+            background: #fff7ef;
+            border: 1px solid #edc9a8;
+            border-radius: 8px;
+            color: #7a4a20;
+        }
+
+        footer {
+            margin-top: 22px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 860px) {
+            .hero { padding: 24px; }
+            .grid,
+            .split,
+            .flow {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="hero">
+            <p class="eyebrow">מיזם נגישות, זיכרון וליווי לגיל השלישי</p>
+            <h1>MemoryLane AI</h1>
+            <p class="lead">
+                MemoryLane AI הוא מיזם דיגיטלי שמטרתו לעזור לאדם מבוגר להרגיש שמקשיבים לו, לזכור רגעים משמעותיים מחייו,
+                לקבל תזכורות חשובות, ולמצוא פעילויות קרובות בצורה רגועה וברורה.
+            </p>
+            <div class="actions">
+                <a class="button primary" href="./index.html">פתח את האפליקציה</a>
+                <a class="button secondary" href="#features">מה המיזם עושה?</a>
+            </div>
+        </section>
+
+        <section class="grid" id="features">
+            <article class="card">
+                <h2>שיחה אישית</h2>
+                <p>
+                    הצ'אט משוחח בעברית פשוטה וחמה, שואל שאלות המשך, ומעודד שיתוף זיכרונות בלי להציף את המשתמש.
+                </p>
+            </article>
+            <article class="card">
+                <h2>פעילויות לפי עיר</h2>
+                <p>
+                    המשתמש מזין כתובת או משתף מיקום, והמערכת מציגה עיר כללית בלבד ומחפשת פעילויות קרובות ורלוונטיות.
+                </p>
+            </article>
+            <article class="card">
+                <h2>תזכורות תרופות</h2>
+                <p>
+                    אפשר להוסיף תרופה ושעה, לקבל התראה בדפדפן, ולשמוע צליל תזכורת כשהגיע הזמן.
+                </p>
+            </article>
+        </section>
+
+        <section class="section split">
+            <div>
+                <h2>הבעיה שהמיזם בא לפתור</h2>
+                <p>
+                    הרבה קשישים מתמודדים עם בדידות, עומס מידע, קושי לזכור פעולות יומיומיות, וחוסר נגישות למידע מקומי.
+                    אתרים רגילים מציגים יותר מדי פרטים, כתובות לא ברורות, כפתורים קטנים או ניסוחים מלחיצים.
+                </p>
+            </div>
+            <div>
+                <h2>הגישה של MemoryLane</h2>
+                <ul>
+                    <li>שפה פשוטה, רגועה ולא טכנית.</li>
+                    <li>מיקום כללי לפי עיר, בלי להציג כתובת בית מדויקת.</li>
+                    <li>שיחה שממשיכה מהדברים שהמשתמש סיפר.</li>
+                    <li>פעולות ברורות: שליחה, עדכון כתובת, תזכורת, מחיקה.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>איך זה עובד?</h2>
+            <div class="flow">
+                <div class="step">
+                    <strong>1. מתחילים בשיחה</strong>
+                    המשתמש כותב שלום, מספר את שמו, ומשתף זיכרון או מחשבה.
+                </div>
+                <div class="step">
+                    <strong>2. מקבלים הקשבה</strong>
+                    MemoryLane שואל שאלה אחת בכל פעם, כדי לא להעמיס.
+                </div>
+                <div class="step">
+                    <strong>3. מוצאים פעילות</strong>
+                    מזינים עיר או כתובת, והמערכת מחפשת מקומות באזור.
+                </div>
+                <div class="step">
+                    <strong>4. מקבלים תזכורת</strong>
+                    מוסיפים תרופה ושעה, והדפדפן מתריע בזמן.
+                </div>
+            </div>
+        </section>
+
+        <section class="section split">
+            <div>
+                <h2>למי זה מתאים?</h2>
+                <p>
+                    לקשישים שחיים לבד או עם משפחה, לבני משפחה שרוצים לתת כלי תמיכה עדין, ולמסגרות קהילתיות שמחפשות
+                    דרך פשוטה לעודד שיחה, פעילות ושגרה.
+                </p>
+            </div>
+            <div>
+                <h2>עקרונות תכנון</h2>
+                <ul>
+                    <li>מעט טקסט בכל רגע.</li>
+                    <li>כפתורים גדולים וברורים.</li>
+                    <li>בלי לחשוף כתובת מדויקת כשמספיק להציג עיר.</li>
+                    <li>הסברים מרגיעים כשאין מידע זמין.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="note">
+            MemoryLane AI אינו מחליף רופא, מטפל או בן משפחה. הוא כלי עזר לשיחה, סדר יום, וזיהוי אפשרויות פעילות בסביבה.
+        </section>
+
+        <footer>
+            MemoryLane AI - מיזם אנושי קטן עם מטרה גדולה: לעזור לזיכרונות לקבל מקום.
+        </footer>
+    </main>
+</body>
+</html>

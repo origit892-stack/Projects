@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>MemoryLane AI</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f6f6; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #2a5c5a; text-align: center; margin-bottom: 20px; }
+        .main-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
+        .panel { background: #fafbfc; padding: 20px; border-radius: 6px; border: 1px solid #e1e4e6; display: flex; flex-direction: column; justify-content: space-between; min-height: 380px; }
+        .full-width-panel { background: #fafbfc; padding: 20px; border-radius: 6px; border: 1px solid #e1e4e6; margin-bottom: 25px; }
+        h3 { color: #1a3a38; margin-top: 0; border-bottom: 1px solid #e1e4e6; padding-bottom: 10px; }
+        .upload-zone { border: 2px dashed #2a5c5a; padding: 25px 10px; text-align: center; background: #fff; cursor: pointer; border-radius: 4px; margin-bottom: 15px; }
+        .chat-box { height: 300px; background: #fff; border: 1px solid #ddd; padding: 15px; overflow-y: auto; border-radius: 4px; margin-bottom: 15px; }
+        .message { margin-bottom: 12px; padding: 10px 14px; border-radius: 6px; max-width: 80%; line-height: 1.5; }
+        .user { background: #e6edea; margin-right: auto; text-align: right; }
+        .bot { background: #f1f1f1; margin-left: auto; text-align: left; }
+        .input-area { display: flex; gap: 10px; }
+        .input-area input { flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: 4px; min-width: 0; }
+        .btn { background: #2a5c5a; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        .btn-location { background: #d97736; margin-top: 10px; width: 100%; padding: 12px; }
+        .btn-action { padding: 6px 12px; font-size: 11pt; background: #2a5c5a; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-delete { background: #cc4444; }
+        .preview-img { max-width: 100%; max-height: 120px; margin-top: 10px; border-radius: 4px; display: none; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: right; }
+        th { background-color: #e6edea; color: #1a3a38; }
+        .med-alert { display: none; background: #ffdddd; border: 2px solid #cc4444; color: #993333; padding: 15px; border-radius: 6px; font-weight: bold; font-size: 16pt; margin-bottom: 20px; text-align: center; }
+        @media (max-width: 820px) {
+            body { padding: 10px; }
+            .container { padding: 15px; }
+            .main-layout { grid-template-columns: 1fr; }
+            .input-area { flex-direction: column; }
+            .message { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MemoryLane AI</h1>
+        <div id="medicationAlert" class="med-alert">
+            🚨 תזכורת תרופה דחופה: הגיע הזמן לקחת <span id="alertMedName"></span>!
+            <br><button class="btn" style="background:#cc4444; margin-top:10px;" onclick="dismissAlert()">אישרתי, לקחתי</button>
+        </div>
+
+        <div class="main-layout">
+            <div class="panel">
+                <div>
+                    <h3>👥 אזור המשפחה (מדיה ונגישות)</h3>
+                    <p>העלו תמונה מהעבר כדי שה-AI ינתח אותה ויעורר שיחה:</p>
+                    <div class="upload-zone" onclick="document.getElementById('imageInput').click()">
+                        <p id="uploadText">📸 לחצו כאן לבחירת תמונה</p>
+                        <input type="file" id="imageInput" accept="image/*" style="display:none">
+                        <img id="previewImg" class="preview-img" alt="תצוגה מקדימה">
+                    </div>
+                    <button class="btn btn-location" onclick="shareLocation()">שתף מיקום להצעות חוגים</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div>
+                    <h3>💬 שיחה עם MemoryLane</h3>
+                    <div id="chatBox" class="chat-box">
+                        <div class="message bot">שלום, אני MemoryLane. איך קוראים לך?</div>
+                    </div>
+                </div>
+                <div class="input-area">
+                    <input id="messageInput" type="text" placeholder="כתבו כאן הודעה...">
+                    <button class="btn" onclick="sendMessage()">שלח</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="full-width-panel">
+            <h3>📍 חוגים ופעילויות באזור</h3>
+            <div class="input-area">
+                <input id="addressInput" type="text" placeholder="הכניסו כתובת או אזור מגורים">
+                <button class="btn" onclick="saveAddress()">עדכן כתובת</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>שם הפעילות</th>
+                        <th>מיקום</th>
+                        <th>זמן</th>
+                        <th>פעולה</th>
+                    </tr>
+                </thead>
+                <tbody id="classesTable"></tbody>
+            </table>
+        </div>
+
+        <div class="full-width-panel">
+            <h3>💊 תזכורות תרופות</h3>
+            <div class="input-area">
+                <input id="medName" type="text" placeholder="שם התרופה">
+                <input id="medTime" type="time">
+                <button class="btn" onclick="addMedication()">הוסף תזכורת</button>
+            </div>
+            <button class="btn btn-location" onclick="enablePushNotifications()">אפשר התרעות גם כשהאתר סגור</button>
+            <button class="btn btn-location" onclick="sendTestPush()">בדיקת התרעה</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>תרופה</th>
+                        <th>שעה</th>
+                        <th>פעולה</th>
+                    </tr>
+                </thead>
+                <tbody id="medicationsTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chatBox');
+        const messageInput = document.getElementById('messageInput');
+        const imageInput = document.getElementById('imageInput');
+        const previewImg = document.getElementById('previewImg');
+        let lastAlertMinute = '';
+        let audioContext;
+
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+            for (let i = 0; i < rawData.length; i += 1) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+        }
+
+        function addMessage(text, type) {
+            const div = document.createElement('div');
+            div.className = 'message ' + type;
+            div.textContent = text;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function playAlertSound() {
+            try {
+                audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+                oscillator.frequency.setValueAtTime(660, audioContext.currentTime + 0.22);
+                gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.25, audioContext.currentTime + 0.03);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.55);
+                oscillator.connect(gain);
+                gain.connect(audioContext.destination);
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.6);
+            } catch (error) {
+                console.warn('Alert sound unavailable', error);
+            }
+        }
+
+        async function postJson(url, body) {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+            return response.json();
+        }
+
+        function cleanSearchLocation(location) {
+            const value = (location || '').trim();
+            const blocked = ['אין כתובת מלאה', 'כתובת לא זמינה', 'מיקום במפה', 'באזור הכתובת שהוזנה', 'מומלץ ליצור קשר'];
+            return !value || blocked.some((phrase) => value.includes(phrase)) ? '' : value;
+        }
+
+        function buildSearchUrl(item) {
+            const cleanLocation = cleanSearchLocation(item.location);
+            const query = [item.name || '', cleanLocation, 'יצירת קשר אתר רשמי'].filter(Boolean).join(' ').trim();
+            return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        }
+
+        function describeActivity(name) {
+            const text = (name || '').toLowerCase();
+            if (['מרכז תרבות', 'מרכז קהילתי'].some((word) => text.includes(word))) {
+                return 'מרכז קהילתי או תרבותי עם פעילויות קהילה, מפגשים, הרצאות וחוגים. כדאי לבדוק באתר או בטלפון מה מתאים לגיל השלישי.';
+            }
+            if (['תיאטרון', 'תאטרון', 'קאמרי', 'גשר', 'אופרה'].some((word) => text.includes(word))) {
+                return 'צפייה בהצגות, מופעים ופעילות תרבותית. כדאי לבדוק באתר זמני מופעים ונגישות.';
+            }
+            if (['ספרייה', 'ספריה'].some((word) => text.includes(word))) {
+                return 'מפגש שקט סביב ספרים, הרצאות, קריאה ופעילות קהילתית.';
+            }
+            return 'מקום קרוב שיכול להתאים לפעילות תרבותית או חברתית. כדאי לפתוח קישור ולבדוק פרטים.';
+        }
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            messageInput.value = '';
+            addMessage(message, 'user');
+            const data = await postJson('/api/chat', { message });
+            addMessage(data.reply || 'אני מקשיב לך, ספר לי עוד.', 'bot');
+        }
+
+        messageInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') sendMessage();
+        });
+
+        imageInput.addEventListener('change', () => {
+            const file = imageInput.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async () => {
+                previewImg.src = reader.result;
+                previewImg.style.display = 'inline-block';
+                document.getElementById('uploadText').textContent = 'התמונה נבחרה בהצלחה';
+                addMessage('העליתי תמונה.', 'user');
+                const dataUrl = reader.result;
+                const data = await postJson('/api/upload', {
+                    image: dataUrl.split(',')[1],
+                    mime_type: file.type || 'image/jpeg'
+                });
+                addMessage(data.reply || 'איזה יופי של תמונה! מה היא מזכירה לך?', 'bot');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        async function saveAddress() {
+            const address = document.getElementById('addressInput').value.trim();
+            if (!address) return;
+
+            const data = await postJson('/api/address', { address });
+            document.getElementById('addressInput').value = data.address || address;
+            renderClasses(data.classes || [], data.registered || []);
+            addMessage(data.reply || 'הכתובת עודכנה בהצלחה.', 'bot');
+        }
+
+        function shareLocation() {
+            if (!navigator.geolocation) {
+                addMessage('הדפדפן לא תומך בשיתוף מיקום.', 'bot');
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const data = await postJson('/api/location', {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                });
+                document.getElementById('addressInput').value = data.address || '';
+                renderClasses(data.classes || [], data.registered || []);
+                addMessage(data.reply || 'המיקום עודכן בהצלחה.', 'bot');
+            }, () => addMessage('לא הצלחתי לקבל את המיקום. אפשר להזין כתובת ידנית.', 'bot'));
+        }
+
+        function renderClasses(classes, registered) {
+            const table = document.getElementById('classesTable');
+            table.innerHTML = '';
+            if (!classes.length) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 4;
+                cell.textContent = 'לא מצאתי כרגע מקום קרוב עם פרטי קשר פתוחים. כדאי לנסות כתובת מדויקת יותר או לפנות למוקד העירוני באזור.';
+                row.appendChild(cell);
+                table.appendChild(row);
+                return;
+            }
+            classes.forEach((item) => {
+                const row = document.createElement('tr');
+                const isRegistered = registered.includes(item.id);
+                const nameCell = document.createElement('td');
+                const locationCell = document.createElement('td');
+                const timeCell = document.createElement('td');
+                const actionCell = document.createElement('td');
+                nameCell.textContent = item.name || 'מקום פעילות';
+                timeCell.textContent = item.time || 'מומלץ ליצור קשר לפני ההגעה';
+                actionCell.textContent = item.description || describeActivity(item.name);
+
+                const locationText = document.createElement('div');
+                locationText.textContent = item.phone ? `${item.location} | ${item.phone}` : item.location;
+                locationCell.appendChild(locationText);
+
+                if (item.map_url) {
+                    const mapLink = document.createElement('a');
+                    mapLink.className = 'btn-action';
+                    mapLink.href = item.map_url;
+                    mapLink.target = '_blank';
+                    mapLink.rel = 'noopener';
+                    mapLink.textContent = 'מיקום במפה';
+                    mapLink.style.marginInlineEnd = '6px';
+                    mapLink.style.marginTop = '8px';
+                    mapLink.style.display = 'inline-block';
+                    locationCell.appendChild(mapLink);
+                }
+
+                const contactLink = document.createElement('a');
+                contactLink.className = 'btn-action';
+                contactLink.href = item.contact_url || buildSearchUrl(item);
+                contactLink.target = '_blank';
+                contactLink.rel = 'noopener';
+                contactLink.textContent = item.contact_url ? (isRegistered ? 'פתח פרטי קשר' : 'יצירת קשר') : 'חיפוש אתר';
+                contactLink.style.marginTop = '8px';
+                contactLink.style.display = 'inline-block';
+                contactLink.addEventListener('click', async () => {
+                    await postJson('/api/classes/register', { class_id: item.id });
+                });
+                locationCell.appendChild(contactLink);
+
+                row.append(nameCell, locationCell, timeCell, actionCell);
+                table.appendChild(row);
+            });
+        }
+
+        async function addMedication() {
+            const name = document.getElementById('medName').value.trim();
+            const time = document.getElementById('medTime').value;
+            if (!name || !time) return;
+
+            await postJson('/api/medications/add', { name, time });
+            document.getElementById('medName').value = '';
+            document.getElementById('medTime').value = '';
+            loadMedications();
+        }
+
+        async function deleteMedication(index) {
+            await postJson('/api/medications/delete', { index });
+            loadMedications();
+        }
+
+        function renderMedications(medications) {
+            const table = document.getElementById('medicationsTable');
+            table.innerHTML = '';
+            medications.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${item.time}</td>
+                    <td><button class="btn-action btn-delete" onclick="deleteMedication(${index})">מחק</button></td>
+                `;
+                table.appendChild(row);
+            });
+        }
+
+        async function loadMedications() {
+            const response = await fetch('/api/medications');
+            renderMedications(await response.json());
+        }
+
+        async function initAddress() {
+            const response = await fetch('/api/get_address');
+            const data = await response.json();
+            document.getElementById('addressInput').value = data.address || '';
+            renderClasses(data.classes || [], data.registered || []);
+        }
+
+        async function checkMedicationAlert() {
+            const response = await fetch('/api/medications');
+            const medications = await response.json();
+            const now = new Date();
+            const current = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            const due = medications.find((item) => item.time === current);
+            if (due && lastAlertMinute !== current) {
+                lastAlertMinute = current;
+                document.getElementById('alertMedName').textContent = due.name;
+                document.getElementById('medicationAlert').style.display = 'block';
+                playAlertSound();
+                if (Notification.permission === 'granted') {
+                    new Notification('תזכורת תרופה - MemoryLane AI', {
+                        body: `הגיע הזמן לקחת ${due.name}.`,
+                        requireInteraction: true,
+                        silent: false,
+                        vibrate: [240, 120, 240]
+                    });
+                }
+            }
+        }
+
+        function dismissAlert() {
+            document.getElementById('medicationAlert').style.display = 'none';
+        }
+
+        async function enablePushNotifications() {
+            if (!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)) {
+                addMessage('הדפדפן הזה לא תומך בהתרעות כשהאתר סגור.', 'bot');
+                return;
+            }
+
+            const permission = await Notification.requestPermission();
+            if (permission !== 'granted') {
+                addMessage('לא ניתן לשלוח התרעות בלי אישור מהדפדפן.', 'bot');
+                return;
+            }
+
+            const keyResponse = await fetch('/api/push/public-key');
+            const keyData = await keyResponse.json();
+            if (!keyData.enabled || !keyData.publicKey) {
+                addMessage('האישור התקבל. כדי שהתרעות יעבדו גם כשהאתר סגור צריך להגדיר VAPID_PUBLIC_KEY ו-VAPID_PRIVATE_KEY בשרת.', 'bot');
+                return;
+            }
+
+            const registration = await navigator.serviceWorker.register('/sw.js');
+            const subscription = await registration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: urlBase64ToUint8Array(keyData.publicKey)
+            });
+            await postJson('/api/push/subscribe', subscription);
+            addMessage('התרעות הופעלו. תזכורות תרופות יוכלו להגיע גם כשהאתר סגור.', 'bot');
+        }
+
+        async function sendTestPush() {
+            playAlertSound();
+            if (Notification.permission === 'granted') {
+                new Notification('בדיקת התרעה - MemoryLane AI', {
+                    body: 'אם שמעת צליל וראית הודעה, ההתרעה המקומית עובדת.',
+                    requireInteraction: true,
+                    silent: false
+                });
+            }
+            const data = await postJson('/api/push/test', {});
+            addMessage(data.sent ? 'נשלחה גם התרעת Push דרך השרת.' : 'הצליל עובד. Push כשהאתר סגור עדיין דורש הרשאה ומפתחות VAPID פעילים.', 'bot');
+        }
+
+        initAddress();
+        loadMedications();
+        setInterval(checkMedicationAlert, 30000);
+    </script>
+</body>
+</html>
