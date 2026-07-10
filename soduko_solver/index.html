@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ebe3d6" />
+    <meta
+      name="description"
+      content="Sudoku Atelier — פותר סודוקו חכם, מהיר ויפהפה."
+    />
+    <title>Sudoku Atelier — פותר סודוקו</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Sudoku Atelier — דף הבית">
+        <span class="brand-mark" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </span>
+        <span>
+          <strong>SUDOKU</strong>
+          <small>ATELIER</small>
+        </span>
+      </a>
+
+      <div class="header-note">
+        <span class="live-dot"></span>
+        מנוע פתרון מוכן
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow"><span>01</span> הסטודיו לפתרון</p>
+        <h1 id="page-title">לכל חידה<br /><em>יש פתרון.</em></h1>
+        <p class="lede">
+          הזינו את המספרים שכבר קיימים בלוח.<br />אנחנו נדאג לכל השאר.
+        </p>
+        <div class="scribble" aria-hidden="true">פשוט. חכם. מדויק.</div>
+      </section>
+
+      <section class="workspace" aria-label="אזור פתרון הסודוקו">
+        <div class="board-column">
+          <div class="board-topline">
+            <div>
+              <span class="section-number">02</span>
+              <h2>הלוח שלכם</h2>
+            </div>
+            <div class="status-pill" id="statusPill" role="status" aria-live="polite">
+              <span></span>
+              <b id="filledCount">0</b>/81 משבצות
+            </div>
+          </div>
+
+          <div class="board-shell">
+            <div class="corner-label corner-label--top" aria-hidden="true">9 × 9</div>
+            <div id="sudokuBoard" class="sudoku-board" role="grid" aria-label="לוח סודוקו 9 על 9"></div>
+            <div class="corner-label corner-label--bottom" aria-hidden="true">NO. 092</div>
+          </div>
+
+          <p class="keyboard-hint">
+            <kbd>1–9</kbd> להזנה &nbsp;·&nbsp; <kbd>↑ ↓ ← →</kbd> לתנועה &nbsp;·&nbsp;
+            <kbd>⌫</kbd> למחיקה
+          </p>
+        </div>
+
+        <aside class="control-panel" aria-label="כלי לוח">
+          <div class="panel-heading">
+            <span class="section-number section-number--light">03</span>
+            <p>מוכנים?</p>
+            <h2>פותרים<br />ברגע.</h2>
+          </div>
+
+          <button class="solve-button" id="solveButton" type="button">
+            <span class="solve-button__text">
+              <small>הפעילו את הקסם</small>
+              <strong>פתרו את הלוח</strong>
+            </span>
+            <span class="solve-button__icon" aria-hidden="true">↙</span>
+          </button>
+
+          <div class="tool-grid">
+            <button class="tool-button" id="undoButton" type="button" disabled>
+              <span aria-hidden="true">↶</span>
+              ביטול
+            </button>
+            <button class="tool-button" id="clearButton" type="button">
+              <span aria-hidden="true">×</span>
+              ניקוי
+            </button>
+            <button class="tool-button tool-button--wide" id="exampleButton" type="button">
+              <span aria-hidden="true">✦</span>
+              נסו חידה לדוגמה
+            </button>
+          </div>
+
+          <div class="panel-tip">
+            <span>טיפ קטן</span>
+            <p>אפשר להדביק 81 ספרות ישירות ללוח — נקודות ואפסים ייחשבו כמשבצות ריקות.</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <span>נבנה למי שאוהב אתגרים.</span>
+      <span class="footer-rule"></span>
+      <span>2026</span>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="assertive">
+      <span class="toast-icon" id="toastIcon">!</span>
+      <div>
+        <strong id="toastTitle">שימו לב</strong>
+        <p id="toastMessage"></p>
+      </div>
+      <button id="toastClose" aria-label="סגירת הודעה">×</button>
+    </div>
+
+    <div class="celebration" id="celebration" aria-hidden="true"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

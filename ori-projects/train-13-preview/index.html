@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090b0b" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="description" content="רכבת 13 — משחק אימה פסיכולוגי על רכבת לילה שלא עוצרת." />
+    <title>רכבת 13 — אל תפספסו את התחנה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <section class="start-screen screen is-visible" id="startScreen" aria-labelledby="gameTitle">
+      <div class="start-backdrop" aria-hidden="true">
+        <div class="rail rail--one"></div>
+        <div class="rail rail--two"></div>
+        <div class="passing-light passing-light--one"></div>
+        <div class="passing-light passing-light--two"></div>
+      </div>
+
+      <div class="start-content">
+        <p class="route-code">קו לילה · 00:13 · רציף לא ידוע</p>
+        <div class="title-lockup">
+          <span class="title-number">13</span>
+          <div>
+            <p>הקו האחרון הביתה</p>
+            <h1 id="gameTitle">רכבת</h1>
+          </div>
+        </div>
+
+        <p class="start-copy">
+          הקרונות נראים זהים.<br />הם לא.
+        </p>
+
+        <button class="primary-button" id="startButton" type="button">
+          <span>עלו לרכבת</span>
+          <i aria-hidden="true">←</i>
+        </button>
+
+        <p class="headphones-note">
+          <span aria-hidden="true">◖</span>
+          מומלץ לשחק עם אוזניות ובחדר חשוך
+        </p>
+      </div>
+
+      <footer class="start-footer">
+        <span>NIGHT SERVICE</span>
+        <span>NO RETURN AFTER DEPARTURE</span>
+      </footer>
+    </section>
+
+    <section class="briefing-screen screen" id="briefingScreen" aria-labelledby="briefingTitle">
+      <div class="briefing-card">
+        <span class="briefing-stamp">הודעת שירות</span>
+        <p class="briefing-index">01 / 03</p>
+        <h2 id="briefingTitle">שלושה כללים.<br />זה כל מה שצריך.</h2>
+
+        <ol class="rules-list">
+          <li>
+            <span>01</span>
+            <p><strong>הביטו היטב בקרון.</strong> זכרו איך הוא אמור להיראות.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <p><strong>משהו אינו כשורה?</strong> משכו בידית החירום האדומה.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <p><strong>הכול רגיל?</strong> עברו בדלת אל הקרון הבא.</p>
+          </li>
+        </ol>
+
+        <div class="warning-strip">
+          טעות אחת, והרכבת תחזיר אתכם לאחור.
+        </div>
+
+        <button class="primary-button primary-button--dark" id="briefingButton" type="button">
+          <span>הבנתי. פתחו את הדלת.</span>
+          <i aria-hidden="true">←</i>
+        </button>
+      </div>
+    </section>
+
+    <main class="game-screen screen" id="gameScreen">
+      <header class="game-hud">
+        <div class="hud-route">
+          <span class="hud-logo">13</span>
+          <div>
+            <strong>רכבת לילה</strong>
+            <small>יעד: התחנה האחרונה</small>
+          </div>
+        </div>
+
+        <div class="progress-wrap" aria-label="התקדמות בקרונות">
+          <div class="progress-labels">
+            <span>קרון <b id="carNumber">01</b></span>
+            <span>13</span>
+          </div>
+          <div class="progress-track"><i id="progressBar"></i></div>
+        </div>
+
+        <div class="hud-actions">
+          <button id="soundButton" type="button" aria-label="השתקת קול" title="קול">
+            <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+          <button id="fullscreenButton" type="button" aria-label="מסך מלא" title="מסך מלא">⌗</button>
+        </div>
+      </header>
+
+      <div class="train-viewport" id="trainViewport">
+        <canvas class="train-canvas" id="trainCanvas" aria-label="קרון רכבת תלת־ממדי אינטראקטיבי"></canvas>
+        <div class="webgl-loading" id="webglLoading">
+          <i></i>
+          <span>בונה את הקרון...</span>
+        </div>
+        <div class="motion-blur motion-blur--left"></div>
+        <div class="motion-blur motion-blur--right"></div>
+
+        <div class="car" id="trainCar">
+          <div class="ceiling">
+            <div class="ceiling-panel"></div>
+            <div class="ceiling-light ceiling-light--1"></div>
+            <div class="ceiling-light ceiling-light--2"></div>
+            <div class="ceiling-light ceiling-light--3"></div>
+          </div>
+
+          <div class="side-wall side-wall--left">
+            <div class="window-row">
+              <div class="window" data-prop="window-1">
+                <div class="night"><i></i><i></i><i></i></div>
+                <div class="window-reflection"></div>
+                <div class="face-in-window" aria-hidden="true"><i></i><b></b></div>
+              </div>
+              <div class="window" data-prop="window-2">
+                <div class="night"><i></i><i></i><i></i></div>
+                <div class="window-reflection"></div>
+              </div>
+            </div>
+            <div class="ad-panel" data-prop="poster-left">
+              <small>הדרך הבטוחה הביתה</small>
+              <strong>אל תירדמו.</strong>
+              <span>שירות לילה · עיריית מטרו</span>
+            </div>
+            <div class="seat-row seat-row--left">
+              <i></i><i></i><i></i><i></i>
+              <div class="passenger passenger--left" aria-hidden="true"><span></span><b></b></div>
+            </div>
+          </div>
+
+          <div class="side-wall side-wall--right">
+            <div class="window-row">
+              <div class="window" data-prop="window-3">
+                <div class="night"><i></i><i></i><i></i></div>
+                <div class="window-reflection"></div>
+              </div>
+              <div class="window" data-prop="window-4">
+                <div class="night"><i></i><i></i><i></i></div>
+                <div class="window-reflection"></div>
+                <div class="handprint" aria-hidden="true">✋</div>
+              </div>
+            </div>
+            <div class="route-map" data-prop="route-map">
+              <div class="route-line">
+                <i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <p><span>מרכז</span><span>הגשר</span><span>הביתה</span></p>
+            </div>
+            <div class="seat-row seat-row--right">
+              <i></i><i></i><i></i><i></i>
+              <div class="forgotten-bag" data-prop="bag" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="floor">
+            <div class="floor-line"></div>
+            <div class="floor-line"></div>
+            <div class="floor-line"></div>
+            <div class="wet-footprints" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="end-wall">
+            <div class="service-number" data-prop="service-number">013</div>
+            <div class="clock" data-prop="clock"><span id="clockText">00:13</span></div>
+            <div class="intercom" data-prop="intercom"><i></i><i></i><i></i><i></i><i></i></div>
+
+            <div class="door-frame">
+              <div class="exit-sign" data-prop="exit-sign">לקרון הבא <span>←</span></div>
+              <button class="train-door" id="nextDoor" type="button" aria-label="מעבר לקרון הבא">
+                <span class="door-panel door-panel--left">
+                  <i class="door-window"><b></b></i>
+                </span>
+                <span class="door-panel door-panel--right">
+                  <i class="door-window"><b></b></i>
+                </span>
+                <span class="door-instruction">לחצו כדי להמשיך</span>
+              </button>
+            </div>
+
+            <button class="emergency-handle" id="emergencyHandle" type="button" aria-label="משיכת ידית החירום">
+              <span class="handle-label">במקרה של חריגה</span>
+              <i class="handle-box"><b></b></i>
+              <strong>משכו</strong>
+            </button>
+
+            <div class="trash-bin" data-prop="trash"><i></i></div>
+          </div>
+
+          <div class="standing-poles" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+          </div>
+
+          <div class="anomaly-overlay" id="anomalyOverlay" aria-hidden="true"></div>
+        </div>
+
+        <div class="inspection-hint" id="inspectionHint">
+          הזיזו את העכבר כדי להביט סביב
+        </div>
+
+        <div class="decision-guide" id="decisionGuide">
+          <button id="alarmDecision" type="button">
+            <span class="guide-key guide-key--red">!</span><b>ראיתם חריגה?</b> משכו בידית
+          </button>
+          <button id="doorDecision" type="button">
+            <span class="guide-key">→</span><b>הכול רגיל?</b> המשיכו בדלת
+          </button>
+        </div>
+
+        <div class="car-caption" id="carCaption">קרון 01 · שירות לילה</div>
+      </div>
+
+      <div class="announcement" id="announcement" role="status" aria-live="polite">
+        <span class="announcement-icon">◉</span>
+        <p id="announcementText"></p>
+      </div>
+
+      <div class="transition-curtain" id="transitionCurtain" aria-hidden="true">
+        <div class="tunnel-lines"></div>
+        <p id="transitionText">עוברים לקרון הבא...</p>
+      </div>
+    </main>
+
+    <section class="ending-screen screen" id="endingScreen" aria-labelledby="endingTitle">
+      <div class="ending-light" aria-hidden="true"></div>
+      <div class="ending-content">
+        <p class="route-code">התחנה האחרונה · 05:47</p>
+        <h2 id="endingTitle">הגעתם<br /><em>הביתה.</em></h2>
+        <p>הדלתות נפתחו. האוויר בחוץ קר.<br />מאחוריכם, הרכבת ממשיכה בלי נהג.</p>
+        <div class="ending-stats">
+          <div><strong id="mistakeCount">0</strong><span>טעויות</span></div>
+          <div><strong id="timeCount">00:00</strong><span>זמן נסיעה</span></div>
+          <div><strong>13</strong><span>קרונות</span></div>
+        </div>
+        <button class="primary-button" id="restartButton" type="button">
+          <span>לעלות שוב</span><i aria-hidden="true">↺</i>
+        </button>
+      </div>
+    </section>
+
+    <script type="module" src="game.js"></script>
+  </body>
+</html>
