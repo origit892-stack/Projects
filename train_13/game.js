@@ -527,7 +527,7 @@ document.addEventListener("keydown", (event) => {
     if (event.key.toLowerCase() === "f") toggleFullscreen();
     return;
   }
-  if (["e", "E", "Enter", "ArrowUp"].includes(event.key)) makeDecision("door");
+  if (["e", "E", "Enter"].includes(event.key)) makeDecision("door");
   if (["r", "R", "!"].includes(event.key)) makeDecision("alarm");
   if (event.key.toLowerCase() === "m") toggleSound();
   if (event.key.toLowerCase() === "f") toggleFullscreen();
@@ -563,9 +563,22 @@ window.__train13 = {
   },
   hasWebGL: () => Boolean(train3D),
   getFPS: () => train3D?.getPlayerState() || null,
-  setTestPosition: (x, z, yaw = 0) => {
+  getTestControlPosition: (action) => {
+    if (!["127.0.0.1", "localhost"].includes(window.location.hostname)) return null;
+    return train3D?.getControlScreenPosition(action) || null;
+  },
+  getTestAnomalyIds: () => {
+    if (!["127.0.0.1", "localhost"].includes(window.location.hostname)) return [];
+    return ANOMALIES.map((anomaly) => anomaly.id);
+  },
+  setTestAnomaly: (id) => {
     if (!["127.0.0.1", "localhost"].includes(window.location.hostname)) return false;
-    train3D?.setTestPosition(x, z, yaw);
+    train3D?.setAnomaly(id || null);
+    return true;
+  },
+  setTestPosition: (x, z, yaw = 0, pitch = 0) => {
+    if (!["127.0.0.1", "localhost"].includes(window.location.hostname)) return false;
+    train3D?.setTestPosition(x, z, yaw, pitch);
     return true;
   },
 };

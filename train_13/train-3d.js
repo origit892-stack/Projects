@@ -101,32 +101,6 @@ function makeTextTexture({
   }, width, height);
 }
 
-function makeWarningTexture() {
-  return canvasTexture((ctx, width, height) => {
-    ctx.fillStyle = "#351714";
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = "#bd3e34";
-    ctx.lineWidth = 10;
-    ctx.strokeRect(10, 10, width - 20, height - 20);
-    ctx.direction = "rtl";
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#f0d5c3";
-    ctx.font = "700 42px Assistant, Arial";
-    ctx.fillText("חירום", width / 2, 64);
-    ctx.fillStyle = "#d7b5a4";
-    ctx.font = "600 21px Assistant, Arial";
-    ctx.fillText("במקרה של חריגה בלבד", width / 2, 112);
-    ctx.fillText("משכו בידית בחוזקה", width / 2, 144);
-    ctx.fillStyle = "#a97c70";
-    ctx.font = "500 15px Assistant, Arial";
-    ctx.fillText("אין למשוך בזמן נסיעה", width / 2, 181);
-    ctx.fillStyle = "#d34c3e";
-    ctx.fillRect(36, 202, width - 72, 5);
-    ctx.font = "12px monospace";
-    ctx.fillText("EMERGENCY SYSTEM · 13-A", width / 2, 232);
-  }, 512, 256);
-}
-
 function meshBox(width, height, depth, material, position, parent, name = "") {
   const mesh = new THREE.Mesh(new THREE.BoxGeometry(width, height, depth), material);
   mesh.position.set(...position);
@@ -159,6 +133,12 @@ function addAction(object, action) {
   });
 }
 
+function replaceTexture(mesh, texture) {
+  mesh.material.map?.dispose();
+  mesh.material.map = texture;
+  mesh.material.needsUpdate = true;
+}
+
 export class TrainScene3D {
   constructor(canvas) {
     this.canvas = canvas;
@@ -182,6 +162,7 @@ export class TrainScene3D {
     this.flickerMode = false;
     this.doorAmount = 0;
     this.leverAmount = 0;
+    this.normalButtonAmount = 0;
     this.shakeAmount = 0;
     this.onDecision = null;
     this.disposed = false;
@@ -259,11 +240,16 @@ export class TrainScene3D {
 
   buildWindows(root) {
     this.outsideStreaks = [];
+    const nightGlass = new THREE.MeshStandardMaterial({
+      color: 0x010303,
+      metalness: 0.34,
+      roughness: 0.18,
+    });
     const windowZ = [2.3, -3.1, -8.2];
     for (const side of [-1, 1]) {
       for (const z of windowZ) {
         meshBox(0.22, 2.55, 3.9, this.materials.edge, [side * 4.91, 3.05, z], root);
-        const glass = meshBox(0.13, 2.18, 3.52, this.materials.blackGlass, [side * 4.79, 3.05, z], root, "dirty-window");
+        const glass = meshBox(0.13, 2.18, 3.52, nightGlass, [side * 4.79, 3.05, z], root, "dirty-window");
 
         for (let i = 0; i < 5; i += 1) {
           const streakMat = new THREE.MeshBasicMaterial({
@@ -279,7 +265,6 @@ export class TrainScene3D {
           const line = meshBox(0.015, 0.2 + Math.random() * 0.65, 0.018, this.materials.glass, [side * 4.68, 2.3 + Math.random() * 1.5, z + Math.random() * 2.9 - 1.45], root);
           line.rotation.z = (Math.random() - 0.5) * 4 * DEG;
         }
-        glass.material = this.materials.blackGlass;
       }
     }
   }
@@ -363,7 +348,18 @@ export class TrainScene3D {
     }
     addAction(this.objects.leftDoor, "door");
     addAction(this.objects.rightDoor, "door");
-    this.clickables.push(this.objects.leftDoor, this.objects.rightDoor);
+    const doorProxyMaterial = new THREE.MeshBasicMaterial({
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+      colorWrite: false,
+    });
+    const doorProxy = new THREE.Mesh(new THREE.PlaneGeometry(4.5, 4.5), doorProxyMaterial);
+    doorProxy.position.set(0, 2.3, 0.72);
+    doorProxy.userData.action = "door";
+    frame.add(doorProxy);
+    this.objects.doorInteractionTarget = doorProxy;
+    this.clickables.push(doorProxy, this.objects.leftDoor, this.objects.rightDoor);
   }
 
   buildDetails(root) {
@@ -388,11 +384,12 @@ export class TrainScene3D {
     });
     this.objects.hologram.renderOrder = 3;
 
-    const clockTexture = makeTextTexture({ title: "00:13", footer: "SYSTEM TIME", background: "#080606", color: "#e54c42", accent: "#5c1814", width: 384, height: 180 });
-    this.objects.clock = panel(1.28, 0.6, clockTexture, [-3.72, 4.4, -12.66], root);
+    const clockTexture = makeTextTexture({ title: "00:13", footer: "SYSTEM TIME", background: "#080606", color: "#e54c42", accent: "#5c1814", width: 512, height: 240 });
+    meshBox(2.02, 1.02, 0.2, this.materials.edge, [-3.55, 3.62, -12.82], root, "clock-housing");
+    this.objects.clock = panel(1.78, 0.78, clockTexture, [-3.55, 3.62, -12.68], root);
 
     const numberTexture = makeTextTexture({ title: "13", subtitle: "NIGHT LINE", background: "#160a09", color: "#df4b40", accent: "#7d211c", width: 320, height: 320 });
-    this.objects.number = panel(1.02, 1.02, numberTexture, [-4.12, 4.55, -12.62], root);
+    this.objects.number = panel(1.02, 1.02, numberTexture, [-4.1, 4.72, -12.66], root);
 
     const routeTexture = makeTextTexture({ title: "מרכז  •  הגשר  •  הביתה", subtitle: "הנקודה האדומה מציינת את מיקומכם", footer: "ROUTE 13 / DO NOT LEAVE BETWEEN STATIONS", background: "#d0cbbd", color: "#6f2722", accent: "#8f3a32" });
     this.objects.route = panel(3.6, 1.15, routeTexture, [4.84, 3.7, -3.6], root, { rotation: [0, -90 * DEG, 0] });
@@ -471,6 +468,10 @@ export class TrainScene3D {
     redFill.position.set(3.5, 2.2, -10.5);
     this.scene.add(redFill);
     this.objects.redFill = redFill;
+    const hologramFill = new THREE.PointLight(0x65e2d5, 42, 5.5, 1.65);
+    hologramFill.position.set(0, 3.15, -10.25);
+    this.scene.add(hologramFill);
+    this.objects.hologramFill = hologramFill;
 
     const coneMaterial = new THREE.MeshBasicMaterial({ color: 0xffc07c, transparent: true, opacity: 0.018, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide });
     const cone = new THREE.Mesh(new THREE.ConeGeometry(2.2, 5.2, 20, 1, true), coneMaterial);
@@ -480,24 +481,6 @@ export class TrainScene3D {
   }
 
   buildInteractives() {
-    const emergency = new THREE.Group();
-    emergency.position.set(3.72, 1.78, -12.5);
-    this.root.add(emergency);
-    meshBox(1.62, 2.55, 0.42, this.materials.darkMetal, [0, 0, 0], emergency);
-    const warning = panel(1.43, 0.72, makeWarningTexture(), [0, 0.75, 0.24], emergency);
-    warning.material.map.anisotropy = 8;
-    meshBox(1.2, 1.15, 0.35, this.materials.red, [0, -0.42, 0.25], emergency);
-    const leverPivot = new THREE.Group();
-    leverPivot.position.set(0, -0.13, 0.55);
-    emergency.add(leverPivot);
-    const leverStem = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.13, 0.85, 16), this.materials.brass);
-    leverStem.position.y = -0.38;
-    leverPivot.add(leverStem);
-    const grip = meshBox(0.58, 0.25, 0.28, this.materials.red, [0, -0.82, 0], leverPivot, "emergency-grip");
-    this.objects.leverPivot = leverPivot;
-    addAction(emergency, "alarm");
-    this.clickables.push(emergency);
-
     const keyhole = new THREE.Group();
     keyhole.position.set(-3.72, 1.68, -12.55);
     this.root.add(keyhole);
@@ -514,6 +497,17 @@ export class TrainScene3D {
     lock.position.z = 0.42;
     keyhole.add(lock);
     meshBox(0.08, 0.34, 0.1, this.materials.rubber, [0, -0.1, 0.52], keyhole);
+    const accessTexture = makeTextTexture({
+      title: "גישה למורשים בלבד",
+      subtitle: "יישרו מפתח והחזיקו",
+      footer: "ACCESS 13 / LOCKED",
+      background: "#3d321d",
+      color: "#efe0b7",
+      accent: "#816a35",
+      width: 512,
+      height: 180,
+    });
+    panel(0.78, 0.33, accessTexture, [0, 0.42, 0.46], keyhole);
 
     this.buildDecisionSwitch(-1.22, "alarm", "ראיתם חריגה?", 0xa52f28);
     this.buildDecisionSwitch(1.22, "door", "הכל רגיל", 0x486e5a);
@@ -521,19 +515,52 @@ export class TrainScene3D {
 
   buildDecisionSwitch(x, action, label, color) {
     const group = new THREE.Group();
-    group.position.set(x, 0.42, -9.75);
-    group.rotation.x = -18 * DEG;
+    group.position.set(x, 0.5, -9.65);
+    group.rotation.x = -14 * DEG;
     this.root.add(group);
-    meshBox(1.95, 0.46, 1.18, this.materials.darkMetal, [0, 0, 0], group);
-    const switchMaterial = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.32, metalness: 0.67, roughness: 0.35 });
-    const button = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.39, 0.25, 20), switchMaterial);
-    button.position.set(0, 0.35, 0.08);
-    group.add(button);
-    const labelTexture = makeTextTexture({ title: label, footer: action === "door" ? "CONFIRM / E" : "REPORT / R", background: "#171a18", color: "#d8d2c2", accent: color === 0xa52f28 ? "#9b332c" : "#496c59", width: 512, height: 180 });
-    const labelPlane = panel(1.46, 0.5, labelTexture, [0, 0.24, 0.53], group, { rotation: [-72 * DEG, 0, 0] });
+    meshBox(2.25, 0.92, 1.52, this.materials.darkMetal, [0, 0, 0], group);
+    for (const side of [-1, 1]) {
+      meshBox(0.12, 0.78, 1.38, this.materials.brass, [side * 1.02, 0.03, 0], group);
+    }
+    const switchMaterial = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 1.15, metalness: 0.7, roughness: 0.31 });
+    meshBox(2.08, 0.16, 1.34, switchMaterial, [0, 0.5, 0], group);
+
+    let control;
+    if (action === "alarm") {
+      const pivot = new THREE.Group();
+      pivot.position.set(0, 0.72, 0.05);
+      group.add(pivot);
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.15, 0.92, 16), this.materials.brass);
+      stem.position.y = 0.28;
+      stem.rotation.z = -18 * DEG;
+      pivot.add(stem);
+      const handle = meshBox(0.72, 0.28, 0.34, this.materials.red, [0.14, 0.77, 0], pivot, "floor-emergency-handle");
+      for (const offset of [-0.25, 0.25]) meshBox(0.08, 0.36, 0.38, this.materials.brass, [offset + 0.14, 0.77, 0], pivot);
+      this.objects.consoleLeverPivot = pivot;
+      control = handle;
+    } else {
+      const button = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.55, 0.3, 28), switchMaterial);
+      button.position.set(0, 0.72, 0.05);
+      group.add(button);
+      const topTexture = makeTextTexture({ title: "הכל רגיל", footer: "PRESS / E", background: "#173327", color: "#c9ffe1", accent: "#5fbc8b", width: 512, height: 220 });
+      const topLabel = panel(0.92, 0.4, topTexture, [0, 0.92, 0.1], group, { rotation: [-72 * DEG, 0, 0] });
+      topLabel.material.depthTest = false;
+      topLabel.material.depthWrite = false;
+      topLabel.renderOrder = 12;
+      this.objects.normalButton = button;
+      this.objects.normalButtonTopY = button.position.y;
+      this.objects.normalButtonLabel = topLabel;
+      this.objects.normalButtonLabelTopY = topLabel.position.y;
+      control = button;
+      group.userData.topLabel = topLabel;
+    }
+
+    const labelTexture = makeTextTexture({ title: label, footer: action === "door" ? "DOOR RELEASE / E" : "ANOMALY REPORT / E", background: "#171a18", color: "#d8d2c2", accent: color === 0xa52f28 ? "#9b332c" : "#62a880", width: 512, height: 180 });
+    const labelPlane = panel(1.7, 0.58, labelTexture, [0, 0.25, 0.78], group, { rotation: [-76 * DEG, 0, 0] });
     addAction(group, action);
     this.clickables.push(group);
-    group.userData.button = button;
+    this.objects[action === "alarm" ? "alarmTerminal" : "doorTerminal"] = group;
+    group.userData.control = control;
     group.userData.label = labelPlane;
   }
 
@@ -651,18 +678,22 @@ export class TrainScene3D {
   }
 
   handleClick(event) {
-    if (!this.pointerLocked) {
+    if (!this.pointerLocked && !this.keyboardCaptured) {
       this.capturePointer();
       return;
     }
-    this.interact();
+    if (this.pointerLocked) this.interact();
+    else this.handleLegacyClick(event);
   }
 
   capturePointer() {
     this.keyboardCaptured = true;
     this.canvas.focus({ preventScroll: true });
     document.getElementById("fpsCapture")?.classList.remove("show");
-    this.canvas.requestPointerLock?.();
+    const request = this.canvas.requestPointerLock?.();
+    request?.catch?.(() => {
+      // Keyboard focus remains active when Pointer Lock is unavailable.
+    });
   }
 
   handlePointerLockChange() {
@@ -688,19 +719,27 @@ export class TrainScene3D {
 
   handleKey(event, pressed) {
     if (!this.pointerLocked && !this.keyboardCaptured) return;
-    const key = event.key.toLowerCase();
-    if (pressed && key === "escape" && !this.pointerLocked) {
+    const controls = {
+      KeyW: "w",
+      KeyA: "a",
+      KeyS: "s",
+      KeyD: "d",
+      ShiftLeft: "shift",
+      ShiftRight: "shift",
+    };
+    const key = controls[event.code] || event.key.toLowerCase();
+    if (pressed && event.code === "Escape" && !this.pointerLocked) {
       this.keyboardCaptured = false;
       this.keys.clear();
       document.getElementById("fpsCapture")?.classList.add("show");
       return;
     }
-    if (["w", "a", "s", "d", "arrowup", "arrowdown", "arrowleft", "arrowright"].includes(key)) {
+    if (["w", "a", "s", "d", "shift"].includes(key)) {
       event.preventDefault();
       if (pressed) this.keys.add(key);
       else this.keys.delete(key);
     }
-    if (pressed && !event.repeat && key === "e") {
+    if (pressed && !event.repeat && event.code === "KeyE") {
       event.preventDefault();
       this.interact();
     }
@@ -730,7 +769,9 @@ export class TrainScene3D {
 
   handleLegacyClick(event) {
     this.handlePointerMove(event);
-    const hits = this.raycaster.intersectObjects(this.clickables, true);
+    const hits = this.raycaster
+      .intersectObjects(this.clickables, true)
+      .filter((entry) => entry.distance <= this.interactionDistance);
     const hit = hits.find((entry) => entry.object.userData.action);
     if (hit && this.onDecision) this.onDecision(hit.object.userData.action);
   }
@@ -763,11 +804,28 @@ export class TrainScene3D {
     };
   }
 
-  setTestPosition(x, z, yaw = 0) {
+  getControlScreenPosition(action) {
+    const terminal = action === "alarm" ? this.objects.alarmTerminal : this.objects.doorTerminal;
+    const control = terminal?.userData.control;
+    if (!control) return null;
+    const world = new THREE.Vector3();
+    control.getWorldPosition(world);
+    const distance = world.distanceTo(this.camera.position);
+    world.project(this.camera);
+    const rect = this.canvas.getBoundingClientRect();
+    return {
+      x: rect.left + ((world.x + 1) / 2) * rect.width,
+      y: rect.top + ((1 - world.y) / 2) * rect.height,
+      distance,
+      visible: world.z >= -1 && world.z <= 1,
+    };
+  }
+
+  setTestPosition(x, z, yaw = 0, pitch = 0) {
     this.playerPosition.x = THREE.MathUtils.clamp(x, -2.25, 2.25);
     this.playerPosition.z = THREE.MathUtils.clamp(z, -9.25, 6.2);
     this.yaw = THREE.MathUtils.clamp(yaw, -1.05, 1.05);
-    this.pitch = 0;
+    this.pitch = THREE.MathUtils.clamp(pitch, -0.78, 0.72);
     this.updateInteraction();
   }
 
@@ -781,9 +839,7 @@ export class TrainScene3D {
       color: "#8bd5c4",
       accent: "#477c74",
     });
-    this.objects.hologram.material.map.dispose();
-    this.objects.hologram.material.map = texture;
-    this.objects.hologram.material.needsUpdate = true;
+    replaceTexture(this.objects.hologram, texture);
   }
 
   resetAnomaly() {
@@ -792,12 +848,11 @@ export class TrainScene3D {
     }
     if (this.objects.suitcase) this.objects.suitcase.visible = true;
     this.flickerMode = false;
-    this.objects.vfd.material.map = makeTextTexture({ title: "התחנה הבאה · אין מידע", subtitle: "נא להישאר בקרון", footer: "NIGHT SERVICE / LINE 13", background: "#07130c", color: "#80c48c" });
-    this.objects.clock.material.map = makeTextTexture({ title: "00:13", footer: "SYSTEM TIME", background: "#080606", color: "#e54c42", accent: "#5c1814", width: 384, height: 180 });
-    this.objects.route.material.map = makeTextTexture({ title: "מרכז  •  הגשר  •  הביתה", subtitle: "הנקודה האדומה מציינת את מיקומכם", footer: "ROUTE 13 / DO NOT LEAVE BETWEEN STATIONS", background: "#d0cbbd", color: "#6f2722", accent: "#8f3a32" });
-    this.objects.poster.material.map = makeTextTexture({ title: "אל תירדמו.", subtitle: "הדרך הבטוחה הביתה", footer: "METRO NIGHT AUTHORITY", background: "#c7c0ac", color: "#45251f", accent: "#9e4138" });
-    this.objects.number.material.map = makeTextTexture({ title: "13", subtitle: "NIGHT LINE", background: "#160a09", color: "#df4b40", accent: "#7d211c", width: 320, height: 320 });
-    for (const object of [this.objects.vfd, this.objects.clock, this.objects.route, this.objects.poster, this.objects.number]) object.material.needsUpdate = true;
+    replaceTexture(this.objects.vfd, makeTextTexture({ title: "התחנה הבאה · אין מידע", subtitle: "נא להישאר בקרון", footer: "NIGHT SERVICE / LINE 13", background: "#07130c", color: "#80c48c" }));
+    replaceTexture(this.objects.clock, makeTextTexture({ title: "00:13", footer: "SYSTEM TIME", background: "#080606", color: "#e54c42", accent: "#5c1814", width: 512, height: 240 }));
+    replaceTexture(this.objects.route, makeTextTexture({ title: "מרכז  •  הגשר  •  הביתה", subtitle: "הנקודה האדומה מציינת את מיקומכם", footer: "ROUTE 13 / DO NOT LEAVE BETWEEN STATIONS", background: "#d0cbbd", color: "#6f2722", accent: "#8f3a32" }));
+    replaceTexture(this.objects.poster, makeTextTexture({ title: "אל תירדמו.", subtitle: "הדרך הבטוחה הביתה", footer: "METRO NIGHT AUTHORITY", background: "#c7c0ac", color: "#45251f", accent: "#9e4138" }));
+    replaceTexture(this.objects.number, makeTextTexture({ title: "13", subtitle: "NIGHT LINE", background: "#160a09", color: "#df4b40", accent: "#7d211c", width: 320, height: 320 }));
     this.objects.intercom.scale.setScalar(1);
   }
 
@@ -816,29 +871,25 @@ export class TrainScene3D {
     else this.objects.intercom.userData.pulsing = false;
 
     if (id === "clock") {
-      this.objects.clock.material.map = makeTextTexture({ title: "03:33", footer: "TIME ERROR", background: "#080606", color: "#f1dbb6", accent: "#71332b", width: 384, height: 180 });
-      this.objects.clock.material.needsUpdate = true;
+      replaceTexture(this.objects.clock, makeTextTexture({ title: "03:33", footer: "TIME ERROR", background: "#080606", color: "#f1dbb6", accent: "#71332b", width: 512, height: 240 }));
     }
     if (id === "route") {
-      this.objects.route.material.map = makeTextTexture({ title: "מרכז  •  הגשר  •  אין יציאה", subtitle: "התחנה האחרונה נמחקה", footer: "ROUTE UNKNOWN / PASSENGER NOT FOUND", background: "#c7c0b2", color: "#9c211b", accent: "#9c211b" });
-      this.objects.route.material.needsUpdate = true;
+      replaceTexture(this.objects.route, makeTextTexture({ title: "מרכז  •  הגשר  •  אין יציאה", subtitle: "התחנה האחרונה נמחקה", footer: "ROUTE UNKNOWN / PASSENGER NOT FOUND", background: "#c7c0b2", color: "#9c211b", accent: "#9c211b" }));
     }
     if (id === "sign") {
-      this.objects.vfd.material.map = makeTextTexture({ title: "אל תפתחו את הדלת", subtitle: "היא מחכה בצד השני", footer: "DOOR INTERLOCK FAILURE", background: "#210706", color: "#e64c40", accent: "#8b1d18" });
-      this.objects.vfd.material.needsUpdate = true;
+      replaceTexture(this.objects.vfd, makeTextTexture({ title: "אל תפתחו את הדלת", subtitle: "היא מחכה בצד השני", footer: "DOOR INTERLOCK FAILURE", background: "#210706", color: "#e64c40", accent: "#8b1d18" }));
     }
     if (id === "number") {
-      this.objects.number.material.map = makeTextTexture({ title: "1313", subtitle: "NO SERVICE", background: "#160a09", color: "#df4b40", accent: "#7d211c", width: 320, height: 320 });
-      this.objects.number.material.needsUpdate = true;
+      replaceTexture(this.objects.number, makeTextTexture({ title: "1313", subtitle: "NO SERVICE", background: "#160a09", color: "#df4b40", accent: "#7d211c", width: 320, height: 320 }));
     }
     if (id === "poster") {
-      this.objects.poster.material.map = makeTextTexture({ title: "היא יושבת מאחוריך.", subtitle: "אל תסתובבו", footer: "THIS MESSAGE IS FOR YOU", background: "#bcb4a1", color: "#861b17", accent: "#861b17" });
-      this.objects.poster.material.needsUpdate = true;
+      replaceTexture(this.objects.poster, makeTextTexture({ title: "היא יושבת מאחוריך.", subtitle: "אל תסתובבו", footer: "THIS MESSAGE IS FOR YOU", background: "#bcb4a1", color: "#861b17", accent: "#861b17" }));
     }
   }
 
   openDoors() {
     this.doorAmount = 1;
+    this.normalButtonAmount = 1;
     this.shake(0.12);
   }
 
@@ -851,6 +902,7 @@ export class TrainScene3D {
   resetActions() {
     this.doorAmount = 0;
     this.leverAmount = 0;
+    this.normalButtonAmount = 0;
     this.objects.redFill.intensity = 24;
   }
 
@@ -873,9 +925,9 @@ export class TrainScene3D {
     const elapsed = this.clock.elapsedTime;
 
     this.currentLook.lerp(this.targetLook, 0.045);
-    const moveSpeed = (this.keys.has("w") || this.keys.has("arrowup") || this.keys.has("s") || this.keys.has("arrowdown")) && (this.keys.has("a") || this.keys.has("arrowleft") || this.keys.has("d") || this.keys.has("arrowright")) ? 2.2 : 2.75;
-    const forwardInput = Number(this.keys.has("w") || this.keys.has("arrowup")) - Number(this.keys.has("s") || this.keys.has("arrowdown"));
-    const strafeInput = Number(this.keys.has("d") || this.keys.has("arrowright")) - Number(this.keys.has("a") || this.keys.has("arrowleft"));
+    const moveSpeed = 2.75 * (this.keys.has("shift") ? 3.15 : 1);
+    const forwardInput = Number(this.keys.has("w")) - Number(this.keys.has("s"));
+    const strafeInput = Number(this.keys.has("d")) - Number(this.keys.has("a"));
     if ((this.pointerLocked || this.keyboardCaptured) && (forwardInput || strafeInput)) {
       const forward = new THREE.Vector3(-Math.sin(this.yaw), 0, -Math.cos(this.yaw));
       const right = new THREE.Vector3(Math.cos(this.yaw), 0, -Math.sin(this.yaw));
@@ -892,7 +944,7 @@ export class TrainScene3D {
     this.camera.position.x = this.playerPosition.x + this.currentLook.x * 0.52 + swayX + shakeX;
     this.camera.position.y = this.playerPosition.y + this.currentLook.y * 0.28 + swayY + shakeY;
     this.camera.position.z = this.playerPosition.z;
-    if (this.pointerLocked) {
+    if (this.pointerLocked || this.keyboardCaptured) {
       this.camera.rotation.order = "YXZ";
       this.camera.rotation.set(this.pitch + swayY * 0.12, this.yaw + swayX * 0.1, 0);
     } else {
@@ -901,7 +953,21 @@ export class TrainScene3D {
 
     this.objects.leftDoor.position.x = THREE.MathUtils.lerp(this.objects.leftDoor.position.x, -1.17 - this.doorAmount * 2.05, 0.055);
     this.objects.rightDoor.position.x = THREE.MathUtils.lerp(this.objects.rightDoor.position.x, 1.17 + this.doorAmount * 2.05, 0.055);
-    this.objects.leverPivot.rotation.x = THREE.MathUtils.lerp(this.objects.leverPivot.rotation.x, this.leverAmount * -68 * DEG, 0.09);
+    if (this.objects.consoleLeverPivot) {
+      this.objects.consoleLeverPivot.rotation.x = THREE.MathUtils.lerp(this.objects.consoleLeverPivot.rotation.x, this.leverAmount * 62 * DEG, 0.1);
+    }
+    if (this.objects.normalButton) {
+      this.objects.normalButton.position.y = THREE.MathUtils.lerp(
+        this.objects.normalButton.position.y,
+        this.objects.normalButtonTopY - this.normalButtonAmount * 0.18,
+        0.13,
+      );
+      this.objects.normalButtonLabel.position.y = THREE.MathUtils.lerp(
+        this.objects.normalButtonLabel.position.y,
+        this.objects.normalButtonLabelTopY - this.normalButtonAmount * 0.18,
+        0.13,
+      );
+    }
 
     this.objects.gears.forEach((gear, index) => {
       gear.rotation.z += (index % 2 ? -1 : 1) * delta * (0.35 + index * 0.14);
@@ -910,8 +976,8 @@ export class TrainScene3D {
       item.mesh.position.z += item.speed * delta;
       if (item.mesh.position.z > 5.2) item.mesh.position.z = -11.8;
     });
-
     this.objects.hologram.material.opacity = 0.74 + Math.sin(elapsed * 3.2) * 0.07 + (Math.random() > 0.985 ? -0.28 : 0);
+    this.objects.hologramFill.intensity = 38 + Math.sin(elapsed * 5.4) * 5 + (Math.random() > 0.98 ? -22 : 0);
     const warm = this.objects.fluorescents[1];
     warm.light.intensity = warm.baseIntensity * (0.78 + Math.sin(elapsed * 17) * 0.08 + (Math.random() > 0.96 ? -0.72 : 0));
     warm.tube.material.emissiveIntensity = Math.max(0.15, warm.light.intensity / 7);

@@ -518,6 +518,162 @@ button {
   display: none;
 }
 
+.fps-reticle,
+.fps-interaction,
+.fps-capture {
+  display: none;
+}
+
+.webgl-mode .fps-reticle {
+  position: absolute;
+  z-index: 18;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  display: block;
+  pointer-events: none;
+  opacity: 0.56;
+  transform: translate(-50%, -50%);
+  transition: opacity 160ms, transform 160ms;
+}
+
+.fps-reticle i,
+.fps-reticle b {
+  position: absolute;
+  display: block;
+  background: rgba(216, 210, 194, 0.9);
+  box-shadow: 0 0 5px rgba(216, 210, 194, 0.35);
+}
+
+.fps-reticle i {
+  top: 10px;
+  left: 3px;
+  width: 16px;
+  height: 1px;
+}
+
+.fps-reticle b {
+  top: 3px;
+  left: 10px;
+  width: 1px;
+  height: 16px;
+}
+
+.fps-reticle.is-active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.35);
+}
+
+.fps-reticle.is-active i,
+.fps-reticle.is-active b {
+  background: var(--red-bright);
+  box-shadow: 0 0 8px rgba(211, 76, 62, 0.7);
+}
+
+.webgl-mode .fps-interaction {
+  position: absolute;
+  z-index: 19;
+  bottom: 92px;
+  left: 50%;
+  min-width: 210px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(216, 210, 194, 0.28);
+  background: rgba(6, 8, 7, 0.88);
+  color: #d9d4c7;
+  font-size: 11px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition: opacity 180ms, transform 180ms;
+}
+
+.webgl-mode .fps-interaction.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.fps-interaction kbd {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #8d8c83;
+  border-bottom-width: 3px;
+  background: #1d211f;
+  color: #f1ecdf;
+  font-family: monospace;
+  font-weight: 700;
+}
+
+.webgl-mode .fps-capture {
+  position: absolute;
+  z-index: 21;
+  inset: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: rgba(3, 5, 4, 0.48);
+  color: var(--paper);
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 260ms, visibility 260ms;
+}
+
+.webgl-mode .game-screen.is-visible .fps-capture.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fps-capture strong {
+  margin-top: 16px;
+  font-family: "Frank Ruhl Libre", Georgia, serif;
+  font-size: 22px;
+}
+
+.fps-capture small {
+  margin-top: 8px;
+  color: #9d9d94;
+  font-size: 10px;
+}
+
+.fps-capture small b {
+  color: var(--paper);
+  letter-spacing: 0.18em;
+}
+
+.mouse-icon {
+  position: relative;
+  width: 30px;
+  height: 45px;
+  border: 1px solid rgba(216, 210, 194, 0.7);
+  border-radius: 16px;
+}
+
+.mouse-icon i {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 2px;
+  height: 8px;
+  background: var(--red-bright);
+  transform: translateX(-50%);
+  animation: mouseScroll 1.2s ease-in-out infinite;
+}
+
+.webgl-mode .decision-guide {
+  display: none;
+}
+
 .webgl-loading {
   position: absolute;
   z-index: 16;
@@ -1438,6 +1594,7 @@ button {
 @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 95%, 98% { transform: scaleY(0); } }
 @keyframes wrongFlash { 0%, 100% { box-shadow: inset 0 0 0 transparent; } 30% { box-shadow: inset 0 0 180px rgba(169, 52, 45, 0.76); } }
 @keyframes loadingSpin { to { transform: rotate(360deg); } }
+@keyframes mouseScroll { 0%, 100% { transform: translate(-50%, 0); opacity: 0.35; } 50% { transform: translate(-50%, 5px); opacity: 1; } }
 
 @media (max-width: 760px) {
   :root { --hud-height: 62px; }
@@ -1454,6 +1611,7 @@ button {
   .car-caption { display: none; }
   .inspection-hint { white-space: nowrap; }
   .announcement { min-width: 0; width: calc(100% - 30px); }
+  .webgl-mode .fps-capture small { max-width: 250px; line-height: 1.5; }
 }
 
 @media (max-width: 540px) {

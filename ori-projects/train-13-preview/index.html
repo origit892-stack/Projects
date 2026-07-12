@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#090b0b" />
-    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <meta name="description" content="רכבת 13 — משחק אימה פסיכולוגי על רכבת לילה שלא עוצרת." />
     <title>רכבת 13 — אל תפספסו את התחנה</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -118,6 +118,16 @@
 
       <div class="train-viewport" id="trainViewport">
         <canvas class="train-canvas" id="trainCanvas" aria-label="קרון רכבת תלת־ממדי אינטראקטיבי"></canvas>
+        <div class="fps-reticle" id="fpsReticle" aria-hidden="true"><i></i><b></b></div>
+        <div class="fps-interaction" id="fpsInteraction" role="status" aria-live="polite">
+          <kbd>E</kbd>
+          <span id="fpsInteractionText">אינטראקציה</span>
+        </div>
+        <button class="fps-capture" id="fpsCapture" type="button">
+          <span class="mouse-icon" aria-hidden="true"><i></i></span>
+          <strong>לחצו כדי להיכנס לקרון</strong>
+          <small><b>W A S D</b> לתנועה · עכבר למבט · <b>E</b> לאינטראקציה</small>
+        </button>
         <div class="webgl-loading" id="webglLoading">
           <i></i>
           <span>בונה את הקרון...</span>
