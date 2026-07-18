@@ -1,0 +1,132 @@
+- main [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: P//Q
+      - generic [ref=e7]:
+        - text: PARQ
+        - generic [ref=e8]: ENGINEER TYCOON
+    - generic [ref=e11]:
+      - generic [ref=e12]: PARK STATUS
+      - text: TECHTOPIA // DAY 01
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: CREDITS
+        - generic [ref=e16]:
+          - text: ₡
+          - emphasis [ref=e17]: 16,000
+      - generic [ref=e18]:
+        - generic [ref=e19]: REVENUE / MIN
+        - generic [ref=e20]:
+          - text: +₡
+          - emphasis [ref=e21]: "320"
+      - generic [ref=e22]:
+        - generic [ref=e23]: GUESTS
+        - generic [ref=e24]:
+          - text: ●
+          - emphasis [ref=e25]: 1,284
+  - complementary [ref=e26]:
+    - text: BUILD SYSTEM
+    - heading "ATTRACTIONS" [level=1] [ref=e27]
+    - button "〽 NEON COASTER 12 × 8 GRID · ₡8,500" [ref=e28] [cursor=pointer]:
+      - generic [ref=e29]: 〽
+      - generic [ref=e30]:
+        - generic [ref=e31]: NEON COASTER
+        - generic [ref=e32]: 12 × 8 GRID · ₡8,500
+    - button "◉ QUANTUM WHEEL 8 × 8 GRID · ₡6,200" [ref=e33] [cursor=pointer]:
+      - generic [ref=e34]: ◉
+      - generic [ref=e35]:
+        - generic [ref=e36]: QUANTUM WHEEL
+        - generic [ref=e37]: 8 × 8 GRID · ₡6,200
+    - button "≋ PLASMA SLIDE 7 × 10 GRID · ₡4,800" [ref=e38] [cursor=pointer]:
+      - generic [ref=e39]: ≋
+      - generic [ref=e40]:
+        - generic [ref=e41]: PLASMA SLIDE
+        - generic [ref=e42]: 7 × 10 GRID · ₡4,800
+    - generic [ref=e43]:
+      - button "＋ BUILD" [ref=e44]
+      - button "⌁ PATH" [ref=e45]
+      - button "⌫ REMOVE" [ref=e46]
+    - generic [ref=e47]:
+      - text: ENGINEER TIP
+      - paragraph [ref=e48]: Place a ride on the highlighted grid. Every new attraction requires QA certification.
+  - generic [ref=e49]: ISOMETRIC ENGINEERING VIEWDRAG TO ORBIT · SCROLL TO ZOOM
+  - complementary [ref=e50]:
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]: ACTIVE OBJECTIVE
+        - generic [ref=e54]: QUALITY FIRST
+      - emphasis [ref=e55]: "01"
+    - paragraph [ref=e56]: Build and certify a new attraction using your diagnostic bot squad.
+    - list [ref=e57]:
+      - listitem [ref=e58]: ✓ Place attraction blueprint
+      - listitem [ref=e59]: ✓ Deploy QA bots
+      - listitem [ref=e60]: ○ Achieve PASS certification
+    - generic [ref=e61]:
+      - text: REWARD
+      - generic [ref=e62]: ₡ 4,000 + BOT XP
+  - generic [ref=e89]:
+    - generic [ref=e90]:
+      - generic [ref=e91]:
+        - generic [ref=e92]: AUTOMATED QA SUITE
+        - generic [ref=e93]: NEON COASTER // TEST 001
+      - emphasis [ref=e94]: LIVE TELEMETRY
+    - generic [ref=e95]:
+      - generic [ref=e96]: ◉
+      - generic [ref=e97]:
+        - generic [ref=e98]: VISUAL ASSET BOT
+        - generic [ref=e99]: VIZ-07 // SCANNER
+      - generic [ref=e100]: ACTIVE
+    - generic [ref=e101]:
+      - generic [ref=e102]: ▰
+      - generic [ref=e103]:
+        - generic [ref=e104]: MECHANICS BOT
+        - generic [ref=e105]: TORQ-12 // STRESS RIG
+      - generic [ref=e106]: ACTIVE
+    - generic [ref=e107]:
+      - generic [ref=e108]:
+        - generic [ref=e109]: ASSET_LOAD
+        - generic [ref=e110]: 15%
+        - emphasis [ref=e126]
+      - generic [ref=e112]:
+        - generic [ref=e113]: GEAR_ROTATION
+        - generic [ref=e114]: CALIBRATING
+        - generic [ref=e115]:
+          - emphasis
+      - generic [ref=e116]:
+        - generic [ref=e117]: G-FORCE / SPEED
+        - generic [ref=e118]: 0.6G
+        - generic [ref=e119]:
+          - emphasis
+      - generic [ref=e120]:
+        - generic [ref=e121]: BEAUTY_RATING
+        - generic [ref=e122]: "--"
+        - generic [ref=e123]:
+          - emphasis
+    - button "QA SUITE RUNNING ●" [disabled] [ref=e127] [cursor=pointer]:
+      - text: QA SUITE RUNNING
+      - generic [ref=e128]: ●
+  - complementary [ref=e63]:
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - generic [ref=e66]: QA LAB
+        - generic [ref=e67]: DIAGNOSTIC BOTS
+      - emphasis [ref=e68]: LV.1
+    - article [ref=e69]:
+      - generic [ref=e70]: ◉
+      - generic [ref=e71]:
+        - generic [ref=e72]: VIZ-07
+        - generic [ref=e73]: SCAN SPEED 1.0×
+      - button "↑ ₡2K" [ref=e74] [cursor=pointer]
+    - article [ref=e75]:
+      - generic [ref=e76]: ▰
+      - generic [ref=e77]:
+        - generic [ref=e78]: TORQ-12
+        - generic [ref=e79]: STRESS INTEL 72
+      - button "↑ ₡3K" [ref=e80] [cursor=pointer]
+  - generic [ref=e81]:
+    - generic [ref=e82]: GRID ONLINE
+    - generic [ref=e84]: LEFT CLICK PLACE
+    - generic [ref=e85]: RIGHT DRAG ROTATE
+    - generic [ref=e86]: ESC CANCEL
+    - generic [ref=e87]: 15:12
+  - generic [ref=e88]: HOLOGRAPHIC BLUEPRINT PLACED · QA REQUIRED
