@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "robloxstudio-mcp": "^2.6.0",
+    "rojo": "^1.0.2"
+  }
+}

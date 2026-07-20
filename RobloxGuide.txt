@@ -1,0 +1,106 @@
+Roblox Documentation (create.roblox.com) – התיעוד הרשמי של המנוע, ה-API והגדרות האובייקטים.
+
+Rojo Documentation (rojo.space) – המדריך הרשמי לסנכרון קבצים, ניהול פרויקטים ומבנה התיקיות (.project.json).
+
+Luau-Lang (luau-lang.org) – התיעוד של שפת התכנות הרשמית של רובלוקס (הגרסה המשודרגת של Lua).
+
+Developer Forum (devforum.roblox.com) – מאגר הידע הקהילתי הגדול ביותר לפתרון באגים ארכיטקטוניים ושיטות עבודה מומלצות.
+
+הנה מגילת היסוד המלאה שאתה יכול לתת ל-AI שלך. היא בנויה כספר חוקים מקיף שמסביר על כל חלק במנוע, איך מתכנתים אותו, מי מתייחס למי ואיך להשתמש בפלאגינים וכלים כדי לבנות משחק מאפס בלי לנחש.
+
+📜 ספר חוקי המנוע והארכיטקטורה של ROBLOX & ROJO
+חלק 1: הארכיטקטורה של המנוע (מי נגד מי ואיך הם מדברים)
+רובלוקס בנוי במודל לקוח-שרת (Client-Server) קשוח. קוד שנמצא במקום הלא נכון פשוט יקרוס או יאפשר לשחקנים לפרוץ למשחק (Exploiting).
+
+1. ServerScriptService (קוד שרת - מאובטח)
+מה זה: המוח של המשחק. רץ אך ורק על השרתים של רובלוקס בענן. השחקנים לא יכולים לראות או לשנות את הקוד הזה.
+
+למה הוא משמש: ניהול ראונדים, חישוב נזק (Damage), שמירת נתונים (DataStores), ויצירת אובייקטים פיזיים.
+
+חוקי ברזל ל-AI:
+
+אסור לגשת ל-Players.LocalPlayer (אין יוזר ספציפי לשרת).
+
+אסור לגשת ל-Workspace.CurrentCamera (לשרת אין עיניים או מצלמה).
+
+2. StarterPlayerScripts / StarterCharacterScripts (קוד לקוח - Client)
+מה זה: הקוד שרץ על המחשב או הטלפון של השחקן הספציפי.
+
+למה הוא משמש: קליטת מקלדת/עכבר (UserInputService/ContextActionService), פתיחה וסגירה של תפריטים (UI), אפקטים ויזואליים מקומיים, ותנועות מצלמה.
+
+חוקי ברזל ל-AI:
+
+ניתן לגשת ל-Players.LocalPlayer ולמצלמה.
+
+אסור להוריד חיים לשחקנים אחרים מכאן (השרת לא יקשיב לזה).
+
+3. ReplicatedStorage (האזור המשותף)
+מה זה: תיקייה שגם השרת וגם הלקוח יכולים לראות לקרוא ממנה.
+
+למה היא משמשת: * RemoteEvents / RemoteFunctions: צינורות התקשורת (ה-APIs) שמאפשרים ללקוח להגיד לשרת "לחצתי על העכבר, תפעיל את הפטיש" ולשרת להחזיר "קיבלתי, הורדתי לו חיים".
+
+ModuleScripts: קבצי קוד משותפים (כמו הגדרות נזק, מהירות, או פונקציות מתמטיות) ששני הצדדים צריכים להשתמש בהם.
+
+חלק 2: מדריך הרכיבים הפיזיים והוויזואליים (הבנת ה-Instance)
+ברובלוקס, הכל הוא Instance. ה-AI נוטה להתבלבל בין אובייקט פיזי לאפקט.
+
+1. BasePart (Parts, MeshParts, Trusses)
+אלו הגופים הפיזיים בעולם. יש להם מיקום (Position / CFrame), גודל (Size), פיזיקה (Anchored, CanCollide), ואפשר להפעיל עליהם כוחות פיזיקליים בעזרת ApplyImpulse().
+
+2. Components / Effects (Sparkles, ParticleEmitter, Fire, Trail)
+אלו לא גופים פיזיים! הם אפקטים בלבד.
+
+חוק קריטי ל-AI: אין להם Position או Size מסוג Vector3. כדי שהם יופיעו בעולם, הם חייבים להיות בתוך (Parented) משטח פיזי (BasePart). כדי לשנות את הגודל שלהם, משתמשים במאפיינים ייחודיים כמו Size (מספר יחיד כגון Sparkles.Size = 5) או גרפים של NumberSequence.
+
+3. Humanoid & Characters
+הדמות של השחקן מורכבת מ-Model שמכיל קבצים פיזיים (כמו HumanoidRootPart - החלק המרכזי של הגוף) ורכיב לוגי שנקרא Humanoid.
+
+חוק פיזיקה ל-AI: פקודות תנועה ומשקל כמו ApplyImpulse() מפעילים אך ורק על ה-HumanoidRootPart. פקודות חיים ונזק כמו TakeDamage() מפעילים אך ורק על ה-Humanoid.
+
+חלק 3: פלאגינים והרחבות סביבת העבודה (Tooling)
+כדי שהפרויקט יעבוד בצורה מקצועית, אנחנו משתמשים בכלים הבאים שמחברים את הכל יחד:
+
+1. Rojo (v7.7.0)
+התפקיד שלו: משמש כגשר הסנכרון. הוא מתרגם את קובץ ההגדרות default.project.json וממפה את התיקיות במחשב למבנה של רובלוקס:
+
+התיקייה src/server/ הופכת אוטומטית ל-ServerScriptService.
+
+התיקייה src/client/ הופכת אוטומטית ל-StarterPlayerScripts.
+
+התיקייה src/shared/ הופכת אוטומטית ל-ReplicatedStorage.
+
+2. קבצי הגדרות (.json ו- .toml)
+aftman.toml: קובץ שמנהל את גרסאות הכלים במחשב (מבטיח שכולם עובדים על Rojo 7.7.0).
+
+default.project.json: המפה של המשחק. אם רוצים להוסיף שירות חדש או תיקייה חדשה, מעדכנים את הקובץ הזה והוא מייצר אותה ברובלוקס סטודיו.
+
+חלק 4: חוקי כתיבת קוד (Luau Best Practices)
+כדי למנוע שגיאות קומפילציה, ה-AI חייב לציית לחוקים הבאים בכל סקריפט:
+
+1. טיפוסי נתונים קשוחים (--!strict)
+כל קובץ חייב להתחיל ב---!strict. זה מאלץ את ה-AI להצהיר על סוגי המשתנים (למשל: local damage: number = 50) ומונע שגיאות של משתנים ריקים (nil).
+
+2. פקודות הגנה (Guard Clauses)
+לפני שנוגעים בדמות של שחקן, חובה לוודא שהיא קיימת ולא מתה:
+
+Lua
+local character = player.Character
+if not character then return end
+local humanoid = character:FindFirstChildOfClass("Humanoid")
+local rootPart = character:FindFirstChild("HumanoidRootPart")
+if not humanoid or not rootPart or humanoid.Health <= 0 then return end
+3. תקשורת רשת תקינה
+הלקוח שולח (Client לשרת):
+
+Lua
+-- src/client/WeaponController.client.luau
+local Remote = game:GetService("ReplicatedStorage").RemoteEvents.HammerEvent
+Remote:FireServer(Workspace.CurrentCamera.CFrame.LookVector)
+השרת מקשיב ומבצע (Server):
+
+Lua
+-- src/server/WeaponServer.server.luau
+local Remote = game:GetService("ReplicatedStorage").RemoteEvents.HammerEvent
+Remote.OnServerEvent:Connect(function(player, lookVector)
+    -- כאן השרת מריץ את הנזק והפיזיקה על בסיס ה-lookVector שהתקבל
+end)

@@ -1,0 +1,98 @@
+{
+  "name": "BunkerLobby",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "RemoteEvents": {
+        "$className": "Folder",
+        "TeleportEvent": {
+          "$className": "RemoteEvent"
+        },
+        "GroupTeleportEvent": {
+          "$className": "RemoteEvent"
+        }
+      }
+    },
+
+    "ServerScriptService": {
+      "LobbyScript": {
+        "$path": "src/server/LobbyBuilder.server.lua"
+      },
+      "TeleportScript": {
+        "$path": "src/server/TeleportHandler.server.lua"
+      }
+    },
+
+    "StarterGui": {
+      "BunkerGui": {
+        "$className": "ScreenGui",
+        "$properties": {
+          "IgnoreGuiInset": true,
+          "ResetOnSpawn": false,
+          "DisplayOrder": 10
+        },
+        "GuiScript": {
+          "$path": "src/client/LobbyGui.client.lua"
+        }
+      }
+    },
+
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true
+      },
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Color": [0.06, 0.055, 0.05],
+          "Locked": true,
+          "Position": [0, -100, 0],
+          "Size": [512, 20, 512]
+        }
+      },
+      "Spawn": {
+        "$className": "SpawnLocation",
+        "$properties": {
+          "Anchored": true,
+          "Size": [6, 1, 6],
+          "Position": [0, -0.15, 0],
+          "Color": [0.1, 0.1, 0.1],
+          "Material": "DiamondPlate",
+          "TopSurface": "Smooth",
+          "BottomSurface": "Smooth",
+          "Neutral": true,
+          "Duration": 0
+        }
+      }
+    },
+
+    "Lighting": {
+      "$properties": {
+        "Ambient": [0.7, 0.72, 0.78],
+        "Brightness": 1,
+        "GlobalShadows": true,
+        "Outlines": false,
+        "Technology": "Future",
+        "TimeOfDay": "14:00:00",
+        "OutdoorAmbient": [0.55, 0.59, 0.67],
+        "ClockTime": 14,
+        "GeographicLatitude": 40,
+        "FogColor": [0.75, 0.76, 0.82],
+        "FogStart": 100,
+        "FogEnd": 300,
+        "EnvironmentDiffuseScale": 1,
+        "EnvironmentSpecularScale": 0.5,
+        "ColorShift_Bottom": [0.63, 0.65, 0.71],
+        "ColorShift_Top": [0.78, 0.8, 0.86]
+      }
+    },
+
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    }
+  }
+}
