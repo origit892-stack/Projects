@@ -1,16 +1,23 @@
-# Pipeline repurpose — LATER task (NOT started; needs user OK)
+# Pipeline repurpose — DAILY 12:00 B2B DEMO CHANNEL (user request 2026-11-08; NOT started; needs user OK)
 
-**Why:** the Shorts cron (`714a080066ef`, 2x daily) is a proven machine that finds material, builds 9:16 video, and uploads. Pointing it (or a clone of it) at daily demo clips = a storefront that's open 24/7 with zero daily effort.
+**Why:** a daily 12:00 video = a storefront open 24/7 that pushes the business (inbound leads), built on the proven Shorts machinery.
 
-**Change (when approved):**
-1. Clone the pipeline config into a second cron profile path (`~/.hermes/yt-short-pipeline/demo-mode/`) — do NOT edit the live CC-only pipeline; run both.
-2. Demo-mode source = a small curated list of self-made "demo clips" (from DEMO_PLAN.md, rotated weekly) instead of CC search. Same cut/vertical/upload/upload-verify chain.
-3. Same channel (PowerPlayPalace) OR a second channel "The Agent Operator" — decide with user (mixing clips + agent content on one channel dilutes the algo; second channel = cleaner but starts from 0 again).
-4. Upload cadence: 1x/day is enough for a B2B proof channel (shorts pipeline proven at 2x/day; 1x/day is a lighter load on the same machinery).
+**DECIDED 2026-11-08 (pending final user go):**
+- **Channel:** NEW channel (not PowerPlayPalace — that one is CC-clips; mixing would dilute both). Working name: **"The Agent Operator"** (user confirms/changes).
+- **Cadence:** 1x daily, **12:00 IST** (user-specified).
+- **Production:** FULLY automated by the agent — same ffmpeg recipe as `clip1-agent-ops.mp4` (proven 2026-11-08), fed by that day's real artifacts (cron runs, builds, client work). No CC search needed — self-made content, no attribution rules.
+- **Upload:** existing Data-API token + auto-verify public watch page loads (same chain as the Shorts pipeline). New cron, the live CC cron is untouched.
+- **Cost:** $0 (existing infra + existing token + ffmpeg).
 
-**Risks/gates:**
-- Requires user decision (channel strategy) — it's a change to a live production cron's sibling, not to the cron itself.
-- Attribution rules don't apply to self-made content (simpler, not harder).
-- First demo clip = the ffmpeg build in DEMO_PLAN.md (clip 1).
+**Content rotation (4 types, cycled):**
+1. 30s system-in-motion (a pipeline run, end to end)
+2. "How I built X" — one build step, explained in 45s
+3. A client win / before-after (only from real delivered work)
+4. A take on one AI/automation news item (data from the existing research bot)
 
-**Success metric (30 days):** channel has ≥15 clips, ≥1 profile visit per week attributed to a clip (Upwork "profile views" + Fiverr "views"), ≥1 conversation started citing a video.
+**Honest monetization expectations (say this to the user):**
+- YouTube AD revenue (AdSense) needs 1,000 subs + 4,000 watch-hours (or 10M Shorts views/90d) — that's months away and it's the SMALL prize.
+- The BIG prize: every video → profile view → Upwork/Fiverr/custom offer → direct client. The channel is a **lead funnel**, and AdSense is a bonus if it grows.
+- B2B demo content may hit YouTube's "repetitive content" flag for AdSense later — irrelevant until AdSense is the goal; leads are the goal now.
+
+**Gates:** user confirms channel name + green-lights the new cron. Nothing else needed.

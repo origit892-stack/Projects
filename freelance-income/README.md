@@ -19,7 +19,9 @@ No cold DMs. Demand comes from: (a) marketplaces where requests are already post
 | `proposals/draft-02-claude-mac-mini.md` | Draft for the Claude + Mac mini job (best fit) |
 | `proposals/draft-03-n8n-specialist-30-60.md` | Draft for the $30-60/hr n8n specialist job |
 | `demos/DEMO_PLAN.md` | 3 demo clips — shot list, captions, ffmpeg recipe |
-| `demos/PIPELINE_REPURPOSE.md` | Later task: point the daily Shorts cron at demo clips (needs user OK — changes a live cron) |
+| `demos/PIPELINE_REPURPOSE.md` | DAILY 12:00 B2B demo channel — decided plan, needs user go (new channel, automated production) |
+| `reddit/REDDIT.md` | Reddit play — verified subs + rules + 21-day timeline + monitoring-cron proposal |
+| `demos/clip1-agent-ops.mp4` | Ready demo video (27.5s vertical) — Fiverr gig video / "demo link" for proposals |
 
 ## Proof assets (all verified 2026-11-08, public or user-owned)
 - Storefront I operate: https://openshelf.1st4offers.com (124 products, run via official API)
