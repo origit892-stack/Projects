@@ -32,8 +32,15 @@ No cold DMs. Demand comes from: (a) marketplaces where requests are already post
 1. **Upwork account** — signup, verify email + 2FA + ID. Paste `profile/UPWORK.md` (title, overview, skills). Rate: $35/hr. (~10 min)
 2. **Fiverr account** — create gig from `profile/FIVERR.md` (gig 1). (~10 min)
 3. **Apply to 3 jobs today** — drafts 01-03 in `proposals/`, paste + answer screening questions from your real mouth if asked. Then 2-3 more/day from `jobs/WATCHLIST.md`.
-4. (Optional, strong) Record a 2-min Loom: `hermes cron list` + storefront + GitHub repo. This becomes the "demo link" several jobs explicitly ask for.
+4. (Optional, strong) Record a 2-min proof video with the built-in screen recorder (**Cmd+Shift+5**, free, no watermark): `hermes cron list` + storefront + GitHub repo. This becomes the "demo link" several jobs explicitly ask for. (Do NOT use Loom or any paid tool.)
 5. Tell the chief "uploaded + applied" → it writes the follow-ups and the next 10 jobs.
+
+## ZERO-COST RULES (user mandate 2026-11-08: אפס הוצאות)
+- **Out-of-pocket: $0, forever.** The only money that ever moves is the platform's cut ON a closed sale (Fiverr 20%, Upwork 10-15%). No pre-payment, no subscription, no "verification fee", no boosters, no third-party profile services. If a channel requires paying to work → it's off the list.
+- **Upwork strict rule: NEVER buy Connects.** Use only the 10 free/month (+ up to ~24/month from proposal-activity rewards) and ONLY on A-fit jobs from the watchlist. Job invites (free) get accepted. No Freelancer Plus, no badges. If the free pool is empty and no A-fit job is live → zero applications that month, zero cost.
+- **Fiverr:** 100% free setup, 4 active gigs allowed as a new seller. One gig now; gig 2 (audit niche) only after first 3 orders.
+- **Loom → replaced by macOS built-in screen recorder: Cmd+Shift+5** (free, no watermark). Use it for the 2-min proof video.
+- **Free content channels (the inbound engine):** the existing Shorts pipeline (zero marginal cost) + X + LinkedIn + Telegram + public GitHub (already live).
 
 ## Rules (honesty)
 - Every claim in copy = verifiable system the user actually runs. NO invented client names, NO "12 client projects".
