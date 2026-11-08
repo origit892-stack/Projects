@@ -1,28 +1,31 @@
 # Freelance Income Kit — "AI employee in 2 weeks"
 
-**Status (2026-11-08):** KIT COMPLETE — copy, pricing, 10 real jobs, 3 proposal drafts, demo plan.
-**Not done:** accounts (user action), proposals submitted, Fiverr gig live, demo video (in `demos/`).
+**Status (2026-11-08):** KIT COMPLETE + STRATEGY SHIFT — user DROPPED Fiverr/Upwork ("תמצא תחליף חינמי"). Active channels = `channels/FREE_CHANNELS.md` (Braintrust 0% + direct $0 stack). Fiverr/Upwork files → `archive/`.
+**Not done:** accounts (user action), Telegram bot token, payment link, channel name confirmation, 12:00 YT + 09:00 Reddit crons.
 
 ## What this is
-An inbound sales machine for selling AI-agent/automation builds (option 1 from the 2026-11-08 monetization session).
-No cold DMs. Demand comes from: (a) marketplaces where requests are already posted (Upwork/Fiverr), (b) public proof (storefront, GitHub, demo video, content).
+An inbound sales machine for selling AI-agent/automation builds.
+No cold DMs. Demand comes from: (a) the $0 channel stack in `channels/FREE_CHANNELS.md` (Braintrust, Google Business, FB groups, LinkedIn, Discord, Reddit, build-in-public), (b) public proof (storefront, GitHub, demo video, content).
+
+## Architecture rule — where client systems run (2026-11-08, user capacity concern resolved)
+**Delivered client systems NEVER run on the operator's home machine / local models.** Per client, runtime is one of:
+1. **Client's own LLM API keys** (DeepSeek/Groq/etc., pay-per-use — client's cost, cents per conversation) — default; scales to any concurrency.
+2. **Client's own VPS/server** ($5-40/mo, client's cost) — self-hosted option.
+3. **Operator-hosted** (care plan, client pays the server) — shared hosted model.
+Local Qwen/vLLM = build/test/dev environment + operator's own pipelines ONLY. "40 concurrent clients" is a non-issue: load lands on client-side / client-paid infra.
 
 ## Files
 | File | What |
 |---|---|
 | `OFFER.md` | The offer + pricing, EN + HE |
-| `profile/UPWORK.md` | Upwork profile — paste as-is |
-| `profile/FIVERR.md` | Fiverr gig — paste as-is (1 main gig + 1 later) |
-| `jobs/WATCHLIST.md` | 10 REAL open jobs (verified 2026-11-08) + daily-refresh URLs |
-| `proposals/TEMPLATE.md` | Master proposal template + rules |
-| `proposals/draft-01-resultise-n8n-partner.md` | Draft for the long-term agency partner job (best fit) |
-| `proposals/draft-02-claude-mac-mini.md` | Draft for the Claude + Mac mini job (best fit) |
-| `proposals/draft-03-n8n-specialist-30-60.md` | Draft for the $30-60/hr n8n specialist job |
+| `channels/FREE_CHANNELS.md` | **CURRENT CHANNEL STRATEGY** — free-marketplace research (Braintrust in; Contra/Malt out) + the $0 direct stack |
+| `proposals/TEMPLATE.md` | Master proposal template + rules (any lead source) |
 | `demos/DEMO_PLAN.md` | 3 demo clips — shot list, captions, ffmpeg recipe |
 | `demos/PIPELINE_REPURPOSE.md` | DAILY 12:00 B2B demo channel — decided plan, needs user go (new channel, automated production) |
 | `reddit/REDDIT.md` | Reddit play — verified subs + rules + 21-day timeline + monitoring-cron proposal |
 | `site/SITE.md` | Site + messaging + payment decisions — live on GitHub Pages (agent-operator repo); NO fake case studies; inbound Telegram bot only; Stripe/PayPal links ($0 out-of-pocket) |
-| `demos/clip1-agent-ops.mp4` | Ready demo video (27.5s vertical) — Fiverr gig video / "demo link" for proposals |
+| `demos/clip1-agent-ops.mp4` | Ready demo video (27.5s vertical) — "demo link" for any lead source |
+| `archive/` | Upwork/Fiverr profile + watchlist + 3 proposal drafts — OFF, kept paste-ready |
 
 ## Proof assets (all verified 2026-11-08, public or user-owned)
 - Storefront I operate: https://openshelf.1st4offers.com (124 products, run via official API)
@@ -31,21 +34,23 @@ No cold DMs. Demand comes from: (a) marketplaces where requests are already post
 - Live Roblox game in production state (14+ scripts, DataStore) — use verbally, not as a public link
 - Full RE of a commercial obfuscated app (554/554 files decoded) — use verbally / as a written case study
 
-## USER ACTION CHECKLIST (~25 min total, once)
-1. **Upwork account** — signup, verify email + 2FA + ID. Paste `profile/UPWORK.md` (title, overview, skills). Rate: $35/hr. (~10 min)
-2. **Fiverr account** — create gig from `profile/FIVERR.md` (gig 1). (~10 min)
-3. **Apply to 3 jobs today** — drafts 01-03 in `proposals/`, paste + answer screening questions from your real mouth if asked. Then 2-3 more/day from `jobs/WATCHLIST.md`.
-4. (Optional, strong) Record a 2-min proof video with the built-in screen recorder (**Cmd+Shift+5**, free, no watermark): `hermes cron list` + storefront + GitHub repo. This becomes the "demo link" several jobs explicitly ask for. (Do NOT use Loom or any paid tool.)
-5. Tell the chief "uploaded + applied" → it writes the follow-ups and the next 10 jobs.
+## USER ACTION CHECKLIST (~40 min total, once)
+1. **Braintrust** — apply at usebraintrust.com: profile from `OFFER.md` + site + the 4 proof systems; pass the AI interview. 0% talent fee. (~20 min)
+2. **Google Business Profile** — claim free listing "The Agent Operator — AI Automation", Tel Aviv; link the site. (~10 min)
+3. **LinkedIn** — free profile with the same copy. (~10 min)
+4. **Telegram bot** — @BotFather, send token to the chief. (2 min)
+5. **Payment** — PayPal.Me or Stripe Payment Link → chief pastes into the site. (10 min)
+6. **Confirm** channel name "The Agent Operator" + go on the two crons (YT 12:00, Reddit 09:00).
+7. (Optional, strong) Record a 2-min proof video with **Cmd+Shift+5** (free, no watermark): `hermes cron list` + storefront + GitHub repo.
+8. Tell the chief "done" → it wires the bot, payment button, and site placeholders.
 
-## ZERO-COST RULES (user mandate 2026-11-08: אפס הוצאות)
-- **Out-of-pocket: $0, forever.** The only money that ever moves is the platform's cut ON a closed sale (Fiverr 20%, Upwork 10-15%). No pre-payment, no subscription, no "verification fee", no boosters, no third-party profile services. If a channel requires paying to work → it's off the list.
-- **Upwork strict rule: NEVER buy Connects.** Use only the 10 free/month (+ up to ~24/month from proposal-activity rewards) and ONLY on A-fit jobs from the watchlist. Job invites (free) get accepted. No Freelancer Plus, no badges. If the free pool is empty and no A-fit job is live → zero applications that month, zero cost.
-- **Fiverr:** 100% free setup, 4 active gigs allowed as a new seller. One gig now; gig 2 (audit niche) only after first 3 orders.
-- **Loom → replaced by macOS built-in screen recorder: Cmd+Shift+5** (free, no watermark). Use it for the 2-min proof video.
-- **Free content channels (the inbound engine):** the existing Shorts pipeline (zero marginal cost) + X + LinkedIn + Telegram + public GitHub (already live).
+## ZERO-COST RULES (user mandates: אפס הוצאות + no Fiverr/Upwork)
+- **Out-of-pocket: $0, forever.** The only money that ever moves: Stripe/PayPal per-transaction fees on a closed sale, and client-side platform fees (client pays). **Any channel taking a cut of OUR revenue is off the list** (Fiverr 20% and the Upwork model rejected by user 2026-11-08 — files archived, not deleted).
+- **No pre-payment, no subscription, no "verification fee", no boosters, no paid tools, no third-party profile services.**
+- **Recording:** macOS built-in screen recorder Cmd+Shift+5 (free, no watermark). Never Loom or paid tools.
+- **Free content channels (the inbound engine):** existing Shorts pipeline + new 12:00 B2B channel + X + LinkedIn + Telegram + public GitHub (already live).
 
 ## Rules (honesty)
 - Every claim in copy = verifiable system the user actually runs. NO invented client names, NO "12 client projects".
 - No cold outreach of any kind (user explicitly rejected; platforms ban it).
-- If a job asks for client portfolio: the honest answer is "my production evidence is the systems I run — verifiable today" + links.
+- If a lead asks for client portfolio: the honest answer is "my production evidence is the systems I run — verifiable today" + links.
