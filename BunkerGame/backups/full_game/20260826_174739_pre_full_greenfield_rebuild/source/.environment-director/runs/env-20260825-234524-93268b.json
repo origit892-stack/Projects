@@ -1,0 +1,84 @@
+{
+  "assets": [],
+  "blockers": [],
+  "created_at": 1787690724.2506938,
+  "goal": "Dry-run only: validate Environment Director orchestration without modifying BunkerGame source.",
+  "history": [
+    {
+      "event": "RUN_CREATED",
+      "stage": "INSPECT",
+      "time": 1787690724.2506938
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "INSPECT",
+      "time": 1787690724.434114
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "ARCHITECT",
+      "time": 1787690724.520612
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "ASSET_REUSE",
+      "time": 1787690724.606102
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "BUILD",
+      "time": 1787690724.691945
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "ASSET_FACTORY",
+      "time": 1787690724.772341
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "SET_DRESS",
+      "time": 1787690724.862232
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "LIGHTING",
+      "time": 1787690724.948214
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "TECH_QA",
+      "time": 1787690725.0313432
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "PLAY_QA",
+      "time": 1787690725.11655
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "VISUAL_QA",
+      "time": 1787690725.1945071
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Environment Director installation dry-run.",
+      "stage": "DIRECTOR_REVIEW",
+      "time": 1787690725.286282
+    }
+  ],
+  "run_id": "env-20260825-234524-93268b",
+  "stage": "APPROVED",
+  "status": "APPROVED",
+  "target": "Workshop",
+  "updated_at": 1787690725.286284
+}

@@ -1,0 +1,506 @@
+{
+  "Name": "ServiceExitEvacuationStorySyncReset",
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "AbandonedEvacuationKit",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "EmergencyBagBody",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.15,
+              0.62,
+              1.35
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Fabric",
+            "Color": [
+              0.18,
+              0.2,
+              0.16
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              27.1,
+              54.38,
+              121.75
+            ]
+          }
+        },
+        {
+          "Name": "EmergencyBagFlap",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              1.75,
+              0.12,
+              1.08
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Fabric",
+            "Color": [
+              0.12,
+              0.14,
+              0.12
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              27.0,
+              54.74,
+              121.75
+            ]
+          }
+        },
+        {
+          "Name": "EmergencyBagStrap",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.16,
+              0.08,
+              1.55
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.08,
+              0.09,
+              0.08
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              27.1,
+              54.78,
+              121.75
+            ]
+          }
+        },
+        {
+          "Name": "DroppedFilterCanister",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.72,
+              0.72,
+              0.72
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.2,
+              0.22,
+              0.2
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              25.75,
+              54.38,
+              122.15
+            ]
+          }
+        },
+        {
+          "Name": "DiscardedGlove",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.78,
+              0.08,
+              0.42
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Fabric",
+            "Color": [
+              0.16,
+              0.18,
+              0.15
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              24.9,
+              54.1,
+              121.35
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "FailedExitProcedure",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "FadedEmergencyPanel",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.08,
+              2.45,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.24,
+              0.23,
+              0.18
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              29.36,
+              59.15,
+              122.25
+            ]
+          }
+        },
+        {
+          "Name": "WarningBandUpper",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.045,
+              0.18,
+              3.15
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.48,
+              0.31,
+              0.06
+            ],
+            "Transparency": 0.16,
+            "CastShadow": false,
+            "Position": [
+              29.31,
+              59.72,
+              122.25
+            ]
+          }
+        },
+        {
+          "Name": "WarningBandLower",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.045,
+              0.18,
+              2.25
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.4,
+              0.12,
+              0.055
+            ],
+            "Transparency": 0.22,
+            "CastShadow": false,
+            "Position": [
+              29.3,
+              58.55,
+              122.25
+            ]
+          }
+        },
+        {
+          "Name": "DeadIndicator",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.04,
+              0.34,
+              0.34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.12,
+              0.055,
+              0.035
+            ],
+            "Transparency": 0.0,
+            "CastShadow": false,
+            "Position": [
+              29.28,
+              59.15,
+              121.15
+            ]
+          }
+        },
+        {
+          "Name": "ScratchedProcedureStrip",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.035,
+              0.12,
+              1.45
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.55,
+              0.52,
+              0.4
+            ],
+            "Transparency": 0.35,
+            "CastShadow": false,
+            "Position": [
+              29.27,
+              58.95,
+              122.55
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DamagedServiceFeed",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "LooseCableUpper",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              4.4,
+              0.13,
+              0.13
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.055,
+              0.06,
+              0.055
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              17.2,
+              62.25,
+              121.65
+            ]
+          }
+        },
+        {
+          "Name": "LooseCableDrop",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.13,
+              2.25,
+              0.13
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.055,
+              0.06,
+              0.055
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              15.05,
+              61.2,
+              121.65
+            ]
+          }
+        },
+        {
+          "Name": "CableEndSleeve",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.34,
+              0.42,
+              0.34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.18,
+              0.16,
+              0.13
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              15.05,
+              60.08,
+              121.65
+            ]
+          }
+        },
+        {
+          "Name": "OldJunctionPlate",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.08,
+              1.45,
+              1.65
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.17,
+              0.18,
+              0.17
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              14.66,
+              60.0,
+              120.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "EvacuationFloorEvidence",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "DraggedMudTraceA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.8,
+              0.018,
+              0.42
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.105,
+              0.085,
+              0.06
+            ],
+            "Transparency": 0.38,
+            "CastShadow": false,
+            "Position": [
+              26.2,
+              54.025,
+              118.9
+            ]
+          }
+        },
+        {
+          "Name": "DraggedMudTraceB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.1,
+              0.018,
+              0.34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.105,
+              0.085,
+              0.06
+            ],
+            "Transparency": 0.46,
+            "CastShadow": false,
+            "Position": [
+              28.1,
+              54.026,
+              119.55
+            ]
+          }
+        },
+        {
+          "Name": "WaterDripPool",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              1.35,
+              0.016,
+              1.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.08,
+              0.12,
+              0.13
+            ],
+            "Transparency": 0.58,
+            "CastShadow": false,
+            "Position": [
+              16.0,
+              54.023,
+              110.3
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

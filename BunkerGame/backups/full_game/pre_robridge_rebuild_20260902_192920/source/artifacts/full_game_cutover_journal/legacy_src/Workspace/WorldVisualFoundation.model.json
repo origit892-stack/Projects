@@ -1,0 +1,4654 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "FoundationPurpose": "WorldVisualFoundation",
+    "GameplayImplemented": false,
+    "FutureResourceCompatible": true
+  },
+  "Children": [
+    {
+      "Name": "BunkerFarmWorldArtEnvelope",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "BunkerApproachEarth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              112,
+              0.3,
+              72
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.17,
+              0.17,
+              0.15
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              28,
+              53.559999999999995,
+              54,
+              0.9975640502598242,
+              0,
+              -0.0697564737441253,
+              0,
+              1,
+              0,
+              0.0697564737441253,
+              0,
+              0.9975640502598242
+            ]
+          }
+        },
+        {
+          "Name": "FarmOuterEarth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              74,
+              0.32,
+              66
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.19,
+              0.175,
+              0.135
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              67,
+              53.58,
+              211,
+              0.9986295347545738,
+              0,
+              0.052335956242943835,
+              0,
+              1,
+              0,
+              -0.052335956242943835,
+              0,
+              0.9986295347545738
+            ]
+          }
+        },
+        {
+          "Name": "FarmDisturbedSoil",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              48,
+              0.18,
+              35
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.145,
+              0.13,
+              0.095
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              66,
+              53.69,
+              214,
+              0.9993908270190958,
+              0,
+              -0.03489949670250097,
+              0,
+              1,
+              0,
+              0.03489949670250097,
+              0,
+              0.9993908270190958
+            ]
+          }
+        },
+        {
+          "Name": "ServiceYardGravel",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              30,
+              0.2,
+              38
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Pebble",
+            "Color": [
+              0.24,
+              0.245,
+              0.225
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              85,
+              53.68,
+              211,
+              0.9961946980917455,
+              0,
+              0.08715574274765817,
+              0,
+              1,
+              0,
+              -0.08715574274765817,
+              0,
+              0.9961946980917455
+            ]
+          }
+        },
+        {
+          "Name": "BunkerFarmRoute",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              13,
+              0.24,
+              105
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.16,
+              0.145,
+              0.11
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              53,
+              53.699999999999996,
+              151,
+              0.992546151641322,
+              0,
+              -0.12186934340514748,
+              0,
+              1,
+              0,
+              0.12186934340514748,
+              0,
+              0.992546151641322
+            ]
+          }
+        },
+        {
+          "Name": "RouteGravelSpine",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              5.5,
+              0.1,
+              94
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Pebble",
+            "Color": [
+              0.27,
+              0.27,
+              0.24
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              54,
+              53.83,
+              151,
+              0.992546151641322,
+              0,
+              -0.12186934340514748,
+              0,
+              1,
+              0,
+              0.12186934340514748,
+              0,
+              0.992546151641322
+            ]
+          }
+        },
+        {
+          "Name": "FarmWestBermA",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  6.56,
+                  2.788,
+                  4.92
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  38,
+                  54.22,
+                  202,
+                  0.9781476007338057,
+                  0,
+                  0.20791169081775934,
+                  0,
+                  1,
+                  0,
+                  -0.20791169081775934,
+                  0,
+                  0.9781476007338057
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.264,
+                  2.05,
+                  3.69
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  34.638,
+                  53.974,
+                  203.476,
+                  0.8090169943749475,
+                  0,
+                  0.5877852522924731,
+                  0,
+                  1,
+                  0,
+                  -0.5877852522924731,
+                  0,
+                  0.8090169943749475
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.69,
+                  1.722,
+                  4.1
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  41.28,
+                  53.851,
+                  200.77,
+                  0.9945218953682733,
+                  0,
+                  -0.10452846326765347,
+                  0,
+                  1,
+                  0,
+                  0.10452846326765347,
+                  0,
+                  0.9945218953682733
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FarmWestBermB",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  5.2,
+                  2.21,
+                  3.9000000000000004
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  35,
+                  54.05,
+                  225,
+                  0.9510565162951535,
+                  0,
+                  -0.3090169943749474,
+                  0,
+                  1,
+                  0,
+                  0.3090169943749474,
+                  0,
+                  0.9510565162951535
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.3800000000000003,
+                  1.625,
+                  2.9250000000000003
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  32.335,
+                  53.855,
+                  226.17,
+                  0.9945218953682733,
+                  0,
+                  0.10452846326765347,
+                  0,
+                  1,
+                  0,
+                  -0.10452846326765347,
+                  0,
+                  0.9945218953682733
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  2.9250000000000003,
+                  1.3650000000000002,
+                  3.25
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  37.6,
+                  53.7575,
+                  224.025,
+                  0.8090169943749475,
+                  0,
+                  -0.5877852522924731,
+                  0,
+                  1,
+                  0,
+                  0.5877852522924731,
+                  0,
+                  0.8090169943749475
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FarmNorthOutcrop",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  7.04,
+                  2.992,
+                  5.28
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  70,
+                  54.28,
+                  244,
+                  0.9902680687415704,
+                  0,
+                  0.13917310096006544,
+                  0,
+                  1,
+                  0,
+                  -0.13917310096006544,
+                  0,
+                  0.9902680687415704
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.5760000000000005,
+                  2.2,
+                  3.96
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  66.392,
+                  54.016,
+                  245.584,
+                  0.848048096156426,
+                  0,
+                  0.5299192642332049,
+                  0,
+                  1,
+                  0,
+                  -0.5299192642332049,
+                  0,
+                  0.848048096156426
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.96,
+                  1.848,
+                  4.4
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  73.52,
+                  53.884,
+                  242.68,
+                  0.984807753012208,
+                  0,
+                  -0.17364817766693033,
+                  0,
+                  1,
+                  0,
+                  0.17364817766693033,
+                  0,
+                  0.984807753012208
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FarmEastOutcrop",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  5.76,
+                  2.448,
+                  4.32
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  102,
+                  54.12,
+                  225,
+                  0.9135454576426009,
+                  0,
+                  -0.4067366430758002,
+                  0,
+                  1,
+                  0,
+                  0.4067366430758002,
+                  0,
+                  0.9135454576426009
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.7439999999999998,
+                  1.7999999999999998,
+                  3.2399999999999998
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  99.048,
+                  53.903999999999996,
+                  226.296,
+                  1.0,
+                  0,
+                  0.0,
+                  0,
+                  1,
+                  0,
+                  -0.0,
+                  0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.2399999999999998,
+                  1.512,
+                  3.5999999999999996
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  104.88,
+                  53.796,
+                  223.92,
+                  0.7431448254773942,
+                  0,
+                  -0.6691306063588582,
+                  0,
+                  1,
+                  0,
+                  0.6691306063588582,
+                  0,
+                  0.7431448254773942
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "BunkerApproachOutcrop",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  5.44,
+                  2.3120000000000003,
+                  4.08
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  39,
+                  54.08,
+                  111,
+                  0.9563047559630354,
+                  0,
+                  0.29237170472273677,
+                  0,
+                  1,
+                  0,
+                  -0.29237170472273677,
+                  0,
+                  0.9563047559630354
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.5360000000000005,
+                  1.7000000000000002,
+                  3.06
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  36.212,
+                  53.876,
+                  112.224,
+                  0.754709580222772,
+                  0,
+                  0.6560590289905073,
+                  0,
+                  1,
+                  0,
+                  -0.6560590289905073,
+                  0,
+                  0.754709580222772
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.06,
+                  1.4280000000000002,
+                  3.4000000000000004
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  41.72,
+                  53.774,
+                  109.98,
+                  0.9998476951563913,
+                  0,
+                  -0.01745240643728351,
+                  0,
+                  1,
+                  0,
+                  0.01745240643728351,
+                  0,
+                  0.9998476951563913
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FoundationEarthWest",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              18,
+              2.2,
+              34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.17,
+              0.17,
+              0.15
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              -5,
+              54.05,
+              65,
+              0.9961946980917455,
+              0,
+              -0.08715574274765817,
+              0,
+              1,
+              0,
+              0.08715574274765817,
+              0,
+              0.9961946980917455
+            ]
+          }
+        },
+        {
+          "Name": "FoundationEarthEast",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              18,
+              1.8,
+              40
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.235,
+              0.225,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              47,
+              53.9,
+              78,
+              0.9945218953682733,
+              0,
+              0.10452846326765347,
+              0,
+              1,
+              0,
+              -0.10452846326765347,
+              0,
+              0.9945218953682733
+            ]
+          }
+        },
+        {
+          "Name": "FoundationRockToeA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              15,
+              1.1,
+              5
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Slate",
+            "Color": [
+              0.2,
+              0.215,
+              0.21
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              2,
+              53.85,
+              28,
+              0.9876883405951378,
+              0,
+              0.15643446504023087,
+              0,
+              1,
+              0,
+              -0.15643446504023087,
+              0,
+              0.9876883405951378
+            ]
+          }
+        },
+        {
+          "Name": "FoundationRockToeB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              13,
+              0.9,
+              5
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Rock",
+            "Color": [
+              0.29,
+              0.3,
+              0.29
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              44,
+              53.78,
+              99,
+              0.981627183447664,
+              0,
+              -0.1908089953765448,
+              0,
+              1,
+              0,
+              0.1908089953765448,
+              0,
+              0.981627183447664
+            ]
+          }
+        },
+        {
+          "Name": "FarmWheelRutsA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.65,
+              0.06,
+              31
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.1,
+              0.095,
+              0.075
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              88,
+              53.879999999999995,
+              211,
+              0.9975640502598242,
+              0,
+              0.0697564737441253,
+              0,
+              1,
+              0,
+              -0.0697564737441253,
+              0,
+              0.9975640502598242
+            ]
+          }
+        },
+        {
+          "Name": "FarmWheelRutsB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.65,
+              0.06,
+              31
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.1,
+              0.095,
+              0.075
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              91,
+              53.879999999999995,
+              211,
+              0.9975640502598242,
+              0,
+              0.0697564737441253,
+              0,
+              1,
+              0,
+              -0.0697564737441253,
+              0,
+              0.9975640502598242
+            ]
+          }
+        },
+        {
+          "Name": "RunoffChannel",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              1.4,
+              0.1,
+              43
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Pebble",
+            "Color": [
+              0.2,
+              0.215,
+              0.21
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              45,
+              53.839999999999996,
+              207,
+              0.9961946980917455,
+              0,
+              -0.08715574274765817,
+              0,
+              1,
+              0,
+              0.08715574274765817,
+              0,
+              0.9961946980917455
+            ]
+          }
+        },
+        {
+          "Name": "WestDeadGrowthCluster",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "DeadBrushA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  7,
+                  0.35,
+                  5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Grass",
+                "Color": [
+                  0.285,
+                  0.31,
+                  0.22
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  42,
+                  53.699999999999996,
+                  191,
+                  0.9510565162951535,
+                  0,
+                  0.3090169943749474,
+                  0,
+                  1,
+                  0,
+                  -0.3090169943749474,
+                  0,
+                  0.9510565162951535
+                ]
+              }
+            },
+            {
+              "Name": "DeadBrushB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  5,
+                  0.28,
+                  7
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Grass",
+                "Color": [
+                  0.22,
+                  0.25,
+                  0.17
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  37,
+                  53.68,
+                  196,
+                  0.9743700647852352,
+                  0,
+                  -0.224951054343865,
+                  0,
+                  1,
+                  0,
+                  0.224951054343865,
+                  0,
+                  0.9743700647852352
+                ]
+              }
+            },
+            {
+              "Name": "FallenTrunk",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  12,
+                  0.85,
+                  0.85
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  39,
+                  54.05,
+                  187,
+                  0.882947592858927,
+                  0,
+                  0.4694715627858908,
+                  0,
+                  1,
+                  0,
+                  -0.4694715627858908,
+                  0,
+                  0.882947592858927
+                ]
+              }
+            },
+            {
+              "Name": "BrokenPostA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  0.55,
+                  3.2,
+                  0.55
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  45,
+                  55.0,
+                  194,
+                  0.992546151641322,
+                  0,
+                  0.12186934340514748,
+                  0,
+                  1,
+                  0,
+                  -0.12186934340514748,
+                  0,
+                  0.992546151641322
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "NorthFarmEdgeCluster",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "DeadBrushC",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  10,
+                  0.3,
+                  5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Grass",
+                "Color": [
+                  0.285,
+                  0.31,
+                  0.22
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  58,
+                  53.699999999999996,
+                  239,
+                  0.9876883405951378,
+                  0,
+                  -0.15643446504023087,
+                  0,
+                  1,
+                  0,
+                  0.15643446504023087,
+                  0,
+                  0.9876883405951378
+                ]
+              }
+            },
+            {
+              "Name": "DeadBrushD",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  8,
+                  0.26,
+                  4
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Grass",
+                "Color": [
+                  0.24,
+                  0.265,
+                  0.18
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  83,
+                  53.68,
+                  241,
+                  0.9702957262759965,
+                  0,
+                  0.24192189559966773,
+                  0,
+                  1,
+                  0,
+                  -0.24192189559966773,
+                  0,
+                  0.9702957262759965
+                ]
+              }
+            },
+            {
+              "Name": "DiscardedPipe",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  9,
+                  0.55,
+                  0.55
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "CorrodedMetal",
+                "Color": [
+                  0.29,
+                  0.16,
+                  0.09
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  91,
+                  53.949999999999996,
+                  238,
+                  0.9335804264972017,
+                  0,
+                  -0.35836794954530027,
+                  0,
+                  1,
+                  0,
+                  0.35836794954530027,
+                  0,
+                  0.9335804264972017
+                ]
+              }
+            },
+            {
+              "Name": "BrokenTimber",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  8,
+                  0.7,
+                  0.7
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  48,
+                  53.92,
+                  237,
+                  0.8571673007021123,
+                  0,
+                  0.5150380749100542,
+                  0,
+                  1,
+                  0,
+                  -0.5150380749100542,
+                  0,
+                  0.8571673007021123
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ServiceDebrisCluster",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "ConcreteChunkA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.2,
+                  1.0,
+                  2.5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Concrete",
+                "Color": [
+                  0.31,
+                  0.31,
+                  0.285
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  96,
+                  53.949999999999996,
+                  205,
+                  0.9563047559630354,
+                  0,
+                  0.29237170472273677,
+                  0,
+                  1,
+                  0,
+                  -0.29237170472273677,
+                  0,
+                  0.9563047559630354
+                ]
+              }
+            },
+            {
+              "Name": "ConcreteChunkB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  2.4,
+                  0.8,
+                  2.0
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Concrete",
+                "Color": [
+                  0.25,
+                  0.255,
+                  0.24
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  99,
+                  53.82,
+                  208,
+                  0.9902680687415704,
+                  0,
+                  -0.13917310096006544,
+                  0,
+                  1,
+                  0,
+                  0.13917310096006544,
+                  0,
+                  0.9902680687415704
+                ]
+              }
+            },
+            {
+              "Name": "DiscardedBeam",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  7.5,
+                  0.45,
+                  0.65
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Metal",
+                "Color": [
+                  0.24,
+                  0.25,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  96,
+                  53.879999999999995,
+                  213,
+                  0.9135454576426009,
+                  0,
+                  0.4067366430758002,
+                  0,
+                  1,
+                  0,
+                  -0.4067366430758002,
+                  0,
+                  0.9135454576426009
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "BunkerApproachForegroundFrame",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "WestMudShoulder",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  24,
+                  0.18,
+                  18
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Ground",
+                "Color": [
+                  0.235,
+                  0.225,
+                  0.19
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  22,
+                  53.48,
+                  112,
+                  0.9702957262759965,
+                  0,
+                  0.24192189559966773,
+                  0,
+                  1,
+                  0,
+                  -0.24192189559966773,
+                  0,
+                  0.9702957262759965
+                ]
+              }
+            },
+            {
+              "Name": "EastGravelShoulder",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  22,
+                  0.18,
+                  16
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Ground",
+                "Color": [
+                  0.235,
+                  0.225,
+                  0.19
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  49,
+                  53.48,
+                  120,
+                  0.9563047559630354,
+                  0,
+                  -0.29237170472273677,
+                  0,
+                  1,
+                  0,
+                  0.29237170472273677,
+                  0,
+                  0.9563047559630354
+                ]
+              }
+            },
+            {
+              "Name": "WestApproachRockMass",
+              "ClassName": "Model",
+              "Children": [
+                {
+                  "Name": "OutcropCore",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      6.24,
+                      2.652,
+                      4.68
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Slate",
+                    "Color": [
+                      0.29,
+                      0.3,
+                      0.29
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      20,
+                      54.18,
+                      120,
+                      0.9135454576426009,
+                      0,
+                      0.4067366430758002,
+                      0,
+                      1,
+                      0,
+                      -0.4067366430758002,
+                      0,
+                      0.9135454576426009
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderA",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      4.056,
+                      1.9500000000000002,
+                      3.5100000000000002
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.2,
+                      0.215,
+                      0.21
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      16.802,
+                      53.946,
+                      121.404,
+                      0.6691306063588582,
+                      0,
+                      0.7431448254773942,
+                      0,
+                      1,
+                      0,
+                      -0.7431448254773942,
+                      0,
+                      0.6691306063588582
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderB",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      3.5100000000000002,
+                      1.6380000000000001,
+                      3.9000000000000004
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.255,
+                      0.285,
+                      0.235
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      23.12,
+                      53.829,
+                      118.83,
+                      0.9945218953682733,
+                      0,
+                      0.10452846326765347,
+                      0,
+                      1,
+                      0,
+                      -0.10452846326765347,
+                      0,
+                      0.9945218953682733
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "EastApproachRockMass",
+              "ClassName": "Model",
+              "Children": [
+                {
+                  "Name": "OutcropCore",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      4.96,
+                      2.108,
+                      3.7199999999999998
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Slate",
+                    "Color": [
+                      0.29,
+                      0.3,
+                      0.29
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      52,
+                      54.019999999999996,
+                      126,
+                      0.9612616959383189,
+                      0,
+                      -0.27563735581699916,
+                      0,
+                      1,
+                      0,
+                      0.27563735581699916,
+                      0,
+                      0.9612616959383189
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderA",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      3.224,
+                      1.55,
+                      2.79
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.2,
+                      0.215,
+                      0.21
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      49.458,
+                      53.833999999999996,
+                      127.116,
+                      0.9902680687415704,
+                      0,
+                      0.13917310096006544,
+                      0,
+                      1,
+                      0,
+                      -0.13917310096006544,
+                      0,
+                      0.9902680687415704
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderB",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      2.79,
+                      1.302,
+                      3.1
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.255,
+                      0.285,
+                      0.235
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      54.48,
+                      53.741,
+                      125.07,
+                      0.8290375725550417,
+                      0,
+                      -0.5591929034707469,
+                      0,
+                      1,
+                      0,
+                      0.5591929034707469,
+                      0,
+                      0.8290375725550417
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "StormFallenTrunk",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  14,
+                  1.05,
+                  1.05
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  18,
+                  54.1,
+                  128,
+                  0.8571673007021123,
+                  0,
+                  0.5150380749100542,
+                  0,
+                  1,
+                  0,
+                  -0.5150380749100542,
+                  0,
+                  0.8571673007021123
+                ]
+              }
+            },
+            {
+              "Name": "RoadsideDeadGrowthA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  11,
+                  0.28,
+                  5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Grass",
+                "Color": [
+                  0.285,
+                  0.31,
+                  0.22
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  28,
+                  53.65,
+                  126,
+                  0.9455185755993168,
+                  0,
+                  -0.3255681544571567,
+                  0,
+                  1,
+                  0,
+                  0.3255681544571567,
+                  0,
+                  0.9455185755993168
+                ]
+              }
+            },
+            {
+              "Name": "RoadsideDeadGrowthB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  8,
+                  0.24,
+                  6
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Grass",
+                "Color": [
+                  0.2,
+                  0.225,
+                  0.15
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  47,
+                  53.629999999999995,
+                  132,
+                  0.9205048534524404,
+                  0,
+                  0.39073112848927377,
+                  0,
+                  1,
+                  0,
+                  -0.39073112848927377,
+                  0,
+                  0.9205048534524404
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FarmMidgroundContainment",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "WestFieldShoulder",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  20,
+                  0.18,
+                  46
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Ground",
+                "Color": [
+                  0.235,
+                  0.225,
+                  0.19
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  31,
+                  53.48,
+                  215,
+                  0.992546151641322,
+                  0,
+                  0.12186934340514748,
+                  0,
+                  1,
+                  0,
+                  -0.12186934340514748,
+                  0,
+                  0.992546151641322
+                ]
+              }
+            },
+            {
+              "Name": "EastFieldShoulder",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  19,
+                  0.18,
+                  45
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Ground",
+                "Color": [
+                  0.235,
+                  0.225,
+                  0.19
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  105,
+                  53.48,
+                  217,
+                  0.9876883405951378,
+                  0,
+                  -0.15643446504023087,
+                  0,
+                  1,
+                  0,
+                  0.15643446504023087,
+                  0,
+                  0.9876883405951378
+                ]
+              }
+            },
+            {
+              "Name": "WestFieldAnchor",
+              "ClassName": "Model",
+              "Children": [
+                {
+                  "Name": "OutcropCore",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      7.36,
+                      3.128,
+                      5.5200000000000005
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Slate",
+                    "Color": [
+                      0.29,
+                      0.3,
+                      0.29
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      29,
+                      54.32,
+                      232,
+                      0.9510565162951535,
+                      0,
+                      0.3090169943749474,
+                      0,
+                      1,
+                      0,
+                      -0.3090169943749474,
+                      0,
+                      0.9510565162951535
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderA",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      4.784000000000001,
+                      2.3000000000000003,
+                      4.140000000000001
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.2,
+                      0.215,
+                      0.21
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      25.228,
+                      54.044,
+                      233.656,
+                      0.7431448254773942,
+                      0,
+                      0.6691306063588582,
+                      0,
+                      1,
+                      0,
+                      -0.6691306063588582,
+                      0,
+                      0.7431448254773942
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderB",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      4.140000000000001,
+                      1.9320000000000002,
+                      4.6000000000000005
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.255,
+                      0.285,
+                      0.235
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      32.68,
+                      53.906,
+                      230.62,
+                      1.0,
+                      0,
+                      0.0,
+                      0,
+                      1,
+                      0,
+                      -0.0,
+                      0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "EastFieldAnchor",
+              "ClassName": "Model",
+              "Children": [
+                {
+                  "Name": "OutcropCore",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      6.88,
+                      2.924,
+                      5.16
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Slate",
+                    "Color": [
+                      0.29,
+                      0.3,
+                      0.29
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      106,
+                      54.26,
+                      199,
+                      0.882947592858927,
+                      0,
+                      -0.4694715627858908,
+                      0,
+                      1,
+                      0,
+                      0.4694715627858908,
+                      0,
+                      0.882947592858927
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderA",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      4.472,
+                      2.15,
+                      3.87
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.2,
+                      0.215,
+                      0.21
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      102.474,
+                      54.001999999999995,
+                      200.548,
+                      0.9975640502598242,
+                      0,
+                      -0.0697564737441253,
+                      0,
+                      1,
+                      0,
+                      0.0697564737441253,
+                      0,
+                      0.9975640502598242
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderB",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      3.87,
+                      1.806,
+                      4.3
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.255,
+                      0.285,
+                      0.235
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      109.44,
+                      53.873,
+                      197.71,
+                      0.6946583704589973,
+                      0,
+                      -0.7193398003386511,
+                      0,
+                      1,
+                      0,
+                      0.7193398003386511,
+                      0,
+                      0.6946583704589973
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "WestCollapsedFencePost",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  0.62,
+                  5.2,
+                  0.62
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  34,
+                  56.0,
+                  201,
+                  0.9876883405951378,
+                  0,
+                  0.15643446504023087,
+                  0,
+                  1,
+                  0,
+                  -0.15643446504023087,
+                  0,
+                  0.9876883405951378
+                ]
+              }
+            },
+            {
+              "Name": "WestCollapsedFenceRail",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  11,
+                  0.45,
+                  0.55
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  31,
+                  54.4,
+                  205,
+                  0.882947592858927,
+                  0,
+                  0.4694715627858908,
+                  0,
+                  1,
+                  0,
+                  -0.4694715627858908,
+                  0,
+                  0.882947592858927
+                ]
+              }
+            },
+            {
+              "Name": "EastBoundaryBeam",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  12,
+                  0.55,
+                  0.72
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "CorrodedMetal",
+                "Color": [
+                  0.29,
+                  0.16,
+                  0.09
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  104,
+                  53.949999999999996,
+                  233,
+                  0.8571673007021123,
+                  0,
+                  -0.5150380749100542,
+                  0,
+                  1,
+                  0,
+                  0.5150380749100542,
+                  0,
+                  0.8571673007021123
+                ]
+              }
+            },
+            {
+              "Name": "EastDeadGrowth",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  12,
+                  0.3,
+                  6
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Grass",
+                "Color": [
+                  0.285,
+                  0.31,
+                  0.22
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  101,
+                  53.66,
+                  238,
+                  0.9781476007338057,
+                  0,
+                  0.20791169081775934,
+                  0,
+                  1,
+                  0,
+                  -0.20791169081775934,
+                  0,
+                  0.9781476007338057
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FarmBackgroundSilhouette",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "NorthWestSilhouette",
+              "ClassName": "Model",
+              "Children": [
+                {
+                  "Name": "OutcropCore",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      9.44,
+                      4.012,
+                      7.08
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Slate",
+                    "Color": [
+                      0.29,
+                      0.3,
+                      0.29
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      31,
+                      54.58,
+                      255,
+                      0.9781476007338057,
+                      0,
+                      0.20791169081775934,
+                      0,
+                      1,
+                      0,
+                      -0.20791169081775934,
+                      0,
+                      0.9781476007338057
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderA",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      6.136,
+                      2.9499999999999997,
+                      5.31
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.2,
+                      0.215,
+                      0.21
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      26.162,
+                      54.226,
+                      257.124,
+                      0.8090169943749475,
+                      0,
+                      0.5877852522924731,
+                      0,
+                      1,
+                      0,
+                      -0.5877852522924731,
+                      0,
+                      0.8090169943749475
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderB",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      5.31,
+                      2.4779999999999998,
+                      5.8999999999999995
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.255,
+                      0.285,
+                      0.235
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      35.72,
+                      54.049,
+                      253.23,
+                      0.9945218953682733,
+                      0,
+                      -0.10452846326765347,
+                      0,
+                      1,
+                      0,
+                      0.10452846326765347,
+                      0,
+                      0.9945218953682733
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "NorthEastSilhouette",
+              "ClassName": "Model",
+              "Children": [
+                {
+                  "Name": "OutcropCore",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      10.56,
+                      4.488,
+                      7.92
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Slate",
+                    "Color": [
+                      0.29,
+                      0.3,
+                      0.29
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      103,
+                      54.72,
+                      257,
+                      0.9563047559630354,
+                      0,
+                      -0.29237170472273677,
+                      0,
+                      1,
+                      0,
+                      0.29237170472273677,
+                      0,
+                      0.9563047559630354
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderA",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      6.864000000000001,
+                      3.3000000000000003,
+                      5.94
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.2,
+                      0.215,
+                      0.21
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      97.588,
+                      54.324,
+                      259.376,
+                      0.992546151641322,
+                      0,
+                      0.12186934340514748,
+                      0,
+                      1,
+                      0,
+                      -0.12186934340514748,
+                      0,
+                      0.992546151641322
+                    ]
+                  }
+                },
+                {
+                  "Name": "OutcropShoulderB",
+                  "ClassName": "Part",
+                  "Properties": {
+                    "Size": [
+                      5.94,
+                      2.7720000000000002,
+                      6.6000000000000005
+                    ],
+                    "Anchored": true,
+                    "CanCollide": false,
+                    "CanTouch": false,
+                    "CanQuery": false,
+                    "Material": "Rock",
+                    "Color": [
+                      0.255,
+                      0.285,
+                      0.235
+                    ],
+                    "Transparency": 0.0,
+                    "CastShadow": true,
+                    "CFrame": [
+                      108.28,
+                      54.126,
+                      255.02,
+                      0.8191520442889918,
+                      0,
+                      -0.573576436351046,
+                      0,
+                      1,
+                      0,
+                      0.573576436351046,
+                      0,
+                      0.8191520442889918
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "NorthDeadwoodA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  0.85,
+                  10.5,
+                  0.85
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.19,
+                  0.145,
+                  0.095
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  40,
+                  58.6,
+                  258,
+                  0.992546151641322,
+                  0,
+                  -0.12186934340514748,
+                  0,
+                  1,
+                  0,
+                  0.12186934340514748,
+                  0,
+                  0.992546151641322
+                ]
+              }
+            },
+            {
+              "Name": "NorthDeadwoodB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  0.75,
+                  8.2,
+                  0.75
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.17,
+                  0.13,
+                  0.085
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  91,
+                  57.5,
+                  260,
+                  0.981627183447664,
+                  0,
+                  0.1908089953765448,
+                  0,
+                  1,
+                  0,
+                  -0.1908089953765448,
+                  0,
+                  0.981627183447664
+                ]
+              }
+            },
+            {
+              "Name": "NorthFallenCrown",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  16,
+                  0.85,
+                  0.85
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  82,
+                  54.1,
+                  252,
+                  0.9271838545667874,
+                  0,
+                  -0.374606593415912,
+                  0,
+                  1,
+                  0,
+                  0.374606593415912,
+                  0,
+                  0.9271838545667874
+                ]
+              }
+            },
+            {
+              "Name": "NorthBrushMassA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  17,
+                  0.38,
+                  8
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Grass",
+                "Color": [
+                  0.19,
+                  0.215,
+                  0.145
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  50,
+                  53.699999999999996,
+                  254,
+                  0.9563047559630354,
+                  0,
+                  0.29237170472273677,
+                  0,
+                  1,
+                  0,
+                  -0.29237170472273677,
+                  0,
+                  0.9563047559630354
+                ]
+              }
+            },
+            {
+              "Name": "NorthBrushMassB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  14,
+                  0.34,
+                  9
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Grass",
+                "Color": [
+                  0.285,
+                  0.31,
+                  0.22
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  87,
+                  53.68,
+                  254,
+                  0.9702957262759965,
+                  0,
+                  -0.24192189559966773,
+                  0,
+                  1,
+                  0,
+                  0.24192189559966773,
+                  0,
+                  0.9702957262759965
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "RoadWearAndDrainageStory",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "ApproachMudTrackA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  1.1,
+                  0.07,
+                  42
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Ground",
+                "Color": [
+                  0.105,
+                  0.095,
+                  0.07
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  49.8,
+                  53.85,
+                  160,
+                  0.992546151641322,
+                  0,
+                  -0.12186934340514748,
+                  0,
+                  1,
+                  0,
+                  0.12186934340514748,
+                  0,
+                  0.992546151641322
+                ]
+              }
+            },
+            {
+              "Name": "ApproachMudTrackB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  1.0,
+                  0.07,
+                  38
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Ground",
+                "Color": [
+                  0.115,
+                  0.1,
+                  0.075
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  56.6,
+                  53.85,
+                  161,
+                  0.992546151641322,
+                  0,
+                  -0.12186934340514748,
+                  0,
+                  1,
+                  0,
+                  0.12186934340514748,
+                  0,
+                  0.992546151641322
+                ]
+              }
+            },
+            {
+              "Name": "RoadWashoutA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  7,
+                  0.1,
+                  8
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Pebble",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  50,
+                  53.87,
+                  181,
+                  0.9510565162951535,
+                  0,
+                  0.3090169943749474,
+                  0,
+                  1,
+                  0,
+                  -0.3090169943749474,
+                  0,
+                  0.9510565162951535
+                ]
+              }
+            },
+            {
+              "Name": "RoadWashoutB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  5,
+                  0.09,
+                  10
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Pebble",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  58,
+                  53.86,
+                  139,
+                  0.9612616959383189,
+                  0,
+                  -0.27563735581699916,
+                  0,
+                  1,
+                  0,
+                  0.27563735581699916,
+                  0,
+                  0.9612616959383189
+                ]
+              }
+            },
+            {
+              "Name": "AbandonedRoadBeam",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  9,
+                  0.48,
+                  0.7
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "CorrodedMetal",
+                "Color": [
+                  0.29,
+                  0.16,
+                  0.09
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  63,
+                  53.879999999999995,
+                  178,
+                  0.8090169943749475,
+                  0,
+                  0.5877852522924731,
+                  0,
+                  1,
+                  0,
+                  -0.5877852522924731,
+                  0,
+                  0.8090169943749475
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "WestRidgeFutureResourceOpportunity",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "WeatheredGround",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              78,
+              0.18,
+              58
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.235,
+              0.225,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              -145,
+              53.48,
+              78,
+              0.9902680687415704,
+              0,
+              -0.13917310096006544,
+              0,
+              1,
+              0,
+              0.13917310096006544,
+              0,
+              0.9902680687415704
+            ]
+          }
+        },
+        {
+          "Name": "NorthOutcrop",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  10.8,
+                  4.59,
+                  8.100000000000001
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -168,
+                  54.75,
+                  92,
+                  0.9510565162951535,
+                  0,
+                  0.3090169943749474,
+                  0,
+                  1,
+                  0,
+                  -0.3090169943749474,
+                  0,
+                  0.9510565162951535
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  7.0200000000000005,
+                  3.375,
+                  6.075
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -173.535,
+                  54.345,
+                  94.43,
+                  0.7431448254773942,
+                  0,
+                  0.6691306063588582,
+                  0,
+                  1,
+                  0,
+                  -0.6691306063588582,
+                  0,
+                  0.7431448254773942
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  6.075,
+                  2.8350000000000004,
+                  6.75
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -162.6,
+                  54.1425,
+                  89.975,
+                  1.0,
+                  0,
+                  0.0,
+                  0,
+                  1,
+                  0,
+                  -0.0,
+                  0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "SouthOutcrop",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  8.8,
+                  3.74,
+                  6.6000000000000005
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -158,
+                  54.5,
+                  55,
+                  0.9781476007338057,
+                  0,
+                  -0.20791169081775934,
+                  0,
+                  1,
+                  0,
+                  0.20791169081775934,
+                  0,
+                  0.9781476007338057
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  5.720000000000001,
+                  2.75,
+                  4.95
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -162.51,
+                  54.17,
+                  56.98,
+                  0.9781476007338057,
+                  0,
+                  0.20791169081775934,
+                  0,
+                  1,
+                  0,
+                  -0.20791169081775934,
+                  0,
+                  0.9781476007338057
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.95,
+                  2.3100000000000005,
+                  5.5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -153.6,
+                  54.004999999999995,
+                  53.35,
+                  0.8660254037844387,
+                  0,
+                  -0.49999999999999994,
+                  0,
+                  1,
+                  0,
+                  0.49999999999999994,
+                  0,
+                  0.8660254037844387
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FarShoulder",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  7.36,
+                  3.128,
+                  5.5200000000000005
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -121,
+                  54.32,
+                  101,
+                  0.8290375725550417,
+                  0,
+                  0.5591929034707469,
+                  0,
+                  1,
+                  0,
+                  -0.5591929034707469,
+                  0,
+                  0.8290375725550417
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.784000000000001,
+                  2.3000000000000003,
+                  4.140000000000001
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -124.772,
+                  54.044,
+                  102.656,
+                  0.5299192642332049,
+                  0,
+                  0.848048096156426,
+                  0,
+                  1,
+                  0,
+                  -0.848048096156426,
+                  0,
+                  0.5299192642332049
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.140000000000001,
+                  1.9320000000000002,
+                  4.6000000000000005
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -117.32,
+                  53.906,
+                  99.62,
+                  0.9612616959383189,
+                  0,
+                  0.27563735581699916,
+                  0,
+                  1,
+                  0,
+                  -0.27563735581699916,
+                  0,
+                  0.9612616959383189
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "RidgeReturnLandmark",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "BrokenPost",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  0.65,
+                  4.2,
+                  0.65
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -108,
+                  55.5,
+                  73,
+                  0.9781476007338057,
+                  0,
+                  0.20791169081775934,
+                  0,
+                  1,
+                  0,
+                  -0.20791169081775934,
+                  0,
+                  0.9781476007338057
+                ]
+              }
+            },
+            {
+              "Name": "BentCrossbar",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.2,
+                  0.42,
+                  0.5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "CorrodedMetal",
+                "Color": [
+                  0.29,
+                  0.16,
+                  0.09
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -107.4,
+                  57.1,
+                  73,
+                  0.9396926207859084,
+                  0,
+                  0.3420201433256687,
+                  0,
+                  1,
+                  0,
+                  -0.3420201433256687,
+                  0,
+                  0.9396926207859084
+                ]
+              }
+            },
+            {
+              "Name": "FootingStone",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  2.8,
+                  0.7,
+                  2.2
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -108,
+                  53.65,
+                  73,
+                  0.9998476951563913,
+                  0,
+                  0.01745240643728351,
+                  0,
+                  1,
+                  0,
+                  -0.01745240643728351,
+                  0,
+                  0.9998476951563913
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "NorthExplorationClearing",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "ClearingGround",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              105,
+              0.18,
+              68
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.235,
+              0.225,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              -12,
+              53.48,
+              205,
+              0.9961946980917455,
+              0,
+              0.08715574274765817,
+              0,
+              1,
+              0,
+              -0.08715574274765817,
+              0,
+              0.9961946980917455
+            ]
+          }
+        },
+        {
+          "Name": "WestEdgeOutcrop",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  5.76,
+                  2.448,
+                  4.32
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -58,
+                  54.12,
+                  214,
+                  0.9659258262890683,
+                  0,
+                  0.25881904510252074,
+                  0,
+                  1,
+                  0,
+                  -0.25881904510252074,
+                  0,
+                  0.9659258262890683
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.7439999999999998,
+                  1.7999999999999998,
+                  3.2399999999999998
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -60.952,
+                  53.903999999999996,
+                  215.296,
+                  0.7771459614569709,
+                  0,
+                  0.6293203910498374,
+                  0,
+                  1,
+                  0,
+                  -0.6293203910498374,
+                  0,
+                  0.7771459614569709
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.2399999999999998,
+                  1.512,
+                  3.5999999999999996
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -55.12,
+                  53.796,
+                  212.92,
+                  0.9986295347545738,
+                  0,
+                  -0.052335956242943835,
+                  0,
+                  1,
+                  0,
+                  0.052335956242943835,
+                  0,
+                  0.9986295347545738
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "EastEdgeOutcrop",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  5.6,
+                  2.38,
+                  4.199999999999999
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  38,
+                  54.1,
+                  218,
+                  0.9271838545667874,
+                  0,
+                  -0.374606593415912,
+                  0,
+                  1,
+                  0,
+                  0.374606593415912,
+                  0,
+                  0.9271838545667874
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.6399999999999997,
+                  1.75,
+                  3.15
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  35.13,
+                  53.89,
+                  219.26,
+                  0.9993908270190958,
+                  0,
+                  0.03489949670250097,
+                  0,
+                  1,
+                  0,
+                  -0.03489949670250097,
+                  0,
+                  0.9993908270190958
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.15,
+                  1.47,
+                  3.5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  40.8,
+                  53.785,
+                  216.95,
+                  0.766044443118978,
+                  0,
+                  -0.6427876096865393,
+                  0,
+                  1,
+                  0,
+                  0.6427876096865393,
+                  0,
+                  0.766044443118978
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ClearingBunkerReturnLandmark",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "BrokenPost",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  0.65,
+                  4.2,
+                  0.65
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -8,
+                  55.5,
+                  170,
+                  1.0,
+                  0,
+                  0.0,
+                  0,
+                  1,
+                  0,
+                  -0.0,
+                  0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "Name": "BentCrossbar",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.2,
+                  0.42,
+                  0.5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "CorrodedMetal",
+                "Color": [
+                  0.29,
+                  0.16,
+                  0.09
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -7.4,
+                  57.1,
+                  170,
+                  0.9902680687415704,
+                  0,
+                  0.13917310096006544,
+                  0,
+                  1,
+                  0,
+                  -0.13917310096006544,
+                  0,
+                  0.9902680687415704
+                ]
+              }
+            },
+            {
+              "Name": "FootingStone",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  2.8,
+                  0.7,
+                  2.2
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -8,
+                  53.65,
+                  170,
+                  0.981627183447664,
+                  0,
+                  -0.1908089953765448,
+                  0,
+                  1,
+                  0,
+                  0.1908089953765448,
+                  0,
+                  0.981627183447664
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FallenTimberA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              13,
+              1.0,
+              1.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.255,
+              0.19,
+              0.125
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              -47,
+              53.949999999999996,
+              188,
+              0.9271838545667874,
+              0,
+              0.374606593415912,
+              0,
+              1,
+              0,
+              -0.374606593415912,
+              0,
+              0.9271838545667874
+            ]
+          }
+        },
+        {
+          "Name": "FallenTimberB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              10,
+              0.85,
+              0.85
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.255,
+              0.19,
+              0.125
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              47,
+              53.85,
+              190,
+              0.8571673007021123,
+              0,
+              -0.5150380749100542,
+              0,
+              1,
+              0,
+              0.5150380749100542,
+              0,
+              0.8571673007021123
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "EastBunkerReturnTransition",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "ReturnTrack",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              14,
+              0.18,
+              38
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.235,
+              0.225,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              68,
+              53.48,
+              119,
+              0.9945218953682733,
+              0,
+              -0.10452846326765347,
+              0,
+              1,
+              0,
+              0.10452846326765347,
+              0,
+              0.9945218953682733
+            ]
+          }
+        },
+        {
+          "Name": "TrackEdgeOutcrop",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.16,
+                  1.768,
+                  3.12
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  66,
+                  53.92,
+                  143,
+                  0.9902680687415704,
+                  0,
+                  0.13917310096006544,
+                  0,
+                  1,
+                  0,
+                  -0.13917310096006544,
+                  0,
+                  0.9902680687415704
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  2.704,
+                  1.3,
+                  2.34
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  63.868,
+                  53.763999999999996,
+                  143.936,
+                  0.848048096156426,
+                  0,
+                  0.5299192642332049,
+                  0,
+                  1,
+                  0,
+                  -0.5299192642332049,
+                  0,
+                  0.848048096156426
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  2.34,
+                  1.092,
+                  2.6
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  68.08,
+                  53.686,
+                  142.22,
+                  0.984807753012208,
+                  0,
+                  -0.17364817766693033,
+                  0,
+                  1,
+                  0,
+                  0.17364817766693033,
+                  0,
+                  0.984807753012208
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "BunkerReturnPost",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "BrokenPost",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  0.65,
+                  4.2,
+                  0.65
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  69,
+                  55.5,
+                  101,
+                  0.9945218953682733,
+                  0,
+                  -0.10452846326765347,
+                  0,
+                  1,
+                  0,
+                  0.10452846326765347,
+                  0,
+                  0.9945218953682733
+                ]
+              }
+            },
+            {
+              "Name": "BentCrossbar",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.2,
+                  0.42,
+                  0.5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "CorrodedMetal",
+                "Color": [
+                  0.29,
+                  0.16,
+                  0.09
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  69.6,
+                  57.1,
+                  101,
+                  0.9993908270190958,
+                  0,
+                  0.03489949670250097,
+                  0,
+                  1,
+                  0,
+                  -0.03489949670250097,
+                  0,
+                  0.9993908270190958
+                ]
+              }
+            },
+            {
+              "Name": "FootingStone",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  2.8,
+                  0.7,
+                  2.2
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  69,
+                  53.65,
+                  101,
+                  0.9563047559630354,
+                  0,
+                  -0.29237170472273677,
+                  0,
+                  1,
+                  0,
+                  0.29237170472273677,
+                  0,
+                  0.9563047559630354
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "TrackEdgeGrassA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              10,
+              0.14,
+              4
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.285,
+              0.31,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              67,
+              53.5,
+              132,
+              0.9902680687415704,
+              0,
+              -0.13917310096006544,
+              0,
+              1,
+              0,
+              0.13917310096006544,
+              0,
+              0.9902680687415704
+            ]
+          }
+        },
+        {
+          "Name": "TrackEdgeGrassB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              9,
+              0.14,
+              4
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.285,
+              0.31,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              69,
+              53.5,
+              111,
+              0.9902680687415704,
+              0,
+              0.13917310096006544,
+              0,
+              1,
+              0,
+              -0.13917310096006544,
+              0,
+              0.9902680687415704
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "SouthWestScavengeApproach",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "ScavengeApproachGround",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              54,
+              0.18,
+              34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.235,
+              0.225,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              -108,
+              53.48,
+              -4,
+              0.9876883405951378,
+              0,
+              0.15643446504023087,
+              0,
+              1,
+              0,
+              -0.15643446504023087,
+              0,
+              0.9876883405951378
+            ]
+          }
+        },
+        {
+          "Name": "ApproachOutcrop",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "OutcropCore",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  5.6,
+                  2.38,
+                  4.199999999999999
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Slate",
+                "Color": [
+                  0.29,
+                  0.3,
+                  0.29
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -132,
+                  54.1,
+                  2,
+                  0.9063077870366499,
+                  0,
+                  0.42261826174069944,
+                  0,
+                  1,
+                  0,
+                  -0.42261826174069944,
+                  0,
+                  0.9063077870366499
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderA",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.6399999999999997,
+                  1.75,
+                  3.15
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -134.87,
+                  53.89,
+                  3.26,
+                  0.6560590289905073,
+                  0,
+                  0.754709580222772,
+                  0,
+                  1,
+                  0,
+                  -0.754709580222772,
+                  0,
+                  0.6560590289905073
+                ]
+              }
+            },
+            {
+              "Name": "OutcropShoulderB",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  3.15,
+                  1.47,
+                  3.5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.255,
+                  0.285,
+                  0.235
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -129.2,
+                  53.785,
+                  0.9500000000000002,
+                  0.992546151641322,
+                  0,
+                  0.12186934340514748,
+                  0,
+                  1,
+                  0,
+                  -0.12186934340514748,
+                  0,
+                  0.992546151641322
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ScavengeRouteLandmark",
+          "ClassName": "Model",
+          "Children": [
+            {
+              "Name": "BrokenPost",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  0.65,
+                  4.2,
+                  0.65
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Wood",
+                "Color": [
+                  0.255,
+                  0.19,
+                  0.125
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -88,
+                  55.5,
+                  3,
+                  0.9902680687415704,
+                  0,
+                  0.13917310096006544,
+                  0,
+                  1,
+                  0,
+                  -0.13917310096006544,
+                  0,
+                  0.9902680687415704
+                ]
+              }
+            },
+            {
+              "Name": "BentCrossbar",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  4.2,
+                  0.42,
+                  0.5
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "CorrodedMetal",
+                "Color": [
+                  0.29,
+                  0.16,
+                  0.09
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -87.4,
+                  57.1,
+                  3,
+                  0.9612616959383189,
+                  0,
+                  0.27563735581699916,
+                  0,
+                  1,
+                  0,
+                  -0.27563735581699916,
+                  0,
+                  0.9612616959383189
+                ]
+              }
+            },
+            {
+              "Name": "FootingStone",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [
+                  2.8,
+                  0.7,
+                  2.2
+                ],
+                "Anchored": true,
+                "CanCollide": false,
+                "CanTouch": false,
+                "CanQuery": false,
+                "Material": "Rock",
+                "Color": [
+                  0.2,
+                  0.215,
+                  0.21
+                ],
+                "Transparency": 0.0,
+                "CastShadow": true,
+                "CFrame": [
+                  -88,
+                  53.65,
+                  3,
+                  0.9986295347545738,
+                  0,
+                  -0.052335956242943835,
+                  0,
+                  1,
+                  0,
+                  0.052335956242943835,
+                  0,
+                  0.9986295347545738
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Name": "DiscardedBeam",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              11,
+              0.55,
+              0.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.29,
+              0.16,
+              0.09
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              -116,
+              53.75,
+              -13,
+              0.9563047559630354,
+              0,
+              0.29237170472273677,
+              0,
+              1,
+              0,
+              -0.29237170472273677,
+              0,
+              0.9563047559630354
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

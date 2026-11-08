@@ -1,0 +1,1178 @@
+{
+  "asset_registry": {
+    "bunker_electrical_junction_box_01": {
+      "displayName": "Bunker Electrical Junction Box",
+      "robloxAssetId": "97313747351940",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    },
+    "bunker_valve_assembly_01": {
+      "displayName": "Bunker Valve Assembly",
+      "robloxAssetId": "92968150925196",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    },
+    "bunker_vent_grille_01": {
+      "displayName": "Bunker Vent Grille",
+      "robloxAssetId": "133282905829866",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    },
+    "old_military_ammo_crate_01": {
+      "displayName": "Old Military Ammo Crate",
+      "robloxAssetId": "110954195423764",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    },
+    "pipeline_pipe_retry_02": {
+      "displayName": "Rusty Pipe",
+      "robloxAssetId": "127442950110539",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    }
+  },
+  "constraints": [
+    "Preserve gameplay and traversal.",
+    "Preserve interaction anchors.",
+    "Preserve adjacent-room boundaries.",
+    "Reuse registered generated assets before producing new assets.",
+    "Permanent changes must be filesystem/Rojo-authored."
+  ],
+  "files": {
+    "docs/director/ASSET-REWORK-PRODUCTION-PLAN.md": {
+      "line_count": 79,
+      "matches": [
+        {
+          "context": [
+            "",
+            "### NewBunker",
+            "- Live Edit evidence: 1,981 descendants, 1,668 BaseParts, 278 Models, 27 local lights, zero embedded scripts, zero current MeshParts, and 8 enabled ProximityPrompts.",
+            "- The existing authored architecture, lighting, decay, conduit, machinery and storytelling layers are KEEP/ENHANCE foundations rather than rebuild targets.",
+            "- All eight prompt-bearing InteractiveProps are Category E \u2014 GAMEPLAY-CRITICAL. Preserve prompt hosts, MovingPart/anchor semantics, attributes, interaction distances and positions. Visual shells may wrap them only after dependency-specific QA."
+          ],
+          "line": 9
+        },
+        {
+          "context": [
+            "- Live Edit evidence: 1,981 descendants, 1,668 BaseParts, 278 Models, 27 local lights, zero embedded scripts, zero current MeshParts, and 8 enabled ProximityPrompts.",
+            "- The existing authored architecture, lighting, decay, conduit, machinery and storytelling layers are KEEP/ENHANCE foundations rather than rebuild targets.",
+            "- All eight prompt-bearing InteractiveProps are Category E \u2014 GAMEPLAY-CRITICAL. Preserve prompt hosts, MovingPart/anchor semantics, attributes, interaction distances and positions. Visual shells may wrap them only after dependency-specific QA.",
+            "- High-value custom-mesh opportunity is reusable industrial detail that improves silhouettes at gameplay distance without replacing architecture.",
+            ""
+          ],
+          "line": 11
+        },
+        {
+          "context": [
+            "",
+            "### Farming",
+            "- `src/Workspace/farm.rbxm` is protected legacy presentation/content and contains legacy prompt/script models; do not rewrite it casually.",
+            "- Canonical farming gameplay is runtime-authored by `src/server/FarmingSystem.server.lua`.",
+            "- `FarmingSystem` creates `Workspace.Plots`: exactly 15 canonical Plot BaseParts in a 3x5 grid and wires PlotPrompt/state/growth/harvest behavior."
+          ],
+          "line": 15
+        },
+        {
+          "context": [
+            "- Canonical farming gameplay is runtime-authored by `src/server/FarmingSystem.server.lua`.",
+            "- `FarmingSystem` creates `Workspace.Plots`: exactly 15 canonical Plot BaseParts in a 3x5 grid and wires PlotPrompt/state/growth/harvest behavior.",
+            "- `FarmingSystem` creates `Workspace.FoodProcessor`, ProgressDummy, processor prompt and FarmingRemotes UpdateUI/Notify/UpdateProgress.",
+            "- Farming rework therefore uses visual shells/support assemblies around runtime canonical anchors. It must not substitute their functional identity.",
+            ""
+          ],
+          "line": 18
+        },
+        {
+          "context": [
+            "",
+            "### Existing production assets",
+            "- `pipeline_pipe_retry_02` \u2014 Rusty Pipe \u2014 Ready. Reuse as a utility-language asset; do not duplicate.",
+            "- `old_military_ammo_crate_01` \u2014 Old Military Ammo Crate \u2014 Ready. Reuse for non-interactive storage/story clusters; do not replace interactive bunker crates blindly.",
+            "- Preserve every Asset Registry entry."
+          ],
+          "line": 26
+        },
+        {
+          "context": [
+            "### Existing production assets",
+            "- `pipeline_pipe_retry_02` \u2014 Rusty Pipe \u2014 Ready. Reuse as a utility-language asset; do not duplicate.",
+            "- `old_military_ammo_crate_01` \u2014 Old Military Ammo Crate \u2014 Ready. Reuse for non-interactive storage/story clusters; do not replace interactive bunker crates blindly.",
+            "- Preserve every Asset Registry entry.",
+            "- Live Studio currently exposes a duplicate `old_military_ammo_crate_01` instance under ServerStorage.GeneratedAssets while filesystem contains one canonical source. Treat as source/live drift; do not hand-delete Studio instances as an art-pass workaround."
+          ],
+          "line": 27
+        },
+        {
+          "context": [
+            "- `old_military_ammo_crate_01` \u2014 Old Military Ammo Crate \u2014 Ready. Reuse for non-interactive storage/story clusters; do not replace interactive bunker crates blindly.",
+            "- Preserve every Asset Registry entry.",
+            "- Live Studio currently exposes a duplicate `old_military_ammo_crate_01` instance under ServerStorage.GeneratedAssets while filesystem contains one canonical source. Treat as source/live drift; do not hand-delete Studio instances as an art-pass workaround.",
+            "",
+            "## Classification"
+          ],
+          "line": 29
+        },
+        {
+          "context": [
+            "",
+            "### B \u2014 ENHANCE",
+            "- Primitive pipe/conduit runs: retain route/position but selectively add mesh fittings, valves, flanges, clamps and penetrations.",
+            "- Power-room switchgear/generator areas: add a few high-quality electrical/utility hero details around existing massing.",
+            "- Workshop/storage: enrich focal clusters with reusable props while preserving clear aisles and interaction sightlines."
+          ],
+          "line": 40
+        },
+        {
+          "context": [
+            "- Primitive pipe/conduit runs: retain route/position but selectively add mesh fittings, valves, flanges, clamps and penetrations.",
+            "- Power-room switchgear/generator areas: add a few high-quality electrical/utility hero details around existing massing.",
+            "- Workshop/storage: enrich focal clusters with reusable props while preserving clear aisles and interaction sightlines.",
+            "- Service/farm transition: improve industrial continuity with reusable utility assets.",
+            "- Farming presentation: add salvaged-industrial visual framing around runtime plots and FoodProcessor rather than replacing anchors."
+          ],
+          "line": 42
+        },
+        {
+          "context": [
+            "",
+            "### C \u2014 REPLACE WITH CUSTOM ASSET",
+            "Only visual-only primitive props whose identity is not a gameplay contract and where a mesh materially improves silhouette. Initial wave intentionally avoids replacing prompt-bearing crates, locker, workbench station, upgrade station, processor anchor or resource nodes.",
+            "",
+            "### D \u2014 NEW SUPPORTING PROP"
+          ],
+          "line": 47
+        },
+        {
+          "context": [
+            "### D \u2014 NEW SUPPORTING PROP",
+            "Initial highest-impact reusable kit:",
+            "1. `bunker_valve_assembly_01` \u2014 compact corroded industrial isolation valve with wheel/flange language; reusable on power/service/farm irrigation routes.",
+            "2. `bunker_electrical_junction_box_01` \u2014 aged military/industrial junction/control enclosure; reusable on corridors, power and farming support.",
+            "3. `bunker_vent_grille_01` \u2014 battered bunker ventilation grille/cover; reusable on corridors, bedroom/service/power spaces."
+          ],
+          "line": 51
+        },
+        {
+          "context": [
+            "Initial highest-impact reusable kit:",
+            "1. `bunker_valve_assembly_01` \u2014 compact corroded industrial isolation valve with wheel/flange language; reusable on power/service/farm irrigation routes.",
+            "2. `bunker_electrical_junction_box_01` \u2014 aged military/industrial junction/control enclosure; reusable on corridors, power and farming support.",
+            "3. `bunker_vent_grille_01` \u2014 battered bunker ventilation grille/cover; reusable on corridors, bedroom/service/power spaces.",
+            ""
+          ],
+          "line": 52
+        },
+        {
+          "context": [
+            "1. `bunker_valve_assembly_01` \u2014 compact corroded industrial isolation valve with wheel/flange language; reusable on power/service/farm irrigation routes.",
+            "2. `bunker_electrical_junction_box_01` \u2014 aged military/industrial junction/control enclosure; reusable on corridors, power and farming support.",
+            "3. `bunker_vent_grille_01` \u2014 battered bunker ventilation grille/cover; reusable on corridors, bedroom/service/power spaces.",
+            "",
+            "Potential later assets after in-game review: pipe elbow/T/flange family, cable-tray fittings, locker/tool cabinet, workbench support props, planter edge kit, irrigation manifold/pump, FoodProcessor hero shell, maintenance cart, drain/hatch kit."
+          ],
+          "line": 53
+        },
+        {
+          "context": [
+            "3. `bunker_vent_grille_01` \u2014 battered bunker ventilation grille/cover; reusable on corridors, bedroom/service/power spaces.",
+            "",
+            "Potential later assets after in-game review: pipe elbow/T/flange family, cable-tray fittings, locker/tool cabinet, workbench support props, planter edge kit, irrigation manifold/pump, FoodProcessor hero shell, maintenance cart, drain/hatch kit.",
+            "",
+            "### E \u2014 GAMEPLAY-CRITICAL"
+          ],
+          "line": 55
+        },
+        {
+          "context": [
+            "",
+            "### E \u2014 GAMEPLAY-CRITICAL",
+            "- All eight NewBunker InteractiveProps/prompt hosts.",
+            "- 15 runtime Plot parts and PlotPrompts.",
+            "- Runtime FoodProcessor, ProgressDummy and processor prompt."
+          ],
+          "line": 58
+        },
+        {
+          "context": [
+            "- All eight NewBunker InteractiveProps/prompt hosts.",
+            "- 15 runtime Plot parts and PlotPrompts.",
+            "- Runtime FoodProcessor, ProgressDummy and processor prompt.",
+            "- FarmingRemotes and unified processor HUD contract.",
+            "- PrototypeHarvestGrove/ForestResourceRegion nodes and ResourceNodeId/ResourceDefinitionId."
+          ],
+          "line": 60
+        },
+        {
+          "context": [
+            "- Reuse canonical meshes instead of duplicating unique geometry/textures.",
+            "- Simple support props target hundreds to low-thousands of triangles.",
+            "- Preserve traversal and prompt sightlines; decorative shells should normally be non-colliding unless collision is explicitly justified.",
+            "- Avoid adding broad new shadow-light cost during asset dressing.",
+            ""
+          ],
+          "line": 74
+        }
+      ]
+    },
+    "src/ReplicatedStorage/GeneratedAssets/AssetRegistry.json": {
+      "line_count": 37,
+      "matches": [
+        {
+          "context": [
+            "{",
+            "  \"bunker_electrical_junction_box_01\": {",
+            "    \"displayName\": \"Bunker Electrical Junction Box\",",
+            "    \"robloxAssetId\": \"97313747351940\","
+          ],
+          "line": 2
+        },
+        {
+          "context": [
+            "    \"status\": \"published\"",
+            "  },",
+            "  \"bunker_valve_assembly_01\": {",
+            "    \"displayName\": \"Bunker Valve Assembly\",",
+            "    \"robloxAssetId\": \"92968150925196\","
+          ],
+          "line": 9
+        },
+        {
+          "context": [
+            "    \"status\": \"published\"",
+            "  },",
+            "  \"bunker_vent_grille_01\": {",
+            "    \"displayName\": \"Bunker Vent Grille\",",
+            "    \"robloxAssetId\": \"133282905829866\","
+          ],
+          "line": 16
+        },
+        {
+          "context": [
+            "    \"status\": \"published\"",
+            "  },",
+            "  \"old_military_ammo_crate_01\": {",
+            "    \"displayName\": \"Old Military Ammo Crate\",",
+            "    \"robloxAssetId\": \"110954195423764\","
+          ],
+          "line": 23
+        },
+        {
+          "context": [
+            "    \"status\": \"published\"",
+            "  },",
+            "  \"pipeline_pipe_retry_02\": {",
+            "    \"displayName\": \"Rusty Pipe\",",
+            "    \"robloxAssetId\": \"127442950110539\","
+          ],
+          "line": 30
+        }
+      ]
+    },
+    "tools/builders/generate_new_bunker.py": {
+      "line_count": 153,
+      "matches": [
+        {
+          "context": [
+            "from new_bunker.site import ACTIVE_OFFSET",
+            "from new_bunker.shop_story import build_environment_story, build_shop_area",
+            "from new_bunker.workshop_upgrade_storage import (",
+            "    build_storage,",
+            "    build_upgrade_area,"
+          ],
+          "line": 24
+        },
+        {
+          "context": [
+            "from new_bunker.workshop_upgrade_storage import (",
+            "    build_storage,",
+            "    build_upgrade_area,",
+            "    build_workshop,",
+            ")"
+          ],
+          "line": 26
+        },
+        {
+          "context": [
+            "    build_storage,",
+            "    build_upgrade_area,",
+            "    build_workshop,",
+            ")",
+            ""
+          ],
+          "line": 27
+        },
+        {
+          "context": [
+            "        ),",
+            "        part(",
+            "            \"FutureUpgradeTableMarker\",",
+            "            (6, 0.2, 4),",
+            "            (-89.5, 54.1, 57),"
+          ],
+          "line": 57
+        },
+        {
+          "context": [
+            "            model(\"Corridors\", build_corridors()),",
+            "            model(\"CommonArea\", build_common_area()),",
+            "            model(\"Workshop\", build_workshop()),",
+            "            model(\"UpgradeArea\", build_upgrade_area()),",
+            "            model(\"Storage\", build_storage()),"
+          ],
+          "line": 118
+        },
+        {
+          "context": [
+            "            model(\"CommonArea\", build_common_area()),",
+            "            model(\"Workshop\", build_workshop()),",
+            "            model(\"UpgradeArea\", build_upgrade_area()),",
+            "            model(\"Storage\", build_storage()),",
+            "            model(\"PowerRoom\", build_power_room()),"
+          ],
+          "line": 119
+        }
+      ]
+    },
+    "tools/builders/new_bunker/environment_rework.py": {
+      "line_count": 145,
+      "matches": [
+        {
+          "context": [
+            "from .kit import (AGED_WHITE, CONCRETE_DARK, GREEN, LIGHT_COLD, LIGHT_WARM, RED,",
+            "                  RUST, STEEL, STEEL_LIGHT, UTILITY_BLUE, WOOD, YELLOW,",
+            "                  cframe, fluorescent, model, part, pipe, point_light, structural_rib)",
+            "",
+            "ASSETS = {"
+          ],
+          "line": 10
+        },
+        {
+          "context": [
+            "",
+            "ASSETS = {",
+            "    \"valve\": (\"rbxassetid://75117650394533\", (1.9600458,1.3601329,1.2071927),",
+            "              {\"ColorMap\":\"rbxassetid://136685065521485\",\"NormalMap\":\"rbxassetid://78946883212753\",\"RoughnessMap\":\"rbxassetid://81052079342113\",\"MetalnessMap\":\"rbxassetid://118332949942821\"}),",
+            "    \"junction\": (\"rbxassetid://138460865383806\", (1.9609708,1.8480989,0.9006205),"
+          ],
+          "line": 13
+        },
+        {
+          "context": [
+            "    \"valve\": (\"rbxassetid://75117650394533\", (1.9600458,1.3601329,1.2071927),",
+            "              {\"ColorMap\":\"rbxassetid://136685065521485\",\"NormalMap\":\"rbxassetid://78946883212753\",\"RoughnessMap\":\"rbxassetid://81052079342113\",\"MetalnessMap\":\"rbxassetid://118332949942821\"}),",
+            "    \"junction\": (\"rbxassetid://138460865383806\", (1.9609708,1.8480989,0.9006205),",
+            "                 {\"ColorMap\":\"rbxassetid://139579734340579\",\"NormalMap\":\"rbxassetid://101009095631637\",\"RoughnessMap\":\"rbxassetid://73092764580147\",\"MetalnessMap\":\"rbxassetid://129094780313320\"}),",
+            "    \"vent\": (\"rbxassetid://129788520191225\", (1.9790695,1.7752920,1.9706876),"
+          ],
+          "line": 15
+        },
+        {
+          "context": [
+            "    \"junction\": (\"rbxassetid://138460865383806\", (1.9609708,1.8480989,0.9006205),",
+            "                 {\"ColorMap\":\"rbxassetid://139579734340579\",\"NormalMap\":\"rbxassetid://101009095631637\",\"RoughnessMap\":\"rbxassetid://73092764580147\",\"MetalnessMap\":\"rbxassetid://129094780313320\"}),",
+            "    \"vent\": (\"rbxassetid://129788520191225\", (1.9790695,1.7752920,1.9706876),",
+            "             {\"ColorMap\":\"rbxassetid://111071233724492\",\"NormalMap\":\"rbxassetid://101188069065673\",\"RoughnessMap\":\"rbxassetid://133041917278365\",\"MetalnessMap\":\"rbxassetid://127496283006416\"}),",
+            "    \"crate\": (\"rbxassetid://140136727798730\", (1.9237564,1.3635647,1.3061225),"
+          ],
+          "line": 17
+        },
+        {
+          "context": [
+            "    \"crate\": (\"rbxassetid://140136727798730\", (1.9237564,1.3635647,1.3061225),",
+            "              {\"ColorMap\":\"rbxassetid://79418719084559\",\"NormalMap\":\"rbxassetid://75088026659430\",\"RoughnessMap\":\"rbxassetid://81827742837440\",\"MetalnessMap\":\"rbxassetid://72826286691276\"}),",
+            "    \"rusty_pipe\": (\"rbxassetid://71312017003623\", (600.0,200.0,200.0),",
+            "                   {\"ColorMap\":\"rbxassetid://112374676768109\",\"NormalMap\":\"rbxassetid://113503962473805\"}),",
+            "}"
+          ],
+          "line": 21
+        },
+        {
+          "context": [
+            "}",
+            "",
+            "def asset(name, kind, pos, target_size, rot=(0,0,0), collide=False):",
+            "    mesh_id, _, maps = ASSETS[kind]",
+            "    sa={\"Name\":\"SurfaceAppearance\",\"ClassName\":\"SurfaceAppearance\",\"Properties\":maps.copy()}"
+          ],
+          "line": 25
+        },
+        {
+          "context": [
+            "    return model(\"EntranceFirstImpressionRework\",[",
+            "        model(\"WestMaintenanceCluster\",[",
+            "            asset(\"EmergencyJunctionBox\",\"junction\",(-68.0,60.1,15.15),(2.8,2.65,1.28),(0,90,0)),",
+            "            pipe(\"ArmoredFeedUpper\",(-65.0,63.2,15.3),6.0,\"x\",0.30,STEEL_LIGHT),",
+            "            pipe(\"ArmoredFeedDrop\",(-68.0,61.9,15.3),2.6,\"y\",0.30,STEEL_LIGHT),"
+          ],
+          "line": 36
+        },
+        {
+          "context": [
+            "        model(\"WestMaintenanceCluster\",[",
+            "            asset(\"EmergencyJunctionBox\",\"junction\",(-68.0,60.1,15.15),(2.8,2.65,1.28),(0,90,0)),",
+            "            pipe(\"ArmoredFeedUpper\",(-65.0,63.2,15.3),6.0,\"x\",0.30,STEEL_LIGHT),",
+            "            pipe(\"ArmoredFeedDrop\",(-68.0,61.9,15.3),2.6,\"y\",0.30,STEEL_LIGHT),",
+            "            asset(\"IsolationValve\",\"valve\",(-67.8,58.0,15.1),(2.8,2.0,1.8),(0,90,0)),"
+          ],
+          "line": 37
+        },
+        {
+          "context": [
+            "            asset(\"EmergencyJunctionBox\",\"junction\",(-68.0,60.1,15.15),(2.8,2.65,1.28),(0,90,0)),",
+            "            pipe(\"ArmoredFeedUpper\",(-65.0,63.2,15.3),6.0,\"x\",0.30,STEEL_LIGHT),",
+            "            pipe(\"ArmoredFeedDrop\",(-68.0,61.9,15.3),2.6,\"y\",0.30,STEEL_LIGHT),",
+            "            asset(\"IsolationValve\",\"valve\",(-67.8,58.0,15.1),(2.8,2.0,1.8),(0,90,0)),",
+            "            asset(\"ReadyAmmoCrate\",\"crate\",(-67.3,55.0,17.0),(3.5,2.5,2.4),(0,-8,0),True),"
+          ],
+          "line": 38
+        },
+        {
+          "context": [
+            "            pipe(\"ArmoredFeedUpper\",(-65.0,63.2,15.3),6.0,\"x\",0.30,STEEL_LIGHT),",
+            "            pipe(\"ArmoredFeedDrop\",(-68.0,61.9,15.3),2.6,\"y\",0.30,STEEL_LIGHT),",
+            "            asset(\"IsolationValve\",\"valve\",(-67.8,58.0,15.1),(2.8,2.0,1.8),(0,90,0)),",
+            "            asset(\"ReadyAmmoCrate\",\"crate\",(-67.3,55.0,17.0),(3.5,2.5,2.4),(0,-8,0),True),",
+            "        ]),"
+          ],
+          "line": 39
+        },
+        {
+          "context": [
+            "            pipe(\"ArmoredFeedDrop\",(-68.0,61.9,15.3),2.6,\"y\",0.30,STEEL_LIGHT),",
+            "            asset(\"IsolationValve\",\"valve\",(-67.8,58.0,15.1),(2.8,2.0,1.8),(0,90,0)),",
+            "            asset(\"ReadyAmmoCrate\",\"crate\",(-67.3,55.0,17.0),(3.5,2.5,2.4),(0,-8,0),True),",
+            "        ]),",
+            "        model(\"EastVentilationStack\",["
+          ],
+          "line": 40
+        },
+        {
+          "context": [
+            "        ]),",
+            "        model(\"EastVentilationStack\",[",
+            "            asset(\"IntakeGrille\",\"vent\",(-51.0,60.2,17.25),(3.8,3.4,0.65),(0,0,0)),",
+            "            part(\"VentBacking\",(4.5,4.1,0.35),(-51.0,60.2,17.58),material=\"CorrodedMetal\",color=STEEL),",
+            "            part(\"CondensationTrack\",(0.28,3.0,0.08),(-49.3,57.5,17.35),material=\"Concrete\",color=[0.08,0.12,0.105],collide=False,transparency=0.18),"
+          ],
+          "line": 43
+        },
+        {
+          "context": [
+            "            part(\"EastLowerServicePlinth\",(1.0,2.2,7.0),(-50.8,55.1,14.6),material=\"Concrete\",color=CONCRETE_DARK),",
+            "            part(\"OverheadServiceSoffit\",(17.0,0.55,2.2),(-60.0,63.8,15.0),material=\"DiamondPlate\",color=STEEL),",
+            "            pipe(\"ThresholdBlueConduit\",(-60.0,63.15,16.1),15.5,\"x\",0.22,UTILITY_BLUE),",
+            "            fluorescent(\"ThresholdPractical\",(-60.0,63.2,13.0),LIGHT_WARM,1.75,13),",
+            "            part(\"ExteriorMudTransition\",(11.0,0.035,3.0),(-60.0,54.04,8.5),material=\"Ground\",color=[0.16,0.14,0.10],collide=False,transparency=0.08),"
+          ],
+          "line": 55
+        },
+        {
+          "context": [
+            "    return model(\"MajorServiceRunRework\",[",
+            "        model(\"ContinuousUtilityRun\",[",
+            "            asset(\"ServicePipeSouth\",\"rusty_pipe\",(-44.9,63.0,42.0),(0.52,0.52,12.0),(0,90,0)),",
+            "            asset(\"ServicePipeNorth\",\"rusty_pipe\",(-44.9,63.0,55.0),(0.52,0.52,12.0),(0,90,0)),",
+            "            asset(\"LineIsolationValve\",\"valve\",(-44.7,60.4,49.0),(2.6,1.9,1.7),(0,90,0)),"
+          ],
+          "line": 64
+        },
+        {
+          "context": [
+            "        model(\"ContinuousUtilityRun\",[",
+            "            asset(\"ServicePipeSouth\",\"rusty_pipe\",(-44.9,63.0,42.0),(0.52,0.52,12.0),(0,90,0)),",
+            "            asset(\"ServicePipeNorth\",\"rusty_pipe\",(-44.9,63.0,55.0),(0.52,0.52,12.0),(0,90,0)),",
+            "            asset(\"LineIsolationValve\",\"valve\",(-44.7,60.4,49.0),(2.6,1.9,1.7),(0,90,0)),",
+            "            asset(\"ServiceJunctionA\",\"junction\",(-45.55,59.1,39.5),(2.5,2.4,1.0),(0,90,0)),"
+          ],
+          "line": 65
+        },
+        {
+          "context": [
+            "            asset(\"ServicePipeSouth\",\"rusty_pipe\",(-44.9,63.0,42.0),(0.52,0.52,12.0),(0,90,0)),",
+            "            asset(\"ServicePipeNorth\",\"rusty_pipe\",(-44.9,63.0,55.0),(0.52,0.52,12.0),(0,90,0)),",
+            "            asset(\"LineIsolationValve\",\"valve\",(-44.7,60.4,49.0),(2.6,1.9,1.7),(0,90,0)),",
+            "            asset(\"ServiceJunctionA\",\"junction\",(-45.55,59.1,39.5),(2.5,2.4,1.0),(0,90,0)),",
+            "            asset(\"ServiceJunctionB\",\"junction\",(-45.55,59.0,57.2),(2.3,2.2,0.95),(0,90,0)),"
+          ],
+          "line": 66
+        },
+        {
+          "context": [
+            "            asset(\"ServicePipeNorth\",\"rusty_pipe\",(-44.9,63.0,55.0),(0.52,0.52,12.0),(0,90,0)),",
+            "            asset(\"LineIsolationValve\",\"valve\",(-44.7,60.4,49.0),(2.6,1.9,1.7),(0,90,0)),",
+            "            asset(\"ServiceJunctionA\",\"junction\",(-45.55,59.1,39.5),(2.5,2.4,1.0),(0,90,0)),",
+            "            asset(\"ServiceJunctionB\",\"junction\",(-45.55,59.0,57.2),(2.3,2.2,0.95),(0,90,0)),",
+            "            asset(\"ReturnVent\",\"vent\",(-45.52,61.4,52.0),(3.2,2.8,0.62),(0,90,0)),"
+          ],
+          "line": 67
+        },
+        {
+          "context": [
+            "            asset(\"LineIsolationValve\",\"valve\",(-44.7,60.4,49.0),(2.6,1.9,1.7),(0,90,0)),",
+            "            asset(\"ServiceJunctionA\",\"junction\",(-45.55,59.1,39.5),(2.5,2.4,1.0),(0,90,0)),",
+            "            asset(\"ServiceJunctionB\",\"junction\",(-45.55,59.0,57.2),(2.3,2.2,0.95),(0,90,0)),",
+            "            asset(\"ReturnVent\",\"vent\",(-45.52,61.4,52.0),(3.2,2.8,0.62),(0,90,0)),",
+            "            part(\"CableTray\",(0.7,0.32,24.0),(-45.15,64.25,48.0),material=\"Metal\",color=STEEL_LIGHT,collide=False),"
+          ],
+          "line": 68
+        },
+        {
+          "context": [
+            "            asset(\"ServiceJunctionA\",\"junction\",(-45.55,59.1,39.5),(2.5,2.4,1.0),(0,90,0)),",
+            "            asset(\"ServiceJunctionB\",\"junction\",(-45.55,59.0,57.2),(2.3,2.2,0.95),(0,90,0)),",
+            "            asset(\"ReturnVent\",\"vent\",(-45.52,61.4,52.0),(3.2,2.8,0.62),(0,90,0)),",
+            "            part(\"CableTray\",(0.7,0.32,24.0),(-45.15,64.25,48.0),material=\"Metal\",color=STEEL_LIGHT,collide=False),",
+            "            part(\"CableDark\",(0.13,0.13,23.0),(-44.85,64.25,48.0),material=\"SmoothPlastic\",color=CONCRETE_DARK,collide=False),"
+          ],
+          "line": 69
+        },
+        {
+          "context": [
+            "    ])",
+            "",
+            "def _workshop_storage():",
+            "    return model(\"WorkshopStorageRework\",[",
+            "        model(\"WorkshopRepairFocal\",["
+          ],
+          "line": 88
+        },
+        {
+          "context": [
+            "",
+            "def _workshop_storage():",
+            "    return model(\"WorkshopStorageRework\",[",
+            "        model(\"WorkshopRepairFocal\",[",
+            "            asset(\"BenchJunction\",\"junction\",(-94.0,60.0,34.0),(2.7,2.55,1.05),(0,90,0)),"
+          ],
+          "line": 89
+        },
+        {
+          "context": [
+            "def _workshop_storage():",
+            "    return model(\"WorkshopStorageRework\",[",
+            "        model(\"WorkshopRepairFocal\",[",
+            "            asset(\"BenchJunction\",\"junction\",(-94.0,60.0,34.0),(2.7,2.55,1.05),(0,90,0)),",
+            "            asset(\"BenchVent\",\"vent\",(-95.15,61.4,39.5),(3.0,2.6,0.55),(0,90,0)),"
+          ],
+          "line": 90
+        },
+        {
+          "context": [
+            "    return model(\"WorkshopStorageRework\",[",
+            "        model(\"WorkshopRepairFocal\",[",
+            "            asset(\"BenchJunction\",\"junction\",(-94.0,60.0,34.0),(2.7,2.55,1.05),(0,90,0)),",
+            "            asset(\"BenchVent\",\"vent\",(-95.15,61.4,39.5),(3.0,2.6,0.55),(0,90,0)),",
+            "            asset(\"SalvageCrateA\",\"crate\",(-92.4,55.25,42.7),(3.6,2.55,2.5),(0,8,0),True),"
+          ],
+          "line": 91
+        },
+        {
+          "context": [
+            "        model(\"WorkshopRepairFocal\",[",
+            "            asset(\"BenchJunction\",\"junction\",(-94.0,60.0,34.0),(2.7,2.55,1.05),(0,90,0)),",
+            "            asset(\"BenchVent\",\"vent\",(-95.15,61.4,39.5),(3.0,2.6,0.55),(0,90,0)),",
+            "            asset(\"SalvageCrateA\",\"crate\",(-92.4,55.25,42.7),(3.6,2.55,2.5),(0,8,0),True),",
+            "            asset(\"SalvageCrateB\",\"crate\",(-88.8,55.0,43.2),(3.1,2.2,2.15),(0,-12,0),True),"
+          ],
+          "line": 92
+        },
+        {
+          "context": [
+            "            asset(\"BenchJunction\",\"junction\",(-94.0,60.0,34.0),(2.7,2.55,1.05),(0,90,0)),",
+            "            asset(\"BenchVent\",\"vent\",(-95.15,61.4,39.5),(3.0,2.6,0.55),(0,90,0)),",
+            "            asset(\"SalvageCrateA\",\"crate\",(-92.4,55.25,42.7),(3.6,2.55,2.5),(0,8,0),True),",
+            "            asset(\"SalvageCrateB\",\"crate\",(-88.8,55.0,43.2),(3.1,2.2,2.15),(0,-12,0),True),",
+            "            asset(\"BenchAirLine\",\"rusty_pipe\",(-93.8,63.6,36.8),(0.42,0.42,9.0),(0,90,0)),"
+          ],
+          "line": 93
+        },
+        {
+          "context": [
+            "            asset(\"BenchVent\",\"vent\",(-95.15,61.4,39.5),(3.0,2.6,0.55),(0,90,0)),",
+            "            asset(\"SalvageCrateA\",\"crate\",(-92.4,55.25,42.7),(3.6,2.55,2.5),(0,8,0),True),",
+            "            asset(\"SalvageCrateB\",\"crate\",(-88.8,55.0,43.2),(3.1,2.2,2.15),(0,-12,0),True),",
+            "            asset(\"BenchAirLine\",\"rusty_pipe\",(-93.8,63.6,36.8),(0.42,0.42,9.0),(0,90,0)),",
+            "            part(\"HangingLead\",(0.14,3.4,0.14),(-91.6,62.0,30.6),material=\"SmoothPlastic\",color=CONCRETE_DARK,collide=False,rot=(0,0,-7)),"
+          ],
+          "line": 94
+        },
+        {
+          "context": [
+            "            asset(\"SalvageCrateA\",\"crate\",(-92.4,55.25,42.7),(3.6,2.55,2.5),(0,8,0),True),",
+            "            asset(\"SalvageCrateB\",\"crate\",(-88.8,55.0,43.2),(3.1,2.2,2.15),(0,-12,0),True),",
+            "            asset(\"BenchAirLine\",\"rusty_pipe\",(-93.8,63.6,36.8),(0.42,0.42,9.0),(0,90,0)),",
+            "            part(\"HangingLead\",(0.14,3.4,0.14),(-91.6,62.0,30.6),material=\"SmoothPlastic\",color=CONCRETE_DARK,collide=False,rot=(0,0,-7)),",
+            "        ]),"
+          ],
+          "line": 95
+        },
+        {
+          "context": [
+            "            part(\"HangingLead\",(0.14,3.4,0.14),(-91.6,62.0,30.6),material=\"SmoothPlastic\",color=CONCRETE_DARK,collide=False,rot=(0,0,-7)),",
+            "        ]),",
+            "        model(\"WorkshopFunctionalZone\",[",
+            "            part(\"RepairBenchTop\",(8.0,0.45,2.6),(-90.0,57.0,32.0),material=\"DiamondPlate\",color=STEEL_LIGHT),",
+            "            part(\"RepairBenchBack\",(8.0,3.8,0.30),(-90.0,59.0,33.15),material=\"Metal\",color=[0.22,0.26,0.23]),"
+          ],
+          "line": 98
+        },
+        {
+          "context": [
+            "            part(\"RepairPartTray\",(2.3,0.28,1.4),(-87.6,57.35,31.8),material=\"CorrodedMetal\",color=RUST,collide=False),",
+            "            fluorescent(\"WorkbenchTaskLight\",(-90.0,63.4,31.7),LIGHT_COLD,2.0,11),",
+            "            part(\"WorkshopFloorWorkMat\",(7.0,0.025,4.0),(-90.0,54.03,36.2),material=\"Rubber\",color=CONCRETE_DARK,collide=False),",
+            "        ]),",
+            "        model(\"StorageLogisticsCluster\",["
+          ],
+          "line": 105
+        },
+        {
+          "context": [
+            "        ]),",
+            "        model(\"StorageLogisticsCluster\",[",
+            "            asset(\"StorageCrateA\",\"crate\",(-57.0,55.2,73.5),(3.7,2.6,2.5),(0,-5,0),True),",
+            "            asset(\"StorageCrateB\",\"crate\",(-61.0,55.0,74.0),(3.1,2.2,2.2),(0,11,0),True),",
+            "            asset(\"StorageVent\",\"vent\",(-67.8,60.5,77.2),(3.4,3.0,0.58),(0,0,0)),"
+          ],
+          "line": 108
+        },
+        {
+          "context": [
+            "        model(\"StorageLogisticsCluster\",[",
+            "            asset(\"StorageCrateA\",\"crate\",(-57.0,55.2,73.5),(3.7,2.6,2.5),(0,-5,0),True),",
+            "            asset(\"StorageCrateB\",\"crate\",(-61.0,55.0,74.0),(3.1,2.2,2.2),(0,11,0),True),",
+            "            asset(\"StorageVent\",\"vent\",(-67.8,60.5,77.2),(3.4,3.0,0.58),(0,0,0)),",
+            "            asset(\"StorageValve\",\"valve\",(-68.0,58.0,74.8),(2.4,1.8,1.6),(0,0,0)),"
+          ],
+          "line": 109
+        },
+        {
+          "context": [
+            "            asset(\"StorageCrateA\",\"crate\",(-57.0,55.2,73.5),(3.7,2.6,2.5),(0,-5,0),True),",
+            "            asset(\"StorageCrateB\",\"crate\",(-61.0,55.0,74.0),(3.1,2.2,2.2),(0,11,0),True),",
+            "            asset(\"StorageVent\",\"vent\",(-67.8,60.5,77.2),(3.4,3.0,0.58),(0,0,0)),",
+            "            asset(\"StorageValve\",\"valve\",(-68.0,58.0,74.8),(2.4,1.8,1.6),(0,0,0)),",
+            "            part(\"CartWheelTrackA\",(0.22,0.018,8.0),(-61.5,54.02,68.0),material=\"Concrete\",color=CONCRETE_DARK,collide=False,transparency=0.42),"
+          ],
+          "line": 110
+        },
+        {
+          "context": [
+            "            asset(\"StorageCrateB\",\"crate\",(-61.0,55.0,74.0),(3.1,2.2,2.2),(0,11,0),True),",
+            "            asset(\"StorageVent\",\"vent\",(-67.8,60.5,77.2),(3.4,3.0,0.58),(0,0,0)),",
+            "            asset(\"StorageValve\",\"valve\",(-68.0,58.0,74.8),(2.4,1.8,1.6),(0,0,0)),",
+            "            part(\"CartWheelTrackA\",(0.22,0.018,8.0),(-61.5,54.02,68.0),material=\"Concrete\",color=CONCRETE_DARK,collide=False,transparency=0.42),",
+            "            part(\"CartWheelTrackB\",(0.22,0.018,8.0),(-60.2,54.02,68.0),material=\"Concrete\",color=CONCRETE_DARK,collide=False,transparency=0.42),"
+          ],
+          "line": 111
+        },
+        {
+          "context": [
+            "    return model(\"BedroomLivingRework\",[",
+            "        model(\"ImprovisedLivingUtilities\",[",
+            "            asset(\"BedroomVent\",\"vent\",(-94.9,61.4,88.0),(3.2,2.8,0.55),(0,90,0)),",
+            "            asset(\"BedroomJunction\",\"junction\",(-94.95,58.4,83.0),(2.1,2.0,0.82),(0,90,0)),",
+            "            asset(\"PersonalAmmoBox\",\"crate\",(-92.0,54.95,93.2),(2.8,2.0,1.9),(0,-9,0),True),"
+          ],
+          "line": 124
+        },
+        {
+          "context": [
+            "        model(\"ImprovisedLivingUtilities\",[",
+            "            asset(\"BedroomVent\",\"vent\",(-94.9,61.4,88.0),(3.2,2.8,0.55),(0,90,0)),",
+            "            asset(\"BedroomJunction\",\"junction\",(-94.95,58.4,83.0),(2.1,2.0,0.82),(0,90,0)),",
+            "            asset(\"PersonalAmmoBox\",\"crate\",(-92.0,54.95,93.2),(2.8,2.0,1.9),(0,-9,0),True),",
+            "            asset(\"HeatPipe\",\"rusty_pipe\",(-94.4,63.3,82.5),(0.34,0.34,11.0),(0,90,0)),"
+          ],
+          "line": 125
+        },
+        {
+          "context": [
+            "            asset(\"BedroomVent\",\"vent\",(-94.9,61.4,88.0),(3.2,2.8,0.55),(0,90,0)),",
+            "            asset(\"BedroomJunction\",\"junction\",(-94.95,58.4,83.0),(2.1,2.0,0.82),(0,90,0)),",
+            "            asset(\"PersonalAmmoBox\",\"crate\",(-92.0,54.95,93.2),(2.8,2.0,1.9),(0,-9,0),True),",
+            "            asset(\"HeatPipe\",\"rusty_pipe\",(-94.4,63.3,82.5),(0.34,0.34,11.0),(0,90,0)),",
+            "            part(\"DryingLine\",(0.08,0.08,8.0),(-86.0,62.4,93.8),material=\"SmoothPlastic\",color=CONCRETE_DARK,collide=False),"
+          ],
+          "line": 126
+        },
+        {
+          "context": [
+            "            asset(\"BedroomJunction\",\"junction\",(-94.95,58.4,83.0),(2.1,2.0,0.82),(0,90,0)),",
+            "            asset(\"PersonalAmmoBox\",\"crate\",(-92.0,54.95,93.2),(2.8,2.0,1.9),(0,-9,0),True),",
+            "            asset(\"HeatPipe\",\"rusty_pipe\",(-94.4,63.3,82.5),(0.34,0.34,11.0),(0,90,0)),",
+            "            part(\"DryingLine\",(0.08,0.08,8.0),(-86.0,62.4,93.8),material=\"SmoothPlastic\",color=CONCRETE_DARK,collide=False),",
+            "            part(\"HangingBlanket\",(3.2,2.7,0.08),(-86.0,60.9,93.75),material=\"Fabric\",color=[0.18,0.23,0.20],collide=False,transparency=0.06),"
+          ],
+          "line": 127
+        },
+        {
+          "context": [
+            "",
+            "def build_environment_rework():",
+            "    return [_entrance(),_corridor(),_workshop_storage(),_bedroom()]"
+          ],
+          "line": 145
+        }
+      ]
+    },
+    "tools/builders/new_bunker/workshop_upgrade_storage.py": {
+      "line_count": 358,
+      "matches": [
+        {
+          "context": [
+            "\"\"\"Workshop, upgrade, and storage set dressing for the NewBunker.",
+            "",
+            "The three rooms share an industrial material family but have deliberately"
+          ],
+          "line": 1
+        },
+        {
+          "context": [
+            "different silhouettes and functions:",
+            "",
+            "* Workshop: a low, layered repair bench backed by an orderly tool wall.",
+            "* Upgrade: a tall enclosed service gantry surrounding a machine cradle.",
+            "* Storage: perimeter rack bays and locker banks around an L-shaped aisle."
+          ],
+          "line": 6
+        },
+        {
+          "context": [
+            "",
+            "* Workshop: a low, layered repair bench backed by an orderly tool wall.",
+            "* Upgrade: a tall enclosed service gantry surrounding a machine cradle.",
+            "* Storage: perimeter rack bays and locker banks around an L-shaped aisle.",
+            ""
+          ],
+          "line": 7
+        },
+        {
+          "context": [
+            "Player clearance reserved by this module:",
+            "",
+            "* Workshop: doorway-to-bench approach, X=-87..-78 and Z=35.25..40.75",
+            "  (5.5 studs clear at the narrowest point).",
+            "* Upgrade: doorway-to-rig approach, X=-87.5..-78 and Z=53.25..58.75"
+          ],
+          "line": 12
+        },
+        {
+          "context": [
+            "* Workshop: doorway-to-bench approach, X=-87..-78 and Z=35.25..40.75",
+            "  (5.5 studs clear at the narrowest point).",
+            "* Upgrade: doorway-to-rig approach, X=-87.5..-78 and Z=53.25..58.75",
+            "  (5.5 studs clear).",
+            "* Storage: north/south aisle X=-65..-59 and cross aisle Z=66..72 to the"
+          ],
+          "line": 14
+        },
+        {
+          "context": [
+            "Recommended director-review cameras (position -> target):",
+            "",
+            "* workshop: (-79.5, 59.4, 38.0) -> (-91.0, 58.3, 32.0)",
+            "* upgrade: (-79.4, 59.4, 53.2) -> (-91.0, 58.5, 57.0)",
+            "* storage: (-62.0, 59.5, 59.5) -> (-62.0, 58.0, 75.0)"
+          ],
+          "line": 21
+        },
+        {
+          "context": [
+            "",
+            "* workshop: (-79.5, 59.4, 38.0) -> (-91.0, 58.3, 32.0)",
+            "* upgrade: (-79.4, 59.4, 53.2) -> (-91.0, 58.5, 57.0)",
+            "* storage: (-62.0, 59.5, 59.5) -> (-62.0, 58.0, 75.0)",
+            "\"\"\""
+          ],
+          "line": 22
+        },
+        {
+          "context": [
+            "    model,",
+            "    part,",
+            "    pipe,",
+            "    shelf,",
+            ")"
+          ],
+          "line": 43
+        },
+        {
+          "context": [
+            "            part(\"FixedJaw\", (0.48, 0.85, 1.45), (-84.65, 58.12, 32.1), material=\"Metal\", color=STEEL_LIGHT, collide=False),",
+            "            part(\"MovingJaw\", (0.40, 0.72, 1.35), (-84.08, 58.06, 32.1), material=\"Metal\", color=STEEL_LIGHT, collide=False),",
+            "            pipe(\"ViceScrew\", (-83.75, 57.62, 32.1), 1.4, \"x\", 0.18, AGED_WHITE),",
+            "        ]),",
+            "        model(\"BenchTaskObjects\", ["
+          ],
+          "line": 83
+        },
+        {
+          "context": [
+            "        model(\"BenchTaskObjects\", [",
+            "            part(\"DisassembledHousing\", (2.5, 0.72, 1.45), (-90.0, 58.0, 31.85), material=\"Metal\", color=GREEN, collide=False, rot=(0, 8, 0)),",
+            "            pipe(\"HousingRotor\", (-90.0, 58.5, 31.85), 1.5, \"x\", 0.55, STEEL_LIGHT),",
+            "            part(\"PartsTray\", (2.2, 0.18, 1.3), (-87.4, 57.72, 31.9), material=\"CorrodedMetal\", color=STEEL, collide=False),",
+            "            part(\"OilCanBody\", (0.58, 0.9, 0.58), (-92.3, 58.0, 31.8), material=\"Metal\", color=RED, collide=False, shape=\"Cylinder\", rot=(0, 0, 90)),"
+          ],
+          "line": 87
+        },
+        {
+          "context": [
+            "        part(\"MeasuringSquareVertical\", (0.16, 1.6, 0.14), (-88.4, 60.25, 30.43), material=\"Metal\", color=YELLOW, collide=False),",
+            "        part(\"MeasuringSquareHorizontal\", (1.15, 0.16, 0.14), (-87.9, 59.5, 30.43), material=\"Metal\", color=YELLOW, collide=False),",
+            "        pipe(\"CableCoilOuter\", (-86.4, 60.15, 30.43), 1.55, \"x\", 1.35, UTILITY_BLUE),",
+            "        part(\"LowerToolRail\", (9.0, 0.16, 0.16), (-89.0, 58.65, 30.43), material=\"Metal\", color=STEEL_LIGHT, collide=False),",
+            "        part(\"FadedToolLabel\", (2.5, 0.28, 0.08), (-89.0, 61.6, 30.43), material=\"SmoothPlastic\", color=YELLOW, collide=False, cast_shadow=False),"
+          ],
+          "line": 106
+        },
+        {
+          "context": [
+            "",
+            "",
+            "def _workshop_support_zones() -> list[dict]:",
+            "    return [",
+            "        model(\"NorthPartsRack\", ["
+          ],
+          "line": 113
+        },
+        {
+          "context": [
+            "        model(\"WestCylinderServiceRack\", [",
+            "            part(\"RackBase\", (3.2, 0.35, 4.7), (-94.0, 54.2, 42.4), material=\"Metal\", color=STEEL),",
+            "            pipe(\"ShieldingGasCylinder\", (-94.0, 56.25, 41.35), 4.0, \"y\", 0.9, GREEN),",
+            "            pipe(\"SpentCylinder\", (-94.0, 56.25, 43.25), 4.0, \"y\", 0.9, RUST),",
+            "            part(\"BackGuard\", (0.35, 4.8, 4.6), (-95.0, 56.35, 42.3), material=\"Metal\", color=STEEL),"
+          ],
+          "line": 124
+        },
+        {
+          "context": [
+            "            part(\"RackBase\", (3.2, 0.35, 4.7), (-94.0, 54.2, 42.4), material=\"Metal\", color=STEEL),",
+            "            pipe(\"ShieldingGasCylinder\", (-94.0, 56.25, 41.35), 4.0, \"y\", 0.9, GREEN),",
+            "            pipe(\"SpentCylinder\", (-94.0, 56.25, 43.25), 4.0, \"y\", 0.9, RUST),",
+            "            part(\"BackGuard\", (0.35, 4.8, 4.6), (-95.0, 56.35, 42.3), material=\"Metal\", color=STEEL),",
+            "            part(\"SafetyChain\", (0.16, 0.16, 3.5), (-93.45, 57.25, 42.3), material=\"Metal\", color=YELLOW, collide=False),"
+          ],
+          "line": 125
+        },
+        {
+          "context": [
+            "            part(\"SafetyChain\", (0.16, 0.16, 3.5), (-93.45, 57.25, 42.3), material=\"Metal\", color=YELLOW, collide=False),",
+            "        ]),",
+            "        model(\"WorkshopFloorIdentity\", [",
+            "            part(\"AntiFatigueMat\", (7.5, 0.09, 2.7), (-89.0, 54.1, 34.9), material=\"Rubber\", color=CONCRETE_DARK, collide=False),",
+            "            part(\"AisleEdgeWest\", (0.16, 0.06, 5.3), (-87.35, 54.12, 38.0), material=\"SmoothPlastic\", color=YELLOW, collide=False),"
+          ],
+          "line": 129
+        },
+        {
+          "context": [
+            "            crate(\"ConsumablesCrate\", (-87.8, 55.0, 43.8), (2.5, 2.0, 2.2)),",
+            "        ]),",
+            "        model(\"WorkshopOverheadServices\", [",
+            "            part(\"TaskCableTray\", (11.0, 0.35, 0.8), (-89.0, 64.8, 31.0), material=\"Metal\", color=STEEL_LIGHT, collide=False),",
+            "            pipe(\"CompressedAirHeader\", (-89.0, 64.3, 30.7), 10.5, \"x\", 0.34, UTILITY_BLUE),"
+          ],
+          "line": 136
+        },
+        {
+          "context": [
+            "        model(\"WorkshopOverheadServices\", [",
+            "            part(\"TaskCableTray\", (11.0, 0.35, 0.8), (-89.0, 64.8, 31.0), material=\"Metal\", color=STEEL_LIGHT, collide=False),",
+            "            pipe(\"CompressedAirHeader\", (-89.0, 64.3, 30.7), 10.5, \"x\", 0.34, UTILITY_BLUE),",
+            "            part(\"RetractableLead\", (0.13, 3.7, 0.13), (-86.0, 62.25, 31.0), material=\"SmoothPlastic\", color=CONCRETE_DARK, collide=False, rot=(0, 0, -7)),",
+            "        ]),"
+          ],
+          "line": 138
+        },
+        {
+          "context": [
+            "",
+            "",
+            "def _workshop_extraction_arm() -> dict:",
+            "    \"\"\"Overhead articulated fume extraction silhouette above the repair focal point.\"\"\"",
+            ""
+          ],
+          "line": 144
+        },
+        {
+          "context": [
+            "    \"\"\"Overhead articulated fume extraction silhouette above the repair focal point.\"\"\"",
+            "",
+            "    return model(\"WorkshopExtractionArm\", [",
+            "        part(\"CeilingPivot\", (0.55, 1.8, 1.8), (-93.4, 64.1, 35.0), material=\"CorrodedMetal\", color=RUST, collide=False, shape=\"Cylinder\", rot=(0, 0, 90)),",
+            "        part(\"UpperArm\", (4.8, 0.52, 0.52), (-91.5, 63.0, 35.0), material=\"Metal\", color=STEEL_LIGHT, collide=False, rot=(0, 0, -18)),"
+          ],
+          "line": 147
+        },
+        {
+          "context": [
+            "",
+            "",
+            "def build_workshop() -> list[dict]:",
+            "    \"\"\"Return workshop-owned models while keeping the central work aisle open.\"\"\"",
+            ""
+          ],
+          "line": 159
+        },
+        {
+          "context": [
+            "",
+            "def build_workshop() -> list[dict]:",
+            "    \"\"\"Return workshop-owned models while keeping the central work aisle open.\"\"\"",
+            "",
+            "    return [_industrial_workbench(), _tool_wall(), *_workshop_support_zones(), _workshop_extraction_arm()]"
+          ],
+          "line": 160
+        },
+        {
+          "context": [
+            "    \"\"\"Return workshop-owned models while keeping the central work aisle open.\"\"\"",
+            "",
+            "    return [_industrial_workbench(), _tool_wall(), *_workshop_support_zones(), _workshop_extraction_arm()]",
+            "",
+            ""
+          ],
+          "line": 162
+        },
+        {
+          "context": [
+            "",
+            "",
+            "def _upgrade_service_rig() -> dict:",
+            "    \"\"\"Grounded service cradle framed around, rather than across, its sightline.\"\"\"",
+            ""
+          ],
+          "line": 165
+        },
+        {
+          "context": [
+            "    \"\"\"Grounded service cradle framed around, rather than across, its sightline.\"\"\"",
+            "",
+            "    return model(\"EnclosedUpgradeServiceRig\", [",
+            "        part(\"MachinePlinth\", (7.2, 0.62, 7.4), (-91.2, 54.32, 57.0), material=\"DiamondPlate\", color=STEEL),",
+            "        part(\"PlinthWarningWest\", (0.38, 0.12, 7.1), (-94.6, 54.68, 57.0), material=\"SmoothPlastic\", color=YELLOW, collide=False),"
+          ],
+          "line": 168
+        },
+        {
+          "context": [
+            "            part(\"NorthCradleRail\", (4.5, 0.48, 0.42), (-91.0, 57.38, 56.05), material=\"CorrodedMetal\", color=RUST, collide=False),",
+            "            part(\"SouthCradleRail\", (4.5, 0.48, 0.42), (-91.0, 57.38, 57.95), material=\"CorrodedMetal\", color=RUST, collide=False),",
+            "            pipe(\"ServiceRotor\", (-90.7, 58.05, 57.0), 3.2, \"x\", 1.35, GREEN),",
+            "            part(\"RotorCollarWest\", (0.35, 1.65, 1.65), (-92.2, 58.05, 57.0), material=\"Metal\", color=STEEL_LIGHT, collide=False),",
+            "            part(\"RotorCollarEast\", (0.35, 1.65, 1.65), (-89.2, 58.05, 57.0), material=\"Metal\", color=STEEL_LIGHT, collide=False),"
+          ],
+          "line": 191
+        },
+        {
+          "context": [
+            "            part(\"PressureGauge\", (0.10, 0.72, 0.72), (-92.54, 58.7, 56.5), material=\"SmoothPlastic\", color=AGED_WHITE, collide=False, shape=\"Cylinder\"),",
+            "            part(\"ActuatorHousing\", (2.2, 1.8, 1.75), (-92.25, 60.0, 57.0), material=\"CorrodedMetal\", color=RUST),",
+            "            pipe(\"HorizontalRam\", (-90.35, 60.0, 57.0), 3.0, \"x\", 0.62, STEEL_LIGHT),",
+            "            part(\"PressHead\", (0.65, 1.45, 1.45), (-88.85, 60.0, 57.0), material=\"Metal\", color=YELLOW, collide=False),",
+            "            part(\"ReturnHose\", (0.18, 4.0, 0.18), (-93.65, 58.8, 58.0), material=\"SmoothPlastic\", color=UTILITY_BLUE, collide=False, rot=(0, 0, 8)),"
+          ],
+          "line": 204
+        },
+        {
+          "context": [
+            "",
+            "",
+            "def _upgrade_support_zones() -> list[dict]:",
+            "    return [",
+            "        model(\"DiagnosticOperatorStation\", ["
+          ],
+          "line": 212
+        },
+        {
+          "context": [
+            "            part(\"CoiledLead\", (0.25, 1.4, 1.4), (-83.6, 59.7, 63.0), material=\"SmoothPlastic\", color=CONCRETE_DARK, collide=False, shape=\"Cylinder\", rot=(0, 0, 90)),",
+            "        ]),",
+            "        model(\"UpgradeFloorLanguage\", [",
+            "            part(\"ApproachRailNorth\", (8.6, 0.08, 0.18), (-82.8, 54.12, 53.25), material=\"SmoothPlastic\", color=UTILITY_BLUE, collide=False),",
+            "            part(\"ApproachRailSouth\", (8.6, 0.08, 0.18), (-82.8, 54.12, 58.75), material=\"SmoothPlastic\", color=UTILITY_BLUE, collide=False),"
+          ],
+          "line": 228
+        },
+        {
+          "context": [
+            "            crate(\"ActuatorSpares\", (-81.0, 55.0, 50.2), (2.5, 2.0, 2.1)),",
+            "        ]),",
+            "        model(\"UpgradeWallInfrastructure\", [",
+            "            part(\"PowerDisconnect\", (1.0, 3.1, 2.1), (-95.0, 59.0, 62.7), material=\"Metal\", color=GREEN),",
+            "            part(\"DisconnectFace\", (0.10, 2.3, 1.55), (-94.44, 59.0, 62.7), material=\"CorrodedMetal\", color=STEEL_LIGHT, collide=False),"
+          ],
+          "line": 234
+        },
+        {
+          "context": [
+            "            part(\"DisconnectFace\", (0.10, 2.3, 1.55), (-94.44, 59.0, 62.7), material=\"CorrodedMetal\", color=STEEL_LIGHT, collide=False),",
+            "            part(\"EmergencyHandle\", (0.18, 1.35, 0.18), (-94.32, 59.0, 62.7), material=\"Metal\", color=RED, collide=False, rot=(0, 0, 20)),",
+            "            pipe(\"OverheadHydraulicFeed\", (-90.0, 65.6, 64.7), 9.0, \"x\", 0.38, UTILITY_BLUE),",
+            "            part(\"DroppedInspectionCover\", (2.0, 0.12, 1.4), (-84.8, 54.14, 63.6), material=\"CorrodedMetal\", color=STEEL_LIGHT, collide=False, rot=(0, 17, 0)),",
+            "        ]),"
+          ],
+          "line": 238
+        },
+        {
+          "context": [
+            "",
+            "",
+            "def _upgrade_hydraulic_accumulator_bank() -> dict:",
+            "    \"\"\"Add a rounded pressure-bank silhouette without entering the approach lane.\"\"\"",
+            "    return model(\"HydraulicAccumulatorBank\", ["
+          ],
+          "line": 244
+        },
+        {
+          "context": [
+            "        part(\"WallRailUpper\", (0.22, 0.28, 6.2), (-95.28, 61.25, 56.8), material=\"Metal\", color=STEEL_LIGHT, collide=False),",
+            "        part(\"WallRailLower\", (0.22, 0.28, 6.2), (-95.28, 56.05, 56.8), material=\"CorrodedMetal\", color=RUST, collide=False),",
+            "        pipe(\"AccumulatorNorth\", (-94.95, 58.65, 55.15), 4.8, \"y\", 0.82, GREEN),",
+            "        pipe(\"AccumulatorCenter\", (-94.95, 58.65, 57.0), 4.8, \"y\", 0.82, STEEL_LIGHT),",
+            "        pipe(\"AccumulatorSouth\", (-94.95, 58.65, 58.85), 4.8, \"y\", 0.82, GREEN),"
+          ],
+          "line": 249
+        },
+        {
+          "context": [
+            "        part(\"WallRailLower\", (0.22, 0.28, 6.2), (-95.28, 56.05, 56.8), material=\"CorrodedMetal\", color=RUST, collide=False),",
+            "        pipe(\"AccumulatorNorth\", (-94.95, 58.65, 55.15), 4.8, \"y\", 0.82, GREEN),",
+            "        pipe(\"AccumulatorCenter\", (-94.95, 58.65, 57.0), 4.8, \"y\", 0.82, STEEL_LIGHT),",
+            "        pipe(\"AccumulatorSouth\", (-94.95, 58.65, 58.85), 4.8, \"y\", 0.82, GREEN),",
+            "        part(\"NorthGauge\", (0.18, 0.78, 0.78), (-94.52, 60.35, 55.15), material=\"SmoothPlastic\", color=AGED_WHITE, collide=False, shape=\"Cylinder\"),"
+          ],
+          "line": 250
+        },
+        {
+          "context": [
+            "        pipe(\"AccumulatorNorth\", (-94.95, 58.65, 55.15), 4.8, \"y\", 0.82, GREEN),",
+            "        pipe(\"AccumulatorCenter\", (-94.95, 58.65, 57.0), 4.8, \"y\", 0.82, STEEL_LIGHT),",
+            "        pipe(\"AccumulatorSouth\", (-94.95, 58.65, 58.85), 4.8, \"y\", 0.82, GREEN),",
+            "        part(\"NorthGauge\", (0.18, 0.78, 0.78), (-94.52, 60.35, 55.15), material=\"SmoothPlastic\", color=AGED_WHITE, collide=False, shape=\"Cylinder\"),",
+            "        part(\"SouthGauge\", (0.18, 0.78, 0.78), (-94.52, 60.35, 58.85), material=\"SmoothPlastic\", color=AGED_WHITE, collide=False, shape=\"Cylinder\"),"
+          ],
+          "line": 251
+        },
+        {
+          "context": [
+            "        part(\"NorthGauge\", (0.18, 0.78, 0.78), (-94.52, 60.35, 55.15), material=\"SmoothPlastic\", color=AGED_WHITE, collide=False, shape=\"Cylinder\"),",
+            "        part(\"SouthGauge\", (0.18, 0.78, 0.78), (-94.52, 60.35, 58.85), material=\"SmoothPlastic\", color=AGED_WHITE, collide=False, shape=\"Cylinder\"),",
+            "        pipe(\"PressureManifold\", (-94.62, 61.05, 57.0), 4.3, \"z\", 0.22, UTILITY_BLUE),",
+            "        part(\"ServiceHoseDrop\", (0.16, 3.8, 0.16), (-94.45, 58.5, 60.15), material=\"SmoothPlastic\", color=CONCRETE_DARK, collide=False, rot=(0, 0, 11)),",
+            "        part(\"FadedPressureTag\", (0.08, 0.42, 1.45), (-94.42, 61.0, 57.0), material=\"SmoothPlastic\", color=YELLOW, collide=False, rot=(0, 0, -3), cast_shadow=False),"
+          ],
+          "line": 254
+        },
+        {
+          "context": [
+            "",
+            "",
+            "def build_upgrade_area() -> list[dict]:",
+            "    \"\"\"Return an intentional service-machine composition and support spaces.\"\"\"",
+            ""
+          ],
+          "line": 260
+        },
+        {
+          "context": [
+            "    \"\"\"Return an intentional service-machine composition and support spaces.\"\"\"",
+            "",
+            "    return [_upgrade_service_rig(), *_upgrade_support_zones(), _upgrade_hydraulic_accumulator_bank()]",
+            "",
+            ""
+          ],
+          "line": 263
+        },
+        {
+          "context": [
+            "            part(\"FilterBin\", (1.45, 1.0, 1.8), (-68.1, 56.3, 73.0), material=\"Metal\", color=UTILITY_BLUE, collide=False),",
+            "            part(\"PartsBin\", (1.45, 1.0, 1.8), (-68.1, 59.7, 75.0), material=\"Metal\", color=STEEL_LIGHT, collide=False),",
+            "            pipe(\"StoredPipeBundle\", (-68.0, 61.7, 74.2), 4.0, \"z\", 0.32, RUST),",
+            "        ]),",
+            "        model(\"NorthLongRackBay\", ["
+          ],
+          "line": 292
+        },
+        {
+          "context": [
+            "        part(\"CrossAisleNorthLine\", (5.0, 0.06, 0.16), (-56.5, 54.12, 72.0), material=\"SmoothPlastic\", color=YELLOW, collide=False),",
+            "        part(\"CrossAisleSouthLine\", (5.0, 0.06, 0.16), (-56.5, 54.12, 66.0), material=\"SmoothPlastic\", color=YELLOW, collide=False),",
+            "        part(\"WornInventoryBoard\", (0.16, 3.4, 3.8), (-69.45, 59.2, 69.0), material=\"Metal\", color=CONCRETE_DARK, collide=False),",
+            "        part(\"InventorySheet\", (0.08, 2.5, 2.8), (-69.34, 59.3, 69.0), material=\"SmoothPlastic\", color=AGED_WHITE, collide=False, transparency=0.12, cast_shadow=False),",
+            "        part(\"DroppedLid\", (1.5, 0.10, 1.0), (-57.0, 54.12, 72.8), material=\"CorrodedMetal\", color=STEEL_LIGHT, collide=False, rot=(0, -16, 0)),"
+          ],
+          "line": 333
+        },
+        {
+          "context": [
+            "        part(\"CrossAisleSouthLine\", (5.0, 0.06, 0.16), (-56.5, 54.12, 66.0), material=\"SmoothPlastic\", color=YELLOW, collide=False),",
+            "        part(\"WornInventoryBoard\", (0.16, 3.4, 3.8), (-69.45, 59.2, 69.0), material=\"Metal\", color=CONCRETE_DARK, collide=False),",
+            "        part(\"InventorySheet\", (0.08, 2.5, 2.8), (-69.34, 59.3, 69.0), material=\"SmoothPlastic\", color=AGED_WHITE, collide=False, transparency=0.12, cast_shadow=False),",
+            "        part(\"DroppedLid\", (1.5, 0.10, 1.0), (-57.0, 54.12, 72.8), material=\"CorrodedMetal\", color=STEEL_LIGHT, collide=False, rot=(0, -16, 0)),",
+            "    ])"
+          ],
+          "line": 334
+        },
+        {
+          "context": [
+            "    return model(\"EmergencySupplyNest\", [",
+            "        part(\"LowContainmentTray\", (4.8, 0.22, 2.5), (-58.8, 54.18, 75.4), material=\"DiamondPlate\", color=STEEL, collide=False),",
+            "        pipe(\"WaterDrumA\", (-60.15, 55.45, 75.4), 2.35, \"y\", 1.35, UTILITY_BLUE),",
+            "        pipe(\"WaterDrumB\", (-58.55, 55.45, 75.4), 2.35, \"y\", 1.35, UTILITY_BLUE),",
+            "        pipe(\"ReserveCylinder\", (-57.0, 55.65, 75.45), 2.75, \"y\", 0.72, GREEN),"
+          ],
+          "line": 343
+        },
+        {
+          "context": [
+            "        part(\"LowContainmentTray\", (4.8, 0.22, 2.5), (-58.8, 54.18, 75.4), material=\"DiamondPlate\", color=STEEL, collide=False),",
+            "        pipe(\"WaterDrumA\", (-60.15, 55.45, 75.4), 2.35, \"y\", 1.35, UTILITY_BLUE),",
+            "        pipe(\"WaterDrumB\", (-58.55, 55.45, 75.4), 2.35, \"y\", 1.35, UTILITY_BLUE),",
+            "        pipe(\"ReserveCylinder\", (-57.0, 55.65, 75.45), 2.75, \"y\", 0.72, GREEN),",
+            "        part(\"DrumBandAUpper\", (0.16, 1.48, 1.48), (-60.15, 56.05, 75.4), material=\"CorrodedMetal\", color=RUST, collide=False, shape=\"Cylinder\", rot=(0, 0, 90)),"
+          ],
+          "line": 344
+        },
+        {
+          "context": [
+            "        pipe(\"WaterDrumA\", (-60.15, 55.45, 75.4), 2.35, \"y\", 1.35, UTILITY_BLUE),",
+            "        pipe(\"WaterDrumB\", (-58.55, 55.45, 75.4), 2.35, \"y\", 1.35, UTILITY_BLUE),",
+            "        pipe(\"ReserveCylinder\", (-57.0, 55.65, 75.45), 2.75, \"y\", 0.72, GREEN),",
+            "        part(\"DrumBandAUpper\", (0.16, 1.48, 1.48), (-60.15, 56.05, 75.4), material=\"CorrodedMetal\", color=RUST, collide=False, shape=\"Cylinder\", rot=(0, 0, 90)),",
+            "        part(\"DrumBandALower\", (0.16, 1.48, 1.48), (-60.15, 54.85, 75.4), material=\"CorrodedMetal\", color=RUST, collide=False, shape=\"Cylinder\", rot=(0, 0, 90)),"
+          ],
+          "line": 345
+        },
+        {
+          "context": [
+            "        part(\"RetainingStrap\", (4.0, 0.16, 0.16), (-58.8, 55.6, 74.65), material=\"Fabric\", color=[0.20, 0.16, 0.10], collide=False, rot=(0, 0, -4)),",
+            "        part(\"RolledTarp\", (0.95, 3.0, 0.95), (-61.1, 55.0, 75.25), material=\"Fabric\", color=GREEN, collide=False, shape=\"Cylinder\", rot=(0, 0, 82)),",
+            "        part(\"LeaningInventorySlate\", (1.7, 2.4, 0.12), (-56.65, 55.25, 74.9), material=\"Metal\", color=CONCRETE_DARK, collide=False, rot=(0, 0, -11)),",
+            "    ])",
+            ""
+          ],
+          "line": 351
+        }
+      ]
+    }
+  },
+  "new_bunker_source": {
+    "bytes": 1637794,
+    "path": "src/Workspace/Rebuild/NewBunker.model.json",
+    "prompt_mentions": 8,
+    "upgrade_mentions": 12,
+    "workshop_mentions": 1
+  },
+  "source_of_truth": "filesystem/Rojo",
+  "target": "Workspace.Rebuild.NewBunker.Workshop",
+  "target_name": "Workshop"
+}

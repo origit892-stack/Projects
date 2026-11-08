@@ -1,0 +1,2 @@
+Play QA PASS — Edit→Play→Edit discipline verified (3 cycles). Spawn bedroom_01 at -49,54.5,72 ok, character spawned Health100, GameWorld 1315 desc Runtime Wildlife 8 (5 deer+3 birds) spawned via TweenService, no console errors, Trees 18 / Plots 12 / ZombieSpawns 7 intact, Lighting Clock13.5 Fog110-550, wildlife distant 30-147 studs (drift noted but not stuck), forest navigation not blocked, return to Edit verified
+2026-08-31 11:52:16

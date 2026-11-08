@@ -1,0 +1,212 @@
+import importlib.util
+import json
+import os
+import pathlib
+import subprocess
+import time
+
+ROOT = pathlib.Path('/Users/Ori/Documents/Projects/BunkerGame')
+os.chdir(ROOT)
+SID = 'ses_fc05fd13effeO0ZWa5kBhDjivC'
+LOG = ROOT / 'artifacts/overnight_aaa_watchdog.log'
+STATE = ROOT / 'artifacts/overnight_aaa_watchdog_state.json'
+
+spec = importlib.util.spec_from_file_location('bapi', ROOT / 'tools/environment_director/bloxbot_api.py')
+bapi = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(bapi)
+
+CONTINUE_PROMPT = (
+    'Continue the authorized AAA bunker rework autonomously from the latest verified checkpoint. '
+    'Do not stop at intermediate milestones. Keep implementing, fixing, validating, syncing, Play-QA, OBS, '
+    'and independent review work until the NEW exact DIRECTOR_REVIEW. Preserve filesystem/Rojo source of truth, '
+    'the immutable backup, strict Play->Stop->verify Edit discipline, and never touch Streamlabs. '
+    'If blocked, diagnose and repair autonomously. If a subagent stalls, take over directly.'
+)
+
+DEBUG_PROMPT = (
+    'OVERNIGHT WATCHDOG RECOVERY: there has been no meaningful progress for more than 20 minutes or an execution '
+    'error was detected. Diagnose the CURRENT blocker using filesystem, OpenCode, Rojo, Studio, OBS, process state, '
+    'and logs. Fix it autonomously without restarting completed work or damaging checkpoints, then immediately resume '
+    'the authorized AAA bunker rework toward NEW DIRECTOR_REVIEW. Do not merely report the blocker. Preserve the '
+    'immutable backup and strict Play->Stop->Edit rule.'
+)
+
+
+def log(msg):
+    line = time.strftime('%Y-%m-%d %H:%M:%S') + ' ' + msg
+    LOG.parent.mkdir(parents=True, exist_ok=True)
+    with LOG.open('a', encoding='utf-8') as f:
+        f.write(line + '\n')
+    print(line, flush=True)
+
+
+def request(method, path, body=None):
+    # Watchdog probes must be bounded so a dead transport cannot hide a 20-minute stall.
+    # Dispatches remain allowed a longer transport window.
+    if method == 'GET':
+        return bapi.request(method, path, body, timeout=30, retries=2)
+    return bapi.request(method, path, body, timeout=60, retries=4)
+
+
+def get_messages():
+    result = request('GET', f'/session/{SID}/message')
+    return result if isinstance(result, list) else []
+
+
+def get_latest_text(messages):
+    if not messages:
+        return ''
+    item = messages[-1] if isinstance(messages[-1], dict) else {}
+    texts = []
+    for part in item.get('parts', []):
+        if isinstance(part, dict) and part.get('type') == 'text' and part.get('text'):
+            texts.append(part['text'])
+    return texts[-1] if texts else ''
+
+
+def make_signature(messages):
+    latest = get_latest_text(messages)
+    return str(len(messages)) + '|' + latest[-1200:]
+
+
+def dispatch(prompt):
+    request('POST', f'/session/{SID}/message', {'parts': [{'type': 'text', 'text': prompt}]})
+
+
+def process_health():
+    checks = []
+    for pattern in ['opencode serve', 'rojo serve', 'RobloxStudio']:
+        result = subprocess.run(['pgrep', '-fl', pattern], capture_output=True, text=True)
+        checks.append(pattern + '=' + ('UP' if result.returncode == 0 else 'DOWN'))
+    return ' '.join(checks)
+
+
+last_signature = ''
+last_progress = time.time()
+consecutive_errors = 0
+
+if STATE.exists():
+    try:
+        saved = json.loads(STATE.read_text(encoding='utf-8'))
+        last_signature = saved.get('signature', '')
+        last_progress = float(saved.get('last_progress', time.time()))
+        consecutive_errors = int(saved.get('errors', 0))
+    except Exception:
+        pass
+
+log('WATCHDOG_START cadence=300s stall_threshold=1200s debug_max=5')
+
+while True:
+    cycle_started = time.time()
+    try:
+        age_before = time.time() - last_progress
+        log('WATCHDOG_CHECK age_seconds=' + str(round(age_before, 1)) + ' age_minutes=' + str(round(age_before / 60, 2)) + ' ' + process_health())
+        # Check the wall-clock stall BEFORE a network probe so a stuck API cannot postpone recovery forever.
+        if age_before > 1200:
+            log('STALL_ALREADY_OVER_20_MIN -> IMMEDIATE_RECOVERY')
+            recovered = False
+            for attempt in range(1, 6):
+                try:
+                    log('IMMEDIATE_RECOVERY_ATTEMPT=' + str(attempt))
+                    dispatch(DEBUG_PROMPT)
+                    log('IMMEDIATE_RECOVERY_PASS attempt=' + str(attempt))
+                    recovered = True
+                    last_progress = time.time()
+                    break
+                except Exception as immediate_exc:
+                    log('IMMEDIATE_RECOVERY_FAIL attempt=' + str(attempt) + ' ' + repr(immediate_exc))
+                    time.sleep(min(15 * attempt, 60))
+            if not recovered:
+                log('error debug maxed out')
+                STATE.write_text(json.dumps({'signature': last_signature, 'last_progress': last_progress, 'errors': 5, 'fatal': 'error debug maxed out'}), encoding='utf-8')
+                break
+        messages = get_messages()
+        signature = make_signature(messages)
+        latest = get_latest_text(messages)
+        low = latest.lower()
+
+        if signature != last_signature:
+            last_signature = signature
+            last_progress = time.time()
+            consecutive_errors = 0
+            log('PROGRESS messages=' + str(len(messages)) + ' latest=' + latest[-350:].replace('\n', ' '))
+
+        # Stop only on an explicit positive terminal marker. Merely mentioning
+        # DIRECTOR_REVIEW (for example 'before DIRECTOR_REVIEW' or
+        # 'cannot claim DIRECTOR_REVIEW') is NOT completion.
+        normalized = latest.upper().replace(' ', '_')
+        negative_director_context = any(token in normalized for token in [
+            'BEFORE_DIRECTOR_REVIEW',
+            'NOT_DIRECTOR_REVIEW',
+            'CANNOT_CLAIM',
+            "CAN'T_CLAIM",
+            'STILL_REQUIRES',
+            'REQUIRES_ITS_MANDATED',
+            'NOT_YET_COMPLETE',
+            'NOT_COMPLETE',
+        ])
+        positive_director_marker = any(token in normalized for token in [
+            'STATUS=DIRECTOR_REVIEW',
+            'STATUS:_DIRECTOR_REVIEW',
+            'CHECKPOINT=DIRECTOR_REVIEW',
+            'CHECKPOINT:_DIRECTOR_REVIEW',
+            'NEW_DIRECTOR_REVIEW=PASS',
+            'DIRECTOR_REVIEW_REACHED=PASS',
+        ])
+        if positive_director_marker and not negative_director_context:
+            log('DIRECTOR_REVIEW_REACHED_CONFIRMED')
+            STATE.write_text(json.dumps({'signature': last_signature, 'last_progress': last_progress, 'errors': 0, 'director_review': True}), encoding='utf-8')
+            break
+
+        finished_early = any(token in low for token in [
+            'finished', 'completed', 'complete', 'stopped', 'idle', 'cannot continue', 'blocked', 'human-only blocker'
+        ])
+
+        if finished_early:
+            log('FINISHED_OR_BLOCKED_BEFORE_DIRECTOR_REVIEW -> CONTINUE')
+            dispatch(CONTINUE_PROMPT)
+            last_progress = time.time()
+        elif time.time() - last_progress > 1200:
+            log('NO_MEANINGFUL_PROGRESS_OVER_20_MIN -> DIAGNOSE_AND_FIX ' + process_health())
+            recovered = False
+            for attempt in range(1, 6):
+                try:
+                    log('STALL_RECOVERY_ATTEMPT=' + str(attempt) + ' ' + process_health())
+                    dispatch(DEBUG_PROMPT)
+                    log('STALL_RECOVERY_PASS attempt=' + str(attempt))
+                    recovered = True
+                    last_progress = time.time()
+                    break
+                except Exception as stall_exc:
+                    log('STALL_RECOVERY_FAIL attempt=' + str(attempt) + ' ' + repr(stall_exc))
+                    time.sleep(min(15 * attempt, 60))
+            if not recovered:
+                log('error debug maxed out')
+                STATE.write_text(json.dumps({'signature': last_signature, 'last_progress': last_progress, 'errors': 5, 'fatal': 'error debug maxed out'}), encoding='utf-8')
+                break
+
+        STATE.write_text(json.dumps({'signature': last_signature, 'last_progress': last_progress, 'errors': consecutive_errors, 'director_review': False}), encoding='utf-8')
+
+    except Exception as exc:
+        consecutive_errors += 1
+        log('ERROR cycle_count=' + str(consecutive_errors) + ' ' + repr(exc) + ' ' + process_health())
+        recovered = False
+        for attempt in range(1, 6):
+            try:
+                time.sleep(min(10 * attempt, 45))
+                _ = get_messages()
+                dispatch(DEBUG_PROMPT if attempt > 1 else CONTINUE_PROMPT)
+                log('ERROR_RECOVERY_PASS attempt=' + str(attempt))
+                consecutive_errors = 0
+                last_progress = time.time()
+                recovered = True
+                break
+            except Exception as debug_exc:
+                log('DEBUG_FAIL attempt=' + str(attempt) + ' ' + repr(debug_exc))
+        if not recovered:
+            log('error debug maxed out')
+            STATE.write_text(json.dumps({'signature': last_signature, 'last_progress': last_progress, 'errors': 5, 'fatal': 'error debug maxed out'}), encoding='utf-8')
+            break
+
+    elapsed = time.time() - cycle_started
+    time.sleep(max(1, 300 - elapsed))

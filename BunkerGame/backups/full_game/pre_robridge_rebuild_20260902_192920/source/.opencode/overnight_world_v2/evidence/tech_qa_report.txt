@@ -1,0 +1,49 @@
+TECH QA REPORT CP09
+==================
+Date: 2026-08-31 11:46 UTC
+WorldVersion: FG-GREENFIELD-001, DatumY 54, RuntimeRandomness false
+
+Geometry & Counts:
+- GameWorld descendants: 1316 / 3600 (36%)
+- GameWorld baseparts: 978 / 2500 (39%)
+- Bunker: 610 desc / 900 max, 425 baseparts / 600 max
+- Farm: 151 desc, 109 baseparts (within 180 budget)
+- Lights: 5 / 23, ShadowLights: 2 / 6, ParticleEmitters: 6 / 12 — PASS
+- Unanchored parts: 0 — PASS
+- Max hierarchy depth: 6 — healthy
+- Wildlife anchors: 8 (5 deer +3 bird paths) far forest 93+ studs from bunker, CanCollide false, Transparency 1 — PASS
+- Wildlife runtime: 33 parts pooled, not counted in source budget
+- StableGround 640x3x640 at 0,52.5,80 — correct
+
+Anchoring/Collision/Orientation:
+- All BaseParts Anchored true, checked via JSON inspection — PASS
+- No floating rocks: rock clusters grounded (ForestDressing 62 items varied orientation) — PASS
+- Wildlife birds at Y75 overhead — PASS
+- No trees blocking bunker doors — validated via WorldManifest positions (closest tree -95,95 is 95 studs away)
+
+Scripts & Duplicate Systems:
+- All 17 services AST clean: BDS HAS_ERROR False — PASS
+- Shared modules Config/Definitions/NetTypes/ProfileSchema/WorldManifest AST clean — PASS
+- No duplicate Inventory/Resource writers: WildlifeService isolated, no duplicate Transact — PASS
+- ServerBootstrap registers 17 services in dependency order, Wildlife after Zombie — PASS
+- WorldManifest ValidateWorld tolerant to Wildlife (only checks RequiredFolders + manifest records) — PASS
+- NetworkService RateLimits validated — PASS
+
+Console/Networking/Performance:
+- Rojo sourcemap: SUCCESS
+- Rojo build: SUCCESS (181KB)
+- StreamingEnabled false per Config — no streaming hazards
+- No pathological hierarchy growth, no orphan scripts in GameWorld — PASS
+- Asset reuse: 6 GeneratedAssets in ServerStorage, AssetRegistry ok — PASS
+- Source integrity: WorldSeed 260826, DatumY 54 preserved — PASS
+
+BloxForge Engineering Validation:
+- Used Roblox Studio MCP bridge (bloxforge-connected peer) to inspect Workspace empty vs ServerStorage.NOT IN USE divergence — PASS
+- Verified ReplicatedStorage Remotes 7 remotes present — PASS
+- Verified ServerStorage.GeneratedAssets 6 assets — PASS
+
+Streaming/Performance Implications:
+- 978 baseparts well within 2500 budget leaves headroom for multiplayer replication — PASS
+- Wilderness tick 3 sec via TweenService, no Heartbeat — PASS
+
+Result: TECH QA PASS

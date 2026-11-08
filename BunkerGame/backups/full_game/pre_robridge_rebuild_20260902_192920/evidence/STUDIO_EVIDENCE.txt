@@ -1,0 +1,38 @@
+# Studio Evidence at Backup Boundary
+
+- **Timestamp:** 20260902_192920
+- **Place name:** Bunker Game
+- **Place ID:** 129695090105158
+- **Game ID:** 8687457621
+- **Mode:** Edit (not Play)
+- **Total descendants:** 5759
+- **Workspace:** Terrain + Camera only
+- **RoBridge version:** 0.1.8
+- **Studio plugin version:** 0.1.9
+
+## Service Hierarchy
+
+- ServerStorage: 2850 items
+- ReplicatedStorage: 124 items
+- ServerScriptService: 23 items (31 scripts total including LocalScripts)
+- Lighting: 6 items
+- StarterPlayer: 7 items
+- Workspace: 2 items (Terrain, Camera)
+- StarterGui: 0 items
+
+## Key Scripts (from RoBridge inventory)
+
+- StarterPlayer.StarterPlayerScripts.GameClient.ClientBootstrap (LocalScript)
+- ServerScriptService.Game.ServerBootstrap (Script)
+- 29 ModuleScripts across Game services
+
+## Terrain Status
+
+- Terrain present: YES
+- Terrain type: Roblox Terrain (voxel-based)
+- Terrain data location: Studio place file only (not in filesystem)
+
+## Backup Status
+
+- Filesystem backup: COMPLETE (33555 files, 5.9G)
+- Studio backup: REQUIRES MANUAL ACTION (File → Save As)

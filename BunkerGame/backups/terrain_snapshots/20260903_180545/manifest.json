@@ -1,0 +1,28 @@
+{
+  "timestamp": "20260903_180545",
+  "place_id": null,
+  "voxel_resolution": 4,
+  "region_min": [
+    -300,
+    0,
+    -250
+  ],
+  "region_max": [
+    300,
+    50,
+    250
+  ],
+  "dimensions_studs": {
+    "x": 600,
+    "y": 50,
+    "z": 500
+  },
+  "voxel_columns": 18900,
+  "non_air_voxels_sample": 36,
+  "material_counts": {
+    "Ground": 36,
+    "Grass": 0,
+    "Air": 0
+  },
+  "snapshot_file": "80f68b3c214b2badde70376bb8c0eae24ff6bab2492bd17d30470272499f0079"
+}

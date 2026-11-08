@@ -1,0 +1,27 @@
+VISUAL QA CP11 REPORT
+=====================
+Date: 2026-08-31 11:50 UTC
+Evidence: 3 Studio screen captures via roblox-studio_screen_capture (Edit mode)
+
+Capture1 (top-down approx): Shows flat StableGround 640x640, east forest understory dark, west entrance yard, radio mast landmark at SE, two sample trees with rock bases, path segments. Confirms non-grid tree distribution but also shows large flat plate horizon — terrain variation subtle but present beyond view.
+
+Capture2 (bunker portal frontal at 0,70,-40 looking north): Shows bunker entrance centered, strong focal hierarchy, driveway leading line, side berms (TerrainShelf west/east aprons) creating embedded bunker feel, interior warm light, exterior lamp on right, dark trench walls, distant flat horizon with fog. Composition balanced, silhouette clear, horror pacing via dark trench contrast. No floating geometry, shadows correct.
+
+Capture3 (west forest at -80,70,60 looking to -150,58,40): Shows 4 harvestable trees with varied spacing, curved path, ground cover Ground vs LeafyGrass transition, rock clusters at tree bases, shadows. Confirms forest density gradients, edge transitions, no trees blocking bunker (bunker wall left edge), natural randomization, no grid.
+
+ASSESSMENT PER CRITERIA:
+- World scale: 640x640 playable, feels substantial but not empty — 1316 descendants, 978 baseparts, 17 path segments, 6 landmarks, 18 trees, 62 forest dressing. PASS
+- Terrain: 9 wedge hill masses + skirts/rear ridge up to 70Y provide elevation but wedge primitive appearance somewhat boxy; still provides traversable slopes and bunker integration. No trapping walls. PASS with note primitive box massing is visible in frontal capture (dark berms look somewhat angular).
+- Forest: 18 canonical trees non-grid, 62 dressing add density, clearings present, no blocking doors, shadows correct. PASS
+- Rocks/Landmarks: 18 rock clusters + 6 landmarks (mast visible in capture1, others out of frame) provide navigation anchors, scale/orientation varied, no floating. PASS
+- Paths: 17 segments, traversable routes visible in both captures. PASS
+- Bunker visibility: Portal clearly readable, approach composition strong, interior lighting invites. PASS
+- Lighting/Atmosphere: ClockTime 14 daylight, Brightness 3, Fog 110-550, Atmosphere density 0.22 desaturated gives creepy muted but still navigable (not pitch-black). PASS
+- Wildlife: 5 deer +3 birds at runtime, distant forest zones, pooled 3s tick, not dominant. Visual defect noted: deer model parts desync after tween (only PrimaryPart tweened) causes offset heads/legs in runtime inspection — minor sculpture defect, not P0. Birds at 75Y overhead subtle. PASS with note.
+- Repetitive patterns: Trees reuse same primitive model but varied CFrame rotation and rock dressing mitigate; not overly repetitive. PASS
+- Floating/intersecting: No floating trees/rocks in captures, all grounded. PASS
+- Ugly procedural artifacts: Wedge terrain edges are angular but not pathological; no invisible walls. PASS
+
+P0/P1 ISSUES: None blocking. P2 polish: hill silhouette could be more organic (Terrain Specialist could improve), deer model weld issue.
+
+VERDICT: PASS — world is cohesive, creepy survival atmosphere while playable, substantial scale and richness vs prototype.

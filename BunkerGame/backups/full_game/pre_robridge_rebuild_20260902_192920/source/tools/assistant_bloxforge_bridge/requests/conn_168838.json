@@ -1,0 +1,14 @@
+{
+  "request_id": "conn_168838",
+  "intent": "bloxforge_tool_call",
+  "details": "BloxForge terrain validation",
+  "studio_context": {},
+  "received_at": "2026-09-01T10:05:29Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "get_connected_instances",
+    "input": {
+      "instancePath": "Workspace.Terrain"
+    }
+  }
+}

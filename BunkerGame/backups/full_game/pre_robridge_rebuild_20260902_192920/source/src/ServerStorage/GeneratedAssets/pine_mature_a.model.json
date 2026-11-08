@@ -1,0 +1,56 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "GeneratedAssetId": "Pine_Mature_A",
+    "RobloxAssetId": "119989556332830",
+    "RobloxAssetType": "Model",
+    "IntegrationState": "Ready",
+    "CanonicalSource": "ThomasSimonini/Roblox-3D-Assets-Generator-v1 InstantMesh seed42 cleaned",
+    "GenerationId": "pine_mature_a-seed42-cleaned",
+    "QwenReferenceSource": "Pine_Mature_A_reference.png",
+    "AssetFamily": "Pine",
+    "AssetCategory": "GeneratedAssets/Pine/Tree",
+    "Seed": "42",
+    "OriginalMeshId": "86519740094080",
+    "MeshId": "rbxassetid://74555197966758",
+    "Dimensions": "7.706299781799316,15,6.616474628448486",
+    "Pivot": "0,7.5,0",
+    "Collision": "CanCollide=false",
+    "Anchoring": "Anchored=true",
+    "CastShadow": "true",
+    "Transparency": "0",
+    "VertexColors": "true",
+    "BloxForgeQA": "PASS",
+    "MuseFinalReview": "APPROVED",
+    "TechnicalQaPass": true,
+    "AssetFamilyVariant": "A",
+    "AssetVariants": 3,
+    "TriangleCount": 12000,
+    "VertexCount": 6007,
+    "Height": 15,
+    "Provenance": "Pine_Mature_A master seed42 InstantMesh ThomasSimonini Space, cleaned via Taubin smoothing decimated 38k->12k, vertex colors preserved, published via roblox-assets Open Cloud",
+    "CleanSurface": "true",
+    "IsVariant": false,
+    "ParentMaster": "self"
+  },
+  "Children": [
+    {
+      "Name": "pine_mature_a_geom",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CastShadow": true,
+        "Transparency": 0,
+        "MeshId": "rbxassetid://74555197966758",
+        "TextureID": "",
+        "Material": "Grass",
+        "Size": [
+          7.706299781799316,
+          15,
+          6.616474628448486
+        ]
+      }
+    }
+  ]
+}

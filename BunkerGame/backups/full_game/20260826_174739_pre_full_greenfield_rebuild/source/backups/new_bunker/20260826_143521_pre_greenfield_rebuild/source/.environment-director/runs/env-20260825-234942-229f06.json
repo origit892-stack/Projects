@@ -1,0 +1,114 @@
+{
+  "assets": [],
+  "blockers": [],
+  "created_at": 1787690982.166564,
+  "goal": "Perform a production-quality creepy survival environment rework of the existing Workshop. Preserve gameplay, traversal, interaction anchors and adjacent-room boundaries. Reuse existing production assets first. Use the accepted Agent Asset Factory only for genuinely missing reusable assets. Author all permanent changes through filesystem/Rojo. Improve architecture readability, industrial storytelling, silhouette, material breakup, set dressing, lighting and atmosphere. Validate technically and in Play. Stop at DIRECTOR_REVIEW and do not self-approve.",
+  "history": [
+    {
+      "event": "RUN_CREATED",
+      "stage": "INSPECT",
+      "time": 1787690982.166564
+    },
+    {
+      "event": "RETRY_AUTHORIZED",
+      "reason": "Retry after forcing BloxBot execution cwd to BunkerGame project root.",
+      "stage": "INSPECT",
+      "time": 1787691202.892886
+    },
+    {
+      "event": "TIMEOUT",
+      "seconds": 180,
+      "stage": "INSPECT",
+      "time": 1787691383.0091221
+    },
+    {
+      "event": "DETERMINISTIC_INSPECT_PASS",
+      "evidence": "/Users/Ori/Documents/Projects/BunkerGame/.environment-director/runs/env-20260825-234942-229f06.inspect.json",
+      "stage": "INSPECT",
+      "time": 1787691554.707005
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Deterministic bounded filesystem/Rojo Workshop inspection completed; evidence persisted in run inspect artifact.",
+      "stage": "INSPECT",
+      "time": 1787691554.8469021
+    },
+    {
+      "event": "AGENT_STAGE_PASS",
+      "stage": "ARCHITECT",
+      "time": 1787691808.6026921
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Evidence-bound read-only ARCHITECT completed; output persisted at .environment-director/runs/env-20260825-234942-229f06.architect.txt.",
+      "stage": "ARCHITECT",
+      "time": 1787691808.7612648
+    },
+    {
+      "asset_factory_required": false,
+      "event": "ASSET_REUSE_PASS",
+      "resolved_assets": [
+        "bunker_electrical_junction_box_01",
+        "bunker_valve_assembly_01",
+        "bunker_vent_grille_01",
+        "old_military_ammo_crate_01",
+        "pipeline_pipe_retry_02"
+      ],
+      "stage": "ASSET_REUSE",
+      "time": 1787692019.680867
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "All five Architect-selected assets resolved as published AssetRegistry entries; no missing asset.",
+      "stage": "ASSET_REUSE",
+      "time": 1787692019.7844539
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Workshop BUILD completed through dedicated asynchronous OpenCode API specialist; agent PASS, independent Rojo PASS and postflight PASS.",
+      "stage": "BUILD",
+      "time": 1787694104.777987
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Asset Factory skipped for this Workshop only because Architect and deterministic Asset Reuse resolved all required production assets; missing assets = zero.",
+      "stage": "ASSET_FACTORY",
+      "time": 1787694104.870773
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Workshop SET_DRESS specialist completed; generated source, independent Rojo validation, postflight and protected-contract checks passed.",
+      "stage": "SET_DRESS",
+      "time": 1787695082.070272
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "LIGHTING completed by autonomous specialist; required validation/evidence passed. Director approval remains reserved for DIRECTOR_REVIEW.",
+      "stage": "LIGHTING",
+      "time": 1787695940.953212
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "TECH_QA completed by autonomous specialist; required validation/evidence passed. Director approval remains reserved for DIRECTOR_REVIEW.",
+      "stage": "TECH_QA",
+      "time": 1787696782.5923681
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "Workshop PLAY_QA passed after minimal-probe recovery: real Edit->Play->Edit evidence, doorway/aisle/head-clearance traversal, actual OPEN and INSPECT prompt activations, runtime error review, final Edit safety check, Rojo and postflight.",
+      "stage": "PLAY_QA",
+      "time": 1787733391.960993
+    },
+    {
+      "event": "STAGE_PASS",
+      "evidence": "VISUAL_QA=PASS; fresh source-controlled Play verified DevCameraOcclusionMode=Invisicam and CameraMaxZoomDistance=6, normal Workshop entry route, zero camera-obscuring parts at workbench approach, 11.85-stud clearance rays, visible INSPECT/legacy_weapon_upgrade, and actual ProximityPrompt activation. OBS evidence: visual-qa/captures/2026-08-26_13-30-14_WORKSHOP_VISUAL_QA_REPAIR.mov (426795802 bytes), 111 extracted frames; comparison confirms prior near-camera shelf/right-upright obstruction is absent. Final Director build and postflight passed; Studio ended in Edit.",
+      "stage": "VISUAL_QA",
+      "time": 1787741006.459307
+    }
+  ],
+  "run_id": "env-20260825-234942-229f06",
+  "stage": "DIRECTOR_REVIEW",
+  "status": "READY",
+  "target": "Workspace.Rebuild.NewBunker.Workshop",
+  "updated_at": 1787741006.4593081
+}

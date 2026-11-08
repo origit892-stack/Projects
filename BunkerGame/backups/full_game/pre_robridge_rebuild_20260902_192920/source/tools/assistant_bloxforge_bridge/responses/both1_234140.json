@@ -1,0 +1,17 @@
+{
+  "request_id": "both1_234140",
+  "status": "failed",
+  "source": "bloxforge_worker",
+  "error": {
+    "code": "BLOXFORGE_TOOL_NOT_ALLOWED_V1",
+    "message": "Tool geometry_review not allowed in V1 read-only allowlist",
+    "allowlist": [
+      "get_connected_instances",
+      "get_scene_summary",
+      "get_session_summary",
+      "get_transport_diagnostics",
+      "tool_catalog_search"
+    ]
+  },
+  "completed_at": "2026-09-01T10:04:07Z"
+}

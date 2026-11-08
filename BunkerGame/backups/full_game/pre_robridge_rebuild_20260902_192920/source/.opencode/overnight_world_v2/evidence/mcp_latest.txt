@@ -1,0 +1,10 @@
+
+┌  MCP Servers
+│
+●  ✓ roblox-studio connected
+│      /Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+│
+●  ✓ bloxforge connected
+│      npx -y @princeofscale/bloxforge@latest
+│
+└  2 server(s)

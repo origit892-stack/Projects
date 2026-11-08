@@ -1,0 +1,387 @@
+============================================================
+BUNKER DEVELOPMENT SYSTEM
+PROJECT INSPECTION REPORT
+============================================================
+TIMESTAMP: 20260803-165435
+PROJECT: /Users/Ori/Documents/Projects/BunkerGame
+
+============================================================
+BDS PROJECT INVENTORY
+============================================================
+
+=== PROJECT ROOT ===
+/Users/Ori/Documents/Projects/BunkerGame
+
+=== GIT STATUS ===
+ M ../.DS_Store
+ M ../europa-park-planner/app.js
+ M ../europa-park-planner/index.html
+ M ../europa-park-planner/map.html
+ M ../europa-park-planner/map.js
+ M ../ori-projects/europa-park-planner/admin.html
+ M ../ori-projects/europa-park-planner/app.js
+ M ../ori-projects/europa-park-planner/index.html
+ M ../ori-projects/europa-park-planner/map.html
+ M ../ori-projects/europa-park-planner/map.js
+?? ../.vscode/settings.json
+?? ../3D_models/
+?? ./
+
+=== ROJO PROJECT FILES ===
+./default.project.json
+
+=== LUA AND LUAU FILES ===
+src/ReplicatedStorage/Shared/Hello.luau
+src/ServerScriptService/GlobalManager.server.luau
+src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau
+src/StarterPlayer/StarterPlayerScripts/Client.client.luau
+src/client/FarmingUI.client.lua
+src/server/FarmingSystem.server.lua
+
+=== ROBLOX MODEL FILES ===
+src/ServerStorage/BunkerZombie.rbxm
+src/ServerStorage/RunnerZombie.rbxm
+src/ServerStorage/TankZombie.rbxm
+src/StarterGui/BunkerGui.rbxm
+src/StarterGui/ScreenGui.rbxm
+src/Workspace/Baseplate.rbxm
+src/Workspace/BatteryButton.rbxm
+src/Workspace/Bunker walls.rbxm
+src/Workspace/BunkerDoor.rbxm
+src/Workspace/BunkerLights/BunkerLight.rbxm
+src/Workspace/BunkerLights/PowerBox.rbxm
+src/Workspace/BunkerSofa.rbxm
+src/Workspace/Camera.rbxm
+src/Workspace/DoorShop.rbxm
+src/Workspace/Grassblox.rbxm
+src/Workspace/Processor.rbxm
+src/Workspace/Scrap piles.rbxm
+src/Workspace/Spawn.rbxm
+src/Workspace/Terrain.rbxm
+src/Workspace/Upgrade table.rbxm
+src/Workspace/Weapon Workbench.rbxm
+src/Workspace/ZombieSpawns.rbxm
+src/Workspace/farm.rbxm
+
+=== SOURCE LINE COUNTS ===
+       1 src/ReplicatedStorage/Shared/Hello.luau
+       1 src/StarterPlayer/StarterPlayerScripts/Client.client.luau
+      50 src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau
+     112 src/ServerScriptService/GlobalManager.server.luau
+     236 src/client/FarmingUI.client.lua
+     363 src/server/FarmingSystem.server.lua
+     763 total
+
+=== ROJO SOURCEMAP ===
+Created sourcemap at sourcemap.json
+SOURCEMAP_CREATED: sourcemap.json
+
+=== PER-FILE INSPECTION ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Shared/Hello.luau
+
+=== FILE METADATA ===
+       1      10 src/ReplicatedStorage/Shared/Hello.luau
+src/ReplicatedStorage/Shared/Hello.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/GlobalManager.server.luau
+
+=== FILE METADATA ===
+     112    3818 src/ServerScriptService/GlobalManager.server.luau
+src/ServerScriptService/GlobalManager.server.luau: Unicode text, UTF-8 text
+
+=== FUNCTION DECLARATIONS ===
+9:local function getOrCreateValue(name, className, defaultValue)
+45:local function spawnZombieWave()
+64:local function syncTimeOnPhaseChange()
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+1:local Lighting = game:GetService("Lighting")
+2:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+3:local ServerStorage = game:GetService("ServerStorage")
+4:local Players = game:GetService("Players")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+33:Players.PlayerAdded:Connect(function(player)
+
+=== INSTANCE CREATION ===
+12:		val = Instance.new(className)
+34:	local stats = Instance.new("Folder", player)
+37:	Instance.new("IntValue", stats).Name = "Scrap"
+38:	Instance.new("IntValue", stats).Name = "Credits"
+39:	Instance.new("IntValue", stats).Name = "Batteries"
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+33:Players.PlayerAdded:Connect(function(player)
+76:GamePhase.Changed:Connect(syncTimeOnPhaseChange)
+
+=== LOOPS AND TASKS ===
+49:	for i = 1, amountToSpawn do
+57:		task.wait(3) -- מרווח בין זומבי לזומבי
+71:		task.wait(2) 
+72:		task.spawn(spawnZombieWave) -- הגל מתחיל כשיש לילה
+78:task.spawn(function()
+84:	while true do
+111:		task.wait(dt)
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau
+
+=== FILE METADATA ===
+      50    1149 src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau
+src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+2:local RunService = game:GetService("RunService")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+37:RunService.Heartbeat:Connect(function(dt: number)
+
+=== LOOPS AND TASKS ===
+22:for _, child in discoBall:GetChildren() do
+28:for i, light in lights do
+42:	for i, light in lights do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/StarterPlayer/StarterPlayerScripts/Client.client.luau
+
+=== FILE METADATA ===
+       1      35 src/StarterPlayer/StarterPlayerScripts/Client.client.luau
+src/StarterPlayer/StarterPlayerScripts/Client.client.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/client/FarmingUI.client.lua
+
+=== FILE METADATA ===
+     236    7922 src/client/FarmingUI.client.lua
+src/client/FarmingUI.client.lua: Unicode text, UTF-8 text
+
+=== FUNCTION DECLARATIONS ===
+31:local function makeLabel(name, text, pos, size, color): TextLabel
+74:	local function makeSlot(name, text, xOff)
+123:local function spawnNotification(text: string)
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+8:local Players = game:GetService("Players")
+9:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+10:local TweenService = game:GetService("TweenService")
+11:local RunService = game:GetService("RunService")
+12:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+209:UpdateUI.OnClientEvent:Connect(function(credits, seeds, crops, food)
+216:NotifyRE.OnClientEvent:Connect(spawnNotification)
+218:UpdateProgress.OnClientEvent:Connect(function(pct: number)
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+23:local screenGui = Instance.new("ScreenGui")
+32:	local lbl = Instance.new("TextLabel")
+58:local hotbar = Instance.new("Frame")
+68:local uic = Instance.new("UICorner", hotbar)
+75:		local f = Instance.new("Frame")
+82:		local l = Instance.new("TextLabel")
+166:		local bb = Instance.new("BillboardGui")
+173:		local bg = Instance.new("Frame")
+180:		local uic2 = Instance.new("UICorner", bg)
+183:		local fill = Instance.new("Frame")
+190:		local uic3 = Instance.new("UICorner", fill)
+193:		local pctLabel = Instance.new("TextLabel")
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+153:	tween.Completed:Connect(function()
+209:UpdateUI.OnClientEvent:Connect(function(credits, seeds, crops, food)
+216:NotifyRE.OnClientEvent:Connect(spawnNotification)
+218:UpdateProgress.OnClientEvent:Connect(function(pct: number)
+228:RunService.Heartbeat:Connect(function()
+
+=== LOOPS AND TASKS ===
+110:for _ = 1, NOTIF_POOL_SIZE do
+229:	for _, lbl in notifPool do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/server/FarmingSystem.server.lua
+
+=== FILE METADATA ===
+     363   11608 src/server/FarmingSystem.server.lua
+src/server/FarmingSystem.server.lua: Unicode text, UTF-8 text
+
+=== FUNCTION DECLARATIONS ===
+34:local function getInventory(player): Folder?
+38:local function getItem(player, name: string): IntValue?
+43:local function pushUI(player)
+56:local function notify(player, text: string)
+61:local function setupPlayer(player)
+93:local function ensurePlots(): { BasePart }
+137:local function ensureProcessor(): Model?
+188:local function getState(plot): string
+191:local function setState(plot, s: string)
+332:	local function resizePart(p)
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+10:local Players = game:GetService("Players")
+11:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+12:local TweenService = game:GetService("TweenService")
+13:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+27:	local re = Instance.new("RemoteEvent")
+48:	Remote.UpdateUI:FireClient(player,
+57:	Remote.Notify:FireClient(player, text)
+315:			Remote.UpdateProgress:FireClient(player, i / steps * 100)
+321:		Remote.UpdateProgress:FireClient(player, 0)
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+85:Players.PlayerAdded:Connect(setupPlayer)
+86:for _, p in Players:GetPlayers() do task.spawn(setupPlayer, p) end
+360:	for _, p in Players:GetPlayers() do
+
+=== INSTANCE CREATION ===
+21:local remotes = Instance.new("Folder")
+27:	local re = Instance.new("RemoteEvent")
+64:		local lv = Instance.new("IntValue")
+68:	local inv = Instance.new("Folder")
+77:		local v = Instance.new("IntValue")
+96:		container = Instance.new("Folder")
+117:			local plot = Instance.new("Part")
+141:	proc = Instance.new("Model")
+145:	local body = Instance.new("Part")
+154:	local screen = Instance.new("Part")
+163:	local hopper = Instance.new("Part")
+173:	local output = Instance.new("Part")
+200:	local prompt = Instance.new("ProximityPrompt")
+224:			local crop = Instance.new("Part")
+275:	local progressDummy = Instance.new("Part")
+284:	local sfx = Instance.new("Sound")
+290:	local procPrompt = Instance.new("ProximityPrompt")
+336:		local tex = Instance.new("Texture")
+
+=== ATTRIBUTES AND TAGS ===
+189:	return plot:GetAttribute("PlotState") or "Empty"
+192:	plot:SetAttribute("PlotState", s)
+
+=== EVENT CONNECTIONS ===
+85:Players.PlayerAdded:Connect(setupPlayer)
+209:	prompt.Triggered:Connect(function(player)
+299:	procPrompt.Triggered:Connect(function(player)
+
+=== LOOPS AND TASKS ===
+26:for _, name in ipairs({"UpdateUI", "Notify", "UpdateProgress"}) do
+81:	task.wait(1)
+86:for _, p in Players:GetPlayers() do task.spawn(setupPlayer, p) end
+103:	for _, c in container:GetChildren() do
+115:	for _, z in Z_VALS do
+116:		for _, x in X_VALS do
+195:for _, plot in plots do
+242:			task.wait(GROW_TIME)
+310:		task.spawn(function() sfx:Play() end)
+313:		for i = 1, steps do
+314:			task.wait(PROCESS_TIME / steps)
+349:			for _, child in wheel:GetDescendants() do
+359:while task.wait(5) do
+360:	for _, p in Players:GetPlayers() do
+361:		task.spawn(pushUI, p)
+
+=== CROSS-PROJECT REQUIRE CALLS ===
+
+=== CROSS-PROJECT REMOTES ===
+src/server/FarmingSystem.server.lua:27:	local re = Instance.new("RemoteEvent")
+src/server/FarmingSystem.server.lua:48:	Remote.UpdateUI:FireClient(player,
+src/server/FarmingSystem.server.lua:57:	Remote.Notify:FireClient(player, text)
+src/server/FarmingSystem.server.lua:315:			Remote.UpdateProgress:FireClient(player, i / steps * 100)
+src/server/FarmingSystem.server.lua:321:		Remote.UpdateProgress:FireClient(player, 0)
+src/client/FarmingUI.client.lua:209:UpdateUI.OnClientEvent:Connect(function(credits, seeds, crops, food)
+src/client/FarmingUI.client.lua:216:NotifyRE.OnClientEvent:Connect(spawnNotification)
+src/client/FarmingUI.client.lua:218:UpdateProgress.OnClientEvent:Connect(function(pct: number)
+
+=== CROSS-PROJECT DATASTORE USAGE ===
+
+=== CURRENT GIT DIFF ===
+?? ./

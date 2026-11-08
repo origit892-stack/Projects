@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "bloxforge": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@princeofscale/bloxforge@latest"
+      ]
+    }
+  }
+}

@@ -1,0 +1,60 @@
+BLOXBOT_API_SESSION=ses_fc4f7da75ffe11lT2Zw0F2P53c
+BLOXBOT_API_DIRECTORY=/Users/Ori/Documents/Projects/BunkerGame
+BLOXBOT_PROMPT_ACCEPTED=PASS
+[0000s] STATUS=busy QUIET=0s
+[0030s] STATUS=retry QUIET=30s
+[0060s] STATUS=retry QUIET=60s
+BLOXBOT_API_COMPLETE=PASS
+BLOXBOT_API_SESSION=ses_fc2dc9e28ffehEJMlJSONmKXI5
+BLOXBOT_API_DIRECTORY=/Users/Ori/Documents/Projects/BunkerGame
+BLOXBOT_PROMPT_ACCEPTED=PASS
+[0000s] STATUS=busy QUIET=0s
+[0008s] todowrite PENDING 
+[0010s] todowrite COMPLETED 5 todos
+[0014s] roblox-studio_list_roblox_studios COMPLETED 
+[0018s] roblox-studio_get_studio_state COMPLETED 
+[0024s] roblox-studio_start_stop_play RUNNING 
+[0026s] roblox-studio_start_stop_play COMPLETED 
+[0030s] roblox-studio_get_studio_state RUNNING 
+[0030s] STATUS=busy QUIET=0s
+[0032s] roblox-studio_get_studio_state COMPLETED 
+[0036s] roblox-studio_search_game_tree COMPLETED 
+[0040s] roblox-studio_search_game_tree PENDING 
+[0042s] roblox-studio_search_game_tree COMPLETED 
+[0046s] roblox-studio_search_game_tree COMPLETED 
+[0060s] STATUS=busy QUIET=14s
+[0091s] roblox-studio_execute_luau PENDING 
+[0091s] STATUS=busy QUIET=0s
+[0103s] roblox-studio_execute_luau COMPLETED 
+[0115s] roblox-studio_inspect_instance COMPLETED 
+[0121s] STATUS=busy QUIET=6s
+[0125s] roblox-studio_inspect_instance COMPLETED 
+[0125s] roblox-studio_inspect_instance COMPLETED 
+[0125s] roblox-studio_inspect_instance COMPLETED 
+[0151s] STATUS=busy QUIET=26s
+[0166s] roblox-studio_search_game_tree COMPLETED 
+[0174s] roblox-studio_execute_luau PENDING 
+[0182s] STATUS=busy QUIET=8s
+[0184s] roblox-studio_execute_luau COMPLETED 
+[0204s] roblox-studio_execute_luau PENDING 
+[0212s] STATUS=busy QUIET=8s
+[0214s] roblox-studio_execute_luau ERROR 
+TOOL_ERROR=sabuiltin_Assistant.rbxm.Assistant.Packages._Index.AssistantUI.AssistantUI.Tools.ExecuteLuauTool:154: sabuiltin_Assistant.rbxm.Assistant.Packages._Index.AssistantUI.AssistantUI.Util.CommandExecution:54: AssistantCommand:13: invalid argument #2 to 'insert' (number expected, got string)
+[0220s] roblox-studio_start_stop_play COMPLETED 
+[0225s] roblox-studio_get_studio_state COMPLETED 
+[0233s] todowrite PENDING 
+[0235s] todowrite COMPLETED 2 todos
+[0243s] STATUS=busy QUIET=8s
+Fresh Studio ID: `2c6bd625-0476-4f81-8043-2d966786374e` — Bunker Game, placeId `129695090105158`.
+
+- Mode evidence: Edit → Play confirmed; fail-safe Stop returned to Edit confirmed.
+- Blocker: a runtime QA probe failed with a Luau `table.insert` argument error before traversal/prompt tests completed.
+- Doorway, aisle, set-dressing collision, head clearance: not verified.
+- Supply OPEN prompt: runtime availability observed; activation not performed.
+- Workbench INSPECT prompt: runtime availability observed; activation not performed.
+- Runtime error review: not completed.
+- Temporary isolation: not used.
+- Final Studio mode: Edit.
+
+ENV_STAGE_RESULT=FAIL
+BLOXBOT_API_COMPLETE=PASS

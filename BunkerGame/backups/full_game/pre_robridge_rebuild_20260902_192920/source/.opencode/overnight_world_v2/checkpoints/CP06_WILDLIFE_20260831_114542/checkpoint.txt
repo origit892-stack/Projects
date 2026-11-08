@@ -1,0 +1,2 @@
+Wildlife validated — 5 deer + 3 birds, 8 anchors + 33 runtime parts pooled, 3s tick via TweenService, distant forest zones 93+ studs from bunker, no nav blocking, no per-frame AI, Rojo build+sourcemap PASS
+2026-08-31 11:45:42

@@ -1,0 +1,38 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "GeneratedAssetId": "bunker_valve_assembly_01",
+    "RobloxAssetId": "92968150925196",
+    "RobloxAssetType": "Model",
+    "IntegrationState": "Ready",
+    "CanonicalSource": "RobloxImportedModelInspection"
+  },
+  "Children": [
+    {
+      "Name": "Mesh_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://75117650394533",
+        "Size": [
+          1.9600458145141602,
+          1.3601329326629639,
+          1.2071926593780518
+        ]
+      },
+      "Children": [
+        {
+          "Name": "SurfaceAppearance",
+          "ClassName": "SurfaceAppearance",
+          "Properties": {
+            "ColorMap": "rbxassetid://136685065521485",
+            "NormalMap": "rbxassetid://78946883212753",
+            "RoughnessMap": "rbxassetid://81052079342113",
+            "MetalnessMap": "rbxassetid://118332949942821"
+          }
+        }
+      ]
+    }
+  ]
+}

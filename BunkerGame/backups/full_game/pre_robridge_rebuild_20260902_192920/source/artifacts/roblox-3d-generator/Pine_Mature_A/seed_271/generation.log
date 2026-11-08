@@ -1,0 +1,36 @@
+[2026-09-01T14:10:40.149477+00:00] START generate_one seed=271 steps=50 bg_remove=True
+[2026-09-01T14:10:40.149896+00:00] reference_image=/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/Pine_Mature_A_reference.png exists=True size=2250666
+[2026-09-01T14:10:40.149973+00:00] output_dir=/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_271
+[2026-09-01T14:10:40.150074+00:00] SPACE_ID=ThomasSimonini/Roblox-3D-Assets-Generator-v1
+[2026-09-01T14:10:40.150271+00:00] Connecting to Hugging Face Space...
+[2026-09-01T14:10:42.217798+00:00] SPACE_CONNECTED=YES
+[2026-09-01T14:10:42.218193+00:00] API_DISCOVERED=YES endpoints=['/check_input_image', '/preprocess', '/generate_mvs', '/make3d']
+[2026-09-01T14:10:42.218620+00:00] STEP 1/3: /preprocess
+[2026-09-01T14:10:47.664995+00:00] preprocess raw=/private/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/gradio/f79936b98c99b88dca0757b87a556b457377fd037dde7b1bcd8fa9d3a36d1766/image.webp
+[2026-09-01T14:10:47.665837+00:00] processed_reference saved /Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_271/processed_reference.webp size=405790 time=5.4s
+[2026-09-01T14:10:47.665925+00:00] STEP 2/3: /generate_mvs seed=271 steps=50
+[2026-09-01T14:10:50.310924+00:00] ERROR: You have exceeded your free ZeroGPU quota (60s requested vs. 0s left). Try again in 0:00:00. Subscribe to Hugging Face PRO to get 25 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU
+[2026-09-01T14:10:50.312286+00:00] Traceback (most recent call last):
+[2026-09-01T14:10:50.312443+00:00]   File "/Users/Ori/Documents/Projects/BunkerGame/tools/roblox_3d_generator/adapter.py", line 118, in generate_one
+[2026-09-01T14:10:50.312503+00:00]     mvs_result = client.predict(
+[2026-09-01T14:10:50.312553+00:00]                  ^^^^^^^^^^^^^^^
+[2026-09-01T14:10:50.312657+00:00]   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/gradio_client/client.py", line 556, in predict
+[2026-09-01T14:10:50.312728+00:00]     ).result()
+[2026-09-01T14:10:50.313137+00:00]       ^^^^^^^^
+[2026-09-01T14:10:50.313200+00:00]   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/gradio_client/client.py", line 1568, in result
+[2026-09-01T14:10:50.313354+00:00]     return super().result(timeout=timeout)
+[2026-09-01T14:10:50.313434+00:00]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-09-01T14:10:50.313493+00:00]   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+[2026-09-01T14:10:50.313550+00:00]     return self.__get_result()
+[2026-09-01T14:10:50.313603+00:00]            ^^^^^^^^^^^^^^^^^^^
+[2026-09-01T14:10:50.313654+00:00]   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+[2026-09-01T14:10:50.313705+00:00]     raise self._exception
+[2026-09-01T14:10:50.313765+00:00]   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+[2026-09-01T14:10:50.313823+00:00]     result = self.fn(*self.args, **self.kwargs)
+[2026-09-01T14:10:50.313872+00:00]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-09-01T14:10:50.314005+00:00]   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/gradio_client/client.py", line 1163, in _inner
+[2026-09-01T14:10:50.314091+00:00]     predictions = _predict(*data, **kwargs)
+[2026-09-01T14:10:50.314147+00:00]                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-09-01T14:10:50.314199+00:00]   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/gradio_client/client.py", line 1283, in _predict
+[2026-09-01T14:10:50.314243+00:00]     raise AppError(message=message, **result)
+[2026-09-01T14:10:50.314287+00:00] gradio_client.exceptions.AppError: You have exceeded your free ZeroGPU quota (60s requested vs. 0s left). Try again in 0:00:00. Subscribe to Hugging Face PRO to get 25 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU

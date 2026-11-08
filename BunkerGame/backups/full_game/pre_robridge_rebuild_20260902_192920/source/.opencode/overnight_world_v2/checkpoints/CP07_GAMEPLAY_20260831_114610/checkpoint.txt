@@ -1,0 +1,2 @@
+Gameplay loop preserved — 18 trees harvestable, 6 scrap caches, farming 12 plots+processor, zombie 7 spawns, all 17 services AST clean, WorldManifest tolerant to Wildlife, no duplicate writers, Rojo build PASS, runtime creation deferred to post-validation
+2026-08-31 11:46:10

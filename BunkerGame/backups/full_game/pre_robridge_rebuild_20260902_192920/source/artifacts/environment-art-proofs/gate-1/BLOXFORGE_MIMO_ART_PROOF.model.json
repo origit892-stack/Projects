@@ -1,0 +1,1580 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "ArtProofType": "EnvironmentArt",
+    "SceneDescription": "Forest approach to abandoned military bunker entrance",
+    "CreatedBy": "MiMo V2.5",
+    "SceneCenterX": -1500.0,
+    "SceneCenterZ": -1500.0,
+    "BunkerEntranceWidth": 11.0,
+    "BunkerEntranceHeight": 11.0
+  },
+  "Children": [
+    {
+      "Name": "Terrain",
+      "ClassName": "Folder",
+      "Children": [
+        {
+          "Name": "GroundSouth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [90.0, 1.0, 50.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Grass",
+            "Color": [0.298, 0.427, 0.204],
+            "Position": [-1500.0, -0.5, -1520.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "HillBase",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [90.0, 18.0, 40.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Grass",
+            "Color": [0.298, 0.427, 0.204],
+            "Position": [-1500.0, 8.0, -1495.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "HillSlope1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [90.0, 10.0, 20.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Grass",
+            "Color": [0.298, 0.427, 0.204],
+            "Position": [-1500.0, 4.0, -1505.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "HillSlope2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [90.0, 32.0, 30.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Grass",
+            "Color": [0.298, 0.427, 0.204],
+            "Position": [-1500.0, 15.0, -1488.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "HillTop",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [90.0, 12.0, 20.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Grass",
+            "Color": [0.298, 0.427, 0.204],
+            "Position": [-1500.0, 25.0, -1480.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "HillCap",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [90.0, 1.0, 16.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Grass",
+            "Color": [0.255, 0.353, 0.176],
+            "Position": [-1500.0, 26.0, -1478.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "DirtLayer1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [88.0, 6.0, 18.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Ground",
+            "Color": [0.427, 0.333, 0.22],
+            "Position": [-1500.0, 2.0, -1503.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "DirtLayer2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [88.0, 22.0, 35.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Ground",
+            "Color": [0.427, 0.333, 0.22],
+            "Position": [-1500.0, 10.0, -1492.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "RockOutcrop1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [8.0, 6.0, 10.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Rock",
+            "Color": [0.502, 0.502, 0.502],
+            "Position": [-1525.0, 12.0, -1498.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "RockOutcrop2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [6.0, 5.0, 8.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Rock",
+            "Color": [0.502, 0.502, 0.502],
+            "Position": [-1470.0, 8.0, -1502.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "RockOutcrop3",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [10.0, 7.0, 8.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Rock",
+            "Color": [0.502, 0.502, 0.502],
+            "Position": [-1510.0, 20.0, -1482.0],
+            "CastShadow": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Path",
+      "ClassName": "Folder",
+      "Children": [
+        {
+          "Name": "Path1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [6.0, 0.2, 15.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "LeafyGrass",
+            "Color": [0.427, 0.333, 0.22],
+            "Position": [-1500.0, 0.1, -1535.0],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "Path2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [5.0, 0.2, 12.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Ground",
+            "Color": [0.427, 0.333, 0.22],
+            "Position": [-1499.0, 0.1, -1522.0],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "Path3",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [5.0, 0.2, 10.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Ground",
+            "Color": [0.427, 0.333, 0.22],
+            "Position": [-1501.0, 2.0, -1512.0],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "StepStone1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [2.0, 0.15, 1.5],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Slate",
+            "Color": [0.392, 0.392, 0.373],
+            "Position": [-1501.0, 0.15, -1530.0],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "StepStone2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [1.8, 0.15, 1.3],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Slate",
+            "Color": [0.373, 0.373, 0.353],
+            "Position": [-1499.0, 0.15, -1526.0],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "StepStone3",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [1.5, 0.15, 1.2],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Slate",
+            "Color": [0.412, 0.412, 0.392],
+            "Position": [-1500.5, 0.15, -1522.0],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "StepStone4",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [1.8, 0.15, 1.4],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "Slate",
+            "Color": [0.384, 0.384, 0.365],
+            "Position": [-1499.5, 0.3, -1518.0],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "FallenLog",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [1.0, 0.6, 5.0],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "WoodPlanks",
+            "Color": [0.275, 0.216, 0.137],
+            "Position": [-1497.0, 0.4, -1520.0],
+            "CastShadow": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Bunker",
+      "ClassName": "Folder",
+      "Children": [
+        {
+          "Name": "Facade",
+          "ClassName": "Folder",
+          "Children": [
+            {
+              "Name": "FacadeLeft",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [3.0, 14.0, 4.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.431, 0.424, 0.412],
+                "Position": [-1507.0, 5.0, -1499.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "FacadeRight",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [3.0, 14.0, 4.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.431, 0.424, 0.412],
+                "Position": [-1493.0, 5.0, -1499.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "FacadeLintel",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [18.0, 3.0, 4.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.431, 0.424, 0.412],
+                "Position": [-1500.0, 13.0, -1499.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "FacadeSill",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [18.0, 2.0, 4.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.431, 0.424, 0.412],
+                "Position": [-1500.0, -0.5, -1499.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "EntranceOverhang",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [12.0, 1.5, 4.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.431, 0.424, 0.412],
+                "Position": [-1500.0, 11.5, -1501.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "SteelLintel",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [14.0, 0.4, 1.5],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "DiamondPlate",
+                "Color": [0.235, 0.235, 0.216],
+                "Position": [-1500.0, 11.2, -1499.5],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "BracketL",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.8, 2.0, 0.8],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Metal",
+                "Color": [0.255, 0.255, 0.235],
+                "Position": [-1505.0, 10.5, -1499.5],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "BracketR",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.8, 2.0, 0.8],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Metal",
+                "Color": [0.255, 0.255, 0.235],
+                "Position": [-1495.0, 10.5, -1499.5],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "VentGrille",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [4.0, 1.5, 0.5],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "DiamondPlate",
+                "Color": [0.255, 0.255, 0.235],
+                "Position": [-1503.0, 12.5, -1499.5],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "VentHousing",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [4.5, 2.0, 0.3],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Metal",
+                "Color": [0.471, 0.333, 0.216],
+                "Position": [-1503.0, 12.5, -1499.8],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "WarningSign",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.5, 1.5, 0.2],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Metal",
+                "Color": [0.314, 0.275, 0.157],
+                "Position": [-1495.0, 8.0, -1499.2],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "DrainPipe",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.6, 0.6, 3.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Metal",
+                "Color": [0.275, 0.294, 0.255],
+                "Position": [-1491.5, 8.0, -1499.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Stain1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.5, 6.0, 0.2],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Concrete",
+                "Color": [0.392, 0.373, 0.333],
+                "Position": [-1491.5, 3.0, -1499.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "DrainChannel",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [16.0, 0.3, 1.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.373, 0.365, 0.353],
+                "Position": [-1500.0, -0.2, -1500.5],
+                "CastShadow": false
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Entrance",
+          "ClassName": "Folder",
+          "Children": [
+            {
+              "Name": "EntranceCeiling",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [8.0, 1.0, 8.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.627, 0.62, 0.6],
+                "Position": [-1500.0, 10.0, -1497.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "EntranceFloor",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [8.0, 1.0, 8.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "SmoothPlastic",
+                "Color": [0.353, 0.333, 0.314],
+                "Position": [-1500.0, 0.0, -1497.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "DoorTrackL",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.5, 11.0, 1.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Metal",
+                "Color": [0.255, 0.255, 0.235],
+                "Position": [-1504.5, 5.0, -1498.5],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "DoorTrackR",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.5, 11.0, 1.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Metal",
+                "Color": [0.255, 0.255, 0.235],
+                "Position": [-1495.5, 5.0, -1498.5],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "DoorTrackTop",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [10.0, 0.5, 1.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Metal",
+                "Color": [0.255, 0.255, 0.235],
+                "Position": [-1500.0, 10.2, -1498.5],
+                "CastShadow": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Interior",
+          "ClassName": "Folder",
+          "Children": [
+            {
+              "Name": "InteriorWallL",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.0, 11.0, 10.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.549, 0.541, 0.529],
+                "Position": [-1504.0, 5.0, -1493.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "InteriorWallR",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.0, 11.0, 10.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.549, 0.541, 0.529],
+                "Position": [-1496.0, 5.0, -1493.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "InteriorCeiling",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [9.0, 1.0, 10.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.529, 0.522, 0.51],
+                "Position": [-1500.0, 10.5, -1493.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "InteriorFloor",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [9.0, 0.5, 10.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.392, 0.384, 0.373],
+                "Position": [-1500.0, -0.3, -1493.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "InteriorBackWall",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [9.0, 11.0, 1.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Concrete",
+                "Color": [0.51, 0.502, 0.49],
+                "Position": [-1500.0, 5.0, -1488.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Crate1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.8, 1.2, 1.5],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "WoodPlanks",
+                "Color": [0.373, 0.294, 0.196],
+                "Position": [-1502.0, 1.0, -1495.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Crate2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.2, 0.8, 1.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "WoodPlanks",
+                "Color": [0.333, 0.267, 0.176],
+                "Position": [-1498.5, 0.8, -1493.5],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Barrel1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.2, 2.0, 1.2],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "CorrodedMetal",
+                "Color": [0.471, 0.333, 0.216],
+                "Position": [-1497.5, 1.2, -1496.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "LightFixture",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.8, 0.3, 0.8],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Neon",
+                "Color": [0.784, 0.765, 0.667],
+                "Position": [-1500.0, 10.0, -1495.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "ExitSignGlow",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.5, 0.5, 0.1],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Neon",
+                "Color": [0.706, 0.196, 0.118],
+                "Position": [-1497.0, 9.0, -1491.0],
+                "Transparency": 0.3,
+                "CastShadow": false
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Weathering",
+          "ClassName": "Folder",
+          "Children": [
+            {
+              "Name": "MossPatch1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [3.0, 2.0, 0.3],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.216, 0.294, 0.176],
+                "Position": [-1508.0, 2.0, -1498.5],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "MossPatch2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.0, 3.0, 0.3],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.216, 0.294, 0.176],
+                "Position": [-1493.0, 4.0, -1498.3],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "MossPatch3",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [4.0, 1.0, 0.3],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.216, 0.294, 0.176],
+                "Position": [-1502.0, 10.0, -1498.7],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "Crack1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.15, 3.0, 0.15],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Concrete",
+                "Color": [0.353, 0.345, 0.333],
+                "Position": [-1506.0, 6.0, -1499.1],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "Crack2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.15, 2.0, 0.15],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Concrete",
+                "Color": [0.333, 0.325, 0.314],
+                "Position": [-1505.8, 5.0, -1499.15],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "Rebar1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.08, 2.5, 0.08],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Metal",
+                "Color": [0.431, 0.294, 0.176],
+                "Position": [-1505.9, 5.5, -1499.05],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "Rebar2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.08, 1.5, 0.08],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Metal",
+                "Color": [0.431, 0.294, 0.176],
+                "Position": [-1505.7, 4.5, -1499.08],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "DebrisPile1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [4.0, 1.5, 3.0],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Ground",
+                "Color": [0.333, 0.275, 0.196],
+                "Position": [-1506.0, 0.5, -1498.5],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "DebrisPile2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [3.0, 1.0, 2.5],
+                "Anchored": true,
+                "CanCollide": true,
+                "Material": "Ground",
+                "Color": [0.333, 0.275, 0.196],
+                "Position": [-1495.0, 0.5, -1498.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "DripStain1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.3, 1.2, 0.1],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Concrete",
+                "Color": [0.333, 0.314, 0.275],
+                "Position": [-1491.5, 7.0, -1498.95],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "DripStain2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.3, 1.2, 0.1],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Concrete",
+                "Color": [0.333, 0.314, 0.275],
+                "Position": [-1491.5, 5.5, -1498.95],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "DripStain3",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.3, 1.2, 0.1],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Concrete",
+                "Color": [0.333, 0.314, 0.275],
+                "Position": [-1491.5, 4.0, -1498.95],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "Cable1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.06, 2.0, 0.06],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "SmoothPlastic",
+                "Color": [0.157, 0.157, 0.149],
+                "Position": [-1504.0, 10.5, -1500.8],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "Cable1End",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.12, 0.12, 0.12],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "SmoothPlastic",
+                "Color": [0.157, 0.157, 0.149],
+                "Position": [-1504.0, 9.5, -1500.8],
+                "CastShadow": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Forest",
+      "ClassName": "Folder",
+      "Children": [
+        {
+          "Name": "Bushes",
+          "ClassName": "Folder",
+          "Children": [
+            {
+              "Name": "Bush_1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [3.0, 1.5, 2.5],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.176, 0.255, 0.137],
+                "Position": [-1520.0, 0.6, -1528.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.0, 1.0, 2.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.235, 0.333, 0.176],
+                "Position": [-1524.0, 0.5, -1526.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_3",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.5, 1.2, 2.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.176, 0.255, 0.137],
+                "Position": [-1478.0, 0.6, -1523.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_4",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.0, 0.8, 2.5],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.235, 0.333, 0.176],
+                "Position": [-1472.0, 0.4, -1520.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_5",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [3.0, 1.5, 3.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.176, 0.255, 0.137],
+                "Position": [-1516.0, 0.75, -1512.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_6",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.0, 1.0, 2.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.294, 0.392, 0.216],
+                "Position": [-1482.0, 0.5, -1510.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_7",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.5, 1.2, 2.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.176, 0.255, 0.137],
+                "Position": [-1528.0, 0.6, -1492.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_8",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.0, 1.0, 2.5],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.235, 0.333, 0.176],
+                "Position": [-1475.0, 0.5, -1488.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_9",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [3.0, 1.0, 2.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.176, 0.255, 0.137],
+                "Position": [-1510.0, 0.5, -1497.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_10",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.0, 0.8, 2.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.294, 0.392, 0.216],
+                "Position": [-1492.0, 0.4, -1498.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_11",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.5, 1.5, 2.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.176, 0.255, 0.137],
+                "Position": [-1510.0, 0.75, -1499.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_12",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.0, 1.2, 2.5],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.235, 0.333, 0.176],
+                "Position": [-1490.0, 0.6, -1500.0],
+                "CastShadow": true
+              }
+            },
+            {
+              "Name": "Bush_13",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.5, 0.8, 1.5],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.235, 0.333, 0.176],
+                "Position": [-1506.0, 0.4, -1502.0],
+                "CastShadow": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "GroundCover",
+          "ClassName": "Folder",
+          "Children": [
+            {
+              "Name": "GroundCover_1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.5, 0.2, 1.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.235, 0.333, 0.176],
+                "Position": [-1505.0, 0.15, -1525.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "GroundCover_2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.8, 0.2, 1.2],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.176, 0.255, 0.137],
+                "Position": [-1497.0, 0.15, -1528.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "GroundCover_3",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.2, 0.2, 1.5],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.294, 0.392, 0.216],
+                "Position": [-1508.0, 0.15, -1520.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "GroundCover_4",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.6, 0.2, 1.3],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.235, 0.333, 0.176],
+                "Position": [-1494.0, 0.15, -1516.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "GroundCover_5",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.4, 0.2, 1.0],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.176, 0.255, 0.137],
+                "Position": [-1502.0, 2.15, -1510.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "GroundCover_6",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.8, 0.2, 1.2],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.294, 0.392, 0.216],
+                "Position": [-1490.0, 0.15, -1522.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "GroundCover_7",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.3, 0.2, 1.5],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.235, 0.333, 0.176],
+                "Position": [-1512.0, 2.15, -1514.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "GroundCover_8",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.5, 0.2, 1.1],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "Grass",
+                "Color": [0.176, 0.255, 0.137],
+                "Position": [-1496.0, 2.15, -1508.0],
+                "CastShadow": false
+              }
+            }
+          ]
+        },
+        {
+          "Name": "LeafPatches",
+          "ClassName": "Folder",
+          "Children": [
+            {
+              "Name": "LeafPatch_1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.5, 0.1, 1.2],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.353, 0.255, 0.137],
+                "Position": [-1503.0, 0.1, -1522.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "LeafPatch_2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.0, 0.1, 1.5],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.353, 0.255, 0.137],
+                "Position": [-1495.0, 0.1, -1518.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "LeafPatch_3",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.8, 0.1, 1.3],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.471, 0.412, 0.255],
+                "Position": [-1507.0, 0.1, -1515.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "LeafPatch_4",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.3, 0.1, 1.6],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.353, 0.255, 0.137],
+                "Position": [-1498.0, 0.1, -1512.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "LeafPatch_5",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.6, 0.1, 1.4],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.471, 0.412, 0.255],
+                "Position": [-1504.0, 0.1, -1526.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "LeafPatch_6",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [2.0, 0.1, 1.8],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.353, 0.255, 0.137],
+                "Position": [-1492.0, 0.1, -1524.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "LeafPatch_7",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [1.4, 0.1, 1.2],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "LeafyGrass",
+                "Color": [0.471, 0.412, 0.255],
+                "Position": [-1501.0, 0.1, -1508.0],
+                "CastShadow": false
+              }
+            }
+          ]
+        },
+        {
+          "Name": "TreeStump",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [1.2, 1.0, 1.2],
+            "Anchored": true,
+            "CanCollide": true,
+            "Material": "WoodPlanks",
+            "Color": [0.294, 0.216, 0.137],
+            "Position": [-1506.0, 0.5, -1516.0],
+            "CastShadow": true
+          }
+        },
+        {
+          "Name": "Mushrooms",
+          "ClassName": "Folder",
+          "Children": [
+            {
+              "Name": "Mushroom_1",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.3, 0.4, 0.3],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "SmoothPlastic",
+                "Color": [0.706, 0.627, 0.471],
+                "Position": [-1507.0, 0.2, -1501.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "Mushroom_2",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.3, 0.4, 0.3],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "SmoothPlastic",
+                "Color": [0.706, 0.627, 0.471],
+                "Position": [-1509.0, 0.2, -1499.0],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "Mushroom_3",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.3, 0.4, 0.3],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "SmoothPlastic",
+                "Color": [0.706, 0.627, 0.471],
+                "Position": [-1492.0, 0.2, -1500.5],
+                "CastShadow": false
+              }
+            },
+            {
+              "Name": "Mushroom_4",
+              "ClassName": "Part",
+              "Properties": {
+                "Size": [0.3, 0.4, 0.3],
+                "Anchored": true,
+                "CanCollide": false,
+                "Material": "SmoothPlastic",
+                "Color": [0.706, 0.627, 0.471],
+                "Position": [-1494.0, 0.2, -1498.0],
+                "CastShadow": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SceneLighting",
+      "ClassName": "Folder",
+      "Children": [
+        {
+          "Name": "SkyFill",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.2, 0.2, 0.2],
+            "Anchored": true,
+            "CanCollide": false,
+            "Transparency": 1.0,
+            "Position": [-1500.0, 25.0, -1500.0],
+            "CastShadow": false
+          },
+          "Children": [
+            {
+              "Name": "SkyFill_Light",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Color": [120, 140, 160],
+                "Brightness": 0.3,
+                "Range": 80.0,
+                "Shadows": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "SunHint",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.2, 0.2, 0.2],
+            "Anchored": true,
+            "CanCollide": false,
+            "Transparency": 1.0,
+            "Position": [-1530.0, 15.0, -1530.0],
+            "CastShadow": false
+          },
+          "Children": [
+            {
+              "Name": "SunHint_Light",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Color": [255, 220, 160],
+                "Brightness": 0.5,
+                "Range": 60.0,
+                "Shadows": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "InteriorLight1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.2, 0.2, 0.2],
+            "Anchored": true,
+            "CanCollide": false,
+            "Transparency": 1.0,
+            "Position": [-1500.0, 9.5, -1494.0],
+            "CastShadow": false
+          },
+          "Children": [
+            {
+              "Name": "InteriorLight1_Light",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Color": [220, 200, 140],
+                "Brightness": 1.2,
+                "Range": 18.0,
+                "Shadows": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "InteriorLight2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.2, 0.2, 0.2],
+            "Anchored": true,
+            "CanCollide": false,
+            "Transparency": 1.0,
+            "Position": [-1500.0, 9.5, -1490.0],
+            "CastShadow": false
+          },
+          "Children": [
+            {
+              "Name": "InteriorLight2_Light",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Color": [200, 185, 130],
+                "Brightness": 0.6,
+                "Range": 12.0,
+                "Shadows": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "EntranceGlow",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.2, 0.2, 0.2],
+            "Anchored": true,
+            "CanCollide": false,
+            "Transparency": 1.0,
+            "Position": [-1500.0, 8.0, -1498.0],
+            "CastShadow": false
+          },
+          "Children": [
+            {
+              "Name": "EntranceGlow_Light",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Color": [160, 180, 200],
+                "Brightness": 0.4,
+                "Range": 15.0,
+                "Shadows": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "PathGlow",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.2, 0.2, 0.2],
+            "Anchored": true,
+            "CanCollide": false,
+            "Transparency": 1.0,
+            "Position": [-1500.0, 2.0, -1518.0],
+            "CastShadow": false
+          },
+          "Children": [
+            {
+              "Name": "PathGlow_Light",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Color": [200, 180, 130],
+                "Brightness": 0.2,
+                "Range": 10.0,
+                "Shadows": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ExitSignLight",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.2, 0.2, 0.2],
+            "Anchored": true,
+            "CanCollide": false,
+            "Transparency": 1.0,
+            "Position": [-1497.0, 9.0, -1491.0],
+            "CastShadow": false
+          },
+          "Children": [
+            {
+              "Name": "ExitSignLight_Light",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Color": [200, 60, 30],
+                "Brightness": 0.4,
+                "Range": 6.0,
+                "Shadows": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Rubble",
+      "ClassName": "Folder",
+      "Children": [
+        {
+          "Name": "Rubble_1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.4, 0.4, 0.4],
+            "Anchored": true,
+            "CanCollide": false,
+            "Material": "Concrete",
+            "Color": [0.451, 0.443, 0.431],
+            "Position": [-1504.5, 0.2, -1500.5],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "Rubble_2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.3, 0.3, 0.5],
+            "Anchored": true,
+            "CanCollide": false,
+            "Material": "Concrete",
+            "Color": [0.471, 0.463, 0.451],
+            "Position": [-1503.8, 0.15, -1499.8],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "Rubble_3",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.5, 0.3, 0.3],
+            "Anchored": true,
+            "CanCollide": false,
+            "Material": "Concrete",
+            "Color": [0.431, 0.424, 0.412],
+            "Position": [-1496.2, 0.15, -1500.2],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "Rubble_4",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.35, 0.35, 0.35],
+            "Anchored": true,
+            "CanCollide": false,
+            "Material": "Concrete",
+            "Color": [0.451, 0.443, 0.431],
+            "Position": [-1495.5, 0.18, -1501.0],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "Rubble_5",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.4, 0.25, 0.4],
+            "Anchored": true,
+            "CanCollide": false,
+            "Material": "Concrete",
+            "Color": [0.471, 0.463, 0.451],
+            "Position": [-1501.0, 0.12, -1500.8],
+            "CastShadow": false
+          }
+        },
+        {
+          "Name": "Rubble_6",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [0.3, 0.4, 0.3],
+            "Anchored": true,
+            "CanCollide": false,
+            "Material": "Concrete",
+            "Color": [0.431, 0.424, 0.412],
+            "Position": [-1499.5, 0.2, -1499.5],
+            "CastShadow": false
+          }
+        }
+      ]
+    }
+  ]
+}

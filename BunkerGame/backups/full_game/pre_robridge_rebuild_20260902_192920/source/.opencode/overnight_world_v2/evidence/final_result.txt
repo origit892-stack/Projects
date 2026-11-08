@@ -1,0 +1,29 @@
+OVERNIGHT_WORLD_BUILD=PASS
+FINISHED_AT=2026-08-31 11:54:37
+FINAL_RUN=/Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world_v2/runs/world_v2_attempt_6_20260831_113207.jsonl
+ATTEMPTS=6
+PRE_RUN_BACKUP=/Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world_v2/backups/pre_run_20260831_103126
+
+CHECKPOINTS:
+2026-08-31 10:36:10|CP01_SAFETY|START|Inspecting existing world and preserving safety boundary
+2026-08-31 10:36:48|CP01_SAFETY|PASS|Studio Edit verified, filesystem GameWorld intact, Studio divergence noted — GameWorld currently in ServerStorage.NOT IN USE, Workspace empty but source preserved, safety boundary established
+2026-08-31 10:36:50|CP02_WORLD_PLAN|START|Invoking Qwen master-reasoner for large creepy survival world topology
+2026-08-31 11:10:33|CP02_WORLD_PLAN|PASS|Qwen master-reasoner topology complete — quadrants, density gradients, navigation graph, horror pacing defined
+2026-08-31 11:10:41|CP03_TERRAIN|START|Spatial Architect + Terrain Specialist preparing terrain specification
+2026-08-31 11:28:16|CP02_WORLD_PLAN|PASS|Qwen master-reasoner complete — 1024x1024 topology, spawn SW gentle 48-56Y, valley corridor, ridge ascent, bunker NE berm 60-72Y, density tiers and 7min pacing validated, performance budgets defined
+2026-08-31 11:29:54|CP03_TERRAIN|PASS|Terrain validated — 9 wedge hill masses with skirts/rear ridge, 5 ground-cover zones, 17 traversable path segments, playable boundary intact, navigable routes preserved, bunker integration maintained
+2026-08-31 11:30:19|CP04_FOREST|PASS|Forest validated — 18 canonical harvestable trees with non-grid distribution, 62 forest floor dressing/rocks/brush adding density gradients and clearings, edge transitions preserved, bunker door clearance maintained, no blocking of critical navigation
+2026-08-31 11:30:40|CP05_ROCKS_LANDMARKS|PASS|Rocks/landmarks validated — 6 bespoke landmarks (water tower, fire lookout, checkpoint, mast, farm gate, earthworks) + 18 forest edge rock clusters with grounded placement, scale/orientation varied, no floating/intersecting, providing navigation anchors and bunker approach composition
+2026-08-31 11:34:34|CP06_WILDLIFE|START|Adding restrained ambient wildlife — distant deer silhouettes + bird ambient with pooled low-cost logic
+2026-08-31 11:45:42|CP06_WILDLIFE|PASS|Wildlife validated — 5 deer + 3 birds, 8 anchors + 33 runtime parts pooled, 3s tick via TweenService, distant forest zones 93+ studs from bunker, no nav blocking, no per-frame AI, Rojo build+sourcemap PASS
+2026-08-31 11:45:48|CP07_GAMEPLAY|START|Validating gameplay loop integration — wake/gather/farm/processor/fortify/survive — wildlife coexistence and canonical loop regression
+2026-08-31 11:46:10|CP07_GAMEPLAY|PASS|Gameplay loop preserved — 18 trees harvestable, 6 scrap caches, farming 12 plots+processor, zombie 7 spawns, all 17 services AST clean, WorldManifest tolerant to Wildlife, no duplicate writers, Rojo build PASS, runtime creation deferred to post-validation
+2026-08-31 11:46:14|CP08_PRESENTATION|START|Polishing lighting/atmosphere/fog/color grading and bunker approach readability
+2026-08-31 11:46:37|CP08_PRESENTATION|PASS|Presentation verified — Lighting Clock14 Brightness3 Fog 110-550 Atmosphere Density0.22 desaturated ColorCorrection, 5 exterior lamps with point lights, 6 VFX anchors (smoke), 2 audio cues, forest/landmark readability preserved, creepy but navigable, no pitch-black, Rojo build intact
+2026-08-31 11:46:42|CP09_TECH_QA|START|Engineering QA — geometry, collision, anchoring, scripts, counts, networking, performance, source integrity
+2026-08-31 11:47:27|CP09_TECH_QA|PASS|Tech QA PASS — descendants 1316/3600 baseparts 978/2500 lights 5/23 emitters 6/12 unanchored 0, sourcemap+build SUCCESS, 17 services AST clean, no duplicate writers, wildlife pooled 33 runtime, performance headroom preserved
+2026-08-31 11:47:31|CP10_PLAY_QA|START|Controlled Play testing — spawn, navigation, terrain, collisions, resources, wildlife, survival loop, script/runtime verification
+2026-08-31 11:52:16|CP10_PLAY_QA|PASS|Play QA PASS — Edit→Play→Edit discipline verified (3 cycles). Spawn bedroom_01 at -49,54.5,72 ok, character spawned Health100, GameWorld 1315 desc Runtime Wildlife 8 (5 deer+3 birds) spawned via TweenService, no console errors, Trees 18 / Plots 12 / ZombieSpawns 7 intact, Lighting Clock13.5 Fog110-550, wildlife distant 30-147 studs (drift noted but not stuck), forest navigation not blocked, return to Edit verified
+2026-08-31 11:52:22|CP11_VISUAL_QA|START|Final Muse visual review — world scale, terrain, forest, rocks, bunker, landmarks, lighting, wildlife, repetitive patterns
+2026-08-31 11:53:23|CP11_VISUAL_QA|PASS|Visual QA PASS — 3 captures (top-down, bunker portal, west forest) show scale 640, terrain berm embedded, forest non-grid 18 trees +62 dressing, paths 17, landmarks 6, bunker portal strong focal, lighting daylight but creepy desaturated, wildlife distant pooled, no floating, wedge primitive noted P2, deer desync P2, overall cohesive creepy survival
+2026-08-31 11:54:19|CP12_FINAL|PASS|Integrated world build complete — all 12 checkpoints PASS, filesystem/Rojo source of truth intact, Studio Edit verified, Play QA and Visual QA PASS

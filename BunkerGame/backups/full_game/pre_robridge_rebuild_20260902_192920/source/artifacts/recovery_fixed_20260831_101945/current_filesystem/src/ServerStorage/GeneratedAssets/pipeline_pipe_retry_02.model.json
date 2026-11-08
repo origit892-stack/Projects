@@ -1,0 +1,36 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "GeneratedAssetId": "pipeline_pipe_retry_02",
+    "RobloxAssetId": "127442950110539",
+    "RobloxAssetType": "Model",
+    "IntegrationState": "Ready",
+    "CanonicalSource": "RobloxImportedModelInspection"
+  },
+  "Children": [
+    {
+      "Name": "ProceduralRustyPipe",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://71312017003623",
+        "Size": [
+          600,
+          200,
+          200
+        ]
+      },
+      "Children": [
+        {
+          "Name": "SurfaceAppearance",
+          "ClassName": "SurfaceAppearance",
+          "Properties": {
+            "ColorMap": "rbxassetid://112374676768109",
+            "NormalMap": "rbxassetid://113503962473805"
+          }
+        }
+      ]
+    }
+  ]
+}

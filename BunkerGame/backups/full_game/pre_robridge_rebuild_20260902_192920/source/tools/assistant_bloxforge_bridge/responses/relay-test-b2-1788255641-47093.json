@@ -1,0 +1,16 @@
+{
+  "request_id": "relay-test-b2-1788255641-47093",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_tool": "get_connected_instances",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"instances\":[{\"instanceId\":\"place:129695090105158\",\"role\":\"edit\",\"placeId\":129695090105158,\"placeName\":\"Bunker Game\",\"dataModelName\":\"Place22\",\"isRunning\":false,\"pluginVersion\":\"4.3.1\",\"pluginVariant\":\"main\",\"pluginProtocolVersion\":3,\"serverVersion\":\"4.3.1\",\"serverProtocolVersion\":3,\"versionMismatch\":false,\"protocolMismatch\":false,\"lastActivity\":1788255641000,\"connectedAt\":1788254876467}],\"count\":1}"
+      }
+    ]
+  },
+  "completed_at": "2026-09-01T09:40:41Z"
+}

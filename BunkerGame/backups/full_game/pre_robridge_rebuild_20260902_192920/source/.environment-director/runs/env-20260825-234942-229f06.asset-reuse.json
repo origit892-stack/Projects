@@ -1,0 +1,47 @@
+{
+  "asset_factory_required": false,
+  "decision": "REUSE_EXISTING",
+  "missing_assets": [],
+  "resolved": {
+    "bunker_electrical_junction_box_01": {
+      "displayName": "Bunker Electrical Junction Box",
+      "robloxAssetId": "97313747351940",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    },
+    "bunker_valve_assembly_01": {
+      "displayName": "Bunker Valve Assembly",
+      "robloxAssetId": "92968150925196",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    },
+    "bunker_vent_grille_01": {
+      "displayName": "Bunker Vent Grille",
+      "robloxAssetId": "133282905829866",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    },
+    "old_military_ammo_crate_01": {
+      "displayName": "Old Military Ammo Crate",
+      "robloxAssetId": "110954195423764",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    },
+    "pipeline_pipe_retry_02": {
+      "displayName": "Rusty Pipe",
+      "robloxAssetId": "127442950110539",
+      "robloxAssetType": "Model",
+      "sourceAssetType": "MeshPart",
+      "status": "published"
+    }
+  },
+  "rules": {
+    "all_decorative_assets": "default non-colliding unless explicitly justified",
+    "old_military_ammo_crate_01": "non-interactive dressing only"
+  },
+  "run_id": "env-20260825-234942-229f06"
+}

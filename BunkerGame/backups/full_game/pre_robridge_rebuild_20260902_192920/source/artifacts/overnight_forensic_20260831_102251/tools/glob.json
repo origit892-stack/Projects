@@ -1,0 +1,20 @@
+[
+  {
+    "line": 8,
+    "timestamp": 1788122190266,
+    "sessionID": "ses_fab9cc058ffexEheteSaWDsSOK",
+    "messageID": "msg_054634b2b001Qylg0Gr7c9FJ1v",
+    "tool": "glob",
+    "callID": "call_01a0546350787c618e4df67b83429a56",
+    "status": "completed",
+    "input": {
+      "pattern": ".opencode/skills/**/SKILL.md"
+    },
+    "output": "No files found",
+    "error": null,
+    "metadata": {
+      "count": 0,
+      "truncated": false
+    }
+  }
+]

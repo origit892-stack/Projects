@@ -1,0 +1,11 @@
+[0m
+┌  MCP Servers
+│
+●  ✓ roblox-studio [90mconnected
+│      [90m/Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+│
+●  ✓ bloxforge [90mconnected
+│      [90mnpx -y @princeofscale/bloxforge@latest
+│
+└  2 server(s)
+

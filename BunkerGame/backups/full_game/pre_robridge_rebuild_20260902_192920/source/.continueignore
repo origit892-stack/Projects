@@ -1,0 +1,10 @@
+.git/**
+**/.DS_Store
+**/*.backup-*
+**/*.log
+**/node_modules/**
+**/Packages/**
+**/ServerPackages/**
+**/sourcemap.json
+**/*.rbxl
+**/*.rbxlx

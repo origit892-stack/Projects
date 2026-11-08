@@ -1,0 +1,12 @@
+[
+  [
+    57,
+    "Expecting value: line 1 column 1 (char 0)",
+    "\u001b[93m\u001b[1m! \u001b[0mpermission requested: external_directory (/tmp/*); auto-rejecting"
+  ],
+  [
+    87,
+    "Expecting value: line 1 column 1 (char 0)",
+    "\u001b[93m\u001b[1m! \u001b[0mpermission requested: external_directory (/tmp/*); auto-rejecting"
+  ]
+]

@@ -1,0 +1,16 @@
+{
+  "request_id": "test-d-scene",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_tool": "get_scene_summary",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"topClasses\":[{\"count\":15,\"className\":\"Folder\"},{\"count\":10,\"className\":\"ModuleScript\"},{\"count\":6,\"className\":\"UnionOperation\"},{\"count\":2,\"className\":\"Model\"},{\"count\":2,\"className\":\"ProceduralModel\"},{\"count\":2,\"className\":\"GeneratedFolder\"},{\"count\":1,\"className\":\"Camera\"},{\"count\":1,\"className\":\"Terrain\"}],\"totalDescendants\":39,\"className\":\"Workspace\",\"root\":\"game.Workspace\",\"distinctClasses\":8,\"childCount\":5,\"scope\":\"exact subtree\"}"
+      }
+    ]
+  },
+  "completed_at": "2026-08-31T20:18:11Z"
+}

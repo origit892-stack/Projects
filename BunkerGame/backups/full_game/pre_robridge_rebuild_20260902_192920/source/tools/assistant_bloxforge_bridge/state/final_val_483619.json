@@ -1,0 +1,10 @@
+{
+  "request_id": "final_val_483619",
+  "status": "failed",
+  "source": "bloxforge_worker",
+  "error": {
+    "code": "INVALID_ARGUMENTS",
+    "message": "bloxforge.arguments must be object"
+  },
+  "completed_at": "2026-09-01T10:08:53Z"
+}

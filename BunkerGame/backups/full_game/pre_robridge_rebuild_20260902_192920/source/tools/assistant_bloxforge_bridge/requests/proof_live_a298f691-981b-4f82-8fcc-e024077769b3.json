@@ -1,0 +1,19 @@
+{
+  "request_id": "proof_live_a298f691-981b-4f82-8fcc-e024077769b3",
+  "intent": "bloxforge_tool_call",
+  "details": "Read-only end-to-end proof from Roblox Assistant through BloxForge.",
+  "studio_context": {
+    "instance_id": "place:129695090105158",
+    "read_only": true,
+    "project": "BunkerGame"
+  },
+  "received_at": "2026-09-01T09:43:49Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "get_scene_summary",
+    "arguments": {
+      "instancePath": "game.Workspace",
+      "instance_id": "place:129695090105158"
+    }
+  }
+}

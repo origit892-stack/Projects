@@ -1,0 +1,7 @@
+Captured by Studio MCP immediately before backup creation.
+Studio ID: 2c6bd625-0476-4f81-8043-2d966786374e
+Studio name: Bunker Game
+Place ID: 129695090105158
+Current Studio Mode: Edit
+Available DataModels: Edit
+Focused DataModel: Edit

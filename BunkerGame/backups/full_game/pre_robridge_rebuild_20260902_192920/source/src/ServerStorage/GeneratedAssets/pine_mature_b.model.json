@@ -1,0 +1,56 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "GeneratedAssetId": "Pine_Mature_B",
+    "RobloxAssetId": "139604818615251",
+    "RobloxAssetType": "Model",
+    "IntegrationState": "Ready",
+    "CanonicalSource": "Derived from Pine_Mature_A",
+    "GenerationId": "pine_mature_b-variant",
+    "QwenReferenceSource": "Pine_Mature_A_reference.png",
+    "AssetFamily": "Pine",
+    "AssetCategory": "GeneratedAssets/Pine/Tree",
+    "Seed": "derived from A",
+    "OriginalMeshId": "",
+    "MeshId": "rbxassetid://110905895423460",
+    "Dimensions": "9.40438175201416,15.000000953674316,8.11679744720459",
+    "Pivot": "0,7.5,0",
+    "Collision": "CanCollide=false",
+    "Anchoring": "Anchored=true",
+    "CastShadow": "true",
+    "Transparency": "0",
+    "VertexColors": "true",
+    "BloxForgeQA": "PASS",
+    "MuseFinalReview": "APPROVED",
+    "TechnicalQaPass": true,
+    "AssetFamilyVariant": "B",
+    "AssetVariants": 3,
+    "TriangleCount": 12000,
+    "VertexCount": 6007,
+    "Height": 15.000000953674316,
+    "Provenance": "Pine_Mature_A master seed42 InstantMesh ThomasSimonini Space, cleaned via Taubin smoothing decimated 38k->12k, vertex colors preserved, published via roblox-assets Open Cloud",
+    "CleanSurface": "derived with lean and crown variation, surface cleaned",
+    "IsVariant": true,
+    "ParentMaster": "Pine_Mature_A"
+  },
+  "Children": [
+    {
+      "Name": "pine_mature_b_geom",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CastShadow": true,
+        "Transparency": 0,
+        "MeshId": "rbxassetid://110905895423460",
+        "TextureID": "",
+        "Material": "Grass",
+        "Size": [
+          9.40438175201416,
+          15.000000953674316,
+          8.11679744720459
+        ]
+      }
+    }
+  ]
+}

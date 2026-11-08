@@ -1,0 +1,14 @@
+{
+  "request_id": "fmt3_488721",
+  "intent": "bloxforge_tool_call",
+  "details": "BloxForge terrain validation",
+  "studio_context": {},
+  "received_at": "2026-09-01T10:06:16Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "tool_catalog_search",
+    "params": {
+      "query": "terrain"
+    }
+  }
+}

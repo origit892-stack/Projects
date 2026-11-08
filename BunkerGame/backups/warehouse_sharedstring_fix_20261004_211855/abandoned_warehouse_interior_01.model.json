@@ -1,0 +1,1766 @@
+{
+  "ClassName": "Model",
+  "Name": "abandoned_warehouse_interior_01",
+  "Children": [
+    {
+      "Name": "TexturesCom_WindowsBacklit0019_13_M_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://106371074818039",
+        "Size": [
+          4.495943,
+          3.509659,
+          0.001
+        ],
+        "Position": [
+          -179.996277,
+          13.861822,
+          249.238327
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "TexturesCom_WindowsBacklit0019_14_M_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://118842350928093",
+        "Size": [
+          4.495979,
+          3.509659,
+          0.001
+        ],
+        "Position": [
+          -175.156296,
+          13.861822,
+          249.238327
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "TexturesCom_WindowsBacklit0019_15_M_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://127800589726391",
+        "Size": [
+          4.495944,
+          3.509659,
+          0.001
+        ],
+        "Position": [
+          -170.312531,
+          13.861822,
+          249.238327
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "TexturesCom_WindowsBacklit0019_12_M_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://139779202345580",
+        "Size": [
+          4.495944,
+          3.509659,
+          0.001
+        ],
+        "Position": [
+          -165.470673,
+          13.861822,
+          249.238327
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Cube_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://89746314287946",
+        "Size": [
+          19.021545,
+          1.630728,
+          0.331384
+        ],
+        "Position": [
+          -172.733475,
+          11.29163,
+          249.185852
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Cube.002_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://78536068377373",
+        "Size": [
+          19.708878,
+          0.858884,
+          0.331384
+        ],
+        "Position": [
+          -172.737411,
+          16.045498,
+          249.185852
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      },
+      "Children": [
+        {
+          "ClassName": "SurfaceAppearance",
+          "Properties": {
+            "TexturePack": "rbxassetid://95558393181479",
+            "NormalMap": "rbxassetid://121322814562077"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Cube.001_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://134470507672833",
+        "Size": [
+          19.710773,
+          5.140388,
+          0.717165
+        ],
+        "Position": [
+          -172.73645,
+          13.046494,
+          249.378738
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Plane_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://99648822026070",
+        "Size": [
+          33.18383,
+          0.001,
+          13.484114
+        ],
+        "Position": [
+          -168.056976,
+          10.517328,
+          255.35408
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      },
+      "Children": [
+        {
+          "ClassName": "SurfaceAppearance",
+          "Properties": {
+            "TexturePack": "rbxassetid://74933444649582",
+            "ColorMap": "rbxassetid://118141044456446",
+            "EmissiveMaskContent": "rbxassetid://129994014644377",
+            "EmissiveTint": [
+              0.3,
+              0.3,
+              0.3
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Plane.002_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://105285650841775",
+        "Size": [
+          29.088791,
+          6.070131,
+          1.80386
+        ],
+        "Position": [
+          -168.04744,
+          13.552393,
+          260.166473
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Plane.003_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://92394609008458",
+        "Size": [
+          0.182959,
+          6.619954,
+          10.244345
+        ],
+        "Position": [
+          -182.500366,
+          13.827305,
+          254.142334
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Plane.004_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://95362354275167",
+        "Size": [
+          0.001,
+          5.957612,
+          12.048204
+        ],
+        "Position": [
+          -153.503052,
+          13.496134,
+          255.044266
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Plane.005_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://135963794334008",
+        "Size": [
+          9.393954,
+          5.957647,
+          0.001
+        ],
+        "Position": [
+          -158.200027,
+          13.496151,
+          249.054657
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Cube.003_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://98582385483306",
+        "Size": [
+          19.710773,
+          5.140388,
+          0.462013
+        ],
+        "Position": [
+          -172.73645,
+          13.046494,
+          259.022522
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Cube.004_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://128516997401149",
+        "Size": [
+          19.730041,
+          1.321773,
+          9.893381
+        ],
+        "Position": [
+          -172.725494,
+          16.260834,
+          254.307892
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Plane.001_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://123093536412016",
+        "Size": [
+          29.214893,
+          0.571346,
+          5.282262
+        ],
+        "Position": [
+          -167.984406,
+          16.922996,
+          251.666199
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Plane.006_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://113682976173328",
+        "Size": [
+          29.214893,
+          0.704883,
+          6.7626
+        ],
+        "Position": [
+          -167.984406,
+          16.856228,
+          257.686646
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Cube.005_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://102200421052743",
+        "Size": [
+          29.239464,
+          0.755524,
+          5.348197
+        ],
+        "Position": [
+          -167.970261,
+          16.817781,
+          251.696396
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Cube.006_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://82722360710024",
+        "Size": [
+          29.239462,
+          0.60331,
+          3.649768
+        ],
+        "Position": [
+          -167.970245,
+          16.774139,
+          257.436432
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "TexturesCom_WindowsBacklit0019_13_M.002_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://94804189523513",
+        "Size": [
+          21.755497,
+          0.981511,
+          0.001
+        ],
+        "Position": [
+          -165.603455,
+          15.799963,
+          261.068359
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Cube.008_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://118136339138033",
+        "Size": [
+          29.239462,
+          0.281896,
+          0.130001
+        ],
+        "Position": [
+          -167.970245,
+          16.613432,
+          261.005219
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "TexturesCom_DoorsRollup0044_M_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://109135874777293",
+        "Size": [
+          0.001,
+          3.311022,
+          2.392219
+        ],
+        "Position": [
+          -182.591843,
+          12.172869,
+          251.803391
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "TexturesCom_DoorsWoodBarn0017_M_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://121824205672150",
+        "Size": [
+          0.001,
+          2.712756,
+          2.870339
+        ],
+        "Position": [
+          -182.591843,
+          11.873707,
+          256.730957
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Plane.008_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://134364817318985",
+        "Size": [
+          0.529913,
+          1.036887,
+          0.540219
+        ],
+        "Position": [
+          -169.54007,
+          11.036495,
+          255.090637
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Plane.009_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://105139221071611",
+        "Size": [
+          1.036512,
+          0.359356,
+          0.658138
+        ],
+        "Position": [
+          -173.100967,
+          10.698937,
+          255.546036
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Plane.010_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://76905560679778",
+        "Size": [
+          1.111115,
+          0.376686,
+          0.725097
+        ],
+        "Position": [
+          -171.388275,
+          10.708065,
+          256.584564
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "BezierCurve.006_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://140224148797700",
+        "Size": [
+          19.987896,
+          5.299094,
+          0.062577
+        ],
+        "Position": [
+          -172.475754,
+          13.520964,
+          257.994629
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "BezierCurve.004_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://103993371861665",
+        "Size": [
+          20.143444,
+          5.325206,
+          0.07637
+        ],
+        "Position": [
+          -172.403564,
+          13.507557,
+          251.533539
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.001_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://135808898496211",
+        "Size": [
+          0.622925,
+          0.663709,
+          0.622925
+        ],
+        "Position": [
+          -165.713928,
+          14.510124,
+          251.533676
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.001_1",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://91294791198977",
+        "Size": [
+          0.599176,
+          0.200671,
+          0.599173
+        ],
+        "Position": [
+          -165.713928,
+          14.288162,
+          251.533676
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.002_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://93428699027093",
+        "Size": [
+          0.622899,
+          0.71126,
+          0.618546
+        ],
+        "Position": [
+          -170.210083,
+          14.809181,
+          251.589432
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.002_1",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://75007072066621",
+        "Size": [
+          0.599156,
+          0.254786,
+          0.593899
+        ],
+        "Position": [
+          -170.210083,
+          14.591801,
+          251.588852
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.003_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://98861203157535",
+        "Size": [
+          0.622849,
+          0.683619,
+          0.622468
+        ],
+        "Position": [
+          -175.22345,
+          15.297567,
+          251.527512
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.003_1",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://81562870751224",
+        "Size": [
+          0.599102,
+          0.222355,
+          0.598316
+        ],
+        "Position": [
+          -175.22345,
+          15.076988,
+          251.52774
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.004_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://129168622813293",
+        "Size": [
+          0.622849,
+          0.684855,
+          0.622432
+        ],
+        "Position": [
+          -180.575165,
+          14.814436,
+          251.550446
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.004_1",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://116469537616842",
+        "Size": [
+          0.599102,
+          0.223764,
+          0.598253
+        ],
+        "Position": [
+          -180.575165,
+          14.593979,
+          251.550201
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.005_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://79127289448016",
+        "Size": [
+          0.622907,
+          0.691557,
+          0.621982
+        ],
+        "Position": [
+          -165.83226,
+          14.275824,
+          258.029449
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.005_1",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://78151931250014",
+        "Size": [
+          0.598975,
+          0.231367,
+          0.597696
+        ],
+        "Position": [
+          -165.832153,
+          14.056007,
+          258.029144
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.006_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://132651812937738",
+        "Size": [
+          0.622764,
+          0.691557,
+          0.622149
+        ],
+        "Position": [
+          -170.556259,
+          14.617769,
+          258.005188
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.006_1",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://119866844730295",
+        "Size": [
+          0.598724,
+          0.231367,
+          0.597906
+        ],
+        "Position": [
+          -170.556107,
+          14.397953,
+          258.004913
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.007_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://110428160718578",
+        "Size": [
+          0.622837,
+          0.691557,
+          0.621716
+        ],
+        "Position": [
+          -175.214539,
+          14.933428,
+          258.012177
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.007_1",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://126958855546991",
+        "Size": [
+          0.599041,
+          0.231367,
+          0.597425
+        ],
+        "Position": [
+          -175.214569,
+          14.713612,
+          258.011841
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.008_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://81492999883730",
+        "Size": [
+          0.622449,
+          0.691557,
+          0.622453
+        ],
+        "Position": [
+          -180.417984,
+          15.201916,
+          257.986786
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Circle.008_1",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://139412152385915",
+        "Size": [
+          0.598291,
+          0.231367,
+          0.598305
+        ],
+        "Position": [
+          -180.418213,
+          14.982101,
+          257.98703
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "pandagun_1280_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://101183126945644",
+        "Size": [
+          2.188799,
+          2.253938,
+          0.001
+        ],
+        "Position": [
+          -161.381668,
+          11.582123,
+          249.056549
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "DM_Watch_Your_Step_graffiti_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://95124405966746",
+        "Size": [
+          1.828428,
+          1.813125,
+          0.001
+        ],
+        "Position": [
+          -161.547546,
+          13.724175,
+          249.055191
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Cube.009_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://73259770922214",
+        "Size": [
+          1.089338,
+          0.093307,
+          1.08092
+        ],
+        "Position": [
+          -165.770264,
+          10.564291,
+          256.352997
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Cube.010_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://121266079469518",
+        "Size": [
+          4.600571,
+          0.025247,
+          4.751515
+        ],
+        "Position": [
+          -163.298218,
+          10.529375,
+          255.15419
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "TexturesCom_CardboardPl...19_2_alphamasked_S.049_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://89696915797742",
+        "Size": [
+          29.943981,
+          0.032615,
+          10.308338
+        ],
+        "Position": [
+          -169.741241,
+          10.531319,
+          254.678116
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "TexturesCom_CardboardPl...19_2_alphamasked_S.049_1",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://119012685418936",
+        "Size": [
+          30.303721,
+          0.044897,
+          10.061269
+        ],
+        "Position": [
+          -169.74939,
+          10.531658,
+          254.164825
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "TexturesCom_CardboardPl...19_2_alphamasked_S.049_2",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://122977987101205",
+        "Size": [
+          29.495796,
+          0.04123,
+          11.171565
+        ],
+        "Position": [
+          -168.500031,
+          10.530901,
+          254.861679
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "BezierCurve.033_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://94351578073322",
+        "Size": [
+          27.140724,
+          0.202445,
+          10.428654
+        ],
+        "Position": [
+          -168.199158,
+          10.609989,
+          254.447479
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://70455582377463",
+        "Size": [
+          26.644779,
+          0.08324,
+          11.204843
+        ],
+        "Position": [
+          -166.845795,
+          10.556261,
+          254.909927
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_02",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://116600819370058",
+        "Size": [
+          30.674496,
+          0.071868,
+          10.813908
+        ],
+        "Position": [
+          -169.04892,
+          10.54944,
+          254.383408
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_03",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://124574390796249",
+        "Size": [
+          30.668425,
+          0.083495,
+          11.366717
+        ],
+        "Position": [
+          -169.012695,
+          10.555542,
+          254.925903
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_04",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://72418499556931",
+        "Size": [
+          30.436176,
+          0.067732,
+          11.209642
+        ],
+        "Position": [
+          -169.520859,
+          10.547235,
+          254.455521
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_05",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://121786687621108",
+        "Size": [
+          31.378468,
+          0.08396,
+          10.970066
+        ],
+        "Position": [
+          -169.516754,
+          10.55558,
+          254.751663
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_06",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://131637159882032",
+        "Size": [
+          29.731592,
+          0.078169,
+          10.795931
+        ],
+        "Position": [
+          -169.500351,
+          10.552765,
+          254.66066
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_07",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://72515491363337",
+        "Size": [
+          17.936829,
+          0.085087,
+          10.321816
+        ],
+        "Position": [
+          -167.081009,
+          10.55743,
+          254.476807
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_08",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://111972037879978",
+        "Size": [
+          30.877073,
+          0.073794,
+          11.393894
+        ],
+        "Position": [
+          -169.278992,
+          10.550417,
+          254.717361
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_09",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://125743082925876",
+        "Size": [
+          30.745707,
+          0.090966,
+          11.114842
+        ],
+        "Position": [
+          -169.135193,
+          10.559162,
+          254.945587
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_010",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://79071966833347",
+        "Size": [
+          30.899677,
+          0.082171,
+          11.334038
+        ],
+        "Position": [
+          -169.61557,
+          10.554495,
+          254.630066
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    },
+    {
+      "Name": "Icosphere.1295_011",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "MeshId": "rbxassetid://104257924950860",
+        "Size": [
+          30.639298,
+          0.076,
+          11.211404
+        ],
+        "Position": [
+          -169.694962,
+          10.551495,
+          254.437347
+        ],
+        "Material": "Concrete",
+        "Color": [
+          0.639216,
+          0.635294,
+          0.647059
+        ],
+        "Transparency": 0.0,
+        "Anchored": true,
+        "CanCollide": true,
+        "CastShadow": true,
+        "DoubleSided": false
+      }
+    }
+  ]
+}

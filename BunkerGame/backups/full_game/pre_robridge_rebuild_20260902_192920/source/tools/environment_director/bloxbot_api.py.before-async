@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+
+import base64
+import json
+import os
+import subprocess
+import sys
+import time
+import urllib.parse
+import urllib.request
+
+PROJECT = "/Users/Ori/Documents/Projects/BunkerGame"
+SERVER = "http://127.0.0.1:4096"
+
+def auth():
+    p = subprocess.run(
+        ["/bin/ps", "-ax", "-o", "pid=", "-o", "command="],
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+
+    pid = None
+    for line in p.stdout.splitlines():
+        if "opencode serve" in line:
+            pid = line.strip().split(None, 1)[0]
+            break
+
+    if not pid:
+        raise RuntimeError("OpenCode server is not running")
+
+    envline = subprocess.run(
+        ["/bin/ps", "eww", "-p", pid],
+        text=True,
+        capture_output=True,
+        check=True,
+    ).stdout.splitlines()[-1]
+
+    values = {}
+
+    for item in envline.split():
+        if item.startswith("OPENCODE_SERVER_USERNAME="):
+            values["user"] = item.split("=", 1)[1]
+        elif item.startswith("OPENCODE_SERVER_PASSWORD="):
+            values["password"] = item.split("=", 1)[1]
+
+    if not values.get("user") or not values.get("password"):
+        raise RuntimeError("Could not obtain OpenCode authentication")
+
+    return values["user"], values["password"]
+
+USER, PASSWORD = auth()
+
+def request(method, path, body=None, timeout=60):
+    url = SERVER + path
+
+    data = None
+    headers = {
+        "Accept": "application/json",
+    }
+
+    if body is not None:
+        data = json.dumps(body).encode("utf-8")
+        headers["Content-Type"] = "application/json"
+
+    token = base64.b64encode(
+        f"{USER}:{PASSWORD}".encode()
+    ).decode()
+
+    headers["Authorization"] = "Basic " + token
+
+    req = urllib.request.Request(
+        url,
+        data=data,
+        headers=headers,
+        method=method,
+    )
+
+    with urllib.request.urlopen(req, timeout=timeout) as response:
+        raw = response.read()
+
+        if not raw:
+            return None
+
+        return json.loads(raw.decode("utf-8"))
+
+def project_query():
+    return "?directory=" + urllib.parse.quote(PROJECT, safe="")
+
+def create_session(title):
+    rules = [
+        {
+            "permission": "*",
+            "pattern": "*",
+            "action": "allow",
+        }
+    ]
+
+    body = {
+        "title": title,
+        "permission": rules,
+    }
+
+    session = request(
+        "POST",
+        "/session" + project_query(),
+        body,
+    )
+
+    sid = session["id"]
+
+    if session.get("directory") != PROJECT:
+        raise RuntimeError(
+            "Session directory mismatch: " +
+            repr(session.get("directory"))
+        )
+
+    return sid
+
+def send_prompt(session_id, prompt, timeout):
+    path = (
+        "/session/" +
+        session_id +
+        "/message" +
+        project_query()
+    )
+
+    body = {
+        "variant": "max",
+        "parts": [
+            {
+                "type": "text",
+                "text": prompt,
+            }
+        ],
+    }
+
+    started = time.monotonic()
+
+    result = request(
+        "POST",
+        path,
+        body,
+        timeout=timeout,
+    )
+
+    elapsed = time.monotonic() - started
+
+    texts = []
+
+    for part in result.get("parts", []):
+        if part.get("type") == "text":
+            text = part.get("text", "")
+            if text:
+                texts.append(text)
+
+    output = "\n".join(texts)
+
+    return output, elapsed
+
+def main():
+    if len(sys.argv) < 2:
+        raise SystemExit(
+            "usage: bloxbot_api.py PROMPT_FILE [TIMEOUT]"
+        )
+
+    prompt_path = sys.argv[1]
+    timeout = int(sys.argv[2]) if len(sys.argv) > 2 else 900
+
+    prompt = open(
+        prompt_path,
+        "r",
+        encoding="utf-8",
+    ).read()
+
+    sid = create_session(
+        "Environment Director specialist"
+    )
+
+    print("BLOXBOT_API_SESSION=" + sid, flush=True)
+    print("BLOXBOT_API_DIRECTORY=" + PROJECT, flush=True)
+
+    output, elapsed = send_prompt(
+        sid,
+        prompt,
+        timeout,
+    )
+
+    print(output)
+
+    print(
+        "BLOXBOT_API_ELAPSED_SECONDS=" +
+        f"{elapsed:.2f}",
+        flush=True,
+    )
+
+if __name__ == "__main__":
+    main()

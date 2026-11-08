@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "timestamp": "20260903_183637",
+  "place_id": "backup_session",
+  "resolution": 4.0,
+  "declared_bounds": {
+    "min": [
+      -300,
+      -100,
+      -250
+    ],
+    "max": [
+      300,
+      100,
+      250
+    ]
+  },
+  "actual_coverage": [
+    {
+      "min": {
+        "__t": "Vector3",
+        "x": 12,
+        "y": -36,
+        "z": -252
+      },
+      "max": {
+        "x": 16,
+        "y": 36,
+        "z": 252
+      },
+      "file": "call_19ccjr73.txt"
+    },
+    {
+      "min": {
+        "__t": "Vector3",
+        "x": -304,
+        "y": -84,
+        "z": -4
+      },
+      "max": {
+        "x": 16,
+        "y": 84,
+        "z": 4
+      },
+      "file": "call_4f3l596d.txt"
+    },
+    {
+      "min": {
+        "__t": "Vector3",
+        "x": -52,
+        "y": 0,
+        "z": -72
+      },
+      "max": {
+        "x": 52,
+        "y": 100,
+        "z": 72
+      },
+      "file": "call_8og8hybt.txt"
+    },
+    {
+      "min": {
+        "__t": "Vector3",
+        "x": -304,
+        "y": -84,
+        "z": -4
+      },
+      "max": {
+        "x": 16,
+        "y": 84,
+        "z": 4
+      },
+      "file": "call_jxw4p4tt.txt"
+    },
+    {
+      "min": {
+        "__t": "Vector3",
+        "x": -304,
+        "y": -92,
+        "z": -252
+      },
+      "max": {
+        "x": 16,
+        "y": -84,
+        "z": 252
+      },
+      "file": "call_ts8uwrus.txt"
+    },
+    {
+      "min": {
+        "__t": "Vector3",
+        "x": -304,
+        "y": -68,
+        "z": -4
+      },
+      "max": {
+        "x": 16,
+        "y": 72,
+        "z": 4
+      },
+      "file": "call_uug7rl7k.txt"
+    }
+  ],
+  "total_voxels_read": 165568,
+  "non_air_voxels": 4,
+  "materials_found": [
+    "Ground"
+  ],
+  "backup_complete": false,
+  "blocker": "Region too large errors preventing coverage of X > max_x. Cannot guarantee all voxels at declared bounds are backup.",
+  "bytes_read": 2383598,
+  "expected_tile_count": 0,
+  "completed_tile_count": 6
+}

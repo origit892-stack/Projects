@@ -1,0 +1,16 @@
+{
+  "request_id": "load_269721",
+  "intent": "bloxforge_tool_call",
+  "details": "BloxForge terrain validation",
+  "studio_context": {},
+  "received_at": "2026-09-01T10:06:59Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "load_toolset",
+    "arguments": {
+      "toolsets": [
+        "terrain"
+      ]
+    }
+  }
+}

@@ -1,0 +1,657 @@
+You are the actual BunkerGame Art Director and World Director.
+
+Your task is to DIRECT AND EXECUTE A GENUINELY NEW WORLD BUILD for BunkerGame.
+
+This is NOT a restoration task.
+This is NOT a polish pass on the rejected world.
+This is NOT permission to move the old GameWorld back into Workspace.
+
+============================================================
+ABSOLUTE OLD-WORLD RULE
+============================================================
+
+The world currently stored under:
+
+ServerStorage.NOT IN USE.GameWorld
+
+was deliberately rejected and moved there because its visual quality, composition, terrain, forest, scale and overall result were unacceptable.
+
+It is ARCHIVE / REFERENCE ONLY.
+
+DO NOT:
+- move it back to Workspace;
+- clone it into Workspace;
+- rename it and call it new;
+- use its terrain composition as the new world;
+- use its forest composition as the new world;
+- perform a cosmetic polish pass on it;
+- reactivate it through Rojo;
+- treat previous PASS checkpoints as visual approval.
+
+OLD_REJECTED_WORLD_REUSED must ultimately equal NO.
+
+You may inspect it only when necessary to understand gameplay contracts or identify things that must NOT be reproduced.
+
+============================================================
+PRIMARY OBJECTIVE
+============================================================
+
+Create a genuinely NEW, LARGE, HIGH-QUALITY creepy survival world based on:
+
+1. the approved visual reference / references;
+2. the intended BunkerGame survival-horror vision;
+3. approved reusable assets in the Asset Library;
+4. existing gameplay contracts that must remain functional.
+
+The finished environment should feel intentionally art-directed rather than procedurally scattered.
+
+The player should look across the environment and perceive a believable, large survival landscape — not a collection of Roblox Parts placed on a flat baseplate.
+
+============================================================
+MANDATORY ORCHESTRATION
+============================================================
+
+Muse is Director.
+
+Muse must actually orchestrate the established pipeline rather than merely describing it.
+
+Use, where applicable:
+
+MUSE
+→ QWEN
+→ MIMO
+→ ROBLOX ASSISTANT
+→ BLOXFORGE
+→ MUSE VISUAL REVIEW
+
+Responsibilities:
+
+MUSE:
+- art direction;
+- world direction;
+- visual standards;
+- composition decisions;
+- rejection/revision;
+- final visual review.
+
+QWEN:
+- reasoning;
+- reference analysis;
+- world topology;
+- biome/layout reasoning;
+- composition planning;
+- technical planning where useful.
+
+MIMO:
+- execution orchestration;
+- coordinate actual tool calls;
+- coordinate Roblox Assistant and BloxForge.
+
+ROBLOX ASSISTANT:
+- native Roblox creative generation;
+- environment composition;
+- terrain/native generation where appropriate;
+- visual asset generation where appropriate;
+- reference-driven generation where appropriate.
+
+BLOXFORGE:
+- engineering;
+- technical validation;
+- filesystem persistence;
+- Rojo-safe integration;
+- geometry checks;
+- collision;
+- pivot/orientation;
+- scale;
+- performance;
+- scripts;
+- gameplay integration;
+- QA;
+- Asset Library registration.
+
+Never claim that an agent/tool participated unless it was actually invoked.
+
+Record real invocation/session/request IDs whenever available.
+
+============================================================
+REFERENCE-FIRST RULE
+============================================================
+
+The approved visual reference is the visual target.
+
+Do not replace it with an invented generic Roblox aesthetic.
+
+Study the reference BEFORE major composition.
+
+Extract from it:
+
+- terrain language;
+- vegetation density;
+- tree silhouette;
+- spacing;
+- elevation;
+- path language;
+- rock distribution;
+- landmark hierarchy;
+- atmospheric depth;
+- lighting;
+- palette;
+- foreground/midground/background layering;
+- scale relationships;
+- visual noise;
+- negative space;
+- horror/survival mood.
+
+The result does not need to copy the reference literally.
+
+It DOES need to achieve comparable visual coherence and environmental believability.
+
+If a visual decision contradicts the reference without a gameplay or technical reason, reconsider it.
+
+============================================================
+ASSET LIBRARY FIRST
+============================================================
+
+Before generating assets, inspect the approved BunkerGame Asset Library.
+
+Reuse approved assets/families whenever they are sufficient.
+
+For a required variation:
+
+1. find the closest approved library asset/family;
+2. use it as the visual/reference base when appropriate;
+3. generate/edit through the established native workflow;
+4. BloxForge technical QA;
+5. Muse visual approval;
+6. register the approved reusable variant in the Asset Library.
+
+Do not register:
+- temporary assets;
+- rejected assets;
+- test assets;
+- broken assets.
+
+Do not generate dozens of expensive unique assets when a small coherent reusable kit can achieve a better result.
+
+============================================================
+WORLD SCALE
+============================================================
+
+The new world must feel LARGE.
+
+It must support:
+- exploration;
+- survival resource gathering;
+- navigation;
+- tension;
+- long sightlines;
+- controlled sightline breaks;
+- landmarks;
+- forest traversal;
+- combat;
+- bunker discovery;
+- future expansion.
+
+Do not create a tiny decorative arena around the bunker.
+
+Use natural distance and terrain to make different regions feel spatially distinct.
+
+============================================================
+TERRAIN
+============================================================
+
+Create genuinely convincing terrain.
+
+Avoid:
+- giant obvious rectangular ground slabs;
+- repetitive wedge hills;
+- evenly spaced hills;
+- visible artificial terrain seams;
+- identical elevation everywhere;
+- a flat world with decorative bumps.
+
+Use:
+- rolling elevation;
+- ridges;
+- valleys;
+- depressions;
+- natural slopes;
+- berms;
+- terrain occlusion;
+- elevated overlooks;
+- lower traversal corridors;
+- irregular silhouettes;
+- terrain transitions;
+- natural bunker embedment.
+
+Terrain must help direct exploration.
+
+The bunker should feel BUILT INTO the landscape, not dropped on top of it.
+
+============================================================
+FOREST
+============================================================
+
+Create a believable forest system.
+
+Do NOT make:
+- grid forests;
+- evenly spaced trees;
+- identical tree rotation;
+- identical scale;
+- identical species everywhere;
+- obvious procedural circles.
+
+Use density gradients.
+
+Include:
+- dense forest;
+- medium forest;
+- sparse transitional zones;
+- clearings;
+- disturbed vegetation near human infrastructure;
+- forest-edge composition;
+- dead/fallen vegetation where appropriate;
+- natural gaps;
+- silhouette variation.
+
+Use multiple approved tree/vegetation variants where available.
+
+Tree placement must support gameplay readability while still appearing natural.
+
+============================================================
+GROUND DETAIL
+============================================================
+
+The ground must not feel empty.
+
+Use restrained, coherent dressing such as:
+- grasses;
+- weeds;
+- leaf/debris zones;
+- small stones;
+- branches;
+- roots;
+- dirt transitions;
+- disturbed soil;
+- rubble near structures;
+- environmental storytelling.
+
+Avoid uniform random scatter.
+
+Ground dressing should form intentional clusters and environmental patterns.
+
+============================================================
+ROCKS
+============================================================
+
+Use rocks and boulders as part of the terrain language.
+
+Use:
+- isolated boulders;
+- small clusters;
+- exposed formations;
+- slope reinforcement;
+- path-edge rocks;
+- landmark formations where appropriate.
+
+Avoid repeating the exact same boulder at obvious identical scale/rotation.
+
+Use approved boulder families and variations whenever possible.
+
+============================================================
+LANDMARKS
+============================================================
+
+The player needs memorable navigation landmarks.
+
+Create a limited number of strong, believable landmarks rather than many weak props.
+
+Potential themes may include:
+- abandoned infrastructure;
+- ruined checkpoint;
+- radio/communications structure;
+- farm remnants;
+- utility infrastructure;
+- lookout;
+- damaged road elements;
+- industrial remnants;
+- natural rock landmark;
+- bunker approach structures.
+
+Landmarks must help navigation and storytelling.
+
+============================================================
+BUNKER
+============================================================
+
+Preserve the intended bunker gameplay where required, but integrate the facility naturally into the NEW landscape.
+
+The bunker approach should create:
+- anticipation;
+- partial concealment;
+- environmental storytelling;
+- readable entrance;
+- believable earth embedment;
+- drainage/utilities;
+- disturbed terrain;
+- human infrastructure transitioning into wilderness.
+
+Do not expose the whole bunker as an isolated object sitting in an empty field.
+
+============================================================
+WILDLIFE
+============================================================
+
+Add restrained ambient wildlife where it improves believability.
+
+Examples:
+- distant deer;
+- birds;
+- occasional silhouettes;
+- ambient movement.
+
+Wildlife should:
+- remain inexpensive;
+- not dominate gameplay;
+- avoid excessive AI/pathfinding;
+- use pooling or low-cost behavior where appropriate;
+- contribute to atmosphere.
+
+============================================================
+ATMOSPHERE
+============================================================
+
+Create strong environmental depth.
+
+Review:
+- Lighting;
+- Atmosphere;
+- fog;
+- ColorCorrection;
+- sky;
+- sun direction;
+- shadow readability;
+- exterior lights;
+- contrast;
+- saturation;
+- distance visibility.
+
+The game should remain playable.
+
+Darkness must create mood without making navigation impossible.
+
+Use atmospheric perspective so the world reads as large.
+
+============================================================
+GAMEPLAY INTEGRATION
+============================================================
+
+The new visual world must preserve or correctly integrate canonical gameplay:
+
+- player spawning;
+- harvesting;
+- trees/resources;
+- inventory;
+- scrap;
+- farming;
+- processor;
+- bunker interactions;
+- power;
+- zombies;
+- enemy spawning;
+- objectives;
+- navigation;
+- day/night;
+- survival loop.
+
+Do not preserve bad visual composition merely because the gameplay anchors currently exist there.
+
+Move/reintegrate anchors safely when necessary while preserving their contracts.
+
+============================================================
+SCRIPTS
+============================================================
+
+Add or modify scripts where genuinely required for the new environment.
+
+Examples may include:
+- ambient wildlife;
+- environmental effects;
+- optimized presentation logic;
+- world behavior;
+- integration fixes.
+
+Maintain server authority where appropriate.
+
+Do not add unnecessary per-object scripts.
+
+Prefer centralized/pool-based systems.
+
+============================================================
+PERFORMANCE
+============================================================
+
+The world should look substantially richer without becoming technically reckless.
+
+Review:
+- descendant count;
+- BaseParts;
+- MeshParts;
+- collisions;
+- anchored state;
+- lights;
+- shadow lights;
+- particle emitters;
+- sounds;
+- pathfinding;
+- streaming implications;
+- duplicated geometry;
+- expensive scripts.
+
+Optimize intelligently rather than reducing the world to low visual quality.
+
+============================================================
+SAFE SOURCE-OF-TRUTH WORKFLOW
+============================================================
+
+Filesystem/Rojo remains the persistent source of truth for approved work.
+
+BUT:
+
+Rojo is NOT permission to destroy Studio state.
+
+Before potentially destructive synchronization:
+- inspect what will change;
+- preserve recovery evidence;
+- verify source completeness;
+- verify the intended world root;
+- ensure the rejected archived world is not accidentally promoted;
+- ensure unrelated Studio work will not be destroyed.
+
+Never perform a blind destructive sync.
+
+Create physical recovery checkpoints during meaningful milestones.
+
+============================================================
+STUDIO DISCIPLINE
+============================================================
+
+Freshly discover the active Roblox Studio instance when required.
+
+Never rely blindly on stale studio IDs.
+
+For Play QA:
+
+START PLAY
+→ verify Play
+→ perform intended QA
+→ STOP PLAY
+→ verify Edit
+
+No Play session may be left running.
+
+Do filesystem work only when Studio is verified back in Edit.
+
+============================================================
+VISUAL QA IS MANDATORY
+============================================================
+
+A technical PASS does NOT mean the world looks good.
+
+Muse must perform real visual inspection.
+
+Capture meaningful views including:
+- player-level spawn/initial experience;
+- major forest;
+- bunker approach;
+- long-distance world view;
+- landmark view;
+- representative traversal route;
+- any weak/problematic region.
+
+Muse must inspect the actual visual evidence.
+
+Specifically look for:
+- flatness;
+- blockiness;
+- repeated assets;
+- grid placement;
+- unnatural tree spacing;
+- obvious wedges;
+- floating geometry;
+- buried geometry;
+- ugly silhouettes;
+- empty ground;
+- bad scale;
+- excessive clutter;
+- weak composition;
+- bunker/terrain mismatch;
+- bad lighting;
+- insufficient atmospheric depth;
+- Roblox prototype appearance.
+
+If visually weak:
+REJECT IT.
+FIX IT.
+CAPTURE AGAIN.
+REVIEW AGAIN.
+
+Do not manufacture VISUAL_QA=PASS.
+
+============================================================
+EXECUTION PHASES
+============================================================
+
+Proceed autonomously through:
+
+PHASE 1
+Safety, references, Asset Library, gameplay-contract inspection.
+
+PHASE 2
+New world topology and spatial plan.
+
+PHASE 3
+New terrain implementation.
+
+PHASE 4
+Forest and vegetation.
+
+PHASE 5
+Rocks and natural formations.
+
+PHASE 6
+Landmarks and environmental storytelling.
+
+PHASE 7
+Bunker/environment integration.
+
+PHASE 8
+Wildlife and environmental behavior.
+
+PHASE 9
+Gameplay/resource/spawn integration.
+
+PHASE 10
+Lighting, atmosphere and presentation.
+
+PHASE 11
+BloxForge technical QA and fixes.
+
+PHASE 12
+Controlled Play QA and fixes.
+
+PHASE 13
+Muse visual QA.
+
+PHASE 14
+Visual revision pass.
+
+Repeat visual QA/revision until the result genuinely satisfies the intended quality bar.
+
+PHASE 15
+Final integration and verification.
+
+Do not stop after planning.
+Do not stop after terrain.
+Do not stop after technical QA.
+Do not call the project complete merely because scripts run.
+
+============================================================
+FINAL EVIDENCE
+============================================================
+
+At completion report only evidence that actually exists:
+
+MUSE_INVOKED=
+MUSE_INVOCATION_ID=
+
+QWEN_INVOKED=
+QWEN_INVOCATION_ID=
+QWEN_REFERENCE_SOURCE=
+
+MIMO_INVOKED=
+MIMO_INVOCATION_ID=
+
+ROBLOX_ASSISTANT_INVOKED=
+ROBLOX_ASSISTANT_INVOCATION_ID=
+
+BLOXFORGE_INVOKED=
+BLOXFORGE_REQUEST_ID=
+
+MUSE_FINAL_REVIEW=
+
+ASSET_LIBRARY_SEARCHED=
+ASSET_LIBRARY_REGISTERED=
+ASSET_FAMILY=
+ASSET_VARIANTS=
+
+ROJO_PERSISTENCE=
+STUDIO_VERIFICATION=
+STUDIO_FINAL_MODE=
+
+TECH_QA=
+PLAY_QA=
+VISUAL_QA=
+
+NEW_WORLD_CREATED=
+OLD_REJECTED_WORLD_REUSED=
+
+NEW_WORLD_CREATED must be YES for success.
+OLD_REJECTED_WORLD_REUSED must be NO for success.
+
+If a tool was unavailable or was not invoked, report NO/UNKNOWN.
+Never fabricate YES.
+
+============================================================
+DIRECTOR SUCCESS CONDITION
+============================================================
+
+Success is NOT:
+"12 checkpoints passed."
+
+Success is:
+
+A genuinely new, large, visually convincing survival world exists in Roblox Studio, follows the approved visual direction, feels natural and intentionally composed, preserves the required gameplay, has been technically tested, Play-tested and visually reviewed, and does not reuse the rejected archived GameWorld as the new environment.
+
+Begin now and continue autonomously.

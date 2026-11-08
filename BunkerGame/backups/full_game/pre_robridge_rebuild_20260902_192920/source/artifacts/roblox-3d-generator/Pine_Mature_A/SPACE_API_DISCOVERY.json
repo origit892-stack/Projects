@@ -1,0 +1,51 @@
+{
+  "SPACE_CONNECTED": "YES",
+  "API_DISCOVERED": "YES",
+  "SPACE_ID": "ThomasSimonini/Roblox-3D-Assets-Generator-v1",
+  "SPACE_URL": "https://huggingface.co/spaces/ThomasSimonini/Roblox-3D-Assets-Generator-v1",
+  "API_ENDPOINTS": {
+    "/check_input_image": {
+      "params": ["input_image"],
+      "returns": [],
+      "description": "Validates input image"
+    },
+    "/preprocess": {
+      "params": ["input_image", "do_remove_background"],
+      "returns": ["processed_image"],
+      "description": "Removes background if requested, returns processed image"
+    },
+    "/generate_mvs": {
+      "params": ["input_image", "sample_steps", "sample_seed"],
+      "returns": ["generated_multiviews"],
+      "description": "Generates 6-view multiview image via InstantMesh diffusion, varying by seed"
+    },
+    "/make3d": {
+      "params": [],
+      "returns": ["output_model_obj_format", "output_model_glb_format"],
+      "description": "Reconstructs 3D mesh from multiview via InstantMesh, using server-side state from generate_mvs"
+    }
+  },
+  "INPUT_SCHEMA": {
+    "reference_image": "Path to reference image (PNG/JPG/WEBP) - passed as handle_file",
+    "remove_background": "bool, default true (Checkbox)",
+    "seed": "int, default 42 (Number, precision 0)",
+    "sample_steps": "float/int, default 75, min 30 max 75 step 5 (Slider)"
+  },
+  "OUTPUT_SCHEMA": {
+    "processed_reference": "Image (webp) - background-removed, from /preprocess",
+    "generated_multiview": "Image (webp) - 6-view grid, from /generate_mvs",
+    "obj": "Model3D filepath (OBJ + MTL if present), from /make3d first output",
+    "glb": "Model3D filepath (GLB), from /make3d second output",
+    "seed": "int - echoed generation seed",
+    "metadata": "JSON with timing, params, sizes, view_api, logs",
+    "logs": "Text log per generation"
+  },
+  "DISCOVERED_VIA": "gradio_client.Client.view_api(return_format='dict') + config.dependencies",
+  "CONFIG_DEPENDENCIES": [
+    {"id": 0, "api_name": "check_input_image", "inputs": [5], "outputs": []},
+    {"id": 1, "api_name": "preprocess", "inputs": [5, 9], "outputs": [6]},
+    {"id": 2, "api_name": "generate_mvs", "inputs": [6, 11, 10], "outputs": [29, 18]},
+    {"id": 3, "api_name": "make3d", "inputs": [29], "outputs": [21, 24]}
+  ],
+  "NOTES": "Stateful pipeline: preprocess -> generate_mvs (consumes ZeroGPU 60s) -> make3d uses server-side state (id 29). Must reuse same Client instance per generation. handle_file required for image uploads (gradio_client 2.6.1). ZeroGPU free quota approx 120s/day; 2x75-step generations exhaust free tier, third seed blocked until quota reset or PRO."
+}

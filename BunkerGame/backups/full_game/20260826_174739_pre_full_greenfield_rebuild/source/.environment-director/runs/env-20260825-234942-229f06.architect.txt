@@ -1,0 +1,57 @@
+RUN_ID=env-20260825-234942-229f06
+STAGE=ARCHITECT
+TIMEOUT=300
+[0m
+[0m$ [0m"/Users/Ori/.aftman/bin/rojo" --version
+Rojo 7.7.0
+[0m
+> studio · gpt-5.6-terra-fast
+[0m
+[0m# [0mTodos
+[✓] Inspect the open Bunker Game place and target Workshop hierarchy
+[✓] Inspect Rojo project source for the Workshop authoring path
+[•] Produce a read-only Workshop implementation plan for the next stage
+[ ] Report planning evidence and blockers without modifying anything
+[0m
+[0m⚙ [0mroblox-studio_get_studio_state {"studio_id":"2c6bd625-0476-4f81-8043-2d966786374e"}
+[0m
+[0m# [0mTodos
+[✓] Inspect the open Bunker Game place and target Workshop hierarchy
+[✓] Inspect Rojo project source for the Workshop authoring path
+[✓] Produce a read-only Workshop implementation plan for the next stage
+[✓] Report planning evidence and blockers without modifying anything
+[0m
+## ARCHITECT plan — Workshop
+
+**Evidence**
+- Open place: **Bunker Game** (placeId `129695090105158`), confirmed **Edit** mode.
+- Workshop bounds: center `(-27.23, 59.46, 49.36)`, size `16.74 × 11.03 × 15.22`.
+- Preserve: `Architecture.WorkshopShell`, `Corridors.WorkshopDestinationFrame`, and 13 existing collision-bearing Workshop parts.
+- Protect external gameplay anchors:
+  - Supply crate prompt at `(-27.8, 55.25, 54.23)` — `OPEN`, 7.5 studs.
+  - Weapon workbench prompt at `(-29, 58.1, 46.05)` — `INSPECT`, 8 studs, `GameplayTargetId=legacy_weapon_upgrade`.
+
+**Implementation plan**
+1. **Keep topology untouched.** Do not alter shell, doorway frame, prompt hosts, prompt properties, or traversal collision. All new visual dressing defaults to anchored, non-colliding, non-querying, and non-touching.
+2. **Create clear visual zones using existing Workshop components:**
+   - **South repair focal:** strengthen `IndustrialRepairBench` as the hero silhouette with a restrained junction box, vent, pipe run, task clutter, and a stronger backboard hierarchy.
+   - **North logistics zone:** improve `NorthPartsRack` and surrounding storage; use the ammo-crate asset only as non-interactive dressing and preserve the supply-crate prompt sightline/approach.
+   - **West utility zone:** tie `WestCylinderServiceRack` into the extraction system using the valve, rusty pipe, and vent assets.
+   - **Overhead service spine:** visually connect `WorkshopExtractionArm` and `WorkshopOverheadServices` with ordered conduit/cable-tray language while retaining head clearance.
+   - **Entry read:** add a side-mounted maintenance designation and threshold support detail without narrowing `WorkshopDestinationFrame`.
+3. **Material/story pass:** retain the existing dark concrete, metal, corroded metal, diamond plate, rubber, and wood palette; use controlled corrosion, worn green machinery paint, grime strips, and hazard-yellow route markings to distinguish work, storage, and access zones. Avoid high-count decals or transparent overlays.
+4. **Lighting/atmosphere:** retain and tune the existing external `WorkshopEntryFill` and `WorkshopBenchTaskLight` practicals; add at most one small static, low-range maintenance-fault practical if needed. No scripts or broad/global lighting changes.
+5. **Asset policy:** reuse only the registered junction box, valve assembly, vent grille, rusty pipe, and non-interactive ammo crate. No Asset Factory request is needed.
+6. **Filesystem/Rojo execution:** update the generator path that exports `build_workshop`, plus the confirmed environment-rework builder only where supplemental reusable assets are authored; regenerate `src/Workspace/Rebuild/NewBunker.model.json`, then validate with canonical Rojo 7.7.0. Do not hand-author permanent Studio changes.
+
+**Future QA gates**
+- Diff prompt host positions/properties and all 13 traversal colliders before/after.
+- Verify doorway width and clear aisle in Play; activate both Workshop prompts with line of sight.
+- Capture entry, bench, and logistics views; stop Play and confirm Edit-only state.
+- Submit captures, changed-file list, asset-use list, and QA evidence to **DIRECTOR_REVIEW** without self-approval.
+
+**Files changed:** none.  
+**Blockers:** none; implementation is intentionally deferred by the read-only ARCHITECT stage.
+
+ENV_STAGE_RESULT=PASS
+

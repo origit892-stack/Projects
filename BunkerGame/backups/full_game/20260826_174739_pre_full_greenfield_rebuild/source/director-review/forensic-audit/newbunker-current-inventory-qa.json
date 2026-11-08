@@ -1,0 +1,38 @@
+{
+  "current_studio_descendant_count": 1852,
+  "inventory_row_count": 1852,
+  "inventory_class_counts": {
+    "Model": 261,
+    "Part": 1536,
+    "PointLight": 27,
+    "ProximityPrompt": 8,
+    "WedgePart": 20
+  },
+  "studio_expected_class_counts": {
+    "Model": 261,
+    "Part": 1536,
+    "WedgePart": 20,
+    "PointLight": 27,
+    "ProximityPrompt": 8
+  },
+  "count_match": true,
+  "source_descendant_count": 1857,
+  "source_live_drift_count": 5,
+  "excluded_source_only_paths": [
+    "Workspace.Rebuild.NewBunker.EnvironmentDetails.ConcreteMoistureAndRepairBreaks.BedroomLeakSheen",
+    "Workspace.Rebuild.NewBunker.EnvironmentDetails.ConcreteMoistureAndRepairBreaks.ServiceRunoffSheen",
+    "Workspace.Rebuild.NewBunker.EnvironmentDetails.ConcreteMoistureAndRepairBreaks.StorageDrainSheen",
+    "Workspace.Rebuild.NewBunker.Lighting.EntranceAndServiceLighting.SouthConnectorPractical.DeadTubeEnd",
+    "Workspace.Rebuild.NewBunker.Lighting.WorkAndMaintenanceLighting.WorkshopEntryFill.DeadTubeEnd"
+  ],
+  "studio_root_pivot": [
+    -1.5,
+    61.5,
+    70.25
+  ],
+  "notes": [
+    "CURRENT means the connected Roblox Studio Edit DataModel.",
+    "No NewBunker MeshParts, Beams, Attachments, Sounds, Decals, Textures, VFX, tags, or embedded LuaSourceContainers were present in Studio.",
+    "Runtime-created objects/attributes such as BunkerPowerPrompt are dependencies, not Edit-state descendants."
+  ]
+}

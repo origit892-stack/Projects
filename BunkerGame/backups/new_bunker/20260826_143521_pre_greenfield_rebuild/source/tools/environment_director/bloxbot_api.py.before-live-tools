@@ -1,0 +1,343 @@
+#!/usr/bin/env python3
+
+import base64
+import json
+import subprocess
+import sys
+import time
+import urllib.parse
+import urllib.request
+import urllib.error
+
+PROJECT = "/Users/Ori/Documents/Projects/BunkerGame"
+SERVER = "http://127.0.0.1:4096"
+
+def get_auth():
+    out = subprocess.run(
+        ["/bin/ps", "-ax", "-o", "pid=", "-o", "command="],
+        text=True,
+        capture_output=True,
+        check=True,
+    ).stdout
+
+    pid = None
+
+    for line in out.splitlines():
+        if "opencode serve" in line:
+            pid = line.strip().split(None, 1)[0]
+            break
+
+    if not pid:
+        raise RuntimeError("OpenCode server not running")
+
+    env = subprocess.run(
+        ["/bin/ps", "eww", "-p", pid],
+        text=True,
+        capture_output=True,
+        check=True,
+    ).stdout.splitlines()[-1]
+
+    user = None
+    password = None
+
+    for item in env.split():
+        if item.startswith("OPENCODE_SERVER_USERNAME="):
+            user = item.split("=", 1)[1]
+
+        if item.startswith("OPENCODE_SERVER_PASSWORD="):
+            password = item.split("=", 1)[1]
+
+    if not user or not password:
+        raise RuntimeError("OpenCode authentication unavailable")
+
+    return user, password
+
+USER, PASSWORD = get_auth()
+
+AUTH = base64.b64encode(
+    f"{USER}:{PASSWORD}".encode()
+).decode()
+
+def request(method, path, body=None, timeout=20):
+    headers = {
+        "Accept": "application/json",
+        "Authorization": "Basic " + AUTH,
+    }
+
+    data = None
+
+    if body is not None:
+        data = json.dumps(body).encode()
+        headers["Content-Type"] = "application/json"
+
+    req = urllib.request.Request(
+        SERVER + path,
+        data=data,
+        headers=headers,
+        method=method,
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            raw = r.read()
+
+            if not raw:
+                return None
+
+            return json.loads(raw.decode())
+
+    except urllib.error.HTTPError as e:
+        raw = e.read().decode(errors="replace")
+        raise RuntimeError(
+            f"HTTP {e.code} {method} {path}: {raw}"
+        )
+
+def q(path):
+    return (
+        path
+        + "?directory="
+        + urllib.parse.quote(PROJECT, safe="")
+    )
+
+def create_session():
+    body = {
+        "title": "Environment Director API specialist",
+        "permission": [
+            {
+                "permission": "*",
+                "pattern": "*",
+                "action": "allow",
+            }
+        ],
+    }
+
+    session = request(
+        "POST",
+        q("/session"),
+        body,
+    )
+
+    if session.get("directory") != PROJECT:
+        raise RuntimeError(
+            "Wrong session directory: "
+            + repr(session.get("directory"))
+        )
+
+    return session["id"]
+
+def submit_async(sid, prompt):
+    body = {
+        "variant": "max",
+        "parts": [
+            {
+                "type": "text",
+                "text": prompt,
+            }
+        ],
+    }
+
+    request(
+        "POST",
+        q(f"/session/{sid}/prompt_async"),
+        body,
+    )
+
+def permissions(sid):
+    result = request(
+        "GET",
+        q("/permission"),
+    )
+
+    return [
+        x for x in (result or [])
+        if x.get("sessionID") == sid
+    ]
+
+def approve_permissions(sid):
+    pending = permissions(sid)
+
+    for item in pending:
+        rid = item.get("id")
+
+        if not rid:
+            continue
+
+        print(
+            "BLOXBOT_PERMISSION_AUTO_APPROVE="
+            + rid,
+            flush=True,
+        )
+
+        request(
+            "POST",
+            q(f"/permission/{rid}/reply"),
+            {
+                "reply": "always",
+                "message": (
+                    "Authorized Environment Director "
+                    "specialist session."
+                ),
+            },
+        )
+
+def questions(sid):
+    result = request(
+        "GET",
+        q("/question"),
+    )
+
+    return [
+        x for x in (result or [])
+        if x.get("sessionID") == sid
+    ]
+
+def status(sid):
+    all_status = request(
+        "GET",
+        q("/session/status"),
+    ) or {}
+
+    return all_status.get(
+        sid,
+        {"type": "idle"},
+    )
+
+def messages(sid):
+    return request(
+        "GET",
+        q(f"/session/{sid}/message")
+        + "&limit=100",
+    ) or []
+
+def assistant_text(sid):
+    chunks = []
+
+    for msg in messages(sid):
+        info = msg.get("info", {})
+
+        if info.get("role") != "assistant":
+            continue
+
+        for part in msg.get("parts", []):
+            if part.get("type") == "text":
+                text = part.get("text", "")
+
+                if text:
+                    chunks.append(text)
+
+    return "\n".join(chunks)
+
+def run(prompt, timeout):
+    sid = create_session()
+
+    print(
+        "BLOXBOT_API_SESSION=" + sid,
+        flush=True,
+    )
+
+    print(
+        "BLOXBOT_API_DIRECTORY=" + PROJECT,
+        flush=True,
+    )
+
+    submit_async(sid, prompt)
+
+    print(
+        "BLOXBOT_PROMPT_ACCEPTED=PASS",
+        flush=True,
+    )
+
+    started = time.monotonic()
+    seen_busy = False
+
+    while True:
+        elapsed = int(
+            time.monotonic() - started
+        )
+
+        if elapsed >= timeout:
+            request(
+                "POST",
+                q(f"/session/{sid}/abort"),
+                {},
+            )
+
+            raise RuntimeError(
+                f"BloxBot timeout after {timeout}s"
+            )
+
+        approve_permissions(sid)
+
+        pending_questions = questions(sid)
+
+        if pending_questions:
+            print(
+                "BLOXBOT_PENDING_QUESTION="
+                + json.dumps(
+                    pending_questions,
+                    ensure_ascii=False,
+                ),
+                flush=True,
+            )
+
+            request(
+                "POST",
+                q(f"/session/{sid}/abort"),
+                {},
+            )
+
+            raise RuntimeError(
+                "Agent requested human input"
+            )
+
+        current = status(sid)
+        state = current.get("type", "unknown")
+
+        if state in ("busy", "retry"):
+            seen_busy = True
+
+        print(
+            f"BLOXBOT_HEARTBEAT={elapsed}s "
+            f"STATUS={state}",
+            flush=True,
+        )
+
+        if state == "idle" and seen_busy:
+            break
+
+        time.sleep(2)
+
+    text = assistant_text(sid)
+
+    if text:
+        print(text, flush=True)
+
+    print(
+        "BLOXBOT_API_COMPLETE=PASS",
+        flush=True,
+    )
+
+    return text
+
+def main():
+    if len(sys.argv) < 2:
+        raise SystemExit(
+            "usage: bloxbot_api.py PROMPT_FILE [TIMEOUT]"
+        )
+
+    prompt = open(
+        sys.argv[1],
+        "r",
+        encoding="utf-8",
+    ).read()
+
+    timeout = (
+        int(sys.argv[2])
+        if len(sys.argv) > 2
+        else 900
+    )
+
+    run(prompt, timeout)
+
+if __name__ == "__main__":
+    main()

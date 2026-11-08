@@ -1,0 +1,6 @@
+/Users/Ori/Documents/Projects/BunkerGame/src/ServerStorage/GeneratedAssets/bunker_electrical_junction_box_01.model.json
+/Users/Ori/Documents/Projects/BunkerGame/src/ServerStorage/GeneratedAssets/bunker_valve_assembly_01.model.json
+/Users/Ori/Documents/Projects/BunkerGame/src/ServerStorage/GeneratedAssets/bunker_vent_grille_01.model.json
+/Users/Ori/Documents/Projects/BunkerGame/src/ServerStorage/GeneratedAssets/natural_boulder_sandstone_01.model.json
+/Users/Ori/Documents/Projects/BunkerGame/src/ServerStorage/GeneratedAssets/old_military_ammo_crate_01.model.json
+/Users/Ori/Documents/Projects/BunkerGame/src/ServerStorage/GeneratedAssets/pipeline_pipe_retry_02.model.json

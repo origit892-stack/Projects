@@ -1,0 +1,16 @@
+{
+  "request_id": "test-c-connected",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_tool": "get_connected_instances",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"instances\":[{\"instanceId\":\"place:129695090105158\",\"role\":\"edit\",\"placeId\":129695090105158,\"placeName\":\"Bunker Game\",\"dataModelName\":\"Bunker Game\",\"isRunning\":false,\"pluginVersion\":\"4.3.1\",\"pluginVariant\":\"main\",\"pluginProtocolVersion\":3,\"serverVersion\":\"4.3.1\",\"serverProtocolVersion\":3,\"versionMismatch\":false,\"protocolMismatch\":false,\"lastActivity\":1788207489711,\"connectedAt\":1788077501802}],\"count\":1}"
+      }
+    ]
+  },
+  "completed_at": "2026-08-31T20:18:10Z"
+}

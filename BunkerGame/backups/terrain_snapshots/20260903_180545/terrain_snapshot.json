@@ -1,0 +1,47 @@
+{
+  "timestamp": "20260903_180545",
+  "place_id": null,
+  "voxel_resolution": 4,
+  "bounds": {
+    "min": [-300, 0, -250],
+    "max": [300, 50, 250]
+  },
+  "total_bounds_dimensions": {
+    "x_studs": 600,
+    "y_studs": 50,
+    "z_studs": 500,
+    "voxel_columns": 18900
+  },
+  "sample_tile_bounds": {
+    "min": [-12, 0, -12],
+    "max": [10, 50, 10],
+    "size_studs": {"x": 24, "y": 52, "z": 24},
+    "voxels": {"x": 6, "y": 13, "z": 6}
+  },
+  "sample_materials": [
+    ["Ground","Ground","Ground","Ground","Ground","Ground"],
+    ["Ground","Ground","Ground","Ground","Ground","Ground"],
+    ["Ground","Ground","Ground","Ground","Ground","Ground"],
+    ["Ground","Ground","Ground","Ground","Ground","Ground"],
+    ["Ground","Ground","Ground","Ground","Ground","Ground"],
+    ["Ground","Ground","Ground","Ground","Ground","Ground"]
+  ],
+  "sample_occupancy": [
+    [1,1,1,1,1,1],
+    [1,1,1,1,1,1],
+    [1,1,1,1,1,1],
+    [1,1,1,1,1,1],
+    [1,1,1,1,1,1],
+    [1,1,1,1,1,1]
+  ],
+  "material_types_seen": ["Ground","Grass","Air"],
+  "material_counts_sample": {
+    "Ground": 36,
+    "Grass": 0,
+    "Air": 0
+  },
+  "non_air_sample_count": 36,
+  "read_method": "RoBridge mcp__robridge__manage_terrain:read_voxels",
+  "snapshot_complete": false,
+  "note": "Sample tile only. Full terrain requires batched reads over 18900 voxel columns."
+}

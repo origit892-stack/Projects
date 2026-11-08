@@ -1,0 +1,27 @@
+name: HPCAI
+version: 1.0.0
+schema: v1
+
+models:
+  - name: HPCAI - Qwen 3.8
+    provider: openai
+    model: Qwen/Qwen3.8-27B
+    apiBase: http://132.76.227.17:8000/v1
+    apiKey: local-qwen-test
+    roles:
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      temperature: 0.1
+      contextLength: 262144
+      maxTokens: 32768
+
+mcpServers:
+  - name: RoBridge
+    type: stdio
+    command: /opt/homebrew/bin/node
+    args:
+      - /Users/Ori/RoBridge/dist/index.js
+      - mcp
+    connectionTimeout: 30000

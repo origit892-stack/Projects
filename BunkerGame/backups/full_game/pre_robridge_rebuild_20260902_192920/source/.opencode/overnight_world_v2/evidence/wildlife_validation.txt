@@ -1,0 +1,84 @@
+CP06 WILDLIFE IMPLEMENTATION — VALIDATION LOG
+==============================================
+Date: 2026-08-31
+Status: IMPLEMENTATION_COMPLETE
+
+FILES CHANGED
+-------------
+1. src/ServerScriptService/Game/Services/WildlifeService.luau (NEW)
+   - Server-authoritative ambient wildlife service
+   - 377 lines, ~12.6 KB
+
+2. src/ServerScriptService/Game/ServerBootstrap.server.luau (MODIFIED)
+   - Added WildlifeService import and ServiceBag registration
+
+3. src/Workspace/GameWorld.model.json (MODIFIED)
+   - Added Wildlife model inside Exterior with 8 anchor parts
+
+PART COUNT
+----------
+Source-of-truth anchor parts (in GameWorld.Exterior.Wildlife):
+  - 5 deer anchors (DeerAnchor1-5, invisible, CanCollide false)
+  - 3 bird path anchors (BirdPath1-3, invisible, CanCollide false)
+  Total: 8 anchor parts
+
+Runtime instantiated parts (created at service Start, destroyed at Stop):
+  - 5 deer models x 6 parts each (Body, Head, Neck, 4 Legs) = 30 parts
+  - 3 bird parts = 3 parts
+  Total runtime: 33 parts
+
+Combined new parts: 8 (permanent) + 33 (runtime) = 41 parts
+Performance budget: GameWorldMaximumBaseParts = 2500
+Remaining headroom: ~2459 parts (well within budget)
+
+HOW MOVEMENT WORKS
+------------------
+Tick rate: 3-second interval via task.delay loop (NOT RunService.Heartbeat)
+Deer movement: TweenService CFrame tween between deterministic waypoints
+  - Speed: 5 studs/sec (slow walk)
+  - Waypoints: 10 fixed positions across west/east forest zones
+  - Each deer cycles through its assigned waypoints deterministically
+  - No per-frame AI computation
+Bird movement: TweenService CFrame linear traversal
+  - Speed: 18 studs/sec
+  - Period: 45 seconds between crossings
+  - Direction alternates each crossing
+  - Y altitude: 75 (high overhead, distant)
+
+DETERMINISTIC COMPLIANCE
+------------------------
+- All waypoint positions are hardcoded constants (no math.random)
+- RuntimeRandomness attribute on GameWorld: false (compliant)
+- Deer start indices: fixed array { 1, 3, 5, 7, 9 }
+- Bird paths: fixed start/end coordinates
+- Tween timing: deterministic distance/speed calculation
+
+COLLISION AVOIDANCE (Bunker/Paths)
+-----------------------------------
+All wildlife is placed in forest perimeters:
+  West forest: X -140 to -195, Z 0-140
+  East forest: X 160-220, Z -30 to 70
+
+Bunker footprint (verified from GameWorld.model.json):
+  - Bunker walls: X -62 to +58, Z 14 to 152
+  - Closest wildlife anchor: DeerAnchor1 at X=-155 (93 studs from bunker wall)
+  - DeerAnchor3 at X=-185, Z=85 (123 studs from bunker wall)
+  - All anchors CanCollide=false, Transparency=1.0
+
+No wildlife can block bunker doors or navigation paths.
+
+AST VALIDATION
+--------------
+bds ast WildlifeService.luau: HAS_ERROR=False
+bds ast ServerBootstrap.server.luau: HAS_ERROR=False
+
+ROJO SOURCEMAP
+--------------
+$HOME/.aftman/bin/rojo sourcemap: SUCCESS
+WildlifeService appears in sourcemap under:
+  ServerScriptService.Game.Services.WildlifeService
+
+EXTERIOR VERIFICATION
+---------------------
+Wildlife model is child of GameWorld.Exterior (confirmed via JSON parse)
+Exterior children: GroundCover, Paths, Landmarks, TerrainShelf, ForestDressing, Wildlife

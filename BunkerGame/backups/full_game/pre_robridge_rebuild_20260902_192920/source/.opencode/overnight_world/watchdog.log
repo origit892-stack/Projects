@@ -1,0 +1,105 @@
+[2026-08-30 23:33:07] ============================================================
+[2026-08-30 23:33:07] OVERNIGHT WORLD WATCHDOG START
+[2026-08-30 23:33:07] PID=78262
+[2026-08-30 23:33:07] ROOT=/Users/Ori/Documents/Projects/BunkerGame
+[2026-08-30 23:33:07] ============================================================
+[2026-08-30 23:33:07] STATE=PREFLIGHT
+[2026-08-30 23:33:11] MCP_HEALTH=FAIL
+[0m
+┌  MCP Servers
+│
+●  ✓ roblox-studio [90mconnected
+│      [90m/Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+│
+●  ✓ bloxforge [90mconnected
+│      [90mnpx -y @princeofscale/bloxforge@latest
+│
+└  2 server(s)
+
+[2026-08-30 23:33:11] MCP recovery attempt 1/5
+[2026-08-30 23:33:27] MCP_HEALTH=FAIL
+[0m
+┌  MCP Servers
+│
+●  ✓ roblox-studio [90mconnected
+│      [90m/Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+│
+●  ✓ bloxforge [90mconnected
+│      [90mnpx -y @princeofscale/bloxforge@latest
+│
+└  2 server(s)
+
+[2026-08-30 23:33:27] MCP recovery attempt 2/5
+[2026-08-30 23:33:44] MCP_HEALTH=FAIL
+[0m
+┌  MCP Servers
+│
+●  ✓ roblox-studio [90mconnected
+│      [90m/Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+│
+●  ✓ bloxforge [90mconnected
+│      [90mnpx -y @princeofscale/bloxforge@latest
+│
+└  2 server(s)
+
+[2026-08-30 23:33:44] MCP recovery attempt 3/5
+[2026-08-30 23:34:01] MCP_HEALTH=FAIL
+[0m
+┌  MCP Servers
+│
+●  ✓ roblox-studio [90mconnected
+│      [90m/Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+│
+●  ✓ bloxforge [90mconnected
+│      [90mnpx -y @princeofscale/bloxforge@latest
+│
+└  2 server(s)
+
+[2026-08-30 23:34:01] MCP recovery attempt 4/5
+[2026-08-30 23:34:18] MCP_HEALTH=FAIL
+[0m
+┌  MCP Servers
+│
+●  ✓ roblox-studio [90mconnected
+│      [90m/Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+│
+●  ✓ bloxforge [90mconnected
+│      [90mnpx -y @princeofscale/bloxforge@latest
+│
+└  2 server(s)
+
+[2026-08-30 23:34:18] MCP recovery attempt 5/5
+[2026-08-30 23:34:18] STATE=BLOCKED_MCP
+[2026-08-30 23:34:18] error debug maxed out
+[2026-08-30 23:36:22] ============================================================
+[2026-08-30 23:36:22] OVERNIGHT WORLD WATCHDOG START
+[2026-08-30 23:36:22] PID=78832
+[2026-08-30 23:36:22] ROOT=/Users/Ori/Documents/Projects/BunkerGame
+[2026-08-30 23:36:22] ============================================================
+[2026-08-30 23:36:22] STATE=PREFLIGHT
+[2026-08-30 23:36:24] MCP_HEALTH=PASS roblox-studio=connected bloxforge=connected
+Rojo 7.7.0
+[2026-08-30 23:36:24] Running Rojo sourcemap checkpoint.
+Created sourcemap at /Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world/checkpoints/sourcemap_20260830_233624.json
+[2026-08-30 23:36:24] Running Rojo build checkpoint.
+Building project 'BunkerGame'
+Built project to world_20260830_233624.rbxlx
+[2026-08-30 23:36:24] ROJO_CHECKPOINT=PASS sourcemap=/Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world/checkpoints/sourcemap_20260830_233624.json build=/Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world/checkpoints/world_20260830_233624.rbxlx
+[2026-08-30 23:36:25] BASELINE_ROJO_VALIDATION=PASS
+[2026-08-30 23:36:25] STATE=RUNNING_ATTEMPT_1
+[2026-08-30 23:36:25] Starting Muse world execution attempt=1 output=/Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world/runs/world_attempt_1_20260830_233625.jsonl
+[2026-08-30 23:36:25] Muse run PID=78925
+[2026-08-30 23:48:25] Muse attempt=1 exited rc=0
+[2026-08-30 23:48:26] Agent reported all required gates. Running independent local Rojo validation.
+[2026-08-30 23:48:26] Running Rojo sourcemap checkpoint.
+Created sourcemap at /Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world/checkpoints/sourcemap_20260830_234826.json
+[2026-08-30 23:48:26] Running Rojo build checkpoint.
+Building project 'BunkerGame'
+Built project to world_20260830_234826.rbxlx
+[2026-08-30 23:48:26] ROJO_CHECKPOINT=PASS sourcemap=/Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world/checkpoints/sourcemap_20260830_234826.json build=/Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world/checkpoints/world_20260830_234826.rbxlx
+[2026-08-30 23:48:26] INDEPENDENT_ROJO_VALIDATION=PASS
+[2026-08-30 23:48:29] MCP_HEALTH=PASS roblox-studio=connected bloxforge=connected
+[2026-08-30 23:48:29] STATE=PASS
+[2026-08-30 23:48:29] OVERNIGHT_WORLD_BUILD=PASS
+[2026-08-30 23:48:29] DIRECTOR_CHECKPOINT=READY
+[2026-08-30 23:48:29] Overnight world build completed successfully.

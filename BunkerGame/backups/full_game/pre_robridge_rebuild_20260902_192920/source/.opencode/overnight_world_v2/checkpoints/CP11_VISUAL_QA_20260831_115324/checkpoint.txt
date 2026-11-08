@@ -1,0 +1,2 @@
+Visual QA PASS — 3 captures (top-down, bunker portal, west forest) show scale 640, terrain berm embedded, forest non-grid 18 trees +62 dressing, paths 17, landmarks 6, bunker portal strong focal, lighting daylight but creepy desaturated, wildlife distant pooled, no floating, wedge primitive noted P2, deer desync P2, overall cohesive creepy survival
+2026-08-31 11:53:23

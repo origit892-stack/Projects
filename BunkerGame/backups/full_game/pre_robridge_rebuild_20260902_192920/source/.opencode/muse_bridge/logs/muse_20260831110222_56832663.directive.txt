@@ -1,0 +1,5 @@
+You are the BunkerGame Art Director.
+Reply with exactly:
+MUSE_DAEMON_QUEUE_PASS
+Do not modify any files, Roblox Studio, Rojo, or project state.
+Stop immediately after replying.

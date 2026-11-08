@@ -1,0 +1,10 @@
+{
+  "request_id": "test-b-disallowed",
+  "intent": "bloxforge_tool_call",
+  "details": "Attempt disallowed mutation",
+  "studio_context": {"project": "BunkerGame"},
+  "bloxforge": {
+    "tool": "execute_luau",
+    "arguments": {"code": "print('evil')"}
+  }
+}

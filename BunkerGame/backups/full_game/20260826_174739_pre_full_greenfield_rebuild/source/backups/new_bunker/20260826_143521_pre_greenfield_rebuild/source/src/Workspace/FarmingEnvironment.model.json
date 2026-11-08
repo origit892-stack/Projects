@@ -1,0 +1,4244 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "EnvironmentPass": "VisibleNewBunkerFarmingRework",
+    "PreservesRuntimePlots": true,
+    "PreservesFoodProcessor": true
+  },
+  "Children": [
+    {
+      "Name": "FarmGroundAndTransition",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "FarmEarthPad",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              35.0,
+              0.22,
+              25.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.2,
+              0.18,
+              0.135
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              56.72,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "DampConcreteServiceApron",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              12.0,
+              0.25,
+              12.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Concrete",
+            "Color": [
+              0.22,
+              0.235,
+              0.225
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              82.5,
+              56.74,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "BunkerFarmTransitionTrack",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              15.0,
+              0.2,
+              9.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Concrete",
+            "Color": [
+              0.25,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              49.0,
+              56.7,
+              202.0,
+              0.9902680687415704,
+              0.0,
+              -0.13917310096006544,
+              0.0,
+              1.0,
+              0.0,
+              0.13917310096006544,
+              0.0,
+              0.9902680687415704
+            ]
+          }
+        },
+        {
+          "Name": "TransitionMudA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              7.5,
+              0.025,
+              3.5
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.13,
+              0.12,
+              0.09
+            ],
+            "Transparency": 0.08,
+            "CastShadow": true,
+            "CFrame": [
+              51.5,
+              56.86,
+              204.0,
+              0.9902680687415704,
+              0.0,
+              0.13917310096006544,
+              0.0,
+              1.0,
+              0.0,
+              -0.13917310096006544,
+              0.0,
+              0.9902680687415704
+            ]
+          }
+        },
+        {
+          "Name": "TransitionMudB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              5.5,
+              0.025,
+              2.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Ground",
+            "Color": [
+              0.16,
+              0.14,
+              0.1
+            ],
+            "Transparency": 0.12,
+            "CastShadow": true,
+            "CFrame": [
+              47.0,
+              56.86,
+              200.0,
+              0.981627183447664,
+              0.0,
+              -0.1908089953765448,
+              0.0,
+              1.0,
+              0.0,
+              0.1908089953765448,
+              0.0,
+              0.981627183447664
+            ]
+          }
+        },
+        {
+          "Name": "WestRetainingEdge",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.55,
+              1.0,
+              25.0
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Concrete",
+            "Color": [
+              0.28,
+              0.29,
+              0.27
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              49.2,
+              57.1,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "NorthRetainingEdge",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              35.0,
+              1.0,
+              0.55
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Concrete",
+            "Color": [
+              0.28,
+              0.29,
+              0.27
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              57.1,
+              227.2
+            ]
+          }
+        },
+        {
+          "Name": "SouthRetainingEdge",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              35.0,
+              1.0,
+              0.55
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Concrete",
+            "Color": [
+              0.28,
+              0.29,
+              0.27
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              57.1,
+              202.8
+            ]
+          }
+        },
+        {
+          "Name": "DrainageGravelWest",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.0,
+              0.12,
+              22.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Pebble",
+            "Color": [
+              0.2,
+              0.21,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              50.5,
+              56.88,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "DrainageGravelEast",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.0,
+              0.12,
+              22.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Pebble",
+            "Color": [
+              0.2,
+              0.21,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              79.0,
+              56.88,
+              215.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ImprovisedPlanterConstruction",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "PlanterR1C1West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              53.25,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C1East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              56.75,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C1North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              55.0,
+              57.15,
+              210.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C1South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              55.0,
+              57.15,
+              207.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C2West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              59.25,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C2East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              62.75,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C2North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              61.0,
+              57.15,
+              210.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C2South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              61.0,
+              57.15,
+              207.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C3West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              65.25,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C3East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              68.75,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C3North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              67.0,
+              57.15,
+              210.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C3South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              67.0,
+              57.15,
+              207.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C4West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              71.25,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C4East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              74.75,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C4North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              73.0,
+              57.15,
+              210.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C4South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              73.0,
+              57.15,
+              207.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C5West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              77.25,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C5East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              80.75,
+              57.15,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C5North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              79.0,
+              57.15,
+              210.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR1C5South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              79.0,
+              57.15,
+              207.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C1West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              53.25,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C1East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              56.75,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C1North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              55.0,
+              57.15,
+              216.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C1South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              55.0,
+              57.15,
+              213.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C2West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              59.25,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C2East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              62.75,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C2North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              61.0,
+              57.15,
+              216.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C2South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              61.0,
+              57.15,
+              213.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C3West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              65.25,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C3East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              68.75,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C3North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              67.0,
+              57.15,
+              216.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C3South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              67.0,
+              57.15,
+              213.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C4West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              71.25,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C4East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              74.75,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C4North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              73.0,
+              57.15,
+              216.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C4South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              73.0,
+              57.15,
+              213.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C5West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              77.25,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C5East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              80.75,
+              57.15,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C5North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              79.0,
+              57.15,
+              216.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR2C5South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              79.0,
+              57.15,
+              213.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C1West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              53.25,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C1East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              56.75,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C1North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              55.0,
+              57.15,
+              222.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C1South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              55.0,
+              57.15,
+              219.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C2West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              59.25,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C2East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              62.75,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C2North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              61.0,
+              57.15,
+              222.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C2South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              61.0,
+              57.15,
+              219.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C3West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              65.25,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C3East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              68.75,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C3North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              67.0,
+              57.15,
+              222.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C3South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              67.0,
+              57.15,
+              219.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C4West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              71.25,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C4East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              74.75,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C4North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              73.0,
+              57.15,
+              222.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C4South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              73.0,
+              57.15,
+              219.25
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C5West",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              77.25,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C5East",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.28,
+              0.75,
+              3.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.21,
+              0.245,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              80.75,
+              57.15,
+              221.0
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C5North",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              79.0,
+              57.15,
+              222.75
+            ]
+          }
+        },
+        {
+          "Name": "PlanterR3C5South",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.2,
+              0.75,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "WoodPlanks",
+            "Color": [
+              0.255,
+              0.205,
+              0.145
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              79.0,
+              57.15,
+              219.25
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "IrrigationDistribution",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "RowHeaderNorth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              27.0,
+              0.18,
+              0.18
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              59.1,
+              209.0
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "RowHeaderCenter",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              27.0,
+              0.18,
+              0.18
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              59.1,
+              215.0
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "RowHeaderSouth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              27.0,
+              0.18,
+              0.18
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              59.1,
+              221.0
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "NorthHeaderSupport",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.3,
+              2.0,
+              0.3
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              53.0,
+              58.2,
+              209.0
+            ]
+          }
+        },
+        {
+          "Name": "CenterHeaderSupport",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.3,
+              2.0,
+              0.3
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              53.0,
+              58.2,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "SouthHeaderSupport",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.3,
+              2.0,
+              0.3
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              53.0,
+              58.2,
+              221.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "FarmWaterUtilityFrame",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "WaterFrameWest",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.45,
+              7.0,
+              0.45
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Metal",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              51.0,
+              60.0,
+              203.8
+            ]
+          }
+        },
+        {
+          "Name": "WaterFrameEast",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.45,
+              7.0,
+              0.45
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Metal",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              80.0,
+              60.0,
+              203.8
+            ]
+          }
+        },
+        {
+          "Name": "WaterFrameHeader",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              29.5,
+              0.45,
+              0.45
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Metal",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              65.5,
+              63.3,
+              203.8
+            ]
+          }
+        },
+        {
+          "Name": "PrimaryRecoveredWaterMain",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              28.0,
+              0.42,
+              0.42
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              65.5,
+              62.65,
+              203.9
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "FieldFeedWest",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              18.0,
+              0.26,
+              0.26
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              53.0,
+              60.2,
+              213.5,
+              6.123233995736766e-17,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "FieldFeedEast",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              18.0,
+              0.26,
+              0.26
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              79.0,
+              60.2,
+              213.5,
+              6.123233995736766e-17,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "PrimaryWaterIsolation",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://75117650394533",
+            "Size": [
+              2.5,
+              1.8,
+              1.6
+            ],
+            "CFrame": [
+              52.0,
+              61.0,
+              203.8,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "valve",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://136685065521485",
+                "NormalMap": "rbxassetid://78946883212753",
+                "RoughnessMap": "rbxassetid://81052079342113",
+                "MetalnessMap": "rbxassetid://118332949942821"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "WaterControlJunction",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://138460865383806",
+            "Size": [
+              2.4,
+              2.3,
+              0.95
+            ],
+            "CFrame": [
+              78.5,
+              61.0,
+              203.5,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "junction",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://139579734340579",
+                "NormalMap": "rbxassetid://101009095631637",
+                "RoughnessMap": "rbxassetid://73092764580147",
+                "MetalnessMap": "rbxassetid://129094780313320"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "PlotFieldInfrastructure",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "WestIrrigationCurb",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.45,
+              0.55,
+              17.0
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.16,
+              0.18,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              51.8,
+              57.15,
+              215
+            ]
+          }
+        },
+        {
+          "Name": "EastServiceCurb",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.45,
+              0.55,
+              17.0
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.16,
+              0.18,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              81.2,
+              57.15,
+              215
+            ]
+          }
+        },
+        {
+          "Name": "IrrigationMain",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://71312017003623",
+            "Size": [
+              0.48,
+              0.48,
+              17.5
+            ],
+            "CFrame": [
+              51.6,
+              58.0,
+              215,
+              6.123233995736766e-17,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "rusty_pipe",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://112374676768109",
+                "NormalMap": "rbxassetid://113503962473805"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "IrrigationValve",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://75117650394533",
+            "Size": [
+              2.4,
+              1.8,
+              1.6
+            ],
+            "CFrame": [
+              51.7,
+              58.2,
+              207.0,
+              6.123233995736766e-17,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "valve",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://136685065521485",
+                "NormalMap": "rbxassetid://78946883212753",
+                "RoughnessMap": "rbxassetid://81052079342113",
+                "MetalnessMap": "rbxassetid://118332949942821"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FieldJunctionBox",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://138460865383806",
+            "Size": [
+              2.4,
+              2.3,
+              0.95
+            ],
+            "CFrame": [
+              81.25,
+              59.0,
+              207.5,
+              6.123233995736766e-17,
+              0.0,
+              -1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "junction",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://139579734340579",
+                "NormalMap": "rbxassetid://101009095631637",
+                "RoughnessMap": "rbxassetid://73092764580147",
+                "MetalnessMap": "rbxassetid://129094780313320"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FieldVentGrille",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://129788520191225",
+            "Size": [
+              3.2,
+              2.8,
+              0.58
+            ],
+            "CFrame": [
+              81.15,
+              60.5,
+              222.8,
+              6.123233995736766e-17,
+              0.0,
+              -1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "vent",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://111071233724492",
+                "NormalMap": "rbxassetid://101188069065673",
+                "RoughnessMap": "rbxassetid://133041917278365",
+                "MetalnessMap": "rbxassetid://127496283006416"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "NorthDrain",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              30.0,
+              0.12,
+              0.7
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "DiamondPlate",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              56.95,
+              224.2
+            ]
+          }
+        },
+        {
+          "Name": "SouthDrain",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              30.0,
+              0.12,
+              0.7
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "DiamondPlate",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              56.95,
+              205.8
+            ]
+          }
+        },
+        {
+          "Name": "WetServiceLane",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.0,
+              0.018,
+              17.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Glass",
+            "Color": [
+              0.05,
+              0.08,
+              0.07
+            ],
+            "Transparency": 0.72,
+            "CastShadow": false,
+            "Position": [
+              80.2,
+              56.91,
+              215
+            ]
+          }
+        },
+        {
+          "Name": "WestPlanterFrame",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.3,
+              0.9,
+              18.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.16,
+              0.18,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              53.0,
+              57.4,
+              215
+            ]
+          }
+        },
+        {
+          "Name": "CentralWaterHeader",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              25.0,
+              0.28,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              61.7,
+              204.6
+            ]
+          }
+        },
+        {
+          "Name": "IrrigationBranchNorth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              26.0,
+              0.22,
+              0.22
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              60.4,
+              208.0
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "IrrigationBranchSouth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              26.0,
+              0.22,
+              0.22
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              60.4,
+              222.0
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "GrowRailNorth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              29.0,
+              0.32,
+              0.55
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.16,
+              0.18,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              63.5,
+              208.5
+            ]
+          }
+        },
+        {
+          "Name": "GrowRailSouth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              29.0,
+              0.32,
+              0.55
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.16,
+              0.18,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              66.5,
+              63.5,
+              221.5
+            ]
+          }
+        },
+        {
+          "Name": "GrowGlowNorth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              27.5,
+              0.12,
+              0.22
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Neon",
+            "Color": [
+              0.72,
+              0.83,
+              0.88
+            ],
+            "Transparency": 0.0,
+            "CastShadow": false,
+            "Position": [
+              66.5,
+              63.25,
+              208.5
+            ]
+          },
+          "Children": [
+            {
+              "Name": "GrowPoolNorth",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Enabled": true,
+                "Color": [
+                  0.72,
+                  0.83,
+                  0.88
+                ],
+                "Brightness": 0.8,
+                "Range": 10.0,
+                "Shadows": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "GrowGlowSouth",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              27.5,
+              0.12,
+              0.22
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Neon",
+            "Color": [
+              0.72,
+              0.83,
+              0.88
+            ],
+            "Transparency": 0.0,
+            "CastShadow": false,
+            "Position": [
+              66.5,
+              63.25,
+              221.5
+            ]
+          },
+          "Children": [
+            {
+              "Name": "GrowPoolSouth",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Enabled": true,
+                "Color": [
+                  0.72,
+                  0.83,
+                  0.88
+                ],
+                "Brightness": 0.8,
+                "Range": 10.0,
+                "Shadows": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ProcessorHeroBay",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "ProcessorDeck",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              8.5,
+              0.35,
+              7.0
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "DiamondPlate",
+            "Color": [
+              0.16,
+              0.18,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              82.0,
+              56.85,
+              215
+            ]
+          }
+        },
+        {
+          "Name": "RearBackplate",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              8.5,
+              5.5,
+              0.35
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Metal",
+            "Color": [
+              0.22,
+              0.27,
+              0.24
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              82.0,
+              59.5,
+              218.3
+            ]
+          }
+        },
+        {
+          "Name": "LeftGuard",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.35,
+              3.5,
+              6.0
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Metal",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              77.9,
+              58.3,
+              215
+            ]
+          }
+        },
+        {
+          "Name": "ProcessorServiceJunction",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://138460865383806",
+            "Size": [
+              2.5,
+              2.4,
+              0.95
+            ],
+            "CFrame": [
+              79.0,
+              60.0,
+              218.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "junction",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://139579734340579",
+                "NormalMap": "rbxassetid://101009095631637",
+                "RoughnessMap": "rbxassetid://73092764580147",
+                "MetalnessMap": "rbxassetid://129094780313320"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ProcessorExhaustVent",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://129788520191225",
+            "Size": [
+              3.3,
+              2.9,
+              0.58
+            ],
+            "CFrame": [
+              84.7,
+              60.5,
+              218.05,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "vent",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://111071233724492",
+                "NormalMap": "rbxassetid://101188069065673",
+                "RoughnessMap": "rbxassetid://133041917278365",
+                "MetalnessMap": "rbxassetid://127496283006416"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ProcessorFeedPipe",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://71312017003623",
+            "Size": [
+              0.46,
+              0.46,
+              6.5
+            ],
+            "CFrame": [
+              85.2,
+              61.8,
+              214.8,
+              6.123233995736766e-17,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "rusty_pipe",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://112374676768109",
+                "NormalMap": "rbxassetid://113503962473805"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ProcessorIsolationValve",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://75117650394533",
+            "Size": [
+              2.5,
+              1.85,
+              1.65
+            ],
+            "CFrame": [
+              85.0,
+              59.2,
+              212.2,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "valve",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://136685065521485",
+                "NormalMap": "rbxassetid://78946883212753",
+                "RoughnessMap": "rbxassetid://81052079342113",
+                "MetalnessMap": "rbxassetid://118332949942821"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ProcessedRationCrate",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": false,
+            "CanQuery": true,
+            "MeshId": "rbxassetid://140136727798730",
+            "Size": [
+              3.2,
+              2.3,
+              2.2
+            ],
+            "CFrame": [
+              86.3,
+              58.1,
+              216.2,
+              0.9902680687415704,
+              0.0,
+              -0.13917310096006544,
+              0.0,
+              1.0,
+              0.0,
+              0.13917310096006544,
+              0.0,
+              0.9902680687415704
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "crate",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://79418719084559",
+                "NormalMap": "rbxassetid://75088026659430",
+                "RoughnessMap": "rbxassetid://81827742837440",
+                "MetalnessMap": "rbxassetid://72826286691276"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "HazardStripeA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              8.0,
+              0.04,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "SmoothPlastic",
+            "Color": [
+              0.46,
+              0.31,
+              0.07
+            ],
+            "Transparency": 0.0,
+            "CastShadow": false,
+            "Position": [
+              82.0,
+              57.05,
+              211.8
+            ]
+          }
+        },
+        {
+          "Name": "ProcessorLeakStain",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              4.0,
+              0.018,
+              2.2
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Glass",
+            "Color": [
+              0.06,
+              0.09,
+              0.075
+            ],
+            "Transparency": 0.67,
+            "CastShadow": false,
+            "CFrame": [
+              83.5,
+              57.04,
+              216.7,
+              0.9781476007338057,
+              0.0,
+              -0.20791169081775934,
+              0.0,
+              1.0,
+              0.0,
+              0.20791169081775934,
+              0.0,
+              0.9781476007338057
+            ]
+          }
+        },
+        {
+          "Name": "TaskLightHousing",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              5.0,
+              0.42,
+              1.1
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.16,
+              0.18,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              82.0,
+              63.6,
+              216.8
+            ]
+          }
+        },
+        {
+          "Name": "TaskLightGlow",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              4.4,
+              0.16,
+              0.55
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Neon",
+            "Color": [
+              0.72,
+              0.83,
+              0.88
+            ],
+            "Transparency": 0.0,
+            "CastShadow": false,
+            "Position": [
+              82.0,
+              63.35,
+              216.8
+            ]
+          },
+          "Children": [
+            {
+              "Name": "ProcessorTaskPool",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Enabled": true,
+                "Color": [
+                  0.72,
+                  0.83,
+                  0.88
+                ],
+                "Brightness": 1.35,
+                "Range": 11.0,
+                "Shadows": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ProcessorOverheadFrame",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              9.5,
+              0.45,
+              0.65
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Metal",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              82.0,
+              64.0,
+              218.0
+            ]
+          }
+        },
+        {
+          "Name": "ProcessorLeftColumn",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.55,
+              7.0,
+              0.65
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Metal",
+            "Color": [
+              0.2,
+              0.24,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              77.5,
+              60.5,
+              218.0
+            ]
+          }
+        },
+        {
+          "Name": "ProcessorRightColumn",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.55,
+              7.0,
+              0.65
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Metal",
+            "Color": [
+              0.2,
+              0.24,
+              0.22
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              86.5,
+              60.5,
+              218.0
+            ]
+          }
+        },
+        {
+          "Name": "ProcessorWaterConnection",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              5.5,
+              0.28,
+              0.28
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              78.2,
+              61.4,
+              214.0,
+              6.123233995736766e-17,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "ProcessorWasteReturn",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              5.5,
+              0.34,
+              0.34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.285,
+              0.145,
+              0.075
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "CFrame": [
+              86.0,
+              58.0,
+              214.0,
+              6.123233995736766e-17,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "ProcessorControlAccent",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.2,
+              1.2,
+              0.12
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Neon",
+            "Color": [
+              0.88,
+              0.48,
+              0.24
+            ],
+            "Transparency": 0.0,
+            "CastShadow": false,
+            "Position": [
+              80.5,
+              59.4,
+              218.15
+            ]
+          },
+          "Children": [
+            {
+              "Name": "ProcessorWarmAccent",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Enabled": true,
+                "Color": [
+                  0.88,
+                  0.48,
+                  0.24
+                ],
+                "Brightness": 0.55,
+                "Range": 5.0,
+                "Shadows": false
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ProcessorCanopy",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              10.0,
+              0.42,
+              7.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.23,
+              0.27,
+              0.25
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              82.0,
+              64.4,
+              215.0
+            ]
+          }
+        },
+        {
+          "Name": "CanopyGrowUtilityGlow",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              7.0,
+              0.12,
+              0.45
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Neon",
+            "Color": [
+              0.58,
+              0.78,
+              0.68
+            ],
+            "Transparency": 0.0,
+            "CastShadow": false,
+            "Position": [
+              82.0,
+              64.12,
+              213.0
+            ]
+          },
+          "Children": [
+            {
+              "Name": "ProcessorUtilityPool",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Enabled": true,
+                "Color": [
+                  0.58,
+                  0.78,
+                  0.68
+                ],
+                "Brightness": 1.55,
+                "Range": 12.0,
+                "Shadows": true
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ProcessorDrainChannel",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              7.5,
+              0.1,
+              0.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "DiamondPlate",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              82.0,
+              56.96,
+              218.8
+            ]
+          }
+        },
+        {
+          "Name": "LocalizedCorrosionWest",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.08,
+              1.6,
+              2.2
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.285,
+              0.145,
+              0.075
+            ],
+            "Transparency": 0.15,
+            "CastShadow": true,
+            "Position": [
+              77.77,
+              57.8,
+              217.95
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "SurvivorFarmSupport",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "SeedSupplyCrate",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": false,
+            "CanQuery": true,
+            "MeshId": "rbxassetid://140136727798730",
+            "Size": [
+              3.4,
+              2.4,
+              2.3
+            ],
+            "CFrame": [
+              54.0,
+              58.0,
+              202.8,
+              0.992546151641322,
+              0.0,
+              0.12186934340514748,
+              0.0,
+              1.0,
+              0.0,
+              -0.12186934340514748,
+              0.0,
+              0.992546151641322
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "crate",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://79418719084559",
+                "NormalMap": "rbxassetid://75088026659430",
+                "RoughnessMap": "rbxassetid://81827742837440",
+                "MetalnessMap": "rbxassetid://72826286691276"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ToolSupplyCrate",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": false,
+            "CanQuery": true,
+            "MeshId": "rbxassetid://140136727798730",
+            "Size": [
+              3.2,
+              2.3,
+              2.2
+            ],
+            "CFrame": [
+              58.0,
+              58.0,
+              202.5,
+              0.9961946980917455,
+              0.0,
+              -0.08715574274765817,
+              0.0,
+              1.0,
+              0.0,
+              0.08715574274765817,
+              0.0,
+              0.9961946980917455
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "crate",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://79418719084559",
+                "NormalMap": "rbxassetid://75088026659430",
+                "RoughnessMap": "rbxassetid://81827742837440",
+                "MetalnessMap": "rbxassetid://72826286691276"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ToolRackBack",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              6.0,
+              3.4,
+              0.25
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Metal",
+            "Color": [
+              0.16,
+              0.18,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              64.5,
+              59.0,
+              202.0
+            ]
+          }
+        },
+        {
+          "Name": "ToolRackShelf",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              5.6,
+              0.22,
+              1.3
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "DiamondPlate",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              64.5,
+              58.1,
+              202.5
+            ]
+          }
+        },
+        {
+          "Name": "RecoveredWaterHeader",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              10.0,
+              0.34,
+              0.34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Metal",
+            "Color": [
+              0.12,
+              0.25,
+              0.3
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              70.0,
+              62.5,
+              202.3
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "EmergencyFarmLight",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.5,
+              0.8,
+              0.5
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Neon",
+            "Color": [
+              0.88,
+              0.48,
+              0.24
+            ],
+            "Transparency": 0.0,
+            "CastShadow": false,
+            "Position": [
+              74.8,
+              61.8,
+              202.3
+            ]
+          },
+          "Children": [
+            {
+              "Name": "FarmEmergencyPool",
+              "ClassName": "PointLight",
+              "Properties": {
+                "Enabled": true,
+                "Color": [
+                  0.88,
+                  0.48,
+                  0.24
+                ],
+                "Brightness": 0.55,
+                "Range": 7.0,
+                "Shadows": false
+              }
+            }
+          ]
+        },
+        {
+          "Name": "WaterTankA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.4,
+              4.2,
+              2.4
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.16,
+              0.18,
+              0.19
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              77.0,
+              58.9,
+              202.8
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "WaterTankB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.0,
+              3.6,
+              2.0
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "CorrodedMetal",
+            "Color": [
+              0.3,
+              0.325,
+              0.33
+            ],
+            "Transparency": 0.0,
+            "CastShadow": true,
+            "Position": [
+              79.6,
+              58.6,
+              202.8
+            ],
+            "Shape": "Cylinder"
+          }
+        },
+        {
+          "Name": "FarmWaterValve",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://75117650394533",
+            "Size": [
+              2.2,
+              1.6,
+              1.45
+            ],
+            "CFrame": [
+              76.8,
+              59.2,
+              205.0,
+              6.123233995736766e-17,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              6.123233995736766e-17
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "valve",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://136685065521485",
+                "NormalMap": "rbxassetid://78946883212753",
+                "RoughnessMap": "rbxassetid://81052079342113",
+                "MetalnessMap": "rbxassetid://118332949942821"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FarmUtilityJunction",
+          "ClassName": "MeshPart",
+          "Properties": {
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "MeshId": "rbxassetid://138460865383806",
+            "Size": [
+              2.2,
+              2.1,
+              0.85
+            ],
+            "CFrame": [
+              72.0,
+              59.2,
+              202.1,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "CastShadow": true
+          },
+          "attributes": {
+            "EnvironmentAssetKind": "junction",
+            "WorldScaleNormalized": true
+          },
+          "Children": [
+            {
+              "Name": "SurfaceAppearance",
+              "ClassName": "SurfaceAppearance",
+              "Properties": {
+                "ColorMap": "rbxassetid://139579734340579",
+                "NormalMap": "rbxassetid://101009095631637",
+                "RoughnessMap": "rbxassetid://73092764580147",
+                "MetalnessMap": "rbxassetid://129094780313320"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

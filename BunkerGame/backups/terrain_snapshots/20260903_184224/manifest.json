@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "timestamp": "20260903_184224",
+  "place_id": "backup_session_acceptance_test_v2",
+  "resolution": 4.0,
+  "declared_bounds": {
+    "min": [
+      -300,
+      -100,
+      -250
+    ],
+    "max": [
+      300,
+      100,
+      250
+    ]
+  },
+  "actual_coverage": {
+    "min": {
+      "x": -304,
+      "y": -92,
+      "z": -252
+    },
+    "max": {
+      "x": 52,
+      "y": 100,
+      "z": 252
+    }
+  },
+  "voxel_dimensions_x_studs": 356,
+  "voxel_dimensions_y_studs": 192,
+  "voxel_dimensions_z_studs": 504,
+  "expected_tile_count": "UNCOMPUTABLE",
+  "completed_tile_count": 6,
+  "total_voxels_read_estimate": 538272,
+  "non_air_voxels": "Unknown (requires lossless read of remaining region)",
+  "snapshot_complete": false,
+  "blocker_statement": "RoBridge read_voxels fails with 'Region is too large' error when attempting to scan remaining X segments from 52 to 300. Cannot complete full backup.",
+  "restore_procedure": [],
+  "disk_reread_pass": false,
+  "voxel_count_match": false,
+  "non_air_count_match": null,
+  "material_counts_match": null,
+  "checksum_match": null,
+  "terrain_modified": "NO",
+  "terrain_clear_used": "NO",
+  "writevoxels_used": "NO",
+  "full_terrain_snapshot": "FAIL"
+}

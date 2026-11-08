@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "Disabled": true
+  },
+  "attributes": {
+    "DisabledReason": "Parent is a Script, but DiscoBall requires a BasePart"
+  }
+}

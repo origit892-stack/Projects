@@ -1,0 +1,2 @@
+Tech QA PASS — descendants 1316/3600 baseparts 978/2500 lights 5/23 emitters 6/12 unanchored 0, sourcemap+build SUCCESS, 17 services AST clean, no duplicate writers, wildlife pooled 33 runtime, performance headroom preserved
+2026-08-31 11:47:27

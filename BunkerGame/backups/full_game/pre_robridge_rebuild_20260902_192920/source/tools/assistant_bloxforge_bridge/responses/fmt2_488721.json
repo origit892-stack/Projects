@@ -1,0 +1,105 @@
+{
+  "request_id": "fmt2_488721",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_tool": "tool_catalog_search",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"query\":\"terrain\",\"count\":6,\"matches\":[{\"name\":\"terrain_clear_region\",\"domain\":\"terrain\",\"mode\":\"write\",\"whenToUse\":\"Clear (fill with Air) a terrain region\",\"requiredArgs\":[\"min\",\"max\"]},{\"name\":\"terrain_generate_baseplate\",\"domain\":\"terrain\",\"mode\":\"write\",\"whenToUse\":\"Fill a flat terrain slab\",\"requiredArgs\":[\"size\"]},{\"name\":\"terrain_generate_island\",\"domain\":\"terrain\",\"mode\":\"write\",\"whenToUse\":\"Fill a ball of land at a center point, optionally surrounded by water.\",\"requiredArgs\":[\"center\",\"radius\"]},{\"name\":\"terrain_generate_mountains\",\"domain\":\"terrain\",\"mode\":\"write\",\"whenToUse\":\"Generate noise-driven mountain terrain across a region\",\"requiredArgs\":[\"center\",\"extent\",\"maxHeight\"]},{\"name\":\"terrain_generate_water\",\"domain\":\"terrain\",\"mode\":\"write\",\"whenToUse\":\"Fill a block of Water material (e.g\",\"requiredArgs\":[\"size\"]},{\"name\":\"terrain_paint_material\",\"domain\":\"terrain\",\"mode\":\"write\",\"whenToUse\":\"Fill a region with a material, or replace one material with another inside the region (set replaceMaterial).\",\"requiredArgs\":[\"min\",\"max\",\"material\"]}],\"recommendedToolsets\":[{\"domain\":\"terrain\",\"recommendedTools\":[\"terrain_clear_region\",\"terrain_generate_baseplate\",\"terrain_generate_island\",\"terrain_generate_mountains\",\"terrain_generate_water\",\"terrain_paint_material\"],\"approxTokens\":1230,\"load\":{\"tool\":\"load_toolset\",\"args\":{\"toolsets\":[\"terrain\"]}}}],\"client_hint\":\"Lazy-loading is the default path. If a needed tool is not currently advertised, call load_toolset with the recommended domain(s); set ROBLOX_MCP_LAZY_TOOLS=0 only for full upfront schemas. approxTokens is what each domain adds to every later request \u2014 release one you are done with via load_toolset {\\\"unload\\\":[\\\"<domain>\\\"]}, but do it at a phase boundary: changing the tool set invalidates the conversation's prompt cache.\"}"
+      }
+    ],
+    "structuredContent": {
+      "query": "terrain",
+      "count": 6,
+      "matches": [
+        {
+          "name": "terrain_clear_region",
+          "domain": "terrain",
+          "mode": "write",
+          "whenToUse": "Clear (fill with Air) a terrain region",
+          "requiredArgs": [
+            "min",
+            "max"
+          ]
+        },
+        {
+          "name": "terrain_generate_baseplate",
+          "domain": "terrain",
+          "mode": "write",
+          "whenToUse": "Fill a flat terrain slab",
+          "requiredArgs": [
+            "size"
+          ]
+        },
+        {
+          "name": "terrain_generate_island",
+          "domain": "terrain",
+          "mode": "write",
+          "whenToUse": "Fill a ball of land at a center point, optionally surrounded by water.",
+          "requiredArgs": [
+            "center",
+            "radius"
+          ]
+        },
+        {
+          "name": "terrain_generate_mountains",
+          "domain": "terrain",
+          "mode": "write",
+          "whenToUse": "Generate noise-driven mountain terrain across a region",
+          "requiredArgs": [
+            "center",
+            "extent",
+            "maxHeight"
+          ]
+        },
+        {
+          "name": "terrain_generate_water",
+          "domain": "terrain",
+          "mode": "write",
+          "whenToUse": "Fill a block of Water material (e.g",
+          "requiredArgs": [
+            "size"
+          ]
+        },
+        {
+          "name": "terrain_paint_material",
+          "domain": "terrain",
+          "mode": "write",
+          "whenToUse": "Fill a region with a material, or replace one material with another inside the region (set replaceMaterial).",
+          "requiredArgs": [
+            "min",
+            "max",
+            "material"
+          ]
+        }
+      ],
+      "recommendedToolsets": [
+        {
+          "domain": "terrain",
+          "recommendedTools": [
+            "terrain_clear_region",
+            "terrain_generate_baseplate",
+            "terrain_generate_island",
+            "terrain_generate_mountains",
+            "terrain_generate_water",
+            "terrain_paint_material"
+          ],
+          "approxTokens": 1230,
+          "load": {
+            "tool": "load_toolset",
+            "args": {
+              "toolsets": [
+                "terrain"
+              ]
+            }
+          }
+        }
+      ],
+      "client_hint": "Lazy-loading is the default path. If a needed tool is not currently advertised, call load_toolset with the recommended domain(s); set ROBLOX_MCP_LAZY_TOOLS=0 only for full upfront schemas. approxTokens is what each domain adds to every later request \u2014 release one you are done with via load_toolset {\"unload\":[\"<domain>\"]}, but do it at a phase boundary: changing the tool set invalidates the conversation's prompt cache."
+    }
+  },
+  "completed_at": "2026-09-01T10:06:12Z"
+}

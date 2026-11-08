@@ -1,0 +1,410 @@
+BLOXBOT_API_SESSION=ses_fc2c79504ffe226W8zkTD4mJVV
+BLOXBOT_API_DIRECTORY=/Users/Ori/Documents/Projects/BunkerGame
+BLOXBOT_PROMPT_ACCEPTED=PASS
+[0000s] STATUS=busy QUIET=0s
+[0012s] todowrite COMPLETED 4 todos
+[0012s] roblox-studio_list_roblox_studios COMPLETED 
+[0018s] roblox-studio_get_studio_state COMPLETED 
+[0030s] read COMPLETED BunkerGame/tools/visual_qa/visual_qa.sh
+[0030s] read COMPLETED BunkerGame/default.project.json
+[0030s] read COMPLETED BunkerGame/docs/director/CURRENT-TASK.md
+[0030s] read COMPLETED BunkerGame/docs/agents/README.md
+[0030s] STATUS=busy QUIET=0s
+[0046s] todowrite COMPLETED 3 todos
+[0046s] roblox-studio_search_game_tree COMPLETED 
+[0046s] roblox-studio_inspect_instance COMPLETED 
+[0046s] read COMPLETED BunkerGame/tools/visual_qa/obs_capture.py
+[0046s] read COMPLETED BunkerGame/tools/visual_qa/list_captures.sh
+[0046s] grep COMPLETED VISUAL_QA|Visual QA|visual QA|Workshop
+[0060s] read COMPLETED BunkerGame/docs/agents/VISUAL-QA-CAPTURE.md
+[0060s] STATUS=busy QUIET=0s
+[0081s] read COMPLETED BunkerGame/visual-qa
+[0081s] roblox-studio_inspect_instance COMPLETED 
+[0081s] roblox-studio_screen_capture RUNNING 
+[0081s] grep COMPLETED WorkshopExtractionArm|IndustrialRepairBench|NorthPartsRack|WestCylinderServiceRack
+[0083s] roblox-studio_screen_capture COMPLETED 
+[0091s] STATUS=busy QUIET=8s
+[0095s] roblox-studio_execute_luau PENDING 
+[0101s] roblox-studio_execute_luau COMPLETED 
+[0105s] roblox-studio_get_console_output COMPLETED 
+[0117s] roblox-studio_screen_capture COMPLETED 
+[0121s] STATUS=busy QUIET=4s
+[0131s] bash COMPLETED ./tools/visual_qa/visual_qa.sh verify
+[0148s] glob COMPLETED BunkerGame
+[0148s] glob COMPLETED BunkerGame
+[0148s] glob COMPLETED BunkerGame
+[0148s] grep COMPLETED obsws_python|obsws-python|visual_qa.sh verify
+[0148s] bash COMPLETED python3 --version && python3 -m pip show obsws-python || true && command -v python3 && command -v python || true
+[0152s] STATUS=busy QUIET=4s
+[0154s] read COMPLETED BunkerGame/.environment-director/runs/env-20260825-234942-229f06.visual_qa.txt
+[0176s] bash COMPLETED python3 -m site --user-base && python3 -m pip --version
+[0176s] read COMPLETED ../../Library
+[0182s] STATUS=busy QUIET=6s
+[0186s] bash PENDING 
+[0188s] bash RUNNING 
+[0190s] bash COMPLETED python3 -m pip install --user obsws-python && ./tools/visual_qa/visual_qa.sh verify
+[0205s] todowrite PENDING 
+[0207s] todowrite COMPLETED 2 todos
+[0207s] roblox-studio_get_studio_state COMPLETED 
+[0211s] roblox-studio_start_stop_play RUNNING 
+[0213s] roblox-studio_start_stop_play COMPLETED 
+[0213s] STATUS=busy QUIET=0s
+[0217s] roblox-studio_get_studio_state COMPLETED 
+[0221s] bash PENDING 
+[0223s] bash COMPLETED ./tools/visual_qa/visual_qa.sh start WORKSHOP_VISUAL_QA
+[0227s] bash PENDING 
+[0229s] bash COMPLETED ./tools/visual_qa/visual_qa.sh status
+[0239s] roblox-studio_execute_luau PENDING 
+[0243s] roblox-studio_execute_luau COMPLETED 
+[0243s] STATUS=busy QUIET=0s
+[0247s] roblox-studio_get_console_output PENDING 
+[0249s] roblox-studio_get_console_output COMPLETED 
+[0266s] roblox-studio_character_navigation RUNNING 
+[0272s] roblox-studio_character_navigation COMPLETED 
+[0274s] STATUS=busy QUIET=2s
+[0288s] roblox-studio_execute_luau PENDING 
+[0290s] roblox-studio_execute_luau COMPLETED 
+[0296s] roblox-studio_get_console_output COMPLETED 
+[0304s] STATUS=busy QUIET=8s
+[0306s] roblox-studio_execute_luau PENDING 
+[0309s] roblox-studio_execute_luau COMPLETED 
+[0313s] roblox-studio_get_console_output COMPLETED 
+[0333s] roblox-studio_user_mouse_input PENDING 
+[0335s] roblox-studio_user_mouse_input RUNNING 
+[0335s] STATUS=busy QUIET=0s
+[0337s] roblox-studio_user_mouse_input COMPLETED 
+[0341s] roblox-studio_execute_luau PENDING 
+[0343s] roblox-studio_execute_luau COMPLETED 
+[0347s] roblox-studio_get_console_output COMPLETED 
+[0360s] roblox-studio_execute_luau PENDING 
+[0362s] roblox-studio_execute_luau COMPLETED 
+[0366s] STATUS=busy QUIET=4s
+[0370s] roblox-studio_execute_luau PENDING 
+[0372s] roblox-studio_execute_luau COMPLETED 
+[0376s] roblox-studio_get_console_output PENDING 
+[0378s] roblox-studio_get_console_output COMPLETED 
+[0390s] roblox-studio_user_keyboard_input PENDING 
+[0392s] roblox-studio_user_keyboard_input RUNNING 
+[0394s] roblox-studio_user_keyboard_input COMPLETED 
+[0396s] STATUS=busy QUIET=2s
+[0404s] roblox-studio_execute_luau PENDING 
+[0408s] roblox-studio_execute_luau COMPLETED 
+[0413s] roblox-studio_get_console_output COMPLETED 
+[0423s] roblox-studio_character_navigation PENDING 
+[0425s] roblox-studio_character_navigation COMPLETED 
+[0427s] STATUS=busy QUIET=2s
+[0429s] roblox-studio_execute_luau PENDING 
+[0433s] roblox-studio_execute_luau COMPLETED 
+[0437s] roblox-studio_get_console_output COMPLETED 
+[0445s] roblox-studio_user_keyboard_input PENDING 
+[0447s] roblox-studio_user_keyboard_input COMPLETED 
+[0457s] roblox-studio_execute_luau PENDING 
+[0457s] STATUS=busy QUIET=0s
+[0463s] roblox-studio_execute_luau COMPLETED 
+[0468s] roblox-studio_character_navigation PENDING 
+[0470s] roblox-studio_character_navigation COMPLETED 
+[0476s] roblox-studio_execute_luau PENDING 
+[0480s] roblox-studio_execute_luau COMPLETED 
+[0486s] roblox-studio_get_console_output COMPLETED 
+[0488s] STATUS=busy QUIET=2s
+[0494s] roblox-studio_user_keyboard_input PENDING 
+[0498s] roblox-studio_user_keyboard_input RUNNING 
+[0500s] roblox-studio_user_keyboard_input COMPLETED 
+[0508s] roblox-studio_execute_luau PENDING 
+[0510s] roblox-studio_execute_luau COMPLETED 
+[0514s] roblox-studio_get_console_output COMPLETED 
+[0519s] STATUS=busy QUIET=5s
+[0521s] roblox-studio_execute_luau PENDING 
+[0525s] roblox-studio_execute_luau COMPLETED 
+[0529s] roblox-studio_get_console_output COMPLETED 
+[0537s] roblox-studio_character_navigation RUNNING 
+[0539s] roblox-studio_character_navigation COMPLETED 
+[0543s] roblox-studio_user_keyboard_input PENDING 
+[0545s] roblox-studio_user_keyboard_input RUNNING 
+[0547s] roblox-studio_user_keyboard_input COMPLETED 
+[0549s] STATUS=busy QUIET=2s
+[0563s] roblox-studio_execute_luau COMPLETED 
+[0568s] roblox-studio_character_navigation PENDING 
+[0570s] roblox-studio_character_navigation RUNNING 
+[0572s] roblox-studio_character_navigation COMPLETED 
+[0574s] roblox-studio_execute_luau PENDING 
+[0580s] STATUS=busy QUIET=6s
+[0584s] roblox-studio_execute_luau ERROR 
+TOOL_ERROR=The requested `studio_id` is not connected — that Roblox Studio instance may have been closed or its place unloaded. Call `list_roblox_studios` for the current instances, then continue on the one the user confirms (or the one whose `name` matches).
+[0592s] roblox-studio_list_roblox_studios COMPLETED 
+[0598s] roblox-studio_get_studio_state PENDING 
+[0600s] roblox-studio_get_studio_state COMPLETED 
+[0604s] roblox-studio_execute_luau PENDING 
+[0608s] roblox-studio_execute_luau COMPLETED 
+[0610s] STATUS=busy QUIET=2s
+[0612s] roblox-studio_get_console_output COMPLETED 
+[0619s] roblox-studio_user_keyboard_input RUNNING 
+[0621s] roblox-studio_user_keyboard_input COMPLETED 
+[0627s] roblox-studio_execute_luau PENDING 
+[0631s] roblox-studio_execute_luau COMPLETED 
+[0637s] roblox-studio_character_navigation COMPLETED 
+[0641s] STATUS=busy QUIET=4s
+[0643s] roblox-studio_user_keyboard_input RUNNING 
+[0645s] roblox-studio_user_keyboard_input COMPLETED 
+[0651s] roblox-studio_execute_luau PENDING 
+[0653s] roblox-studio_execute_luau COMPLETED 
+[0657s] roblox-studio_character_navigation PENDING 
+[0659s] roblox-studio_character_navigation RUNNING 
+[0661s] roblox-studio_character_navigation COMPLETED 
+[0665s] roblox-studio_execute_luau PENDING 
+[0669s] roblox-studio_execute_luau COMPLETED 
+[0672s] STATUS=busy QUIET=3s
+[0674s] roblox-studio_get_console_output COMPLETED 
+[0678s] roblox-studio_user_keyboard_input PENDING 
+[0680s] roblox-studio_user_keyboard_input RUNNING 
+[0682s] roblox-studio_user_keyboard_input COMPLETED 
+[0692s] roblox-studio_execute_luau PENDING 
+[0694s] roblox-studio_execute_luau COMPLETED 
+[0698s] roblox-studio_character_navigation PENDING 
+[0700s] roblox-studio_character_navigation RUNNING 
+[0702s] roblox-studio_character_navigation COMPLETED 
+[0702s] STATUS=busy QUIET=0s
+[0706s] roblox-studio_execute_luau PENDING 
+[0710s] roblox-studio_execute_luau COMPLETED 
+[0716s] roblox-studio_get_console_output PENDING 
+[0723s] roblox-studio_get_console_output COMPLETED 
+[0729s] roblox-studio_user_keyboard_input RUNNING 
+[0731s] roblox-studio_user_keyboard_input COMPLETED 
+[0733s] STATUS=busy QUIET=2s
+[0745s] roblox-studio_execute_luau PENDING 
+[0747s] roblox-studio_execute_luau COMPLETED 
+[0751s] roblox-studio_character_navigation PENDING 
+[0753s] roblox-studio_character_navigation RUNNING 
+[0755s] roblox-studio_character_navigation COMPLETED 
+[0759s] roblox-studio_user_keyboard_input RUNNING 
+[0761s] roblox-studio_user_keyboard_input COMPLETED 
+[0763s] STATUS=busy QUIET=2s
+[0768s] roblox-studio_execute_luau PENDING 
+[0770s] roblox-studio_execute_luau COMPLETED 
+[0774s] roblox-studio_character_navigation RUNNING 
+[0776s] roblox-studio_character_navigation COMPLETED 
+[0782s] roblox-studio_user_keyboard_input RUNNING 
+[0784s] roblox-studio_user_keyboard_input COMPLETED 
+[0792s] bash COMPLETED ./tools/visual_qa/visual_qa.sh stop
+[0794s] STATUS=busy QUIET=2s
+[0796s] bash PENDING 
+[0798s] bash COMPLETED ./tools/visual_qa/visual_qa.sh latest
+[0802s] roblox-studio_start_stop_play PENDING 
+[0804s] roblox-studio_start_stop_play COMPLETED 
+[0808s] roblox-studio_get_studio_state COMPLETED 
+[0823s] read COMPLETED BunkerGame/tools/visual_qa/extract_frames.sh
+[0825s] STATUS=busy QUIET=2s
+[0829s] bash PENDING 
+[0833s] bash COMPLETED ./tools/visual_qa/visual_qa.sh frames "/Users/Ori/Documents/Projects/BunkerGame/visual-qa/captures/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov" 10
+[0845s] bash COMPLETED command -v avconvert || true; command -v qlmanage || true; command -v ffmpeg || true; command -v brew || true; command -v python3
+[0851s] bash COMPLETED avconvert --help
+[0855s] STATUS=busy QUIET=4s
+[0874s] bash PENDING 
+[0876s] bash RUNNING 
+[0878s] bash COMPLETED python3 -m pip install --user imageio-ffmpeg && python3 -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())'
+[0884s] read COMPLETED ../../../../var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/opencode
+[0886s] STATUS=busy QUIET=2s
+[0890s] bash PENDING 
+[0894s] bash RUNNING 
+[0898s] bash COMPLETED FFMPEG_PATH="$(python3 -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" && mkdir -p "/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/opencode/visual-qa-bin" && ln -sf "$FFMPEG_PATH" "/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/opencode/visual-qa-bin/ffmpeg" && PATH="/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/opencode/visual-qa-bin:$PATH" ./tools/visual_qa/visual_qa.sh frames "/Users/Ori/Documents/Projects/BunkerGame/visual-qa/captures/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov" 10
+[0904s] glob COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov
+[0917s] STATUS=busy QUIET=13s
+[0923s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0001.jpg
+[0923s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0006.jpg
+[0923s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0011.jpg
+[0923s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0016.jpg
+[0923s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0021.jpg
+[0923s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0026.jpg
+[0939s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0031.jpg
+[0939s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0036.jpg
+[0939s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0041.jpg
+[0939s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0046.jpg
+[0939s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0051.jpg
+[0939s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-42-04_WORKSHOP_VISUAL_QA.mov/frame_0056.jpg
+[0947s] STATUS=busy QUIET=8s
+[0978s] STATUS=busy QUIET=39s
+[0984s] roblox-studio_get_studio_state COMPLETED 
+[0984s] bash COMPLETED ./tools/visual_qa/visual_qa.sh status
+[0993s] roblox-studio_start_stop_play RUNNING 
+[0995s] roblox-studio_start_stop_play COMPLETED 
+[0999s] roblox-studio_get_studio_state PENDING 
+[1001s] roblox-studio_get_studio_state COMPLETED 
+[1005s] bash PENDING 
+[1007s] bash COMPLETED ./tools/visual_qa/visual_qa.sh start WORKSHOP_VISUAL_QA_RECAPTURE
+[1009s] STATUS=busy QUIET=2s
+[1011s] bash COMPLETED ./tools/visual_qa/visual_qa.sh status
+[1032s] roblox-studio_execute_luau PENDING 
+[1038s] roblox-studio_execute_luau RUNNING 
+[1040s] roblox-studio_execute_luau COMPLETED 
+[1040s] STATUS=busy QUIET=0s
+[1046s] roblox-studio_get_console_output PENDING 
+[1048s] roblox-studio_get_console_output COMPLETED 
+[1054s] roblox-studio_character_navigation PENDING 
+[1056s] roblox-studio_character_navigation RUNNING 
+[1060s] roblox-studio_character_navigation COMPLETED 
+[1071s] roblox-studio_execute_luau PENDING 
+[1071s] STATUS=busy QUIET=0s
+[1073s] roblox-studio_execute_luau COMPLETED 
+[1077s] roblox-studio_get_console_output COMPLETED 
+[1083s] roblox-studio_character_navigation PENDING 
+[1085s] roblox-studio_character_navigation COMPLETED 
+[1091s] roblox-studio_user_keyboard_input RUNNING 
+[1093s] roblox-studio_user_keyboard_input COMPLETED 
+[1099s] roblox-studio_execute_luau PENDING 
+[1101s] STATUS=busy QUIET=2s
+[1103s] roblox-studio_execute_luau COMPLETED 
+[1107s] roblox-studio_character_navigation PENDING 
+[1109s] roblox-studio_character_navigation RUNNING 
+[1111s] roblox-studio_character_navigation COMPLETED 
+[1116s] roblox-studio_user_keyboard_input RUNNING 
+[1118s] roblox-studio_user_keyboard_input COMPLETED 
+[1126s] roblox-studio_execute_luau PENDING 
+[1128s] roblox-studio_execute_luau COMPLETED 
+[1132s] STATUS=busy QUIET=4s
+[1134s] roblox-studio_character_navigation RUNNING 
+[1136s] roblox-studio_character_navigation COMPLETED 
+[1140s] roblox-studio_user_keyboard_input PENDING 
+[1142s] roblox-studio_user_keyboard_input RUNNING 
+[1144s] roblox-studio_user_keyboard_input COMPLETED 
+[1152s] roblox-studio_execute_luau COMPLETED 
+[1158s] roblox-studio_character_navigation RUNNING 
+[1161s] roblox-studio_character_navigation COMPLETED 
+[1163s] STATUS=busy QUIET=2s
+[1165s] roblox-studio_user_keyboard_input PENDING 
+[1167s] roblox-studio_user_keyboard_input RUNNING 
+[1169s] roblox-studio_user_keyboard_input COMPLETED 
+[1175s] roblox-studio_execute_luau PENDING 
+[1177s] roblox-studio_execute_luau COMPLETED 
+[1181s] roblox-studio_character_navigation PENDING 
+[1183s] roblox-studio_character_navigation RUNNING 
+[1185s] roblox-studio_character_navigation COMPLETED 
+[1187s] roblox-studio_user_keyboard_input PENDING 
+[1189s] roblox-studio_user_keyboard_input RUNNING 
+[1191s] roblox-studio_user_keyboard_input COMPLETED 
+[1193s] STATUS=busy QUIET=2s
+[1197s] roblox-studio_execute_luau PENDING 
+[1199s] roblox-studio_execute_luau COMPLETED 
+[1203s] roblox-studio_character_navigation PENDING 
+[1205s] roblox-studio_character_navigation COMPLETED 
+[1212s] roblox-studio_user_keyboard_input PENDING 
+[1214s] roblox-studio_user_keyboard_input RUNNING 
+[1216s] roblox-studio_user_keyboard_input COMPLETED 
+[1224s] STATUS=busy QUIET=8s
+[1226s] roblox-studio_execute_luau PENDING 
+[1230s] roblox-studio_execute_luau COMPLETED 
+[1234s] roblox-studio_character_navigation RUNNING 
+[1236s] roblox-studio_character_navigation COMPLETED 
+[1242s] roblox-studio_user_keyboard_input PENDING 
+[1244s] roblox-studio_user_keyboard_input COMPLETED 
+[1250s] roblox-studio_execute_luau PENDING 
+[1254s] STATUS=busy QUIET=4s
+[1257s] roblox-studio_execute_luau COMPLETED 
+[1263s] roblox-studio_character_navigation RUNNING 
+[1265s] roblox-studio_character_navigation COMPLETED 
+[1269s] roblox-studio_user_keyboard_input RUNNING 
+[1271s] roblox-studio_user_keyboard_input COMPLETED 
+[1275s] bash PENDING 
+[1277s] bash COMPLETED ./tools/visual_qa/visual_qa.sh stop
+[1281s] bash COMPLETED ./tools/visual_qa/visual_qa.sh latest
+[1285s] roblox-studio_start_stop_play RUNNING 
+[1285s] STATUS=busy QUIET=0s
+[1287s] roblox-studio_start_stop_play COMPLETED 
+[1291s] roblox-studio_get_studio_state PENDING 
+[1293s] roblox-studio_get_studio_state COMPLETED 
+[1300s] bash PENDING 
+[1304s] bash RUNNING 
+[1306s] bash COMPLETED FFMPEG_PATH="$(python3 -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" && ln -sf "$FFMPEG_PATH" "/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/opencode/visual-qa-bin/ffmpeg" && PATH="/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/opencode/visual-qa-bin:$PATH" ./tools/visual_qa/visual_qa.sh frames "/Users/Ori/Documents/Projects/BunkerGame/visual-qa/captures/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov" 8
+[1316s] STATUS=busy QUIET=10s
+[1318s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0001.jpg
+[1318s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0004.jpg
+[1318s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0007.jpg
+[1318s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0010.jpg
+[1318s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0013.jpg
+[1318s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0016.jpg
+[1336s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0019.jpg
+[1336s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0022.jpg
+[1336s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0025.jpg
+[1336s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0028.jpg
+[1336s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0031.jpg
+[1336s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0034.jpg
+[1347s] STATUS=busy QUIET=11s
+[1365s] roblox-studio_execute_luau PENDING 
+[1373s] roblox-studio_execute_luau COMPLETED 
+[1377s] STATUS=busy QUIET=4s
+[1381s] roblox-studio_get_console_output COMPLETED 
+[1390s] roblox-studio_execute_luau PENDING 
+[1394s] roblox-studio_execute_luau COMPLETED 
+[1408s] roblox-studio_get_console_output PENDING 
+[1408s] STATUS=busy QUIET=0s
+[1410s] roblox-studio_get_console_output COMPLETED 
+[1433s] bash PENDING 
+[1435s] bash COMPLETED python3 -c 'import PIL; print(PIL.__version__)'
+[1439s] STATUS=busy QUIET=4s
+[1451s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0005.jpg
+[1451s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0006.jpg
+[1451s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0008.jpg
+[1451s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0009.jpg
+[1451s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0011.jpg
+[1451s] read COMPLETED BunkerGame/visual-qa/frames/2026-08-26_11-55-08_WORKSHOP_VISUAL_QA_RECAPTURE.mov/frame_0012.jpg
+[1470s] STATUS=busy QUIET=19s
+[1482s] roblox-studio_screen_capture PENDING 
+[1484s] roblox-studio_screen_capture COMPLETED 
+[1500s] roblox-studio_search_game_tree PENDING 
+[1500s] STATUS=busy QUIET=0s
+[1502s] roblox-studio_search_game_tree COMPLETED 
+[1515s] roblox-studio_execute_luau PENDING 
+[1521s] roblox-studio_execute_luau COMPLETED 
+[1527s] roblox-studio_get_console_output COMPLETED 
+[1531s] STATUS=busy QUIET=4s
+[1548s] roblox-studio_inspect_instance PENDING 
+[1554s] roblox-studio_inspect_instance COMPLETED 
+[1562s] roblox-studio_inspect_instance COMPLETED 
+[1562s] roblox-studio_inspect_instance COMPLETED 
+[1562s] roblox-studio_inspect_instance COMPLETED 
+[1562s] STATUS=busy QUIET=0s
+[1587s] roblox-studio_execute_luau COMPLETED 
+[1593s] roblox-studio_get_console_output COMPLETED 
+[1593s] STATUS=busy QUIET=0s
+[1611s] roblox-studio_inspect_instance COMPLETED 
+[1611s] roblox-studio_inspect_instance COMPLETED 
+[1611s] roblox-studio_inspect_instance COMPLETED 
+[1624s] STATUS=busy QUIET=13s
+[1654s] STATUS=busy QUIET=43s
+[1663s] roblox-studio_get_studio_state COMPLETED 
+[1663s] bash COMPLETED ./tools/visual_qa/visual_qa.sh status
+[1667s] roblox-studio_start_stop_play RUNNING 
+[1669s] roblox-studio_start_stop_play COMPLETED 
+[1677s] roblox-studio_get_studio_state COMPLETED 
+[1681s] bash PENDING 
+[1683s] bash COMPLETED ./tools/visual_qa/visual_qa.sh start WORKSHOP_VISUAL_QA_FINAL
+[1685s] STATUS=busy QUIET=2s
+[1689s] bash RUNNING 
+[1691s] bash COMPLETED ./tools/visual_qa/visual_qa.sh status
+[1700s] roblox-studio_execute_luau PENDING 
+[1708s] roblox-studio_execute_luau COMPLETED 
+[1714s] roblox-studio_character_navigation PENDING 
+[1716s] roblox-studio_character_navigation RUNNING 
+[1716s] STATUS=busy QUIET=0s
+[1718s] roblox-studio_character_navigation COMPLETED 
+[1724s] roblox-studio_character_navigation PENDING 
+[1726s] roblox-studio_character_navigation RUNNING 
+[1728s] roblox-studio_character_navigation COMPLETED 
+[1732s] roblox-studio_user_keyboard_input PENDING 
+[1734s] roblox-studio_user_keyboard_input RUNNING 
+[1737s] roblox-studio_user_keyboard_input COMPLETED 
+[1743s] roblox-studio_character_navigation PENDING 
+[1745s] roblox-studio_character_navigation COMPLETED 
+[1747s] STATUS=busy QUIET=2s
+[1751s] roblox-studio_user_keyboard_input PENDING 
+[1753s] roblox-studio_user_keyboard_input RUNNING 
+[1755s] roblox-studio_user_keyboard_input COMPLETED 
+[1763s] roblox-studio_execute_luau PENDING 
+[1765s] roblox-studio_execute_luau COMPLETED 
+[1769s] roblox-studio_character_navigation PENDING 
+[1771s] roblox-studio_character_navigation COMPLETED 
+[1777s] roblox-studio_user_keyboard_input RUNNING 
+[1777s] STATUS=busy QUIET=0s
+[1782s] roblox-studio_user_keyboard_input COMPLETED 
+[1790s] roblox-studio_execute_luau PENDING 
+[1792s] roblox-studio_execute_luau COMPLETED 
+[1798s] roblox-studio_character_navigation RUNNING 

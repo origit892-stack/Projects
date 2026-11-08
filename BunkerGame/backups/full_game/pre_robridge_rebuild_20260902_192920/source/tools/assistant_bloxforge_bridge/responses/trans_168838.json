@@ -1,0 +1,16 @@
+{
+  "request_id": "trans_168838",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_tool": "get_transport_diagnostics",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"completed\":296,\"queueDepth\":0,\"statusCount\":3,\"deliveryRetries\":0,\"timeouts\":0,\"outcomeUnknown\":0,\"cancelled\":0,\"averageLatencyMs\":3862.9222972972975,\"latencySampleCount\":296,\"p50LatencyMs\":436,\"p95LatencyMs\":25248,\"p99LatencyMs\":62358}"
+      }
+    ]
+  },
+  "completed_at": "2026-09-01T10:05:33Z"
+}

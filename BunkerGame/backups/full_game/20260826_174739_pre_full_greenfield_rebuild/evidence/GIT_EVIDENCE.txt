@@ -1,0 +1,45 @@
+$ /opt/homebrew/bin/git rev-parse --show-toplevel
+exit=0
+/Users/Ori/Documents/Projects
+
+
+$ /opt/homebrew/bin/git rev-parse HEAD
+exit=0
+4ff775d7414a7169a948fe900d97840e43fe630b
+
+
+$ /opt/homebrew/bin/git status --short --branch
+exit=0
+## main...origin/main
+ M .DS_Store
+ M europa-park-planner/app.js
+ M europa-park-planner/index.html
+ M europa-park-planner/map.html
+ M europa-park-planner/map.js
+ M ori-projects/europa-park-planner/admin.html
+ M ori-projects/europa-park-planner/app.js
+ M ori-projects/europa-park-planner/index.html
+ M ori-projects/europa-park-planner/map.html
+ M ori-projects/europa-park-planner/map.js
+?? .vscode/settings.json
+?? 3D_models/
+?? BunkerGame/
+?? roblox-pi-template/
+
+
+$ /opt/homebrew/bin/git log --oneline -10
+exit=0
+4ff775d רובלוקס
+3bc0bd2 Update Europa Park route planner
+8f7cece park
+ff9b1c5 train 13
+3793af1 בסעס
+42a4b12 h
+dd6cc28 Moving all projects to M1 Pro
+f9c740d Moving all projects to M1 Pro
+3ad60b9 Moving all projects to M1 Pro
+cb096f0 Moving all projects to M1 Pro
+
+
+$ /opt/homebrew/bin/git ls-files -- BunkerGame
+exit=0

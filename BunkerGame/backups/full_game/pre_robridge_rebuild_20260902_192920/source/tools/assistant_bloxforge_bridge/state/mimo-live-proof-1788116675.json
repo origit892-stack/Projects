@@ -1,0 +1,11 @@
+{
+  "request_id": "mimo-live-proof-1788116675",
+  "status": "failed",
+  "source": "bloxforge_worker",
+  "error": {
+    "code": "INVALID_INTENT",
+    "message": "Intent must be bloxforge_tool_call, got geometry_review"
+  },
+  "completed_at": "2026-08-31T20:14:26Z",
+  "intent": "geometry_review"
+}

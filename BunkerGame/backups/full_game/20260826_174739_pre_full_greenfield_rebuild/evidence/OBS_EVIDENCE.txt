@@ -1,0 +1,13 @@
+$ /Users/Ori/Documents/Projects/BunkerGame/tools/visual_qa/visual_qa.sh verify
+exit=0
+VISUAL_QA_OBS_VERIFY=PASS
+OBS_VERSION=32.2.2
+OBS_WEBSOCKET_VERSION=5.7.4
+OBS_RECORDING=False
+CAPTURE_DIR=/Users/Ori/Documents/Projects/BunkerGame/visual-qa/captures
+
+
+$ /Users/Ori/Documents/Projects/BunkerGame/tools/visual_qa/visual_qa.sh status
+exit=0
+VISUAL_QA_OBS_STATUS=PASS
+OBS_RECORDING=False

@@ -1,0 +1,16 @@
+{
+  "request_id": "session_658684",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_tool": "get_session_summary",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"totalCalls\":9,\"failures\":1,\"averageDurationMs\":230,\"byTool\":[{\"toolName\":\"get_scene_summary\",\"calls\":5,\"failures\":0,\"averageDurationMs\":412},{\"toolName\":\"get_connected_instances\",\"calls\":3,\"failures\":0,\"averageDurationMs\":1},{\"toolName\":\"tool_catalog_search\",\"calls\":1,\"failures\":1,\"averageDurationMs\":2}],\"recent\":[{\"toolName\":\"tool_catalog_search\",\"durationMs\":2,\"ok\":false,\"errorCode\":\"TOOL_ERROR\",\"timestamp\":1788257080023},{\"toolName\":\"get_scene_summary\",\"durationMs\":206,\"ok\":true,\"timestamp\":1788257079896},{\"toolName\":\"get_scene_summary\",\"durationMs\":484,\"ok\":true,\"timestamp\":1788255830423},{\"toolName\":\"get_scene_summary\",\"durationMs\":558,\"ok\":true,\"timestamp\":1788255643101},{\"toolName\":\"get_connected_instances\",\"durationMs\":1,\"ok\":true,\"timestamp\":1788255641311},{\"toolName\":\"get_scene_summary\",\"durationMs\":390,\"ok\":true,\"timestamp\":1788207491282},{\"toolName\":\"get_connected_instances\",\"durationMs\":0,\"ok\":true,\"timestamp\":1788207490177},{\"toolName\":\"get_scene_summary\",\"durationMs\":424,\"ok\":true,\"timestamp\":1788206731869},{\"toolName\":\"get_connected_instances\",\"durationMs\":1,\"ok\":true,\"timestamp\":1788206731424}]}"
+      }
+    ]
+  },
+  "completed_at": "2026-09-01T10:04:40Z"
+}

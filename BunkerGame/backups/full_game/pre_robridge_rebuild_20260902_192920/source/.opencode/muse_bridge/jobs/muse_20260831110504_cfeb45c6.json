@@ -1,0 +1,18 @@
+{
+  "invocation_id": "muse_20260831110504_cfeb45c6",
+  "state": "COMPLETE",
+  "created_at": "2026-08-31T11:05:04.141Z",
+  "project_root": "/Users/Ori/Documents/Projects/BunkerGame",
+  "opencode": "/Users/Ori/Library/Application Support/bloxbot/opencode/darwin-arm64/1.18.23/opencode",
+  "agent": "bunkergame-art-director",
+  "model": "opencode/muse-spark-1.2-contributor-free",
+  "prompt_file": "/Users/Ori/Documents/Projects/BunkerGame/.opencode/muse_bridge/logs/muse_20260831110504_cfeb45c6.directive.txt",
+  "log_file": "/Users/Ori/Documents/Projects/BunkerGame/.opencode/muse_bridge/logs/muse_20260831110504_cfeb45c6.log",
+  "runner_status_file": "/Users/Ori/Documents/Projects/BunkerGame/.opencode/muse_bridge/logs/muse_20260831110504_cfeb45c6.runner.json",
+  "daemon_pid": 74449,
+  "started_at": "2026-08-31T11:05:04.558Z",
+  "runner_pid": 77130,
+  "exit_code": 0,
+  "exit_signal": null,
+  "completed_at": "2026-08-31T12:32:21.859Z"
+}

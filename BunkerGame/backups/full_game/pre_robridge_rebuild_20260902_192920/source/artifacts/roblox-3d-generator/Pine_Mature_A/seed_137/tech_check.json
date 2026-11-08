@@ -1,0 +1,42 @@
+{
+  "file_exists": true,
+  "file_opens": true,
+  "mesh_exists": true,
+  "vertex_count": 21918,
+  "triangle_count": 43804,
+  "dimensions": {
+    "x": 1.0422984957695007,
+    "y": 1.9918291568756104,
+    "z": 0.924744576215744
+  },
+  "materials": [
+    "visual_kind=vertex"
+  ],
+  "vertex_colors": true,
+  "orientation": "tallest_axis=y dims={'x': 1.0422984957695007, 'y': 1.9918291568756104, 'z': 0.924744576215744}",
+  "corrupt_geometry": false,
+  "roblox_suitability": "HEAVY_43804_tris (>20k heavy for Roblox, recommend decimation); VERTS_21918; GEOMETRY_OK; SCALE_CHECK tallest=1.99 units (raw InstantMesh scale ~2 units; will need scaling to Roblox studs); VERTEX_COLORS_YES (good, InstantMesh bakes colors)",
+  "error": null,
+  "details": {
+    "file_size": 877356,
+    "bounds": [
+      [
+        -0.49823904037475586,
+        -1.0018413066864014,
+        -0.43050193786621094
+      ],
+      [
+        0.5440594553947449,
+        0.989987850189209,
+        0.4942426383495331
+      ]
+    ],
+    "extents": [
+      1.0422984957695007,
+      1.9918291568756104,
+      0.924744576215744
+    ],
+    "mesh_count": 1,
+    "orientation_note": "Y is tallest - good for Roblox (Y-up)"
+  }
+}

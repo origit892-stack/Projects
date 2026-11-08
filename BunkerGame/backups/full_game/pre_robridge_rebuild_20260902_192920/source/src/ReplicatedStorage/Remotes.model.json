@@ -1,0 +1,37 @@
+{
+  "ClassName": "Folder",
+  "Children": [
+    {
+      "Name": "GetSnapshot",
+      "ClassName": "RemoteFunction"
+    },
+    {
+      "Name": "StateDelta",
+      "ClassName": "RemoteEvent"
+    },
+    {
+      "Name": "ActionResult",
+      "ClassName": "RemoteEvent"
+    },
+    {
+      "Name": "InteractionOpened",
+      "ClassName": "RemoteEvent"
+    },
+    {
+      "Name": "ToolIntent",
+      "ClassName": "RemoteEvent"
+    },
+    {
+      "Name": "InteractionIntent",
+      "ClassName": "RemoteEvent"
+    },
+    {
+      "Name": "UseItemIntent",
+      "ClassName": "RemoteEvent"
+    },
+    {
+      "Name": "InteractionCloseIntent",
+      "ClassName": "RemoteEvent"
+    }
+  ]
+}

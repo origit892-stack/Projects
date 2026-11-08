@@ -1,0 +1,45 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama Local",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      },
+      "models": {
+        "qwen3.5:27b": {
+          "name": "Qwen 3.5 27B Local"
+        },
+        "qwen3-vl:8b": {
+          "name": "Qwen3 VL 8B Local"
+        },
+        "glm-4.7-flash:q4_K_M": {
+          "name": "GLM 4.7 Flash Q4 Local"
+        },
+        "qwen-spatial": {
+          "name": "Qwen Spatial 27B Local"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "bloxforge": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@princeofscale/bloxforge@latest"
+      ],
+      "enabled": true
+    },
+    "robridge": {
+      "type": "local",
+      "command": [
+        "/usr/local/bin/node",
+        "/Users/Ori/RoBridge/dist/index.js"
+      ],
+      "enabled": true
+    }
+  }
+}
