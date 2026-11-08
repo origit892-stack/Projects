@@ -1,0 +1,1174 @@
+{
+  "antique_cash_register.obj": {
+    "classification": "VALID",
+    "vertices": 25490,
+    "faces": 51066,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.812,
+        -0.952,
+        -0.786
+      ],
+      "max": [
+        0.806,
+        0.951,
+        0.771
+      ]
+    },
+    "size_studs_estimate": [
+      1.618,
+      1.903,
+      1.556
+    ],
+    "degenerate": false
+  },
+  "canned_food_supply.obj": {
+    "classification": "VALID",
+    "vertices": 25275,
+    "faces": 50546,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.73,
+        -0.952,
+        -0.731
+      ],
+      "max": [
+        0.722,
+        0.951,
+        0.722
+      ]
+    },
+    "size_studs_estimate": [
+      1.452,
+      1.903,
+      1.454
+    ],
+    "degenerate": false
+  },
+  "concrete_barricade.obj": {
+    "classification": "VALID",
+    "vertices": 7597,
+    "faces": 15190,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.955,
+        -0.292,
+        -0.29
+      ],
+      "max": [
+        0.951,
+        0.278,
+        0.282
+      ]
+    },
+    "size_studs_estimate": [
+      1.906,
+      0.57,
+      0.572
+    ],
+    "degenerate": false
+  },
+  "drainage_grate_01.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 13,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        0.0,
+        -8.0,
+        -8.0
+      ],
+      "max": [
+        0.0,
+        8.0,
+        8.0
+      ]
+    },
+    "size_studs_estimate": [
+      0.0,
+      16.0,
+      16.0
+    ],
+    "degenerate": false
+  },
+  "drainage_pipe_section.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 13,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        0.0,
+        -8.0,
+        -8.0
+      ],
+      "max": [
+        0.0,
+        8.0,
+        8.0
+      ]
+    },
+    "size_studs_estimate": [
+      0.0,
+      16.0,
+      16.0
+    ],
+    "degenerate": false
+  },
+  "electrical_conduit_01.obj": {
+    "classification": "PLACEHOLDER_LOW_GEO",
+    "vertices": 33,
+    "faces": 1,
+    "bad_lines": 30,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -25.0,
+        -2.0,
+        -2.0
+      ],
+      "max": [
+        25.0,
+        2.0,
+        2.0
+      ]
+    },
+    "size_studs_estimate": [
+      50.0,
+      4.0,
+      4.0
+    ],
+    "degenerate": false
+  },
+  "electrical_conduit_02.obj": {
+    "classification": "PLACEHOLDER_LOW_GEO",
+    "vertices": 33,
+    "faces": 1,
+    "bad_lines": 30,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -37.5,
+        -3.0,
+        -3.0
+      ],
+      "max": [
+        37.5,
+        3.0,
+        3.0
+      ]
+    },
+    "size_studs_estimate": [
+      75.0,
+      6.0,
+      6.0
+    ],
+    "degenerate": false
+  },
+  "electrical_conduit_03.obj": {
+    "classification": "PLACEHOLDER_LOW_GEO",
+    "vertices": 33,
+    "faces": 1,
+    "bad_lines": 30,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -50.0,
+        -4.0,
+        -4.0
+      ],
+      "max": [
+        50.0,
+        4.0,
+        4.0
+      ]
+    },
+    "size_studs_estimate": [
+      100.0,
+      8.0,
+      8.0
+    ],
+    "degenerate": false
+  },
+  "electrical_conduit_branch.obj": {
+    "classification": "VALID",
+    "vertices": 625,
+    "faces": 576,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -25.0,
+        -3.0,
+        -3.0
+      ],
+      "max": [
+        25.0,
+        3.0,
+        3.0
+      ]
+    },
+    "size_studs_estimate": [
+      50.0,
+      6.0,
+      6.0
+    ],
+    "degenerate": false
+  },
+  "electrical_conduit_main.obj": {
+    "classification": "VALID",
+    "vertices": 625,
+    "faces": 576,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -50.0,
+        -4.0,
+        -4.0
+      ],
+      "max": [
+        50.0,
+        4.0,
+        4.0
+      ]
+    },
+    "size_studs_estimate": [
+      100.0,
+      8.0,
+      8.0
+    ],
+    "degenerate": false
+  },
+  "emergency_light.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 17,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -4.0,
+        7.5,
+        -4.0
+      ],
+      "max": [
+        4.0,
+        7.5,
+        4.0
+      ]
+    },
+    "size_studs_estimate": [
+      8.0,
+      0.0,
+      8.0
+    ],
+    "degenerate": false
+  },
+  "emergency_medkit.obj": {
+    "classification": "VALID",
+    "vertices": 18506,
+    "faces": 37012,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.956,
+        -0.824,
+        -0.524
+      ],
+      "max": [
+        0.952,
+        0.815,
+        0.517
+      ]
+    },
+    "size_studs_estimate": [
+      1.908,
+      1.638,
+      1.041
+    ],
+    "degenerate": false
+  },
+  "fire_extinguisher.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 17,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -4.0,
+        7.5,
+        -4.0
+      ],
+      "max": [
+        4.0,
+        7.5,
+        4.0
+      ]
+    },
+    "size_studs_estimate": [
+      8.0,
+      0.0,
+      8.0
+    ],
+    "degenerate": false
+  },
+  "gas_mask.obj": {
+    "classification": "VALID",
+    "vertices": 46855,
+    "faces": 93984,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.952,
+        -0.953,
+        -0.953
+      ],
+      "max": [
+        0.95,
+        0.944,
+        0.951
+      ]
+    },
+    "size_studs_estimate": [
+      1.903,
+      1.897,
+      1.904
+    ],
+    "degenerate": false
+  },
+  "gemstone.obj": {
+    "classification": "VALID",
+    "vertices": 15939,
+    "faces": 31874,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.674,
+        -0.952,
+        -0.675
+      ],
+      "max": [
+        0.663,
+        0.95,
+        0.665
+      ]
+    },
+    "size_studs_estimate": [
+      1.337,
+      1.902,
+      1.34
+    ],
+    "degenerate": false
+  },
+  "gold_coin.obj": {
+    "classification": "VALID",
+    "vertices": 12364,
+    "faces": 24724,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.956,
+        -0.953,
+        -0.129
+      ],
+      "max": [
+        0.951,
+        0.951,
+        0.12
+      ]
+    },
+    "size_studs_estimate": [
+      1.907,
+      1.904,
+      0.249
+    ],
+    "degenerate": false
+  },
+  "industrial_metal_air_vent.obj": {
+    "classification": "VALID",
+    "vertices": 38646,
+    "faces": 77430,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.953,
+        -0.952,
+        -0.953
+      ],
+      "max": [
+        0.95,
+        0.952,
+        0.951
+      ]
+    },
+    "size_studs_estimate": [
+      1.903,
+      1.904,
+      1.904
+    ],
+    "degenerate": false
+  },
+  "military_bunk_bed.obj": {
+    "classification": "VALID",
+    "vertices": 30717,
+    "faces": 61482,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.951,
+        -0.926,
+        -0.654
+      ],
+      "max": [
+        0.937,
+        0.92,
+        0.637
+      ]
+    },
+    "size_studs_estimate": [
+      1.888,
+      1.846,
+      1.292
+    ],
+    "degenerate": false
+  },
+  "military_tactical_flashlight.obj": {
+    "classification": "VALID",
+    "vertices": 8426,
+    "faces": 16852,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.278,
+        -0.299,
+        -0.952
+      ],
+      "max": [
+        0.276,
+        0.288,
+        0.951
+      ]
+    },
+    "size_studs_estimate": [
+      0.554,
+      0.587,
+      1.903
+    ],
+    "degenerate": false
+  },
+  "mounting_bracket_01.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 6,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        0.0,
+        0.0,
+        -3.0
+      ],
+      "max": [
+        15.0,
+        10.0,
+        0.0
+      ]
+    },
+    "size_studs_estimate": [
+      15.0,
+      10.0,
+      3.0
+    ],
+    "degenerate": false
+  },
+  "mounting_bracket_02.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 6,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        0.0,
+        0.0,
+        -3.0
+      ],
+      "max": [
+        15.0,
+        10.0,
+        0.0
+      ]
+    },
+    "size_studs_estimate": [
+      15.0,
+      10.0,
+      3.0
+    ],
+    "degenerate": false
+  },
+  "old_power_generator.obj": {
+    "classification": "VALID",
+    "vertices": 18180,
+    "faces": 36344,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.562,
+        -0.953,
+        -0.583
+      ],
+      "max": [
+        0.621,
+        0.952,
+        0.569
+      ]
+    },
+    "size_studs_estimate": [
+      1.183,
+      1.905,
+      1.152
+    ],
+    "degenerate": false
+  },
+  "pipe_section_01.obj": {
+    "classification": "PLACEHOLDER_LOW_GEO",
+    "vertices": 29,
+    "faces": 2,
+    "bad_lines": 24,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -6.0,
+        -3.0,
+        -3.0
+      ],
+      "max": [
+        6.0,
+        4.5,
+        4.5
+      ]
+    },
+    "size_studs_estimate": [
+      12.0,
+      7.5,
+      7.5
+    ],
+    "degenerate": false
+  },
+  "pipe_section_01_detailed.obj": {
+    "classification": "VALID",
+    "vertices": 1093,
+    "faces": 1027,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -40.0,
+        -3.0,
+        -3.0
+      ],
+      "max": [
+        40.0,
+        5.0,
+        5.0
+      ]
+    },
+    "size_studs_estimate": [
+      80.0,
+      8.0,
+      8.0
+    ],
+    "degenerate": false
+  },
+  "pipe_section_02.obj": {
+    "classification": "PLACEHOLDER_LOW_GEO",
+    "vertices": 29,
+    "faces": 2,
+    "bad_lines": 24,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -6.0,
+        -3.0,
+        -3.0
+      ],
+      "max": [
+        6.0,
+        4.5,
+        4.5
+      ]
+    },
+    "size_studs_estimate": [
+      12.0,
+      7.5,
+      7.5
+    ],
+    "degenerate": false
+  },
+  "pipe_section_02_detailed.obj": {
+    "classification": "VALID",
+    "vertices": 1093,
+    "faces": 1027,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -30.0,
+        -2.0,
+        -2.0
+      ],
+      "max": [
+        30.0,
+        4.0,
+        4.0
+      ]
+    },
+    "size_studs_estimate": [
+      60.0,
+      6.0,
+      6.0
+    ],
+    "degenerate": false
+  },
+  "pipe_support_bracket_01.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 6,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        0.0,
+        0.0,
+        -3.0
+      ],
+      "max": [
+        15.0,
+        10.0,
+        0.0
+      ]
+    },
+    "size_studs_estimate": [
+      15.0,
+      10.0,
+      3.0
+    ],
+    "degenerate": false
+  },
+  "reinforced_steel_bunker_door.obj": {
+    "classification": "VALID",
+    "vertices": 12484,
+    "faces": 24964,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.704,
+        -0.954,
+        -0.26
+      ],
+      "max": [
+        0.696,
+        0.952,
+        0.251
+      ]
+    },
+    "size_studs_estimate": [
+      1.4,
+      1.906,
+      0.511
+    ],
+    "degenerate": false
+  },
+  "rusty_metal_barrel.obj": {
+    "classification": "VALID",
+    "vertices": 22317,
+    "faces": 44630,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.69,
+        -0.951,
+        -0.687
+      ],
+      "max": [
+        0.682,
+        0.952,
+        0.68
+      ]
+    },
+    "size_studs_estimate": [
+      1.372,
+      1.903,
+      1.368
+    ],
+    "degenerate": false
+  },
+  "service_panel_auxiliary.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 8,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -10.0,
+        14.0,
+        -2.5
+      ],
+      "max": [
+        10.0,
+        16.0,
+        2.5
+      ]
+    },
+    "size_studs_estimate": [
+      20.0,
+      2.0,
+      5.0
+    ],
+    "degenerate": false
+  },
+  "service_panel_main.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 8,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -10.0,
+        14.0,
+        -2.5
+      ],
+      "max": [
+        10.0,
+        16.0,
+        2.5
+      ]
+    },
+    "size_studs_estimate": [
+      20.0,
+      2.0,
+      5.0
+    ],
+    "degenerate": false
+  },
+  "shabby_wooden_merchant_stall.obj": {
+    "classification": "VALID",
+    "vertices": 29530,
+    "faces": 59224,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.922,
+        -0.952,
+        -0.684
+      ],
+      "max": [
+        0.909,
+        0.951,
+        0.677
+      ]
+    },
+    "size_studs_estimate": [
+      1.831,
+      1.903,
+      1.361
+    ],
+    "degenerate": false
+  },
+  "stone_tunnel_entrance_archway.obj": {
+    "classification": "VALID",
+    "vertices": 27069,
+    "faces": 54134,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.95,
+        -0.73,
+        -0.954
+      ],
+      "max": [
+        0.947,
+        0.722,
+        0.948
+      ]
+    },
+    "size_studs_estimate": [
+      1.898,
+      1.452,
+      1.902
+    ],
+    "degenerate": false
+  },
+  "storage_rack_unit.obj": {
+    "classification": "PLACEHOLDER_TINY",
+    "vertices": 8,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -20.0,
+        -28.0,
+        -7.5
+      ],
+      "max": [
+        20.0,
+        28.0,
+        7.5
+      ]
+    },
+    "size_studs_estimate": [
+      40.0,
+      56.0,
+      15.0
+    ],
+    "degenerate": false
+  },
+  "treasure_chest.obj.obj": {
+    "classification": "VALID",
+    "vertices": 26510,
+    "faces": 53024,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./treasure_chest.obj.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.954,
+        -0.863,
+        -0.689
+      ],
+      "max": [
+        0.947,
+        0.853,
+        0.7
+      ]
+    },
+    "size_studs_estimate": [
+      1.901,
+      1.716,
+      1.389
+    ],
+    "degenerate": false
+  },
+  "ventilation_duct_branch.obj": {
+    "classification": "PLACEHOLDER_NO_FACES",
+    "vertices": 68,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -50.0,
+        10.0,
+        15.0
+      ],
+      "max": [
+        50.0,
+        20.0,
+        30.0
+      ]
+    },
+    "size_studs_estimate": [
+      100.0,
+      10.0,
+      15.0
+    ],
+    "degenerate": false
+  },
+  "ventilation_duct_branch_detailed.obj": {
+    "classification": "PLACEHOLDER_NO_FACES",
+    "vertices": 1156,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -30.0,
+        -7.5,
+        -10.0
+      ],
+      "max": [
+        30.0,
+        7.5,
+        0.0
+      ]
+    },
+    "size_studs_estimate": [
+      60.0,
+      15.0,
+      10.0
+    ],
+    "degenerate": false
+  },
+  "ventilation_duct_main.obj": {
+    "classification": "PLACEHOLDER_NO_FACES",
+    "vertices": 68,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -50.0,
+        10.0,
+        15.0
+      ],
+      "max": [
+        50.0,
+        20.0,
+        30.0
+      ]
+    },
+    "size_studs_estimate": [
+      100.0,
+      10.0,
+      15.0
+    ],
+    "degenerate": false
+  },
+  "ventilation_duct_main_detailed.obj": {
+    "classification": "PLACEHOLDER_NO_FACES",
+    "vertices": 1156,
+    "faces": 0,
+    "bad_lines": 0,
+    "mtl_refs": [],
+    "has_vertex_normals": false,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -60.0,
+        -10.0,
+        -15.0
+      ],
+      "max": [
+        60.0,
+        10.0,
+        0.0
+      ]
+    },
+    "size_studs_estimate": [
+      120.0,
+      20.0,
+      15.0
+    ],
+    "degenerate": false
+  },
+  "vintage_glowing_lantern.obj": {
+    "classification": "VALID",
+    "vertices": 9949,
+    "faces": 20012,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.474,
+        -0.952,
+        -0.429
+      ],
+      "max": [
+        0.466,
+        0.949,
+        0.416
+      ]
+    },
+    "size_studs_estimate": [
+      0.939,
+      1.902,
+      0.845
+    ],
+    "degenerate": false
+  },
+  "walkie_talkie_radio.obj": {
+    "classification": "VALID",
+    "vertices": 5002,
+    "faces": 10000,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.322,
+        -0.954,
+        -0.196
+      ],
+      "max": [
+        0.312,
+        0.951,
+        0.173
+      ]
+    },
+    "size_studs_estimate": [
+      0.634,
+      1.906,
+      0.369
+    ],
+    "degenerate": false
+  },
+  "wooden_ammo_crate.obj": {
+    "classification": "VALID",
+    "vertices": 28054,
+    "faces": 56104,
+    "bad_lines": 0,
+    "mtl_refs": [
+      "./output.obj.mtl"
+    ],
+    "has_vertex_normals": true,
+    "has_tex_coords": true,
+    "bbox": {
+      "min": [
+        -0.953,
+        -0.64,
+        -0.953
+      ],
+      "max": [
+        0.945,
+        0.633,
+        0.947
+      ]
+    },
+    "size_studs_estimate": [
+      1.898,
+      1.273,
+      1.899
+    ],
+    "degenerate": false
+  }
+}

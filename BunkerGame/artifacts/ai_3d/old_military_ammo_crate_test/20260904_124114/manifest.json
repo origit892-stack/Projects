@@ -1,0 +1,48 @@
+{
+  "pipeline_version": "1.0",
+  "timestamp": "20260904_124114",
+  "generator": {
+    "provider": "Hugging Face",
+    "space": "ThomasSimonini/Roblox-3D-Assets-Generator-v1"
+  },
+  "input": {
+    "path": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/references/old_military_ammo_crate_reference.png",
+    "sha256": "23689ec2411b3a2b7d3ec51cc9ad5200ae597d59934f8cf0abe7e86e7fb79c26"
+  },
+  "settings": {
+    "seed": 42,
+    "steps": 75.0,
+    "remove_background": true
+  },
+  "api_flow": [
+    "/preprocess",
+    "/generate_mvs",
+    "/make3d"
+  ],
+  "outputs": {
+    "reference": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test/20260904_124114/reference/input.png",
+    "processed": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test/20260904_124114/generation/processed.webp",
+    "multiview": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test/20260904_124114/generation/multiview.webp",
+    "obj": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test/20260904_124114/generation/model.obj",
+    "glb": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test/20260904_124114/generation/model.glb"
+  },
+  "qa": {
+    "glb_size_bytes": 1800160,
+    "glb_sha256": "6dd617577852855efa1f78aec14683edb0d22e8d7082909dcfeedcbc14099fcf",
+    "glb_magic_valid": true,
+    "mesh_count": 1,
+    "vertex_count": 45030,
+    "triangle_count": 89888,
+    "bounding_dimensions": [
+      2.0031819343566895,
+      0.9720213711261749,
+      1.8206490278244019
+    ],
+    "invalid_coordinates": false,
+    "pass": true
+  },
+  "generation_duration_seconds": 31.274497985839844,
+  "roblox_import_status": "NOT_TESTED",
+  "visual_qa_status": "NOT_TESTED",
+  "asset_library_registered": "NO"
+}

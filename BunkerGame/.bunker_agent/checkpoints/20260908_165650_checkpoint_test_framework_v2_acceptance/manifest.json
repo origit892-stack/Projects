@@ -1,0 +1,32 @@
+[
+  {
+    "path": "tools/ai_3d_pipeline/bunker3d",
+    "exists": true,
+    "is_dir": false
+  },
+  {
+    "path": "tools/ai_3d_pipeline/generate_asset.py",
+    "exists": true,
+    "is_dir": false
+  },
+  {
+    "path": "tools/ai_3d_pipeline/optimize_roblox.py",
+    "exists": true,
+    "is_dir": false
+  },
+  {
+    "path": "tools/ai_3d_pipeline/backends",
+    "exists": true,
+    "is_dir": true
+  },
+  {
+    "path": ".cube_integration_status.md",
+    "exists": true,
+    "is_dir": false
+  },
+  {
+    "path": ".cube_integration_complete.txt",
+    "exists": true,
+    "is_dir": false
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "request_id": "scene2_269721",
+  "intent": "bloxforge_tool_call",
+  "details": "BloxForge terrain validation",
+  "studio_context": {},
+  "received_at": "2026-09-01T10:07:04Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "get_scene_summary",
+    "arguments": {
+      "includeDetails": true,
+      "path": "Workspace.Terrain"
+    }
+  }
+}

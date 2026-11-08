@@ -1,0 +1,13 @@
+{
+  "request_id": "test-d-scene",
+  "intent": "bloxforge_tool_call",
+  "details": "Read Workspace summary",
+  "studio_context": {"project": "BunkerGame"},
+  "bloxforge": {
+    "tool": "get_scene_summary",
+    "arguments": {
+      "instancePath": "game.Workspace",
+      "instance_id": "place:129695090105158"
+    }
+  }
+}

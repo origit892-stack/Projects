@@ -1,0 +1,18 @@
+[2026-09-01T14:07:04.644502+00:00] START generate_one seed=137 steps=75 bg_remove=True
+[2026-09-01T14:07:04.644855+00:00] reference_image=/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/Pine_Mature_A_reference.png exists=True size=2250666
+[2026-09-01T14:07:04.644999+00:00] output_dir=/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_137
+[2026-09-01T14:07:04.645245+00:00] SPACE_ID=ThomasSimonini/Roblox-3D-Assets-Generator-v1
+[2026-09-01T14:07:04.645373+00:00] Connecting to Hugging Face Space...
+[2026-09-01T14:07:06.587242+00:00] SPACE_CONNECTED=YES
+[2026-09-01T14:07:06.587797+00:00] API_DISCOVERED=YES endpoints=['/check_input_image', '/preprocess', '/generate_mvs', '/make3d']
+[2026-09-01T14:07:06.588179+00:00] STEP 1/3: /preprocess
+[2026-09-01T14:07:11.991294+00:00] preprocess raw=/private/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/gradio/f79936b98c99b88dca0757b87a556b457377fd037dde7b1bcd8fa9d3a36d1766/image.webp
+[2026-09-01T14:07:11.992169+00:00] processed_reference saved /Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_137/processed_reference.webp size=405790 time=5.4s
+[2026-09-01T14:07:11.992298+00:00] STEP 2/3: /generate_mvs seed=137 steps=75
+[2026-09-01T14:07:34.721557+00:00] generate_mvs raw=/private/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/gradio/6a52776d815a154d74f4f133b7b7e36162930a1f3e084ab6b80e61f332d4c9e5/image.webp
+[2026-09-01T14:07:34.722448+00:00] generated_multiview saved /Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_137/generated_multiview.webp size=51724 time=22.7s
+[2026-09-01T14:07:34.722522+00:00] STEP 3/3: /make3d
+[2026-09-01T14:07:42.062618+00:00] make3d raw=('/private/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/gradio/332af4e29de5925b9baa0c80026ae9776473320422c927e0327a3d70609add75/tmpksa3ose1.obj', '/private/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/gradio/fad16c530e3502d300abbc41143413ffed51202931dc2c74ac548887cbcdd722/tmpksa3ose1.glb')
+[2026-09-01T14:07:42.066928+00:00] OBJ saved /Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_137/Pine_Mature_A_InstantMesh_seed137.obj size=2330830
+[2026-09-01T14:07:42.067092+00:00] GLB saved /Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_137/Pine_Mature_A_InstantMesh_seed137.glb size=877356 time=7.3s
+[2026-09-01T14:07:42.068547+00:00] SUCCESS total_time=37.4s

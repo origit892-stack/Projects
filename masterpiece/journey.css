@@ -1,0 +1,36 @@
+/* The caption is one flowing block. The artwork reserves its own space. */
+html,body{height:100%;overflow:hidden;overscroll-behavior:none}.scroll-track{height:0}
+.words,.words[data-side=right]{position:fixed;display:flex;flex-direction:column;gap:14px;z-index:3;left:auto;right:5%;top:50%;bottom:auto;width:34%;text-align:right;transform:translateY(-50%);line-height:1.7;transition:opacity .25s,transform .4s}
+.kinetic-kicker{font-size:15px;line-height:1.65;letter-spacing:.4px;margin:0}.fact-strip{display:none}
+.kinetic-title{font-size:clamp(44px,4.8vw,70px);font-weight:400;line-height:1.12;letter-spacing:-2px;margin:0;white-space:pre-line;overflow-wrap:break-word}
+.kinetic-desc{font-size:clamp(20px,1.55vw,25px);line-height:1.7;max-width:none;margin:0;overflow-wrap:break-word}
+.words[data-side=start],.words[data-side=end]{left:8%;right:8%;top:auto;bottom:86px;width:84%;text-align:center;transform:none;gap:12px}
+.words[data-side=start] .kinetic-title,.words[data-side=end] .kinetic-title{font-size:clamp(42px,4.3vw,62px);line-height:1.1;letter-spacing:-2px;margin:0}
+.words[data-side=start] .kinetic-desc,.words[data-side=end] .kinetic-desc{font-size:22px;line-height:1.65;max-width:850px;margin:0 auto}
+.start,.story-trigger{font-size:15px;line-height:1.7;align-self:center;padding:3px 0}.chapter-busy .words{opacity:0;transform:translateY(calc(-50% + 22px))}.chapter-busy .words[data-side=start],.chapter-busy .words[data-side=end]{transform:translateY(22px)}
+body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to left,var(--scene) 0%,var(--scene) 34%,transparent 62%);transition:opacity .3s}body.chapter-busy::after,body.chapter-bookend::after{opacity:0}
+.chapter-digit{position:fixed;left:4%;top:9%;z-index:1;font-size:clamp(110px,22vw,320px);font-weight:900;line-height:1;letter-spacing:-18px;color:#4577790b;pointer-events:none;direction:ltr}.chapter-bookend .chapter-digit,.chapter-busy .chapter-digit{opacity:0}.dark .chapter-digit{color:#eaf4eb12}
+.header .brand{font-size:13px}.header button{font-size:13px}.next{width:40px;height:40px;bottom:82px;right:4%}.chapter-busy .next{opacity:.25}
+.footer{bottom:22px;align-items:center}.footer .tools{gap:14px;flex-wrap:wrap}.footer .tools button{font-size:12px;line-height:1.7}.scroll-info{white-space:nowrap;flex-shrink:0;font-size:10px}.scroll-info span:first-child{font-size:14px}.timeline{gap:22px}.timeline button.active{box-shadow:0 0 0 6px #599b8330}
+.story-dialog p,.story-dialog #detail-note{font-size:20px;line-height:1.8}.story-dialog #detail-note{border-bottom:1px solid #112c3725;padding-bottom:18px}.story-dialog .story-intro p{font-size:17px}.story-body h3{font-size:27px;line-height:1.5}.source-links{font-size:14px;line-height:1.9}.story-dialog img{height:auto;margin:22px 0}.detail-wrap{position:relative}.detail-marker{display:none}
+.animation-only .words,.animation-only .chapter-digit{display:none}.animation-only::after{opacity:0}.animation-only #world{transition:transform .4s;transform:translateX(13%)}.animation-only.chapter-bookend #world{transform:none}
+@media(max-width:760px){
+ .header{padding:15px 6%}.header button{font-size:12px}.header .brand{font-size:11px}.header-right{gap:15px}
+ .words,.words[data-side=right],.words[data-side=start],.words[data-side=end]{left:8%;right:8%;width:84%;top:auto;bottom:116px;gap:10px;transform:none;text-align:right}
+ .words[data-side=start],.words[data-side=end]{text-align:center}
+ .kinetic-title,.words[data-side=start] .kinetic-title,.words[data-side=end] .kinetic-title{font-size:40px;line-height:1.12;letter-spacing:-1px;margin:0}
+ .kinetic-desc,.words[data-side=start] .kinetic-desc,.words[data-side=end] .kinetic-desc{font-size:18px;line-height:1.65;margin:0;max-width:none}
+ .kinetic-kicker{font-size:12px;line-height:1.6;letter-spacing:0}.start,.story-trigger{font-size:13px}
+ .chapter-busy .words{transform:translateY(22px)}body::after{background:linear-gradient(to top,var(--scene) 0%,var(--scene) 40%,transparent 64%)}
+ .chapter-digit{font-size:120px;letter-spacing:-8px;top:12%;left:5%}.timeline{top:21%;left:3%;gap:20px}.edge-label{display:none}
+ .next{width:32px;height:32px;bottom:76px;right:6%}.footer{bottom:16px;left:6%;right:6%;gap:12px}.footer .tools{max-width:235px;gap:5px 12px}.footer .tools button{font-size:10px}.scroll-info{font-size:8px}.scroll-info span:first-child{font-size:12px}.scroll-info span:last-child{display:none}
+ .story-dialog{padding:22px}.story-dialog p,.story-dialog #detail-note{font-size:18px;line-height:1.75}.story-dialog .story-intro{display:block}.story-dialog .story-intro p{font-size:16px}.story-body h3{font-size:24px}.source-links{font-size:12px}
+ .animation-only #world{transform:translateY(12%)}
+}
+@media(max-height:700px) and (max-width:760px){.words,.words[data-side=start],.words[data-side=end]{bottom:104px;gap:8px}.kinetic-title,.words[data-side=start] .kinetic-title,.words[data-side=end] .kinetic-title{font-size:32px}.kinetic-desc,.words[data-side=start] .kinetic-desc,.words[data-side=end] .kinetic-desc{font-size:16px;line-height:1.6}.kinetic-kicker{font-size:11px}.chapter-digit{font-size:90px}.start,.story-trigger{font-size:12px}}
+@media(max-height:700px) and (min-width:761px){.kinetic-title{font-size:44px}.kinetic-desc{font-size:19px}.words[data-side=start] .kinetic-title,.words[data-side=end] .kinetic-title{font-size:38px}.words[data-side=start] .kinetic-desc,.words[data-side=end] .kinetic-desc{font-size:19px}.words[data-side=start],.words[data-side=end]{bottom:76px}}
+@media(prefers-reduced-motion:reduce){.words,#world{transition:none}}
+
+.animation-only #world,.animation-only.chapter-bookend #world{transform:none}
+.bibliography-trigger{position:fixed;bottom:65px;left:4%;pointer-events:auto;border:0;padding:3px 0;background:none;color:inherit;font-size:11px;opacity:.65;line-height:1.5;text-decoration:underline;text-underline-offset:4px}.bibliography-trigger:hover{opacity:1}.source-links ol{padding-inline-start:22px;margin:14px 0;display:grid;gap:12px}.source-links h3{font-size:22px}.story-dialog .source-links li,.story-dialog .bibliography-date{font-size:14px;line-height:1.8}.source-links a{overflow-wrap:anywhere}.story-dialog .bibliography-date{opacity:.65;font-size:12px}
+@media(max-width:760px){.bibliography-trigger{bottom:76px;left:6%;font-size:10px}.story-dialog .source-links li{font-size:13px}}

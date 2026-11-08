@@ -1,0 +1,21 @@
+{
+  "request_id": "terrain_review_821063",
+  "intent": "geometry_review",
+  "details": "AAA-quality outdoor terrain plot built with Roblox native terrain voxels. 240x240 stud footprint centered at origin. Features: broad asymmetric hill (peak ~30 studs, offset to x=25 z=-20), natural grass/dirt/rock material layering, subtle sand erosion in low areas (8% of surface), height range 6-30 studs. Voxel-based terrain using WriteVoxels at 4-stud resolution. No buildings, forest, or bunker - just the terrain foundation. Please review: terrain geometry quality, material distribution, slope transitions, edge variation, collision suitability, and any technical issues.",
+  "studio_context": {
+    "voxel_resolution": 4,
+    "materials": [
+      "Grass",
+      "Ground",
+      "Rock",
+      "Sand",
+      "LeafyGrass"
+    ],
+    "terrain_voxels": 29727,
+    "mode": "Edit",
+    "footprint": "240x240 studs",
+    "height_range": "6-30 studs"
+  },
+  "received_at": "2026-09-01T10:00:40Z",
+  "status": "pending"
+}

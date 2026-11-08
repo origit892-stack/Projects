@@ -1,0 +1,37 @@
+- generic [active] [ref=e1]:
+  - generic "סצנה תלת־ממדית המשתנה ברציפות עם הגלילה" [ref=e2]
+  - banner:
+    - button "חזרה לתחילת המסע" [ref=e3] [cursor=pointer]:
+      - text: HOKUSAI
+      - generic [ref=e4]: AN EXPERIMENT IN MOTION
+    - generic:
+      - button "על היצירה ↗" [ref=e5] [cursor=pointer]
+      - generic: 北斎
+  - main [ref=e6]:
+    - generic "גללו קדימה ואחורה כדי לשלוט בתנועה"
+    - generic:
+      - generic: קצושיקה הוקוסאי · 1830–1832
+      - heading "הגל הגדול." [level=1]
+      - paragraph: גל ענק. שלוש סירות. הר קטן באופק. הדפס עץ אחד — ועולם שלם של תנועה.
+      - button "גללו כדי להיכנס ↓" [ref=e7] [cursor=pointer]:
+        - text: גללו כדי להיכנס
+        - generic [ref=e8]: ↓
+  - generic:
+    - navigation "נקודות במסע":
+      - button "היצירה" [ref=e9] [cursor=pointer]
+      - button "הקיפול" [ref=e10] [cursor=pointer]
+      - button "הטבעת" [ref=e11] [cursor=pointer]
+      - button "שינוי הצבע" [ref=e12] [cursor=pointer]
+      - button "הקשר" [ref=e13] [cursor=pointer]
+      - button "החלקים" [ref=e14] [cursor=pointer]
+      - button "חזרה למקור" [ref=e15] [cursor=pointer]
+    - generic: SCROLL IS THE PLAYHEAD
+    - button "התקדמות במסע": ↓
+    - generic:
+      - generic:
+        - button "Ⅱ תנועה" [ref=e16] [cursor=pointer]
+        - button "♫ צלילי ים" [ref=e17] [cursor=pointer]
+        - button "איכות רגילה" [ref=e18] [cursor=pointer]
+      - generic:
+        - generic: 00%
+        - generic: גללו קדימה · חזרו אחורה

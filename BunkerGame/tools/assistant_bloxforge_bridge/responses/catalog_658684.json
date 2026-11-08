@@ -1,0 +1,17 @@
+{
+  "request_id": "catalog_658684",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_tool": "tool_catalog_search",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"ok\":false,\"error\":{\"code\":\"INVALID_ARGUMENT\",\"message\":\"tool_catalog_search requires a non-empty \\\"query\\\" describing the task, e.g. {\\\"query\\\":\\\"read script source\\\"}.\",\"retryable\":false,\"stage\":\"tool_catalog_search\",\"suggestedRecovery\":\"fix the arguments and retry\"}}"
+      }
+    ],
+    "isError": true
+  },
+  "completed_at": "2026-09-01T10:04:40Z"
+}

@@ -1,0 +1,52 @@
+{
+  "pipeline_version": "1.0",
+  "timestamp": "2026-10-01T10:37:56Z",
+  "task": "WAREHOUSE_GENERATION_V1 - abandoned warehouse .obj via cube3d",
+  "generator": {
+    "backend": "cube3d",
+    "provider": "Foundation AI",
+    "version": "v0.5",
+    "cube_root": "/Users/Ori/Developer/roblox-cube",
+    "command": "python -m cube3d.generate --output-dir /Users/Ori/Documents/Projects/BunkerGame/cube/outputs/warehouse_v1 --gpt-ckpt-path /Users/Ori/Developer/roblox-cube/model_weights/shape_gpt.safetensors --shape-ckpt-path /Users/Ori/Developer/roblox-cube/model_weights/shape_tokenizer.safetensors --prompt \"abandoned derelict industrial warehouse, rusted corrugated metal walls, broken shattered windows, collapsed roof sections, scattered debris and rubble, weathered concrete floor, hard surface 3D model\" --bounding-box-xyz 40 16 32 --resolution-base 6.0 --top-p 0.8"
+  },
+  "input": {
+    "prompt": "abandoned derelict industrial warehouse, rusted corrugated metal walls, broken shattered windows, collapsed roof sections, scattered debris and rubble, weathered concrete floor, hard surface 3D model",
+    "bounding_box_xyz": [40, 16, 32],
+    "resolution_base": 6.0,
+    "top_p": 0.8
+  },
+  "outputs": {
+    "obj": "output.obj",
+    "obj_copy": "warehouse_cube_v1.obj",
+    "mtl": "output.obj.mtl",
+    "mtl_copy": "warehouse_cube_v1.obj.mtl",
+    "glb": "warehouse_cube_v1.glb",
+    "log": "cube_warehouse_gen.log"
+  },
+  "mesh_qa": {
+    "vertices": 4935,
+    "faces": 10000,
+    "watertight": false,
+    "euler_number": -58,
+    "bounds_min": [-0.9431666135787964, -0.4417018167044779, -0.8255466709778706],
+    "bounds_max": [0.9263619047843412, 0.4159791767597198, 0.7955107279580877],
+    "volume": 0.0851,
+    "zero_area_faces": 0,
+    "note": "open marching-cubes surface, structurally valid mesh (4935 verts / 10000 faces, no zero-area faces)"
+  },
+  "roblox": {
+    "published": true,
+    "asset_id": "73559951039514",
+    "asset_type": "Model",
+    "display_name": "Abandoned Warehouse 01",
+    "state": "Active",
+    "moderation_state": "Approved",
+    "published_at": "2026-10-01T10:37:56.819637+00:00",
+    "upload_command": "env ROBLOX_OPEN_CLOUD_API_KEY=<keychain> ROBLOX_CREATOR_USER_ID=7177096046 /Users/Ori/Developer/roblox-assets/.venv/bin/roblox-assets publish --id abandoned_warehouse_01",
+    "operation_id": "0ab9bc61-b71b-4b22-93bc-31c41d720b2c",
+    "factory_asset_directory": "/Users/Ori/Developer/roblox-assets/assets/abandoned_warehouse_01",
+    "staged_glb": "/Users/Ori/Developer/roblox-assets/assets/abandoned_warehouse_01/final/model_roblox_hq.glb",
+    "staged_glb_sha256": "dcb73da1daf7b1d58009f531e5c6102bff144211c4f11e568a38b58bd452f65b"
+  },
+  "status": "GENERATED_VERIFIED_PUBLISHED"
+}

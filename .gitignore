@@ -10,3 +10,12 @@
 **/node_modules/
 **/.venv/
 **/node_modules/
+BunkerGame/backups/
+BunkerGame/visual-qa/
+BunkerGame/.nexus/
+BunkerGame/.director/
+BunkerGame/.environment-director/
+BunkerGame/.opencode/
+**/__pycache__/
+*.pyc
+BunkerGame/assets/source/abandoned_warehouse/abandoned_warehouse_interior.glb

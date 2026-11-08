@@ -1,0 +1,15 @@
+{
+  "data_loading": 0.0757935419678688,
+  "inference": 5.113619041978382,
+  "inference_preprocess": 0.011258790967985988,
+  "compute_mask": 2.909218892455101e-07,
+  "save_depth": 0.008698999998159707,
+  "save_normal": 0.010547915939241648,
+  "save_gs_ply": 0.874567291000858,
+  "save_camera": 0.00162845803424716,
+  "save_points": 0.8714318750426173,
+  "compress_points": 0.8653155830688775,
+  "save_colmap": 0.6929378749337047,
+  "save_total_wall": 0.9030514159239829,
+  "case_total": 6.111682082992047
+}

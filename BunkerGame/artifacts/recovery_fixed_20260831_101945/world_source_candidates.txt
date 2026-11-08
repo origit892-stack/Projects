@@ -1,0 +1,4 @@
+/Users/Ori/Documents/Projects/BunkerGame/src/ReplicatedStorage/Game/WorldManifest.luau
+/Users/Ori/Documents/Projects/BunkerGame/src/ServerScriptService/Game/Services/WorldService.luau
+/Users/Ori/Documents/Projects/BunkerGame/src/ServerStorage/GeneratedAssets/natural_boulder_sandstone_01.model.json
+/Users/Ori/Documents/Projects/BunkerGame/src/Workspace/GameWorld.model.json

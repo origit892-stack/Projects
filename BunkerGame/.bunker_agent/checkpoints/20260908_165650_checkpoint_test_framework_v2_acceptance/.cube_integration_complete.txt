@@ -1,0 +1,81 @@
+================================================================================
+BUNKERGAME CUBE 3D v0.5 INTEGRATION - FINAL STATUS
+================================================================================
+
+TASK: Add Foundation AI Cube v0.5 as first-class backend to bunker3d pipeline
+STATUS: COMPLETE - ready for CLI use with proper environment setup
+
+FILES MODIFIED/CREATED:
+======================
+1. tools/ai_3d_pipeline/generate_asset.py (7512 bytes, 210 lines)
+   - cube_generate_mesh() function invoking Cube via venv Python
+   - Backend selection: --backend {hugging_face|cube}
+   - Maps --size X Y Z to --bounding-box-xyz
+   - Creates timestamped artifact dirs
+
+2. tools/ai_3d_pipeline/bunker3d (985 bytes)
+   - Delegate script to generate_asset.py
+   - Passes all arguments including --backend
+
+3. .cube_integration_complete.txt (created)
+
+ENVIRONMENT VARIABLES REQUIRED:
+===============================
+Export before running bunker3d commands:
+  export CUBE_ROOT=/Users/Ori/Developer/roblox-cube
+
+OR set via CLI:
+  python3 tools/ai_3d_pipeline/generate_asset.py ... \
+    CUBE_ROOT=/Users/Ori/Developer/roblox-cube \
+    --backend cube \
+    --id my_asset_name \
+    --size 0.45 0.70 0.25
+
+KNOWN ENVIRONMENT BLOCKER:
+==========================
+When run from BunkerGame root (/Users/Ori/Documents/Projects/BunkerGame), 
+the system Python lacks cube3d module. Use either:
+
+OPTION A (from project root):
+  python3 tools/ai_3d_pipeline/generate_asset.py ... CUBE_ROOT=... --backend cube
+
+OPTION B (set env, then run):
+  export CUBE_ROOT=/Users/Ori/Developer/roblox-cube
+  cd /Users/Ori/Documents/Projects/BunkerGame
+  python3 tools/ai_3d_pipeline/bunker3d generate ... --backend cube ...
+
+OPTION C (install system-wide - not recommended):
+  pip install -e /Users/Ori/Developer/roblox-cube
+
+RECOMMENDED: Use environment variable CUBE_ROOT always.
+
+USAGE EXAMPLE:
+==============
+export CUBE_ROOT=/Users/Ori/Developer/roblox-cube
+
+python3 tools/ai_3d_pipeline/bunker3d generate --help
+
+python3 tools/ai_3d_pipeline/bunker3d generate \
+  --backend cube \
+  --id military_jerry_can_cube_01 \
+  --name "my_military_jerry_can" \
+  --size 0.45 0.70 0.25
+
+LEGACY COMMANDS (Hugging Face default):
+=======================================
+# Without --backend flag, continues to use Hugging Face space:
+python3 tools/ai_3d_pipeline/bunker3d generate \
+  --input path/to/image.png \
+  --name my_asset_id
+  ^-- requires input image for image-to-3D workflow
+
+================================================================================
+NOTES:
+================================================================================
+- trimesh installed to ~/.Library/Python/3.9/bin (may need PATH adjustment)
+- Cube generation uses MPS acceleration on Apple Silicon
+- Output artifacts stored in artifacts/ai_3d/{name}/{timestamp}/model.obj
+- Manifest.json created with prompt, size, and output paths
+- No model weights copied - all generation occurs in Cube's venv
+
+================================================================================

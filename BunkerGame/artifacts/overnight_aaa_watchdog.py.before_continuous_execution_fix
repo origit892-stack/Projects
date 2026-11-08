@@ -1,0 +1,264 @@
+import importlib.util
+import json
+import os
+import pathlib
+import subprocess
+import time
+import hashlib
+
+ROOT = pathlib.Path('/Users/Ori/Documents/Projects/BunkerGame')
+os.chdir(ROOT)
+SID = 'ses_fc05fd13effeO0ZWa5kBhDjivC'
+LOG = ROOT / 'artifacts/overnight_aaa_watchdog.log'
+STATE = ROOT / 'artifacts/overnight_aaa_watchdog_state.json'
+CADENCE = 300
+STALL_SECONDS = 1200
+DEBUG_MAX = 5
+
+spec = importlib.util.spec_from_file_location('bapi', ROOT / 'tools/environment_director/bloxbot_api.py')
+bapi = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(bapi)
+
+CONTINUE_PROMPT = (
+    'MASTER GAME BUILD EXECUTION: Continue actual implementation from the latest verified checkpoint. '
+    'Do not answer with status-only acknowledgements. Execute the next incomplete checkpoint/sub-checkpoint using tools. '
+    'The bunker rework is one major checkpoint with granular sub-checkpoints, not the whole project. Continue across the '
+    'full roadmap: bunker, survival, inventory/equipment/crafting, exterior/resources, threats/combat, farming/economy, '
+    'upgrades/progression, UI/onboarding, world polish, end-to-end vertical slice, integration QA and independent reviews. '
+    'Produce concrete source/runtime/QA evidence. Preserve filesystem/Rojo source of truth, immutable backup, and strict '
+    'Play -> Stop -> verified Edit discipline. Never touch Streamlabs. Only issue NEW_DIRECTOR_REVIEW=PASS after every required gate passes.'
+)
+
+DEBUG_PROMPT = (
+    'WATCHDOG STALL RECOVERY: No MEANINGFUL execution progress has been verified for over 20 minutes. '
+    'Status messages do not count as progress. Diagnose why execution stalled, repair the blocker autonomously, then immediately '
+    'perform the next concrete MASTER GAME BUILD task. Use filesystem/OpenCode/Rojo/Studio/OBS evidence. Do not merely describe '
+    'what remains. If a subagent is stalled or claims insufficient QA capacity, take over with the available tools and execute what '
+    'is possible. Preserve checkpoints and Play -> Stop -> verified Edit discipline. Only NEW_DIRECTOR_REVIEW=PASS is terminal.'
+)
+
+STATUS_ONLY_PHRASES = (
+    'task remains active', 'remains active', 'remains incomplete', 'still incomplete',
+    'no new completion checkpoint', 'no completion checkpoint', 'no affirmative completion',
+    'cannot truthfully complete', 'cannot truthfully issue', 'cannot mark', 'cannot complete',
+    'required runtime and review gates are incomplete', 'remaining work is',
+    'no new infrastructure blocker', 'no current transport blocker', 'no blocking process error',
+    'no new execution error', 'release gates remain evidence-bound', 'still outstanding',
+    'additional runtime qa capacity', 'without additional runtime', 'checkpoint remains blocked',
+)
+
+ACTION_EVIDENCE_TERMS = (
+    'implemented', 'fixed', 'created', 'authored', 'regenerated', 'updated source', 'changed source',
+    'runtime inspection confirmed', 'runtime qa passed', 'qa passed', 'regression passed',
+    'walkthrough passed', 'interaction probe', 'capture:', 'visual-qa/captures/', 'obs capture',
+    'build pass', 'assertions pass', 'validation pass', 'sourcemap pass', 'semantic review',
+    'studio synced', 'play was stopped', 'edit verified', 'verified edit', 'test passed',
+)
+
+WATCH_PATHS = [ROOT/'src', ROOT/'docs/director', ROOT/'visual-qa', ROOT/'director-review']
+
+
+def log(msg):
+    line = time.strftime('%Y-%m-%d %H:%M:%S') + ' ' + msg
+    LOG.parent.mkdir(parents=True, exist_ok=True)
+    with LOG.open('a', encoding='utf-8') as f:
+        f.write(line + '\n')
+    print(line, flush=True)
+
+
+def request(method, path, body=None):
+    if method == 'GET':
+        return bapi.request(method, path, body, timeout=30, retries=2)
+    return bapi.request(method, path, body, timeout=60, retries=4)
+
+
+def get_messages():
+    result = request('GET', f'/session/{SID}/message')
+    return result if isinstance(result, list) else []
+
+
+def get_latest_text(messages):
+    if not messages:
+        return ''
+    item = messages[-1] if isinstance(messages[-1], dict) else {}
+    texts = [p.get('text') for p in item.get('parts', []) if isinstance(p, dict) and p.get('type') == 'text' and p.get('text')]
+    return texts[-1] if texts else ''
+
+
+def message_signature(messages):
+    latest = get_latest_text(messages)
+    return str(len(messages)) + '|' + latest[-1200:]
+
+
+def filesystem_fingerprint():
+    rows = []
+    for base in WATCH_PATHS:
+        if not base.exists():
+            continue
+        for f in base.rglob('*'):
+            if not f.is_file():
+                continue
+            try:
+                st = f.stat()
+            except OSError:
+                continue
+            rows.append(f'{f.relative_to(ROOT)}|{st.st_mtime_ns}|{st.st_size}')
+    rows.sort()
+    return hashlib.sha256('\n'.join(rows).encode()).hexdigest()
+
+
+def is_status_only(text):
+    low = text.lower().strip()
+    return bool(low) and any(x in low for x in STATUS_ONLY_PHRASES) and not any(x in low for x in ACTION_EVIDENCE_TERMS)
+
+
+def has_action_evidence(text):
+    low = text.lower().strip()
+    if not low or is_status_only(text):
+        return False
+    return any(x in low for x in ACTION_EVIDENCE_TERMS)
+
+
+def is_positive_terminal(text):
+    normalized = text.upper().replace(' ', '_').replace('`', '')
+    positive = 'NEW_DIRECTOR_REVIEW=PASS' in normalized
+    negative = any(x in normalized for x in (
+        'CANNOT_TRUTHFULLY_ISSUE', 'CANNOT_ISSUE', 'CANNOT_MARK', 'NOT_COMPLETE',
+        'INCOMPLETE', 'REMAINS_BLOCKED', 'NO_AFFIRMATIVE', 'NOT_YET'
+    ))
+    return positive and not negative
+
+
+def dispatch(prompt):
+    request('POST', f'/session/{SID}/message', {'parts': [{'type': 'text', 'text': prompt}]})
+
+
+def process_health():
+    checks = []
+    for pattern in ['opencode serve', 'rojo serve', 'RobloxStudio']:
+        result = subprocess.run(['pgrep', '-fl', pattern], capture_output=True, text=True)
+        checks.append(pattern + '=' + ('UP' if result.returncode == 0 else 'DOWN'))
+    return ' '.join(checks)
+
+
+last_signature = ''
+last_progress = time.time()
+last_fs = filesystem_fingerprint()
+consecutive_errors = 0
+recovery_attempts = 0
+
+if STATE.exists():
+    try:
+        saved = json.loads(STATE.read_text(encoding='utf-8'))
+        last_signature = saved.get('signature', '')
+        last_progress = float(saved.get('last_progress', time.time()))
+        last_fs = saved.get('filesystem_fingerprint', last_fs)
+        consecutive_errors = int(saved.get('errors', 0))
+        recovery_attempts = int(saved.get('recovery_attempts', 0))
+    except Exception:
+        pass
+
+log(f'WATCHDOG_HARDENED_START cadence={CADENCE}s stall_threshold={STALL_SECONDS}s debug_max={DEBUG_MAX}')
+
+while True:
+    cycle_started = time.time()
+    try:
+        messages = get_messages()
+        signature = message_signature(messages)
+        latest = get_latest_text(messages)
+        current_fs = filesystem_fingerprint()
+        fs_changed = current_fs != last_fs
+        msg_changed = signature != last_signature
+
+        if is_positive_terminal(latest):
+            log('NEW_DIRECTOR_REVIEW_CONFIRMED_PASS')
+            STATE.write_text(json.dumps({
+                'signature': signature, 'last_progress': last_progress, 'errors': 0,
+                'director_review': True, 'recovery_attempts': 0, 'filesystem_fingerprint': current_fs
+            }), encoding='utf-8')
+            break
+
+        meaningful = False
+        reasons = []
+        if fs_changed:
+            meaningful = True
+            reasons.append('filesystem_change')
+        if msg_changed and has_action_evidence(latest):
+            meaningful = True
+            reasons.append('action_evidence')
+
+        last_signature = signature
+        last_fs = current_fs
+
+        if meaningful:
+            last_progress = time.time()
+            consecutive_errors = 0
+            recovery_attempts = 0
+            log('MEANINGFUL_PROGRESS reason=' + '+'.join(reasons) + ' messages=' + str(len(messages)) + ' latest=' + latest[-350:].replace('\n', ' '))
+        elif msg_changed:
+            log('STATUS_ONLY_IGNORED messages=' + str(len(messages)) + ' latest=' + latest[-350:].replace('\n', ' '))
+
+        age = time.time() - last_progress
+        log('WATCHDOG_CHECK age_seconds=' + str(round(age, 1)) + ' age_minutes=' + str(round(age/60, 2)) + ' ' + process_health())
+
+        # If OpenCode says it is finished/blocked but there is no real terminal gate, force execution without resetting progress.
+        low = latest.lower()
+        early_stop = any(x in low for x in ('finished', 'completed', 'stopped', 'idle', 'cannot continue', 'blocked', 'human-only blocker', 'cannot truthfully complete'))
+        if msg_changed and early_stop and not meaningful:
+            log('STATUS_BLOCK_OR_EARLY_STOP -> FORCE_EXECUTION_WITHOUT_PROGRESS_RESET')
+            dispatch(CONTINUE_PROMPT)
+
+        if age > STALL_SECONDS:
+            recovery_attempts += 1
+            if recovery_attempts > DEBUG_MAX:
+                log('error debug maxed out')
+                STATE.write_text(json.dumps({
+                    'signature': last_signature, 'last_progress': last_progress, 'errors': 5,
+                    'recovery_attempts': recovery_attempts, 'fatal': 'error debug maxed out',
+                    'filesystem_fingerprint': last_fs
+                }), encoding='utf-8')
+                break
+            log('NO_MEANINGFUL_PROGRESS_OVER_20_MIN -> RECOVERY_ATTEMPT=' + str(recovery_attempts) + '/' + str(DEBUG_MAX) + ' ' + process_health())
+            escalation = DEBUG_PROMPT + (
+                '\nThis is persistent recovery attempt ' + str(recovery_attempts) + ' of ' + str(DEBUG_MAX) + '. '
+                'A previous recovery directive did not produce verified meaningful progress. Do not return another diagnosis/status. '
+                'Perform a concrete source/runtime/QA action now. If the current runtime test path is unreliable, switch to another actionable '
+                'roadmap checkpoint rather than waiting. On later attempts, take over stalled subagent work directly and reduce scope to the next '
+                'small independently verifiable implementation step.'
+            )
+            try:
+                dispatch(escalation)
+                log('STALL_RECOVERY_DISPATCHED attempt=' + str(recovery_attempts) + '/' + str(DEBUG_MAX) + ' awaiting_real_evidence')
+            except Exception as exc:
+                log('STALL_RECOVERY_TRANSPORT_FAIL attempt=' + str(recovery_attempts) + '/' + str(DEBUG_MAX) + ' ' + repr(exc))
+
+        STATE.write_text(json.dumps({
+            'signature': last_signature, 'last_progress': last_progress, 'errors': consecutive_errors,
+            'director_review': False, 'recovery_attempts': recovery_attempts, 'filesystem_fingerprint': last_fs
+        }), encoding='utf-8')
+
+    except Exception as exc:
+        consecutive_errors += 1
+        log('ERROR cycle_count=' + str(consecutive_errors) + ' ' + repr(exc) + ' ' + process_health())
+        recovered = False
+        for attempt in range(1, DEBUG_MAX + 1):
+            try:
+                time.sleep(min(10 * attempt, 45))
+                _ = get_messages()
+                dispatch(DEBUG_PROMPT)
+                log('ERROR_RECOVERY_DISPATCHED attempt=' + str(attempt) + ' awaiting_real_evidence')
+                consecutive_errors = 0
+                recovered = True
+                break
+            except Exception as debug_exc:
+                log('DEBUG_FAIL attempt=' + str(attempt) + ' ' + repr(debug_exc))
+        if not recovered:
+            log('error debug maxed out')
+            STATE.write_text(json.dumps({
+                'signature': last_signature, 'last_progress': last_progress, 'errors': 5,
+                'fatal': 'error debug maxed out', 'filesystem_fingerprint': last_fs
+            }), encoding='utf-8')
+            break
+
+    elapsed = time.time() - cycle_started
+    time.sleep(max(1, CADENCE - elapsed))

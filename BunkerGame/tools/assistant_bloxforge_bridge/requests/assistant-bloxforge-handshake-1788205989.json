@@ -1,0 +1,12 @@
+{
+  "request_id": "assistant-bloxforge-handshake-1788205989",
+  "intent": "read_only_handshake",
+  "details": "READ-ONLY HANDSHAKE TEST. Do not modify Roblox Studio, filesystem project content, Rojo, scripts, assets, or game state. Confirm that BloxForge received this request and return a short engineering response identifying yourself as BloxForge.",
+  "studio_context": {
+    "project": "BunkerGame",
+    "test": true,
+    "read_only": true
+  },
+  "received_at": "2026-08-31T19:53:09Z",
+  "status": "pending"
+}

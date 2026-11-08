@@ -1,0 +1,19 @@
+[
+  {
+    "line": 37,
+    "timestamp": 1788122211068,
+    "sessionID": "ses_fab9cc058ffexEheteSaWDsSOK",
+    "messageID": "msg_054639b84001QG4sYYN420Q9HC",
+    "tool": "roblox-studio_get_studio_state",
+    "callID": "call_01a054639f657e21a757d3ad83b7ad36",
+    "status": "completed",
+    "input": {
+      "studio_id": "49050ab8-cfe3-4164-9b85-9d71de72d08d"
+    },
+    "output": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit",
+    "error": null,
+    "metadata": {
+      "truncated": false
+    }
+  }
+]

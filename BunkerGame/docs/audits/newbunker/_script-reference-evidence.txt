@@ -1,0 +1,42 @@
+src/ReplicatedStorage/Audio/BunkerAudioCatalog.luau:27:return table.freeze(BunkerAudioCatalog)
+src/ReplicatedStorage/Audio/BunkerAudioCatalog.luau:8:local BunkerAudioCatalog = {
+src/ReplicatedStorage/Interaction/GameplayInteractionTypes.luau:5:    GameplayTargetId: string?,
+src/ReplicatedStorage/Interaction/InteractionTypes.luau:2:	InteractiveRootName = "InteractiveProps",
+src/ReplicatedStorage/Interaction/InteractionTypes.luau:5:		Crate = "PrototypeCratePrompt",
+src/ReplicatedStorage/Interaction/InteractionTypes.luau:6:		Locker = "PrototypeLockerPrompt",
+src/ReplicatedStorage/Interaction/InteractionTypes.luau:7:		OfflineControl = "OfflineControlPrompt",
+src/ReplicatedStorage/Interaction/InteractionTypes.luau:8:		InspectStation = "InspectStationPrompt",
+src/ReplicatedStorage/UI/Components/InteractionPrompt.luau:72:    gui.Name = "BunkerInteractionUI"
+src/ReplicatedStorage/UI/Controllers/InteractionPromptController.luau:231:    local existing = playerGui:FindFirstChild("BunkerInteractionUI")
+src/ServerScriptService/BunkerAtmosphereController.server.luau:111:		warn(string.format("[BunkerAtmosphereController] Fixture %s was not found", contract.name))
+src/ServerScriptService/BunkerAtmosphereController.server.luau:124:			local powerMarker = bunker:FindFirstChild("FutureBunkerLightsControlMarker", true)
+src/ServerScriptService/BunkerAtmosphereController.server.luau:146:			local powerMarker = bunker:FindFirstChild("FutureBunkerLightsControlMarker", true)
+src/ServerScriptService/BunkerAtmosphereController.server.luau:38:	{ name = "WakeSideFluorescent", minimumScale = 0.48, restMinimum = 6.0, restMaximum = 13.0 },
+src/ServerScriptService/BunkerAtmosphereController.server.luau:39:	{ name = "MiddleAgedBay", minimumScale = 0.42, restMinimum = 7.0, restMaximum = 15.0 },
+src/ServerScriptService/BunkerAtmosphereController.server.luau:40:	{ name = "StorageAisleLight", minimumScale = 0.46, restMinimum = 8.0, restMaximum = 17.0 },
+src/ServerScriptService/BunkerAtmosphereController.server.luau:41:	{ name = "WorkshopEntryFill", minimumScale = 0.52, restMinimum = 9.0, restMaximum = 18.0 },
+src/ServerScriptService/BunkerAtmosphereController.server.luau:42:	{ name = "ServiceConnectorPractical", minimumScale = 0.44, restMinimum = 10.0, restMaximum = 20.0 },
+src/ServerScriptService/BunkerAtmosphereController.server.luau:43:	{ name = "FarmExitEmergencyPractical", minimumScale = 0.56, restMinimum = 11.0, restMaximum = 22.0 },
+src/ServerScriptService/BunkerAtmosphereController.server.luau:78:		warn(string.format("[BunkerAtmosphereController] %s has no local light", modelInstance:GetFullName()))
+src/ServerScriptService/BunkerAtmosphereController.server.luau:96:local bunker = rebuild and rebuild:WaitForChild("NewBunker", 30)
+src/ServerScriptService/BunkerAtmosphereController.server.luau:98:	warn("[BunkerAtmosphereController] NewBunker was not found; selected flicker is disabled")
+src/ServerScriptService/BunkerEntranceContract.luau:20:    local bunker = findNewBunker()
+src/ServerScriptService/BunkerEntranceContract.luau:22:    local marker = markers and markers:FindFirstChild("FutureBunkerDoorMarker")
+src/ServerScriptService/BunkerEntranceContract.luau:5:local TARGET_ATTRIBUTE = "BunkerEntranceTarget"
+src/ServerScriptService/BunkerEntranceContract.luau:7:local function findNewBunker()
+src/ServerScriptService/BunkerEntranceContract.luau:9:    return rebuild and rebuild:FindFirstChild("NewBunker")
+src/ServerScriptService/BunkerInteractionService.server.luau:14:local audioCatalogModule = audioFolder and audioFolder:WaitForChild("BunkerAudioCatalog", 10)
+src/ServerScriptService/BunkerInteractionService.server.luau:169:			"[BunkerInteractionService] %s requires BaseParts named MovingPart and OpenPose",
+src/ServerScriptService/BunkerInteractionService.server.luau:198:		warn(string.format("[BunkerInteractionService] Failed to animate %s: %s", propModel:GetFullName(), err))
+src/ServerScriptService/BunkerInteractionService.server.luau:20:		warn("[BunkerInteractionService] BunkerAudioCatalog could not be loaded; hinge cues are disabled")
+src/ServerScriptService/BunkerInteractionService.server.luau:23:	warn("[BunkerInteractionService] BunkerAudioCatalog was not mapped in time; hinge cues are disabled")
+src/ServerScriptService/BunkerInteractionService.server.luau:254:		GameplayTargetId = propModel:GetAttribute("GameplayTargetId"),
+src/ServerScriptService/BunkerInteractionService.server.luau:44:local bunker = rebuild and rebuild:WaitForChild("NewBunker", 30)
+src/ServerScriptService/BunkerInteractionService.server.luau:48:	warn("[BunkerInteractionService] NewBunker.InteractiveProps was not found; prototype interactions are disabled")
+src/ServerScriptService/BunkerPowerService.server.luau:14:    local marker = markers and markers:FindFirstChild("FutureBunkerLightsControlMarker")
+src/ServerScriptService/BunkerPowerService.server.luau:35:    warn("[BunkerPowerService] NewBunker power-control marker missing")
+src/ServerScriptService/BunkerPowerService.server.luau:39:marker:SetAttribute("BunkerPowerControl", true)
+src/ServerScriptService/BunkerPowerService.server.luau:46:    prompt.Name = "BunkerPowerPrompt"
+src/ServerScriptService/BunkerPowerService.server.luau:8:    return rebuild and rebuild:FindFirstChild("NewBunker")
+src/ServerScriptService/ZombieEntranceTargetMigration.server.luau:24:        target:SetAttribute("BunkerEntranceTarget", true)
+src/ServerScriptService/ZombieEntranceTargetMigration.server.luau:47:    target:SetAttribute("BunkerEntranceTarget", true)

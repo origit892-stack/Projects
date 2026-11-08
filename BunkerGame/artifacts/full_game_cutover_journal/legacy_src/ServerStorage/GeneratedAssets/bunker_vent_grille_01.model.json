@@ -1,0 +1,38 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "GeneratedAssetId": "bunker_vent_grille_01",
+    "RobloxAssetId": "133282905829866",
+    "RobloxAssetType": "Model",
+    "IntegrationState": "Ready",
+    "CanonicalSource": "RobloxImportedModelInspection"
+  },
+  "Children": [
+    {
+      "Name": "Mesh_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://129788520191225",
+        "Size": [
+          1.979069471359253,
+          1.7752920389175415,
+          1.9706876277923584
+        ]
+      },
+      "Children": [
+        {
+          "Name": "SurfaceAppearance",
+          "ClassName": "SurfaceAppearance",
+          "Properties": {
+            "ColorMap": "rbxassetid://111071233724492",
+            "NormalMap": "rbxassetid://101188069065673",
+            "RoughnessMap": "rbxassetid://133041917278365",
+            "MetalnessMap": "rbxassetid://127496283006416"
+          }
+        }
+      ]
+    }
+  ]
+}

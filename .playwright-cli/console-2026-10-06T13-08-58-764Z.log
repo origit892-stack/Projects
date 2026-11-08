@@ -1,0 +1,15 @@
+[    1635ms] [WARNING] [.WebGL-0x13c0006e400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://127.0.0.1:8768/:3704
+[    1635ms] [WARNING] [.WebGL-0x13c0006e400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://127.0.0.1:8768/:3704
+[    1635ms] [WARNING] [.WebGL-0x13c0006e400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://127.0.0.1:8768/:3704
+[    1635ms] [WARNING] [.WebGL-0x13c0006e400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat) @ http://127.0.0.1:8768/:3704
+[    1759ms] [WARNING] WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost @ http://127.0.0.1:8768/:0
+[    1780ms] [LOG] THREE.WebGLRenderer: Context Lost. @ http://127.0.0.1:8768/:3698
+[    2793ms] [LOG] THREE.WebGLRenderer: Context Restored. @ http://127.0.0.1:8768/:3698
+[   86171ms] TypeError: Cannot read properties of undefined (reading '0')
+    at It (http://127.0.0.1:8768/:3734:139592)
+[   86331ms] TypeError: Cannot read properties of undefined (reading '0')
+    at It (http://127.0.0.1:8768/:3734:139592)
+[   86350ms] TypeError: Cannot read properties of undefined (reading '0')
+    at It (http://127.0.0.1:8768/:3734:139592)
+[   86364ms] TypeError: Cannot read properties of undefined (reading '0')
+    at It (http://127.0.0.1:8768/:3734:139592)

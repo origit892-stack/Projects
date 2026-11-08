@@ -1,0 +1,50 @@
+============================================================
+ OVERNIGHT FORENSIC SUMMARY
+============================================================
+JSONL_LINES=89
+VALID_JSON_EVENTS=87
+BAD_JSON_LINES=2
+TOTAL_TOOL_CALLS=31
+TEXT_MESSAGES=4
+
+TOOL_COUNTS:
+  bash=17
+  read=5
+  task=2
+  roblox-studio_search_game_tree=2
+  glob=1
+  roblox-studio_list_roblox_studios=1
+  roblox-studio_get_studio_state=1
+  todowrite=1
+  roblox-studio_execute_luau=1
+
+STATUS_COUNTS:
+  completed=29
+  error=2
+
+BASH_CALLS=17
+TASK_CALLS=2
+EXECUTE_LUAU_CALLS=1
+ROBLOX_STUDIO_CALLS=5
+BLOXFORGE_CALLS=0
+STUDIO_MUTATION_CANDIDATES=1
+FILESYSTEM_WRITE_CANDIDATES=2
+WORLD_RECONSTRUCTION_HITS=96
+COPIED_TOOL_OUTPUTS=1
+FAILED_OR_INCOMPLETE_CALLS=2
+
+FAILED CALLS:
+  LINE=58 TOOL=task STATUS=error CALL_ID=call_01a054683b157630860e1f726206d39e
+  LINE=88 TOOL=bash STATUS=error CALL_ID=call_01a0546d9dea7fd0bb64198d7fe78e5d
+
+TASK CALLS:
+  LINE=48 STATUS=completed DESC=Preflight world state audit CALL_ID=call_01a05463c5f672e381144f1c0813b381
+  LINE=58 STATUS=error DESC=Fix Studio-Rojo drift CALL_ID=call_01a054683b157630860e1f726206d39e
+
+EXECUTE LUAU CALLS:
+  LINE=62 STATUS=completed CALL_ID=call_01a0546c478171b1b7d4dd8ab02c7cf7
+
+SAFETY:
+ROJO_EXECUTED_BY_FORENSIC_SCRIPT=NO
+STUDIO_MODIFIED_BY_FORENSIC_SCRIPT=NO
+SRC_MODIFIED_BY_FORENSIC_SCRIPT=NO

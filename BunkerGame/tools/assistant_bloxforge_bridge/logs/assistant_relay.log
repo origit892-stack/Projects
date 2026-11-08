@@ -1,0 +1,321 @@
+[2026-09-01T12:37:21] Relay bound to desired port 62413
+[2026-09-01T12:37:21] Assistant Relay starting HOST=127.0.0.1 PORT=62413 -> bridge 127.0.0.1:62412 BRIDGE_DIR=/Users/Ori/Documents/Projects/BunkerGame/tools/assistant_bloxforge_bridge
+[2026-09-01T12:37:24] 127.0.0.1 - - [01/Sep/2026 12:37:24] "GET /health HTTP/1.1" 200 -
+[2026-09-01T12:37:24] GET /health from 127.0.0.1 -> 200
+[2026-09-01T12:38:17] 127.0.0.1 - - [01/Sep/2026 12:38:17] "GET /health HTTP/1.1" 200 -
+[2026-09-01T12:38:17] GET /health from 127.0.0.1 -> 200
+[2026-09-01T12:38:17] RELAY POST /task from 127.0.0.1 (255 bytes, no credential)
+[2026-09-01T12:38:17] 127.0.0.1 - - [01/Sep/2026 12:38:17] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:38:17] PROXY POST /task -> 200 (80 bytes)
+[2026-09-01T12:38:18] RELAY GET /status/relay-test-b-1788255497-46580 from 127.0.0.1
+[2026-09-01T12:38:18] 127.0.0.1 - - [01/Sep/2026 12:38:18] "GET /status/relay-test-b-1788255497-46580 HTTP/1.1" 200 -
+[2026-09-01T12:38:18] PROXY GET /status/relay-test-b-1788255497-46580 -> 200 (223 bytes)
+[2026-09-01T12:38:18] RELAY GET /status/relay-test-b-1788255497-46580 from 127.0.0.1
+[2026-09-01T12:38:18] 127.0.0.1 - - [01/Sep/2026 12:38:18] "GET /status/relay-test-b-1788255497-46580 HTTP/1.1" 200 -
+[2026-09-01T12:38:18] PROXY GET /status/relay-test-b-1788255497-46580 -> 200 (223 bytes)
+[2026-09-01T12:38:18] RELAY POST /task from 127.0.0.1 (315 bytes, no credential)
+[2026-09-01T12:38:18] 127.0.0.1 - - [01/Sep/2026 12:38:18] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:38:18] PROXY POST /task -> 200 (80 bytes)
+[2026-09-01T12:38:19] RELAY GET /status/relay-test-c-1788255498-46580 from 127.0.0.1
+[2026-09-01T12:38:19] 127.0.0.1 - - [01/Sep/2026 12:38:19] "GET /status/relay-test-c-1788255498-46580 HTTP/1.1" 200 -
+[2026-09-01T12:38:19] PROXY GET /status/relay-test-c-1788255498-46580 -> 200 (223 bytes)
+[2026-09-01T12:38:19] RELAY GET /status/relay-test-c-1788255498-46580 from 127.0.0.1
+[2026-09-01T12:38:19] 127.0.0.1 - - [01/Sep/2026 12:38:19] "GET /status/relay-test-c-1788255498-46580 HTTP/1.1" 200 -
+[2026-09-01T12:38:19] PROXY GET /status/relay-test-c-1788255498-46580 -> 200 (223 bytes)
+[2026-09-01T12:38:19] RELAY POST /task from 127.0.0.1 (257 bytes, no credential)
+[2026-09-01T12:38:19] 127.0.0.1 - - [01/Sep/2026 12:38:19] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:38:19] PROXY POST /task -> 200 (80 bytes)
+[2026-09-01T12:38:21] RELAY GET /status/relay-test-e-1788255499-46580 from 127.0.0.1
+[2026-09-01T12:38:21] 127.0.0.1 - - [01/Sep/2026 12:38:21] "GET /status/relay-test-e-1788255499-46580 HTTP/1.1" 200 -
+[2026-09-01T12:38:21] PROXY GET /status/relay-test-e-1788255499-46580 -> 200 (223 bytes)
+[2026-09-01T12:40:40] 127.0.0.1 - - [01/Sep/2026 12:40:40] "GET /health HTTP/1.1" 200 -
+[2026-09-01T12:40:40] GET /health from 127.0.0.1 -> 200
+[2026-09-01T12:40:41] RELAY POST /task from 127.0.0.1 (207 bytes, no credential)
+[2026-09-01T12:40:41] 127.0.0.1 - - [01/Sep/2026 12:40:41] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:40:41] PROXY POST /task -> 200 (81 bytes)
+[2026-09-01T12:40:42] RELAY GET /status/relay-test-b2-1788255641-47093 from 127.0.0.1
+[2026-09-01T12:40:42] 127.0.0.1 - - [01/Sep/2026 12:40:42] "GET /status/relay-test-b2-1788255641-47093 HTTP/1.1" 200 -
+[2026-09-01T12:40:42] PROXY GET /status/relay-test-b2-1788255641-47093 -> 200 (732 bytes)
+[2026-09-01T12:40:42] RELAY GET /status/relay-test-b2-1788255641-47093 from 127.0.0.1
+[2026-09-01T12:40:42] 127.0.0.1 - - [01/Sep/2026 12:40:42] "GET /status/relay-test-b2-1788255641-47093 HTTP/1.1" 200 -
+[2026-09-01T12:40:42] PROXY GET /status/relay-test-b2-1788255641-47093 -> 200 (732 bytes)
+[2026-09-01T12:40:42] RELAY POST /task from 127.0.0.1 (280 bytes, no credential)
+[2026-09-01T12:40:42] 127.0.0.1 - - [01/Sep/2026 12:40:42] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:40:42] PROXY POST /task -> 200 (81 bytes)
+[2026-09-01T12:40:43] RELAY GET /status/relay-test-c2-1788255642-47093 from 127.0.0.1
+[2026-09-01T12:40:43] 127.0.0.1 - - [01/Sep/2026 12:40:43] "GET /status/relay-test-c2-1788255642-47093 HTTP/1.1" 200 -
+[2026-09-01T12:40:43] PROXY GET /status/relay-test-c2-1788255642-47093 -> 200 (785 bytes)
+[2026-09-01T12:40:43] RELAY GET /status/relay-test-c2-1788255642-47093 from 127.0.0.1
+[2026-09-01T12:40:43] 127.0.0.1 - - [01/Sep/2026 12:40:43] "GET /status/relay-test-c2-1788255642-47093 HTTP/1.1" 200 -
+[2026-09-01T12:40:43] PROXY GET /status/relay-test-c2-1788255642-47093 -> 200 (785 bytes)
+[2026-09-01T12:40:43] RELAY POST /task from 127.0.0.1 (219 bytes, no credential)
+[2026-09-01T12:40:43] 127.0.0.1 - - [01/Sep/2026 12:40:43] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:40:43] PROXY POST /task -> 200 (81 bytes)
+[2026-09-01T12:40:45] RELAY GET /status/relay-test-e2-1788255643-47093 from 127.0.0.1
+[2026-09-01T12:40:45] 127.0.0.1 - - [01/Sep/2026 12:40:45] "GET /status/relay-test-e2-1788255643-47093 HTTP/1.1" 200 -
+[2026-09-01T12:40:45] PROXY GET /status/relay-test-e2-1788255643-47093 -> 200 (398 bytes)
+[2026-09-01T12:41:01] 127.0.0.1 - - [01/Sep/2026 12:41:01] "GET /health HTTP/1.1" 200 -
+[2026-09-01T12:41:01] GET /health from 127.0.0.1 -> 200
+[2026-09-01T12:43:49] RELAY POST /task from 127.0.0.1 (397 bytes, no credential)
+[2026-09-01T12:43:49] 127.0.0.1 - - [01/Sep/2026 12:43:49] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:43:49] PROXY POST /task -> 200 (98 bytes)
+[2026-09-01T12:43:57] RELAY GET /status/proof_live_a298f691-981b-4f82-8fcc-e024077769b3 from 127.0.0.1
+[2026-09-01T12:43:57] 127.0.0.1 - - [01/Sep/2026 12:43:57] "GET /status/proof_live_a298f691-981b-4f82-8fcc-e024077769b3 HTTP/1.1" 200 -
+[2026-09-01T12:43:57] PROXY GET /status/proof_live_a298f691-981b-4f82-8fcc-e024077769b3 -> 200 (802 bytes)
+[2026-09-01T13:00:40] RELAY POST /task from 127.0.0.1 (846 bytes, no credential)
+[2026-09-01T13:00:40] 127.0.0.1 - - [01/Sep/2026 13:00:40] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:00:40] PROXY POST /task -> 200 (72 bytes)
+[2026-09-01T13:00:44] RELAY GET /status/terrain_review_821063 from 127.0.0.1
+[2026-09-01T13:00:44] 127.0.0.1 - - [01/Sep/2026 13:00:44] "GET /status/terrain_review_821063 HTTP/1.1" 200 -
+[2026-09-01T13:00:44] PROXY GET /status/terrain_review_821063 -> 200 (236 bytes)
+[2026-09-01T13:00:56] RELAY POST /task from 127.0.0.1 (794 bytes, no credential)
+[2026-09-01T13:00:56] 127.0.0.1 - - [01/Sep/2026 13:00:56] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:00:56] PROXY POST /task -> 200 (72 bytes)
+[2026-09-01T13:01:03] RELAY GET /status/terrain_review_639842 from 127.0.0.1
+[2026-09-01T13:01:03] 127.0.0.1 - - [01/Sep/2026 13:01:03] "GET /status/terrain_review_639842 HTTP/1.1" 200 -
+[2026-09-01T13:01:03] PROXY GET /status/terrain_review_639842 -> 200 (215 bytes)
+[2026-09-01T13:01:18] RELAY POST /task from 127.0.0.1 (256 bytes, no credential)
+[2026-09-01T13:01:18] 127.0.0.1 - - [01/Sep/2026 13:01:18] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:01:18] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:01:35] RELAY POST /task from 127.0.0.1 (149 bytes, no credential)
+[2026-09-01T13:01:35] 127.0.0.1 - - [01/Sep/2026 13:01:35] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:01:35] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:01:35] RELAY POST /task from 127.0.0.1 (130 bytes, no credential)
+[2026-09-01T13:01:35] 127.0.0.1 - - [01/Sep/2026 13:01:35] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:01:35] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:01:35] RELAY POST /task from 127.0.0.1 (111 bytes, no credential)
+[2026-09-01T13:01:35] 127.0.0.1 - - [01/Sep/2026 13:01:35] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:01:35] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:01:35] RELAY POST /task from 127.0.0.1 (121 bytes, no credential)
+[2026-09-01T13:01:35] 127.0.0.1 - - [01/Sep/2026 13:01:35] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:01:35] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:03] RELAY POST /task from 127.0.0.1 (141 bytes, no credential)
+[2026-09-01T13:02:03] 127.0.0.1 - - [01/Sep/2026 13:02:03] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:03] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:03] RELAY POST /task from 127.0.0.1 (149 bytes, no credential)
+[2026-09-01T13:02:03] 127.0.0.1 - - [01/Sep/2026 13:02:03] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:03] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:03] RELAY POST /task from 127.0.0.1 (136 bytes, no credential)
+[2026-09-01T13:02:04] 127.0.0.1 - - [01/Sep/2026 13:02:04] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:04] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:04] RELAY POST /task from 127.0.0.1 (144 bytes, no credential)
+[2026-09-01T13:02:04] 127.0.0.1 - - [01/Sep/2026 13:02:04] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:04] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:04] RELAY POST /task from 127.0.0.1 (107 bytes, no credential)
+[2026-09-01T13:02:04] 127.0.0.1 - - [01/Sep/2026 13:02:04] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:04] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:04] RELAY POST /task from 127.0.0.1 (142 bytes, no credential)
+[2026-09-01T13:02:04] 127.0.0.1 - - [01/Sep/2026 13:02:04] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:04] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:22] 127.0.0.1 - - [01/Sep/2026 13:02:22] "GET / HTTP/1.1" 404 -
+[2026-09-01T13:02:22] 127.0.0.1 - - [01/Sep/2026 13:02:22] "GET /help HTTP/1.1" 404 -
+[2026-09-01T13:02:22] 127.0.0.1 - - [01/Sep/2026 13:02:22] "GET /tools HTTP/1.1" 404 -
+[2026-09-01T13:02:22] RELAY POST /task from 127.0.0.1 (78 bytes, no credential)
+[2026-09-01T13:02:22] 127.0.0.1 - - [01/Sep/2026 13:02:22] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:22] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:22] RELAY POST /task from 127.0.0.1 (92 bytes, no credential)
+[2026-09-01T13:02:22] 127.0.0.1 - - [01/Sep/2026 13:02:22] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:22] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:41] RELAY POST /task from 127.0.0.1 (177 bytes, no credential)
+[2026-09-01T13:02:41] 127.0.0.1 - - [01/Sep/2026 13:02:41] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:41] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:41] RELAY POST /task from 127.0.0.1 (174 bytes, no credential)
+[2026-09-01T13:02:41] 127.0.0.1 - - [01/Sep/2026 13:02:41] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:41] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:41] RELAY POST /task from 127.0.0.1 (175 bytes, no credential)
+[2026-09-01T13:02:41] 127.0.0.1 - - [01/Sep/2026 13:02:41] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:41] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:41] RELAY POST /task from 127.0.0.1 (147 bytes, no credential)
+[2026-09-01T13:02:41] 127.0.0.1 - - [01/Sep/2026 13:02:41] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:41] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:41] RELAY POST /task from 127.0.0.1 (223 bytes, no credential)
+[2026-09-01T13:02:41] 127.0.0.1 - - [01/Sep/2026 13:02:41] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:41] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:02:41] RELAY POST /task from 127.0.0.1 (129 bytes, no credential)
+[2026-09-01T13:02:41] 127.0.0.1 - - [01/Sep/2026 13:02:41] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:02:41] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "GET /api HTTP/1.1" 404 -
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "GET /schema HTTP/1.1" 404 -
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "GET /docs HTTP/1.1" 404 -
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "GET /info HTTP/1.1" 404 -
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "GET /version HTTP/1.1" 404 -
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "GET /capabilities HTTP/1.1" 404 -
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "GET /list_tools HTTP/1.1" 404 -
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "GET /mcp HTTP/1.1" 404 -
+[2026-09-01T13:03:10] RELAY POST /task from 127.0.0.1 (123 bytes, no credential)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:10] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:10] RELAY POST /task from 127.0.0.1 (119 bytes, no credential)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:10] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:10] RELAY POST /task from 127.0.0.1 (113 bytes, no credential)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:10] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:10] RELAY POST /task from 127.0.0.1 (111 bytes, no credential)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:10] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:10] RELAY POST /task from 127.0.0.1 (115 bytes, no credential)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:10] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:10] RELAY POST /task from 127.0.0.1 (109 bytes, no credential)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:10] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:10] RELAY POST /task from 127.0.0.1 (113 bytes, no credential)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:10] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:10] RELAY POST /task from 127.0.0.1 (125 bytes, no credential)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:10] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:10] RELAY POST /task from 127.0.0.1 (129 bytes, no credential)
+[2026-09-01T13:03:10] 127.0.0.1 - - [01/Sep/2026 13:03:10] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:10] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:31] RELAY POST /task from 127.0.0.1 (175 bytes, no credential)
+[2026-09-01T13:03:31] 127.0.0.1 - - [01/Sep/2026 13:03:31] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:31] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:31] RELAY POST /task from 127.0.0.1 (167 bytes, no credential)
+[2026-09-01T13:03:31] 127.0.0.1 - - [01/Sep/2026 13:03:31] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:31] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:31] RELAY POST /task from 127.0.0.1 (160 bytes, no credential)
+[2026-09-01T13:03:31] 127.0.0.1 - - [01/Sep/2026 13:03:31] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:31] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:31] RELAY POST /task from 127.0.0.1 (184 bytes, no credential)
+[2026-09-01T13:03:31] 127.0.0.1 - - [01/Sep/2026 13:03:31] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:31] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:31] RELAY POST /task from 127.0.0.1 (146 bytes, no credential)
+[2026-09-01T13:03:32] 127.0.0.1 - - [01/Sep/2026 13:03:32] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:32] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:32] RELAY POST /task from 127.0.0.1 (178 bytes, no credential)
+[2026-09-01T13:03:32] 127.0.0.1 - - [01/Sep/2026 13:03:32] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:32] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:03:42] RELAY POST /task from 127.0.0.1 (114 bytes, no credential)
+[2026-09-01T13:03:42] 127.0.0.1 - - [01/Sep/2026 13:03:42] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:03:42] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:04:06] RELAY POST /task from 127.0.0.1 (228 bytes, no credential)
+[2026-09-01T13:04:06] 127.0.0.1 - - [01/Sep/2026 13:04:06] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:04:06] PROXY POST /task -> 200 (63 bytes)
+[2026-09-01T13:04:06] RELAY POST /task from 127.0.0.1 (173 bytes, no credential)
+[2026-09-01T13:04:06] 127.0.0.1 - - [01/Sep/2026 13:04:06] "POST /task HTTP/1.1" 400 -
+[2026-09-01T13:04:06] PROXY POST /task -> 400 (28 bytes)
+[2026-09-01T13:04:06] RELAY POST /task from 127.0.0.1 (157 bytes, no credential)
+[2026-09-01T13:04:06] 127.0.0.1 - - [01/Sep/2026 13:04:06] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:04:06] PROXY POST /task -> 200 (70 bytes)
+[2026-09-01T13:04:06] RELAY POST /task from 127.0.0.1 (147 bytes, no credential)
+[2026-09-01T13:04:06] 127.0.0.1 - - [01/Sep/2026 13:04:06] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:04:06] PROXY POST /task -> 200 (63 bytes)
+[2026-09-01T13:04:06] RELAY POST /task from 127.0.0.1 (199 bytes, no credential)
+[2026-09-01T13:04:06] 127.0.0.1 - - [01/Sep/2026 13:04:06] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:04:06] PROXY POST /task -> 200 (63 bytes)
+[2026-09-01T13:04:24] RELAY GET /status/both1_234140 from 127.0.0.1
+[2026-09-01T13:04:24] 127.0.0.1 - - [01/Sep/2026 13:04:24] "GET /status/both1_234140 HTTP/1.1" 200 -
+[2026-09-01T13:04:24] PROXY GET /status/both1_234140 -> 200 (383 bytes)
+[2026-09-01T13:04:24] RELAY GET /status/just_details_234140 from 127.0.0.1
+[2026-09-01T13:04:24] 127.0.0.1 - - [01/Sep/2026 13:04:24] "GET /status/just_details_234140 HTTP/1.1" 200 -
+[2026-09-01T13:04:24] PROXY GET /status/just_details_234140 -> 200 (213 bytes)
+[2026-09-01T13:04:24] RELAY GET /status/both4_234140 from 127.0.0.1
+[2026-09-01T13:04:24] 127.0.0.1 - - [01/Sep/2026 13:04:24] "GET /status/both4_234140 HTTP/1.1" 200 -
+[2026-09-01T13:04:24] PROXY GET /status/both4_234140 -> 200 (206 bytes)
+[2026-09-01T13:04:24] RELAY GET /status/both5_234140 from 127.0.0.1
+[2026-09-01T13:04:24] 127.0.0.1 - - [01/Sep/2026 13:04:24] "GET /status/both5_234140 HTTP/1.1" 200 -
+[2026-09-01T13:04:24] PROXY GET /status/both5_234140 -> 200 (202 bytes)
+[2026-09-01T13:04:39] RELAY POST /task from 127.0.0.1 (166 bytes, no credential)
+[2026-09-01T13:04:39] 127.0.0.1 - - [01/Sep/2026 13:04:39] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:04:39] PROXY POST /task -> 200 (63 bytes)
+[2026-09-01T13:04:39] RELAY POST /task from 127.0.0.1 (203 bytes, no credential)
+[2026-09-01T13:04:39] 127.0.0.1 - - [01/Sep/2026 13:04:39] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:04:39] PROXY POST /task -> 200 (65 bytes)
+[2026-09-01T13:04:39] RELAY POST /task from 127.0.0.1 (170 bytes, no credential)
+[2026-09-01T13:04:39] 127.0.0.1 - - [01/Sep/2026 13:04:39] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:04:39] PROXY POST /task -> 200 (65 bytes)
+[2026-09-01T13:04:51] RELAY GET /status/scene_658684 from 127.0.0.1
+[2026-09-01T13:04:51] 127.0.0.1 - - [01/Sep/2026 13:04:51] "GET /status/scene_658684 HTTP/1.1" 200 -
+[2026-09-01T13:04:51] PROXY GET /status/scene_658684 -> 200 (539 bytes)
+[2026-09-01T13:04:51] RELAY GET /status/catalog_658684 from 127.0.0.1
+[2026-09-01T13:04:51] 127.0.0.1 - - [01/Sep/2026 13:04:51] "GET /status/catalog_658684 HTTP/1.1" 200 -
+[2026-09-01T13:04:51] PROXY GET /status/catalog_658684 -> 200 (583 bytes)
+[2026-09-01T13:04:51] RELAY GET /status/session_658684 from 127.0.0.1
+[2026-09-01T13:04:51] 127.0.0.1 - - [01/Sep/2026 13:04:51] "GET /status/session_658684 HTTP/1.1" 200 -
+[2026-09-01T13:04:51] PROXY GET /status/session_658684 -> 200 (1526 bytes)
+[2026-09-01T13:05:21] RELAY POST /task from 127.0.0.1 (187 bytes, no credential)
+[2026-09-01T13:05:21] 127.0.0.1 - - [01/Sep/2026 13:05:21] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:05:21] PROXY POST /task -> 200 (62 bytes)
+[2026-09-01T13:05:25] RELAY GET /status/cat1_168838 from 127.0.0.1
+[2026-09-01T13:05:25] 127.0.0.1 - - [01/Sep/2026 13:05:25] "GET /status/cat1_168838 HTTP/1.1" 200 -
+[2026-09-01T13:05:25] PROXY GET /status/cat1_168838 -> 200 (580 bytes)
+[2026-09-01T13:05:25] RELAY POST /task from 127.0.0.1 (177 bytes, no credential)
+[2026-09-01T13:05:25] 127.0.0.1 - - [01/Sep/2026 13:05:25] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:05:25] PROXY POST /task -> 200 (62 bytes)
+[2026-09-01T13:05:29] RELAY GET /status/cat2_168838 from 127.0.0.1
+[2026-09-01T13:05:29] 127.0.0.1 - - [01/Sep/2026 13:05:29] "GET /status/cat2_168838 HTTP/1.1" 200 -
+[2026-09-01T13:05:29] PROXY GET /status/cat2_168838 -> 200 (580 bytes)
+[2026-09-01T13:05:29] RELAY POST /task from 127.0.0.1 (192 bytes, no credential)
+[2026-09-01T13:05:29] 127.0.0.1 - - [01/Sep/2026 13:05:29] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:05:29] PROXY POST /task -> 200 (62 bytes)
+[2026-09-01T13:05:33] RELAY GET /status/conn_168838 from 127.0.0.1
+[2026-09-01T13:05:33] 127.0.0.1 - - [01/Sep/2026 13:05:33] "GET /status/conn_168838 HTTP/1.1" 200 -
+[2026-09-01T13:05:33] PROXY GET /status/conn_168838 -> 200 (717 bytes)
+[2026-09-01T13:05:33] RELAY POST /task from 127.0.0.1 (161 bytes, no credential)
+[2026-09-01T13:05:33] 127.0.0.1 - - [01/Sep/2026 13:05:33] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:05:33] PROXY POST /task -> 200 (63 bytes)
+[2026-09-01T13:05:37] RELAY GET /status/trans_168838 from 127.0.0.1
+[2026-09-01T13:05:37] 127.0.0.1 - - [01/Sep/2026 13:05:37] "GET /status/trans_168838 HTTP/1.1" 200 -
+[2026-09-01T13:05:37] PROXY GET /status/trans_168838 -> 200 (527 bytes)
+[2026-09-01T13:06:08] RELAY POST /task from 127.0.0.1 (177 bytes, no credential)
+[2026-09-01T13:06:08] 127.0.0.1 - - [01/Sep/2026 13:06:08] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:06:08] PROXY POST /task -> 200 (62 bytes)
+[2026-09-01T13:06:12] RELAY GET /status/fmt1_488721 from 127.0.0.1
+[2026-09-01T13:06:12] 127.0.0.1 - - [01/Sep/2026 13:06:12] "GET /status/fmt1_488721 HTTP/1.1" 200 -
+[2026-09-01T13:06:12] PROXY GET /status/fmt1_488721 -> 200 (580 bytes)
+[2026-09-01T13:06:12] RELAY POST /task from 127.0.0.1 (175 bytes, no credential)
+[2026-09-01T13:06:12] 127.0.0.1 - - [01/Sep/2026 13:06:12] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:06:12] PROXY POST /task -> 200 (62 bytes)
+[2026-09-01T13:06:16] RELAY GET /status/fmt2_488721 from 127.0.0.1
+[2026-09-01T13:06:16] 127.0.0.1 - - [01/Sep/2026 13:06:16] "GET /status/fmt2_488721 HTTP/1.1" 200 -
+[2026-09-01T13:06:16] PROXY GET /status/fmt2_488721 -> 200 (4211 bytes)
+[2026-09-01T13:06:16] RELAY POST /task from 127.0.0.1 (172 bytes, no credential)
+[2026-09-01T13:06:16] 127.0.0.1 - - [01/Sep/2026 13:06:16] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:06:16] PROXY POST /task -> 200 (62 bytes)
+[2026-09-01T13:06:20] RELAY GET /status/fmt3_488721 from 127.0.0.1
+[2026-09-01T13:06:20] 127.0.0.1 - - [01/Sep/2026 13:06:20] "GET /status/fmt3_488721 HTTP/1.1" 200 -
+[2026-09-01T13:06:20] PROXY GET /status/fmt3_488721 -> 200 (580 bytes)
+[2026-09-01T13:06:20] RELAY POST /task from 127.0.0.1 (161 bytes, no credential)
+[2026-09-01T13:06:20] 127.0.0.1 - - [01/Sep/2026 13:06:20] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:06:20] PROXY POST /task -> 200 (62 bytes)
+[2026-09-01T13:06:24] RELAY GET /status/fmt4_488721 from 127.0.0.1
+[2026-09-01T13:06:24] 127.0.0.1 - - [01/Sep/2026 13:06:24] "GET /status/fmt4_488721 HTTP/1.1" 200 -
+[2026-09-01T13:06:24] PROXY GET /status/fmt4_488721 -> 200 (580 bytes)
+[2026-09-01T13:06:24] RELAY POST /task from 127.0.0.1 (161 bytes, no credential)
+[2026-09-01T13:06:24] 127.0.0.1 - - [01/Sep/2026 13:06:24] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:06:24] PROXY POST /task -> 200 (62 bytes)
+[2026-09-01T13:06:28] RELAY GET /status/fmt5_488721 from 127.0.0.1
+[2026-09-01T13:06:28] 127.0.0.1 - - [01/Sep/2026 13:06:28] "GET /status/fmt5_488721 HTTP/1.1" 200 -
+[2026-09-01T13:06:28] PROXY GET /status/fmt5_488721 -> 200 (580 bytes)
+[2026-09-01T13:06:59] RELAY POST /task from 127.0.0.1 (173 bytes, no credential)
+[2026-09-01T13:06:59] 127.0.0.1 - - [01/Sep/2026 13:06:59] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:06:59] PROXY POST /task -> 200 (62 bytes)
+[2026-09-01T13:07:04] RELAY GET /status/load_269721 from 127.0.0.1
+[2026-09-01T13:07:04] 127.0.0.1 - - [01/Sep/2026 13:07:04] "GET /status/load_269721 HTTP/1.1" 200 -
+[2026-09-01T13:07:04] PROXY GET /status/load_269721 -> 200 (379 bytes)
+[2026-09-01T13:07:04] RELAY POST /task from 127.0.0.1 (206 bytes, no credential)
+[2026-09-01T13:07:04] 127.0.0.1 - - [01/Sep/2026 13:07:04] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:07:04] PROXY POST /task -> 200 (64 bytes)
+[2026-09-01T13:07:09] RELAY GET /status/scene2_269721 from 127.0.0.1
+[2026-09-01T13:07:09] 127.0.0.1 - - [01/Sep/2026 13:07:09] "GET /status/scene2_269721 HTTP/1.1" 200 -
+[2026-09-01T13:07:09] PROXY GET /status/scene2_269721 -> 200 (540 bytes)
+[2026-09-01T13:08:53] RELAY POST /task from 127.0.0.1 (192 bytes, no credential)
+[2026-09-01T13:08:53] 127.0.0.1 - - [01/Sep/2026 13:08:53] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:08:53] PROXY POST /task -> 200 (67 bytes)
+[2026-09-01T13:08:57] RELAY GET /status/final_val_483619 from 127.0.0.1
+[2026-09-01T13:08:57] 127.0.0.1 - - [01/Sep/2026 13:08:57] "GET /status/final_val_483619 HTTP/1.1" 200 -
+[2026-09-01T13:08:57] PROXY GET /status/final_val_483619 -> 200 (213 bytes)
+[2026-09-01T13:09:05] RELAY POST /task from 127.0.0.1 (152 bytes, no credential)
+[2026-09-01T13:09:05] 127.0.0.1 - - [01/Sep/2026 13:09:05] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:09:05] PROXY POST /task -> 200 (64 bytes)
+[2026-09-01T13:09:10] RELAY GET /status/final2_863311 from 127.0.0.1
+[2026-09-01T13:09:10] 127.0.0.1 - - [01/Sep/2026 13:09:10] "GET /status/final2_863311 HTTP/1.1" 200 -
+[2026-09-01T13:09:10] PROXY GET /status/final2_863311 -> 200 (210 bytes)
+[2026-09-01T13:09:26] RELAY POST /task from 127.0.0.1 (170 bytes, no credential)
+[2026-09-01T13:09:26] 127.0.0.1 - - [01/Sep/2026 13:09:26] "POST /task HTTP/1.1" 200 -
+[2026-09-01T13:09:26] PROXY POST /task -> 200 (64 bytes)
+[2026-09-01T13:09:31] RELAY GET /status/final3_115857 from 127.0.0.1
+[2026-09-01T13:09:31] 127.0.0.1 - - [01/Sep/2026 13:09:31] "GET /status/final3_115857 HTTP/1.1" 200 -
+[2026-09-01T13:09:31] PROXY GET /status/final3_115857 -> 200 (540 bytes)

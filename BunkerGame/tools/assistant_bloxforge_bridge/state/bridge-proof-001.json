@@ -1,0 +1,16 @@
+{
+  "request_id": "bridge-proof-001",
+  "intent": "geometry_review",
+  "details": "Inspect a hypothetical generated rock for collision, scale, anchoring, and placement problems. PROOF ONLY.",
+  "studio_context": {},
+  "received_at": "2026-08-30T16:48:53Z",
+  "status": "completed",
+  "completed_at": "2026-08-30T16:49:03Z",
+  "review": {
+    "collision": "PASS",
+    "scale": "PASS",
+    "anchoring": "PASS",
+    "placement": "PASS",
+    "overall": "PROOF ONLY"
+  }
+}

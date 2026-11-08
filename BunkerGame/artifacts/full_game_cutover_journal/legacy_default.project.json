@@ -1,0 +1,120 @@
+{
+  "name": "BunkerGame",
+  "tree": {
+    "$className": "DataModel",
+    "Lighting": {
+      "$properties": {
+        "Ambient": [
+          0.34,
+          0.37,
+          0.40
+        ],
+        "Brightness": 0.72,
+        "ColorShift_Bottom": [
+          0.6299999952316284,
+          0.6499999761581421,
+          0.7099999785423279
+        ],
+        "ColorShift_Top": [
+          0.7799999713897705,
+          0.800000011920929,
+          0.8600000143051147
+        ],
+        "EnvironmentDiffuseScale": 1.0,
+        "EnvironmentSpecularScale": 0.5,
+        "FogColor": [
+          0.42,
+          0.46,
+          0.48
+        ],
+        "FogEnd": 210.0,
+        "FogStart": 55.0,
+        "GeographicLatitude": 40.0,
+        "GlobalShadows": true,
+        "OutdoorAmbient": [
+          0.30,
+          0.34,
+          0.37
+        ],
+        "Outlines": false,
+        "PrioritizeLightingQuality": true,
+        "ShadowSoftness": 0.20000000298023224,
+        "Technology": "ShadowMap"
+      },
+      "$path": "src/Lighting"
+    },
+    "ReplicatedStorage": {
+      "$path": "src/ReplicatedStorage"
+    },
+    "ServerScriptService": {
+      "$path": "src/ServerScriptService",
+      "FarmingSystem": {
+        "$path": "src/server/FarmingSystem.server.lua"
+      }
+    },
+    "ServerStorage": {
+      "$path": "src/ServerStorage"
+    },
+    "StarterGui": {
+      "$properties": {
+        "ScreenOrientation": "Sensor"
+      },
+      "$path": "src/StarterGui"
+    },
+    "StarterPlayer": {
+      "StarterCharacterScripts": {
+        "$path": "src/StarterPlayer/StarterCharacterScripts"
+      },
+      "StarterPlayerScripts": {
+        "$path": "src/StarterPlayer/StarterPlayerScripts"
+      },
+      "$properties": {
+        "CameraMaxZoomDistance": 6.0,
+        "CharacterUseJumpPower": false,
+        "DevCameraOcclusionMode": "Invisicam"
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true,
+        "PredictiveStreamingMode": {
+          "Enum": 0
+        },
+        "SignalBehavior": "Deferred",
+        "StreamOutBehavior": "Opportunistic",
+        "StreamingEnabled": true,
+        "StreamingIntegrityMode": "PauseOutsideLoadedArea",
+        "WorldPivotData": {
+          "OptionalCFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        }
+      },
+      "$attributes": {
+        "Rojo_Target_CurrentCamera": "78b0696155f6fe04097d704e00000b84"
+      },
+      "$path": "src/Workspace"
+    }
+  }
+}

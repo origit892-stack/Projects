@@ -1,0 +1,69 @@
+{
+  "pipeline_version": "1.0",
+  "timestamp": "20260904_131614",
+  "generator": {
+    "provider": "Hugging Face",
+    "space": "ThomasSimonini/Roblox-3D-Assets-Generator-v1"
+  },
+  "input": {
+    "path": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/references/old_military_ammo_crate_reference_B.png",
+    "sha256": "86d57c1b5a1bf5f6378df9a54b0a6399f3066e8e2db81e8fd0ad218fba1b1a1c"
+  },
+  "settings": {
+    "seed": 42,
+    "steps": 75.0,
+    "remove_background": true
+  },
+  "api_flow": [
+    "/preprocess",
+    "/generate_mvs",
+    "/make3d"
+  ],
+  "outputs": {
+    "reference": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test_B/20260904_131614/reference/input.png",
+    "processed": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test_B/20260904_131614/generation/processed.webp",
+    "multiview": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test_B/20260904_131614/generation/multiview.webp",
+    "obj": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test_B/20260904_131614/generation/model.obj",
+    "glb": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test_B/20260904_131614/generation/model.glb"
+  },
+  "qa": {
+    "glb_size_bytes": 1637116,
+    "glb_sha256": "3de1f21f74e30482cff88e49fb01e401578faa069e82431440bda971e02f185a",
+    "glb_magic_valid": true,
+    "mesh_count": 1,
+    "vertex_count": 40918,
+    "triangle_count": 81784,
+    "bounding_dimensions": [
+      2.004412293434143,
+      0.8686310648918152,
+      1.7912460565567017
+    ],
+    "invalid_coordinates": false,
+    "pass": true
+  },
+  "generation_duration_seconds": 27.59421706199646,
+  "roblox_import_status": "NOT_TESTED",
+  "visual_qa_status": "PASS",
+  "asset_library_registered": "NO",
+  "roblox_optimized": {
+    "path": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/ai_3d/old_military_ammo_crate_test_B/20260904_131614/generation/model_roblox_hq.glb",
+    "triangle_count": 16354,
+    "target_triangles": 18000,
+    "triangle_limit_pass": true
+  },
+  "studio_import_status": "PASS",
+  "visual_qa_note": "Reference B produced materially cleaner hard-surface silhouette, flatter panels and better-defined structural straps than Reference A.",
+  "reference_strategy": {
+    "status": "VALIDATED",
+    "guidance": [
+      "single isolated object",
+      "clean background",
+      "three-quarter view",
+      "strong hard-surface silhouette",
+      "clear structural separation",
+      "avoid text",
+      "avoid excessive micro-detail",
+      "prefer geometry-readable lighting"
+    ]
+  }
+}

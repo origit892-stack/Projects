@@ -1,0 +1,794 @@
+--!strict
+
+local GuiService = game:GetService("GuiService")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local StarterGui = game:GetService("StarterGui")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
+local GUI_NAME = "OutskirtsHUD"
+
+local COLORS = {
+	Void = Color3.fromRGB(7, 9, 9),
+	Concrete = Color3.fromRGB(15, 18, 18),
+	Steel = Color3.fromRGB(24, 29, 28),
+	SteelRaised = Color3.fromRGB(34, 40, 38),
+	SteelPressed = Color3.fromRGB(18, 22, 21),
+	Edge = Color3.fromRGB(69, 78, 73),
+	EdgeBright = Color3.fromRGB(105, 115, 106),
+	Text = Color3.fromRGB(225, 227, 217),
+	TextSoft = Color3.fromRGB(169, 176, 164),
+	TextDim = Color3.fromRGB(108, 117, 109),
+	Sage = Color3.fromRGB(113, 132, 88),
+	SageBright = Color3.fromRGB(151, 166, 114),
+	Amber = Color3.fromRGB(202, 142, 63),
+	Red = Color3.fromRGB(175, 62, 50),
+	Green = Color3.fromRGB(79, 139, 91),
+	Blue = Color3.fromRGB(76, 128, 137),
+}
+
+local WEAPONS_BLUE_TOP = Color3.fromRGB(70, 135, 240)
+local WEAPONS_BLUE_BOTTOM = Color3.fromRGB(20, 35, 196)
+local WEAPONS_OUTLINE = Color3.fromRGB(10, 12, 16)
+local WEAPONS_WEB = Color3.fromRGB(235, 240, 250)
+local WEAPONS_BODY = Color3.fromRGB(35, 38, 44)
+local WEAPONS_BODY_DARK = Color3.fromRGB(24, 26, 31)
+local WEAPONS_METAL = Color3.fromRGB(112, 120, 132)
+local WEAPONS_LABEL = Color3.fromRGB(255, 255, 255)
+
+export type UICallbacks = {
+	EquipSlot: (slot: number) -> (),
+	Primary: () -> (),
+	UseRation: () -> (),
+	Interaction: (kind: string, arguments: { [string]: any }?) -> (),
+	ClosePanel: () -> (),
+	PromptInput: (isBeginning: boolean) -> (),
+}
+
+export type UIController = {
+	Start: (self: UIController) -> (),
+	Stop: (self: UIController) -> (),
+	SetCallbacks: (self: UIController, callbacks: UICallbacks?) -> (),
+	SetPreferredInput: (self: UIController, input: Enum.PreferredInput) -> (),
+	ShowPrompt: (self: UIController, prompt: ProximityPrompt, inputType: Enum.ProximityPromptInputType) -> (),
+	HidePrompt: (self: UIController, prompt: ProximityPrompt) -> (),
+	SetPromptProgress: (self: UIController, progress: number) -> (),
+	IsPointerOverInteractiveUI: (self: UIController) -> boolean,
+	ShowNotification: (self: UIController, text: string, tone: string?) -> (),
+}
+
+local UIController = {}
+UIController.__index = UIController
+
+local function create(className: string, parent: Instance?, properties: { [string]: any }?): Instance
+	local instance = Instance.new(className)
+	if properties ~= nil then
+		for property, value in properties do
+			(instance :: any)[property] = value
+		end
+	end
+	instance.Parent = parent
+	return instance
+end
+
+local function addCorner(parent: Instance, radius: number)
+	create("UICorner", parent, { CornerRadius = UDim.new(0, radius) })
+end
+
+local function addStroke(parent: Instance, color: Color3?, transparency: number?, thickness: number?): UIStroke
+	return create("UIStroke", parent, {
+		ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+		Color = color or COLORS.Edge,
+		Transparency = transparency or 0,
+		Thickness = thickness or 1,
+	}) :: UIStroke
+end
+
+local function label(
+	parent: Instance,
+	name: string,
+	text: string,
+	size: UDim2,
+	position: UDim2,
+	textSize: number,
+	color: Color3?,
+	font: Enum.Font?,
+	alignment: Enum.TextXAlignment?
+): TextLabel
+	return create("TextLabel", parent, {
+		Name = name,
+		BackgroundTransparency = 1,
+		Size = size,
+		Position = position,
+		Font = font or Enum.Font.GothamMedium,
+		Text = text,
+		TextSize = textSize,
+		TextColor3 = color or COLORS.Text,
+		TextXAlignment = alignment or Enum.TextXAlignment.Left,
+		TextYAlignment = Enum.TextYAlignment.Center,
+		TextTruncate = Enum.TextTruncate.AtEnd,
+		AutoLocalize = false,
+	}) :: TextLabel
+end
+
+local function disconnectAll(connections: { RBXScriptConnection })
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+end
+
+function UIController.new(state: any): UIController
+	local self = setmetatable({
+		_state = state,
+		_player = Players.LocalPlayer,
+		_started = false,
+		_callbacks = nil :: UICallbacks?,
+		_gui = nil :: ScreenGui?,
+		_root = nil :: Frame?,
+		_refs = {} :: { [string]: any },
+		_connections = {} :: { RBXScriptConnection },
+		_surfaceDefaults = {} :: { [GuiObject]: number },
+		_notifications = {} :: { CanvasGroup },
+		_reducedMotion = false,
+		_coreGuiState = {} :: { [Enum.CoreGuiType]: boolean },
+		_inventory = nil :: any,
+		_inventoryRoot = nil :: CanvasGroup?,
+	}, UIController)
+	return (self :: any) :: UIController
+end
+
+local WEAPONS_WEB_CORNERS = {
+	TL = { 0, 0, 0 },
+	TR = { 1, 0, 90 },
+	BL = { 0, 1, 270 },
+	BR = { 1, 1, 180 },
+}
+
+function UIController:_buildWeb(parent: Instance, corner: string, size: number): CanvasGroup
+	local data = WEAPONS_WEB_CORNERS[corner]
+	local cornerX = data[1] * size
+	local cornerY = data[2] * size
+	local baseAngle = data[3]
+	local web = create("CanvasGroup", parent, {
+		Name = "Web_" .. corner,
+		Size = UDim2.fromOffset(size, size),
+		Position = UDim2.fromScale(data[1], data[2]),
+		AnchorPoint = Vector2.new(data[1], data[2]),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		GroupTransparency = 0.55,
+	}) :: CanvasGroup
+	for k = 0, 4 do
+		local angle = baseAngle + k * 22.5
+		local length = if k == 2 then size * 0.74 else size * 0.54
+		create("Frame", web, {
+			Name = "Spoke" .. k,
+			Size = UDim2.fromOffset(length, 2),
+			Position = UDim2.fromOffset(cornerX, cornerY),
+			AnchorPoint = Vector2.new(0, 0.5),
+			Rotation = angle,
+			BackgroundColor3 = WEAPONS_WEB,
+			BackgroundTransparency = 0.55,
+			BorderSizePixel = 0,
+		})
+	end
+	for _, radiusScale in { 0.4, 0.64 } do
+		local radius = size * radiusScale
+		for _, offset in { 15, 45, 75 } do
+			local angle = baseAngle + offset
+			local rad = math.rad(angle)
+			create("Frame", web, {
+				Name = "Arc",
+				Size = UDim2.fromOffset(size * 0.2, 1.5),
+				Position = UDim2.fromOffset(cornerX + radius * math.cos(rad), cornerY + radius * math.sin(rad)),
+				AnchorPoint = Vector2.new(0.5, 0.5),
+				Rotation = angle + 90,
+				BackgroundColor3 = WEAPONS_WEB,
+				BackgroundTransparency = 0.5,
+				BorderSizePixel = 0,
+			})
+		end
+	end
+	return web
+end
+
+function UIController:_buildRifle(parent: Instance): Frame
+	local rifle = create("Frame", parent, {
+		Name = "Rifle",
+		Size = UDim2.fromOffset(84, 44),
+		Position = UDim2.new(0.5, 0, 0.5, -2),
+		AnchorPoint = Vector2.new(0.5, 0.5),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+	}) :: Frame
+	local function part(
+		name: string,
+		x: number,
+		y: number,
+		width: number,
+		height: number,
+		color: Color3,
+		cornerRadius: number,
+		rotation: number?,
+		anchor: Vector2?,
+		transparency: number?
+	)
+		local frame = create("Frame", rifle, {
+			Name = name,
+			Size = UDim2.fromOffset(width, height),
+			Position = UDim2.fromOffset(x, y),
+			AnchorPoint = anchor or Vector2.new(0, 0),
+			Rotation = rotation or 0,
+			BackgroundColor3 = color,
+			BackgroundTransparency = transparency or 0,
+			BorderSizePixel = 0,
+		}) :: Frame
+		if cornerRadius > 0 then
+			addCorner(frame, cornerRadius)
+		end
+		return frame
+	end
+	part("Stock", 0, 13, 18, 16, WEAPONS_BODY, 3)
+	part("Receiver", 16, 14, 44, 13, WEAPONS_BODY, 3)
+	part("ReceiverSheen", 18, 15.5, 40, 2, WEAPONS_METAL, 1, nil, nil, 0.35)
+	part("Barrel", 60, 17, 20, 6, WEAPONS_BODY_DARK, 2)
+	part("BarrelSheen", 61, 17.5, 17, 1.5, WEAPONS_METAL, 1, nil, nil, 0.45)
+	part("Muzzle", 78, 15, 6, 10, WEAPONS_METAL, 2)
+	part("FrontSight", 64, 9, 3, 5, WEAPONS_BODY_DARK, 1)
+	part("RearSight", 22, 9, 4, 5, WEAPONS_BODY_DARK, 1)
+	part("Magazine", 38, 27, 13, 17, WEAPONS_BODY_DARK, 3, 14, Vector2.new(0.5, 0))
+	part("Grip", 26, 27, 9, 13, WEAPONS_BODY, 2, 18, Vector2.new(0.5, 0))
+	return rifle
+end
+
+function UIController:_buildSpider(parent: Instance): Frame
+	local spider = create("Frame", parent, {
+		Name = "Spider",
+		Size = UDim2.fromOffset(12, 16),
+		Position = UDim2.fromOffset(100, 20),
+		AnchorPoint = Vector2.new(0.5, 0),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+	}) :: Frame
+	create("Frame", spider, {
+		Name = "Thread",
+		Size = UDim2.fromOffset(1, 7),
+		Position = UDim2.fromOffset(5.5, 0),
+		BackgroundColor3 = WEAPONS_WEB,
+		BackgroundTransparency = 0.4,
+		BorderSizePixel = 0,
+	})
+	local body = create("Frame", spider, {
+		Name = "Body",
+		Size = UDim2.fromOffset(8, 7),
+		Position = UDim2.fromOffset(2, 7),
+		BackgroundColor3 = Color3.fromRGB(22, 22, 28),
+		BorderSizePixel = 0,
+	}) :: Frame
+	addCorner(body, 3)
+	for _, leg in {
+		{ 1, 9, 35 },
+		{ 0, 12, 65 },
+		{ 11, 9, -35 },
+		{ 12, 12, -65 },
+	} do
+		create("Frame", spider, {
+			Name = "Leg",
+			Size = UDim2.fromOffset(1, 6),
+			Position = UDim2.fromOffset(leg[1], leg[2]),
+			AnchorPoint = Vector2.new(0.5, 0),
+			Rotation = leg[3],
+			BackgroundColor3 = Color3.fromRGB(22, 22, 28),
+			BorderSizePixel = 0,
+		})
+	end
+	return spider
+end
+
+function UIController:_buildWeaponsButton()
+	local root = self._root :: Frame
+	local container = create("Frame", root, {
+		Name = "WeaponsButton",
+		Size = UDim2.fromOffset(136, 152),
+		Position = UDim2.new(0, 14, 0.5, 0),
+		AnchorPoint = Vector2.new(0, 0.5),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+	}) :: Frame
+	self._refs.WeaponsContainer = container
+
+	local button = create("TextButton", container, {
+		Name = "WeaponsTile",
+		Size = UDim2.fromOffset(120, 120),
+		Position = UDim2.new(0.5, 0, 0, 68),
+		AnchorPoint = Vector2.new(0.5, 0.5),
+		BackgroundColor3 = WEAPONS_BLUE_BOTTOM,
+		BackgroundTransparency = 0,
+		BorderSizePixel = 0,
+		AutoButtonColor = false,
+		Text = "",
+		Font = Enum.Font.GothamBold,
+		AutoLocalize = false,
+	}) :: TextButton
+	create("ImageLabel", button, {
+		Name = "StudTexture",
+		Image = "rbxassetid://7447638611",
+		ScaleType = Enum.ScaleType.Tile,
+		TileSize = UDim2.new(0, 32, 0, 32),
+		Size = UDim2.fromScale(1, 1),
+		ZIndex = 0,
+		ImageTransparency = 0.5,
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+	})
+	addCorner(button, 11)
+	addStroke(button, WEAPONS_OUTLINE, 0, 5)
+	create("UIGradient", button, {
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, WEAPONS_BLUE_TOP),
+			ColorSequenceKeypoint.new(1, WEAPONS_BLUE_BOTTOM),
+		}),
+		Rotation = 90,
+	})
+	local sheen = create("Frame", button, {
+		Name = "Sheen",
+		Size = UDim2.new(1, -14, 0, 46),
+		Position = UDim2.fromOffset(7, 7),
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BackgroundTransparency = 0,
+		BorderSizePixel = 0,
+	}) :: Frame
+	addCorner(sheen, 8)
+	create("UIGradient", sheen, {
+		Color = ColorSequence.new(Color3.new(1, 1, 1), Color3.new(1, 1, 1)),
+		Transparency = NumberSequence.new({
+			NumberSequenceKeypoint.new(0, 0.6),
+			NumberSequenceKeypoint.new(1, 1),
+		}),
+		Rotation = 90,
+	})
+	local webSize = 46
+	local webs = { self:_buildWeb(button, "TR", webSize) } :: { CanvasGroup }
+	local rifle = self:_buildRifle(button)
+	local spider = self:_buildSpider(button)
+	local glow = create("Frame", button, {
+		Name = "Glow",
+		Size = UDim2.fromScale(1, 1),
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+	}) :: Frame
+	local labelFrame = create("TextLabel", container, {
+		Name = "WeaponsLabel",
+		Size = UDim2.fromOffset(120, 30),
+		Position = UDim2.fromOffset(8, 108),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Font = Enum.Font.GothamBlack,
+		Text = "Weapons",
+		TextSize = 22,
+		TextColor3 = WEAPONS_LABEL,
+		TextStrokeColor3 = WEAPONS_OUTLINE,
+		TextStrokeTransparency = 0,
+		TextXAlignment = Enum.TextXAlignment.Center,
+		TextYAlignment = Enum.TextYAlignment.Center,
+		AutoLocalize = false,
+		ZIndex = 2,
+	}) :: TextLabel
+	create("ImageLabel", button, {
+		Name = "StudOverlay",
+		Image = "rbxassetid://7447638611",
+		ScaleType = Enum.ScaleType.Tile,
+		TileSize = UDim2.new(0, 32, 0, 32),
+		Size = UDim2.fromScale(1, 1),
+		ZIndex = 0,
+		ImageTransparency = 0.5,
+		BackgroundTransparency = 1,
+	})
+	self._refs.WeaponsButton = button
+	self._refs.WeaponsLabel = labelFrame
+
+	local activeTweens = {} :: { Tween }
+	local function track(tween: Tween)
+		table.insert(activeTweens, tween)
+		return tween
+	end
+	self._refs.WeaponsCleanup = function()
+		for _, tween in activeTweens do
+			tween:Cancel()
+		end
+		table.clear(activeTweens)
+	end
+
+	local baseSize = UDim2.fromOffset(120, 120)
+	local hoverSize = UDim2.fromOffset(126, 126)
+	local pressSize = UDim2.fromOffset(110, 110)
+	local hovered = false
+	local function setHover(on: boolean)
+		hovered = on
+		if self._reducedMotion then
+			button.Size = if on then hoverSize else baseSize
+			return
+		end
+		track(TweenService:Create(button, TweenInfo.new(0.14, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+			Size = if on then hoverSize else baseSize,
+		}):Play())
+		track(TweenService:Create(glow, TweenInfo.new(0.14, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+			BackgroundTransparency = if on then 0.84 else 1,
+		}):Play())
+	end
+	table.insert(self._connections, button.MouseEnter:Connect(function()
+		setHover(true)
+	end))
+	table.insert(self._connections, button.MouseLeave:Connect(function()
+		setHover(false)
+	end))
+	table.insert(self._connections, button.Activated:Connect(function()
+		self:_toggleInventory()
+		if self._reducedMotion then
+			return
+		end
+		local press = TweenService:Create(button, TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Size = pressSize })
+		track(press):Play()
+		press.Completed:Once(function()
+			if button.Parent == nil then
+				return
+			end
+			local release = TweenService:Create(button, TweenInfo.new(0.22, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+				Size = if hovered then hoverSize else baseSize,
+			})
+			track(release):Play()
+		end)
+	end))
+
+	local clock = 0
+	local spiderNextCrawl = 5
+	local spiderCrawling = false
+	local spiderA = UDim2.fromOffset(100, 20)
+	local spiderB = UDim2.fromOffset(107, 13)
+	table.insert(self._connections, RunService.Heartbeat:Connect(function(deltaTime)
+		if self._reducedMotion then
+			return
+		end
+		clock += deltaTime
+		local bob = math.sin(clock * (2 * math.pi / 2.6)) * 3
+		rifle.Position = UDim2.new(0.5, 0, 0.5, -2 + bob)
+		local webPhase = (clock % 5) / 5
+		local webBreath = 0.5 - 0.5 * math.cos(webPhase * 2 * math.pi)
+		for _, web in webs do
+			web.GroupTransparency = 0.55 - 0.4 * webBreath
+		end
+		if clock >= spiderNextCrawl and not spiderCrawling then
+			spiderCrawling = true
+			local out = TweenService:Create(spider, TweenInfo.new(1.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), { Position = spiderB })
+			track(out):Play()
+			out.Completed:Once(function()
+				if spider.Parent == nil then
+					return
+				end
+				local back = TweenService:Create(spider, TweenInfo.new(1.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), { Position = spiderA })
+				track(back):Play()
+				back.Completed:Once(function()
+					spiderCrawling = false
+					spiderNextCrawl = clock + 6 + math.random() * 4
+				end)
+			end)
+		end
+	end))
+end
+
+function UIController:_buildGui()
+	local playerGui = self._player:WaitForChild("PlayerGui") :: PlayerGui
+	local existing = playerGui:FindFirstChild(GUI_NAME)
+	if existing ~= nil then
+		existing:Destroy()
+	end
+
+	local gui = create("ScreenGui", playerGui, {
+		Name = GUI_NAME,
+		ResetOnSpawn = false,
+		IgnoreGuiInset = false,
+		ScreenInsets = Enum.ScreenInsets.CoreUISafeInsets,
+		ClipToDeviceSafeArea = true,
+		SafeAreaCompatibility = Enum.SafeAreaCompatibility.None,
+		DisplayOrder = 20,
+		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
+	}) :: ScreenGui
+	self._gui = gui
+
+	local root = create("Frame", gui, {
+		Name = "SafeAreaRoot",
+		Size = UDim2.fromScale(1, 1),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+	}) :: Frame
+	self._root = root
+
+	local notifications = create("Frame", root, {
+		Name = "Notifications",
+		Size = UDim2.fromOffset(330, 300),
+		Position = UDim2.new(1, -18, 0, 120),
+		AnchorPoint = Vector2.new(1, 0),
+		BackgroundTransparency = 1,
+		ZIndex = 170,
+	}) :: Frame
+	self._refs.Notifications = notifications
+	create("UIListLayout", notifications, {
+		Padding = UDim.new(0, 8),
+		HorizontalAlignment = Enum.HorizontalAlignment.Right,
+		SortOrder = Enum.SortOrder.LayoutOrder,
+	})
+
+	self:_buildWeaponsButton()
+end
+
+function UIController:_destroyLegacyInventoryGuis()
+	local playerGui = self._player:FindFirstChild("PlayerGui") :: PlayerGui?
+	if playerGui == nil then
+		return
+	end
+	-- Legacy inventory ScreenGuis that must not overlap the active V2 panel.
+	-- The active V2 inventory is a CanvasGroup mounted inside OutskirtsHUD,
+	-- so any of these ScreenGuis present in PlayerGui are stale and safe to
+	-- remove. BunkerInventoryV2_Preview is the old flat "SURVIVAL INVENTORY"
+	-- GUI; InventoryV2_Test are leftover test artifacts.
+	local legacyNames = {
+		Inventory = true,
+		FigmaUI = true,
+		BunkerInventoryV2_Preview = true,
+		InventoryV2_Test = true,
+	}
+	for _, child in playerGui:GetChildren() do
+		if child:IsA("ScreenGui") and legacyNames[child.Name] == true then
+			child:Destroy()
+		end
+	end
+end
+
+function UIController:_setCoreGuiEnabled(coreGuiType: Enum.CoreGuiType, enabled: boolean)
+	pcall(function()
+		StarterGui:SetCoreGuiEnabled(coreGuiType, enabled)
+	end)
+end
+
+function UIController:_captureAndDisableCoreGui()
+	for _, coreGuiType in { Enum.CoreGuiType.Backpack, Enum.CoreGuiType.Health, Enum.CoreGuiType.PlayerList } do
+		local ok, enabled = pcall(function()
+			return StarterGui:GetCoreGuiEnabled(coreGuiType)
+		end)
+		if ok then
+			self._coreGuiState[coreGuiType] = enabled
+		end
+		self:_setCoreGuiEnabled(coreGuiType, false)
+	end
+	self:_disablePlayerListWithRetry()
+end
+
+function UIController:_disablePlayerListWithRetry()
+	-- CoreGui may not be fully loaded when Start() runs, so the initial
+	-- SetCoreGuiEnabled call can be a no-op. Retry in a background thread
+	-- until the PlayerList (leaderboard) is confirmed disabled.
+	task.spawn(function()
+		for _ = 1, 10 do
+			local setOk = pcall(function()
+				StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
+			end)
+			if setOk then
+				local getOk, enabled = pcall(function()
+					return StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.PlayerList)
+				end)
+				if getOk and enabled == false then
+					return
+				end
+			end
+			task.wait(0.5)
+		end
+	end)
+end
+
+function UIController:_restoreCoreGui()
+	for coreGuiType, enabled in self._coreGuiState do
+		self:_setCoreGuiEnabled(coreGuiType, enabled)
+	end
+	table.clear(self._coreGuiState)
+end
+
+function UIController:_applyAccessibility()
+	self._reducedMotion = GuiService.ReducedMotionEnabled
+	local transparencyPreference = GuiService.PreferredTransparency
+	for object, defaultTransparency in self._surfaceDefaults do
+		if object.Parent ~= nil then
+			object.BackgroundTransparency = defaultTransparency * transparencyPreference
+		end
+	end
+end
+
+function UIController:_toggleInventory()
+	local gui = self._gui
+	if gui == nil then
+		return
+	end
+	local inventory = self._inventory
+	if inventory == nil then
+		return
+	end
+	local root = self._inventoryRoot
+	local justMounted = false
+	if root == nil then
+		root = inventory:Mount(gui) :: CanvasGroup?
+		self._inventoryRoot = root
+		if root == nil then
+			return
+		end
+		justMounted = true
+	end
+	if justMounted then
+		-- First interaction mounts the panel; show it explicitly instead of
+		-- toggling the default Visible=true to false.
+		root.Visible = true
+	else
+		root.Visible = not root.Visible
+	end
+end
+
+function UIController:_setupInventory()
+	local InventoryV2Module = require(game:GetService("StarterGui").InventoryV2.InventoryV2Module)
+	local inventory = InventoryV2Module.new()
+	self._inventory = inventory
+
+	table.insert(self._connections, UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if gameProcessed then
+			return
+		end
+		if input.KeyCode ~= Enum.KeyCode.Tab and input.KeyCode ~= Enum.KeyCode.B then
+			return
+		end
+		self:_toggleInventory()
+	end))
+end
+
+function UIController:ShowNotification(text: string, tone: string?)
+	if self._gui == nil then
+		return
+	end
+	local variant = tone or "Info"
+	local color = if variant == "Error" then COLORS.Red elseif variant == "Success" then COLORS.Green else COLORS.Amber
+	local group = create("CanvasGroup", self._refs.Notifications, {
+		Name = "Notification",
+		Size = UDim2.new(1, 0, 0, 58),
+		BackgroundColor3 = COLORS.Concrete,
+		BackgroundTransparency = 0.03,
+		BorderSizePixel = 0,
+		GroupTransparency = if self._reducedMotion then 0 else 1,
+		ZIndex = 172,
+	}) :: CanvasGroup
+	addCorner(group, 5)
+	addStroke(group, color, 0.18, 1)
+	create("Frame", group, {
+		Name = "Rail",
+		Size = UDim2.new(0, 4, 1, -10),
+		Position = UDim2.fromOffset(0, 5),
+		BackgroundColor3 = color,
+		BorderSizePixel = 0,
+		ZIndex = 173,
+	})
+	local message = label(group, "Message", text, UDim2.new(1, -28, 1, -12), UDim2.fromOffset(16, 6), 12, COLORS.Text, Enum.Font.GothamMedium)
+	message.TextWrapped = true
+	message.TextTruncate = Enum.TextTruncate.None
+	message.ZIndex = 173
+	table.insert(self._notifications, group)
+	while #self._notifications > 4 do
+		local oldest = table.remove(self._notifications, 1)
+		if oldest.Parent ~= nil then
+			oldest:Destroy()
+		end
+	end
+	if not self._reducedMotion then
+		TweenService:Create(group, TweenInfo.new(0.16, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), { GroupTransparency = 0 }):Play()
+	end
+	task.delay(3.6, function()
+		local index = table.find(self._notifications, group)
+		if index ~= nil then
+			table.remove(self._notifications, index)
+		end
+		if group.Parent == nil then
+			return
+		end
+		if self._reducedMotion then
+			group:Destroy()
+		else
+			local tween = TweenService:Create(group, TweenInfo.new(0.14, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { GroupTransparency = 1 })
+			tween:Play()
+			tween.Completed:Once(function()
+				group:Destroy()
+			end)
+		end
+	end)
+end
+
+function UIController:SetCallbacks(callbacks: UICallbacks?)
+	self._callbacks = callbacks
+end
+
+function UIController:SetPreferredInput(_input: Enum.PreferredInput)
+end
+
+function UIController:ShowPrompt(_prompt: ProximityPrompt, _inputType: Enum.ProximityPromptInputType)
+end
+
+function UIController:HidePrompt(_prompt: ProximityPrompt)
+end
+
+function UIController:SetPromptProgress(_progress: number)
+end
+
+function UIController:IsPointerOverInteractiveUI(): boolean
+	local button = self._refs.WeaponsButton
+	if button == nil or button.Parent == nil then
+		return false
+	end
+	local playerGui = self._gui and self._gui.Parent
+	if playerGui == nil or not playerGui:IsA("PlayerGui") then
+		return false
+	end
+	local mouse = UserInputService:GetMouseLocation()
+	local insetTopLeft = select(1, GuiService:GetGuiInset())
+	local guiPoint = mouse - insetTopLeft
+	for _, object in playerGui:GetGuiObjectsAtPosition(guiPoint.X, guiPoint.Y) do
+		if object == button or object:IsDescendantOf(button) then
+			return true
+		end
+	end
+	return false
+end
+
+function UIController:Start()
+	if self._started then
+		return
+	end
+	self._started = true
+	self:_destroyLegacyInventoryGuis()
+	self:_buildGui()
+	self:_setupInventory()
+	self:_captureAndDisableCoreGui()
+	self:_applyAccessibility()
+	table.insert(self._connections, GuiService:GetPropertyChangedSignal("ReducedMotionEnabled"):Connect(function()
+		self:_applyAccessibility()
+	end))
+	table.insert(self._connections, GuiService:GetPropertyChangedSignal("PreferredTransparency"):Connect(function()
+		self:_applyAccessibility()
+	end))
+end
+
+function UIController:Stop()
+	if not self._started then
+		return
+	end
+	self._started = false
+	self._callbacks = nil
+	self._inventory = nil
+	self._inventoryRoot = nil
+	disconnectAll(self._connections)
+	self:_restoreCoreGui()
+	for _, notification in self._notifications do
+		if notification.Parent ~= nil then
+			notification:Destroy()
+		end
+	end
+	table.clear(self._notifications)
+	table.clear(self._surfaceDefaults)
+	local weaponsCleanup = self._refs.WeaponsCleanup
+	if weaponsCleanup ~= nil then
+		weaponsCleanup()
+	end
+	table.clear(self._refs)
+	if self._gui ~= nil then
+		self._gui:Destroy()
+		self._gui = nil
+	end
+	self._root = nil
+end
+
+return table.freeze(UIController)

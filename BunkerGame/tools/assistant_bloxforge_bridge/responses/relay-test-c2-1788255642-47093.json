@@ -1,0 +1,16 @@
+{
+  "request_id": "relay-test-c2-1788255642-47093",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_tool": "get_scene_summary",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"topClasses\":[{\"count\":10,\"className\":\"ModuleScript\"},{\"count\":6,\"className\":\"UnionOperation\"},{\"count\":3,\"className\":\"Folder\"},{\"count\":2,\"className\":\"GeneratedFolder\"},{\"count\":2,\"className\":\"ProceduralModel\"},{\"count\":2,\"className\":\"Model\"},{\"count\":1,\"className\":\"Camera\"},{\"count\":1,\"className\":\"Terrain\"}],\"totalDescendants\":27,\"className\":\"Workspace\",\"root\":\"game.Workspace\",\"distinctClasses\":8,\"childCount\":5,\"scope\":\"exact subtree\"}"
+      }
+    ]
+  },
+  "completed_at": "2026-09-01T09:40:43Z"
+}

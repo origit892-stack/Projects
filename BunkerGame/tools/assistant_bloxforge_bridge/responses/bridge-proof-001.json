@@ -1,0 +1,17 @@
+{
+  "request_id": "bridge-proof-001",
+  "intent": "geometry_review",
+  "status": "completed",
+  "review": {
+    "collision": "PASS: hypothetical rock must have CanCollide true, appropriate CollisionFidelity, no intersecting placement",
+    "scale": "PASS: scale within plausible bounds (1-10 studs), uniform scaling verified, no extreme distortion",
+    "anchoring": "PASS: Anchored true required for static prop, no unanchored drift risk",
+    "placement": "PASS: placement requires ground contact, clearance check, not floating or intersecting terrain",
+    "overall": "PROOF ONLY - no production geometry modifications performed",
+    "verdict": "APPROVED_FOR_PROOF"
+  },
+  "details_echo": "Inspect a hypothetical generated rock for collision, scale, anchoring, and placement problems. PROOF ONLY.",
+  "reviewed_at": "2026-08-30T16:49:00Z",
+  "reviewer": "BloxForge engineering review (proof)",
+  "ok": true
+}

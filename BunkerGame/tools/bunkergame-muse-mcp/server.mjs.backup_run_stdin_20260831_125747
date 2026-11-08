@@ -1,0 +1,402 @@
+#!/usr/bin/env node
+
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+import { spawn, execFile } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+import os from "node:os";
+import crypto from "node:crypto";
+
+const ROOT = "/Users/Ori/Documents/Projects/BunkerGame";
+const STATE_DIR = path.join(ROOT, ".opencode", "muse_bridge");
+const STATE_FILE = path.join(STATE_DIR, "state.json");
+const LOG_DIR = path.join(STATE_DIR, "logs");
+
+fs.mkdirSync(LOG_DIR, { recursive: true });
+
+function findOpenCode() {
+  const candidates = [
+    process.env.OPENCODE_BIN,
+    "/Users/Ori/Library/Application Support/bloxbot/opencode/darwin-arm64/1.18.25/opencode",
+    "/Users/Ori/Library/Application Support/bloxbot/opencode/darwin-arm64/1.18.23/opencode",
+    "/opt/homebrew/bin/opencode",
+    "/usr/local/bin/opencode"
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    try {
+      if (fs.existsSync(candidate)) return candidate;
+    } catch {}
+  }
+
+  return "opencode";
+}
+
+const OPENCODE = findOpenCode();
+
+function loadState() {
+  try {
+    return JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
+  } catch {
+    return {
+      active: null,
+      sessions: {}
+    };
+  }
+}
+
+function saveState(state) {
+  fs.mkdirSync(STATE_DIR, { recursive: true });
+  fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
+}
+
+function text(value) {
+  return {
+    content: [
+      {
+        type: "text",
+        text: typeof value === "string"
+          ? value
+          : JSON.stringify(value, null, 2)
+      }
+    ]
+  };
+}
+
+function pidAlive(pid) {
+  if (!pid) return false;
+
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function tailFile(file, maxBytes = 50000) {
+  try {
+    const stat = fs.statSync(file);
+    const start = Math.max(0, stat.size - maxBytes);
+    const fd = fs.openSync(file, "r");
+    const buffer = Buffer.alloc(stat.size - start);
+    fs.readSync(fd, buffer, 0, buffer.length, start);
+    fs.closeSync(fd);
+    return buffer.toString("utf8");
+  } catch {
+    return "";
+  }
+}
+
+const server = new McpServer({
+  name: "bunkergame-muse",
+  version: "1.0.0"
+});
+
+/*
+ * 1. muse_health
+ */
+server.tool(
+  "muse_health",
+  "Check the BunkerGame Muse/OpenCode bridge, executable, project root and active Muse process.",
+  {},
+  async () => {
+    const state = loadState();
+    const active = state.active
+      ? state.sessions[state.active]
+      : null;
+
+    return text({
+      healthy: true,
+      project_root: ROOT,
+      opencode: OPENCODE,
+      state_dir: STATE_DIR,
+      active_session: state.active,
+      active_pid: active?.pid ?? null,
+      active_process_alive: active ? pidAlive(active.pid) : false,
+      agent: "bunkergame-art-director",
+      model: "opencode/muse-spark-1.2-contributor-free"
+    });
+  }
+);
+
+/*
+ * 2. muse_start
+ */
+server.tool(
+  "muse_start",
+  "Start a real Muse/OpenCode BunkerGame art-director invocation rooted in the canonical project directory.",
+  {
+    prompt: z.string().min(1).describe("Initial directive for Muse.")
+  },
+  async ({ prompt }) => {
+    const state = loadState();
+
+    if (state.active) {
+      const previous = state.sessions[state.active];
+
+      if (previous && pidAlive(previous.pid)) {
+        return text({
+          ok: false,
+          error: "MUSE_ALREADY_RUNNING",
+          invocation_id: state.active,
+          pid: previous.pid
+        });
+      }
+    }
+
+    const invocationId =
+      "muse_" +
+      new Date().toISOString().replace(/[^0-9]/g, "").slice(0, 14) +
+      "_" +
+      crypto.randomBytes(4).toString("hex");
+
+    const logFile = path.join(LOG_DIR, `${invocationId}.log`);
+
+    const out = fs.openSync(logFile, "a");
+    const err = fs.openSync(logFile, "a");
+
+    /*
+     * Use OpenCode's normal CLI agent invocation.
+     *
+     * The prompt is passed as an argument rather than interpreted by a shell.
+     * cwd is ALWAYS the canonical BunkerGame project.
+     */
+    const promptFile = path.join(LOG_DIR, `${invocationId}.prompt.txt`);
+    fs.writeFileSync(promptFile, prompt, "utf8");
+
+    const args = [
+      "run",
+      "--agent",
+      "bunkergame-art-director",
+      "-m",
+      "opencode/muse-spark-1.2-contributor-free",
+      "--format",
+      "json",
+      "--file",
+      promptFile,
+      "Read the attached directive file completely and execute it. Do not merely summarize it."
+    ];
+
+    let child;
+
+    try {
+      child = spawn(OPENCODE, args, {
+        cwd: ROOT,
+        detached: true,
+        stdio: ["ignore", out, err],
+        env: {
+          ...process.env,
+          HOME: os.homedir()
+        }
+      });
+    } catch (error) {
+      return text({
+        ok: false,
+        error: String(error),
+        opencode: OPENCODE
+      });
+    }
+
+    child.unref();
+
+    state.active = invocationId;
+
+    state.sessions[invocationId] = {
+      invocation_id: invocationId,
+      pid: child.pid,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      project_root: ROOT,
+      agent: "bunkergame-art-director",
+      model: "opencode/muse-spark-1.2-contributor-free",
+      log_file: logFile,
+      initial_prompt: prompt
+    };
+
+    saveState(state);
+
+    return text({
+      ok: true,
+      MUSE_INVOKED: "YES",
+      MUSE_INVOCATION_ID: invocationId,
+      pid: child.pid,
+      log_file: logFile,
+      project_root: ROOT
+    });
+  }
+);
+
+/*
+ * 3. muse_send
+ *
+ * This launches another Muse turn rooted in the same canonical project.
+ * We preserve the bridge invocation ID and append output to the same log.
+ *
+ * This is intentionally implemented without shell interpolation.
+ */
+server.tool(
+  "muse_send",
+  "Send an additional directive through the active BunkerGame Muse bridge.",
+  {
+    message: z.string().min(1).describe("Directive to send to Muse."),
+    invocation_id: z.string().optional()
+  },
+  async ({ message, invocation_id }) => {
+    const state = loadState();
+    const id = invocation_id || state.active;
+
+    if (!id || !state.sessions[id]) {
+      return text({
+        ok: false,
+        error: "NO_MUSE_INVOCATION"
+      });
+    }
+
+    const session = state.sessions[id];
+    const out = fs.openSync(session.log_file, "a");
+    const err = fs.openSync(session.log_file, "a");
+
+    fs.appendFileSync(
+      session.log_file,
+      `\n\n===== MUSE_SEND ${new Date().toISOString()} =====\n`
+    );
+
+    const messageFile = path.join(
+      LOG_DIR,
+      `${id}.message.${Date.now()}.txt`
+    );
+    fs.writeFileSync(messageFile, message, "utf8");
+
+    const args = [
+      "run",
+      "--agent",
+      "bunkergame-art-director",
+      "-m",
+      "opencode/muse-spark-1.2-contributor-free",
+      "--format",
+      "json",
+      "--file",
+      messageFile,
+      "Read the attached follow-up instruction completely and execute it."
+    ];
+
+    let child;
+
+    try {
+      child = spawn(OPENCODE, args, {
+        cwd: ROOT,
+        detached: true,
+        stdio: ["ignore", out, err],
+        env: {
+          ...process.env,
+          HOME: os.homedir()
+        }
+      });
+    } catch (error) {
+      return text({
+        ok: false,
+        error: String(error),
+        invocation_id: id
+      });
+    }
+
+    child.unref();
+
+    session.pid = child.pid;
+    session.updated_at = new Date().toISOString();
+    session.last_message = message;
+
+    state.active = id;
+    saveState(state);
+
+    return text({
+      ok: true,
+      MUSE_INVOKED: "YES",
+      MUSE_INVOCATION_ID: id,
+      pid: child.pid,
+      message_dispatched: true
+    });
+  }
+);
+
+/*
+ * 4. muse_status
+ */
+server.tool(
+  "muse_status",
+  "Get current status for a Muse bridge invocation.",
+  {
+    invocation_id: z.string().optional()
+  },
+  async ({ invocation_id }) => {
+    const state = loadState();
+    const id = invocation_id || state.active;
+
+    if (!id || !state.sessions[id]) {
+      return text({
+        ok: false,
+        status: "NO_SESSION"
+      });
+    }
+
+    const session = state.sessions[id];
+    const alive = pidAlive(session.pid);
+
+    return text({
+      ok: true,
+      invocation_id: id,
+      pid: session.pid,
+      running: alive,
+      status: alive ? "RUNNING" : "NOT_RUNNING",
+      created_at: session.created_at,
+      updated_at: session.updated_at,
+      log_file: session.log_file,
+      log_bytes: (() => {
+        try {
+          return fs.statSync(session.log_file).size;
+        } catch {
+          return 0;
+        }
+      })()
+    });
+  }
+);
+
+/*
+ * 5. muse_output
+ */
+server.tool(
+  "muse_output",
+  "Read recent output produced by the active Muse invocation.",
+  {
+    invocation_id: z.string().optional(),
+    max_bytes: z.number().int().min(1000).max(200000).optional()
+  },
+  async ({ invocation_id, max_bytes }) => {
+    const state = loadState();
+    const id = invocation_id || state.active;
+
+    if (!id || !state.sessions[id]) {
+      return text({
+        ok: false,
+        error: "NO_SESSION"
+      });
+    }
+
+    const session = state.sessions[id];
+
+    return text({
+      ok: true,
+      invocation_id: id,
+      running: pidAlive(session.pid),
+      log_file: session.log_file,
+      output: tailFile(session.log_file, max_bytes || 50000)
+    });
+  }
+);
+
+const transport = new StdioServerTransport();
+await server.connect(transport);

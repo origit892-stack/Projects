@@ -1,0 +1,15 @@
+
+===== EXECUTE LUAU 1 =====
+LINE=62
+CALL_ID=call_01a0546c478171b1b7d4dd8ab02c7cf7
+STATUS=completed
+INPUT:
+{
+  "code": "-- Clean stray Workspace content not in filesystem source\nlocal ws = game.Workspace\nfor _, name in ipairs({\"REALISTIC_TREE_KIT\", \"BoulderShowcase\"}) do\n    local obj = ws:FindFirstChild(name)\n    if obj then\n        print(\"Destroying \" .. name .. \" (\" .. obj.ClassName .. \")\")\n        obj:Destroy()\n    else\n        print(\"Not found: \" .. name)\n    end\nend\n-- Find and remove the standalone boulder model (name starts with realistic weathered)\nfor _, child in ipairs(ws:GetChildren()) do\n    if child.Name:find(\"realistic weathered\") then\n        print(\"Destroying stray model: \" .. child.Name)\n        child:Destroy()\n    end\nend\nprint(\"Cleanup done. Workspace children:\")\nfor _, c in ipairs(ws:GetChildren()) do\n    print(\" - \" .. c.Name .. \" (\" .. c.ClassName .. \")\")\nend\nreturn \"cleanup_complete\"",
+  "datamodel_type": "Edit",
+  "studio_id": "49050ab8-cfe3-4164-9b85-9d71de72d08d"
+}
+OUTPUT:
+cleanup_complete
+ERROR:
+

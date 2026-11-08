@@ -1,0 +1,184 @@
+[2026-08-30T19:47:57] Port 8765 in use, selecting autonomous free loopback port
+[2026-08-30T19:47:57] Autonomous port selected: 62412 (fallback from 8765)
+[2026-08-30T19:47:57] Bridge starting HOST=127.0.0.1 PORT=62412 TOKEN=b49d1374... bound=('127.0.0.1', 62412) BRIDGE_DIR=/Users/Ori/Documents/Projects/BunkerGame/tools/assistant_bloxforge_bridge
+[2026-08-30T19:47:59] 127.0.0.1 - - [30/Aug/2026 19:47:59] "GET /health HTTP/1.1" 200 -
+[2026-08-30T19:47:59] 127.0.0.1 - - [30/Aug/2026 19:47:59] "GET /health HTTP/1.1" 401 -
+[2026-08-30T19:48:53] POST /task request_id=bridge-proof-001 intent=geometry_review stored
+[2026-08-30T19:48:53] 127.0.0.1 - - [30/Aug/2026 19:48:53] "POST /task HTTP/1.1" 200 -
+[2026-08-30T19:49:08] GET /status/bridge-proof-001 -> completed
+[2026-08-30T19:49:08] 127.0.0.1 - - [30/Aug/2026 19:49:08] "GET /status/bridge-proof-001 HTTP/1.1" 200 -
+[2026-08-30T19:49:23] GET /status/bridge-proof-001 -> completed
+[2026-08-30T19:49:23] 127.0.0.1 - - [30/Aug/2026 19:49:23] "GET /status/bridge-proof-001 HTTP/1.1" 200 -
+[2026-08-30T20:02:27] 127.0.0.1 - - [30/Aug/2026 20:02:27] "POST /task HTTP/1.1" 401 -
+[2026-08-30T20:02:56] 127.0.0.1 - - [30/Aug/2026 20:02:56] "POST /task HTTP/1.1" 401 -
+[2026-08-30T21:57:05] 127.0.0.1 - - [30/Aug/2026 21:57:05] "GET /status/ HTTP/1.1" 401 -
+[2026-08-30T22:01:25] 127.0.0.1 - - [30/Aug/2026 22:01:25] "GET /health HTTP/1.1" 200 -
+[2026-08-30T22:01:25] 127.0.0.1 - - [30/Aug/2026 22:01:25] "POST /task HTTP/1.1" 400 -
+[2026-08-30T22:01:25] 127.0.0.1 - - [30/Aug/2026 22:01:25] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:26] 127.0.0.1 - - [30/Aug/2026 22:01:26] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:27] 127.0.0.1 - - [30/Aug/2026 22:01:27] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:28] 127.0.0.1 - - [30/Aug/2026 22:01:28] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:30] 127.0.0.1 - - [30/Aug/2026 22:01:30] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:31] 127.0.0.1 - - [30/Aug/2026 22:01:31] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:32] 127.0.0.1 - - [30/Aug/2026 22:01:32] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:33] 127.0.0.1 - - [30/Aug/2026 22:01:33] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:34] 127.0.0.1 - - [30/Aug/2026 22:01:34] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:35] 127.0.0.1 - - [30/Aug/2026 22:01:35] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:36] 127.0.0.1 - - [30/Aug/2026 22:01:36] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:37] 127.0.0.1 - - [30/Aug/2026 22:01:37] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:38] 127.0.0.1 - - [30/Aug/2026 22:01:38] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:39] 127.0.0.1 - - [30/Aug/2026 22:01:39] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:40] 127.0.0.1 - - [30/Aug/2026 22:01:40] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:41] 127.0.0.1 - - [30/Aug/2026 22:01:41] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:42] 127.0.0.1 - - [30/Aug/2026 22:01:42] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:43] 127.0.0.1 - - [30/Aug/2026 22:01:43] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:44] 127.0.0.1 - - [30/Aug/2026 22:01:44] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:01:45] 127.0.0.1 - - [30/Aug/2026 22:01:45] "GET /status/mimo-live-proof-1788116485 HTTP/1.1" 404 -
+[2026-08-30T22:04:35] POST /task request_id=mimo-live-proof-1788116675 intent=geometry_review stored
+[2026-08-30T22:04:35] 127.0.0.1 - - [30/Aug/2026 22:04:35] "POST /task HTTP/1.1" 200 -
+[2026-08-30T22:04:35] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:35] 127.0.0.1 - - [30/Aug/2026 22:04:35] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:36] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:36] 127.0.0.1 - - [30/Aug/2026 22:04:36] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:37] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:37] 127.0.0.1 - - [30/Aug/2026 22:04:37] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:38] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:38] 127.0.0.1 - - [30/Aug/2026 22:04:38] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:39] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:39] 127.0.0.1 - - [30/Aug/2026 22:04:39] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:40] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:40] 127.0.0.1 - - [30/Aug/2026 22:04:40] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:41] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:41] 127.0.0.1 - - [30/Aug/2026 22:04:41] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:42] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:42] 127.0.0.1 - - [30/Aug/2026 22:04:42] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:44] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:44] 127.0.0.1 - - [30/Aug/2026 22:04:44] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:45] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:45] 127.0.0.1 - - [30/Aug/2026 22:04:45] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:46] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:46] 127.0.0.1 - - [30/Aug/2026 22:04:46] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:47] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:47] 127.0.0.1 - - [30/Aug/2026 22:04:47] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:48] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:48] 127.0.0.1 - - [30/Aug/2026 22:04:48] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:49] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:49] 127.0.0.1 - - [30/Aug/2026 22:04:49] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:50] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:50] 127.0.0.1 - - [30/Aug/2026 22:04:50] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:51] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:51] 127.0.0.1 - - [30/Aug/2026 22:04:51] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:52] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:52] 127.0.0.1 - - [30/Aug/2026 22:04:52] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:53] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:53] 127.0.0.1 - - [30/Aug/2026 22:04:53] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:54] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:54] 127.0.0.1 - - [30/Aug/2026 22:04:54] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:55] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:55] 127.0.0.1 - - [30/Aug/2026 22:04:55] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:56] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:56] 127.0.0.1 - - [30/Aug/2026 22:04:56] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:57] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:57] 127.0.0.1 - - [30/Aug/2026 22:04:57] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:58] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:58] 127.0.0.1 - - [30/Aug/2026 22:04:58] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:04:59] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:04:59] 127.0.0.1 - - [30/Aug/2026 22:04:59] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:05:00] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:05:00] 127.0.0.1 - - [30/Aug/2026 22:05:00] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:05:01] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:05:01] 127.0.0.1 - - [30/Aug/2026 22:05:01] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:05:02] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:05:02] 127.0.0.1 - - [30/Aug/2026 22:05:02] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:05:03] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:05:03] 127.0.0.1 - - [30/Aug/2026 22:05:03] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:05:04] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:05:04] 127.0.0.1 - - [30/Aug/2026 22:05:04] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-30T22:05:05] GET /status/mimo-live-proof-1788116675 -> pending
+[2026-08-30T22:05:05] 127.0.0.1 - - [30/Aug/2026 22:05:05] "GET /status/mimo-live-proof-1788116675 HTTP/1.1" 200 -
+[2026-08-31T22:50:35] 127.0.0.1 - - [31/Aug/2026 22:50:35] "GET / HTTP/1.1" 404 -
+[2026-08-31T22:50:35] 127.0.0.1 - - [31/Aug/2026 22:50:35] "GET /status HTTP/1.1" 404 -
+[2026-08-31T22:50:35] 127.0.0.1 - - [31/Aug/2026 22:50:35] code 501, message Unsupported method ('OPTIONS')
+[2026-08-31T22:50:35] 127.0.0.1 - - [31/Aug/2026 22:50:35] "OPTIONS /task HTTP/1.1" 501 -
+[2026-08-31T22:52:01] 127.0.0.1 - - [31/Aug/2026 22:52:01] "GET /health HTTP/1.1" 200 -
+[2026-08-31T22:52:01] 127.0.0.1 - - [31/Aug/2026 22:52:01] "GET /health HTTP/1.1" 200 -
+[2026-08-31T22:53:09] POST /task request_id=assistant-bloxforge-handshake-1788205989 intent=read_only_handshake stored
+[2026-08-31T22:53:09] 127.0.0.1 - - [31/Aug/2026 22:53:09] "POST /task HTTP/1.1" 200 -
+[2026-08-31T22:53:09] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:09] 127.0.0.1 - - [31/Aug/2026 22:53:09] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:11] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:11] 127.0.0.1 - - [31/Aug/2026 22:53:11] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:13] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:13] 127.0.0.1 - - [31/Aug/2026 22:53:13] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:15] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:15] 127.0.0.1 - - [31/Aug/2026 22:53:15] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:17] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:17] 127.0.0.1 - - [31/Aug/2026 22:53:17] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:20] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:20] 127.0.0.1 - - [31/Aug/2026 22:53:20] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:22] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:22] 127.0.0.1 - - [31/Aug/2026 22:53:22] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:24] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:24] 127.0.0.1 - - [31/Aug/2026 22:53:24] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:26] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:26] 127.0.0.1 - - [31/Aug/2026 22:53:26] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:28] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:28] 127.0.0.1 - - [31/Aug/2026 22:53:28] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:30] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:30] 127.0.0.1 - - [31/Aug/2026 22:53:30] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:32] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:32] 127.0.0.1 - - [31/Aug/2026 22:53:32] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:34] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:34] 127.0.0.1 - - [31/Aug/2026 22:53:34] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:36] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:36] 127.0.0.1 - - [31/Aug/2026 22:53:36] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:38] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:38] 127.0.0.1 - - [31/Aug/2026 22:53:38] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:40] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:40] 127.0.0.1 - - [31/Aug/2026 22:53:40] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:42] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:42] 127.0.0.1 - - [31/Aug/2026 22:53:42] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:44] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:44] 127.0.0.1 - - [31/Aug/2026 22:53:44] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:46] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:46] 127.0.0.1 - - [31/Aug/2026 22:53:46] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:48] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:48] 127.0.0.1 - - [31/Aug/2026 22:53:48] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:50] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:50] 127.0.0.1 - - [31/Aug/2026 22:53:50] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:52] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:52] 127.0.0.1 - - [31/Aug/2026 22:53:52] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:54] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:54] 127.0.0.1 - - [31/Aug/2026 22:53:54] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:57] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:57] 127.0.0.1 - - [31/Aug/2026 22:53:57] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:53:59] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:53:59] 127.0.0.1 - - [31/Aug/2026 22:53:59] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:54:01] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:54:01] 127.0.0.1 - - [31/Aug/2026 22:54:01] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:54:03] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:54:03] 127.0.0.1 - - [31/Aug/2026 22:54:03] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:54:05] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:54:05] 127.0.0.1 - - [31/Aug/2026 22:54:05] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:54:07] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:54:07] 127.0.0.1 - - [31/Aug/2026 22:54:07] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-08-31T22:54:09] GET /status/assistant-bloxforge-handshake-1788205989 -> pending
+[2026-08-31T22:54:09] 127.0.0.1 - - [31/Aug/2026 22:54:09] "GET /status/assistant-bloxforge-handshake-1788205989 HTTP/1.1" 200 -
+[2026-09-01T12:29:53] 127.0.0.1 - - [01/Sep/2026 12:29:53] "POST /task HTTP/1.1" 401 -
+[2026-09-01T12:38:17] 127.0.0.1 - - [01/Sep/2026 12:38:17] "GET /health HTTP/1.1" 401 -
+[2026-09-01T12:38:17] POST /task request_id=relay-test-b-1788255497-46580 intent=bloxforge_tool_call stored
+[2026-09-01T12:38:17] 127.0.0.1 - - [01/Sep/2026 12:38:17] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:38:18] GET /status/relay-test-b-1788255497-46580 -> completed
+[2026-09-01T12:38:18] 127.0.0.1 - - [01/Sep/2026 12:38:18] "GET /status/relay-test-b-1788255497-46580 HTTP/1.1" 200 -
+[2026-09-01T12:38:18] GET /status/relay-test-b-1788255497-46580 -> completed
+[2026-09-01T12:38:18] 127.0.0.1 - - [01/Sep/2026 12:38:18] "GET /status/relay-test-b-1788255497-46580 HTTP/1.1" 200 -
+[2026-09-01T12:38:18] POST /task request_id=relay-test-c-1788255498-46580 intent=bloxforge_tool_call stored
+[2026-09-01T12:38:18] 127.0.0.1 - - [01/Sep/2026 12:38:18] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:38:19] GET /status/relay-test-c-1788255498-46580 -> completed
+[2026-09-01T12:38:19] 127.0.0.1 - - [01/Sep/2026 12:38:19] "GET /status/relay-test-c-1788255498-46580 HTTP/1.1" 200 -
+[2026-09-01T12:38:19] GET /status/relay-test-c-1788255498-46580 -> completed
+[2026-09-01T12:38:19] 127.0.0.1 - - [01/Sep/2026 12:38:19] "GET /status/relay-test-c-1788255498-46580 HTTP/1.1" 200 -
+[2026-09-01T12:38:19] POST /task request_id=relay-test-e-1788255499-46580 intent=bloxforge_tool_call stored
+[2026-09-01T12:38:19] 127.0.0.1 - - [01/Sep/2026 12:38:19] "POST /task HTTP/1.1" 200 -
+[2026-09-01T12:38:21] GET /status/relay-test-e-1788255499-46580 -> completed
+[2026-09-01T12:38:21] 127.0.0.1 - - [01/Sep/2026 12:38:21] "GET /status/relay-test-e-1788255499-46580 HTTP/1.1" 200 -

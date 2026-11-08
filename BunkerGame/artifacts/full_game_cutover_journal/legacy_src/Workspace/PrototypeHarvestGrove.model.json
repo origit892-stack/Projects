@@ -1,0 +1,1103 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "prototype_tree_01",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "Trunk",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.35,
+              10.4,
+              2.35
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Wood",
+            "Color": [
+              0.245,
+              0.145,
+              0.078
+            ],
+            "Position": [
+              25,
+              58.4,
+              86
+            ]
+          }
+        },
+        {
+          "Name": "CanopyLower",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              7.4,
+              5.2,
+              7.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.095,
+              0.235,
+              0.105
+            ],
+            "Position": [
+              25,
+              64,
+              86
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "CanopyUpper",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              5.7,
+              4.7,
+              5.4
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.065,
+              0.175,
+              0.078
+            ],
+            "Position": [
+              25,
+              67.2,
+              86
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "HitAnchor",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              1,
+              1,
+              1
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": true,
+            "Transparency": 1,
+            "Position": [
+              25,
+              58.4,
+              86
+            ]
+          }
+        },
+        {
+          "Name": "BarkCore",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              1.65,
+              10.7,
+              1.65
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              25,
+              58.55,
+              86
+            ]
+          }
+        },
+        {
+          "Name": "BranchA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              4.7,
+              0.72,
+              0.72
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.245,
+              0.145,
+              0.078
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              26.25,
+              61.55,
+              85.65,
+              0.8688333604228338,
+              -0.3868295348132558,
+              -0.3090169943749474,
+              0.4067366430758002,
+              0.9135454576426009,
+              0.0,
+              0.28230107154560236,
+              -0.12568853494543955,
+              0.9510565162951535
+            ]
+          }
+        },
+        {
+          "Name": "BranchB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.9,
+              0.62,
+              0.62
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              24.05,
+              62.55,
+              86.8,
+              0.7646550456261504,
+              0.44147379642946344,
+              0.4694715627858908,
+              -0.49999999999999994,
+              0.8660254037844387,
+              0.0,
+              -0.4065742997269626,
+              -0.23473578139294538,
+              0.882947592858927
+            ]
+          }
+        },
+        {
+          "Name": "CanopyCluster1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              4.15,
+              3.38,
+              4.22
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.095,
+              0.235,
+              0.105
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              26.8,
+              64.0,
+              85.2
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "CanopyCluster2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.9000000000000004,
+              3.26,
+              4.34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.065,
+              0.175,
+              0.078
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              23.4,
+              64.9,
+              87.2
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "CanopyCluster3",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.6500000000000004,
+              3.14,
+              4.46
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.095,
+              0.235,
+              0.105
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              26.1,
+              66.4,
+              87.5
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "RootFlareA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.6,
+              0.55,
+              0.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              25.55,
+              53.4,
+              86,
+              0.9510565162951535,
+              0.0,
+              -0.3090169943749474,
+              0.0,
+              1.0,
+              0.0,
+              0.3090169943749474,
+              0.0,
+              0.9510565162951535
+            ]
+          }
+        },
+        {
+          "Name": "RootFlareB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.8,
+              0.55,
+              3.3
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              24.65,
+              53.4,
+              86.45,
+              0.9702957262759965,
+              0.0,
+              0.24192189559966773,
+              -0.0,
+              1.0,
+              0.0,
+              -0.24192189559966773,
+              -0.0,
+              0.9702957262759965
+            ]
+          }
+        }
+      ],
+      "attributes": {
+        "ResourceNodeId": "prototype_tree_01",
+        "ResourceDefinitionId": "tree_basic"
+      }
+    },
+    {
+      "Name": "prototype_tree_02",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "Trunk",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.35,
+              10.4,
+              2.35
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Wood",
+            "Color": [
+              0.245,
+              0.145,
+              0.078
+            ],
+            "Position": [
+              35,
+              58.4,
+              95
+            ]
+          }
+        },
+        {
+          "Name": "CanopyLower",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              7.4,
+              5.2,
+              7.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.095,
+              0.235,
+              0.105
+            ],
+            "Position": [
+              35,
+              64,
+              95
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "CanopyUpper",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              5.7,
+              4.7,
+              5.4
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.065,
+              0.175,
+              0.078
+            ],
+            "Position": [
+              35,
+              67.2,
+              95
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "HitAnchor",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              1,
+              1,
+              1
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": true,
+            "Transparency": 1,
+            "Position": [
+              35,
+              58.4,
+              95
+            ]
+          }
+        },
+        {
+          "Name": "BarkCore",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              1.65,
+              10.7,
+              1.65
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              35,
+              58.55,
+              95
+            ]
+          }
+        },
+        {
+          "Name": "BranchA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              4.7,
+              0.72,
+              0.72
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.245,
+              0.145,
+              0.078
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              33.75,
+              61.55,
+              94.65,
+              0.8688333604228338,
+              0.3868295348132558,
+              0.3090169943749474,
+              -0.4067366430758002,
+              0.9135454576426009,
+              0.0,
+              -0.28230107154560236,
+              -0.12568853494543955,
+              0.9510565162951535
+            ]
+          }
+        },
+        {
+          "Name": "BranchB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.9,
+              0.62,
+              0.62
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              35.95,
+              62.55,
+              95.8,
+              0.7646550456261504,
+              -0.44147379642946344,
+              -0.4694715627858908,
+              0.49999999999999994,
+              0.8660254037844387,
+              0.0,
+              0.4065742997269626,
+              -0.23473578139294538,
+              0.882947592858927
+            ]
+          }
+        },
+        {
+          "Name": "CanopyCluster1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              4.15,
+              3.38,
+              4.22
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.095,
+              0.235,
+              0.105
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              33.2,
+              64.0,
+              94.2
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "CanopyCluster2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.9000000000000004,
+              3.26,
+              4.34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.065,
+              0.175,
+              0.078
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              36.6,
+              64.9,
+              96.2
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "CanopyCluster3",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.6500000000000004,
+              3.14,
+              4.46
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.095,
+              0.235,
+              0.105
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              33.9,
+              66.4,
+              96.5
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "RootFlareA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.6,
+              0.55,
+              0.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              35.55,
+              53.4,
+              95,
+              0.9510565162951535,
+              0.0,
+              -0.3090169943749474,
+              0.0,
+              1.0,
+              0.0,
+              0.3090169943749474,
+              0.0,
+              0.9510565162951535
+            ]
+          }
+        },
+        {
+          "Name": "RootFlareB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.8,
+              0.55,
+              3.3
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              34.65,
+              53.4,
+              95.45,
+              0.9702957262759965,
+              0.0,
+              0.24192189559966773,
+              -0.0,
+              1.0,
+              0.0,
+              -0.24192189559966773,
+              -0.0,
+              0.9702957262759965
+            ]
+          }
+        }
+      ],
+      "attributes": {
+        "ResourceNodeId": "prototype_tree_02",
+        "ResourceDefinitionId": "tree_basic"
+      }
+    },
+    {
+      "Name": "prototype_tree_03",
+      "ClassName": "Model",
+      "Children": [
+        {
+          "Name": "Trunk",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              2.35,
+              10.4,
+              2.35
+            ],
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": true,
+            "CanQuery": true,
+            "Material": "Wood",
+            "Color": [
+              0.245,
+              0.145,
+              0.078
+            ],
+            "Position": [
+              45,
+              58.4,
+              104
+            ]
+          }
+        },
+        {
+          "Name": "CanopyLower",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              7.4,
+              5.2,
+              7.0
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.095,
+              0.235,
+              0.105
+            ],
+            "Position": [
+              45,
+              64,
+              104
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "CanopyUpper",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              5.7,
+              4.7,
+              5.4
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.065,
+              0.175,
+              0.078
+            ],
+            "Position": [
+              45,
+              67.2,
+              104
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "HitAnchor",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              1,
+              1,
+              1
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": true,
+            "Transparency": 1,
+            "Position": [
+              45,
+              58.4,
+              104
+            ]
+          }
+        },
+        {
+          "Name": "BarkCore",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              1.65,
+              10.7,
+              1.65
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              45,
+              58.55,
+              104
+            ]
+          }
+        },
+        {
+          "Name": "BranchA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              4.7,
+              0.72,
+              0.72
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.245,
+              0.145,
+              0.078
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              46.25,
+              61.55,
+              103.65,
+              0.8688333604228338,
+              -0.3868295348132558,
+              -0.3090169943749474,
+              0.4067366430758002,
+              0.9135454576426009,
+              0.0,
+              0.28230107154560236,
+              -0.12568853494543955,
+              0.9510565162951535
+            ]
+          }
+        },
+        {
+          "Name": "BranchB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.9,
+              0.62,
+              0.62
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              44.05,
+              62.55,
+              104.8,
+              0.7646550456261504,
+              0.44147379642946344,
+              0.4694715627858908,
+              -0.49999999999999994,
+              0.8660254037844387,
+              0.0,
+              -0.4065742997269626,
+              -0.23473578139294538,
+              0.882947592858927
+            ]
+          }
+        },
+        {
+          "Name": "CanopyCluster1",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              4.15,
+              3.38,
+              4.22
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.095,
+              0.235,
+              0.105
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              46.8,
+              64.0,
+              103.2
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "CanopyCluster2",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.9000000000000004,
+              3.26,
+              4.34
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.065,
+              0.175,
+              0.078
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              43.4,
+              64.9,
+              105.2
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "CanopyCluster3",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.6500000000000004,
+              3.14,
+              4.46
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Grass",
+            "Color": [
+              0.155,
+              0.225,
+              0.105
+            ],
+            "Transparency": 0.0,
+            "Position": [
+              46.1,
+              66.4,
+              105.5
+            ],
+            "Shape": "Ball"
+          }
+        },
+        {
+          "Name": "RootFlareA",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              3.6,
+              0.55,
+              0.8
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              45.55,
+              53.4,
+              104,
+              0.9510565162951535,
+              0.0,
+              -0.3090169943749474,
+              0.0,
+              1.0,
+              0.0,
+              0.3090169943749474,
+              0.0,
+              0.9510565162951535
+            ]
+          }
+        },
+        {
+          "Name": "RootFlareB",
+          "ClassName": "Part",
+          "Properties": {
+            "Size": [
+              0.8,
+              0.55,
+              3.3
+            ],
+            "Anchored": true,
+            "CanCollide": false,
+            "CanTouch": false,
+            "CanQuery": false,
+            "Material": "Wood",
+            "Color": [
+              0.165,
+              0.105,
+              0.062
+            ],
+            "Transparency": 0.0,
+            "CFrame": [
+              44.65,
+              53.4,
+              104.45,
+              0.9702957262759965,
+              0.0,
+              0.24192189559966773,
+              -0.0,
+              1.0,
+              0.0,
+              -0.24192189559966773,
+              -0.0,
+              0.9702957262759965
+            ]
+          }
+        }
+      ],
+      "attributes": {
+        "ResourceNodeId": "prototype_tree_03",
+        "ResourceDefinitionId": "tree_basic"
+      }
+    }
+  ]
+}

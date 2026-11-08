@@ -1,0 +1,19 @@
+{
+  "request_id": "test-b-disallowed",
+  "intent": "bloxforge_tool_call",
+  "bloxforge_tool": "execute_luau",
+  "status": "failed",
+  "source": "bloxforge_worker",
+  "error": {
+    "code": "BLOXFORGE_TOOL_NOT_ALLOWED_V1",
+    "message": "Tool execute_luau not allowed in V1 read-only allowlist",
+    "allowlist": [
+      "get_connected_instances",
+      "get_scene_summary",
+      "get_session_summary",
+      "get_transport_diagnostics",
+      "tool_catalog_search"
+    ]
+  },
+  "completed_at": "2026-08-31T20:18:09Z"
+}

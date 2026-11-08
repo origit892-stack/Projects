@@ -1,0 +1,9 @@
+{
+  "request_id": "test-d-scene",
+  "intent": "bloxforge_tool_call",
+  "bloxforge_tool": "get_scene_summary",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "completed_at": "2026-08-31T20:18:11Z"
+}

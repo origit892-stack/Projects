@@ -1,0 +1,24 @@
+{
+  "A": {
+    "status": "SUCCESS",
+    "voxel_count": 17528,
+    "message": "Tile at A (X[0-32]) read successfully"
+  },
+  "B": {
+    "status": "SUCCESS", 
+    "voxel_count": 17964,
+    "message": "Tile at B (X[48-80]) read successfully - X=52 NOT a boundary"
+  },
+  "C": {
+    "status": "SUCCESS",
+    "voxel_count": 39940, 
+    "message": "Tile at C (X[100-132]) read successfully"
+  },
+  "D": {
+    "status": "RATE_LIMITED",
+    "error": "read_voxels region has 76200 voxels (max 40000)",
+    "message": "Region too large - need to split at X=300 edge"
+  },
+  "E": null,
+  "summary": "X=52 hypothesis REJECTED - same tiles work at A B C"
+}

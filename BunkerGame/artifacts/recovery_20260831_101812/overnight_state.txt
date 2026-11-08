@@ -1,0 +1,8 @@
+STATE:
+PASS
+
+WATCHDOG_PID:
+78832
+
+CURRENT_RUN:
+/Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world/runs/world_attempt_1_20260830_233625.jsonl

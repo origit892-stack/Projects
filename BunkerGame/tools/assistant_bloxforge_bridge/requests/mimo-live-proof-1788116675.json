@@ -1,0 +1,12 @@
+{
+  "request_id": "mimo-live-proof-1788116675",
+  "intent": "geometry_review",
+  "details": "READ-ONLY INTEGRATION PROOF. Verify BunkerGame project context and perform a non-destructive engineering review. Do not modify Studio, filesystem, assets, geometry, or project state.",
+  "studio_context": {
+    "project": "BunkerGame",
+    "proof_only": true,
+    "read_only": true
+  },
+  "received_at": "2026-08-30T19:04:35Z",
+  "status": "pending"
+}

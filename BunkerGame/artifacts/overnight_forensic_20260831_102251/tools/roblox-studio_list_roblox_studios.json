@@ -1,0 +1,17 @@
+[
+  {
+    "line": 34,
+    "timestamp": 1788122208757,
+    "sessionID": "ses_fab9cc058ffexEheteSaWDsSOK",
+    "messageID": "msg_0546391f60012rUpGU1WOcvXfs",
+    "tool": "roblox-studio_list_roblox_studios",
+    "callID": "call_01a0546399c074f0807680d3bc3e4a86",
+    "status": "completed",
+    "input": {},
+    "output": "{\"studios\":[{\"id\":\"49050ab8-cfe3-4164-9b85-9d71de72d08d\",\"name\":\"Bunker Game (placeId: 129695090105158)\"}]}",
+    "error": null,
+    "metadata": {
+      "truncated": false
+    }
+  }
+]

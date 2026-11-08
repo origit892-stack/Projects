@@ -1,0 +1,9 @@
+{
+  "request_id": "relay-test-b2-1788255641-47093",
+  "intent": "bloxforge_tool_call",
+  "bloxforge_tool": "get_connected_instances",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "completed_at": "2026-09-01T09:40:41Z"
+}

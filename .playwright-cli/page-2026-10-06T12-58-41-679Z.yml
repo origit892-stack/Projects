@@ -1,0 +1,120 @@
+- generic [ref=f1e2]:
+  - banner [ref=f1e3]:
+    - link "✳ מעבר למסגרת" [ref=f1e4] [cursor=pointer]:
+      - /url: "#"
+      - generic [ref=f1e5]: ✳
+      - text: מעבר למסגרת
+    - navigation "ניווט ראשי" [ref=f1e6]:
+      - link "הסיפור" [ref=f1e7] [cursor=pointer]:
+        - /url: "#story"
+      - link "לגלות את היצירה" [ref=f1e8] [cursor=pointer]:
+        - /url: "#discover"
+      - link "מעבדת צבע" [ref=f1e9] [cursor=pointer]:
+        - /url: "#colors"
+  - main [ref=f1e10]:
+    - region [ref=f1e11]:
+      - generic [ref=f1e12]: יצירת מופת. מבט חדש.
+      - generic [ref=f1e13]:
+        - generic [ref=f1e14]:
+          - heading "ליל כוכבים." [level=1] [ref=f1e15]
+          - generic [ref=f1e16]: וינסנט ואן גוך 1889 שמן על בד
+        - paragraph [ref=f1e19]: יש ציורים שמסתכלים עליהם.ויש ציורים שנכנסים אליהם.מסע בין שמיים סוערים, אור קטן ודמיון שאין לו גבולות.
+      - generic [ref=f1e20]:
+        - generic [ref=f1e21]:
+          - 'img "ליל כוכבים של ואן גוך: שמיים כחולים מסתחררים, כוכבים צהובים, ברוש כהה וכפר בין הגבעות" [ref=f1e22]'
+          - button "גלו את השמיים המסתחררים" [ref=f1e23] [cursor=pointer]: "01"
+          - button "גלו את הירח והכוכבים" [ref=f1e24] [cursor=pointer]: "02"
+          - button "גלו את הברוש" [ref=f1e25] [cursor=pointer]: "03"
+        - generic [ref=f1e26]:
+          - generic [ref=f1e27]: הזיזו את העכבר לתחושת עומק · לחצו על הנקודות לגלות עוד
+          - generic [ref=f1e29]: THE STARRY NIGHT · 1889
+        - generic [ref=f1e30]:
+          - generic [ref=f1e31]:
+            - button "Ⅱ עצירת תנועה" [pressed] [ref=f1e32] [cursor=pointer]:
+              - text: Ⅱ
+              - generic [ref=f1e33]: עצירת תנועה
+            - generic [ref=f1e34]: עוצמת עומק
+            - slider "עוצמת עומק" [ref=f1e35]: "1"
+          - button "⛶ כניסה לתוך היצירה" [ref=f1e36] [cursor=pointer]
+    - generic [ref=f1e37]:
+      - generic [ref=f1e38]:
+        - generic [ref=f1e39]: שנת היצירה
+        - strong [ref=f1e40]: "1889"
+      - generic [ref=f1e41]:
+        - generic [ref=f1e42]: המקום שבו נוצרה
+        - strong [ref=f1e43]: סן־רמי, צרפת
+      - generic [ref=f1e44]:
+        - generic [ref=f1e45]: טכניקה
+        - strong [ref=f1e46]: שמן על בד
+      - generic [ref=f1e47]:
+        - generic [ref=f1e48]: האוסף
+        - strong [ref=f1e49]: MoMA, New York
+    - generic [ref=f1e50]:
+      - generic [ref=f1e51]:
+        - generic [ref=f1e52]:
+          - generic [ref=f1e53]: 01 / מאחורי הציור
+          - heading "לילה אחד. עולם שלם של תחושות." [level=2] [ref=f1e54]: לילה אחד.עולם שלם של תחושות.
+        - paragraph [ref=f1e55]: איך נוף מחלון הפך ליצירה שבה השמיים כמעט נושמים?
+      - generic [ref=f1e56]:
+        - generic [ref=f1e57]:
+          - generic [ref=f1e58]: "1889"
+          - heading "בין מה שרואים למה שמרגישים." [level=3] [ref=f1e59]: בין מה שרואיםלמה שמרגישים.
+          - paragraph [ref=f1e60]: "ביוני 1889, בזמן שהותו במוסד סן־פול־דה־מוזול בסן־רמי שבדרום צרפת, יצר ואן גוך את ״ליל כוכבים״. המראה מחלונו היה נקודת מוצא: הוא חיבר התבוננות בנוף עם שינויים שהגיעו מהדמיון."
+          - paragraph [ref=f1e61]: "אפשר לראות את המתח ביצירה דרך הניגוד בין הכפר השקט לשמיים מלאי התנועה. זו פרשנות חזותית: הקווים והצבעים מזמינים אותנו להרגיש משהו, מעבר לזיהוי של נוף."
+          - link "לקריאה על היצירה באתר MoMA ↗" [ref=f1e62] [cursor=pointer]:
+            - /url: https://www.moma.org/collection/works/79802
+        - generic [ref=f1e63]:
+          - img "תקריב של משיכות המכחול בשמי ליל כוכבים" [ref=f1e64]
+          - generic [ref=f1e65]: פרט מתוך היצירה / תנועה שנשארת על הבד
+    - generic [ref=f1e66]:
+      - generic [ref=f1e67]:
+        - generic [ref=f1e68]:
+          - generic [ref=f1e69]: 02 / מבט מקרוב
+          - heading "שלושה פרטים. אינסוף דרכים להסתכל." [level=2] [ref=f1e70]: שלושה פרטים.אינסוף דרכים להסתכל.
+        - paragraph [ref=f1e71]: הציור לא זז, אבל העין שלנו כן.בחרו פרט וגלו איך הוא משנה את התמונה כולה.
+      - generic [ref=f1e72]:
+        - article [ref=f1e73]:
+          - text: 01 / MOVEMENT
+          - heading "שמיים בתנועה" [level=3] [ref=f1e76]
+          - paragraph [ref=f1e77]: משיכות המכחול מתעגלות ונפגשות. המבט עוקב אחריהן כמו אחרי זרם שאי אפשר לעצור.
+          - button "להיכנס למערבולת ←" [ref=f1e78] [cursor=pointer]
+        - article [ref=f1e79]:
+          - text: 02 / LIGHT
+          - heading "אור בתוך הכחול" [level=3] [ref=f1e82]
+          - paragraph [ref=f1e83]: הצהוב החם בולט מול הלילה הקר. הילות האור הופכות את הכוכבים לנוכחות שקשה לפספס.
+          - button "לגלות את האור ←" [ref=f1e84] [cursor=pointer]
+        - article [ref=f1e85]:
+          - text: 03 / DEPTH
+          - heading "הברוש שבחזית" [level=3] [ref=f1e88]
+          - paragraph [ref=f1e89]: הצללית הגבוהה מחברת חזותית בין האדמה לשמיים ומכניסה לציור תחושה של מרחק ועומק.
+          - button "לראות את התמונה אחרת ←" [ref=f1e90] [cursor=pointer]
+    - generic [ref=f1e91]:
+      - generic [ref=f1e92]:
+        - generic [ref=f1e93]:
+          - generic [ref=f1e94]: 03 / מעבדת צבע
+          - heading "אותו לילה. תחושה אחרת." [level=2] [ref=f1e95]
+        - paragraph [ref=f1e96]: מה קורה כשמשנים רק את הצבע?נסו גוונים שונים והרגישו את ההבדל.
+      - generic [ref=f1e97]:
+        - img "ליל כוכבים בניסוי צבע אינטראקטיבי" [ref=f1e99]
+        - generic [ref=f1e100]:
+          - heading "איזה צבע יש ללילה שלכם?" [level=3] [ref=f1e101]
+          - paragraph [ref=f1e102]: צבע יכול לשנות אווירה גם בלי להזיז קו אחד. בחרו עיבוד צבע ליצירה; התצוגה הראשונה מחזירה את צבעי התמונה.
+          - group "בחירת עיבוד צבע" [ref=f1e103]:
+            - button "הצבעים המקוריים" [pressed] [ref=f1e104] [cursor=pointer]
+            - button "לילה סגול" [ref=f1e105] [cursor=pointer]
+            - button "זיכרון זהוב" [ref=f1e106] [cursor=pointer]
+            - button "שחור ולבן" [ref=f1e107] [cursor=pointer]
+          - generic [ref=f1e108]: הצבעים המקוריים — כחול עמוק ואור צהוב חם.
+          - button "↺ חזרה למקור" [ref=f1e109] [cursor=pointer]
+    - generic [ref=f1e110]:
+      - generic [ref=f1e111]: ✧
+      - text: מחשבה לקחת איתכם
+      - heading "גם בתוך לילה עמוק, אפשר למצוא נקודה של אור." [level=2] [ref=f1e112]: גם בתוך לילה עמוק,אפשר למצוא נקודה של אור.
+      - paragraph [ref=f1e113]: אילו תחושות הציור מעורר בכם — שקט, סערה, תקווה או משהו אחר?
+      - text: מחשבה בהשראת היצירה · אינה ציטוט של האמן
+  - contentinfo [ref=f1e114]:
+    - generic [ref=f1e115]: מעבר למסגרת · חוויית אמנות אינטראקטיבית
+    - generic [ref=f1e116]:
+      - text: "ציור: וינסנט ואן גוך, ״ליל כוכבים״, 1889 ·"
+      - 'link "צילום היצירה: Wikimedia Commons" [ref=f1e117] [cursor=pointer]':
+        - /url: https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg

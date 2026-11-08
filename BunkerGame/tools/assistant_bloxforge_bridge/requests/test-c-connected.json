@@ -1,0 +1,10 @@
+{
+  "request_id": "test-c-connected",
+  "intent": "bloxforge_tool_call",
+  "details": "Read connected instances",
+  "studio_context": {"project": "BunkerGame"},
+  "bloxforge": {
+    "tool": "get_connected_instances",
+    "arguments": {}
+  }
+}

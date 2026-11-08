@@ -1,0 +1,16 @@
+{
+  "request_id": "relay-test-e2-1788255643-47093",
+  "intent": "bloxforge_tool_call",
+  "details": "Mutation test",
+  "studio_context": {
+    "project": "BunkerGame"
+  },
+  "received_at": "2026-09-01T09:40:43Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "execute_luau",
+    "arguments": {
+      "code": "print('evil')"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "file_exists": false,
+  "file_opens": false,
+  "mesh_exists": false,
+  "error": "ZeroGPU quota exceeded - generation failed. No GLB produced. See generation.log. Requires HF PRO or quota reset (daily)."
+}

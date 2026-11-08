@@ -1,0 +1,52 @@
+{
+  "pipeline_version": "1.0",
+  "timestamp": "20260923_205218",
+  "task": "BUNKER_GENERATION_V3 - bunker .obj via cube",
+  "generator": {
+    "backend": "cube",
+    "provider": "Foundation AI",
+    "version": "v0.5",
+    "cube_root": "/Users/Ori/Developer/roblox-cube"
+  },
+  "input": {
+    "prompt": "abandoned underground military bunker facility, reinforced concrete rooms, blast door entrance, interior corridors, power generator room, storage crates, pipes and electrical conduits on walls, hard surface survival horror environment",
+    "bounding_box_xyz": [
+      40,
+      16,
+      32
+    ],
+    "resolution_base": 6.0,
+    "top_p": 0.8
+  },
+  "outputs": {
+    "obj": "output.obj",
+    "obj_copy": "bunker_cube_v1.obj",
+    "mtl": "output.obj.mtl",
+    "preview": "preview_4view.png",
+    "log": "cube_bunker_gen.log"
+  },
+  "mesh_qa": {
+    "vertices": 4990,
+    "faces": 10000,
+    "bounds_min": [
+      -0.94,
+      -0.47,
+      -0.94
+    ],
+    "bounds_max": [
+      0.93,
+      0.33,
+      0.92
+    ],
+    "dims": [
+      1.87,
+      0.8,
+      1.86
+    ],
+    "zero_area_faces": 0,
+    "volume": 0.6,
+    "note": "single watertight-ish hull, open surface expected from marching cubes"
+  },
+  "sha256_prefix": "4d8623eb4f248d8c5bfc11274196ca81",
+  "status": "GENERATED_VERIFIED"
+}

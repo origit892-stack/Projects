@@ -1,0 +1,16 @@
+[
+  {
+    "name": "before",
+    "frames": 29,
+    "medianMs": 83.4,
+    "p95Ms": 116.7,
+    "averageFps": 12.1
+  },
+  {
+    "name": "after",
+    "frames": 115,
+    "medianMs": 16.7,
+    "p95Ms": 16.8,
+    "averageFps": 60
+  }
+]

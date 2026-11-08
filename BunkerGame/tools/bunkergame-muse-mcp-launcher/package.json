@@ -1,0 +1,9 @@
+{
+  "name": "bunkergame-muse-mcp-launcher",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "bunkergame-muse-mcp-launcher": "./launch.mjs"
+  }
+}

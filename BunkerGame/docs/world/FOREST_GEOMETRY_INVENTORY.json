@@ -1,0 +1,30 @@
+{
+  "audit_version": "CORRECTED",
+  "scope": "Workspace.Forest (read-only)",
+  "generated_from": "Roblox Studio DataModel via RoBridge MCP",
+  "instance_counts": {
+    "direct_children": 922,
+    "recursive_descendants": 851,
+    "meshpart_count": 379,
+    "model_count": 113,
+    "part_count": 7,
+    "unionoperation_count": 1
+  },
+  "bounds": {
+    "min_x": -527.01,
+    "max_x": 524.3,
+    "min_y": 75.02,
+    "max_y": 186.11,
+    "min_z": -114.45,
+    "max_z": 684.65,
+    "width_x": 1051.31,
+    "height_y": 111.09,
+    "depth_z": 799.1
+  },
+  "verified_stats": {
+    "class_counts_match": true,
+    "studio_modified": false,
+    "terrain_modified": false,
+    "rojo_used": false
+  }
+}

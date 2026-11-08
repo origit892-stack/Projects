@@ -1,0 +1,10 @@
+{
+  "request_id": "both5_234140",
+  "status": "failed",
+  "source": "bloxforge_worker",
+  "error": {
+    "code": "MISSING_BLOXFORGE_TOOL",
+    "message": "Missing bloxforge.tool"
+  },
+  "completed_at": "2026-09-01T10:04:07Z"
+}

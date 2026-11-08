@@ -1,0 +1,119 @@
+- generic [active] [ref=f9e1]:
+  - generic "מסע תלת־ממדי בהשראת יצירת הוקוסאי" [ref=f9e2]
+  - banner:
+    - link "HOKUSAI BEYOND THE FRAME / AN ART JOURNEY" [ref=f9e3] [cursor=pointer]:
+      - /url: "#"
+      - text: HOKUSAI
+      - generic [ref=f9e4]: BEYOND THE FRAME / AN ART JOURNEY
+    - generic:
+      - button "בחזרה ליצירה" [ref=f9e5] [cursor=pointer]
+      - link "הסיפור המלא" [ref=f9e6] [cursor=pointer]:
+        - /url: "#studio"
+      - generic: 北斎
+  - main [ref=f9e7]:
+    - generic [ref=f9e8]:
+      - generic [ref=f9e9]:
+        - generic [ref=f9e10]:
+          - generic [ref=f9e11]: יצירת מופת / מסע אינטראקטיבי
+          - heading [level=1] [ref=f9e12]:
+            - text: הגל
+            - strong [ref=f9e13]: הגדול.
+          - generic [ref=f9e14]: קצושיקה הוקוסאי · יפן · 1830–1832
+          - paragraph [ref=f9e15]: גל ענק מתנשא מעל שלוש סירות. מעבר לו, כמעט חבוי, נמצא הר פוג׳י. הוקוסאי יצר את הרגע הזה בהדפס עץ צבעוני מתוך הסדרה ״שלושים ושש תצפיות על הר פוג׳י״.
+          - paragraph [ref=f9e16]: "התבוננו קודם ביצירה כולה: הקצף החד, האנשים הקטנים וההר היציב. ואז עברו מעבר למסגרת — למסע דיגיטלי שמעניק לקווים נפח ולמבט תנועה."
+          - button "לגלות פנימה ↗" [ref=f9e17] [cursor=pointer]:
+            - text: לגלות פנימה
+            - generic [ref=f9e18]: ↗
+        - figure "היצירה המלאה · הדפס עץ, דיו וצבע על נייר THE GREAT WAVE / 1830–32" [ref=f9e19]:
+          - img "הגל הגדול מול קנאגאווה — היצירה המלאה של הוקוסאי" [ref=f9e20]
+          - generic [ref=f9e21]:
+            - generic [ref=f9e22]: היצירה המלאה · הדפס עץ, דיו וצבע על נייר
+            - generic [ref=f9e23]: THE GREAT WAVE / 1830–32
+      - generic [ref=f9e24]:
+        - generic [ref=f9e25]: מהתמונה אל המרחב
+        - generic [ref=f9e26]: SCROLL / EXPLORE / FEEL
+        - generic [ref=f9e27]: 神奈川沖浪裏
+    - region "מסע בשש תחנות":
+      - generic [aria-hidden]: BEYOND THE FRAME
+    - generic [ref=f9e28]:
+      - generic [ref=f9e29]:
+        - generic [ref=f9e30]:
+          - generic [ref=f9e31]: מבט קרוב / הסיפור המלא
+          - heading "המקור שממנו הכול התחיל." [level=2] [ref=f9e32]: המקור שממנוהכול התחיל.
+        - paragraph [ref=f9e33]: אחרי המסע במרחב, חוזרים אל הנייר.האנימציה היא פרשנות דיגיטלית; כאן אפשר להתבונן בהדפס עצמו.
+      - generic [ref=f9e34]:
+        - generic [ref=f9e35]:
+          - 'img "הגל הגדול מול קנאגאווה של הוקוסאי: גל כחול וקצף לבן מעל שלוש סירות, והר פוג׳י קטן ברקע" [ref=f9e36]'
+          - button "⛶ צפייה ביצירה המלאה" [ref=f9e37] [cursor=pointer]
+        - generic [ref=f9e38]:
+          - generic [ref=f9e39]: KATSUSHIKA HOKUSAI
+          - heading "הרבה יותר מתמונה של גל." [level=3] [ref=f9e40]: הרבה יותרמתמונה של גל.
+          - paragraph [ref=f9e41]: ״הגל הגדול מול קנאגאווה״ הוא הדפס עץ צבעוני שיצר הוקוסאי בסביבות 1830–1832, כחלק מהסדרה ״שלושים ושש תצפיות על הר פוג׳י״. בניגוד לציור שמן יחיד, הדפס נוצר באמצעות העברת דיו מלוחות עץ אל נייר, ואפשר להפיק ממנו עותקים רבים.
+          - paragraph [ref=f9e42]: הכחול הפרוסי היה מרכיב בולט בסדרה. הצבע, יחד עם הקווים המדויקים, מאפשר להוקוסאי להפוך רגע קצר בים לדימוי בעל עוצמה חזותית יוצאת דופן.
+          - generic [ref=f9e43]:
+            - generic [ref=f9e44]:
+              - generic [ref=f9e45]: האמן
+              - text: קצושיקה הוקוסאי · 1760–1849
+            - generic [ref=f9e46]:
+              - generic [ref=f9e47]: תקופה
+              - text: יפן · תקופת אדו
+            - generic [ref=f9e48]:
+              - generic [ref=f9e49]: טכניקה
+              - text: הדפס עץ · דיו וצבע על נייר
+            - generic [ref=f9e50]:
+              - generic [ref=f9e51]: הסדרה
+              - text: שלושים ושש תצפיות על הר פוג׳י
+      - generic [ref=f9e52]:
+        - article [ref=f9e53]:
+          - text: 01 / הקצף
+          - 'img "פרט מתוך היצירה: קצף הגל" [ref=f9e55]'
+          - heading "כשהמים הופכים לקווים" [level=3] [ref=f9e56]
+          - paragraph [ref=f9e57]: צורות הקצף הלבנות חדות ומסועפות. אפשר לקרוא אותן כמו טפרים הנמתחים מעל הסירות — פרשנות שמדגישה את כוחו של הגל ואת הרגע שלפני שבירתו.
+        - article [ref=f9e58]:
+          - text: 02 / האנשים
+          - 'img "פרט מתוך היצירה: הסירות בים" [ref=f9e60]'
+          - heading "קנה מידה אנושי" [level=3] [ref=f9e61]
+          - paragraph [ref=f9e62]: שלוש הסירות והאנשים שבתוכן מעניקים לנו דרך להבין את גודל הגל. ההבדל בקנה המידה מחזק את תחושת השבריריות של האדם מול הטבע.
+        - article [ref=f9e63]:
+          - text: 03 / ההר
+          - 'img "פרט מתוך היצירה: הר פוג׳י באופק" [ref=f9e65]'
+          - heading "הדבר הקטן שבמרכז" [level=3] [ref=f9e66]
+          - paragraph [ref=f9e67]: פוג׳י נראה קטן ורחוק, אף שהוא נושא הסדרה. המסגור שלו מתחת לגל מזכיר לנו שגודל בתמונה תלוי בנקודת המבט, ולא רק בממדים בעולם.
+      - generic [ref=f9e68]:
+        - text: מחשבה בהשראת היצירה · אינה ציטוט של האמן
+        - paragraph [ref=f9e69]: התנועה חזקה.אבל גם לשקט יש כוח.
+        - button "לחוות שוב ↟" [ref=f9e70] [cursor=pointer]
+      - generic [ref=f9e71]:
+        - generic [ref=f9e72]:
+          - text: "מידע על היצירה:"
+          - link "The Metropolitan Museum of Art" [ref=f9e73] [cursor=pointer]:
+            - /url: https://www.metmuseum.org/art/collection/search/45434
+          - text: "על הצבע וההדפסה:"
+          - 'link "The Great Wave: Anatomy of an Icon" [ref=f9e74] [cursor=pointer]':
+            - /url: https://www.metmuseum.org/essays/hokusai-great-wave
+        - generic [ref=f9e75]:
+          - text: "תמונה:"
+          - link "Wikimedia Commons · נחלת הכלל" [ref=f9e76] [cursor=pointer]:
+            - /url: https://commons.wikimedia.org/wiki/File:Great_Wave_off_Kanagawa2.jpg
+          - text: מעבר למסגרת · HOKUSAI / 001
+  - generic:
+    - generic: 03 / 06
+    - generic: AN IMMERSIVE INTERPRETATION
+    - navigation "תחנות המסע":
+      - button "תחנה 1" [ref=f9e77] [cursor=pointer]
+      - button "תחנה 2" [ref=f9e78] [cursor=pointer]
+      - button "תחנה 3" [ref=f9e79] [cursor=pointer]
+      - button "תחנה 4" [ref=f9e80] [cursor=pointer]
+      - button "תחנה 5" [ref=f9e81] [cursor=pointer]
+      - button "תחנה 6" [ref=f9e82] [cursor=pointer]
+    - generic:
+      - generic: 03 / בלב הים
+      - heading "קטנים מול הגל" [level=2]
+      - paragraph: שלוש סירות מעניקות לגל קנה מידה אנושי. הים, הקצף והסירות הם פירוש תלת־ממדי בהשראת היצירה.
+      - button "לגלות קדימה ↗" [ref=f9e83] [cursor=pointer]:
+        - text: לגלות קדימה
+        - generic [ref=f9e84]: ↗
+    - generic:
+      - button "Ⅱ עצירה" [ref=f9e85] [cursor=pointer]
+      - button "♫ צלילי ים" [ref=f9e86] [cursor=pointer]
+      - button "איכות גבוהה" [ref=f9e87] [cursor=pointer]

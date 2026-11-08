@@ -1,0 +1,12 @@
+{
+  "request_id": "final2_863311",
+  "intent": "bloxforge_tool_call",
+  "details": "Final scene validation",
+  "studio_context": {},
+  "received_at": "2026-09-01T10:09:05Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "get_scene_summary",
+    "arguments": []
+  }
+}

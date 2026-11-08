@@ -1,0 +1,8 @@
+  File "<string>", line 1
+  File "<string>", line 1
+    import json with open('.nexus/sessions/20260923_130630_e06ce7c6.json') as f: d = json.load(f) print('TOP KEYS:', list(d.keys())) print() print(json.dumps(d, indent=2, default=str)[:3000]) 
+                ^^^^
+SyntaxError: invalid syntax
+    import json with open('.nexus/sessions/20260923_130630_e06ce7c6.json') as f: d = json.load(f) print('TOP KEYS:', list(d.keys())) print() print(json.dumps(d, indent=2, default=str)[:3000]) 
+                ^^^^
+SyntaxError: invalid syntax

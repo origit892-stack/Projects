@@ -1,0 +1,14 @@
+{
+  "request_id": "cat2_168838",
+  "intent": "bloxforge_tool_call",
+  "details": "BloxForge terrain validation",
+  "studio_context": {},
+  "received_at": "2026-09-01T10:05:25Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "tool_catalog_search",
+    "input": {
+      "query": "inspect scene"
+    }
+  }
+}

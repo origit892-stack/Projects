@@ -1,0 +1,27 @@
+16514 03-18:42:42 npm exec @princeofscale/bloxforge@latest   
+16539 03-18:42:41 node /Users/Ori/.npm/_npx/9548c17f0070eea4/node_modules/.bin/bloxforge
+21562    14:30:15 /Library/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python /Users/Ori/Documents/Projects/BunkerGame/tools/assistant_bloxforge_bridge/server.py
+35421 03-13:53:05 /Applications/RobloxStudio.app/Contents/MacOS/RobloxStudio -isInstallerLaunch true -launchIntentString {"task":"EditPlace","universeid":"8687457621","placeid":"129695090105158"} -parentPid 10470 -parentSessionGuid 92c19f5e-e1dc-49e1-8ec0-ff32b3f6a373
+35424 03-13:53:04 /Applications/RobloxStudio.app/Contents/MacOS/RobloxCrashHandler --no-rate-limit --crashCounter Mac-ROBLOXStudio-Crash --baseUrl https://www.roblox.com/ --studioPid 35421 --attachment=attachment_0.736.0.7361346_20260827T172508Z_Studio_efe76_last.log=/Users/Ori/Library/Logs/Roblox/0.736.0.7361346_20260827T172508Z_Studio_efe76_last.log --attachment=attachment_log_0.736.0.7361346_20260827T172508Z_Studio_efe76_csg3.log=/Users/Ori/Library/Logs/Roblox/log_0.736.0.7361346_20260827T172508Z_Studio_efe76_csg3.log --attachment=attachment_log_0.736.0.7361346_20260827T172508Z_Studio_efe76_dcd.log=/Users/Ori/Library/Logs/Roblox/log_0.736.0.7361346_20260827T172508Z_Studio_efe76_dcd.log --database=/Users/Ori/Library/Logs/Roblox/crashes --metrics-dir=/Users/Ori/Library/Logs/Roblox/crashes --url=https://uploads.backtrace.rbx.com/post --annotation=AppVersion=0.736.0.7361346 --annotation=Format=minidump --annotation=HardwareModel=MacBookPro18,3 --annotation=InstallFolder=Applications --annotation=OSPlatform=Mac --annotation=RobloxChannel=production --annotation=RobloxGitHash=2116d7ed30e99a50a68f4a5acaece2b9fbe9d785 --annotation=RobloxProduct=RobloxStudio --annotation=StudioVersion=0.736.0.7361346 --annotation=UniqueId=7959698484802992748 --annotation=UploadAttachmentKiloByteLimit=10240 --annotation=app_arch=arm64 --annotation=application.version=0.736.0.7361346 --annotation=host_arch=arm64 --handshake-fd=7
+77053 04-16:42:52 /Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+77064 04-16:42:45 /Users/Ori/Library/Application Support/bloxbot/opencode/darwin-arm64/1.18.23/opencode serve --port 0 --hostname 127.0.0.1 --print-logs --log-level INFO
+80698    10:34:03 /Users/Ori/.aftman/bin/rojo serve
+80700    10:34:03 /Users/Ori/.aftman/tool-storage/rojo-rbx/rojo/7.7.0/rojo serve
+55426 03-10:15:09 /Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+55427 03-10:15:09 npm exec @princeofscale/bloxforge@latest   
+55467 03-10:15:08 node /Users/Ori/.npm/_npx/9548c17f0070eea4/node_modules/.bin/bloxforge
+55109 03-10:16:24 opencode serve --hostname 127.0.0.1 --port 4097
+55201 03-10:16:13 /Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+55202 03-10:16:13 npm exec @princeofscale/bloxforge@latest   
+55244 03-10:16:11 node /Users/Ori/.npm/_npx/9548c17f0070eea4/node_modules/.bin/bloxforge
+12848 01-21:24:42 opencode --agent bunkergame-art-director -m opencode/muse-spark-1.2-contributor-free
+12880 01-21:24:39 /Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+12881 01-21:24:39 npm exec @princeofscale/bloxforge@latest   
+12925 01-21:24:37 node /Users/Ori/.npm/_npx/9548c17f0070eea4/node_modules/.bin/bloxforge
+42466 07-21:01:16 /Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+10521 03-20:03:28 npm exec @princeofscale/bloxforge@latest   
+10546 03-20:03:27 node /Users/Ori/.npm/_npx/9548c17f0070eea4/node_modules/.bin/bloxforge
+68974    11:40:07 opencode serve --hostname 127.0.0.1 --port 4098
+69142    11:39:01 /Applications/RobloxStudio.app/Contents/MacOS/StudioMCP
+69143    11:39:01 npm exec @princeofscale/bloxforge@latest   
+69165    11:39:01 node /Users/Ori/.npm/_npx/9548c17f0070eea4/node_modules/.bin/bloxforge

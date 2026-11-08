@@ -1,0 +1,8 @@
+CNPID=41375
+t=20s out=      18 err=       0
+exited at t=20s
+---OUT---
+{"status":"DONE"}
+---ERR---
+---ALIVE---
+gone

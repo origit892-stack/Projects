@@ -1,0 +1,14 @@
+{
+  "request_id": "relay-test-b2-1788255641-47093",
+  "intent": "bloxforge_tool_call",
+  "details": "Relay test B",
+  "studio_context": {
+    "project": "BunkerGame"
+  },
+  "received_at": "2026-09-01T09:40:41Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "get_connected_instances",
+    "arguments": {}
+  }
+}

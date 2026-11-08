@@ -1,0 +1,46 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "GeneratedAssetId": "natural_boulder_sandstone_01",
+    "RobloxAssetId": "109563105323472",
+    "RobloxAssetType": "Mesh",
+    "IntegrationState": "Ready",
+    "CanonicalSource": "RobloxNativeMeshGeneration",
+    "GenerationId": "7742db16-e610-49a3-a3cc-f096e804da65",
+    "QwenReferenceSource": "NONE",
+    "AssetFamily": "natural_boulder_sandstone",
+    "AssetCategory": "GeneratedAssets/natural_boulder_sandstone/Boulder",
+    "TextureId": "86330445623884",
+    "MaterialOverride": "Slate",
+    "IntendedUse": "Reusable natural rock exterior scatter",
+    "MuseApproval": "APPROVED",
+    "TechnicalQaPass": true,
+    "AssetFamilyVariant": "01",
+    "AssetVariants": 1,
+    "MeshId": "rbxassetid://109563105323472",
+    "Dimensions": "3.2945642471313477,3,3.276418924331665",
+    "Pivot": "0,1.5,0",
+    "Collision": "CanCollide=true",
+    "Anchoring": "Anchored=true",
+    "BloxForgeQA": "PASS",
+    "MuseFinalReview": "PASS"
+  },
+  "Children": [
+    {
+      "Name": "boulder_geom",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://109563105323472",
+        "TextureID": "rbxassetid://86330445623884",
+        "Material": "Slate",
+        "Size": [
+          3.2945642471313477,
+          3.0,
+          3.276418924331665
+        ]
+      }
+    }
+  ]
+}

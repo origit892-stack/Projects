@@ -1,0 +1,19 @@
+CNPID=41598
+t=30s out=       0 err=       0
+t=60s out=       0 err=       0
+t=90s out=       0 err=       0
+t=120s out=       0 err=       0
+t=150s out=       0 err=       0
+t=180s out=       0 err=       0
+t=210s out=       0 err=       0
+t=240s out=       0 err=       0
+t=270s out=       0 err=       0
+t=300s out=       0 err=       0
+t=330s out=       0 err=       0
+t=360s out=       0 err=       0
+t=390s out=       0 err=       0
+exited at t=390s
+---OUT (full)---
+---ERR (full)---
+---ALIVE---
+gone

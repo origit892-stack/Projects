@@ -1,0 +1,11 @@
+CNPID=39616
+=== t=20s out_bytes=       0 err_bytes=       0 ===
+=== t=40s out_bytes=       0 err_bytes=       0 ===
+=== t=60s out_bytes=       0 err_bytes=       0 ===
+=== t=80s out_bytes=       0 err_bytes=       0 ===
+=== t=100s out_bytes=       0 err_bytes=       0 ===
+=== t=120s out_bytes=       0 err_bytes=       0 ===
+---OUT tail---
+---ERR tail---
+---ALIVE---
+39616 SN  

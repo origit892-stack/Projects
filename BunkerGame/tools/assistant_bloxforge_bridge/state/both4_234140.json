@@ -1,0 +1,10 @@
+{
+  "request_id": "both4_234140",
+  "status": "failed",
+  "source": "bloxforge_worker",
+  "error": {
+    "code": "MISSING_BLOXFORGE_OBJECT",
+    "message": "Missing bloxforge object"
+  },
+  "completed_at": "2026-09-01T10:04:07Z"
+}

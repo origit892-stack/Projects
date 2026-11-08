@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(LC_ALL=C grep -n '[^[:print:][:space:]]' \"/Users/origan/Desktop/claude code/MyGame/src/game.js\")",
+      "Bash(LC_ALL=C grep -n \"add\\\\.text\\\\|setText\" \"/Users/origan/Desktop/claude code/MyGame/src/game.js\")",
+      "Bash(LC_ALL=C grep -v '^[^:]*:[^:]*:[[:print:]]*$')",
+      "Bash(LC_ALL=C grep -v '^[[:space:]]*[0-9]*:[[:space:]]*//\\\\|^[[:space:]]*[0-9]*:[[:space:]]*/\\\\*')",
+      "Bash(python3 -c \":*)",
+      "Bash(grep -A 15 '\"\"id\"\": \"\"relic_berserker_core\"\"' assets/data/items.json)",
+      "Bash(grep -A 15 '\"\"id\"\": \"\"sword_doomshard\"\"' assets/data/items.json)",
+      "Bash(npm run:*)",
+      "Bash(grep -c '\"\"id\"\"' assets/data/items.json)",
+      "Bash(grep -A 30 '\"\"rarity\"\": \"\"legendary\"\"' assets/data/items.json)",
+      "Bash(node scripts/build.mjs)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(echo \"EXIT:$?\")"
+    ]
+  }
+}

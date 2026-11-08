@@ -1,0 +1,61 @@
+[2026-08-31T23:17:04] BloxForge Worker v1 starting
+[2026-08-31T23:17:04] Watching /Users/Ori/Documents/Projects/BunkerGame/tools/assistant_bloxforge_bridge/requests
+[2026-08-31T23:17:04] BloxForge MCP http://127.0.0.1:58741/mcp
+[2026-08-31T23:17:04] Allowlist: ['get_connected_instances', 'get_scene_summary', 'get_session_summary', 'get_transport_diagnostics', 'tool_catalog_search']
+[2026-08-31T23:18:07] FAIL test-a-malformed: Malformed JSON in request: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+[2026-08-31T23:18:09] FAIL test-b-disallowed: Tool execute_luau not allowed in V1 read-only allowlist (no MCP call)
+[2026-08-31T23:18:10] PROCESSING test-c-connected tool=get_connected_instances args={}
+[2026-08-31T23:18:10] COMPLETED test-c-connected tool=get_connected_instances
+[2026-08-31T23:18:10] PROCESSING test-d-scene tool=get_scene_summary args={"instancePath": "game.Workspace", "instance_id": "place:129695090105158"}
+[2026-08-31T23:18:11] COMPLETED test-d-scene tool=get_scene_summary
+[2026-08-31T23:18:14] BloxForge Worker v1 starting
+[2026-08-31T23:18:14] Watching /Users/Ori/Documents/Projects/BunkerGame/tools/assistant_bloxforge_bridge/requests
+[2026-08-31T23:18:14] BloxForge MCP http://127.0.0.1:58741/mcp
+[2026-08-31T23:18:14] Allowlist: ['get_connected_instances', 'get_scene_summary', 'get_session_summary', 'get_transport_diagnostics', 'tool_catalog_search']
+[2026-09-01T12:38:17] FAIL relay-test-b-1788255497-46580: Missing bloxforge object
+[2026-09-01T12:38:18] FAIL relay-test-c-1788255498-46580: Missing bloxforge object
+[2026-09-01T12:38:20] FAIL relay-test-e-1788255499-46580: Missing bloxforge object
+[2026-09-01T12:40:41] PROCESSING relay-test-b2-1788255641-47093 tool=get_connected_instances args={}
+[2026-09-01T12:40:41] COMPLETED relay-test-b2-1788255641-47093 tool=get_connected_instances
+[2026-09-01T12:40:42] PROCESSING relay-test-c2-1788255642-47093 tool=get_scene_summary args={"instancePath": "game.Workspace", "instance_id": "place:129695090105158"}
+[2026-09-01T12:40:43] COMPLETED relay-test-c2-1788255642-47093 tool=get_scene_summary
+[2026-09-01T12:40:43] FAIL relay-test-e2-1788255643-47093: Tool execute_luau not allowed in V1 read-only allowlist (no MCP call)
+[2026-09-01T12:43:49] PROCESSING proof_live_a298f691-981b-4f82-8fcc-e024077769b3 tool=get_scene_summary args={"instancePath": "game.Workspace", "instance_id": "place:129695090105158"}
+[2026-09-01T12:43:50] COMPLETED proof_live_a298f691-981b-4f82-8fcc-e024077769b3 tool=get_scene_summary
+[2026-09-01T13:00:40] FAIL terrain_review_821063: Intent must be bloxforge_tool_call, got geometry_review
+[2026-09-01T13:00:56] FAIL terrain_review_639842: Missing bloxforge object
+[2026-09-01T13:04:07] FAIL both1_234140: Tool geometry_review not allowed in V1 read-only allowlist (no MCP call)
+[2026-09-01T13:04:07] FAIL just_details_234140: Missing bloxforge object
+[2026-09-01T13:04:07] FAIL both4_234140: Missing bloxforge object
+[2026-09-01T13:04:07] FAIL both5_234140: Missing bloxforge.tool
+[2026-09-01T13:04:39] PROCESSING scene_658684 tool=get_scene_summary args={}
+[2026-09-01T13:04:39] COMPLETED scene_658684 tool=get_scene_summary
+[2026-09-01T13:04:40] PROCESSING catalog_658684 tool=tool_catalog_search args={}
+[2026-09-01T13:04:40] COMPLETED catalog_658684 tool=tool_catalog_search
+[2026-09-01T13:04:40] PROCESSING session_658684 tool=get_session_summary args={}
+[2026-09-01T13:04:40] COMPLETED session_658684 tool=get_session_summary
+[2026-09-01T13:05:21] PROCESSING cat1_168838 tool=tool_catalog_search args={}
+[2026-09-01T13:05:21] COMPLETED cat1_168838 tool=tool_catalog_search
+[2026-09-01T13:05:25] PROCESSING cat2_168838 tool=tool_catalog_search args={}
+[2026-09-01T13:05:25] COMPLETED cat2_168838 tool=tool_catalog_search
+[2026-09-01T13:05:29] PROCESSING conn_168838 tool=get_connected_instances args={}
+[2026-09-01T13:05:29] COMPLETED conn_168838 tool=get_connected_instances
+[2026-09-01T13:05:33] PROCESSING trans_168838 tool=get_transport_diagnostics args={}
+[2026-09-01T13:05:33] COMPLETED trans_168838 tool=get_transport_diagnostics
+[2026-09-01T13:06:08] PROCESSING fmt1_488721 tool=tool_catalog_search args={}
+[2026-09-01T13:06:08] COMPLETED fmt1_488721 tool=tool_catalog_search
+[2026-09-01T13:06:12] PROCESSING fmt2_488721 tool=tool_catalog_search args={"query": "terrain"}
+[2026-09-01T13:06:12] COMPLETED fmt2_488721 tool=tool_catalog_search
+[2026-09-01T13:06:16] PROCESSING fmt3_488721 tool=tool_catalog_search args={}
+[2026-09-01T13:06:16] COMPLETED fmt3_488721 tool=tool_catalog_search
+[2026-09-01T13:06:20] PROCESSING fmt4_488721 tool=tool_catalog_search args={}
+[2026-09-01T13:06:20] COMPLETED fmt4_488721 tool=tool_catalog_search
+[2026-09-01T13:06:25] PROCESSING fmt5_488721 tool=tool_catalog_search args={}
+[2026-09-01T13:06:25] COMPLETED fmt5_488721 tool=tool_catalog_search
+[2026-09-01T13:06:59] FAIL load_269721: Tool load_toolset not allowed in V1 read-only allowlist (no MCP call)
+[2026-09-01T13:07:04] PROCESSING scene2_269721 tool=get_scene_summary args={"includeDetails": true, "path": "Workspace.Terrain"}
+[2026-09-01T13:07:04] COMPLETED scene2_269721 tool=get_scene_summary
+[2026-09-01T13:08:53] FAIL final_val_483619: bloxforge.arguments must be object
+[2026-09-01T13:09:06] FAIL final2_863311: bloxforge.arguments must be object
+[2026-09-01T13:09:27] PROCESSING final3_115857 tool=get_scene_summary args={"path": "Workspace"}
+[2026-09-01T13:09:27] COMPLETED final3_115857 tool=get_scene_summary

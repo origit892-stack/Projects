@@ -1,0 +1,77 @@
+{
+  "family": "Pine",
+  "master": "Pine_Mature_A",
+  "reference": "artifacts/roblox-3d-generator/Pine_Mature_A/Pine_Mature_A_reference.png",
+  "generator": "ThomasSimonini/Roblox-3D-Assets-Generator-v1 InstantMesh",
+  "seed": 42,
+  "sample_steps": 75,
+  "remove_background": true,
+  "original_seed42_assetId": "135628476761607",
+  "original_seed42_meshId": "86519740094080",
+  "original_triangles": 38268,
+  "original_vertexCount": 19142,
+  "cleaned_master": {
+    "glb": "artifacts/roblox-3d-generator/Pine_Mature_A/master/Pine_Mature_A.glb",
+    "obj": "artifacts/roblox-3d-generator/Pine_Mature_A/master/Pine_Mature_A.obj",
+    "assetId": "119989556332830",
+    "meshId": "74555197966758",
+    "triangles": 12000,
+    "vertexCount": 6007,
+    "size": [
+      7.706299781799316,
+      15,
+      6.616474628448486
+    ],
+    "cleaned": "Taubin smoothing lamb 0.5 nu -0.53 10 iterations + fast_simplification 38k->12k, vertex colors preserved via nearest neighbor",
+    "dimensions": "1.015,1.975,0.871 original -> 7.706,15,6.616 scaled",
+    "pivot": "0,7.5,0",
+    "anchoring": "Anchored=true CanCollide=false"
+  },
+  "variants": [
+    {
+      "id": "Pine_Mature_B",
+      "assetId": "139604818615251",
+      "meshId": "110905895423460",
+      "glb": "artifacts/roblox-3d-generator/Pine/variants/Pine_Mature_B.glb",
+      "heightFactor": 0.88,
+      "crownWidthFactor": 1.25,
+      "lean": [
+        0.12,
+        0.05
+      ],
+      "dispersion": 0.018,
+      "size": [
+        9.40438175201416,
+        15.000000953674316,
+        8.11679744720459
+      ],
+      "triangles": 12000,
+      "note": "Shorter, wider crown, lean 0.12, not scaled copy"
+    },
+    {
+      "id": "Pine_Mature_C",
+      "assetId": "89818209379780",
+      "meshId": "71092595203926",
+      "glb": "artifacts/roblox-3d-generator/Pine/variants/Pine_Mature_C.glb",
+      "heightFactor": 1.12,
+      "crownWidthFactor": 0.88,
+      "lean": [
+        -0.1,
+        -0.04
+      ],
+      "dispersion": 0.022,
+      "size": [
+        7.045106887817383,
+        15,
+        6.090039253234863
+      ],
+      "triangles": 12000,
+      "note": "Taller, narrower crown, lean -0.10, not scaled copy"
+    }
+  ],
+  "technicalQA": "BloxForge QA PASS - mesh valid, MeshId valid, visible, dimensions realistic, pivot at base, anchored true, cancollide false, heavy optimized 38k->12k",
+  "surfaceClean": "Taubin smoothing applied to reduce InstantMesh lumpy artifacts, per user request for clean surface",
+  "assetLibrary": "Registered in src/ServerStorage/GeneratedAssets/pine_mature_*.model.json and AssetRegistry.luau",
+  "forestModified": false,
+  "temporaryReview": "Pine_Mature_A/B/C side-by-side at 285,300,315 on empty floor 300,0.5,300 in Pine_Mature_A_Comparison"
+}

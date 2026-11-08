@@ -1,0 +1,42 @@
+{
+  "className": "Lighting",
+  "properties": {
+    "Ambient": [
+      0.26,
+      0.3,
+      0.28
+    ],
+    "Brightness": 1.6,
+    "ClockTime": 16.8,
+    "ColorShift_Bottom": [
+      0.35,
+      0.4,
+      0.36
+    ],
+    "ColorShift_Top": [
+      0.55,
+      0.58,
+      0.49
+    ],
+    "EnvironmentDiffuseScale": 0.72,
+    "EnvironmentSpecularScale": 0.38,
+    "ExposureCompensation": 0.08,
+    "FogColor": [
+      0.32,
+      0.38,
+      0.35
+    ],
+    "FogEnd": 430.0,
+    "FogStart": 110.0,
+    "GeographicLatitude": 41.0,
+    "GlobalShadows": true,
+    "OutdoorAmbient": [
+      0.28,
+      0.32,
+      0.3
+    ],
+    "PrioritizeLightingQuality": true,
+    "ShadowSoftness": 0.35,
+    "Technology": "Future"
+  }
+}

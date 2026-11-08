@@ -1,0 +1,16 @@
+{
+  "request_id": "final3_115857",
+  "status": "completed",
+  "source": "bloxforge",
+  "bloxforge_tool": "get_scene_summary",
+  "bloxforge_mcp": "http://127.0.0.1:58741/mcp",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"topClasses\":[{\"count\":1,\"className\":\"Terrain\"},{\"count\":1,\"className\":\"Camera\"},{\"count\":1,\"className\":\"Folder\"}],\"totalDescendants\":3,\"className\":\"Workspace\",\"root\":\"game.Workspace\",\"distinctClasses\":3,\"childCount\":3,\"scope\":\"exact subtree\"}"
+      }
+    ]
+  },
+  "completed_at": "2026-09-01T10:09:27Z"
+}

@@ -1,0 +1,88 @@
+{
+  "space": "ThomasSimonini/Roblox-3D-Assets-Generator-v1",
+  "reference_image": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/Pine_Mature_A_reference.png",
+  "reference_image_size": 2250666,
+  "seed": 42,
+  "sample_steps": 75,
+  "remove_background": true,
+  "start_time": "2026-09-01T14:06:30.912787+00:00",
+  "api_endpoints": [
+    "/check_input_image",
+    "/preprocess",
+    "/generate_mvs",
+    "/make3d"
+  ],
+  "input_schema": {
+    "reference_image": "Path to reference image (PNG/JPG/WEBP)",
+    "remove_background": "bool, default true",
+    "seed": "int",
+    "sample_steps": "int/float, default 75, range 30-75"
+  },
+  "output_schema": {
+    "processed_reference": "image.webp (background removed)",
+    "generated_multiview": "image.webp (6-view grid)",
+    "obj": "model.obj + .mtl + textures if any",
+    "glb": "model.glb",
+    "seed": "int",
+    "metadata": "json with timing, params, sizes",
+    "logs": "text log"
+  },
+  "view_api": {
+    "/check_input_image": {
+      "params": [
+        "input_image"
+      ],
+      "returns": []
+    },
+    "/preprocess": {
+      "params": [
+        "input_image",
+        "do_remove_background"
+      ],
+      "returns": [
+        "Processed Image"
+      ]
+    },
+    "/generate_mvs": {
+      "params": [
+        "input_image",
+        "sample_steps",
+        "sample_seed"
+      ],
+      "returns": [
+        "Generated Multi-views"
+      ]
+    },
+    "/make3d": {
+      "params": [],
+      "returns": [
+        "Output Model (OBJ Format)",
+        "Output Model (GLB Format)"
+      ]
+    }
+  },
+  "processed_reference": {
+    "path": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_42/processed_reference.webp",
+    "size": 405790,
+    "source_path": "/private/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/gradio/f79936b98c99b88dca0757b87a556b457377fd037dde7b1bcd8fa9d3a36d1766/image.webp"
+  },
+  "generated_multiview": {
+    "path": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_42/generated_multiview.webp",
+    "size": 49954,
+    "source_path": "/private/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/gradio/cd7b2d4bdab6674be44ec4d48727acb48d5fa9ee7490aa905bbf9f3b2787b3fe/image.webp"
+  },
+  "obj": {
+    "path": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_42/Pine_Mature_A_InstantMesh_seed42.obj",
+    "size": 2025696,
+    "source_path": "/private/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/gradio/aa8eab17c6b2c64655790827324b36473337ef5cd1dec163e1c380a4190d63a3/tmpb9h2oa4x.obj"
+  },
+  "glb": {
+    "path": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_42/Pine_Mature_A_InstantMesh_seed42.glb",
+    "size": 766508,
+    "source_path": "/private/var/folders/f1/l_fjppb908g4rqv3gw8j6dt40000gr/T/gradio/9d8bcd095b41e398894840d372f8f031c528410c148193b43ec56cf578a140fe/tmpb9h2oa4x.glb"
+  },
+  "total_time": 33.73106789588928,
+  "end_time": "2026-09-01T14:07:04.644083+00:00",
+  "status": "SUCCESS",
+  "logs": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/roblox-3d-generator/Pine_Mature_A/seed_42/generation.log"
+}

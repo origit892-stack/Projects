@@ -1,0 +1,2184 @@
+============================================================
+BUNKER DEVELOPMENT SYSTEM
+PROJECT INSPECTION REPORT
+============================================================
+TIMESTAMP: 20260821-100430
+PROJECT: /Users/Ori/Documents/Projects/BunkerGame
+
+============================================================
+BDS PROJECT INVENTORY
+============================================================
+
+=== PROJECT ROOT ===
+/Users/Ori/Documents/Projects/BunkerGame
+
+=== GIT STATUS ===
+ M ../.DS_Store
+ M ../europa-park-planner/app.js
+ M ../europa-park-planner/index.html
+ M ../europa-park-planner/map.html
+ M ../europa-park-planner/map.js
+ M ../ori-projects/europa-park-planner/admin.html
+ M ../ori-projects/europa-park-planner/app.js
+ M ../ori-projects/europa-park-planner/index.html
+ M ../ori-projects/europa-park-planner/map.html
+ M ../ori-projects/europa-park-planner/map.js
+?? ../.vscode/settings.json
+?? ../3D_models/
+?? ./
+
+=== ROJO PROJECT FILES ===
+./default.project.json
+
+=== LUA AND LUAU FILES ===
+src/ReplicatedStorage/Audio/BunkerAudioCatalog.luau
+src/ReplicatedStorage/Interaction/GameplayInteractionTypes.luau
+src/ReplicatedStorage/Interaction/InteractionTypes.luau
+src/ReplicatedStorage/Shared/Combat/CombatTypes.luau
+src/ReplicatedStorage/Shared/Combat/WeaponDefinitions.luau
+src/ReplicatedStorage/Shared/Hello.luau
+src/ReplicatedStorage/Shared/Inventory/ItemDefinitions.luau
+src/ReplicatedStorage/Shared/Inventory/ItemTypes.luau
+src/ReplicatedStorage/Shared/Session/SessionTypes.luau
+src/ReplicatedStorage/Shared/Survival/ResourceDefinitions.luau
+src/ReplicatedStorage/Shared/Survival/ToolDefinitions.luau
+src/ReplicatedStorage/UI/Components/Button.luau
+src/ReplicatedStorage/UI/Components/InteractionPrompt.luau
+src/ReplicatedStorage/UI/Components/Notification.luau
+src/ReplicatedStorage/UI/Components/Panel.luau
+src/ReplicatedStorage/UI/Components/ProgressBar.luau
+src/ReplicatedStorage/UI/Components/StatChip.luau
+src/ReplicatedStorage/UI/Controllers/InteractionPromptController.luau
+src/ReplicatedStorage/UI/Controllers/NotificationController.luau
+src/ReplicatedStorage/UI/Controllers/UIController.luau
+src/ReplicatedStorage/UI/Theme.luau
+src/ReplicatedStorage/UI/Tokens.luau
+src/ReplicatedStorage/UI/Types.luau
+src/ServerScriptService/BunkerAtmosphereController.server.luau
+src/ServerScriptService/BunkerEntranceContract.luau
+src/ServerScriptService/BunkerEnvironmentalVFX.server.luau
+src/ServerScriptService/BunkerInteractionService.server.luau
+src/ServerScriptService/BunkerPowerService.server.luau
+src/ServerScriptService/Foundation/Combat/CombatStateService.luau
+src/ServerScriptService/Foundation/Combat/DamageService.luau
+src/ServerScriptService/Foundation/Inventory/InventoryService.luau
+src/ServerScriptService/Foundation/Session/SessionContextService.luau
+src/ServerScriptService/GlobalManager.server.luau
+src/ServerScriptService/LegacyBunkerGameplayService.luau
+src/ServerScriptService/Survival/ForestResourceSpawner.server.luau
+src/ServerScriptService/Survival/HarvestService.server.luau
+src/ServerScriptService/Survival/ResourceNodeService.luau
+src/ServerScriptService/ZombieEntranceTargetMigration.server.luau
+src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau
+src/StarterPlayer/StarterPlayerScripts/Client.client.luau
+src/StarterPlayer/StarterPlayerScripts/HarvestController.client.luau
+src/StarterPlayer/StarterPlayerScripts/HarvestVisualController.client.luau
+src/StarterPlayer/StarterPlayerScripts/UIBootstrap.client.luau
+src/client/FarmingUI.client.lua
+src/server/FarmingSystem.server.lua
+
+=== ROBLOX MODEL FILES ===
+src/ServerStorage/BunkerZombie.rbxm
+src/ServerStorage/DisabledAssets/Spawn.rbxm
+src/ServerStorage/RunnerZombie.rbxm
+src/ServerStorage/TankZombie.rbxm
+src/Workspace/Baseplate.rbxm
+src/Workspace/Camera.rbxm
+src/Workspace/Grassblox.rbxm
+src/Workspace/Scrap piles.rbxm
+src/Workspace/Terrain.rbxm
+src/Workspace/ZombieSpawns.rbxm
+src/Workspace/farm.rbxm
+
+=== SOURCE LINE COUNTS ===
+       1 src/ReplicatedStorage/Shared/Hello.luau
+       1 src/StarterPlayer/StarterPlayerScripts/Client.client.luau
+      11 src/ReplicatedStorage/Shared/Session/SessionTypes.luau
+      13 src/StarterPlayer/StarterPlayerScripts/UIBootstrap.client.luau
+      15 src/ReplicatedStorage/UI/Types.luau
+      18 src/ReplicatedStorage/Shared/Combat/WeaponDefinitions.luau
+      21 src/ReplicatedStorage/Shared/Survival/ToolDefinitions.luau
+      22 src/ReplicatedStorage/Interaction/InteractionTypes.luau
+      23 src/ReplicatedStorage/Interaction/GameplayInteractionTypes.luau
+      24 src/ReplicatedStorage/UI/Controllers/NotificationController.luau
+      25 src/ReplicatedStorage/Shared/Survival/ResourceDefinitions.luau
+      27 src/ReplicatedStorage/Audio/BunkerAudioCatalog.luau
+      31 src/ReplicatedStorage/UI/Theme.luau
+      35 src/ReplicatedStorage/Shared/Inventory/ItemDefinitions.luau
+      35 src/ServerScriptService/BunkerEntranceContract.luau
+      37 src/ReplicatedStorage/Shared/Combat/CombatTypes.luau
+      38 src/ReplicatedStorage/Shared/Inventory/ItemTypes.luau
+      42 src/ServerScriptService/Foundation/Combat/DamageService.luau
+      47 src/ReplicatedStorage/UI/Components/Panel.luau
+      48 src/ServerScriptService/ZombieEntranceTargetMigration.server.luau
+      49 src/ReplicatedStorage/UI/Tokens.luau
+      50 src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau
+      53 src/ReplicatedStorage/UI/Components/StatChip.luau
+      56 src/ReplicatedStorage/UI/Components/ProgressBar.luau
+      57 src/ServerScriptService/LegacyBunkerGameplayService.luau
+      59 src/ReplicatedStorage/UI/Components/Notification.luau
+      64 src/ReplicatedStorage/UI/Components/Button.luau
+      66 src/ServerScriptService/Survival/ForestResourceSpawner.server.luau
+      71 src/ServerScriptService/Foundation/Session/SessionContextService.luau
+      87 src/ServerScriptService/BunkerPowerService.server.luau
+      95 src/StarterPlayer/StarterPlayerScripts/HarvestController.client.luau
+     100 src/ServerScriptService/Foundation/Combat/CombatStateService.luau
+     112 src/ServerScriptService/GlobalManager.server.luau
+     121 src/ServerScriptService/Survival/HarvestService.server.luau
+     125 src/ServerScriptService/Foundation/Inventory/InventoryService.luau
+     157 src/ServerScriptService/BunkerAtmosphereController.server.luau
+     161 src/ServerScriptService/BunkerEnvironmentalVFX.server.luau
+     219 src/StarterPlayer/StarterPlayerScripts/HarvestVisualController.client.luau
+     226 src/ServerScriptService/Survival/ResourceNodeService.luau
+     236 src/client/FarmingUI.client.lua
+     266 src/ReplicatedStorage/UI/Controllers/UIController.luau
+     295 src/ReplicatedStorage/UI/Controllers/InteractionPromptController.luau
+     299 src/ServerScriptService/BunkerInteractionService.server.luau
+     319 src/ReplicatedStorage/UI/Components/InteractionPrompt.luau
+     356 src/server/FarmingSystem.server.lua
+    4213 total
+
+=== ROJO SOURCEMAP ===
+SOURCEMAP_FAILED
+
+=== PER-FILE INSPECTION ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Audio/BunkerAudioCatalog.luau
+
+=== FILE METADATA ===
+      27     813 src/ReplicatedStorage/Audio/BunkerAudioCatalog.luau
+src/ReplicatedStorage/Audio/BunkerAudioCatalog.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Interaction/GameplayInteractionTypes.luau
+
+=== FILE METADATA ===
+      23     503 src/ReplicatedStorage/Interaction/GameplayInteractionTypes.luau
+src/ReplicatedStorage/Interaction/GameplayInteractionTypes.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Interaction/InteractionTypes.luau
+
+=== FILE METADATA ===
+      22     482 src/ReplicatedStorage/Interaction/InteractionTypes.luau
+src/ReplicatedStorage/Interaction/InteractionTypes.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Shared/Combat/CombatTypes.luau
+
+=== FILE METADATA ===
+      37     702 src/ReplicatedStorage/Shared/Combat/CombatTypes.luau
+src/ReplicatedStorage/Shared/Combat/CombatTypes.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Shared/Combat/WeaponDefinitions.luau
+
+=== FILE METADATA ===
+      18     451 src/ReplicatedStorage/Shared/Combat/WeaponDefinitions.luau
+src/ReplicatedStorage/Shared/Combat/WeaponDefinitions.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+6:function WeaponDefinitions.get(weaponId: string)
+10:function WeaponDefinitions.isDefined(weaponId: string): boolean
+14:function WeaponDefinitions.getAll()
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Shared/Hello.luau
+
+=== FILE METADATA ===
+       1      10 src/ReplicatedStorage/Shared/Hello.luau
+src/ReplicatedStorage/Shared/Hello.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Shared/Inventory/ItemDefinitions.luau
+
+=== FILE METADATA ===
+      35    1037 src/ReplicatedStorage/Shared/Inventory/ItemDefinitions.luau
+src/ReplicatedStorage/Shared/Inventory/ItemDefinitions.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+23:function ItemDefinitions.get(itemId: string)
+27:function ItemDefinitions.isDefined(itemId: string): boolean
+31:function ItemDefinitions.getAll()
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Shared/Inventory/ItemTypes.luau
+
+=== FILE METADATA ===
+      38     672 src/ReplicatedStorage/Shared/Inventory/ItemTypes.luau
+src/ReplicatedStorage/Shared/Inventory/ItemTypes.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Shared/Session/SessionTypes.luau
+
+=== FILE METADATA ===
+      11     202 src/ReplicatedStorage/Shared/Session/SessionTypes.luau
+src/ReplicatedStorage/Shared/Session/SessionTypes.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Shared/Survival/ResourceDefinitions.luau
+
+=== FILE METADATA ===
+      25     625 src/ReplicatedStorage/Shared/Survival/ResourceDefinitions.luau
+src/ReplicatedStorage/Shared/Survival/ResourceDefinitions.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+17:function ResourceDefinitions.get(id: string)
+21:function ResourceDefinitions.getAll()
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/Shared/Survival/ToolDefinitions.luau
+
+=== FILE METADATA ===
+      21     500 src/ReplicatedStorage/Shared/Survival/ToolDefinitions.luau
+src/ReplicatedStorage/Shared/Survival/ToolDefinitions.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+13:function ToolDefinitions.get(id: string)
+17:function ToolDefinitions.getAll()
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Components/Button.luau
+
+=== FILE METADATA ===
+      64    2601 src/ReplicatedStorage/UI/Components/Button.luau
+src/ReplicatedStorage/UI/Components/Button.luau: Unicode text, UTF-8 text
+
+=== FUNCTION DECLARATIONS ===
+5:    create = function(props)
+
+=== REQUIRE CALLS ===
+2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+
+=== ROBLOX SERVICES ===
+1:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+19:        button.Parent = props.Parent or game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+6:        local button = Instance.new("TextButton")
+21:        local uiCorner = Instance.new("UICorner")
+25:        local uiStroke = Instance.new("UIStroke")
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+56:            button.Activated:Connect(function()
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Components/InteractionPrompt.luau
+
+=== FILE METADATA ===
+     319   12180 src/ReplicatedStorage/UI/Components/InteractionPrompt.luau
+src/ReplicatedStorage/UI/Components/InteractionPrompt.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+38:local function corner(parent: Instance, radius: number)
+44:local function stroke(parent: Instance, color: Color3, thickness: number, transparency: number?)
+53:local function textLabel(name: string, parent: Instance, size: UDim2, position: UDim2): TextLabel
+70:function InteractionPrompt.create(parent: PlayerGui): PromptView
+232:function PromptViewMethods:setContent(inputText: string, inputImage: string?, actionText: string, objectText: string, isHold: boolean)
+247:function PromptViewMethods:setProgress(progress: number)
+251:function PromptViewMethods:setViewportScale(viewportScale: number)
+259:function PromptViewMethods:show()
+271:function PromptViewMethods:hide(immediate: boolean?)
+293:function PromptViewMethods:showFeedback(tone: string)
+315:function PromptViewMethods:destroy()
+
+=== REQUIRE CALLS ===
+6:local Tokens = require(ReplicatedStorage.UI.Tokens)
+
+=== ROBLOX SERVICES ===
+3:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+4:local TweenService = game:GetService("TweenService")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+39:    local uiCorner = Instance.new("UICorner")
+45:    local uiStroke = Instance.new("UIStroke")
+54:    local label = Instance.new("TextLabel")
+71:    local gui = Instance.new("ScreenGui")
+79:    local root = Instance.new("CanvasGroup")
+93:    local sizeConstraint = Instance.new("UISizeConstraint")
+98:    local scale = Instance.new("UIScale")
+103:    local shadow = Instance.new("Frame")
+115:    local accentRail = Instance.new("Frame")
+124:    local inputButton = Instance.new("TextButton")
+138:    local inputImage = Instance.new("ImageLabel")
+180:    local divider = Instance.new("Frame")
+190:    local progressTrack = Instance.new("Frame")
+201:    local progressFill = Instance.new("Frame")
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+285:    task.delay(Tokens.Motion.Fast, function()
+304:    task.delay(0.42, function()
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Components/Notification.luau
+
+=== FILE METADATA ===
+      59    2369 src/ReplicatedStorage/UI/Components/Notification.luau
+src/ReplicatedStorage/UI/Components/Notification.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+5:    create = function(props)
+41:    show = function(self, text, variant)
+55:    destroy = function(self)
+
+=== REQUIRE CALLS ===
+2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+
+=== ROBLOX SERVICES ===
+1:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+15:        notification.Parent = props.Parent or game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+6:        local notification = Instance.new("Frame")
+17:        local background = Instance.new("Frame")
+27:        local text = Instance.new("TextLabel")
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Components/Panel.luau
+
+=== FILE METADATA ===
+      47    1861 src/ReplicatedStorage/UI/Components/Panel.luau
+src/ReplicatedStorage/UI/Components/Panel.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+5:    create = function(props)
+
+=== REQUIRE CALLS ===
+2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+
+=== ROBLOX SERVICES ===
+1:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+15:        frame.Parent = props.Parent or game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+6:        local frame = Instance.new("Frame")
+17:        local uiCorner = Instance.new("UICorner")
+21:        local uiStroke = Instance.new("UIStroke")
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Components/ProgressBar.luau
+
+=== FILE METADATA ===
+      56    1915 src/ReplicatedStorage/UI/Components/ProgressBar.luau
+src/ReplicatedStorage/UI/Components/ProgressBar.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+5:    create = function(props)
+38:    setProgress = function(self, progress)
+44:    setLabel = function(self, label)
+48:    setVisible = function(self, visible)
+52:    destroy = function(self)
+
+=== REQUIRE CALLS ===
+2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+
+=== ROBLOX SERVICES ===
+1:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+16:        bar.Parent = props.Parent or game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+6:        local bar = Instance.new("Frame")
+18:        local fill = Instance.new("Frame")
+25:        local label = Instance.new("TextLabel")
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Components/StatChip.luau
+
+=== FILE METADATA ===
+      53    1849 src/ReplicatedStorage/UI/Components/StatChip.luau
+src/ReplicatedStorage/UI/Components/StatChip.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+5:    create = function(props)
+41:    setValue = function(self, value)
+45:    setLabel = function(self, label)
+49:    destroy = function(self)
+
+=== REQUIRE CALLS ===
+2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+
+=== ROBLOX SERVICES ===
+1:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+14:        chip.Parent = props.Parent or game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+6:        local chip = Instance.new("Frame")
+16:        local label = Instance.new("TextLabel")
+27:        local value = Instance.new("TextLabel")
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Controllers/InteractionPromptController.luau
+
+=== FILE METADATA ===
+     295    9750 src/ReplicatedStorage/UI/Controllers/InteractionPromptController.luau
+src/ReplicatedStorage/UI/Controllers/InteractionPromptController.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+39:local function disconnectAttributeConnections()
+46:local function stopHoldProgress(resetProgress: boolean?)
+57:local function promptInputTypeFromLastInput(lastInputType: Enum.UserInputType): Enum.ProximityPromptInputType
+67:local function keyboardLabel(keyCode: Enum.KeyCode): string
+77:local function gamepadPresentation(keyCode: Enum.KeyCode): (string, string?)
+87:local function inputPresentation(prompt: ProximityPrompt): (string, string?)
+97:local function refreshContent()
+106:local function updateViewportScale()
+117:local function bindCamera()
+129:local function bindPromptAttributes(prompt: ProximityPrompt)
+147:local function onPromptShown(prompt: ProximityPrompt, inputType: Enum.ProximityPromptInputType)
+167:local function onPromptHidden(prompt: ProximityPrompt)
+181:local function onHoldBegan(prompt: ProximityPrompt)
+194:local function onHoldEnded(prompt: ProximityPrompt)
+200:local function beginTouchInput()
+212:local function endTouchInput(promptOverride: ProximityPrompt?)
+224:function Controller.start()
+267:function Controller.stop()
+
+=== REQUIRE CALLS ===
+10:local InteractionPrompt = require(ReplicatedStorage.UI.Components.InteractionPrompt)
+
+=== ROBLOX SERVICES ===
+3:local Players = game:GetService("Players")
+4:local ProximityPromptService = game:GetService("ProximityPromptService")
+5:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+6:local RunService = game:GetService("RunService")
+7:local UserInputService = game:GetService("UserInputService")
+8:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+136:    table.insert(attributeConnections, prompt:GetAttributeChangedSignal(FEEDBACK_SERIAL_ATTRIBUTE):Connect(function()
+140:        local tone = prompt:GetAttribute(FEEDBACK_TONE_ATTRIBUTE)
+
+=== EVENT CONNECTIONS ===
+124:        cameraConnection = camera:GetPropertyChangedSignal("ViewportSize"):Connect(updateViewportScale)
+131:    table.insert(attributeConnections, prompt:GetPropertyChangedSignal("ActionText"):Connect(refreshContent))
+132:    table.insert(attributeConnections, prompt:GetPropertyChangedSignal("ObjectText"):Connect(refreshContent))
+133:    table.insert(attributeConnections, prompt:GetPropertyChangedSignal("KeyboardKeyCode"):Connect(refreshContent))
+134:    table.insert(attributeConnections, prompt:GetPropertyChangedSignal("GamepadKeyCode"):Connect(refreshContent))
+135:    table.insert(attributeConnections, prompt:GetPropertyChangedSignal("HoldDuration"):Connect(refreshContent))
+136:    table.insert(attributeConnections, prompt:GetAttributeChangedSignal(FEEDBACK_SERIAL_ATTRIBUTE):Connect(function()
+185:        holdConnection = RunService.RenderStepped:Connect(function()
+238:    table.insert(serviceConnections, ProximityPromptService.PromptShown:Connect(onPromptShown))
+239:    table.insert(serviceConnections, ProximityPromptService.PromptHidden:Connect(onPromptHidden))
+240:    table.insert(serviceConnections, ProximityPromptService.PromptButtonHoldBegan:Connect(onHoldBegan))
+241:    table.insert(serviceConnections, ProximityPromptService.PromptButtonHoldEnded:Connect(onHoldEnded))
+242:    table.insert(serviceConnections, UserInputService.LastInputTypeChanged:Connect(function(lastInputType)
+252:    table.insert(serviceConnections, UserInputService.InputEnded:Connect(function(input)
+257:    table.insert(serviceConnections, Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
+261:    table.insert(serviceConnections, view.InputButton.MouseButton1Down:Connect(beginTouchInput))
+262:    table.insert(serviceConnections, view.InputButton.MouseButton1Up:Connect(function()
+
+=== LOOPS AND TASKS ===
+40:    for _, connection in attributeConnections do
+281:    for _, connection in serviceConnections do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Controllers/NotificationController.luau
+
+=== FILE METADATA ===
+      24     818 src/ReplicatedStorage/UI/Controllers/NotificationController.luau
+src/ReplicatedStorage/UI/Controllers/NotificationController.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+5:    showNotification = function(text, variant)
+
+=== REQUIRE CALLS ===
+2:local Notification = require(ReplicatedStorage.UI.Components.Notification)
+
+=== ROBLOX SERVICES ===
+1:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+11:            Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"),
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+17:        task.delay(4, function()
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Controllers/UIController.luau
+
+=== FILE METADATA ===
+     266   11555 src/ReplicatedStorage/UI/Controllers/UIController.luau
+src/ReplicatedStorage/UI/Controllers/UIController.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+9:local function corner(parent, radius)
+15:local function stroke(parent, transparency)
+23:local function label(parent, name, text, size, position, textSize, color, alignment)
+39:local function makeChip(parent, name, caption, initial)
+53:function UIController.start()
+113:    local function hasAxeTool()
+114:        local function scan(root)
+125:    local function axeReady()
+132:    local function bindCharacter(character)
+135:        local function updateHealth()
+150:    local function updateAxeReadout()
+153:    local function watchTool(child)
+166:    local function bindAxeCharacter(character)
+182:    local function updateCycle()
+
+=== REQUIRE CALLS ===
+4:local Tokens = require(ReplicatedStorage.UI.Tokens)
+5:local NotificationController = require(ReplicatedStorage.UI.Controllers.NotificationController)
+
+=== ROBLOX SERVICES ===
+1:local Players = game:GetService("Players")
+2:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+=== REMOTES AND BINDABLES ===
+242:            updateUI.OnClientEvent:Connect(function(credits, seeds, crops, food)
+251:            updateProgress.OnClientEvent:Connect(function(pct)
+259:            notify.OnClientEvent:Connect(function(text)
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+144:    player.CharacterAdded:Connect(bindCharacter)
+172:    player.CharacterAdded:Connect(bindAxeCharacter)
+
+=== INSTANCE CREATION ===
+10:    local value = Instance.new("UICorner")
+16:    local value = Instance.new("UIStroke")
+24:    local value = Instance.new("TextLabel")
+40:    local chip = Instance.new("Frame")
+58:    local hud = Instance.new("ScreenGui")
+65:    local vignette = Instance.new("Frame")
+79:    local cyclePanel = Instance.new("Frame")
+92:    local left = Instance.new("Frame")
+98:    local layout = Instance.new("UIListLayout")
+105:    local right = Instance.new("Frame")
+195:    local farmPanel = Instance.new("Frame")
+206:    local farmLayout = Instance.new("UIListLayout")
+221:    local progressFrame = Instance.new("Frame")
+230:    local progressFill = Instance.new("Frame")
+
+=== ATTRIBUTES AND TAGS ===
+103:    local woodValue = makeChip(left, "WoodChip", "WOOD", tostring(player:GetAttribute("CanonicalWoodQuantity") or 0))
+117:                if child:IsA("Tool") and child:GetAttribute("ToolDefinitionId") == "axe_basic" then
+126:        local quantity = player:GetAttribute("CanonicalAxeQuantity")
+146:    player:GetAttributeChangedSignal("CanonicalWoodQuantity"):Connect(function()
+147:        woodValue.Text = tostring(player:GetAttribute("CanonicalWoodQuantity") or 0)
+156:        child:GetAttributeChangedSignal("ToolDefinitionId"):Connect(updateAxeReadout)
+159:    player:GetAttributeChangedSignal("CanonicalAxeQuantity"):Connect(updateAxeReadout)
+
+=== EVENT CONNECTIONS ===
+140:        humanoid.HealthChanged:Connect(updateHealth)
+141:        humanoid:GetPropertyChangedSignal("MaxHealth"):Connect(updateHealth)
+144:    player.CharacterAdded:Connect(bindCharacter)
+146:    player:GetAttributeChangedSignal("CanonicalWoodQuantity"):Connect(function()
+156:        child:GetAttributeChangedSignal("ToolDefinitionId"):Connect(updateAxeReadout)
+159:    player:GetAttributeChangedSignal("CanonicalAxeQuantity"):Connect(updateAxeReadout)
+163:        backpack.ChildAdded:Connect(function(child) watchTool(child); updateAxeReadout() end)
+164:        backpack.ChildRemoved:Connect(updateAxeReadout)
+168:        character.ChildAdded:Connect(function(child) watchTool(child); updateAxeReadout() end)
+169:        character.ChildRemoved:Connect(updateAxeReadout)
+172:    player.CharacterAdded:Connect(bindAxeCharacter)
+191:    if gamePhase then gamePhase.Changed:Connect(updateCycle) end
+192:    if dayCount then dayCount.Changed:Connect(updateCycle) end
+193:    if timeLeft then timeLeft.Changed:Connect(updateCycle) end
+242:            updateUI.OnClientEvent:Connect(function(credits, seeds, crops, food)
+251:            updateProgress.OnClientEvent:Connect(function(pct)
+259:            notify.OnClientEvent:Connect(function(text)
+
+=== LOOPS AND TASKS ===
+116:            for _, child in root:GetChildren() do
+143:    if player.Character then task.defer(bindCharacter, player.Character) end
+162:        for _, child in backpack:GetChildren() do watchTool(child) end
+167:        for _, child in character:GetChildren() do watchTool(child) end
+170:        task.defer(updateAxeReadout)
+174:    task.defer(updateAxeReadout)
+175:    task.delay(0.5, updateAxeReadout)
+176:    task.delay(1.5, updateAxeReadout)
+177:    task.delay(3, updateAxeReadout)
+217:    for _, chip in farmPanel:GetChildren() do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Theme.luau
+
+=== FILE METADATA ===
+      31     721 src/ReplicatedStorage/UI/Theme.luau
+src/ReplicatedStorage/UI/Theme.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Tokens.luau
+
+=== FILE METADATA ===
+      49    1882 src/ReplicatedStorage/UI/Tokens.luau
+src/ReplicatedStorage/UI/Tokens.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ReplicatedStorage/UI/Types.luau
+
+=== FILE METADATA ===
+      15     372 src/ReplicatedStorage/UI/Types.luau
+src/ReplicatedStorage/UI/Types.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/BunkerAtmosphereController.server.luau
+
+=== FILE METADATA ===
+     157    5166 src/ServerScriptService/BunkerAtmosphereController.server.luau
+src/ServerScriptService/BunkerAtmosphereController.server.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+46:local function setFixtureScale(state: FixtureState, scale: number)
+61:local function collectFixture(modelInstance: Model, contract: FixtureContract): FixtureState?
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+5:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+125:			local gridPowered = powerMarker and powerMarker:GetAttribute("PowerOn") == true
+147:			local gridPowered = powerMarker and powerMarker:GetAttribute("PowerOn") == true
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+47:	for _, lightState in state.lights do
+53:	for _, emitterState in state.emitters do
+65:	for _, descendant in modelInstance:GetDescendants() do
+93:task.wait(STARTUP_DELAY)
+103:for _, contract in contracts do
+115:while #fixtures > 0 do
+117:	for _, state in fixtures do
+156:	task.wait(UPDATE_INTERVAL)
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/BunkerEntranceContract.luau
+
+=== FILE METADATA ===
+      35    1035 src/ServerScriptService/BunkerEntranceContract.luau
+src/ServerScriptService/BunkerEntranceContract.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+7:local function findNewBunker()
+12:function BunkerEntranceContract.GetTarget()
+30:function BunkerEntranceContract.GetTargetPosition()
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+1:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+15:        if instance:IsA("BasePart") and instance:GetAttribute(TARGET_ATTRIBUTE) == true then
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+14:    for _, instance in tagged do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/BunkerEnvironmentalVFX.server.luau
+
+=== FILE METADATA ===
+     161    5015 src/ServerScriptService/BunkerEnvironmentalVFX.server.luau
+src/ServerScriptService/BunkerEnvironmentalVFX.server.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+110:local function attachEmitter(anchor: BasePart, contract: VFXContract)
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+6:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+115:	local attachment = Instance.new("Attachment")
+119:	local emitter = Instance.new("ParticleEmitter")
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+140:task.wait(STARTUP_DELAY)
+149:for _, contract in contracts do
+151:	for _, descendant in bunker:GetDescendants() do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/BunkerInteractionService.server.luau
+
+=== FILE METADATA ===
+     299   10582 src/ServerScriptService/BunkerInteractionService.server.luau
+src/ServerScriptService/BunkerInteractionService.server.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+53:local function findPropModel(prompt: ProximityPrompt): Model?
+64:local function getPromptWorldPosition(prompt: ProximityPrompt, propModel: Model): Vector3
+75:local function validatePlayerDistance(player: Player, prompt: ProximityPrompt, propModel: Model): boolean
+94:local function passCooldown(player: Player): boolean
+104:local function emitFeedback(prompt: ProximityPrompt, tone: string)
+110:local function playHingeCue(movingPart: BasePart, isOpen: boolean)
+149:local function getAnimatedParts(propModel: Model): (BasePart?, BasePart?)
+162:local function togglePrototypeProp(prompt: ProximityPrompt, propModel: Model)
+206:local function inspectOfflineControl(prompt: ProximityPrompt)
+229:local function dispatchGameplayInteraction(context)
+245:local function handlePromptTriggered(prompt: ProximityPrompt, player: Player)
+271:local function teardown()
+
+=== REQUIRE CALLS ===
+9:local InteractionTypes = require(interactionFolder:WaitForChild("InteractionTypes"))
+10:local GameplayInteractionTypes = require(interactionFolder:WaitForChild("GameplayInteractionTypes"))
+11:local LegacyBunkerGameplayService = require(game.ServerScriptService:WaitForChild("LegacyBunkerGameplayService"))
+
+=== ROBLOX SERVICES ===
+1:local Debris = game:GetService("Debris")
+2:local Players = game:GetService("Players")
+3:local ProximityPromptService = game:GetService("ProximityPromptService")
+4:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+5:local TweenService = game:GetService("TweenService")
+6:local Workspace = game:GetService("Workspace")
+11:local LegacyBunkerGameplayService = require(game.ServerScriptService:WaitForChild("LegacyBunkerGameplayService"))
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+291:table.insert(serviceConnections, Players.PlayerRemoving:Connect(function(player: Player)
+
+=== INSTANCE CREATION ===
+128:	local sound = Instance.new("Sound")
+
+=== ATTRIBUTES AND TAGS ===
+105:	prompt:SetAttribute("FeedbackTone", tone)
+106:	local serial = prompt:GetAttribute("FeedbackSerial")
+107:	prompt:SetAttribute("FeedbackSerial", (if type(serial) == "number" then serial else 0) + 1)
+180:	local wasOpen = propModel:GetAttribute("PrototypeOpen") == true
+190:			propModel:SetAttribute("PrototypeOpen", isOpen)
+233:		context.Prompt:SetAttribute("GameplayResultCode", gameplayResult.Code)
+234:		context.Prompt:SetAttribute("GameplayResultSerial", (context.Prompt:GetAttribute("GameplayResultSerial") or 0) + 1)
+263:		GameplayTargetId = propModel:GetAttribute("GameplayTargetId"),
+
+=== EVENT CONNECTIONS ===
+140:	sound.Ended:Once(function()
+282:table.insert(serviceConnections, ProximityPromptService.PromptTriggered:Connect(function(
+291:table.insert(serviceConnections, Players.PlayerRemoving:Connect(function(player: Player)
+295:table.insert(serviceConnections, interactiveRoot.AncestryChanged:Connect(function()
+
+=== LOOPS AND TASKS ===
+55:	while current and current ~= interactiveRoot do
+276:	for _, connection in serviceConnections do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/BunkerPowerService.server.luau
+
+=== FILE METADATA ===
+      87    2673 src/ServerScriptService/BunkerPowerService.server.luau
+src/ServerScriptService/BunkerPowerService.server.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+6:local function getBunker()
+11:local function getControlMarker()
+18:local function setBunkerLights(enabled)
+55:local function setPromptEnabled(enabled)
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+1:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+45:    prompt = Instance.new("ProximityPrompt")
+
+=== ATTRIBUTES AND TAGS ===
+39:marker:SetAttribute("BunkerPowerControl", true)
+40:marker:SetAttribute("PowerOn", false)
+41:marker:SetAttribute("PowerDurationSeconds", LIGHT_DURATION)
+67:        marker:SetAttribute("LastPowerResult", "BATTERY_REQUIRED")
+74:    marker:SetAttribute("PowerOn", true)
+75:    marker:SetAttribute("LastPowerResult", "POWER_ON")
+76:    marker:SetAttribute("PowerCycleSerial", (marker:GetAttribute("PowerCycleSerial") or 0) + 1)
+83:        marker:SetAttribute("PowerOn", false)
+84:        marker:SetAttribute("LastPowerResult", "POWER_OUTAGE")
+
+=== EVENT CONNECTIONS ===
+61:prompt.Triggered:Connect(function(player)
+
+=== LOOPS AND TASKS ===
+24:    for _, descendant in lighting:GetDescendants() do
+79:    task.delay(LIGHT_DURATION, function()
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/Foundation/Combat/CombatStateService.luau
+
+=== FILE METADATA ===
+     100    3056 src/ServerScriptService/Foundation/Combat/CombatStateService.luau
+src/ServerScriptService/Foundation/Combat/CombatStateService.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+7:local function getHumanoid(player: Player): Humanoid?
+15:local function inferLifecycle(player: Player): string
+27:function CombatStateService.GetView(player: Player)
+42:function CombatStateService.SetLifecycleState(player: Player, lifecycleState: string)
+53:function CombatStateService.ApplyHealthDamage(player: Player, amount: number)
+78:local function resetPlayer(player: Player)
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+1:local Players = game:GetService("Players")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+82:for _, player in Players:GetPlayers() do
+84:    player.CharacterAdded:Connect(function()
+89:Players.PlayerAdded:Connect(function(player)
+91:    player.CharacterAdded:Connect(function()
+96:Players.PlayerRemoving:Connect(function(player)
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+84:    player.CharacterAdded:Connect(function()
+89:Players.PlayerAdded:Connect(function(player)
+91:    player.CharacterAdded:Connect(function()
+96:Players.PlayerRemoving:Connect(function(player)
+
+=== LOOPS AND TASKS ===
+82:for _, player in Players:GetPlayers() do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/Foundation/Combat/DamageService.luau
+
+=== FILE METADATA ===
+      42    1309 src/ServerScriptService/Foundation/Combat/DamageService.luau
+src/ServerScriptService/Foundation/Combat/DamageService.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+7:local function failure(code: string)
+15:function DamageService.Apply(request)
+
+=== REQUIRE CALLS ===
+3:local CombatStateService = require(script.Parent.CombatStateService)
+
+=== ROBLOX SERVICES ===
+1:local Players = game:GetService("Players")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/Foundation/Inventory/InventoryService.luau
+
+=== FILE METADATA ===
+     125    3926 src/ServerScriptService/Foundation/Inventory/InventoryService.luau
+src/ServerScriptService/Foundation/Inventory/InventoryService.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+10:local function result(success: boolean, code: string, itemId: string?, quantity: number?)
+19:local function validQuantity(quantity: number): boolean
+23:local function getState(player: Player): { [string]: number }?
+27:local function validate(player: Player, itemId: string, quantity: number)
+46:function InventoryService.GetQuantity(player: Player, itemId: string): number
+54:function InventoryService.CanAdd(player: Player, itemId: string, quantity: number)
+62:function InventoryService.Add(player: Player, itemId: string, quantity: number, _context: any?)
+72:function InventoryService.CanRemove(player: Player, itemId: string, quantity: number)
+83:function InventoryService.Remove(player: Player, itemId: string, quantity: number, _context: any?)
+96:function InventoryService.GetSnapshot(player: Player)
+110:local function initializePlayer(player: Player)
+
+=== REQUIRE CALLS ===
+4:local ItemDefinitions = require(ReplicatedStorage.Shared.Inventory.ItemDefinitions)
+
+=== ROBLOX SERVICES ===
+1:local Players = game:GetService("Players")
+2:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+116:for _, player in Players:GetPlayers() do
+120:Players.PlayerAdded:Connect(initializePlayer)
+121:Players.PlayerRemoving:Connect(function(player)
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+120:Players.PlayerAdded:Connect(initializePlayer)
+121:Players.PlayerRemoving:Connect(function(player)
+
+=== LOOPS AND TASKS ===
+100:        for itemId, quantity in state do
+116:for _, player in Players:GetPlayers() do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/Foundation/Session/SessionContextService.luau
+
+=== FILE METADATA ===
+      71    1775 src/ServerScriptService/Foundation/Session/SessionContextService.luau
+src/ServerScriptService/Foundation/Session/SessionContextService.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+7:local function isEligible(player: Player): boolean
+11:local function addPlayer(player: Player)
+15:local function removePlayer(player: Player)
+26:function SessionContextService.IsActivePlayer(player: Player): boolean
+30:function SessionContextService.GetActivePlayersSnapshot(): { Player }
+43:function SessionContextService.GetActivePlayerCount(): number
+53:function SessionContextService.GetPlayerSessionState(player: Player)
+60:function SessionContextService.GetSnapshot()
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+1:local Players = game:GetService("Players")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+19:for _, player in Players:GetPlayers() do
+23:Players.PlayerAdded:Connect(addPlayer)
+24:Players.PlayerRemoving:Connect(removePlayer)
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+23:Players.PlayerAdded:Connect(addPlayer)
+24:Players.PlayerRemoving:Connect(removePlayer)
+
+=== LOOPS AND TASKS ===
+19:for _, player in Players:GetPlayers() do
+32:    for player in membership do
+45:    for player in membership do
+62:    for _, player in SessionContextService.GetActivePlayersSnapshot() do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/GlobalManager.server.luau
+
+=== FILE METADATA ===
+     112    3818 src/ServerScriptService/GlobalManager.server.luau
+src/ServerScriptService/GlobalManager.server.luau: Unicode text, UTF-8 text
+
+=== FUNCTION DECLARATIONS ===
+9:local function getOrCreateValue(name, className, defaultValue)
+45:local function spawnZombieWave()
+64:local function syncTimeOnPhaseChange()
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+1:local Lighting = game:GetService("Lighting")
+2:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+3:local ServerStorage = game:GetService("ServerStorage")
+4:local Players = game:GetService("Players")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+33:Players.PlayerAdded:Connect(function(player)
+
+=== INSTANCE CREATION ===
+12:		val = Instance.new(className)
+34:	local stats = Instance.new("Folder", player)
+37:	Instance.new("IntValue", stats).Name = "Scrap"
+38:	Instance.new("IntValue", stats).Name = "Credits"
+39:	Instance.new("IntValue", stats).Name = "Batteries"
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+33:Players.PlayerAdded:Connect(function(player)
+76:GamePhase.Changed:Connect(syncTimeOnPhaseChange)
+
+=== LOOPS AND TASKS ===
+49:	for i = 1, amountToSpawn do
+57:		task.wait(3) -- מרווח בין זומבי לזומבי
+71:		task.wait(2) 
+72:		task.spawn(spawnZombieWave) -- הגל מתחיל כשיש לילה
+78:task.spawn(function()
+84:	while true do
+111:		task.wait(dt)
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/LegacyBunkerGameplayService.luau
+
+=== FILE METADATA ===
+      57    2531 src/ServerScriptService/LegacyBunkerGameplayService.luau
+src/ServerScriptService/LegacyBunkerGameplayService.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+3:local function getStat(player: Player, name: string): IntValue?
+9:local function result(success: boolean, code: string)
+14:    legacy_battery_station = function(player: Player)
+23:    legacy_scrap_processor = function(player: Player)
+32:    legacy_harvest_upgrade = function(player: Player)
+41:    legacy_weapon_upgrade = function(player: Player)
+51:function LegacyBunkerGameplayService.TryInteract(player: Player, gameplayTargetId: string)
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+35:        if player:GetAttribute("HarvestPower") == 2 then return result(false, "ALREADY_UPGRADED") end
+38:        player:SetAttribute("HarvestPower", 2)
+46:        player:SetAttribute("GunDamage", (player:GetAttribute("GunDamage") or 20) + 10)
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/Survival/ForestResourceSpawner.server.luau
+
+=== FILE METADATA ===
+      66    2639 src/ServerScriptService/Survival/ForestResourceSpawner.server.luau
+src/ServerScriptService/Survival/ForestResourceSpawner.server.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+23:local function validPlacement(candidate)
+29:local function nextPlacement()
+
+=== REQUIRE CALLS ===
+4:local ResourceNodeService = require(ServerScriptService.Survival.ResourceNodeService)
+
+=== ROBLOX SERVICES ===
+2:local Workspace = game:GetService("Workspace")
+3:local ServerScriptService = game:GetService("ServerScriptService")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+16:    forestFolder = Instance.new("Folder")
+
+=== ATTRIBUTES AND TAGS ===
+44:    tree:SetAttribute("ResourceNodeId", tree.Name)
+45:    tree:SetAttribute("ResourceDefinitionId", "tree_basic")
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+24:    for _, existing in placements do
+30:    for _ = 1, 150 do
+39:for index = 1, TREE_COUNT do
+53:    for _, descendant in tree:GetDescendants() do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/Survival/HarvestService.server.luau
+
+=== FILE METADATA ===
+     121    4591 src/ServerScriptService/Survival/HarvestService.server.luau
+src/ServerScriptService/Survival/HarvestService.server.luau: Unicode text, UTF-8 text
+
+=== FUNCTION DECLARATIONS ===
+20:local function makeAxeTool()
+78:local function ensurePrototypeAxe(player)
+93:local function setupPlayer(player)
+106:local function publishInventoryDiagnostics(player)
+
+=== REQUIRE CALLS ===
+4:local InventoryService = require(game.ServerScriptService.Foundation.Inventory.InventoryService)
+5:local ResourceNodeService = require(game.ServerScriptService.Survival.ResourceNodeService)
+
+=== ROBLOX SERVICES ===
+1:local Players = game:GetService("Players")
+2:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+4:local InventoryService = require(game.ServerScriptService.Foundation.Inventory.InventoryService)
+5:local ResourceNodeService = require(game.ServerScriptService.Survival.ResourceNodeService)
+
+=== REMOTES AND BINDABLES ===
+15:    harvestIntent = Instance.new("RemoteEvent")
+115:harvestIntent.OnServerEvent:Connect(function(player, nodeId)
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+95:    player.CharacterAdded:Connect(function()
+101:for _, player in Players:GetPlayers() do setupPlayer(player) end
+102:Players.PlayerAdded:Connect(setupPlayer)
+111:for _, player in Players:GetPlayers() do
+
+=== INSTANCE CREATION ===
+9:    remotes = Instance.new("Folder")
+15:    harvestIntent = Instance.new("RemoteEvent")
+21:    local tool = Instance.new("Tool")
+30:    local handle = Instance.new("Part")
+39:    local knob = Instance.new("Part")
+49:    local head = Instance.new("Part")
+59:    local blade = Instance.new("WedgePart")
+70:        local weld = Instance.new("WeldConstraint")
+
+=== ATTRIBUTES AND TAGS ===
+26:    tool:SetAttribute("ItemId", "axe_basic")
+27:    tool:SetAttribute("ToolDefinitionId", "axe_basic")
+107:    player:SetAttribute("CanonicalAxeQuantity", InventoryService.GetQuantity(player, "axe_basic"))
+108:    player:SetAttribute("CanonicalWoodQuantity", InventoryService.GetQuantity(player, "wood"))
+117:    player:SetAttribute("LastHarvestResultCode", result.Code)
+118:    local serial = player:GetAttribute("HarvestResultSerial")
+119:    player:SetAttribute("HarvestResultSerial", (if type(serial) == "number" then serial else 0) + 1)
+
+=== EVENT CONNECTIONS ===
+95:    player.CharacterAdded:Connect(function()
+102:Players.PlayerAdded:Connect(setupPlayer)
+115:harvestIntent.OnServerEvent:Connect(function(player, nodeId)
+
+=== LOOPS AND TASKS ===
+69:    for _, part in { knob, head, blade } do
+94:    task.defer(ensurePrototypeAxe, player)
+96:        task.wait(0.25)
+101:for _, player in Players:GetPlayers() do setupPlayer(player) end
+111:for _, player in Players:GetPlayers() do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/Survival/ResourceNodeService.luau
+
+=== FILE METADATA ===
+     226    9188 src/ServerScriptService/Survival/ResourceNodeService.luau
+src/ServerScriptService/Survival/ResourceNodeService.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+14:local function getFeedbackRemote()
+32:local function result(success, code, payload)
+36:local function setPresentation(node, state, definition)
+45:local function setNodeVisible(node, visible)
+54:local function initializeNode(node)
+79:function ResourceNodeService.RegisterNode(node)
+93:local function getEquippedTool(player)
+104:local function validatePlayer(player)
+115:local function toolCanHarvest(toolDefinition, resourceDefinition)
+119:local function finishRespawn(state)
+129:local function commitReward(state)
+161:function ResourceNodeService.TryHarvest(player, nodeId: string)
+211:function ResourceNodeService.GetState(nodeId: string)
+
+=== REQUIRE CALLS ===
+5:local ResourceDefinitions = require(ReplicatedStorage.Shared.Survival.ResourceDefinitions)
+6:local ToolDefinitions = require(ReplicatedStorage.Shared.Survival.ToolDefinitions)
+7:local InventoryService = require(game.ServerScriptService.Foundation.Inventory.InventoryService)
+8:local SessionContextService = require(game.ServerScriptService.Foundation.Session.SessionContextService)
+
+=== ROBLOX SERVICES ===
+1:local Players = game:GetService("Players")
+2:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+3:local Workspace = game:GetService("Workspace")
+7:local InventoryService = require(game.ServerScriptService.Foundation.Inventory.InventoryService)
+8:local SessionContextService = require(game.ServerScriptService.Foundation.Session.SessionContextService)
+
+=== REMOTES AND BINDABLES ===
+23:        remote = Instance.new("RemoteEvent")
+126:    feedbackRemote:FireAllClients("Respawn", { NodeId = state.Node:GetAttribute("ResourceNodeId"), CycleSerial = state.CycleSerial })
+150:    feedbackRemote:FireAllClients("Depleted", { NodeId = state.Node:GetAttribute("ResourceNodeId"), CycleSerial = state.CycleSerial })
+151:    feedbackRemote:FireClient(winner, "Reward", { ItemId = pending.ItemId, Quantity = pending.Quantity, Total = grant.Quantity })
+189:    feedbackRemote:FireAllClients("Hit", {
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+222:Players.PlayerRemoving:Connect(function(player)
+
+=== INSTANCE CREATION ===
+17:        folder = Instance.new("Folder")
+23:        remote = Instance.new("RemoteEvent")
+
+=== ATTRIBUTES AND TAGS ===
+37:    node:SetAttribute("HarvestState", state.LifecycleState)
+38:    node:SetAttribute("HarvestHealth", state.CurrentHealth)
+39:    node:SetAttribute("HarvestMaxHealth", definition.MaxHealth)
+40:    node:SetAttribute("HarvestProgress", math.clamp(1 - state.CurrentHealth / definition.MaxHealth, 0, 1))
+41:    node:SetAttribute("HarvestHitSerial", state.HitSerial)
+42:    node:SetAttribute("CycleSerial", state.CycleSerial)
+55:    local nodeId = node:GetAttribute("ResourceNodeId")
+56:    local definitionId = node:GetAttribute("ResourceDefinitionId")
+97:        if child:IsA("Tool") and child:GetAttribute("ToolDefinitionId") == "axe_basic" then
+126:    feedbackRemote:FireAllClients("Respawn", { NodeId = state.Node:GetAttribute("ResourceNodeId"), CycleSerial = state.CycleSerial })
+139:        ResourceNodeId = state.Node:GetAttribute("ResourceNodeId"),
+140:        ResourceDefinitionId = state.Node:GetAttribute("ResourceDefinitionId"),
+150:    feedbackRemote:FireAllClients("Depleted", { NodeId = state.Node:GetAttribute("ResourceNodeId"), CycleSerial = state.CycleSerial })
+153:        if states[state.Node:GetAttribute("ResourceNodeId")] == state and state.LifecycleState == "Depleted" then
+173:    local toolDefinition = ToolDefinitions.get(tool:GetAttribute("ToolDefinitionId"))
+
+=== EVENT CONNECTIONS ===
+222:Players.PlayerRemoving:Connect(function(player)
+
+=== LOOPS AND TASKS ===
+46:    for _, descendant in node:GetDescendants() do
+88:    for _, child in prototypeGrove:GetChildren() do
+96:    for _, child in character:GetChildren() do
+152:    task.delay(state.Definition.RespawnDelaySeconds, function()
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerScriptService/ZombieEntranceTargetMigration.server.luau
+
+=== FILE METADATA ===
+      48    1362 src/ServerScriptService/ZombieEntranceTargetMigration.server.luau
+src/ServerScriptService/ZombieEntranceTargetMigration.server.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+12:local function migrateZombie(zombie)
+
+=== REQUIRE CALLS ===
+4:local EntranceContract = require(ServerScriptService:WaitForChild("BunkerEntranceContract"))
+
+=== ROBLOX SERVICES ===
+1:local ServerScriptService = game:GetService("ServerScriptService")
+2:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+16:    if zombie:GetAttribute("EntranceTargetMigrated") then
+20:    zombie:SetAttribute("EntranceTargetMigrated", true)
+24:        target:SetAttribute("BunkerEntranceTarget", true)
+25:        zombie:SetAttribute("EntranceTargetPath", target:GetFullName())
+47:    target:SetAttribute("BunkerEntranceTarget", true)
+
+=== EVENT CONNECTIONS ===
+41:Workspace.ChildAdded:Connect(function(child)
+
+=== LOOPS AND TASKS ===
+30:    for _, child in zombie:GetChildren() do
+37:for _, child in Workspace:GetChildren() do
+42:    task.defer(migrateZombie, child)
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau
+
+=== FILE METADATA ===
+      50    1149 src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau
+src/ServerStorage/DisabledBrokenScripts/DiscoBall.server.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+2:local RunService = game:GetService("RunService")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+37:RunService.Heartbeat:Connect(function(dt: number)
+
+=== LOOPS AND TASKS ===
+22:for _, child in discoBall:GetChildren() do
+28:for i, light in lights do
+42:	for i, light in lights do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/StarterPlayer/StarterPlayerScripts/Client.client.luau
+
+=== FILE METADATA ===
+       1      35 src/StarterPlayer/StarterPlayerScripts/Client.client.luau
+src/StarterPlayer/StarterPlayerScripts/Client.client.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/StarterPlayer/StarterPlayerScripts/HarvestController.client.luau
+
+=== FILE METADATA ===
+      95    3836 src/StarterPlayer/StarterPlayerScripts/HarvestController.client.luau
+src/StarterPlayer/StarterPlayerScripts/HarvestController.client.luau: Unicode text, UTF-8 text
+
+=== FUNCTION DECLARATIONS ===
+14:local function eachResourceNode(callback)
+25:local function findNode(nodeId)
+33:local function nearestTarget()
+50:local function pulseAxe(tool)
+63:local function bindTool(tool)
+74:local function watchCharacter(character)
+
+=== REQUIRE CALLS ===
+6:local NotificationController = require(ReplicatedStorage.UI.Controllers.NotificationController)
+
+=== ROBLOX SERVICES ===
+1:local Players = game:GetService("Players")
+2:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+3:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+70:        if target then harvestIntent:FireServer(target:GetAttribute("ResourceNodeId")) end
+88:feedback.OnClientEvent:Connect(function(kind, payload)
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+86:player.CharacterAdded:Connect(watchCharacter)
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+28:        if not found and node:GetAttribute("ResourceNodeId") == nodeId then found = node end
+39:        if node:GetAttribute("HarvestState") == "Active" then
+64:    if tool:GetAttribute("ToolDefinitionId") ~= "axe_basic" then return end
+70:        if target then harvestIntent:FireServer(target:GetAttribute("ResourceNodeId")) end
+93:        if node then node:SetAttribute("ClientHitPulse", (node:GetAttribute("ClientHitPulse") or 0) + 1) end
+
+=== EVENT CONNECTIONS ===
+67:    activeToolConnection = tool.Activated:Connect(function()
+75:    character.ChildAdded:Connect(function(child) if child:IsA("Tool") then bindTool(child) end end)
+76:    character.ChildRemoved:Connect(function(child)
+86:player.CharacterAdded:Connect(watchCharacter)
+88:feedback.OnClientEvent:Connect(function(kind, payload)
+
+=== LOOPS AND TASKS ===
+17:        for _, node in grove:GetChildren() do if node:IsA("Model") then callback(node) end end
+21:        for _, node in forest:GetChildren() do if node:IsA("Model") then callback(node) end end
+55:    task.delay(0.11, function()
+58:    task.delay(0.22, function()
+82:    for _, child in character:GetChildren() do if child:IsA("Tool") then bindTool(child) end end
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/StarterPlayer/StarterPlayerScripts/HarvestVisualController.client.luau
+
+=== FILE METADATA ===
+     219    8787 src/StarterPlayer/StarterPlayerScripts/HarvestVisualController.client.luau
+src/StarterPlayer/StarterPlayerScripts/HarvestVisualController.client.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+18:local function findNode(nodeId)
+30:local function makeProgress(node)
+64:local function updateProgress(node)
+76:local function emitChips(node)
+94:local function playImpact(node)
+109:local function hitReaction(node)
+124:local function fall(node)
+140:local function respawn(node)
+161:local function attach(node)
+165:    local function tryAttach()
+196:local function attachRoot(root)
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+1:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+2:local TweenService = game:GetService("TweenService")
+3:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+211:feedback.OnClientEvent:Connect(function(kind, payload)
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+34:    local gui = Instance.new("BillboardGui")
+42:    local back = Instance.new("Frame")
+48:    local fill = Instance.new("Frame")
+79:    local emitter = Instance.new("ParticleEmitter")
+97:    local sound = Instance.new("Sound")
+127:    local value = Instance.new("CFrameValue")
+147:    local value = Instance.new("CFrameValue")
+
+=== ATTRIBUTES AND TAGS ===
+11:script:SetAttribute("HarvestVisualBooted", true)
+12:script:SetAttribute("HarvestVisualAttachCount", 0)
+13:script:SetAttribute("HarvestVisualAttachAttemptCount", 0)
+14:script:SetAttribute("HarvestVisualAttachRootCount", 0)
+15:script:SetAttribute("HarvestVisualLastRoot", "")
+16:script:SetAttribute("HarvestVisualLastFailure", "")
+23:                if node:IsA("Model") and node:GetAttribute("ResourceNodeId") == nodeId then return node end
+57:        script:SetAttribute("HarvestVisualLastFailure", tostring(failure))
+60:    script:SetAttribute("HarvestVisualAttachCount", (script:GetAttribute("HarvestVisualAttachCount") or 0) + 1)
+67:    local progress = node:GetAttribute("HarvestProgress") or 0
+68:    local state = node:GetAttribute("HarvestState")
+114:        if node.Parent and node:GetAttribute("HarvestState") == "Active" then node:PivotTo(base * CFrame.Angles(0, 0, math.rad(-1.2))) end
+117:        if node.Parent and node:GetAttribute("HarvestState") == "Active" then node:PivotTo(base) end
+162:    script:SetAttribute("HarvestVisualAttachAttemptCount", (script:GetAttribute("HarvestVisualAttachAttemptCount") or 0) + 1)
+172:        node:GetAttributeChangedSignal("HarvestProgress"):Connect(function() updateProgress(node) end)
+197:    script:SetAttribute("HarvestVisualAttachRootCount", (script:GetAttribute("HarvestVisualAttachRootCount") or 0) + 1)
+198:    script:SetAttribute("HarvestVisualLastRoot", root:GetFullName())
+
+=== EVENT CONNECTIONS ===
+129:    local connection = value:GetPropertyChangedSignal("Value"):Connect(function()
+135:    tween.Completed:Connect(function() connection:Disconnect(); value:Destroy() end)
+149:    local connection = value:GetPropertyChangedSignal("Value"):Connect(function() if node.Parent then node:PivotTo(value.Value) end end)
+152:    tween.Completed:Connect(function()
+172:        node:GetAttributeChangedSignal("HarvestProgress"):Connect(function() updateProgress(node) end)
+179:    connection = node.ChildAdded:Connect(function(child)
+200:    root.ChildAdded:Connect(function(node) if node:IsA("Model") then task.defer(attach, node) end end)
+207:Workspace.ChildAdded:Connect(function(child)
+211:feedback.OnClientEvent:Connect(function(kind, payload)
+
+=== LOOPS AND TASKS ===
+19:    for _, rootName in { "PrototypeHarvestGrove", "ForestResourceRegion" } do
+22:            for _, node in root:GetChildren() do
+91:    task.delay(0.5, function() if emitter.Parent then emitter:Destroy() end end)
+106:    task.delay(2, function() if sound.Parent then sound:Destroy() end end)
+113:    task.delay(0.07, function()
+116:    task.delay(0.14, function()
+144:    for _, descendant in node:GetDescendants() do
+154:        for _, descendant in node:GetDescendants() do
+188:    task.delay(3, function()
+199:    for _, node in root:GetChildren() do if node:IsA("Model") then attach(node) end end
+200:    root.ChildAdded:Connect(function(node) if node:IsA("Model") then task.defer(attach, node) end end)
+203:for _, rootName in { "PrototypeHarvestGrove", "ForestResourceRegion" } do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/StarterPlayer/StarterPlayerScripts/UIBootstrap.client.luau
+
+=== FILE METADATA ===
+      13     706 src/StarterPlayer/StarterPlayerScripts/UIBootstrap.client.luau
+src/StarterPlayer/StarterPlayerScripts/UIBootstrap.client.luau: ASCII text
+
+=== FUNCTION DECLARATIONS ===
+
+=== REQUIRE CALLS ===
+6:local InteractionPromptController = require(UI.Controllers.InteractionPromptController)
+12:local UIController = require(UI.Controllers.UIController)
+
+=== ROBLOX SERVICES ===
+1:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+=== REMOTES AND BINDABLES ===
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+
+=== LOOPS AND TASKS ===
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/client/FarmingUI.client.lua
+
+=== FILE METADATA ===
+     236    7922 src/client/FarmingUI.client.lua
+src/client/FarmingUI.client.lua: Unicode text, UTF-8 text
+
+=== FUNCTION DECLARATIONS ===
+31:local function makeLabel(name, text, pos, size, color): TextLabel
+74:	local function makeSlot(name, text, xOff)
+123:local function spawnNotification(text: string)
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+8:local Players = game:GetService("Players")
+9:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+10:local TweenService = game:GetService("TweenService")
+11:local RunService = game:GetService("RunService")
+12:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+209:UpdateUI.OnClientEvent:Connect(function(credits, seeds, crops, food)
+216:NotifyRE.OnClientEvent:Connect(spawnNotification)
+218:UpdateProgress.OnClientEvent:Connect(function(pct: number)
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+
+=== INSTANCE CREATION ===
+23:local screenGui = Instance.new("ScreenGui")
+32:	local lbl = Instance.new("TextLabel")
+58:local hotbar = Instance.new("Frame")
+68:local uic = Instance.new("UICorner", hotbar)
+75:		local f = Instance.new("Frame")
+82:		local l = Instance.new("TextLabel")
+166:		local bb = Instance.new("BillboardGui")
+173:		local bg = Instance.new("Frame")
+180:		local uic2 = Instance.new("UICorner", bg)
+183:		local fill = Instance.new("Frame")
+190:		local uic3 = Instance.new("UICorner", fill)
+193:		local pctLabel = Instance.new("TextLabel")
+
+=== ATTRIBUTES AND TAGS ===
+
+=== EVENT CONNECTIONS ===
+153:	tween.Completed:Connect(function()
+209:UpdateUI.OnClientEvent:Connect(function(credits, seeds, crops, food)
+216:NotifyRE.OnClientEvent:Connect(spawnNotification)
+218:UpdateProgress.OnClientEvent:Connect(function(pct: number)
+228:RunService.Heartbeat:Connect(function()
+
+=== LOOPS AND TASKS ===
+110:for _ = 1, NOTIF_POOL_SIZE do
+229:	for _, lbl in notifPool do
+
+============================================================
+BDS FILE INSPECTION
+============================================================
+FILE: src/server/FarmingSystem.server.lua
+
+=== FILE METADATA ===
+     356   11424 src/server/FarmingSystem.server.lua
+src/server/FarmingSystem.server.lua: Unicode text, UTF-8 text
+
+=== FUNCTION DECLARATIONS ===
+34:local function getInventory(player): Folder?
+38:local function getItem(player, name: string): IntValue?
+43:local function pushUI(player)
+56:local function notify(player, text: string)
+61:local function setupPlayer(player)
+93:local function ensurePlots(): { BasePart }
+137:local function ensureProcessor(): Model?
+188:local function getState(plot): string
+191:local function setState(plot, s: string)
+325:	local function resizePart(p)
+
+=== REQUIRE CALLS ===
+
+=== ROBLOX SERVICES ===
+10:local Players = game:GetService("Players")
+11:local ReplicatedStorage = game:GetService("ReplicatedStorage")
+12:local TweenService = game:GetService("TweenService")
+13:local Workspace = game:GetService("Workspace")
+
+=== REMOTES AND BINDABLES ===
+27:	local re = Instance.new("RemoteEvent")
+48:	Remote.UpdateUI:FireClient(player,
+57:	Remote.Notify:FireClient(player, text)
+308:			Remote.UpdateProgress:FireClient(player, i / steps * 100)
+314:		Remote.UpdateProgress:FireClient(player, 0)
+
+=== DATASTORE USAGE ===
+
+=== PLAYER LIFECYCLE ===
+85:Players.PlayerAdded:Connect(setupPlayer)
+86:for _, p in Players:GetPlayers() do task.spawn(setupPlayer, p) end
+353:	for _, p in Players:GetPlayers() do
+
+=== INSTANCE CREATION ===
+21:local remotes = Instance.new("Folder")
+27:	local re = Instance.new("RemoteEvent")
+64:		local lv = Instance.new("IntValue")
+68:	local inv = Instance.new("Folder")
+77:		local v = Instance.new("IntValue")
+96:		container = Instance.new("Folder")
+117:			local plot = Instance.new("Part")
+141:	proc = Instance.new("Model")
+145:	local body = Instance.new("Part")
+154:	local screen = Instance.new("Part")
+163:	local hopper = Instance.new("Part")
+173:	local output = Instance.new("Part")
+200:	local prompt = Instance.new("ProximityPrompt")
+224:			local crop = Instance.new("Part")
+275:	local progressDummy = Instance.new("Part")
+284:	local procPrompt = Instance.new("ProximityPrompt")
+329:		local tex = Instance.new("Texture")
+
+=== ATTRIBUTES AND TAGS ===
+189:	return plot:GetAttribute("PlotState") or "Empty"
+192:	plot:SetAttribute("PlotState", s)
+
+=== EVENT CONNECTIONS ===
+85:Players.PlayerAdded:Connect(setupPlayer)
+209:	prompt.Triggered:Connect(function(player)
+293:	procPrompt.Triggered:Connect(function(player)
+
+=== LOOPS AND TASKS ===
+26:for _, name in ipairs({"UpdateUI", "Notify", "UpdateProgress"}) do
+81:	task.wait(1)
+86:for _, p in Players:GetPlayers() do task.spawn(setupPlayer, p) end
+103:	for _, c in container:GetChildren() do
+115:	for _, z in Z_VALS do
+116:		for _, x in X_VALS do
+195:for _, plot in plots do
+242:			task.wait(GROW_TIME)
+306:		for i = 1, steps do
+307:			task.wait(PROCESS_TIME / steps)
+342:			for _, child in wheel:GetDescendants() do
+352:while task.wait(5) do
+353:	for _, p in Players:GetPlayers() do
+354:		task.spawn(pushUI, p)
+
+=== CROSS-PROJECT REQUIRE CALLS ===
+src/ServerScriptService/Foundation/Combat/DamageService.luau:3:local CombatStateService = require(script.Parent.CombatStateService)
+src/ServerScriptService/Foundation/Inventory/InventoryService.luau:4:local ItemDefinitions = require(ReplicatedStorage.Shared.Inventory.ItemDefinitions)
+src/ServerScriptService/ZombieEntranceTargetMigration.server.luau:4:local EntranceContract = require(ServerScriptService:WaitForChild("BunkerEntranceContract"))
+src/ServerScriptService/BunkerInteractionService.server.luau:9:local InteractionTypes = require(interactionFolder:WaitForChild("InteractionTypes"))
+src/ServerScriptService/BunkerInteractionService.server.luau:10:local GameplayInteractionTypes = require(interactionFolder:WaitForChild("GameplayInteractionTypes"))
+src/ServerScriptService/BunkerInteractionService.server.luau:11:local LegacyBunkerGameplayService = require(game.ServerScriptService:WaitForChild("LegacyBunkerGameplayService"))
+src/ServerScriptService/Survival/HarvestService.server.luau:4:local InventoryService = require(game.ServerScriptService.Foundation.Inventory.InventoryService)
+src/ServerScriptService/Survival/HarvestService.server.luau:5:local ResourceNodeService = require(game.ServerScriptService.Survival.ResourceNodeService)
+src/ServerScriptService/Survival/ResourceNodeService.luau:5:local ResourceDefinitions = require(ReplicatedStorage.Shared.Survival.ResourceDefinitions)
+src/ServerScriptService/Survival/ResourceNodeService.luau:6:local ToolDefinitions = require(ReplicatedStorage.Shared.Survival.ToolDefinitions)
+src/ServerScriptService/Survival/ResourceNodeService.luau:7:local InventoryService = require(game.ServerScriptService.Foundation.Inventory.InventoryService)
+src/ServerScriptService/Survival/ResourceNodeService.luau:8:local SessionContextService = require(game.ServerScriptService.Foundation.Session.SessionContextService)
+src/ServerScriptService/Survival/ForestResourceSpawner.server.luau:4:local ResourceNodeService = require(ServerScriptService.Survival.ResourceNodeService)
+src/ReplicatedStorage/UI/Components/ProgressBar.luau:2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+src/ReplicatedStorage/UI/Components/StatChip.luau:2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+src/ReplicatedStorage/UI/Components/Panel.luau:2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+src/ReplicatedStorage/UI/Components/Notification.luau:2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+src/ReplicatedStorage/UI/Components/Button.luau:2:local Tokens = require(ReplicatedStorage.UI.Tokens)
+src/ReplicatedStorage/UI/Components/InteractionPrompt.luau:6:local Tokens = require(ReplicatedStorage.UI.Tokens)
+src/ReplicatedStorage/UI/Controllers/UIController.luau:4:local Tokens = require(ReplicatedStorage.UI.Tokens)
+src/ReplicatedStorage/UI/Controllers/UIController.luau:5:local NotificationController = require(ReplicatedStorage.UI.Controllers.NotificationController)
+src/ReplicatedStorage/UI/Controllers/InteractionPromptController.luau:10:local InteractionPrompt = require(ReplicatedStorage.UI.Components.InteractionPrompt)
+src/ReplicatedStorage/UI/Controllers/NotificationController.luau:2:local Notification = require(ReplicatedStorage.UI.Components.Notification)
+src/StarterPlayer/StarterPlayerScripts/UIBootstrap.client.luau:6:local InteractionPromptController = require(UI.Controllers.InteractionPromptController)
+src/StarterPlayer/StarterPlayerScripts/UIBootstrap.client.luau:12:local UIController = require(UI.Controllers.UIController)
+src/StarterPlayer/StarterPlayerScripts/HarvestController.client.luau:6:local NotificationController = require(ReplicatedStorage.UI.Controllers.NotificationController)
+
+=== CROSS-PROJECT REMOTES ===
+src/ServerScriptService/Survival/HarvestService.server.luau:15:    harvestIntent = Instance.new("RemoteEvent")
+src/ServerScriptService/Survival/HarvestService.server.luau:115:harvestIntent.OnServerEvent:Connect(function(player, nodeId)
+src/ServerScriptService/Survival/ResourceNodeService.luau:23:        remote = Instance.new("RemoteEvent")
+src/ServerScriptService/Survival/ResourceNodeService.luau:126:    feedbackRemote:FireAllClients("Respawn", { NodeId = state.Node:GetAttribute("ResourceNodeId"), CycleSerial = state.CycleSerial })
+src/ServerScriptService/Survival/ResourceNodeService.luau:150:    feedbackRemote:FireAllClients("Depleted", { NodeId = state.Node:GetAttribute("ResourceNodeId"), CycleSerial = state.CycleSerial })
+src/ServerScriptService/Survival/ResourceNodeService.luau:151:    feedbackRemote:FireClient(winner, "Reward", { ItemId = pending.ItemId, Quantity = pending.Quantity, Total = grant.Quantity })
+src/ServerScriptService/Survival/ResourceNodeService.luau:189:    feedbackRemote:FireAllClients("Hit", {
+src/ReplicatedStorage/UI/Controllers/UIController.luau:242:            updateUI.OnClientEvent:Connect(function(credits, seeds, crops, food)
+src/ReplicatedStorage/UI/Controllers/UIController.luau:251:            updateProgress.OnClientEvent:Connect(function(pct)
+src/ReplicatedStorage/UI/Controllers/UIController.luau:259:            notify.OnClientEvent:Connect(function(text)
+src/server/FarmingSystem.server.lua:27:	local re = Instance.new("RemoteEvent")
+src/server/FarmingSystem.server.lua:48:	Remote.UpdateUI:FireClient(player,
+src/server/FarmingSystem.server.lua:57:	Remote.Notify:FireClient(player, text)
+src/server/FarmingSystem.server.lua:308:			Remote.UpdateProgress:FireClient(player, i / steps * 100)
+src/server/FarmingSystem.server.lua:314:		Remote.UpdateProgress:FireClient(player, 0)
+src/StarterPlayer/StarterPlayerScripts/HarvestController.client.luau:70:        if target then harvestIntent:FireServer(target:GetAttribute("ResourceNodeId")) end
+src/StarterPlayer/StarterPlayerScripts/HarvestController.client.luau:88:feedback.OnClientEvent:Connect(function(kind, payload)
+src/StarterPlayer/StarterPlayerScripts/HarvestVisualController.client.luau:211:feedback.OnClientEvent:Connect(function(kind, payload)
+src/client/FarmingUI.client.lua:209:UpdateUI.OnClientEvent:Connect(function(credits, seeds, crops, food)
+src/client/FarmingUI.client.lua:216:NotifyRE.OnClientEvent:Connect(spawnNotification)
+src/client/FarmingUI.client.lua:218:UpdateProgress.OnClientEvent:Connect(function(pct: number)
+
+=== CROSS-PROJECT DATASTORE USAGE ===
+
+=== CURRENT GIT DIFF ===
+?? ./

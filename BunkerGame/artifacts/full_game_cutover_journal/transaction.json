@@ -1,0 +1,52 @@
+{
+  "activeBefore": {
+    "projectSha256": "bb3d29375f2ef15db11c3578efd29e8c4630fa422e66b0caa2ef52439423aa63",
+    "src": {
+      "bytes": 1234387,
+      "files": 71,
+      "sha256": "e29c203b768679be8dacad60f559c90d577734dc3a778fc1097969f717a192c3"
+    }
+  },
+  "candidate": "/Users/Ori/Documents/Projects/BunkerGame/artifacts/full_game_candidate",
+  "candidateBefore": {
+    "projectSha256": "f0d6e62165e075f0f089bb59cb28ec3e4fcd32392915ab8ef8b72c96bafcd231",
+    "src": {
+      "bytes": 1470915,
+      "files": 44,
+      "sha256": "e72f54dcb02e41c2f9a8188c57d8ff9ab2313beddadf123465af78cceae01cf5"
+    }
+  },
+  "createdAtUnix": 1787774491,
+  "postCutoverValidation": {
+    "active": {
+      "projectSha256": "f0d6e62165e075f0f089bb59cb28ec3e4fcd32392915ab8ef8b72c96bafcd231",
+      "src": {
+        "bytes": 1527489,
+        "files": 44,
+        "sha256": "4a9ecd777b054b434a9df82d70931942defe1d0a74bd5d71f34df7dbf759120a"
+      }
+    },
+    "evidence": {
+      "markers": [
+        "FULL_GAME_POST_CUTOVER_STATIC=PASS",
+        "FULL_GAME_STUDIO_EDIT=PASS",
+        "FULL_GAME_PLAY_FOUNDATION=PASS"
+      ],
+      "path": "docs/director/FULL-GAME-POST-CUTOVER-EVIDENCE.md",
+      "sha256": "34168eb5aa73cda1d5fb724b217de3da6611e47806e542a0510ff8935db7cb8e"
+    },
+    "legacy": {
+      "projectSha256": "bb3d29375f2ef15db11c3578efd29e8c4630fa422e66b0caa2ef52439423aa63",
+      "src": {
+        "bytes": 1234387,
+        "files": 71,
+        "sha256": "e29c203b768679be8dacad60f559c90d577734dc3a778fc1097969f717a192c3"
+      }
+    },
+    "recordedAtUnix": 1787782100
+  },
+  "root": "/Users/Ori/Documents/Projects/BunkerGame",
+  "state": "committed",
+  "task": "FG-GREENFIELD-001",
+  "updatedAtUnix": 1787782100
+}

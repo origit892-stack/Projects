@@ -1,0 +1,7 @@
+[    1520ms] [WARNING] [.WebGL-0x10c00075c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://127.0.0.1:8768/hokusai-scroll-film.html:3760
+[    1523ms] [WARNING] [.WebGL-0x10c00075c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://127.0.0.1:8768/hokusai-scroll-film.html:3760
+[    1523ms] [WARNING] [.WebGL-0x10c00075c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://127.0.0.1:8768/hokusai-scroll-film.html:3760
+[    1523ms] [WARNING] [.WebGL-0x10c00075c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat) @ http://127.0.0.1:8768/hokusai-scroll-film.html:3760
+[    1616ms] [WARNING] WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost @ http://127.0.0.1:8768/hokusai-scroll-film.html:0
+[    1729ms] [LOG] THREE.WebGLRenderer: Context Lost. @ http://127.0.0.1:8768/hokusai-scroll-film.html:3725
+[    2737ms] [LOG] THREE.WebGLRenderer: Context Restored. @ http://127.0.0.1:8768/hokusai-scroll-film.html:3725

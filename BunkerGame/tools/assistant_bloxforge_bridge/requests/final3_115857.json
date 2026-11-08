@@ -1,0 +1,14 @@
+{
+  "request_id": "final3_115857",
+  "intent": "bloxforge_tool_call",
+  "details": "Final scene validation",
+  "studio_context": {},
+  "received_at": "2026-09-01T10:09:26Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "get_scene_summary",
+    "arguments": {
+      "path": "Workspace"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "asset_id": "abandoned_warehouse_interior_01",
+  "category": "environment",
+  "source_type": "GLB",
+  "source_file": "assets/source/abandoned_warehouse/abandoned_warehouse_interior.glb",
+  "source_sha256": "b10cff9b8f35a6fa06c97a2c5ca344bf8429be6c58b84251e254149e670928a9",
+  "source_bytes": 114801500,
+  "roblox_import_status": "PENDING",
+  "roblox_model_asset_id": null,
+  "mesh_ids": [],
+  "texture_ids": [],
+  "argon_persistence_status": "PENDING",
+  "intended_use": "Reusable abandoned warehouse environment asset"
+}

@@ -1,0 +1,96 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]: 波
+    - paragraph [ref=f1e4]: הים מתעורר
+  - generic "סצנת תלת־ממד אינטראקטיבית בהשראת הגל הגדול" [ref=f1e5]
+  - banner [ref=f1e6]:
+    - link "HOKUSAI BEYOND THE CANVAS / 001" [ref=f1e7] [cursor=pointer]:
+      - /url: "#"
+      - text: HOKUSAI
+      - generic [ref=f1e8]: BEYOND THE CANVAS / 001
+    - navigation "פרקי המסע" [ref=f1e9]:
+      - link "היצירה" [ref=f1e10] [cursor=pointer]:
+        - /url: "#"
+      - link "המרחב" [ref=f1e11] [cursor=pointer]:
+        - /url: "#space"
+      - link "הגל" [ref=f1e12] [cursor=pointer]:
+        - /url: "#wave"
+      - link "השקט" [ref=f1e13] [cursor=pointer]:
+        - /url: "#stillness"
+    - generic [ref=f1e14]: 北斎
+  - generic [ref=f1e16]:
+    - generic [ref=f1e17]: 01 / 04
+    - generic [ref=f1e18]: 神奈川沖浪裏
+  - main [ref=f1e19]:
+    - generic:
+      - generic:
+        - generic [aria-hidden]: 大波
+        - generic: SCROLL TO FEEL THE WAVE
+    - generic [ref=f1e20]:
+      - generic [ref=f1e21]:
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: 04 / בחזרה ליצירה
+          - heading "המקור שממנו הכול התחיל." [level=2] [ref=f1e24]: המקור שממנוהכול התחיל.
+        - paragraph [ref=f1e25]: אחרי המסע במרחב, חוזרים אל הנייר.האנימציה היא פרשנות דיגיטלית; כאן אפשר להתבונן בהדפס עצמו.
+      - generic [ref=f1e26]:
+        - generic [ref=f1e27]:
+          - 'img "הגל הגדול מול קנאגאווה של הוקוסאי: גל כחול וקצף לבן מעל שלוש סירות, והר פוג׳י קטן ברקע" [ref=f1e28]'
+          - button "⛶ צפייה ביצירה המלאה" [ref=f1e29] [cursor=pointer]
+        - generic [ref=f1e30]:
+          - generic [ref=f1e31]: KATSUSHIKA HOKUSAI
+          - heading "הרבה יותר מתמונה של גל." [level=3] [ref=f1e32]: הרבה יותרמתמונה של גל.
+          - paragraph [ref=f1e33]: ״הגל הגדול מול קנאגאווה״ הוא הדפס עץ צבעוני שיצר הוקוסאי בסביבות 1830–1832, כחלק מהסדרה ״שלושים ושש תצפיות על הר פוג׳י״. בניגוד לציור שמן יחיד, הדפס נוצר באמצעות העברת דיו מלוחות עץ אל נייר, ואפשר להפיק ממנו עותקים רבים.
+          - paragraph [ref=f1e34]: הכחול הפרוסי היה מרכיב בולט בסדרה. הצבע, יחד עם הקווים המדויקים, מאפשר להוקוסאי להפוך רגע קצר בים לדימוי בעל עוצמה חזותית יוצאת דופן.
+          - generic [ref=f1e35]:
+            - generic [ref=f1e36]:
+              - generic [ref=f1e37]: האמן
+              - text: קצושיקה הוקוסאי · 1760–1849
+            - generic [ref=f1e38]:
+              - generic [ref=f1e39]: תקופה
+              - text: יפן · תקופת אדו
+            - generic [ref=f1e40]:
+              - generic [ref=f1e41]: טכניקה
+              - text: הדפס עץ · דיו וצבע על נייר
+            - generic [ref=f1e42]:
+              - generic [ref=f1e43]: הסדרה
+              - text: שלושים ושש תצפיות על הר פוג׳י
+      - generic [ref=f1e44]:
+        - article [ref=f1e45]:
+          - text: 01 / הקצף
+          - 'img "פרט מתוך היצירה: קצף הגל" [ref=f1e47]'
+          - heading "כשהמים הופכים לקווים" [level=3] [ref=f1e48]
+          - paragraph [ref=f1e49]: צורות הקצף הלבנות חדות ומסועפות. אפשר לקרוא אותן כמו טפרים הנמתחים מעל הסירות — פרשנות שמדגישה את כוחו של הגל ואת הרגע שלפני שבירתו.
+        - article [ref=f1e50]:
+          - text: 02 / האנשים
+          - 'img "פרט מתוך היצירה: הסירות בים" [ref=f1e52]'
+          - heading "קנה מידה אנושי" [level=3] [ref=f1e53]
+          - paragraph [ref=f1e54]: שלוש הסירות והאנשים שבתוכן מעניקים לנו דרך להבין את גודל הגל. ההבדל בקנה המידה מחזק את תחושת השבריריות של האדם מול הטבע.
+        - article [ref=f1e55]:
+          - text: 03 / ההר
+          - 'img "פרט מתוך היצירה: הר פוג׳י באופק" [ref=f1e57]'
+          - heading "הדבר הקטן שבמרכז" [level=3] [ref=f1e58]
+          - paragraph [ref=f1e59]: פוג׳י נראה קטן ורחוק, אף שהוא נושא הסדרה. המסגור שלו מתחת לגל מזכיר לנו שגודל בתמונה תלוי בנקודת המבט, ולא רק בממדים בעולם.
+      - generic [ref=f1e60]:
+        - text: מחשבה בהשראת היצירה · אינה ציטוט של האמן
+        - paragraph [ref=f1e61]: התנועה חזקה.אבל גם לשקט יש כוח.
+        - link "לחוות שוב ↟" [ref=f1e62] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=f1e63]:
+        - generic [ref=f1e64]:
+          - text: "מידע על היצירה:"
+          - link "The Metropolitan Museum of Art" [ref=f1e65] [cursor=pointer]:
+            - /url: https://www.metmuseum.org/art/collection/search/45434
+          - text: "על הצבע וההדפסה:"
+          - 'link "The Great Wave: Anatomy of an Icon" [ref=f1e66] [cursor=pointer]':
+            - /url: https://www.metmuseum.org/essays/hokusai-great-wave
+        - generic [ref=f1e67]:
+          - text: "תמונה:"
+          - link "Wikimedia Commons · נחלת הכלל" [ref=f1e68] [cursor=pointer]:
+            - /url: https://commons.wikimedia.org/wiki/File:Great_Wave_off_Kanagawa2.jpg
+          - text: מעבר למסגרת · HOKUSAI / 001
+  - generic [ref=f1e69]:
+    - generic [ref=f1e70]:
+      - button "Ⅱ עצירת תנועה" [ref=f1e71] [cursor=pointer]
+      - 'button "♫ צלילי ים: כבוי" [ref=f1e72] [cursor=pointer]'
+      - 'button "איכות: גבוהה" [ref=f1e73] [cursor=pointer]'
+    - generic [ref=f1e74]: גללו למסע

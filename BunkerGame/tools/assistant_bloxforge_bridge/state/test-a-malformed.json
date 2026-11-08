@@ -1,0 +1,10 @@
+{
+  "request_id": "test-a-malformed",
+  "status": "failed",
+  "source": "bloxforge_worker",
+  "error": {
+    "code": "MALFORMED_REQUEST_JSON",
+    "message": "Malformed JSON in request: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)"
+  },
+  "completed_at": "2026-08-31T20:18:07Z"
+}

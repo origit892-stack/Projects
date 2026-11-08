@@ -1,0 +1,23 @@
+// Smooth pre-rendered models replace per-triangle CPU drawing on browsers
+// without WebGL. Runtime work is a few image composites per frame.
+export function createSpriteRenderer(ctx,original){
+ const data=JSON.parse(document.getElementById('render-assets')?.textContent||'{}'),assets={};
+ for(const [key,value] of Object.entries(data)){assets[key]=(Array.isArray(value)?value:[value]).map(url=>{const i=new Image();i.src=url;return i;});}
+ const clamp=v=>Math.max(0,Math.min(1,v)),smooth=(a,b,v)=>{const t=clamp((v-a)/(b-a));return t*t*(3-2*t)},lerp=(a,b,t)=>a+(b-a)*t;
+ let motion=0,turn=1,maxHeight=Infinity;
+ function sprite(key,opacity,width,x,y,rotation=0,keel=false){const frames=assets[key],img=frames?.[Math.floor(frames.length/2)];if(!img||!img.complete||!img.naturalWidth||opacity<.001)return;width=Math.min(width,maxHeight*img.naturalWidth/img.naturalHeight)*(1+motion*.58);const h=width*img.naturalHeight/img.naturalWidth,q=frames.length===1?0:Math.round(clamp(.5+motion*turn*.48)*(frames.length-1));ctx.save();ctx.translate(x-motion*turn*22,y-motion*18);ctx.rotate(rotation+motion*turn*.1);ctx.transform(1-motion*.02,0,motion*turn*.018,1,0,0);ctx.globalAlpha=opacity;ctx.drawImage(frames[q].complete?frames[q]:img,-width/2,keel?-h:-h/2,width,h);ctx.restore();}
+ function draw({p,time,mobile,layout,pulse=0,direction=1,background}){motion=pulse;turn=direction||1;const w=innerWidth,h=innerHeight,cx=mobile||layout.hidden?w*.5:w*.29,cy=mobile?layout.centerY:h*.49,visualW=mobile?w*.88:Math.min(w*.53,h*.8);maxHeight=mobile?layout.maxHeight:h*.75;const end=smooth(6.3,7,p);ctx.fillStyle=background;ctx.fillRect(0,0,w,h);
+  const sea=smooth(.25,1,p)*(1-end);if(sea>.001){ctx.save();ctx.globalAlpha=sea;const horizon=mobile?Math.min(h*.57,layout.top-30):h*.6,g=ctx.createLinearGradient(0,horizon,0,h);g.addColorStop(0,'#7cbbc4');g.addColorStop(.2,'#317d93');g.addColorStop(1,'#07344f');ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(0,horizon);for(let x=0;x<=w+20;x+=20){ctx.lineTo(x,horizon+Math.sin(x*.011+time*.4)*4)}ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath();ctx.fill();for(let i=0;i<13;i++){const y=horizon+(h-horizon)*(i/13)**1.5;ctx.strokeStyle=`rgba(179,233,239,${.025+(i%3)*.01})`;ctx.lineWidth=.7+i*.08;ctx.beginPath();for(let x=0;x<=w;x+=20){const yy=y+Math.sin(x*(.02-i*.0006)+time*.3+i)*(.6+i*.3);if(x===0)ctx.moveTo(x,yy);else ctx.lineTo(x,yy)}ctx.stroke()}ctx.restore();}
+  if(p<1.05){const fold=smooth(.08,.62,p),drop=smooth(.45,1,p);if(fold<.6&&original.complete){ctx.save();ctx.globalAlpha=1-smooth(.25,.62,p);ctx.translate(lerp(w/2,cx,fold),lerp(layout.centerY,h*.68,drop));ctx.rotate(fold*.8);const width=Math.min(w*(mobile?.88:.67),layout.maxHeight/.684)*lerp(1,.3,fold);ctx.scale(1,1-fold*.4);ctx.drawImage(original,-width/2,-width*.684/2,width,width*.684);ctx.restore();}sprite('paper',smooth(.18,.62,p)*(1-smooth(.85,1.04,p)),visualW*.42*lerp(1,.6,drop),cx,lerp(cy,h*.79,drop),fold*.8);}
+  sprite('wave',smooth(.72,1,p)*(1-smooth(2.6,3.3,p)),visualW*lerp(.56,1,smooth(1,2,p)),cx,cy);
+  const boat=smooth(2.45,3,p)*(1-smooth(4.4,5.05,p)),boatsAlpha=boat*(1-smooth(3.18,3.55,p)),sailAlpha=boat*smooth(3.45,3.92,p),keelY=mobile?cy+maxHeight*.46:cy+Math.min(visualW*.12,maxHeight*.4);
+  if(boat>.01&&!mobile&&motion<.04){ctx.save();ctx.translate(0,keelY*1.72);ctx.scale(1,-.72);sprite('boats',boatsAlpha*.035,visualW,cx,keelY,0,true);sprite('sail',sailAlpha*.03,visualW*.91,cx,keelY,0,true);ctx.restore();}
+  sprite('boats',boatsAlpha,visualW,cx,keelY,Math.sin(time*.7)*.012,true);sprite('sail',sailAlpha,visualW*.91,cx,keelY,Math.sin(time*.7)*.012,true);
+  sprite('mountain',smooth(4.2,5,p)*(1-smooth(5.5,6.1,p)),visualW*.78,cx,cy);
+  const sky=smooth(5.3,6,p)*(1-end);sprite('sky',sky,visualW*1.15,cx,cy);
+  if(pulse>.01&&p>.6&&p<6.9){ctx.save();ctx.globalAlpha=pulse*.38;for(let i=0;i<24;i++){const a=i*2.399+p*.7,r=visualW*(.18+(i%7)*.07);ctx.fillStyle=i%3?'#f8f2dd':'#a7d6da';ctx.beginPath();ctx.arc(cx+Math.cos(a)*r,cy+Math.sin(a)*r*.7,(mobile?.7:1)+(i%3)*.55,0,Math.PI*2);ctx.fill()}ctx.restore();}
+  if(pulse>.04&&p>.6&&p<6.9){ctx.save();ctx.translate(cx,cy);ctx.rotate(p*.4);for(let i=0;i<3;i++){ctx.strokeStyle=i===1?'#e7c995':'#b9e1da';ctx.globalAlpha=pulse*.2;ctx.lineWidth=i===1?1.1:.7;ctx.beginPath();ctx.ellipse(0,0,visualW*(.46+i*.045)*(1+pulse*.18),visualW*(.11+i*.02),i*.35,p*.8,p*.8+Math.PI*1.65);ctx.stroke()}ctx.restore();}
+  if(end>.001&&original.complete){ctx.save();ctx.globalAlpha=end;const width=Math.min(w*(mobile?.88:.67),layout.maxHeight/.684)*lerp(.3,1,end);ctx.translate(lerp(cx,w/2,end),lerp(cy,layout.centerY,end));ctx.rotate((1-end)*.5);ctx.drawImage(original,-width/2,-width*.684/2,width,width*.684);ctx.restore();}
+ }
+ return {draw};
+}

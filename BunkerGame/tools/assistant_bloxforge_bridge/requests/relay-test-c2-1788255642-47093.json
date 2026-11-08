@@ -1,0 +1,17 @@
+{
+  "request_id": "relay-test-c2-1788255642-47093",
+  "intent": "bloxforge_tool_call",
+  "details": "Relay test C Workspace",
+  "studio_context": {
+    "project": "BunkerGame"
+  },
+  "received_at": "2026-09-01T09:40:42Z",
+  "status": "pending",
+  "bloxforge": {
+    "tool": "get_scene_summary",
+    "arguments": {
+      "instancePath": "game.Workspace",
+      "instance_id": "place:129695090105158"
+    }
+  }
+}
