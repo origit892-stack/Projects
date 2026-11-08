@@ -1,7 +1,8 @@
 # Site + messaging + payment decisions (2026-11-08)
 
-## The site (built by deepseek pool child; deploy = GitHub Pages, $0)
-- Repo: github.com/origit892-stack/agent-operator (new, free) → Pages on main → https://origit892-stack.github.io/agent-operator/
+## The site (BUILT + LIVE 2026-11-08 — deepseek pool was DOWN, child interrupted at api_calls=1; built directly by the Chief from the prepared brief, deployed and verified)
+- Live URL (verified 200, title check): https://origit892-stack.github.io/agent-operator/
+- Repo: github.com/origit892-stack/agent-operator (public, Pages on main)
 - Content: hero / why-us (4 REAL systems, framed as "systems I operate" — never client work) / 3 packages ($300/$900/$2,000) / how it works / FAQ / terms / privacy.
 - Design: dark GitHub-style theme, self-contained, zero external requests, mobile responsive.
 - Placeholder links to replace once created: `<!-- REPLACE: telegram username -->`, `<!-- REPLACE: youtube channel handle -->`.
