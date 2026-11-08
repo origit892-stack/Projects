@@ -21,6 +21,7 @@ No cold DMs. Demand comes from: (a) marketplaces where requests are already post
 | `demos/DEMO_PLAN.md` | 3 demo clips — shot list, captions, ffmpeg recipe |
 | `demos/PIPELINE_REPURPOSE.md` | DAILY 12:00 B2B demo channel — decided plan, needs user go (new channel, automated production) |
 | `reddit/REDDIT.md` | Reddit play — verified subs + rules + 21-day timeline + monitoring-cron proposal |
+| `site/SITE.md` | Site + messaging + payment decisions — live on GitHub Pages (agent-operator repo); NO fake case studies; inbound Telegram bot only; Stripe/PayPal links ($0 out-of-pocket) |
 | `demos/clip1-agent-ops.mp4` | Ready demo video (27.5s vertical) — Fiverr gig video / "demo link" for proposals |
 
 ## Proof assets (all verified 2026-11-08, public or user-owned)
