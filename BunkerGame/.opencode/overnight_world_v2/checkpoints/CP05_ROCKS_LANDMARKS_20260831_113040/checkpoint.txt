@@ -1,0 +1,2 @@
+Rocks/landmarks validated — 6 bespoke landmarks (water tower, fire lookout, checkpoint, mast, farm gate, earthworks) + 18 forest edge rock clusters with grounded placement, scale/orientation varied, no floating/intersecting, providing navigation anchors and bunker approach composition
+2026-08-31 11:30:40

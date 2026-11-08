@@ -1,0 +1,19 @@
+{
+  "project_status": "CONTINUE",
+  "summary": "Gates 1-6 VERIFIED via PASS handoffs: 5 assets restored to src/ServerStorage/GeneratedAssets/ (non-empty); builder exit 0 with validate_world() passing, producing GameWorld.model.json (1151797 B), Runtime.model.json (empty Folder), Lighting init.meta.json + 5 lighting models; default.project.json has all 7 mappings; contract-cross-check-01 ran tools/verification/verify_world_contract.py with 8/8 checks PASS (exit 0). Gate 7 (SOURCEMAP_VERIFIED) remains open: sourcemap-verify-01 FAILED with INVALID_COMPLETION_CONTRACT (worker exited 0 but produced no valid handoff), so the sourcemap result is UNKNOWN, not verified. One bounded read-only retry task is issued with an explicit handoff contract.",
+  "tasks": [
+    {
+      "task_id": "sourcemap-verify-02",
+      "objective": "Verify the Rojo/Argon sourcemap for the project (objective gate 7, step 5c). From /Users/Ori/Documents/Projects/BunkerGame run `argon sourcemap` (argon at /Users/Ori/.argon/bin/argon, v2.0.29). If argon fails or errors, fall back to `rojo sourcemap` (/Users/Ori/.aftman/bin/rojo). Confirm the sourcemap output contains the GameWorld mapping (src/Workspace/GameWorld.model.json) and the ServerStorage and Lighting mappings, with no mapping errors. This is strictly read-only: do not modify any files, do not run sync/build, do not touch ArgonProof.model.json or SpawnRoot.model.json. IMPORTANT: you MUST end with a valid structured handoff (executed, result, files_changed, artifacts, verification, blockers) — a process exit code alone is not a valid completion; the previous attempt failed solely for a missing handoff.",
+      "write_scopes": [],
+      "read_scopes": [
+        "."
+      ],
+      "acceptance_criteria": "VERIFIED_FACT evidence in the handoff: (1) the exact command run and its exit code (0 required); (2) the relevant sourcemap output section(s) showing GameWorld, ServerStorage, and Lighting mappings present with no errors; (3) if argon was used, note argon version; if fallback to rojo was needed, state the argon failure reason verbatim; (4) files_changed must be NONE (read-only). If the sourcemap command cannot be run or reports mapping errors, report status FAILED/BLOCKED with the verbatim error output — do not report PASS.",
+      "timeout_seconds": 7200
+    }
+  ],
+  "final_result": "",
+  "_director_seconds": 21.189,
+  "_director_output": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/cycles/continue-20260929-111646-83070.0003.director.out"
+}

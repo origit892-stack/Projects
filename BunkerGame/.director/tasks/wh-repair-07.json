@@ -1,0 +1,16 @@
+{
+  "task_id": "wh-repair-07",
+  "role": "implementer",
+  "objective": "Repair warehouse model.json transforms. DO NOT read the full RBXMX (18958 lines). Use python3 to parse src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx and compute each MeshPart world-space CFrame by walking the ancestor Model chain (each Model has CFrame or WorldPivotData). Compare computed world CFrames against the CFrame values in src/Workspace/abandoned_warehouse_interior_01.model.json. Fix any mismatched CFrame/Size/MeshId/Material/Color in model.json. Also check: does model.json need a top-level CFrame or PivotOffset? Does the RBXMX root Model have a non-identity CFrame that was dropped? PRESERVE the RBXMX byte-identical. After fix: run argon build, then argon live sync. STOP for manual inspection.",
+  "write_scopes": [
+    "src/Workspace"
+  ],
+  "read_scopes": [
+    "src/ServerStorage/GeneratedAssets",
+    "src/Workspace",
+    "default.project.json"
+  ],
+  "acceptance_criteria": "model.json has correct world-space CFrames matching RBXMX hierarchy; argon build succeeds; argon live sync completes; RBXMX unchanged.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-04T16:15:05.170984+00:00"
+}

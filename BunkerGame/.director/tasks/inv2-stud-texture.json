@@ -1,0 +1,14 @@
+{
+  "task_id": "inv2-stud-texture",
+  "role": "implementer",
+  "objective": "GOAL: Add a classic Roblox Stud texture overlay to the Tactical Inventory V2 main background (rootCanvas) in src/StarterGui/InventoryV2/InventoryV2Module.luau so it matches the game classic HUD look. CHECKPOINT (verified from active source): the HUD button WeaponsButton in src/StarterPlayer/StarterPlayerScripts/GameClient/UIController.luau uses a blue gradient plus sheen, NOT a stud texture, and there are zero rbxassetid references in the active src tree, so do not assume an existing HUD stud Image id. CONSTRAINTS: (1) First check live Studio in play mode for the HUD WeaponsButton; if it has a stud texture (Image, ImageLabel, or Material.Studs), extract the exact Image id, TileSize, ScaleType, and ImageTransparency and reuse them. (2) If no stud texture exists in live Studio, obtain a valid classic Roblox stud texture via the asset search tool; do NOT fabricate or hardcode an asset id; if none is found, report BLOCKED with the reason. (3) Apply the stud texture as an ImageLabel overlay on rootCanvas sized to fill it, with ZIndex BELOW all buttons, text, and panels, and a subtle ImageTransparency around 0.7 to 0.85 so it tints the background without obscuring content. (4) Preserve the existing VoidBg background color, corner, stroke, and vertical gradient; change no other UI behavior. (5) Verify on disk with a Luau syntax check of the modified file.",
+  "write_scopes": [
+    "src/StarterGui/InventoryV2/"
+  ],
+  "read_scopes": [
+    "src/"
+  ],
+  "acceptance_criteria": "InventoryV2Module.luau is modified on disk and rootCanvas has a stud-texture ImageLabel overlay with a ZIndex below all content and a subtle ImageTransparency. The Luau syntax check passes. The handoff reports the exact stud texture source used (live-Studio-extracted properties or a valid asset id) plus the ZIndex and ImageTransparency values.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-10T16:34:40.316052+00:00"
+}

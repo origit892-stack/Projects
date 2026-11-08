@@ -1,0 +1,134 @@
+#!/bin/zsh
+set -euo pipefail
+
+PROJECT="/Users/Ori/Documents/Projects/BunkerGame"
+RUNTIME="$PROJECT/.director/bin/runtime.py"
+
+if (( $# < 1 )); then
+    exit 2
+fi
+
+COMMAND="$1"
+shift
+
+case "$COMMAND" in
+    create)
+        if (( $# < 5 )); then
+            exit 2
+        fi
+
+        ROLE="$1"
+        TASK_ID="$2"
+        OBJECTIVE_FILE="$3"
+        ACCEPTANCE_FILE="$4"
+        TIMEOUT="$5"
+        shift 5
+
+        case "$ROLE" in
+            researcher|implementer|verifier)
+                ;;
+            *)
+                print -u2 -- "INVALID_ROLE=$ROLE"
+                exit 2
+                ;;
+        esac
+
+        test -f "$OBJECTIVE_FILE"
+        test -s "$OBJECTIVE_FILE"
+        test -f "$ACCEPTANCE_FILE"
+        test -s "$ACCEPTANCE_FILE"
+
+        OBJECTIVE="$(cat "$OBJECTIVE_FILE")"
+        ACCEPTANCE="$(cat "$ACCEPTANCE_FILE")"
+
+        ARGS=(
+            create
+            --role "$ROLE"
+            "$TASK_ID"
+            "$OBJECTIVE"
+            --acceptance "$ACCEPTANCE"
+            --timeout "$TIMEOUT"
+        )
+
+        MODE=""
+
+        while (( $# > 0 )); do
+            case "$1" in
+                --read)
+                    MODE="read"
+                    ;;
+                --write)
+                    MODE="write"
+                    ;;
+                *)
+                    if [[ "$MODE" == "read" ]]; then
+                        ARGS+=(--read-scope "$1")
+                    elif [[ "$MODE" == "write" ]]; then
+                        ARGS+=(--write-scope "$1")
+                    else
+                        print -u2 -- "SCOPE_WITHOUT_MODE=$1"
+                        exit 2
+                    fi
+                    ;;
+            esac
+
+            shift
+        done
+
+        python3 "$RUNTIME" "${ARGS[@]}"
+        ;;
+
+    start)
+        (( $# == 1 )) || exit 2
+        exec python3 "/Users/Ori/Documents/Projects/BunkerGame/.director/bin/worker_detach.py" start "$1"
+        ;;
+
+    start-parallel)
+        (( $# >= 1 )) || exit 2
+        exec python3 "/Users/Ori/Documents/Projects/BunkerGame/.director/bin/worker_detach.py" start-parallel "$@"
+        ;;
+
+    job-status)
+        (( $# == 1 )) || exit 2
+        exec python3 "/Users/Ori/Documents/Projects/BunkerGame/.director/bin/worker_detach.py" status "$1"
+        ;;
+
+    job-log)
+        (( $# >= 1 && $# <= 2 )) || exit 2
+        exec python3 "/Users/Ori/Documents/Projects/BunkerGame/.director/bin/worker_detach.py" log "$@"
+        ;;
+
+    run)
+        (( $# == 1 )) || exit 2
+        exec python3 "$RUNTIME" run "$1"
+        ;;
+
+    parallel)
+        (( $# >= 1 )) || exit 2
+        exec python3 "$RUNTIME" parallel "$@"
+        ;;
+
+    brief)
+        (( $# == 1 )) || exit 2
+        exec python3 "/Users/Ori/Documents/Projects/BunkerGame/.director/bin/worker_brief.py" "$1"
+        ;;
+
+    result)
+        (( $# == 1 )) || exit 2
+        exec python3 "$RUNTIME" result "$1"
+        ;;
+
+    status)
+        (( $# == 0 )) || exit 2
+        exec python3 "$RUNTIME" status
+        ;;
+
+    gc)
+        (( $# == 1 )) || exit 2
+        exec python3 "$RUNTIME" gc "$1"
+        ;;
+
+    *)
+        exit 2
+        ;;
+esac

@@ -1,0 +1,1 @@
+Handoff contains: SurfaceAppearance/Texture/Decal counts, the full property comparison for the sample part (which props differ/missing), and the model.json top-level Model structure. No files modified.

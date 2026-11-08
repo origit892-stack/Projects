@@ -1,0 +1,25 @@
+{
+  "task_id": "client-minimal-mode-fallback",
+  "role": "implementer",
+  "run_id": "client-minimal-mode-fallback-ba0c10e3a6bb",
+  "status": "PASS",
+  "executed": "Made the client UI initialize in Minimal spawn mode. In minimal mode, ServerBootstrap never starts NetworkService, so GetSnapshot's OnServerInvoke is never assigned and InvokeServer fails, leaving the client stuck in an infinite \"Loading\" retry loop. I added a bounded fallback to ClientBootstrap.client.luau: after 3 failed GetSnapshot attempts (InvokeServer error or malformed response), the client stops retrying, sets connection status to \"Minimal\"/\"MINIMAL_MODE\", logs a clear message, and returns. The UI is already initialized via ui:Start() (line 233, which runs before requestSnapshot(\"INITIAL_SNAPSHOT\")), so it is shown in minimal mode without a server snapshot. The full-mode path is unchanged: a valid successful GetSnapshot response takes the success branch and returns before the fallback is ever reached.\n",
+  "result": "Made the client UI initialize in Minimal spawn mode. In minimal mode, ServerBootstrap never starts NetworkService, so GetSnapshot's OnServerInvoke is never assigned and InvokeServer fails, leaving the client stuck in an infinite \"Loading\" retry loop. I added a bounded fallback to ClientBootstrap.client.luau: after 3 failed GetSnapshot attempts (InvokeServer error or malformed response), the client stops retrying, sets connection status to \"Minimal\"/\"MINIMAL_MODE\", logs a clear message, and returns. The UI is already initialized via ui:Start() (line 233, which runs before requestSnapshot(\"INITIAL_SNAPSHOT\")), so it is shown in minimal mode without a server snapshot. The full-mode path is unchanged: a valid successful GetSnapshot response takes the success branch and returns before the fallback is ever reached.\n",
+  "files_changed": "src/StarterPlayer/StarterPlayerScripts/GameClient/ClientBootstrap.client.luau\n\nExact lines modified:\n- Line 15: added `local MAX_SNAPSHOT_ATTEMPTS = 3` (after REMOTE_WAIT_TIMEOUT)\n- Line 128: added `local minimalMode = false` inside the task.spawn retry closure\n- Lines 168-174: added the fallback block in the failure branch (the `else` of the `if ok and select(1, NetTypes.ValidateGetSnapshotResponse(response))` check):\n    if not minimalMode and attempts >= MAX_SNAPSHOT_ATTEMPTS then\n        minimalMode = true\n        recovering = false\n        state:SetConnectionStatus(\"Minimal\", \"MINIMAL_MODE\")\n        warn(\"[GameClient] GetSnapshot unavailable after \" .. attempts .. \" attempts; falling back to minimal mode. UI initialized without a server snapshot.\")\n        return\n    end\n",
+  "artifacts": "NONE",
+  "verification": "- luau-analyze on the modified file: 0 SyntaxError. Total error count identical to pre-edit baseline (44 before, 44 after) — all are pre-existing type-resolution errors from missing Roblox global definitions (game/task/Instance), none introduced by this change.\n- Confirmed GetSnapshot is a source-authored RemoteFunction in src/ReplicatedStorage/Remotes.model.json, so it is present in minimal mode and ui:Start() is reached before the retry loop.\n- Confirmed the fallback sits only in the failure branch; the success path (valid GetSnapshot response) is untouched, so full-mode behavior is identical to before.\n- Diff is minimal and reversible (3 small additive edits, no deletions).\n",
+  "blockers": "NONE\n\nNote: Roblox Studio is NOT connected (studioConnected: false), so the change was applied to source only. Studio sync is PENDING — the source change must be synced to Studio (via the source-to-Studio sync workflow) before runtime verification in Play mode.",
+  "completed_at": "2026-10-09T21:41:26.296915+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/0e175803-3dd7-45b2-ad5d-22d323ce802d.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/0e175803-3dd7-45b2-ad5d-22d323ce802d.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

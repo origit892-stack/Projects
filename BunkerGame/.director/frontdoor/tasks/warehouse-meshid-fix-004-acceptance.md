@@ -1,0 +1,1 @@
+MeshPart MeshId in src/Workspace/abandoned_warehouse.model.json is the internal mesh id, not 73559951039514. ServerStorage contract Ready with real mesh id. argon exec confirms live MeshPart has new MeshId and mesh loaded. SpawnRoot and bunker-rooms unchanged. No republish. Temp model destroyed. Handoff reports mesh id and files changed.

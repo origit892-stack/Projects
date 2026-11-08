@@ -1,0 +1,1215 @@
+{
+  "name": "BunkerGame / Inventory v2",
+  "type": "FRAME",
+  "x": 520,
+  "y": 257.5,
+  "width": 920,
+  "height": 610,
+  "fills": [
+    {
+      "type": "SOLID",
+      "color": "#0F151C"
+    }
+  ],
+  "strokes": [
+    {
+      "type": "SOLID",
+      "color": "#2A3540",
+      "weight": 1
+    }
+  ],
+  "cornerRadius": 12,
+  "clipsContent": true,
+  "children": [
+    {
+      "type": "RECTANGLE",
+      "name": "Header BG",
+      "x": 0,
+      "y": 0,
+      "width": 920,
+      "height": 64,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#161E27"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Header Divider",
+      "x": 0,
+      "y": 64,
+      "width": 920,
+      "height": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#2A3540"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Title",
+      "x": 24,
+      "y": 16,
+      "width": 400,
+      "height": 28,
+      "text": "SURVIVAL INVENTORY",
+      "fontSize": 22,
+      "fontWeight": 700,
+      "letterSpacing": 4,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Subtitle",
+      "x": 24,
+      "y": 42,
+      "width": 300,
+      "height": 14,
+      "text": "SECTOR 7 // SUPPLY CACHE",
+      "fontSize": 10,
+      "fontWeight": 500,
+      "letterSpacing": 2,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#9AA86B"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Close Button",
+      "x": 864,
+      "y": 16,
+      "width": 32,
+      "height": 32,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1C2530"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#3A4653",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "TEXT",
+      "name": "Close X",
+      "x": 864,
+      "y": 23,
+      "width": 32,
+      "height": 16,
+      "text": "\u2715",
+      "fontSize": 14,
+      "fontWeight": 700,
+      "textAlign": "CENTER",
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Grid Panel",
+      "x": 24,
+      "y": 88,
+      "width": 560,
+      "height": 452,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#141B23"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#26313D",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 8
+    },
+    {
+      "type": "TEXT",
+      "name": "Grid Label",
+      "x": 40,
+      "y": 102,
+      "width": 120,
+      "height": 14,
+      "text": "ITEMS",
+      "fontSize": 11,
+      "fontWeight": 700,
+      "letterSpacing": 2,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#8A94A0"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Grid Count",
+      "x": 488,
+      "y": 102,
+      "width": 80,
+      "height": 14,
+      "text": "8 / 12 SLOTS",
+      "fontSize": 10,
+      "fontWeight": 500,
+      "textAlign": "RIGHT",
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#5A6470"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 1 (Selected)",
+      "x": 40,
+      "y": 128,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D",
+          "weight": 2
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Rifle Body",
+      "x": 64,
+      "y": 182,
+      "width": 72,
+      "height": 10,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#9AA86B"
+        }
+      ],
+      "cornerRadius": 2
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Rifle Barrel",
+      "x": 128,
+      "y": 184,
+      "width": 16,
+      "height": 6,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#7A8450"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Rifle Sight",
+      "x": 84,
+      "y": 172,
+      "width": 18,
+      "height": 8,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ],
+      "cornerRadius": 2
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 2",
+      "x": 176,
+      "y": 128,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Medkit Box",
+      "x": 212,
+      "y": 166,
+      "width": 48,
+      "height": 44,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#D8DEE6"
+        }
+      ],
+      "cornerRadius": 4
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Medkit Cross V",
+      "x": 232,
+      "y": 176,
+      "width": 8,
+      "height": 24,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Medkit Cross H",
+      "x": 224,
+      "y": 184,
+      "width": 24,
+      "height": 8,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 3",
+      "x": 312,
+      "y": 128,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Ammo 1",
+      "x": 350,
+      "y": 172,
+      "width": 10,
+      "height": 32,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ],
+      "cornerRadius": 2
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Ammo 2",
+      "x": 367,
+      "y": 172,
+      "width": 10,
+      "height": 32,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ],
+      "cornerRadius": 2
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Ammo 3",
+      "x": 384,
+      "y": 172,
+      "width": 10,
+      "height": 32,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ],
+      "cornerRadius": 2
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 4 (Empty)",
+      "x": 448,
+      "y": 128,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#18202A"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#26313D",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Empty Dot 4",
+      "x": 504,
+      "y": 184,
+      "width": 8,
+      "height": 8,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47"
+        }
+      ],
+      "cornerRadius": 4
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 5",
+      "x": 40,
+      "y": 264,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Water Bottle",
+      "x": 88,
+      "y": 300,
+      "width": 24,
+      "height": 48,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#7A8450"
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Water Cap",
+      "x": 92,
+      "y": 292,
+      "width": 16,
+      "height": 10,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ],
+      "cornerRadius": 2
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 6",
+      "x": 176,
+      "y": 264,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Bandage Roll",
+      "x": 220,
+      "y": 308,
+      "width": 32,
+      "height": 32,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#D8DEE6"
+        }
+      ],
+      "cornerRadius": 16
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Bandage Core",
+      "x": 228,
+      "y": 316,
+      "width": 16,
+      "height": 16,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "cornerRadius": 8
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 7 (Empty)",
+      "x": 312,
+      "y": 264,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#18202A"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#26313D",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Empty Dot 7",
+      "x": 368,
+      "y": 320,
+      "width": 8,
+      "height": 8,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47"
+        }
+      ],
+      "cornerRadius": 4
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 8",
+      "x": 448,
+      "y": 264,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Key Head",
+      "x": 484,
+      "y": 304,
+      "width": 24,
+      "height": 24,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ],
+      "cornerRadius": 12
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Key Shaft",
+      "x": 506,
+      "y": 314,
+      "width": 34,
+      "height": 6,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Key Tooth",
+      "x": 528,
+      "y": 320,
+      "width": 5,
+      "height": 8,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 9",
+      "x": 40,
+      "y": 400,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Ration Pack",
+      "x": 74,
+      "y": 442,
+      "width": 52,
+      "height": 36,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#7A8450"
+        }
+      ],
+      "cornerRadius": 4
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Ration Stripe",
+      "x": 74,
+      "y": 456,
+      "width": 52,
+      "height": 8,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 10 (Empty)",
+      "x": 176,
+      "y": 400,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#18202A"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#26313D",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Empty Dot 10",
+      "x": 232,
+      "y": 456,
+      "width": 8,
+      "height": 8,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47"
+        }
+      ],
+      "cornerRadius": 4
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 11 (Empty)",
+      "x": 312,
+      "y": 400,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#18202A"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#26313D",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Empty Dot 11",
+      "x": 368,
+      "y": 456,
+      "width": 8,
+      "height": 8,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47"
+        }
+      ],
+      "cornerRadius": 4
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Slot 12",
+      "x": 448,
+      "y": 400,
+      "width": 120,
+      "height": 120,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Battery Body",
+      "x": 492,
+      "y": 444,
+      "width": 32,
+      "height": 32,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#9AA86B"
+        }
+      ],
+      "cornerRadius": 4
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Icon Battery Tip",
+      "x": 504,
+      "y": 438,
+      "width": 8,
+      "height": 6,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Details Panel",
+      "x": 608,
+      "y": 88,
+      "width": 288,
+      "height": 452,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#141B23"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#26313D",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 8
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Item Icon Frame",
+      "x": 690,
+      "y": 112,
+      "width": 124,
+      "height": 124,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 8
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Detail Rifle Body",
+      "x": 716,
+      "y": 166,
+      "width": 72,
+      "height": 10,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#9AA86B"
+        }
+      ],
+      "cornerRadius": 2
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Detail Rifle Barrel",
+      "x": 780,
+      "y": 168,
+      "width": 16,
+      "height": 6,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#7A8450"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Detail Rifle Sight",
+      "x": 736,
+      "y": 156,
+      "width": 18,
+      "height": 8,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ],
+      "cornerRadius": 2
+    },
+    {
+      "type": "TEXT",
+      "name": "Item Name",
+      "x": 624,
+      "y": 252,
+      "width": 256,
+      "height": 20,
+      "text": "RUSTED M4A1 RIFLE",
+      "fontSize": 16,
+      "fontWeight": 700,
+      "textAlign": "CENTER",
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#D8DEE6"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Item Type",
+      "x": 624,
+      "y": 278,
+      "width": 256,
+      "height": 14,
+      "text": "WEAPON // RIFLE",
+      "fontSize": 10,
+      "fontWeight": 500,
+      "letterSpacing": 2,
+      "textAlign": "CENTER",
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#9AA86B"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Rarity Tag",
+      "x": 712,
+      "y": 300,
+      "width": 80,
+      "height": 20,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#241D10"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 4
+    },
+    {
+      "type": "TEXT",
+      "name": "Rarity Label",
+      "x": 712,
+      "y": 304,
+      "width": 80,
+      "height": 14,
+      "text": "RARE",
+      "fontSize": 10,
+      "fontWeight": 700,
+      "letterSpacing": 2,
+      "textAlign": "CENTER",
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Item Description",
+      "x": 624,
+      "y": 336,
+      "width": 256,
+      "height": 48,
+      "text": "Recovered from a collapsed supply depot. Reliable 5.56mm service rifle. Requires maintenance before extended use.",
+      "fontSize": 11,
+      "fontWeight": 400,
+      "lineHeight": 16,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#8A94A0"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Divider 1",
+      "x": 624,
+      "y": 396,
+      "width": 256,
+      "height": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#26313D"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Stat Damage Label",
+      "x": 624,
+      "y": 408,
+      "width": 120,
+      "height": 14,
+      "text": "DAMAGE",
+      "fontSize": 10,
+      "fontWeight": 500,
+      "letterSpacing": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#5A6470"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Stat Damage Value",
+      "x": 800,
+      "y": 406,
+      "width": 80,
+      "height": 16,
+      "text": "72",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "textAlign": "RIGHT",
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#D8DEE6"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Stat Range Label",
+      "x": 624,
+      "y": 436,
+      "width": 120,
+      "height": 14,
+      "text": "RANGE",
+      "fontSize": 10,
+      "fontWeight": 500,
+      "letterSpacing": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#5A6470"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Stat Range Value",
+      "x": 800,
+      "y": 434,
+      "width": 80,
+      "height": 16,
+      "text": "84",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "textAlign": "RIGHT",
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#D8DEE6"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Stat Weight Label",
+      "x": 624,
+      "y": 464,
+      "width": 120,
+      "height": 14,
+      "text": "WEIGHT",
+      "fontSize": 10,
+      "fontWeight": 500,
+      "letterSpacing": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#5A6470"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Stat Weight Value",
+      "x": 800,
+      "y": 462,
+      "width": 80,
+      "height": 16,
+      "text": "3.2 KG",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "textAlign": "RIGHT",
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#D8DEE6"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Divider 2",
+      "x": 624,
+      "y": 492,
+      "width": 256,
+      "height": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#26313D"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Equip Hint",
+      "x": 624,
+      "y": 504,
+      "width": 256,
+      "height": 14,
+      "text": "PRESS [E] TO EQUIP",
+      "fontSize": 10,
+      "fontWeight": 700,
+      "letterSpacing": 2,
+      "textAlign": "CENTER",
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    },
+    {
+      "type": "TEXT",
+      "name": "Capacity Label",
+      "x": 24,
+      "y": 556,
+      "width": 80,
+      "height": 14,
+      "text": "CAPACITY",
+      "fontSize": 10,
+      "fontWeight": 500,
+      "letterSpacing": 2,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#8A94A0"
+        }
+      ]
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Capacity Track",
+      "x": 104,
+      "y": 554,
+      "width": 320,
+      "height": 12,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#1B242E"
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "color": "#2E3A47",
+          "weight": 1
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "RECTANGLE",
+      "name": "Capacity Fill",
+      "x": 104,
+      "y": 554,
+      "width": 144,
+      "height": 12,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ],
+      "cornerRadius": 6
+    },
+    {
+      "type": "TEXT",
+      "name": "Capacity Value",
+      "x": 436,
+      "y": 552,
+      "width": 120,
+      "height": 16,
+      "text": "18 / 40 KG",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": "#E8A33D"
+        }
+      ]
+    }
+  ]
+}

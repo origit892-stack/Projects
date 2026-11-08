@@ -1,0 +1,1 @@
+VERIFIED on disk: grep shows no prompt.KeyCode and KeyboardKeyCode present; all prompt.* assignments are valid ProximityPrompt properties; pcall wraps logic with failure handler; file exists and is syntactically valid Luau.

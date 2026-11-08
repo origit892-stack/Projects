@@ -1,0 +1,12 @@
+{
+  "job_id": "run-verify-ui-start-20261010_101019",
+  "mode": "run",
+  "task_ids": [
+    "verify-ui-start"
+  ],
+  "pid": 53096,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-ui-start-20261010_101019.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-ui-start-20261010_101019.json",
+  "started_at": 1791616219.456469,
+  "launcher_status": "RUNNING"
+}

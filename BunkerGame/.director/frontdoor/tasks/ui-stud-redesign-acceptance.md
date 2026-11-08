@@ -1,0 +1,1 @@
+Both files contain the stud ImageLabel with the exact properties. No code creating 3D parts in game.Workspace remains in UI code. Red cube ViewportFrame logic intact. Luau syntax validates via loadstring. Verified on disk.

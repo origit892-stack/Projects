@@ -1,0 +1,1 @@
+Run exactly two commands in order from /Users/Ori/Documents/Projects/BunkerGame: (1) argon build (2) argon sync. Do not read, edit, or research any files. Do not run find. If a command fails, report FAILED with the error output. The model.json conversion is already done.

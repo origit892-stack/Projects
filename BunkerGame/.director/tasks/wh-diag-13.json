@@ -1,0 +1,14 @@
+{
+  "task_id": "wh-diag-13",
+  "role": "researcher",
+  "objective": "Answer these specific questions about the warehouse RBXMX and Argon model.json format. (1) In src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx, extract the ROOT Model properties: SourceAssetId, ModelMeshData, ModelMeshCFrame, ModelMeshSize, ScaleFactor, Name. Use: grep -A2 'SourceAssetId\\|ModelMeshData\\|ModelMeshCFrame\\|ModelMeshSize\\|ScaleFactor' on the first 100 lines. (2) Check if ANY MeshPart in the RBXMX has a non-null MeshId: grep -c 'name=MeshId>' and grep 'name=MeshId>[^<]' to find non-empty ones. (3) Search ALL .model.json files in src/ for SourceAssetId or ModelMeshData: grep -rl 'SourceAssetId\\|ModelMeshData' src/ --include='*.model.json'. (4) Check the Argon project config: cat default.project.json and look for any mesh/model-related settings. (5) Check if the RBXMX has a <External> section with non-null entries: grep -A5 '<External>' on the first 10 lines. Report all findings verbatim. Do NOT modify any file.",
+  "write_scopes": [],
+  "read_scopes": [
+    "src/ServerStorage/GeneratedAssets",
+    "src/Workspace",
+    "default.project.json"
+  ],
+  "acceptance_criteria": "Handoff contains: root Model properties, MeshId count in RBXMX, any .model.json with SourceAssetId/ModelMeshData, Argon config, External section. No files modified.",
+  "timeout_seconds": 1800,
+  "created_at": "2026-10-04T16:59:25.015496+00:00"
+}

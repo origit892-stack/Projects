@@ -1,0 +1,15 @@
+{
+  "task_id": "wh-eperm-01",
+  "role": "implementer",
+  "objective": "Investigate why argon build in /Users/Ori/Documents/Projects/BunkerGame emits ~70 errors: \"Failed to write MeshPart temporary model: Operation not permitted (os error 1)\". Run in order from the project root: (1) argon build -v 2>&1 | grep -iE \"temp|meshpart|operation not permitted|denied\" | head -30  (2) ls -laO on the temp path found in step 1 and its parent dir, checking for immutable flags (uchg) or permission issues (3) ls -la /tmp/argon* ~/.argon .argon 2>/dev/null. Report the exact temp path, its flags/permissions, and the root cause of EPERM. Do NOT fix anything. Do NOT read source files. Do NOT run find /.",
+  "write_scopes": [
+    "."
+  ],
+  "read_scopes": [
+    ".",
+    "/tmp"
+  ],
+  "acceptance_criteria": "Report: (a) exact temp model path argon writes to, (b) its permission/flag state from ls -laO, (c) root cause of the EPERM error. No fixes applied.",
+  "timeout_seconds": 600,
+  "created_at": "2026-10-05T16:05:18.741685+00:00"
+}

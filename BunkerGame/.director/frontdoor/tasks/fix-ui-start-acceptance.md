@@ -1,0 +1,1 @@
+On disk: ClientBootstrap.client.luau has UIController:Start() immediately after require/instantiation, before any InvokeServer/GetSnapshot/network yield. File complete, valid Luau, no unrelated changes. Handoff shows before/after snippet of edited region plus line count.

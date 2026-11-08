@@ -1,0 +1,15 @@
+{
+  "task_id": "wh-int-06",
+  "role": "implementer",
+  "objective": "GOAL: Reference the existing RBXMX file src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx as a child of Workspace in default.project.json so it appears in the game world. VERIFIED CHECKPOINT: The RBXMX file exists (18958 lines, 858KB, valid Roblox XML with 107 Models/62 MeshParts). Workspace in default.project.json is currently empty. SpawnRoot is at (0,0.5,-10). Foundation top surface is Y=0.0, footprint X[-60,60] Z[-20,140]. Argon serve PID 64002 port 8000 is running with Studio connected. CONSTRAINTS: Do NOT regenerate geometry. Do NOT publish any Roblox asset. Do NOT modify the RBXMX file. Do NOT touch SpawnRoot or bunker-rooms. Use the RBXMX as-is. If the model root position in the RBXMX is not near SpawnRoot/on ground, wrap it in a parent Model with a CFrame to reposition it onto the Foundation top Y=0. Persist via default.project.json. ACCEPTANCE: abandoned_warehouse_interior_01 appears as a child of Workspace in argon sourcemap; placement persisted in default.project.json; argon build succeeds; report exact files changed and sourcemap evidence.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src",
+    "/Users/Ori/Documents/Projects/BunkerGame/default.project.json"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "1) argon sourcemap shows abandoned_warehouse_interior_01 under Workspace. 2) default.project.json contains the reference. 3) argon build default.project.json -o /tmp/wh-check.rbxlx -x succeeds. 4) SpawnRoot and bunker-rooms unchanged. 5) No new Roblox asset published.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-02T10:36:35.411382+00:00"
+}

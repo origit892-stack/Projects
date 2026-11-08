@@ -1,0 +1,8 @@
+{
+  "project_status": "COMPLETE",
+  "summary": "All four required artifacts exist in the sandbox work directory /Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work with byte-exact verified contents: backend.txt='BACKEND=READY' (13 bytes), frontend.txt='FRONTEND=READY' (14 bytes), tests.txt='TESTS=PASS' (10 bytes), release.txt='RELEASE=READY' (13 bytes). Each was verified by read-back (od -c, wc -c, cmp against exact expected bytes, exit 0). Mandatory dependency ordering was followed: smoke-tests verified backend.txt and frontend.txt before writing tests.txt; smoke-release verified all three prerequisites before writing release.txt. No files outside the sandbox work directory were created or modified. All completion criteria hold.",
+  "tasks": [],
+  "final_result": "File smoke objective complete. Four artifacts created in the isolated sandbox work directory with exact required contents, each verified by byte-for-byte read-back (cmp exit 0, od -c, wc -c): backend.txt='BACKEND=READY', frontend.txt='FRONTEND=READY', tests.txt='TESTS=PASS', release.txt='RELEASE=READY'. Dependency ordering enforced and verified: tests.txt written only after backend.txt and frontend.txt were read back and confirmed; release.txt written only after all three prerequisites were read back and confirmed. No files outside the sandbox work directory were created or modified. All four worker tasks (smoke-backend, smoke-frontend, smoke-tests, smoke-release) returned PASS with real verification evidence.",
+  "_director_seconds": 14.481,
+  "_director_output": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/cycles/continue-20260925-185036-61945.0004.director.out"
+}

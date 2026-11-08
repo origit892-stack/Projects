@@ -1,0 +1,12 @@
+{
+  "job_id": "run-fix-ammo-crash-only-20261010_000952",
+  "mode": "run",
+  "task_ids": [
+    "fix-ammo-crash-only"
+  ],
+  "pid": 90476,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-ammo-crash-only-20261010_000952.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-ammo-crash-only-20261010_000952.json",
+  "started_at": 1791580192.1499572,
+  "launcher_status": "RUNNING"
+}

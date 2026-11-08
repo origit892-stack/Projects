@@ -1,0 +1,25 @@
+{
+  "task_id": "research-worldmanifest-gate",
+  "role": "researcher",
+  "run_id": "research-worldmanifest-gate-46479861d23c",
+  "status": "PASS",
+  "executed": "Read src/ReplicatedStorage/Game/WorldManifest.luau (validateWorld definition + export), grepped all src/**/*.luau for validation call sites, read src/ServerScriptService/Game/Services/WorldService.luau and src/ServerScriptService/Game/ServerBootstrap.server.luau, and confirmed ServiceBag:Init invokes each service's Init (ServiceBag.luau:69).",
+  "result": "HARD_GATE. WorldManifest.validateWorld (defined at WorldManifest.luau:476, exported as ValidateWorld at line 706) is called at server start via WorldService:Validate() (WorldService.luau:99), which is invoked from WorldService.Init (WorldService.luau:84) during bag:Init() in ServerBootstrap. A failed validation raises an assert error that aborts server startup: all players are kicked and the bootstrap re-raises the error.",
+  "files_changed": "NONE",
+  "artifacts": "NONE",
+  "verification": "Quoted evidence:\n1. WorldService.luau:99-100:\n   local worldValid, worldErrors = self._manifest.ValidateWorld(gameWorld)\n   assert(worldValid, \"Workspace.GameWorld violates WorldManifest: \" .. table.concat(worldErrors, \"; \"))\n2. WorldService.luau:84 (inside WorldService.Init): self:Validate()\n3. ServerBootstrap.server.luau:228-230:\n   local initialized, startupError = xpcall(function()\n       bag:Init()\n       bag:Start()\n   end, debug.traceback)\n4. ServerBootstrap.server.luau:233-238:\n   if not initialized then\n       closing = true\n       for _, player in ipairs(Players:GetPlayers()) do\n           player:Kick(\"The server failed to initialize safely. Please reconnect.\")\n       end\n       error(startupError, 0)\n   end\n5. WorldManifest.luau:476: local function validateWorld(root: Instance): (boolean, { string }) — checks required folders, StableGround position/size (640x3x640 at [0,52.5,80]), and every manifest record's path/class/attributes/position; empty stub folders (EnemySpawns, Objectives, Bunker.Spawns, Bunker.Stations) and a 240x240 slab at [0,52.5,0] would each produce errors and trip the assert.\nNote: the assert is not wrapped in pcall anywhere in the chain (xpcall only catches it at bootstrap level to kick players and re-raise), so a mismatched world aborts the full service graph — it is a hard runtime gate, not a warn/log.",
+  "blockers": "NONE",
+  "completed_at": "2026-09-29T13:59:28.747507+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/7cb0714a-b5f5-44d4-9201-9904afad3289.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/7cb0714a-b5f5-44d4-9201-9904afad3289.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

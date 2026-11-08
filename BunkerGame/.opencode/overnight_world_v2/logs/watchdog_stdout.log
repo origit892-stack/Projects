@@ -1,0 +1,14 @@
+[2026-08-31 10:27:40] STATE=PREFLIGHT
+[2026-08-31 10:27:40] ============================================================
+[2026-08-31 10:27:40] OVERNIGHT WORLD V2 WATCHDOG START
+[2026-08-31 10:27:40] ROOT=/Users/Ori/Documents/Projects/BunkerGame
+[2026-08-31 10:27:40] PID=25349
+[2026-08-31 10:27:40] ============================================================
+[2026-08-31 10:27:40] OPENCODE_4098=PASS
+[2026-08-31 10:27:40] MCP_HEALTH=FAIL recovery=1/5
+[2026-08-31 10:27:50] MCP_HEALTH=FAIL recovery=2/5
+[2026-08-31 10:28:01] MCP_HEALTH=FAIL recovery=3/5
+[2026-08-31 10:28:11] MCP_HEALTH=FAIL recovery=4/5
+[2026-08-31 10:28:21] MCP_HEALTH=FAIL recovery=5/5
+[2026-08-31 10:28:31] STATE=BLOCKED_MCP
+[2026-08-31 10:28:31] error debug maxed out

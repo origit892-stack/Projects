@@ -1,0 +1,15 @@
+{
+  "task_id": "impl-delete-bunker",
+  "role": "implementer",
+  "run_id": "impl-delete-bunker-cd2103fe924a",
+  "status": "PASS",
+  "executed": "Created pre-delete backup at .director/backups/bunker-delete-20260929_124651/ (GameWorld.model.json, Runtime.model.json, ArgonProof.model.json, SpawnRoot.model.json, full src/Lighting/, full src/ServerStorage/), verified backup completeness and size parity, then deleted the 3 target files.",
+  "result": "Restored bunker (GameWorld + Runtime) and yellow cube (ArgonProof) deleted; all protected content intact; fully recoverable from backup.",
+  "files_changed": "DELETED: src/Workspace/GameWorld.model.json, src/Workspace/Runtime.model.json, src/Workspace/ArgonProof.model.json; CREATED: .director/backups/bunker-delete-20260929_124651/ (15 files)",
+  "artifacts": ".director/backups/bunker-delete-20260929_124651/",
+  "verification": "Backup verified BEFORE deletion: 15 files present, 0 empty, backup GameWorld.model.json size 1151797 == live pre-delete size 1151797. Post-delete: test ! -f passed for all 3 deleted files; src/Workspace/SpawnRoot.model.json intact (381 bytes); src/ServerStorage/GeneratedAssets/ intact (5 files, 0 empty); src/Lighting/ intact (6 files, 0 empty). No .luau, default.project.json, or out-of-scope files touched (only the 3 listed rm targets).",
+  "blockers": "NONE",
+  "completed_at": "2026-09-29T09:59:55.493813+00:00",
+  "recovered_from_verified_log": "/Users/Ori/Documents/Projects/BunkerGame/.director/logs/impl-delete-bunker-cd2103fe924a.log",
+  "recovery_reason": "Parser compatibility repair; Worker was not rerun."
+}

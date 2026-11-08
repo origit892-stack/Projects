@@ -1,0 +1,12 @@
+{
+  "job_id": "run-detach-final-20260929_125657-20260929_125657",
+  "mode": "run",
+  "task_ids": [
+    "detach-final-20260929_125657"
+  ],
+  "pid": 96672,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-detach-final-20260929_125657-20260929_125657.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-detach-final-20260929_125657-20260929_125657.json",
+  "started_at": 1790675817.7395,
+  "launcher_status": "RUNNING"
+}

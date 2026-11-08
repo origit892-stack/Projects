@@ -1,0 +1,1518 @@
+#!/usr/bin/env python3
+
+import argparse
+import concurrent.futures
+import datetime
+import json
+import os
+import pathlib
+import re
+import signal
+import subprocess
+import sys
+import time
+import uuid
+
+PROJECT = pathlib.Path.home() / "Documents/Projects/BunkerGame"
+ROOT = PROJECT / ".director"
+CN = pathlib.Path("/Users/Ori/.npm-global/bin/cn")
+CONFIG = pathlib.Path.home() / ".continue/config.yaml"
+
+WORKER_ROLES = {
+    "researcher",
+    "implementer",
+    "verifier",
+}
+
+
+def worker_role(task):
+    role = task.get("role")
+
+    if role not in WORKER_ROLES:
+        raise ValueError(
+            "INVALID_WORKER_ROLE:"
+            f"{role!r}"
+        )
+
+    if (
+        role in {"researcher", "verifier"}
+        and (task.get("write_scopes") or [])
+    ):
+        raise ValueError(
+            f"{role.upper()}_MUST_BE_READ_ONLY"
+        )
+
+    return role
+
+
+TASKS = ROOT / "tasks"
+RESULTS = ROOT / "results"
+LOGS = ROOT / "logs"
+RUNS = ROOT / "runs"
+ARCHIVE = ROOT / "archive"
+PROMPTS = ROOT / "prompts"
+STATE = ROOT / "state"
+
+MAX_PARALLEL = 4
+DEFAULT_TIMEOUT = 7200
+
+for directory in (
+    TASKS,
+    RESULTS,
+    LOGS,
+    RUNS,
+    ARCHIVE,
+    PROMPTS,
+    STATE,
+):
+    directory.mkdir(parents=True, exist_ok=True)
+
+HANDOFF_RE = re.compile(
+    r"<AGENT_HANDOFF>\s*(.*?)\s*</AGENT_HANDOFF>",
+    re.S,
+)
+
+def utcnow():
+    return datetime.datetime.now(
+        datetime.timezone.utc
+    ).isoformat()
+
+def write_json(path, value):
+    path = pathlib.Path(path)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(
+        json.dumps(
+            value,
+            indent=2,
+            ensure_ascii=False,
+        ) + "\n",
+        encoding="utf-8",
+    )
+    os.replace(tmp, path)
+
+def read_json(path):
+    return json.loads(
+        pathlib.Path(path).read_text(
+            encoding="utf-8"
+        )
+    )
+
+def safe_id(value):
+    value = re.sub(
+        r"[^A-Za-z0-9_.-]+",
+        "-",
+        str(value).strip(),
+    )
+    value = value.strip(".-")
+    if not value:
+        raise ValueError("EMPTY_TASK_ID")
+    return value[:96]
+
+def normalize_scope(scope):
+    scope = str(scope).strip()
+    if not scope:
+        return pathlib.PurePosixPath(".")
+    scope = scope.replace("\\", "/")
+    while scope.startswith("./"):
+        scope = scope[2:]
+    scope = scope.rstrip("/")
+    if not scope:
+        scope = "."
+    return pathlib.PurePosixPath(scope)
+
+def scope_parts(scope):
+    scope = normalize_scope(scope)
+    parts = []
+    for part in scope.parts:
+        if part in ("*", "**"):
+            break
+        if any(ch in part for ch in "*?["):
+            break
+        parts.append(part)
+    return tuple(parts)
+
+def scopes_overlap(a, b):
+    pa = scope_parts(a)
+    pb = scope_parts(b)
+
+    if not pa or not pb:
+        return True
+
+    if pa == (".",) or pb == (".",):
+        return True
+
+    minimum = min(len(pa), len(pb))
+    return pa[:minimum] == pb[:minimum]
+
+def task_sets_overlap(task_a, task_b):
+    a = task_a.get("write_scopes") or []
+    b = task_b.get("write_scopes") or []
+
+    if not a or not b:
+        return False
+
+    for sa in a:
+        for sb in b:
+            if scopes_overlap(sa, sb):
+                return True
+
+    return False
+
+def validate_parallel(tasks):
+    for i, task_a in enumerate(tasks):
+        for task_b in tasks[i + 1:]:
+            if task_sets_overlap(
+                task_a,
+                task_b,
+            ):
+                raise RuntimeError(
+                    "OVERLAPPING_WRITE_SCOPES:"
+                    f"{task_a['task_id']}:"
+                    f"{task_b['task_id']}"
+                )
+
+def parse_handoff(text):
+    matches = HANDOFF_RE.findall(text)
+    if not matches:
+        return None
+
+    result = {}
+
+    for line in matches[-1].splitlines():
+        line = line.strip()
+        if not line or "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+        result[key.strip()] = value.strip()
+
+    return result
+
+def worker_prompt(task):
+    task_id = safe_id(task["task_id"])
+
+    task_file = (
+        TASKS / f"{task_id}.worker.md"
+    )
+
+    contract = """<AGENT_HANDOFF>
+STATUS=PASS|BLOCKED|FAILED
+TASK_ID=<task id>
+EXECUTED=<what was performed>
+RESULT=<final result>
+FILES_CHANGED=<paths or NONE>
+ARTIFACTS=<paths/ids or NONE>
+VERIFICATION=<objective evidence>
+BLOCKERS=<NONE or blocker>
+</AGENT_HANDOFF>"""
+
+    body = f"""# Worker Task
+
+TASK_ID={task_id}
+
+ROLE={worker_role(task)}
+
+PROJECT_ROOT={PROJECT}
+
+## Objective
+
+{task["objective"]}
+
+## Write scopes
+
+{json.dumps(task.get("write_scopes") or [], ensure_ascii=False)}
+
+## Read scopes
+
+{json.dumps(task.get("read_scopes") or ["."], ensure_ascii=False)}
+
+## Acceptance criteria
+
+{task.get("acceptance_criteria") or "Verify the assigned objective is complete."}
+
+## Rules
+
+Work autonomously until PASS, BLOCKED, or FAILED.
+Use your available tools directly.
+Do not perform unrelated project work.
+Verify before PASS.
+Return only the final handoff to the Director.
+
+## Final handoff
+
+{contract}
+"""
+
+    task_file.write_text(
+        body,
+        encoding="utf-8",
+    )
+
+    bootstrap = (
+        "Read this task file first with your file tool and execute it "
+        "autonomously: "
+        + str(task_file)
+        + "\nReturn only its required final AGENT_HANDOFF when done."
+    )
+
+    size = len(
+        bootstrap.encode("utf-8")
+    )
+
+    if size > 800:
+        raise RuntimeError(
+            f"BOOTSTRAP_TOO_LARGE={size}"
+        )
+
+    return bootstrap
+
+def cn_command(prompt):
+    return [
+        str(CN),
+        "-p",
+        "--config",
+        str(CONFIG),
+        "--auto",
+        "--format",
+        "json",
+        prompt,
+    ]
+
+def terminate_process_group(proc):
+    if proc.poll() is not None:
+        return
+
+    try:
+        os.killpg(
+            proc.pid,
+            signal.SIGTERM,
+        )
+    except ProcessLookupError:
+        return
+
+    try:
+        proc.wait(timeout=10)
+        return
+    except subprocess.TimeoutExpired:
+        pass
+
+    try:
+        os.killpg(
+            proc.pid,
+            signal.SIGKILL,
+        )
+    except ProcessLookupError:
+        pass
+
+    try:
+        proc.wait(timeout=5)
+    except subprocess.TimeoutExpired:
+        pass
+
+def extract_cn_response(raw):
+    raw = raw.strip()
+
+    if not raw:
+        return ""
+
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError:
+        return raw
+
+    if isinstance(data, dict):
+        response = data.get("response")
+        if isinstance(response, str):
+            return response
+
+    return raw
+
+CONTINUE_SESSION_ROOT = (
+    pathlib.Path.home()
+    / ".continue"
+    / "sessions"
+)
+
+
+def snapshot_continue_sessions():
+    if not CONTINUE_SESSION_ROOT.exists():
+        return {}
+
+    snapshot = {}
+
+    for path in CONTINUE_SESSION_ROOT.glob("*.json"):
+        if path.name == "sessions.json":
+            continue
+
+        try:
+            stat = path.stat()
+        except OSError:
+            continue
+
+        snapshot[path.name] = {
+            "mtime_ns": stat.st_mtime_ns,
+            "size": stat.st_size,
+        }
+
+    return snapshot
+
+
+def find_ephemeral_worker_sessions(
+    before,
+    task_id,
+    run_id,
+):
+    if not CONTINUE_SESSION_ROOT.exists():
+        return []
+
+    matches = []
+
+    for path in CONTINUE_SESSION_ROOT.glob("*.json"):
+        if path.name == "sessions.json":
+            continue
+
+        # Safety rule:
+        # only a session file that did not exist before this Worker
+        # may ever be deleted.
+        if path.name in before:
+            continue
+
+        try:
+            text = path.read_text(
+                encoding="utf-8",
+                errors="replace",
+            )
+        except OSError:
+            continue
+
+        # Require positive ownership evidence.
+        task_match = str(task_id) in text
+        run_match = str(run_id) in text
+
+        if not (task_match or run_match):
+            continue
+
+        matches.append(path)
+
+    return sorted(
+        matches,
+        key=lambda p: p.name,
+    )
+
+
+def destroy_ephemeral_worker_sessions(paths):
+    root = CONTINUE_SESSION_ROOT.resolve()
+
+    deleted = []
+    refused = []
+
+    for raw in paths:
+        path = pathlib.Path(raw)
+
+        try:
+            resolved = path.resolve()
+        except OSError as exc:
+            refused.append({
+                "path": str(path),
+                "reason":
+                    f"RESOLVE_FAILED:{exc}",
+            })
+            continue
+
+        if resolved.parent != root:
+            refused.append({
+                "path": str(resolved),
+                "reason": "OUTSIDE_SESSION_ROOT",
+            })
+            continue
+
+        if resolved.name == "sessions.json":
+            refused.append({
+                "path": str(resolved),
+                "reason": "INDEX_PROTECTED",
+            })
+            continue
+
+        if not resolved.exists():
+            continue
+
+        try:
+            resolved.unlink()
+            deleted.append(
+                str(resolved)
+            )
+        except OSError as exc:
+            refused.append({
+                "path": str(resolved),
+                "reason":
+                    f"DELETE_FAILED:{exc}",
+            })
+
+    return {
+        "deleted": deleted,
+        "refused": refused,
+    }
+
+
+def finalize_worker_context(
+    result,
+    worker_sessions_before,
+    task_id,
+    run_id,
+):
+    matches = find_ephemeral_worker_sessions(
+        worker_sessions_before,
+        task_id,
+        run_id,
+    )
+
+    cleanup = destroy_ephemeral_worker_sessions(
+        matches
+    )
+
+    result["worker_context_cleanup"] = {
+        "matched_session_count":
+            len(matches),
+
+        "matched_sessions": [
+            str(path)
+            for path in matches
+        ],
+
+        "deleted_session_count":
+            len(cleanup["deleted"]),
+
+        "deleted_sessions":
+            cleanup["deleted"],
+
+        "refused":
+            cleanup["refused"],
+
+        "status": (
+            "PASS"
+            if (
+                matches
+                and len(cleanup["deleted"])
+                == len(matches)
+                and not cleanup["refused"]
+            )
+            else (
+                "NO_MATCH"
+                if not matches
+                else "PARTIAL"
+            )
+        ),
+    }
+
+    return result
+
+
+def run_worker(task):
+    task = dict(task)
+    role = worker_role(task)
+
+    task["task_id"] = safe_id(
+        task["task_id"]
+    )
+
+    task_id = task["task_id"]
+
+    timeout = int(
+        task.get("timeout_seconds")
+        or DEFAULT_TIMEOUT
+    )
+
+    run_id = (
+        f"{task_id}-"
+        f"{uuid.uuid4().hex[:12]}"
+    )
+
+    worker_sessions_before = (
+        snapshot_continue_sessions()
+    )
+
+    run_path = (
+        RUNS / f"{run_id}.json"
+    )
+
+    log_path = (
+        LOGS / f"{run_id}.log"
+    )
+
+    prompt_path = (
+        RUNS
+        / f"{run_id}.prompt.txt"
+    )
+
+    result_path = (
+        RESULTS / f"{task_id}.json"
+    )
+
+    prompt = worker_prompt(task)
+
+    prompt_path.write_text(
+        prompt,
+        encoding="utf-8",
+    )
+
+    record = {
+        "run_id": run_id,
+        "task_id": task_id,
+        "status": "STARTING",
+        "pid": None,
+        "started_at": utcnow(),
+        "completed_at": None,
+        "log_path": str(log_path),
+        "prompt_path": str(
+            prompt_path
+        ),
+    }
+
+    write_json(
+        run_path,
+        record,
+    )
+
+    env = os.environ.copy()
+    env.pop(
+        "FORCE_NO_TTY",
+        None,
+    )
+
+    proc = None
+    return_code = None
+
+    try:
+        with log_path.open(
+            "w",
+            encoding="utf-8",
+        ) as log:
+
+            proc = subprocess.Popen(
+                cn_command(prompt),
+                cwd=str(PROJECT),
+                env=env,
+                stdin=subprocess.DEVNULL,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+                start_new_session=True,
+                text=True,
+            )
+
+            record["pid"] = proc.pid
+            record["status"] = "RUNNING"
+
+            write_json(
+                run_path,
+                record,
+            )
+
+            try:
+                return_code = proc.wait(
+                    timeout=timeout
+                )
+
+            except subprocess.TimeoutExpired:
+                terminate_process_group(
+                    proc
+                )
+
+                return_code = (
+                    proc.returncode
+                )
+
+                record["status"] = (
+                    "TIMEOUT"
+                )
+
+                record[
+                    "completed_at"
+                ] = utcnow()
+
+                record[
+                    "return_code"
+                ] = return_code
+
+                write_json(
+                    run_path,
+                    record,
+                )
+
+                result = {
+                    "task_id":
+                        task_id,
+
+                    "role":
+                        role,
+
+                    "run_id":
+                        run_id,
+
+                    "status":
+                        "FAILED",
+
+                    "executed":
+                        "Worker exceeded execution timeout.",
+
+                    "result":
+                        "TIMEOUT",
+
+                    "files_changed":
+                        "UNKNOWN",
+
+                    "artifacts":
+                        "NONE",
+
+                    "verification":
+                        "No valid final handoff.",
+
+                    "blockers":
+                        f"TIMEOUT_SECONDS={timeout}",
+
+                    "completed_at":
+                        utcnow(),
+                }
+
+                write_json(
+                    result_path,
+                    result,
+                )
+
+                result = finalize_worker_context(
+                    result,
+                    worker_sessions_before,
+                    task_id,
+                    run_id,
+                )
+
+                write_json(
+                    result_path,
+                    result,
+                )
+
+                return result
+
+    except BaseException:
+        if (
+            proc is not None
+            and proc.poll() is None
+        ):
+            terminate_process_group(
+                proc
+            )
+
+        raise
+
+    raw = log_path.read_text(
+        encoding="utf-8",
+        errors="replace",
+    )
+
+    response = extract_cn_response(
+        raw
+    )
+
+    handoff = parse_handoff(
+        response
+    )
+
+    if handoff is None:
+        result = {
+            "task_id":
+                task_id,
+
+            "role":
+                role,
+
+            "run_id":
+                run_id,
+
+            "status":
+                "FAILED",
+
+            "executed":
+                "Worker exited without a valid handoff.",
+
+            "result":
+                f"PROCESS_EXIT_CODE={return_code}",
+
+            "files_changed":
+                "UNKNOWN",
+
+            "artifacts":
+                "NONE",
+
+            "verification":
+                "AGENT_HANDOFF missing.",
+
+            "blockers":
+                "INVALID_COMPLETION_CONTRACT",
+
+            "completed_at":
+                utcnow(),
+        }
+
+    else:
+        status = handoff.get(
+            "STATUS",
+            "FAILED",
+        ).upper()
+
+        if status not in {
+            "PASS",
+            "BLOCKED",
+            "FAILED",
+        }:
+            status = "FAILED"
+
+        returned_task_id = (
+            handoff.get(
+                "TASK_ID",
+                "",
+            )
+        )
+
+        if (
+            returned_task_id
+            and returned_task_id
+            != task_id
+        ):
+            status = "FAILED"
+
+            blocker = (
+                "HANDOFF_TASK_ID_MISMATCH"
+            )
+
+        else:
+            blocker = handoff.get(
+                "BLOCKERS",
+                "NONE",
+            )
+
+        result = {
+            "task_id":
+                task_id,
+
+            "role":
+                role,
+
+            "run_id":
+                run_id,
+
+            "status":
+                status,
+
+            "executed":
+                handoff.get(
+                    "EXECUTED",
+                    "",
+                ),
+
+            "result":
+                handoff.get(
+                    "RESULT",
+                    "",
+                ),
+
+            "files_changed":
+                handoff.get(
+                    "FILES_CHANGED",
+                    "NONE",
+                ),
+
+            "artifacts":
+                handoff.get(
+                    "ARTIFACTS",
+                    "NONE",
+                ),
+
+            "verification":
+                handoff.get(
+                    "VERIFICATION",
+                    "",
+                ),
+
+            "blockers":
+                blocker,
+
+            "completed_at":
+                utcnow(),
+        }
+
+    write_json(
+        result_path,
+        result,
+    )
+
+    record["status"] = (
+        result["status"]
+    )
+
+    record["completed_at"] = (
+        utcnow()
+    )
+
+    record["return_code"] = (
+        return_code
+    )
+
+    write_json(
+        run_path,
+        record,
+    )
+
+    result = finalize_worker_context(
+        result,
+        worker_sessions_before,
+        task_id,
+        run_id,
+    )
+
+    write_json(
+        result_path,
+        result,
+    )
+
+    return result
+
+def create_task(args):
+    task_id = safe_id(args.task_id)
+
+    path = TASKS / f"{task_id}.json"
+
+    if path.exists() and not args.force:
+        raise RuntimeError(
+            f"TASK_EXISTS={task_id}"
+        )
+
+    task = {
+        "task_id": task_id,
+        "objective": args.objective,
+        "write_scopes": (
+            args.write_scope or []
+        ),
+        "read_scopes": (
+            args.read_scope or ["."]
+        ),
+        "acceptance_criteria": (
+            args.acceptance
+            or "Verify the assigned objective."
+        ),
+        "timeout_seconds": (
+            args.timeout
+            or DEFAULT_TIMEOUT
+        ),
+        "created_at": utcnow(),
+    }
+
+    write_json(path, task)
+    print(path)
+
+def run_task_command(args):
+    task_id = safe_id(args.task_id)
+    path = TASKS / f"{task_id}.json"
+
+    if not path.exists():
+        raise RuntimeError(
+            f"TASK_NOT_FOUND={task_id}"
+        )
+
+    result = run_worker(
+        read_json(path)
+    )
+
+    print(
+        json.dumps(
+            result,
+            indent=2,
+            ensure_ascii=False,
+        )
+    )
+
+    if result["status"] == "PASS":
+        return 0
+
+    if result["status"] == "BLOCKED":
+        return 2
+
+    return 1
+
+def run_parallel_command(args):
+    tasks = []
+
+    for raw_id in args.task_ids:
+        task_id = safe_id(raw_id)
+        path = TASKS / f"{task_id}.json"
+
+        if not path.exists():
+            raise RuntimeError(
+                f"TASK_NOT_FOUND={task_id}"
+            )
+
+        tasks.append(
+            read_json(path)
+        )
+
+    if len(tasks) > MAX_PARALLEL:
+        raise RuntimeError(
+            "MAX_PARALLEL_EXCEEDED"
+        )
+
+    validate_parallel(tasks)
+
+    results = []
+
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=len(tasks)
+    ) as pool:
+        futures = {
+            pool.submit(
+                run_worker,
+                task,
+            ): task["task_id"]
+            for task in tasks
+        }
+
+        for future in (
+            concurrent.futures.as_completed(
+                futures
+            )
+        ):
+            results.append(
+                future.result()
+            )
+
+    print(
+        json.dumps(
+            results,
+            indent=2,
+            ensure_ascii=False,
+        )
+    )
+
+    return (
+        0
+        if all(
+            r["status"] == "PASS"
+            for r in results
+        )
+        else 1
+    )
+
+def show_result(args):
+    task_id = safe_id(args.task_id)
+    path = RESULTS / f"{task_id}.json"
+
+    if not path.exists():
+        raise RuntimeError(
+            f"RESULT_NOT_FOUND={task_id}"
+        )
+
+    print(path.read_text())
+
+def show_status(args):
+    runs = []
+
+    for path in sorted(
+        RUNS.glob("*.json")
+    ):
+        try:
+            runs.append(
+                read_json(path)
+            )
+        except Exception:
+            continue
+
+    results = []
+
+    for path in sorted(
+        RESULTS.glob("*.json")
+    ):
+        try:
+            results.append(
+                read_json(path)
+            )
+        except Exception:
+            continue
+
+    print(
+        json.dumps(
+            {
+                "runs": runs[-50:],
+                "results": results[-50:],
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+    )
+
+def gc_task(args):
+    task_id = safe_id(args.task_id)
+
+    archive = (
+        ARCHIVE
+        / task_id
+        / datetime.datetime.now().strftime(
+            "%Y%m%d_%H%M%S"
+        )
+    )
+
+    archive.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    moved = 0
+
+    for pattern, source in (
+        (f"{task_id}-*.json", RUNS),
+        (f"{task_id}-*.log", LOGS),
+    ):
+        for path in source.glob(pattern):
+            target = archive / path.name
+            path.rename(target)
+            moved += 1
+
+    result = RESULTS / f"{task_id}.json"
+
+    print(
+        f"EXECUTION_RECORDS_ARCHIVED={moved}"
+    )
+    print(
+        "WORKER_ACTIVE_PROCESS_CONTEXT="
+        "NOT_RESUMED"
+    )
+    print(
+        f"DIRECTOR_HANDOFF={result}"
+    )
+    print(
+        f"ARCHIVE={archive}"
+    )
+
+def selftest_worker(task_id, marker):
+    task = {
+        "task_id": task_id,
+        "objective": (
+            "Use your terminal executor. "
+            "Run pwd. Then run "
+            f"printf '{marker}\\n'. "
+            "Do not modify project files. "
+            "Verify both commands succeeded."
+        ),
+        "write_scopes": [],
+        "read_scopes": ["."],
+        "acceptance_criteria": (
+            "pwd must equal the BunkerGame "
+            "project root and the marker "
+            "command must succeed."
+        ),
+        "timeout_seconds": 600,
+    }
+
+    return run_worker(task)
+
+def selftest(args):
+    if not CN.exists():
+        raise RuntimeError(
+            f"CN_NOT_FOUND={CN}"
+        )
+
+    if not CONFIG.exists():
+        raise RuntimeError(
+            f"CONFIG_NOT_FOUND={CONFIG}"
+        )
+
+    test_a = (
+        "selftest-a-"
+        + uuid.uuid4().hex[:8]
+    )
+    test_b = (
+        "selftest-b-"
+        + uuid.uuid4().hex[:8]
+    )
+
+    marker_a = (
+        "EXECUTOR_A_"
+        + uuid.uuid4().hex[:10]
+    )
+    marker_b = (
+        "EXECUTOR_B_"
+        + uuid.uuid4().hex[:10]
+    )
+
+    before_sessions = {
+        p.name
+        for p in (
+            pathlib.Path.home()
+            / ".continue/sessions"
+        ).glob("*.json")
+        if p.name != "sessions.json"
+    }
+
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=2
+    ) as pool:
+        fa = pool.submit(
+            selftest_worker,
+            test_a,
+            marker_a,
+        )
+        fb = pool.submit(
+            selftest_worker,
+            test_b,
+            marker_b,
+        )
+
+        result_a = fa.result()
+        result_b = fb.result()
+
+    session_root = (
+        pathlib.Path.home()
+        / ".continue/sessions"
+    )
+
+    after_files = [
+        p
+        for p in session_root.glob("*.json")
+        if (
+            p.name != "sessions.json"
+            and p.name not in before_sessions
+        )
+    ]
+
+    session_evidence = []
+
+    for path in after_files:
+        try:
+            data = json.loads(
+                path.read_text(
+                    errors="replace"
+                )
+            )
+        except Exception:
+            continue
+
+        history = (
+            data.get("history") or []
+        )
+
+        tools = []
+        outputs = []
+
+        for item in history:
+            if not isinstance(
+                item,
+                dict,
+            ):
+                continue
+
+            for state in (
+                item.get(
+                    "toolCallStates"
+                ) or []
+            ):
+                tc = (
+                    state.get(
+                        "toolCall"
+                    ) or {}
+                )
+
+                fn = (
+                    tc.get(
+                        "function"
+                    ) or {}
+                ).get("name")
+
+                if fn:
+                    tools.append(fn)
+
+                for output in (
+                    state.get(
+                        "output"
+                    ) or []
+                ):
+                    content = (
+                        output.get(
+                            "content"
+                        )
+                    )
+
+                    if isinstance(
+                        content,
+                        str,
+                    ):
+                        outputs.append(
+                            content
+                        )
+
+            msg = (
+                item.get("message")
+                or {}
+            )
+
+            if (
+                isinstance(msg, dict)
+                and msg.get("role")
+                == "tool"
+                and isinstance(
+                    msg.get(
+                        "content"
+                    ),
+                    str,
+                )
+            ):
+                outputs.append(
+                    msg["content"]
+                )
+
+        session_evidence.append({
+            "path": str(path),
+            "session_id":
+                data.get("sessionId"),
+            "tools": tools,
+            "outputs": outputs,
+        })
+
+    def marker_evidence(marker):
+        matches = []
+
+        for evidence in (
+            session_evidence
+        ):
+            if any(
+                marker in output
+                for output
+                in evidence["outputs"]
+            ):
+                matches.append(
+                    evidence
+                )
+
+        return matches
+
+    evidence_a = marker_evidence(
+        marker_a
+    )
+    evidence_b = marker_evidence(
+        marker_b
+    )
+
+    terminal_names = {
+        "Bash",
+        "run_terminal_command",
+    }
+
+    executor_a = (
+        len(evidence_a) == 1
+        and any(
+            tool in terminal_names
+            for tool
+            in evidence_a[0]["tools"]
+        )
+    )
+
+    executor_b = (
+        len(evidence_b) == 1
+        and any(
+            tool in terminal_names
+            for tool
+            in evidence_b[0]["tools"]
+        )
+    )
+
+    separate_sessions = (
+        len(evidence_a) == 1
+        and len(evidence_b) == 1
+        and evidence_a[0][
+            "session_id"
+        ]
+        != evidence_b[0][
+            "session_id"
+        ]
+    )
+
+    checks = {
+        "WORKER_A_PASS":
+            result_a["status"]
+            == "PASS",
+
+        "WORKER_B_PASS":
+            result_b["status"]
+            == "PASS",
+
+        "SEPARATE_RUN_IDS":
+            result_a["run_id"]
+            != result_b["run_id"],
+
+        "SEPARATE_TASK_IDS":
+            result_a["task_id"]
+            != result_b["task_id"],
+
+        "EXECUTOR_A_USED":
+            executor_a,
+
+        "EXECUTOR_B_USED":
+            executor_b,
+
+        "SEPARATE_CONTINUE_SESSIONS":
+            separate_sessions,
+
+        "WORKER_A_MARKER_IN_TOOL_OUTPUT":
+            len(evidence_a) == 1,
+
+        "WORKER_B_MARKER_IN_TOOL_OUTPUT":
+            len(evidence_b) == 1,
+    }
+
+    for key, value in (
+        checks.items()
+    ):
+        print(
+            f"{key}={value}"
+        )
+
+    if evidence_a:
+        print(
+            "WORKER_A_SESSION=",
+            evidence_a[0][
+                "session_id"
+            ],
+        )
+        print(
+            "WORKER_A_TOOLS=",
+            evidence_a[0][
+                "tools"
+            ],
+        )
+
+    if evidence_b:
+        print(
+            "WORKER_B_SESSION=",
+            evidence_b[0][
+                "session_id"
+            ],
+        )
+        print(
+            "WORKER_B_TOOLS=",
+            evidence_b[0][
+                "tools"
+            ],
+        )
+
+    if not all(
+        checks.values()
+    ):
+        raise RuntimeError(
+            "LIVE_MULTI_AGENT_"
+            "SELFTEST_FAILED"
+        )
+
+    print(
+        "PARALLEL_WORKERS=2"
+    )
+    print(
+        "FRESH_CN_PROCESS_"
+        "PER_WORKER=PASS"
+    )
+    print(
+        "SEPARATE_CONTINUE_"
+        "SESSION_PER_WORKER=PASS"
+    )
+    print(
+        "DEDICATED_EXECUTOR_"
+        "PER_WORKER=PASS"
+    )
+    print(
+        "HANDOFF_CONTRACT=PASS"
+    )
+    print(
+        "LIVE_MULTI_AGENT_"
+        "SELFTEST=PASS"
+    )
+
+def build_parser():
+    parser = argparse.ArgumentParser()
+    sub = parser.add_subparsers(
+        dest="command",
+        required=True,
+    )
+
+    p = sub.add_parser("create")
+    p.add_argument("task_id")
+    p.add_argument("objective")
+    p.add_argument(
+        "--write-scope",
+        action="append",
+    )
+    p.add_argument(
+        "--read-scope",
+        action="append",
+    )
+    p.add_argument(
+        "--acceptance",
+    )
+    p.add_argument(
+        "--timeout",
+        type=int,
+    )
+    p.add_argument(
+        "--force",
+        action="store_true",
+    )
+    p.set_defaults(fn=create_task)
+
+    p = sub.add_parser("run")
+    p.add_argument("task_id")
+    p.set_defaults(
+        fn=run_task_command
+    )
+
+    p = sub.add_parser("parallel")
+    p.add_argument(
+        "task_ids",
+        nargs="+",
+    )
+    p.set_defaults(
+        fn=run_parallel_command
+    )
+
+    p = sub.add_parser("result")
+    p.add_argument("task_id")
+    p.set_defaults(
+        fn=show_result
+    )
+
+    p = sub.add_parser("status")
+    p.set_defaults(
+        fn=show_status
+    )
+
+    p = sub.add_parser("gc")
+    p.add_argument("task_id")
+    p.set_defaults(
+        fn=gc_task
+    )
+
+    p = sub.add_parser("selftest")
+    p.set_defaults(
+        fn=selftest
+    )
+
+    return parser
+
+def main():
+    parser = build_parser()
+    args = parser.parse_args()
+
+    try:
+        result = args.fn(args)
+        return int(result or 0)
+    except Exception as exc:
+        print(
+            f"ERROR={exc}",
+            file=sys.stderr,
+        )
+        return 1
+
+if __name__ == "__main__":
+    raise SystemExit(main())

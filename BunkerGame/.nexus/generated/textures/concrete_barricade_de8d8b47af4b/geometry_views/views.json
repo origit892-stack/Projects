@@ -1,0 +1,150 @@
+{
+  "mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/preprocessed.glb",
+  "center": [
+    -0.0020340383052825928,
+    0.0036715418100357056,
+    -0.0066041499376297
+  ],
+  "dimensions": [
+    1.9061558246612549,
+    0.5722043514251709,
+    0.5700727701187134
+  ],
+  "longest": 1.9061558246612549,
+  "views": {
+    "front": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/geometry_views/front.png",
+      "camera_location": [
+        -0.0020340383052825928,
+        -5.333564758300781,
+        -0.0066041499376297
+      ],
+      "target": [
+        -0.0020340383052825928,
+        0.0036715418100357056,
+        -0.0066041499376297
+      ],
+      "direction": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "ortho_scale": 2.5733103632926944
+    },
+    "back": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/geometry_views/back.png",
+      "camera_location": [
+        -0.0020340383052825928,
+        5.340908050537109,
+        -0.0066041499376297
+      ],
+      "target": [
+        -0.0020340383052825928,
+        0.0036715418100357056,
+        -0.0066041499376297
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "ortho_scale": 2.5733103632926944
+    },
+    "left": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/geometry_views/left.png",
+      "camera_location": [
+        -5.33927059173584,
+        0.0036715418100357056,
+        -0.0066041499376297
+      ],
+      "target": [
+        -0.0020340383052825928,
+        0.0036715418100357056,
+        -0.0066041499376297
+      ],
+      "direction": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 2.5733103632926944
+    },
+    "right": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/geometry_views/right.png",
+      "camera_location": [
+        5.335202217102051,
+        0.0036715418100357056,
+        -0.0066041499376297
+      ],
+      "target": [
+        -0.0020340383052825928,
+        0.0036715418100357056,
+        -0.0066041499376297
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 2.5733103632926944
+    },
+    "top": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/geometry_views/top.png",
+      "camera_location": [
+        -0.0020340383052825928,
+        0.0036715418100357056,
+        5.330632209777832
+      ],
+      "target": [
+        -0.0020340383052825928,
+        0.0036715418100357056,
+        -0.0066041499376297
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "ortho_scale": 2.5733103632926944
+    },
+    "bottom": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/geometry_views/bottom.png",
+      "camera_location": [
+        -0.0020340383052825928,
+        0.0036715418100357056,
+        -5.343840599060059
+      ],
+      "target": [
+        -0.0020340383052825928,
+        0.0036715418100357056,
+        -0.0066041499376297
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "ortho_scale": 2.5733103632926944
+    },
+    "hero": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/geometry_views/hero.png",
+      "camera_location": [
+        3.332111358642578,
+        -3.3304736614227295,
+        2.494004726409912
+      ],
+      "target": [
+        -0.0020340383052825928,
+        0.0036715418100357056,
+        -0.0066041499376297
+      ],
+      "direction": [
+        0.6246950626373291,
+        -0.6246950626373291,
+        0.4685212969779968
+      ],
+      "ortho_scale": 2.5733103632926944
+    }
+  },
+  "all_exist": true
+}

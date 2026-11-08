@@ -1,0 +1,25 @@
+{
+  "task_id": "research-obj-to-studio",
+  "role": "researcher",
+  "run_id": "research-obj-to-studio-98b72b24bd0b",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-29T14:51:24.283965+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/0bf45093-b26b-4ada-b6d0-5462f42909cb.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/0bf45093-b26b-4ada-b6d0-5462f42909cb.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,1 @@
+Handoff includes: grep evidence that prompt.Text is absent and prompt.ActionText present in AmmoCrateInteraction.server.luau; line-numbered evidence that ui:Start() precedes all WaitForChild/InvokeServer/network calls in ClientBootstrap.client.luau; explicit PASS/FAIL verdict per file. No files modified.

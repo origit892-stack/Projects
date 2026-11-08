@@ -1,0 +1,12 @@
+{
+  "task_id": "plain-agent-clean-20261001_130742",
+  "role": "researcher",
+  "objective": "Read default.project.json and report its exact top-level project name. Do not modify anything.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/default.project.json"
+  ],
+  "acceptance_criteria": "PASS when the exact live top-level project name is reported with direct evidence.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T10:07:42.480528+00:00"
+}

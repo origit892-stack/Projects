@@ -1,0 +1,25 @@
+{
+  "task_id": "wh-struct",
+  "role": "researcher",
+  "run_id": "wh-struct-5260ca01d9cb",
+  "status": "PASS",
+  "executed": "(1) RBXMX: 107 Model elements, 62 MeshParts. Deep Blender-style hierarchy: root Model \"Sketchfab_Scene\" → intermediate Models (e.g., pandagun_1280, pandagun_1280_0) → per-mesh wrapper Models named \"<mesh>_Node\", each containing one MeshPart. Models carry WorldPivotData (CFrame, e.g., -165.71, 13.45, 249.19), ModelMeshCFrame (identity), ScaleFactor, PrimaryPart=null; no CFrame prop on Models. MeshParts carry CFrame (world coords, e.g., -179.996, 13.862, 249.238), PivotOffset (identity CFrame), size, Anchored=false.\n(2) model.json: single top-level Model \"abandoned_warehouse_interior_01\" with 62 MeshPart children, no nested Model wrappers. MeshPart props: CFrame (12-element array, world coords), Size, MeshId, Material, Color, Transparency, Anchored=true, CanCollide, CastShadow, DoubleSided. No PivotOffset/WorldPivot.\n(3) Key difference: RBXMX is a deep Model-wrapped hierarchy with WorldPivotData per Model; model.json is flat — one Model, MeshParts as direct children, CFrame-only transforms.",
+  "result": "(1) RBXMX: 107 Model elements, 62 MeshParts. Deep Blender-style hierarchy: root Model \"Sketchfab_Scene\" → intermediate Models (e.g., pandagun_1280, pandagun_1280_0) → per-mesh wrapper Models named \"<mesh>_Node\", each containing one MeshPart. Models carry WorldPivotData (CFrame, e.g., -165.71, 13.45, 249.19), ModelMeshCFrame (identity), ScaleFactor, PrimaryPart=null; no CFrame prop on Models. MeshParts carry CFrame (world coords, e.g., -179.996, 13.862, 249.238), PivotOffset (identity CFrame), size, Anchored=false.\n(2) model.json: single top-level Model \"abandoned_warehouse_interior_01\" with 62 MeshPart children, no nested Model wrappers. MeshPart props: CFrame (12-element array, world coords), Size, MeshId, Material, Color, Transparency, Anchored=true, CanCollide, CastShadow, DoubleSided. No PivotOffset/WorldPivot.\n(3) Key difference: RBXMX is a deep Model-wrapped hierarchy with WorldPivotData per Model; model.json is flat — one Model, MeshParts as direct children, CFrame-only transforms.",
+  "files_changed": "NONE",
+  "artifacts": "NONE",
+  "verification": "grep counts on rbxmx: 107 class=\"Model\", 62 class=\"MeshPart\", 107 WorldPivotData, 62 PivotOffset; python json parse of model.json: top Model, 62 children, prop set {Anchored, CFrame, CanCollide, CastShadow, Color, DoubleSided, Material, MeshId, Size, Transparency}; direct inspection of one MeshPart block in each file.",
+  "blockers": "NONE",
+  "completed_at": "2026-10-04T15:33:35.420601+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/ac2a405b-092d-4503-9331-a960dde65c2f.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/ac2a405b-092d-4503-9331-a960dde65c2f.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

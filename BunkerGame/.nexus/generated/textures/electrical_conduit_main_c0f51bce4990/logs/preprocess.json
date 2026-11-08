@@ -1,0 +1,6 @@
+{
+  "returncode": 0,
+  "seconds": 0.74,
+  "stdout": "INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib\nINFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib\n14:15:01 | INFO: Starting glTF 2.0 export\n14:15:01 | INFO: Extracting primitive: source\n14:15:01 | INFO: Primitives created: 1\n14:15:01 | INFO: Finished glTF 2.0 export in 0.005038022994995117 s\n\n{\n  \"source\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_main_c0f51bce4990/source.obj\",\n  \"output\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_main_c0f51bce4990/preprocessed.glb\",\n  \"objects\": 1,\n  \"vertices\": 625,\n  \"faces\": 576,\n  \"loops\": 2304,\n  \"uv_layers\": 1,\n  \"uv_loops\": 2304,\n  \"source_uv_valid\": false,\n  \"uv_generated\": true,\n  \"output_exists\": true\n}\nPREPROCESS=PASS\nBlender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)\nOBJ import of 'source.obj' took 0.53 ms\n\nBlender quit\n",
+  "stderr": ""
+}

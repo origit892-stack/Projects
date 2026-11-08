@@ -1,0 +1,12 @@
+{
+  "job_id": "run-client-minimal-mode-fallback-20261010_003153",
+  "mode": "run",
+  "task_ids": [
+    "client-minimal-mode-fallback"
+  ],
+  "pid": 94569,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-client-minimal-mode-fallback-20261010_003153.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-client-minimal-mode-fallback-20261010_003153.json",
+  "started_at": 1791581513.195912,
+  "launcher_status": "RUNNING"
+}

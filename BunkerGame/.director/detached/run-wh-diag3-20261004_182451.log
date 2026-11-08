@@ -1,0 +1,25 @@
+{
+  "task_id": "wh-diag3",
+  "role": "researcher",
+  "run_id": "wh-diag3-4ae59ed98810",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-10-04T15:30:43.062131+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/439a2de6-f34d-4801-b162-feab4d5dc7b6.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/439a2de6-f34d-4801-b162-feab4d5dc7b6.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

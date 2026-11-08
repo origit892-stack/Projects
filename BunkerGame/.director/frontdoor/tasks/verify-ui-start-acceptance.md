@@ -1,0 +1,1 @@
+PASS only if: exactly one ui:Start() immediately after UIController require+instantiation; it precedes the first InvokeServer/GetSnapshot/requestSnapshot/network yield; file complete (line count + proper ending); Luau parses with no syntax errors. Evidence must include the edited-region snippet and line/byte positions.

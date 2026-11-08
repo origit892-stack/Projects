@@ -1,0 +1,1 @@
+AmmoCrateInteraction.luau has no prompt.Text reference; uses prompt.ActionText for the ProximityPrompt. ClientBootstrap.client.luau calls UIController:Start()/ui:Start() synchronously before any InvokeServer/network/WaitForChild. Both verified on disk with grep evidence in the handoff. No unrelated changes.

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-weapons-stud-overlay-verify-20261011_154948",
+  "mode": "run",
+  "task_ids": [
+    "weapons-stud-overlay-verify"
+  ],
+  "pid": 16988,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-weapons-stud-overlay-verify-20261011_154948.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-weapons-stud-overlay-verify-20261011_154948.json",
+  "started_at": 1791722988.090167,
+  "launcher_status": "RUNNING"
+}

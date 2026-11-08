@@ -1,0 +1,16 @@
+{
+  "task_id": "warehouse-cube-upload-001",
+  "role": "implementer",
+  "objective": "Generate an abandoned warehouse 3D mesh using the installed Foundation AI cube3d text-to-3D system. Verified facts: canonical Cube installation is /Users/Ori/Developer/roblox-cube; invoke the generator from that repo using its .venv Python as: python -m cube3d.generate (check its --help first for prompt and output arguments). Steps: 1) Run cube3d generation with a prompt describing an abandoned warehouse (e.g., derelict industrial warehouse, rusted metal, broken windows, debris). 2) Verify the generated mesh output (OBJ/MTL or equivalent) exists, is non-empty, and is a valid mesh. 3) Convert/package the mesh as required for Roblox according to the established Roblox asset upload workflow in the BunkerGame project at /Users/Ori/Documents/Projects/BunkerGame (inspect the project scripts and docs for the existing upload workflow and use it; do not invent a new workflow). 4) Upload/publish the asset and capture the resulting Roblox asset ID from the upload response. 5) Persist project metadata under /Users/Ori/Documents/Projects/BunkerGame recording the asset ID, source prompt, generated mesh file paths, and timestamp. Report in the handoff: the numeric Roblox asset ID, generated mesh file paths, the exact upload command used, and evidence of successful upload.",
+  "write_scopes": [
+    "/Users/Ori/Developer/roblox-cube",
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Developer/roblox-cube",
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "PASS only if all of the following hold: 1) A generated abandoned warehouse mesh exists on disk (OBJ/MTL or equivalent) and is verified non-empty and structurally valid. 2) The asset was uploaded to Roblox using the project established upload workflow, with concrete evidence (command output or API response) captured. 3) A concrete numeric Roblox asset ID is reported in the handoff. 4) Project metadata recording the asset ID, source prompt, mesh paths, and timestamp is persisted under /Users/Ori/Documents/Projects/BunkerGame. 5) The handoff explicitly lists: asset ID, mesh file paths, upload command, and success evidence. If any step fails (generation failure, upload failure, no asset ID), report FAILED or BLOCKED with the specific error; do not fabricate an asset ID.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T10:34:14.918573+00:00"
+}

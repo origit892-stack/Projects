@@ -1,0 +1,12 @@
+{
+  "job_id": "run-diagnose-client-bootstrap-20261010_002252",
+  "mode": "run",
+  "task_ids": [
+    "diagnose-client-bootstrap"
+  ],
+  "pid": 92885,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-diagnose-client-bootstrap-20261010_002252.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-diagnose-client-bootstrap-20261010_002252.json",
+  "started_at": 1791580972.849071,
+  "launcher_status": "RUNNING"
+}

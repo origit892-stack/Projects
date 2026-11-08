@@ -1,0 +1,1 @@
+Both files verified: AmmoCrateInteraction has AutoDisableAfterTriggering after prompt.Parent (no nil-index). ClientBootstrap has bounded 3-attempt fallback to Minimal mode; full-mode path unchanged. luau-analyze: 0 new syntax errors on both files. No files modified.

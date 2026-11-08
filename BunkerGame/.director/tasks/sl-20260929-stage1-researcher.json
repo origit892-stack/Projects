@@ -1,0 +1,12 @@
+{
+  "task_id": "sl-20260929-stage1-researcher",
+  "role": "researcher",
+  "objective": "Read-only inspection of /Users/Ori/Documents/Projects/BunkerGame/default.project.json. Determine the exact value of the top-level 'name' field. Do not create, modify, or delete any project files. In the handoff, report the discovered name value as verified evidence (quote the exact string and the line/JSON path where it was found), and return PASS only if the field exists and its value was read directly from the live file.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/default.project.json"
+  ],
+  "acceptance_criteria": "Handoff contains the exact top-level name value from default.project.json, quoted verbatim with its source location, obtained by direct read of the live file; no files were created, modified, or deleted; status is PASS with the name reported as verified evidence.",
+  "timeout_seconds": 1800,
+  "created_at": "2026-09-29T08:43:22.795778+00:00"
+}

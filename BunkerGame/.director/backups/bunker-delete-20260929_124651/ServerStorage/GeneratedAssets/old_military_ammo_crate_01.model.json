@@ -1,0 +1,38 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "GeneratedAssetId": "old_military_ammo_crate_01",
+    "RobloxAssetId": "110954195423764",
+    "RobloxAssetType": "Model",
+    "IntegrationState": "Ready",
+    "CanonicalSource": "RobloxImportedModelInspection"
+  },
+  "Children": [
+    {
+      "Name": "Mesh_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://140136727798730",
+        "Size": [
+          1.9237563610076904,
+          1.3635647296905518,
+          1.3061225414276123
+        ]
+      },
+      "Children": [
+        {
+          "Name": "SurfaceAppearance",
+          "ClassName": "SurfaceAppearance",
+          "Properties": {
+            "ColorMap": "rbxassetid://79418719084559",
+            "NormalMap": "rbxassetid://75088026659430",
+            "RoughnessMap": "rbxassetid://81827742837440",
+            "MetalnessMap": "rbxassetid://72826286691276"
+          }
+        }
+      ]
+    }
+  ]
+}

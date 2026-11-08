@@ -1,0 +1,23 @@
+{
+  "project_status": "CONTINUE",
+  "summary": "Cycle 0, no workers completed. Objective: read the current top-level name from /Users/Ori/Documents/Projects/BunkerGame/default.project.json, create .director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt with exactly PROJECT_NAME=<current name> and BUILD_STATUS=READY, then independently verify the artifact. No verified facts yet; the name value is UNKNOWN until read from the live file. First wave: a single bounded implementer (the required fact is a single field in a known file, so no researcher is needed). Verification will be scheduled as a fresh read-only verifier after the implementer handoff.",
+  "tasks": [
+    {
+      "task_id": "impl-create-project-info",
+      "role": "implementer",
+      "objective": "Create the acceptance artifact for run adaptive-planner-20260929_114841. Steps: (1) Read the live file /Users/Ori/Documents/Projects/BunkerGame/default.project.json and extract its current top-level 'name' value exactly as written (do not assume or guess it). (2) Ensure the directory /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work exists. (3) Create the file /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt containing exactly two lines: line 1 'PROJECT_NAME=<the exact current top-level name value>' and line 2 'BUILD_STATUS=READY', with a trailing newline after line 2 and no other content. (4) Do NOT modify default.project.json or anything outside the sandbox work directory /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work. In your handoff, report the exact name value you read from the project file and the exact bytes/lines written to the artifact.",
+      "write_scopes": [
+        "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work"
+      ],
+      "read_scopes": [
+        "/Users/Ori/Documents/Projects/BunkerGame/default.project.json",
+        "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work"
+      ],
+      "acceptance_criteria": "The file /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt exists and contains exactly the two lines 'PROJECT_NAME=<name>' (where <name> is the top-level name value actually read from the current default.project.json) and 'BUILD_STATUS=READY'. The handoff must state the exact name value read from the live project file and the exact content written. default.project.json must be unmodified.",
+      "timeout_seconds": 600
+    }
+  ],
+  "final_result": "",
+  "_director_seconds": 21.152,
+  "_director_output": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/cycles/adaptive-planner-20260929_114841.0001.director.out"
+}

@@ -1,0 +1,14 @@
+{
+  "task_id": "fix-prompt-text-ui-start",
+  "role": "implementer",
+  "objective": "Fix two files in BunkerGame (root: /Users/Ori/Documents/Projects/BunkerGame). (1) AmmoCrateInteraction.luau: server crash at line 7 - 'Text is not a valid member of ProximityPrompt OpenCratePrompt'. Change prompt.Text to prompt.ActionText (ProximityPrompt has no Text property). (2) ClientBootstrap.client.luau: ensure UIController:Start() (or ui:Start()) is called synchronously at the absolute top of client initialization, BEFORE any network calls, InvokeServer, or WaitForChild. If not already there, move it there with a minimal atomic edit. Locate both files under the active src/ tree. Smallest coherent change only; preserve all other logic. After editing, verify on disk and include the relevant lines as evidence.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "AmmoCrateInteraction.luau has no prompt.Text reference; uses prompt.ActionText for the ProximityPrompt. ClientBootstrap.client.luau calls UIController:Start()/ui:Start() synchronously before any InvokeServer/network/WaitForChild. Both verified on disk with grep evidence in the handoff. No unrelated changes.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-10T07:16:43.036097+00:00"
+}

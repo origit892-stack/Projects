@@ -1,0 +1,1 @@
+PASS requires read-only inspection of the live default.project.json and reporting its exact top-level name value.

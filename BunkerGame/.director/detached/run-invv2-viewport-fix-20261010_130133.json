@@ -1,0 +1,12 @@
+{
+  "job_id": "run-invv2-viewport-fix-20261010_130133",
+  "mode": "run",
+  "task_ids": [
+    "invv2-viewport-fix"
+  ],
+  "pid": 73851,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-invv2-viewport-fix-20261010_130133.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-invv2-viewport-fix-20261010_130133.json",
+  "started_at": 1791626493.12603,
+  "launcher_status": "RUNNING"
+}

@@ -1,0 +1,1 @@
+Report contains: (1) current Studio mode (Edit/Play); (2) list of existing ScreenGuis with names+parents; (3) existing inventory scripts/remotes/data module paths; (4) canonical persistence mechanism (Argon/Rojo/sync) with exact filesystem path where a new ScreenGui BunkerInventoryV2_Preview should be persisted; (5) git working tree state summary; (6) no mutations performed.

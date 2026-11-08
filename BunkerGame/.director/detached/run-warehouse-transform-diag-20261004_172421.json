@@ -1,0 +1,12 @@
+{
+  "job_id": "run-warehouse-transform-diag-20261004_172421",
+  "mode": "run",
+  "task_ids": [
+    "warehouse-transform-diag"
+  ],
+  "pid": 2732,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-transform-diag-20261004_172421.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-transform-diag-20261004_172421.json",
+  "started_at": 1791123861.739084,
+  "launcher_status": "RUNNING"
+}

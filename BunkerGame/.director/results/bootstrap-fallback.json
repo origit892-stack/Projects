@@ -1,0 +1,12 @@
+{
+  "task_id": "bootstrap-fallback",
+  "run_id": "bootstrap-fallback-c34675c3c520",
+  "status": "PASS",
+  "executed": "Modified src/ServerScriptService/Game/ServerBootstrap.server.luau: added `local Workspace = game:GetService(\"Workspace\")` and `local hasGameWorld = Workspace:FindFirstChild(\"GameWorld\") ~= nil` immediately after the existing Players/ReplicatedStorage locals and the `Players.CharacterAutoLoads = false` line; wrapped the entire existing full-bootstrap body (service modules, bag construction, handlePlayer, xpcall(bag:Init/Start), PlayerAdded/Removing connections, existing-player loop, BindToClose) in `if hasGameWorld then ... end` with the body content unchanged (single uniform tab re-indent); added an `else` minimal-spawn branch that sets `Players.CharacterAutoLoads = true`, calls `player:LoadCharacter()` via pcall for each already-present player with `player.Character == nil` (warn on pcall failure), and emits the exact required warn message. No service graph, admission, or teardown code in the else branch. SpawnService/WorldService untouched.",
+  "result": "ServerBootstrap now degrades to minimal spawn mode when Workspace.GameWorld is absent; full-world path preserved.",
+  "files_changed": "src/ServerScriptService/Game/ServerBootstrap.server.luau",
+  "artifacts": "NONE",
+  "verification": "(1) luau-analyze on the modified file: 0 SyntaxErrors (GATE 5 met); all 42 remaining diagnostics are TypeErrors from missing Roblox API definitions outside Studio (unknown globals game/task/warn, unknown type Player), which the task explicitly accepts; the single LocalUnused (wildlifeService) is pre-existing in the original baseline. (2) Byte-for-byte equivalence of the full-world path: diff of the wrapped body (new lines 13-279 with one leading tab stripped) against the original body (orig lines 9-276) is empty (BODY_IDENTICAL=YES); header lines 1-8 diff empty (HEADER_IDENTICAL=YES). (3) Else branch inspected: CharacterAutoLoads=true override, pcall-guarded LoadCharacter for characterless existing players, exact warn string, no service graph/admission/teardown.",
+  "blockers": "NONE",
+  "completed_at": "2026-09-28T20:06:29.139637+00:00"
+}

@@ -1,0 +1,63 @@
+{
+  "id": "20260919_214053_6d991023",
+  "title": "milestone_ui_final_700",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "Perform a comprehensive READ-ONLY BunkerGame inspection.",
+  "status": "INTERRUPTED",
+  "created_at": "2026-09-19T18:40:53.010672+00:00",
+  "updated_at": "2026-09-19T18:43:31.668503+00:00",
+  "run_id": null,
+  "last_result": "Session interrupted by user.",
+  "history": [
+    {
+      "type": "objective",
+      "text": "Perform a comprehensive READ-ONLY BunkerGame inspection.",
+      "created_at": "2026-09-19T18:40:53.010672+00:00"
+    },
+    {
+      "type": "interrupt",
+      "text": "Session interrupted by user.",
+      "created_at": "2026-09-19T18:41:25.085596+00:00"
+    },
+    {
+      "type": "instruction",
+      "text": "Perform a comprehensive READ-ONLY BunkerGame inspection.",
+      "created_at": "2026-09-19T18:43:20.789512+00:00"
+    },
+    {
+      "type": "interrupt",
+      "text": "Session interrupted by user.",
+      "created_at": "2026-09-19T18:43:31.668468+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "Perform a comprehensive READ-ONLY BunkerGame inspection.",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": null,
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "updated_at": null
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": "2026-09-19T18:43:20.790733+00:00"
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": "INTERRUPTED",
+    "last_instruction": "Perform a comprehensive READ-ONLY BunkerGame inspection.",
+    "continuation_point": "interrupted-turn",
+    "interrupted": true,
+    "resume_requested_at": null,
+    "updated_at": "2026-09-19T18:43:31.668489+00:00"
+  }
+}

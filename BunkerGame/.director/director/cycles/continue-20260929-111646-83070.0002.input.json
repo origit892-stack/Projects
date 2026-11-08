@@ -1,0 +1,71 @@
+{
+  "objective_file": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/objectives/continue-20260929-111646-83070.objective.md",
+  "state": {
+    "run_id": "continue-20260929-111646-83070",
+    "status": "RUNNING",
+    "created_at": "2026-09-29T08:16:46.248577+00:00",
+    "updated_at": "2026-09-29T08:18:13.448035+00:00",
+    "cycle": 1,
+    "summary": "Cycle 0: no worker tasks completed. Live state matches the objective's verified baseline: src/Workspace contains only ArgonProof.model.json and SpawnRoot.model.json; no GameWorld, Runtime, or Lighting; src/ServerStorage absent; default.project.json lacks ServerStorage and Lighting mappings. The 5 accepted asset files exist only in the recovery artifact, and the builder (tools/builders/generate_full_game_world.py) is ready to run once assets are restored. Two non-overlapping work streams can proceed in parallel: (1) asset restore + world build, (2) additive project mapping edits. Verification will follow in the next cycle.",
+    "history_totals": {
+      "completed": 2,
+      "failed": 0,
+      "blocked": 0,
+      "archived": 0
+    },
+    "archived_summary": {
+      "completed_count": 0,
+      "failed_count": 0,
+      "blocked_count": 0,
+      "latest_archived_cycle": 0
+    },
+    "completed_tasks": [
+      {
+        "task_id": "project-mapping-01",
+        "status": "PASS",
+        "result": "File now contains 7 tree mappings: Players, ReplicatedStorage, ServerScriptService, StarterGui, StarterPlayer, Workspace, ServerStorage, Lighting. All pre-existing mappings unchanged.",
+        "verification": "python3 -m json.tool parsed the file successfully (valid JSON). Final mappings section: Players (CharacterAutoLoads=false), ReplicatedStorage -> src/ReplicatedStorage, ServerScriptService -> src/ServerScriptService, StarterGui -> src/StarterGui, StarterPlayer/StarterPlayerScripts -> src/StarterPlayer/StarterPlayerScripts, Workspace (FilteringEnabled=true, SignalBehavior=Deferred, StreamingEnabled=false, $path=src/Workspace), ServerStorage -> src/ServerStorage, Lighting -> src/Lighting.",
+        "files_changed": "default.project.json",
+        "artifacts": "NONE",
+        "blockers": "NONE"
+      },
+      {
+        "task_id": "world-build-01",
+        "status": "PASS",
+        "result": "Builder exited 0 with no AssertionError; validate_world() passed in-memory and on the written file (builder self-checks both). All acceptance criteria met.",
+        "verification": "VERIFIED_FACT: all 5 asset files exist non-empty in src/ServerStorage/GeneratedAssets/ (sizes 1009/999/999/1001/848 bytes, test -s passed on each); src/Workspace/GameWorld.model.json and src/Workspace/Runtime.model.json exist and parse as valid JSON (python3 json.load); src/Lighting/init.meta.json exists and parses as valid JSON; builder exit code 0 with JSON summary and no validation errors; ArgonProof.model.json (232 B, mtime Sep 25) and SpawnRoot.model.json (381 B, mtime Sep 28) untouched; no .luau files or default.project.json modified.",
+        "files_changed": "src/ServerStorage/GeneratedAssets/bunker_electrical_junction_box_01.model.json (1009 B), src/ServerStorage/GeneratedAssets/bunker_valve_assembly_01.model.json (999 B), src/ServerStorage/GeneratedAssets/bunker_vent_grille_01.model.json (999 B), src/ServerStorage/GeneratedAssets/old_military_ammo_crate_01.model.json (1001 B), src/ServerStorage/GeneratedAssets/pipeline_pipe_retry_02.model.json (848 B), src/Workspace/GameWorld.model.json (1151797 B, created), src/Workspace/Runtime.model.json (46 B, created), src/Lighting/init.meta.json (722 B, created), src/Lighting/Atmosphere.model.json, src/Lighting/Bloom.model.json, src/Lighting/ColorGrade.model.json, src/Lighting/DepthOfField.model.json, src/Lighting/SunRays.model.json (all created by builder)",
+        "artifacts": "Builder JSON summary: {\"counts\": {\"activeSounds\": 0, \"ambientBeds\": 0, \"baseParts\": 970, \"bunkerBaseParts\": 425, \"bunkerDescendants\": 609, \"collidableParts\": 248, \"configuredVisibleParticles\": 8.29, \"descendants\": 1306, \"exactPositionChecks\": 61, \"exteriorBaseParts\": 176, \"farmBaseParts\": 109, \"farmCollidableParts\": 4, \"groundTopY\": 54.0, \"lights\": 19, \"objectives\": 3, \"particleEmitters\": 6, \"plotPrompts\": 12, \"plots\": 12, \"presentationBaseParts\": 23, \"prompts\": 26, \"resourceNodes\": 24, \"scrapCaches\": 6, \"scrapPrompts\": 6, \"scripts\": 0, \"seed\": 260826, \"shadowLights\": 6, \"sounds\": 2, \"spawns\": 6, \"stationPrompts\": 8, \"stations\": 8, \"trees\": 18, \"zombieMarkers\": 7}, \"generatedFiles\": 13, \"output\": \"/Users/Ori/Documents/Projects/BunkerGame/src/Workspace/GameWorld.model.json\", \"runtime\": \"/Users/Ori/Documents/Projects/BunkerGame/src/Workspace/Runtime.model.json\", \"sha256\": \"d394e172899ed1c915d485060ce5a4916397d9ee9157740de6fb69609f439a50\"}",
+        "blockers": "NONE"
+      }
+    ],
+    "failed_tasks": [],
+    "blocked_tasks": [],
+    "last_handoffs": [
+      {
+        "task_id": "project-mapping-01",
+        "status": "PASS",
+        "executed": "Read default.project.json, appended exactly two new mappings (ServerStorage -> src/ServerStorage, Lighting -> src/Lighting) to the tree section after Workspace, preserving all existing content.",
+        "result": "File now contains 7 tree mappings: Players, ReplicatedStorage, ServerScriptService, StarterGui, StarterPlayer, Workspace, ServerStorage, Lighting. All pre-existing mappings unchanged.",
+        "files_changed": "default.project.json",
+        "artifacts": "NONE",
+        "verification": "python3 -m json.tool parsed the file successfully (valid JSON). Final mappings section: Players (CharacterAutoLoads=false), ReplicatedStorage -> src/ReplicatedStorage, ServerScriptService -> src/ServerScriptService, StarterGui -> src/StarterGui, StarterPlayer/StarterPlayerScripts -> src/StarterPlayer/StarterPlayerScripts, Workspace (FilteringEnabled=true, SignalBehavior=Deferred, StreamingEnabled=false, $path=src/Workspace), ServerStorage -> src/ServerStorage, Lighting -> src/Lighting.",
+        "blockers": "NONE",
+        "completed_at": "2026-09-29T08:17:49.607969+00:00"
+      },
+      {
+        "task_id": "world-build-01",
+        "status": "PASS",
+        "executed": "Copied the 5 accepted asset .model.json files from artifacts/recovery_fixed_20260831_101945/current_filesystem/src/ServerStorage/GeneratedAssets/ into newly created src/ServerStorage/GeneratedAssets/ (byte-for-byte cp, no regeneration); verified all 5 present and non-empty; ran `python3 tools/builders/generate_full_game_world.py` from project root; verified outputs.",
+        "result": "Builder exited 0 with no AssertionError; validate_world() passed in-memory and on the written file (builder self-checks both). All acceptance criteria met.",
+        "files_changed": "src/ServerStorage/GeneratedAssets/bunker_electrical_junction_box_01.model.json (1009 B), src/ServerStorage/GeneratedAssets/bunker_valve_assembly_01.model.json (999 B), src/ServerStorage/GeneratedAssets/bunker_vent_grille_01.model.json (999 B), src/ServerStorage/GeneratedAssets/old_military_ammo_crate_01.model.json (1001 B), src/ServerStorage/GeneratedAssets/pipeline_pipe_retry_02.model.json (848 B), src/Workspace/GameWorld.model.json (1151797 B, created), src/Workspace/Runtime.model.json (46 B, created), src/Lighting/init.meta.json (722 B, created), src/Lighting/Atmosphere.model.json, src/Lighting/Bloom.model.json, src/Lighting/ColorGrade.model.json, src/Lighting/DepthOfField.model.json, src/Lighting/SunRays.model.json (all created by builder)",
+        "artifacts": "Builder JSON summary: {\"counts\": {\"activeSounds\": 0, \"ambientBeds\": 0, \"baseParts\": 970, \"bunkerBaseParts\": 425, \"bunkerDescendants\": 609, \"collidableParts\": 248, \"configuredVisibleParticles\": 8.29, \"descendants\": 1306, \"exactPositionChecks\": 61, \"exteriorBaseParts\": 176, \"farmBaseParts\": 109, \"farmCollidableParts\": 4, \"groundTopY\": 54.0, \"lights\": 19, \"objectives\": 3, \"particleEmitters\": 6, \"plotPrompts\": 12, \"plots\": 12, \"presentationBaseParts\": 23, \"prompts\": 26, \"resourceNodes\": 24, \"scrapCaches\": 6, \"scrapPrompts\": 6, \"scripts\": 0, \"seed\": 260826, \"shadowLights\": 6, \"sounds\": 2, \"spawns\": 6, \"stationPrompts\": 8, \"stations\": 8, \"trees\": 18, \"zombieMarkers\": 7}, \"generatedFiles\": 13, \"output\": \"/Users/Ori/Documents/Projects/BunkerGame/src/Workspace/GameWorld.model.json\", \"runtime\": \"/Users/Ori/Documents/Projects/BunkerGame/src/Workspace/Runtime.model.json\", \"sha256\": \"d394e172899ed1c915d485060ce5a4916397d9ee9157740de6fb69609f439a50\"}",
+        "verification": "VERIFIED_FACT: all 5 asset files exist non-empty in src/ServerStorage/GeneratedAssets/ (sizes 1009/999/999/1001/848 bytes, test -s passed on each); src/Workspace/GameWorld.model.json and src/Workspace/Runtime.model.json exist and parse as valid JSON (python3 json.load); src/Lighting/init.meta.json exists and parses as valid JSON; builder exit code 0 with JSON summary and no validation errors; ArgonProof.model.json (232 B, mtime Sep 25) and SpawnRoot.model.json (381 B, mtime Sep 28) untouched; no .luau files or default.project.json modified.",
+        "blockers": "NONE",
+        "completed_at": "2026-09-29T08:18:13.431504+00:00"
+      }
+    ],
+    "final_result": ""
+  },
+  "instruction": "Read the objective file. Use the bounded durable state and recent worker handoffs in this input. Decide the next bounded worker tasks or declare COMPLETE/BLOCKED. Historical details are archived on disk and are not automatically rehydrated."
+}

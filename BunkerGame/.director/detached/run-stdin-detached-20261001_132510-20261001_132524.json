@@ -1,0 +1,12 @@
+{
+  "job_id": "run-stdin-detached-20261001_132510-20261001_132524",
+  "mode": "run",
+  "task_ids": [
+    "stdin-detached-20261001_132510"
+  ],
+  "pid": 75915,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-stdin-detached-20261001_132510-20261001_132524.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-stdin-detached-20261001_132510-20261001_132524.json",
+  "started_at": 1790850324.561239,
+  "launcher_status": "RUNNING"
+}

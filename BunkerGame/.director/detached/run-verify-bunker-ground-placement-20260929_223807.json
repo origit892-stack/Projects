@@ -1,0 +1,12 @@
+{
+  "job_id": "run-verify-bunker-ground-placement-20260929_223807",
+  "mode": "run",
+  "task_ids": [
+    "verify-bunker-ground-placement"
+  ],
+  "pid": 44877,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-bunker-ground-placement-20260929_223807.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-bunker-ground-placement-20260929_223807.json",
+  "started_at": 1790710687.995473,
+  "launcher_status": "RUNNING"
+}

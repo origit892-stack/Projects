@@ -1,0 +1,25 @@
+{
+  "task_id": "warehouse-integrate-02",
+  "role": "implementer",
+  "run_id": "warehouse-integrate-02-a35b9903e7d4",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-10-01T18:50:27.754955+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/7716fad1-83ff-4162-9ea8-bb8f86707ed5.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/7716fad1-83ff-4162-9ea8-bb8f86707ed5.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

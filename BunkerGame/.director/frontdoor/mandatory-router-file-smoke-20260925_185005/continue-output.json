@@ -1,0 +1,22 @@
+{
+  "classification": "DIRECTOR",
+  "objective_file": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/file-smoke-4artifacts-20260925_185005.objective.md",
+  "director_run_id": "continue-20260925-185036-61945",
+  "director_status": "COMPLETE",
+  "director_cycles": 3,
+  "worker_tasks": [
+    {"task": "smoke-backend", "result": "PASS"},
+    {"task": "smoke-frontend", "result": "PASS"},
+    {"task": "smoke-tests", "result": "PASS"},
+    {"task": "smoke-release", "result": "PASS"}
+  ],
+  "dependency_ordering_verified": true,
+  "artifacts": [
+    {"path": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/backend.txt", "content": "BACKEND=READY", "bytes": 13, "independent_verification": "cmp=OK"},
+    {"path": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/frontend.txt", "content": "FRONTEND=READY", "bytes": 14, "independent_verification": "cmp=OK"},
+    {"path": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/tests.txt", "content": "TESTS=PASS", "bytes": 10, "independent_verification": "cmp=OK"},
+    {"path": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/release.txt", "content": "RELEASE=READY", "bytes": 13, "independent_verification": "cmp=OK"}
+  ],
+  "scope_check": "Only the sandbox work/ directory was created/modified; no files outside it were touched.",
+  "final_status": "COMPLETE"
+}

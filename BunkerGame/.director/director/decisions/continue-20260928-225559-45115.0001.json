@@ -1,0 +1,45 @@
+{
+  "project_status": "CONTINUE",
+  "summary": "Cycle 0; no worker tasks completed yet. Objective: (1) strip all HUD UI from UIController.luau keeping only the weapons button, (2) remove the diagonal Glint sweep on the weapons button, (3) create a working spawn by adding a minimal SpawnRoot.model.json and making ServerBootstrap fall back to default SpawnLocation when GameWorld is absent. The three work items touch three distinct files with non-overlapping write scopes, so they are dispatched as parallel bounded tasks. GATE 6 (Studio Play) is user-verification only and is not a worker gate.",
+  "tasks": [
+    {
+      "task_id": "ui-hud-removal",
+      "objective": "In src/StarterPlayer/StarterPlayerScripts/GameClient/UIController.luau: (TASK 1) Remove every HUD element from _buildGui except the ScreenGui 'OutskirtsHUD' + SafeAreaRoot frame and the fully-intact _buildWeaponsButton() (blue gradient tile, rifle, spider webs, spider, white 'Weapons' label, hover/press/bob/web-breath/spider-crawl animations, click notification). Remove PhaseReadout, ObjectiveCard, ResourceReadout, SurvivalReadout, EquipmentHotbar, Reticle, TouchPrimary, InteractionPrompt, Notifications container (unless needed as ShowNotification parent), ConnectionStatus, and the entire ModalLayer (StationPanel/Header/Close/Content/Expiry). Remove the now-dead functions that only served removed HUD (_renderSnapshot, _renderTimers, _renderConnection, _renderInteraction, _rebuildPanel, _buildFarmPanel, _buildProcessorPanel, _buildShopPanel, _buildStoragePanel, _buildPowerPanel, _buildScrapPanel, _buildUpgradePanel, _panelText, _panelDivider, _panelAction, _stepper, _configureSelection, _openPanel, _closePanel, _clearPanelContent, _bindStaticButtons, _updateLayout, _updateReticlePosition, _onActionResult, _binding) and the copy tables that become truly unreferenced (OBJECTIVES, ITEM_NAMES, STORAGE_ITEMS, OFFER_NAMES, UPGRADE_COPY, ERROR_MESSAGES) — remove only those with zero remaining references. CRITICAL InputController compatibility: keep SetCallbacks (store/ignore), SetPreferredInput (no-op), ShowPrompt (no-op), HidePrompt (no-op), SetPromptProgress (no-op), IsPointerOverInteractiveUI (real minimal impl returning true only when pointer is over the weapons button), and ShowNotification (fully working; keep a minimal Notifications frame only if it needs a parent). Keep _reducedMotion detection. Simplify Start() (build weapons-button-only GUI + wire reduced-motion change signal) and Stop() (teardown connections/tweens/notifications, destroy gui, still invoke self._refs.WeaponsCleanup). Do NOT change the weapons button visuals. (TASK 2) Inside _buildWeaponsButton(): remove the 'Glint' Frame creation (Size 16x96, Rotation=24, white, Visible=false) and remove the glint sweep block in the button.Activated handler (glint.Visible=true, glint.Position=..., the TweenService:Create(glint,...) sweep, and its sweep.Completed handler). KEEP the press animation (pressSize tween + release tween), the hover animation, and the 'Glow' frame (full-size hover glow, BackgroundTransparency 1->0.84).",
+      "write_scopes": [
+        "src/StarterPlayer/StarterPlayerScripts/GameClient/UIController.luau"
+      ],
+      "read_scopes": [
+        "."
+      ],
+      "acceptance_criteria": "GATE 1: luau-analyze on UIController.luau reports 0 SyntaxErrors (TypeErrors from missing Roblox API definitions outside Studio are acceptable). GATE 2: weapons button intact (gradient/rifle/webs/spider/label + hover/press/bob/web-breath/spider-crawl) and the 'Glint' frame + its sweep are gone; no active references to removed refs (e.g. self._refs.PhasePanel, self._refs.Hotbar1, self._refs.Modal) remain. GATE 3: every UI method called by InputController.luau still exists (SetCallbacks, SetPreferredInput, ShowPrompt, HidePrompt, SetPromptProgress, IsPointerOverInteractiveUI, ShowNotification). Report each gate honestly; do not convert UNVERIFIED into PASS.",
+      "timeout_seconds": 7200
+    },
+    {
+      "task_id": "spawn-model",
+      "objective": "Create src/Workspace/SpawnRoot.model.json matching the EXACT Rojo model.json format already used by src/Workspace/ArgonProof.model.json (top-level {\"ClassName\":\"Model\",\"Children\":[...]}, each child {\"Name\":...,\"ClassName\":...,\"Properties\":{...}}). Children: (1) a SpawnLocation named 'PlayerSpawn' with Anchored=true, CanCollide=false, Neutral=true, Enabled=true, Duration=0, Transparency=1, Size=[6,1,6], Position=[0,55,0]; (2) an anchored ground Part named 'TestGround' with Anchored=true, CanCollide=true, Size=[40,1,40], Position=[0,54.5,0], Material='Concrete' (top surface at Y=55 matches the spawn). These live outside any GameWorld so they do not affect WorldService.Validate() and do not interfere with the custom SpawnService. Do NOT rebuild the full GameWorld.",
+      "write_scopes": [
+        "src/Workspace/SpawnRoot.model.json"
+      ],
+      "read_scopes": [
+        "."
+      ],
+      "acceptance_criteria": "GATE 4: SpawnRoot.model.json is valid JSON and matches the ArgonProof.model.json Rojo format (top-level Model with Children array; each child has Name/ClassName/Properties). PlayerSpawn is a SpawnLocation with the exact properties listed; TestGround is an anchored Part with the exact properties listed. Report honestly; do not convert UNVERIFIED into PASS.",
+      "timeout_seconds": 7200
+    },
+    {
+      "task_id": "bootstrap-fallback",
+      "objective": "Modify src/ServerScriptService/Game/ServerBootstrap.server.luau to gracefully handle a missing GameWorld. Near the top (after the existing Players/ReplicatedStorage locals and the existing Players.CharacterAutoLoads=false line) add: local Workspace = game:GetService(\"Workspace\") and local hasGameWorld = Workspace:FindFirstChild(\"GameWorld\") ~= nil. Wrap the ENTIRE existing full-bootstrap body (service modules, bag construction, handlePlayer, the xpcall(bag:Init/Start), PlayerAdded/Removing connections, the existing-player loop, and BindToClose) inside 'if hasGameWorld then ... end' UNCHANGED. Add an 'else' branch = MINIMAL SPAWN MODE: set Players.CharacterAutoLoads = true (override the earlier false so Roblox spawns the player at the enabled SpawnLocation); for each already-present player with no character, call player:LoadCharacter() guarded by pcall; emit warn(\"[ServerBootstrap] Workspace.GameWorld not found. Minimal spawn mode: default SpawnLocation active; full service graph disabled.\"). Do NOT run the service graph, admission, or service teardown in the else branch. The full-world path must remain behaviorally byte-for-byte equivalent when GameWorld is present. Do NOT alter SpawnService/WorldService.",
+      "write_scopes": [
+        "src/ServerScriptService/Game/ServerBootstrap.server.luau"
+      ],
+      "read_scopes": [
+        "."
+      ],
+      "acceptance_criteria": "GATE 5: luau-analyze on ServerBootstrap.server.luau reports 0 SyntaxErrors (TypeErrors from missing Roblox API definitions outside Studio are acceptable). The full-world path is unchanged when GameWorld is present; the minimal spawn mode is correct when GameWorld is absent (CharacterAutoLoads=true, LoadCharacter for existing players, warn emitted, no service graph/admission/teardown). Report honestly; do not convert UNVERIFIED into PASS.",
+      "timeout_seconds": 7200
+    }
+  ],
+  "final_result": "",
+  "_director_seconds": 44.824,
+  "_director_output": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/cycles/continue-20260928-225559-45115.0001.director.out"
+}

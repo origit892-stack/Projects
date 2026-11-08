@@ -1,0 +1,15 @@
+{
+  "task_id": "wh-repair-09",
+  "role": "implementer",
+  "objective": "Fix warehouse model.json CFrame format. The file src/Workspace/abandoned_warehouse_interior_01.model.json uses 12-element CFrame arrays (position-first: [X,Y,Z,R00,R01,R02,R10,R11,R12,R20,R21,R22]) but ALL other .model.json files in the project use 3-element Position arrays. Convert every MeshPart: replace 'CFrame': [12 values] with 'Position': [first 3 values]. All rotations are identity so no rotation data is needed. Do NOT change Size, MeshId, Material, Color, or any other property. PRESERVE the RBXMX byte-identical. After the fix run: argon build, then argon live sync. STOP for manual inspection. Emit AGENT_HANDOFF.",
+  "write_scopes": [
+    "src/Workspace"
+  ],
+  "read_scopes": [
+    "src/Workspace",
+    "default.project.json"
+  ],
+  "acceptance_criteria": "model.json uses 3-element Position arrays (matching other files); argon build succeeds; argon live sync completes; RBXMX unchanged. Final success = warehouse visually correct in Studio (user manual inspection).",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-04T17:04:25.657402+00:00"
+}

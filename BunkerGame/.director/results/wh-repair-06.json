@@ -1,0 +1,25 @@
+{
+  "task_id": "wh-repair-06",
+  "role": "implementer",
+  "run_id": "wh-repair-06-b1cc9c71e593",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-10-04T16:14:27.051636+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/6005a2dd-c48c-4ff1-a6de-a887a41998c9.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/6005a2dd-c48c-4ff1-a6de-a887a41998c9.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

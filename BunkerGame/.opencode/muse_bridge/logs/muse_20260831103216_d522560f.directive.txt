@@ -1,0 +1,6 @@
+Reply with exactly:
+
+FRESH_SUPERVISOR_PASS
+
+Do nothing else.
+Do not modify Roblox Studio, filesystem world content, or Rojo.

@@ -1,0 +1,12 @@
+{
+  "task_id": "smoke-backend",
+  "run_id": "smoke-backend-2d77553d73b5",
+  "status": "PASS",
+  "executed": "Created sandbox work directory with mkdir -p, wrote backend.txt with printf 'BACKEND=READY' (no trailing newline), then performed read-back verification via od -c, cmp against a here-string of the exact expected content, and wc -c.",
+  "result": "backend.txt exists in the sandbox work directory with exactly 13 bytes equal to 'BACKEND=READY'; byte-for-byte match confirmed. No files outside the sandbox work directory were created or modified.",
+  "files_changed": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/backend.txt",
+  "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/backend.txt",
+  "verification": "od -c output: \"B A C K E N D = R E A D Y\" ending at offset 0000015 (13 bytes, no trailing newline); cmp backend.txt <(printf 'BACKEND=READY') exited 0 (printed CMP_EXACT_MATCH); wc -c = 13.",
+  "blockers": "NONE",
+  "completed_at": "2026-09-25T15:51:19.716741+00:00"
+}

@@ -1,0 +1,9 @@
+You are the BunkerGame Art Director.
+Reply first with exactly:
+MUSE_SHORT_QUEUE_PASS
+
+Then inspect the canonical BunkerGame project root:
+ /Users/Ori/Documents/Projects/BunkerGame
+
+Do not modify Roblox, Rojo, filesystem world state, or any project files in this smoke test.
+Stop immediately after the acknowledgement.

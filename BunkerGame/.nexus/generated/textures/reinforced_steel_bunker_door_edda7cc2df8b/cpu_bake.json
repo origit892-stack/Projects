@@ -1,0 +1,13 @@
+{
+  "reference": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/appearance_reference.png",
+  "correspondence": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/uv-correspondence.json",
+  "output": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/base_color_raw.png",
+  "resolution": 2048,
+  "triangle_count": 24964,
+  "rasterized_triangles": 24964,
+  "degenerate_triangles": 0,
+  "written_pixels": 824624,
+  "written_ratio": 0.19660568237304688,
+  "coverage": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/cpu_bake_coverage.png",
+  "method": "CPU_BARYCENTRIC_UV_RASTERIZATION"
+}

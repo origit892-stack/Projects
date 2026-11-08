@@ -1,0 +1,12 @@
+{
+  "job_id": "run-fix-server-crash-client-bootstrap-20261009_233121",
+  "mode": "run",
+  "task_ids": [
+    "fix-server-crash-client-bootstrap"
+  ],
+  "pid": 86719,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-server-crash-client-bootstrap-20261009_233121.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-server-crash-client-bootstrap-20261009_233121.json",
+  "started_at": 1791577881.715185,
+  "launcher_status": "RUNNING"
+}

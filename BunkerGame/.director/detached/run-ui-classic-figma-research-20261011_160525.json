@@ -1,0 +1,12 @@
+{
+  "job_id": "run-ui-classic-figma-research-20261011_160525",
+  "mode": "run",
+  "task_ids": [
+    "ui-classic-figma-research"
+  ],
+  "pid": 19008,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-ui-classic-figma-research-20261011_160525.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-ui-classic-figma-research-20261011_160525.json",
+  "started_at": 1791723925.030796,
+  "launcher_status": "RUNNING"
+}

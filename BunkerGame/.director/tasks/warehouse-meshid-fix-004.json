@@ -1,0 +1,15 @@
+{
+  "task_id": "warehouse-meshid-fix-004",
+  "role": "implementer",
+  "objective": "Fix MeshId defect in BunkerGame warehouse integration. VERIFIED CHECKPOINT: Studio connected to argon serve port 8000. argon=/Users/Ori/.argon/bin/argon. Project=/Users/Ori/Documents/Projects/BunkerGame. Published Model asset 73559951039514 (do NOT regenerate/republish). DEFECT: src/Workspace/abandoned_warehouse.model.json MeshPart Warehouse has MeshId rbxassetid://73559951039514 (the MODEL id, not a mesh id, so it cannot render). GOAL: extract the real internal mesh id from the published Model via the connected Studio, correct the persistent filesystem integration, sync through Argon, and verify the actual warehouse renders. STEPS: (1) argon exec Luau in Studio: local m=game:GetService(\"InsertService\"):LoadAsset(73559951039514); for each MeshPart descendant print Name, MeshId, Size, Material, TextureID; then m:Destroy(). (2) Pick the internal mesh id (single mesh, bbox ~40x16x32). (3) Set that MeshPart MeshId in src/Workspace/abandoned_warehouse.model.json to rbxassetid://<mesh id>; keep Anchored, CanCollide, Size [40,16,32], Position [0,8,20]. (4) Update src/ServerStorage/GeneratedAssets/abandoned_warehouse_01.model.json to final Ready state with the real mesh id: call canonicalize_imported_model from /Users/Ori/Developer/roblox-assets/roblox_assets/integrations/imported_model.py via its venv python, or hand-edit to match the Ready pattern in bunker_vent_grille_01.model.json. (5) argon sync, then argon exec verify the live MeshPart has the new MeshId and its mesh is loaded (not nil). CONSTRAINTS: do NOT modify SpawnRoot.model.json or bunker-rooms.model.json; do NOT republish. Report the internal mesh id, files changed, and Studio evidence. ALWAYS emit the AGENT_HANDOFF block at the end.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame",
+    "/Users/Ori/Developer/roblox-assets"
+  ],
+  "acceptance_criteria": "MeshPart MeshId in src/Workspace/abandoned_warehouse.model.json is the internal mesh id, not 73559951039514. ServerStorage contract Ready with real mesh id. argon exec confirms live MeshPart has new MeshId and mesh loaded. SpawnRoot and bunker-rooms unchanged. No republish. Temp model destroyed. Handoff reports mesh id and files changed.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T16:57:46.435049+00:00"
+}

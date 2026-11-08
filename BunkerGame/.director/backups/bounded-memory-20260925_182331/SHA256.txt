@@ -1,0 +1,1 @@
+36160979a23fd67546dea87a890f06a6664ef8ee8c178f2a7f10947e5e6fd42d  /Users/Ori/Documents/Projects/BunkerGame/.director/bin/autodirector.py

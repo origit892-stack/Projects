@@ -1,0 +1,115 @@
+{
+  "ok": true,
+  "tool": "generate_texture",
+  "stage": "TEXTURE_COMPLETE",
+  "source_mesh": "/Users/Ori/Documents/Projects/BunkerGame/assets/generated_meshes/rusty_metal_barrel.obj",
+  "source_sha256": "d489e14feb6c5938bac2f0e195418205b24852c7585103f521307dcf3a7bc57b",
+  "source_mutated": false,
+  "working_source": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/source.obj",
+  "preprocessed_mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/preprocessed.glb",
+  "geometry_views": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/geometry_views",
+  "appearance_reference": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/appearance_reference.png",
+  "base_color": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/base_color.png",
+  "roughness": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/roughness.png",
+  "metallic": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/metallic.png",
+  "normal": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/normal_neutral.png",
+  "pbr_classification": "DERIVED_NOT_GROUND_TRUTH",
+  "normal_classification": "NEUTRAL_SAFE_FALLBACK",
+  "textured_glb": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/textured.glb",
+  "qa_views": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/qa_views",
+  "reference_qa": {
+    "width": 768,
+    "height": 768,
+    "bytes": 1208293,
+    "dynamic_range": 765,
+    "valid": true
+  },
+  "raw_base_color_qa": {
+    "width": 2048,
+    "height": 2048,
+    "bytes": 2508171,
+    "dynamic_range": 764,
+    "valid": true
+  },
+  "base_color_qa": {
+    "width": 2048,
+    "height": 2048,
+    "bytes": 2397296,
+    "dynamic_range": 737,
+    "valid": true
+  },
+  "qa_render_records": {
+    "front": {
+      "width": 768,
+      "height": 768,
+      "bytes": 691987,
+      "dynamic_range": 606,
+      "valid": true
+    },
+    "back": {
+      "width": 768,
+      "height": 768,
+      "bytes": 641098,
+      "dynamic_range": 644,
+      "valid": true
+    },
+    "left": {
+      "width": 768,
+      "height": 768,
+      "bytes": 688975,
+      "dynamic_range": 644,
+      "valid": true
+    },
+    "right": {
+      "width": 768,
+      "height": 768,
+      "bytes": 647218,
+      "dynamic_range": 693,
+      "valid": true
+    },
+    "top": {
+      "width": 768,
+      "height": 768,
+      "bytes": 514942,
+      "dynamic_range": 593,
+      "valid": true
+    },
+    "bottom": {
+      "width": 768,
+      "height": 768,
+      "bytes": 429159,
+      "dynamic_range": 593,
+      "valid": true
+    },
+    "hero": {
+      "width": 768,
+      "height": 768,
+      "bytes": 768294,
+      "dynamic_range": 609,
+      "valid": true
+    }
+  },
+  "backend": "FLUX2_KLEIN_4B_MFLUX",
+  "resolution": 2048,
+  "quality": "high",
+  "seed": 1701,
+  "pbr_requested": true,
+  "timings": {
+    "preprocess": 0.815,
+    "geometry_views": 2.729,
+    "appearance_generation": 23.94,
+    "uv_correspondence": 2.15,
+    "bake": 7.612,
+    "export": 1.039,
+    "qa_render": 2.933
+  },
+  "total_seconds": 41.792,
+  "output_directory": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f",
+  "texture_method": "CPU_BARYCENTRIC_UV_RASTERIZATION_V2",
+  "known_limitations": [
+    "Current production fallback uses one generated appearance reference projected from the hero camera.",
+    "PBR maps are derived proxies, not physically measured ground truth.",
+    "Multi-view image-conditioned fusion remains the next quality upgrade."
+  ],
+  "next_quality_upgrade": "MULTIVIEW_IMAGE_CONDITIONED_EDIT_AND_VISIBILITY_FUSION"
+}

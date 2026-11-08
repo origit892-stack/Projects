@@ -1,0 +1,12 @@
+{
+  "job_id": "run-warehouse-live-sync-verify-20261003_161803",
+  "mode": "run",
+  "task_ids": [
+    "warehouse-live-sync-verify"
+  ],
+  "pid": 22224,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-live-sync-verify-20261003_161803.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-live-sync-verify-20261003_161803.json",
+  "started_at": 1791033483.588728,
+  "launcher_status": "RUNNING"
+}

@@ -1,0 +1,13 @@
+{
+  "reference": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/appearance_reference.png",
+  "correspondence": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/uv-correspondence.json",
+  "output": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/base_color_raw.png",
+  "resolution": 2048,
+  "triangle_count": 15190,
+  "rasterized_triangles": 15190,
+  "degenerate_triangles": 0,
+  "written_pixels": 2208945,
+  "written_ratio": 0.526653528213501,
+  "coverage": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/cpu_bake_coverage.png",
+  "method": "CPU_BARYCENTRIC_UV_RASTERIZATION"
+}

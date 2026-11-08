@@ -1,0 +1,1 @@
+model.json MeshPart CFrame/Size/MeshId/Material/Color match RBXMX; argon build succeeds; argon live sync completes; RBXMX byte-identical. Final success = warehouse visually correct in Studio (user manual inspection).

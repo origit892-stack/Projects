@@ -1,0 +1,1 @@
+Compact handoff: (1) transform root cause with the specific property mismatch, (2) material root cause with the specific mismatch, (3) whether fix is global re-bake or per-part, (4) 3-5 sample parts showing canon vs modeljson CFrame + material. Evidence from the /tmp/wh_diag.py run. No project file changes.

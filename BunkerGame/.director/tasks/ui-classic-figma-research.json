@@ -1,0 +1,12 @@
+{
+  "task_id": "ui-classic-figma-research",
+  "role": "researcher",
+  "objective": "GOAL: Compact design+code map for a new classic-Roblox inventory UI. Figma REST/MCP is rate-limited (HTTP 429, retry-after ~40h) - DO NOT call any Figma endpoint. 1) Search the project for local Figma design artifacts: exports, screenshots, specs, node dumps, or prior handoffs describing the active Figma inventory design (check docs/, .director/, artifacts/, any figma folders). If found, summarize the layout: screens, frames, element hierarchy, dimensions, colors, labels. 2) Locate the current inventory UI implementation: InventoryV2Module.luau or equivalent, its ScreenGui tree, and the 3D Red Cube ViewportFrame logic that must be preserved. 3) Report exact file paths and key facts. CONSTRAINTS: read-only; no Figma API; no edits.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "PASS if handoff contains: (a) Figma design structure from local artifacts, or explicit NOT_FOUND with search evidence; (b) exact paths of inventory UI module, ScreenGui, and Red Cube ViewportFrame logic; (c) no Figma API calls made; (d) no files modified.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-11T13:05:24.977900+00:00"
+}

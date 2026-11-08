@@ -1,0 +1,63 @@
+{
+  "id": "20260911_151032_19678240",
+  "title": "1.8_EXECUTION_SMOKE_4",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "תמצא את הקבצים pyproject.toml ו-README.md בפרויקט. תבדוק מה הגרסה שמופיעה ב-pyproject.toml ומה הכותרת הראשית ב-README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+  "status": "FAILED",
+  "created_at": "2026-09-11T12:10:32.675518+00:00",
+  "updated_at": "2026-09-11T12:28:04.252367+00:00",
+  "run_id": null,
+  "last_result": "AGENT_EXCEPTION=ValueError: too many values to unpack (expected 2, got 3)",
+  "history": [
+    {
+      "type": "objective",
+      "text": "תמצא את הקבצים pyproject.toml ו-README.md בפרויקט. תבדוק מה הגרסה שמופיעה ב-pyproject.toml ומה הכותרת הראשית ב-README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+      "created_at": "2026-09-11T12:10:32.675518+00:00"
+    },
+    {
+      "type": "result",
+      "text": "AGENT_EXCEPTION=ValueError: too many values to unpack (expected 2, got 3)",
+      "created_at": "2026-09-11T12:12:32.379151+00:00"
+    },
+    {
+      "type": "instruction",
+      "text": "NEXUS 1.8 EXECUTION COMPLETION OBSERVABILITY — NO BEHAVIOR CHANGE.\n\nDo not modify completion semantics, Planner, Understanding, TaskContract, EvidenceLedger, tool routing, speed policy, or execution control flow.\n\nWe have proven that completion_contract(plan) is active for the live smoke plan. The remaining ambiguity is whether evaluate_execution_completion() is silently returning PASS because progress may be None or because PASS decisions are not persisted.\n\nAdd deterministic observability only.\n\nIn the no-tool completion path, persist an execution_completion_gate event for both PASS and CONTINUE, containing:\n\niteration\n\nverdict\n\nallow\n\nsummary\n\nunmet_conditions\n\nnext_focus\n\nproposed_final_length\n\nevidence_count or equivalent evidence summary count\n\nAlso, when self.live is true, print the completion verdict for both branches:\n\nEXECUTION COMPLETION GATE PASS\n\nor\n\nEXECUTION COMPLETION GATE CONTINUE\n\nDo not rely only on the evaluator's optional progress callback for user-visible observability.\n\nImmediately before the sole normal success return, persist a second event:\n\nexecution_success_return\n\nwith:\n\niteration\n\ncompletion_verdict\n\nfinal_length\n\nstatus\n\nThis is instrumentation only. Do not alter whether PASS or CONTINUE is chosen.\n\nAdd deterministic tests proving:\n\na PASS decision produces an execution_completion_gate event with verdict=PASS;\na CONTINUE decision produces the same event with verdict=CONTINUE;\nnormal success return can only occur after a recorded PASS;\nno task_progress dependency is reintroduced.\n\nRun targeted tests and the full regression suite. Run git diff --check. Reinstall the dev build.\n\nDo not run a live smoke test. Do not bump version, commit, tag, push, or publish.\n\nFinal report:\n\nPASS_EVENT_RECORDED\n\nCONTINUE_EVENT_RECORDED\n\nSUCCESS_RETURN_EVENT_RECORDED\n\nCOMPLETION_BEHAVIOR_CHANGED=NO\n\nTASK_PROGRESS_REQUIRED=NO\n\nTARGETED_TESTS\n\nFULL_REGRESSION\n\nDIFF_CHECK",
+      "created_at": "2026-09-11T12:25:06.919327+00:00"
+    },
+    {
+      "type": "failure",
+      "text": "AGENT_EXCEPTION=ValueError: too many values to unpack (expected 2, got 3)",
+      "created_at": "2026-09-11T12:28:04.252186+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "תמצא את הקבצים pyproject.toml ו-README.md בפרויקט. תבדוק מה הגרסה שמופיעה ב-pyproject.toml ומה הכותרת הראשית ב-README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": null,
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "updated_at": null
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": "2026-09-11T12:25:06.920886+00:00"
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": "FAILED",
+    "last_instruction": "NEXUS 1.8 EXECUTION COMPLETION OBSERVABILITY — NO BEHAVIOR CHANGE.\n\nDo not modify completion semantics, Planner, Understanding, TaskContract, EvidenceLedger, tool routing, speed policy, or execution control flow.\n\nWe have proven that completion_contract(plan) is active for the live smoke plan. The remaining ambiguity is whether evaluate_execution_completion() is silently returning PASS because progress may be None or because PASS decisions are not persisted.\n\nAdd deterministic observability only.\n\nIn the no-tool completion path, persist an execution_completion_gate event for both PASS and CONTINUE, containing:\n\niteration\n\nverdict\n\nallow\n\nsummary\n\nunmet_conditions\n\nnext_focus\n\nproposed_final_length\n\nevidence_count or equivalent evidence summary count\n\nAlso, when self.live is true, print the completion verdict for both branches:\n\nEXECUTION COMPLETION GATE PASS\n\nor\n\nEXECUTION COMPLETION GATE CONTINUE\n\nDo not rely only on the evaluator's optional progress callback for user-visible observability.\n\nImmediately before the sole normal success return, persist a second event:\n\nexecution_success_return\n\nwith:\n\niteration\n\ncompletion_verdict\n\nfinal_length\n\nstatus\n\nThis is instrumentation only. Do not alter whether PASS or CONTINUE is chosen.\n\nAdd deterministic tests proving:\n\na PASS decision produces an execution_completion_gate event with verdict=PASS;\na CONTINUE decision produces the same event with verdict=CONTINUE;\nnormal success return can only occur after a recorded PASS;\nno task_progress dependency is reintroduced.\n\nRun targeted tests and the full regression suite. Run git diff --check. Reinstall the dev build.\n\nDo not run a live smoke test. Do not bump version, commit, tag, push, or publish.\n\nFinal report:\n\nPASS_EVENT_RECORDED\n\nCONTINUE_EVENT_RECORDED\n\nSUCCESS_RETURN_EVENT_RECORDED\n\nCOMPLETION_BEHAVIOR_CHANGED=NO\n\nTASK_PROGRESS_REQUIRED=NO\n\nTARGETED_TESTS\n\nFULL_REGRESSION\n\nDIFF_CHECK",
+    "continuation_point": "failed-turn-recovery",
+    "interrupted": false,
+    "resume_requested_at": null,
+    "updated_at": "2026-09-11T12:28:04.252273+00:00"
+  }
+}

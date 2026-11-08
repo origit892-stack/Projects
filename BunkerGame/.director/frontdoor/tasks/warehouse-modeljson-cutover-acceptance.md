@@ -1,0 +1,1 @@
+backup created+verified; canonical RBXMX sha256 unchanged; symlink removed; .model.json present with 62 MeshParts + 62 distinct MeshIds + 2 SurfaceAppearances; argon build PASS; SpawnRoot+bunker-rooms untouched. Report backup path, final file path, MeshPart count, argon build result, deviations.

@@ -1,0 +1,6 @@
+{
+  "returncode": 0,
+  "seconds": 9.696,
+  "stdout": "{\n  \"reference\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/appearance_reference.png\",\n  \"correspondence\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/uv-correspondence.json\",\n  \"output\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/base_color_raw.png\",\n  \"resolution\": 2048,\n  \"triangle_count\": 15190,\n  \"rasterized_triangles\": 15190,\n  \"degenerate_triangles\": 0,\n  \"written_pixels\": 2208945,\n  \"written_ratio\": 0.526653528213501,\n  \"coverage\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_de8d8b47af4b/cpu_bake_coverage.png\",\n  \"method\": \"CPU_BARYCENTRIC_UV_RASTERIZATION\"\n}\nCPU_UV_BAKE=PASS\n",
+  "stderr": ""
+}

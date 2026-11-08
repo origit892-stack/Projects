@@ -1,0 +1,40 @@
+{
+  "objective_file": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/objectives/director-smoke-1790342260.objective.md",
+  "state": {
+    "run_id": "director-smoke-1790342260",
+    "status": "RUNNING",
+    "objective": "Verify, without modifying project files, that the BunkerGame project root exists and that a worker can use Bash to print DIRECTOR_WORKER_PASS. Delegate the verification to a worker. After a verified PASS handoff, declare the objective COMPLETE.",
+    "created_at": "2026-09-25T13:17:40.562540+00:00",
+    "updated_at": "2026-09-25T13:17:58.683650+00:00",
+    "cycle": 1,
+    "summary": "Cycle 0 of run director-smoke-1790342260. Objective: verify (read-only) that the BunkerGame project root exists and that a worker can use Bash to print DIRECTOR_WORKER_PASS. No worker tasks have completed yet; no handoffs exist.",
+    "completed_tasks": [
+      {
+        "task_id": "verify-root-and-bash",
+        "status": "PASS",
+        "result": "Project root directory exists and Bash printed DIRECTOR_WORKER_PASS",
+        "verification": "Bash output: \"ROOT_EXISTS=yes\" (test -d succeeded, exit 0) followed by \"DIRECTOR_WORKER_PASS\" printed verbatim; no files created, modified, or deleted",
+        "files_changed": "NONE",
+        "artifacts": "NONE",
+        "blockers": "NONE"
+      }
+    ],
+    "failed_tasks": [],
+    "blocked_tasks": [],
+    "last_handoffs": [
+      {
+        "task_id": "verify-root-and-bash",
+        "status": "PASS",
+        "executed": "Read task file; ran read-only Bash check: `test -d /Users/Ori/Documents/Projects/BunkerGame && echo \"ROOT_EXISTS=yes\" && echo DIRECTOR_WORKER_PASS`",
+        "result": "Project root directory exists and Bash printed DIRECTOR_WORKER_PASS",
+        "files_changed": "NONE",
+        "artifacts": "NONE",
+        "verification": "Bash output: \"ROOT_EXISTS=yes\" (test -d succeeded, exit 0) followed by \"DIRECTOR_WORKER_PASS\" printed verbatim; no files created, modified, or deleted",
+        "blockers": "NONE",
+        "completed_at": "2026-09-25T13:17:58.670740+00:00"
+      }
+    ],
+    "final_result": ""
+  },
+  "instruction": "Read the objective file. Use the durable state and worker handoffs in this input. Decide the next bounded worker tasks or declare COMPLETE/BLOCKED."
+}

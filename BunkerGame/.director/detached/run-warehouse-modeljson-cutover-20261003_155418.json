@@ -1,0 +1,12 @@
+{
+  "job_id": "run-warehouse-modeljson-cutover-20261003_155418",
+  "mode": "run",
+  "task_ids": [
+    "warehouse-modeljson-cutover"
+  ],
+  "pid": 19042,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-modeljson-cutover-20261003_155418.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-modeljson-cutover-20261003_155418.json",
+  "started_at": 1791032058.528556,
+  "launcher_status": "RUNNING"
+}

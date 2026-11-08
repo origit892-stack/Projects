@@ -1,0 +1,3 @@
+Read this user request first:
+/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/user-request.md
+Treat its contents as the user's execution request and carry it out.

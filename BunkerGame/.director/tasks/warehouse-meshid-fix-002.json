@@ -1,0 +1,15 @@
+{
+  "task_id": "warehouse-meshid-fix-002",
+  "role": "implementer",
+  "objective": "Fix MeshId defect in abandoned warehouse integration. Studio PID 68485 is CONNECTED to argon serve port 8000. argon: /Users/Ori/.argon/bin/argon. Project: /Users/Ori/Documents/Projects/BunkerGame. Published Model asset ID 73559951039514 (do NOT regenerate/republish). DEFECT: src/Workspace/abandoned_warehouse.model.json MeshPart Warehouse has MeshId rbxassetid://73559951039514 (Model ID, not mesh ID). Steps: (1) argon exec a Luau script: InsertService:LoadAsset(73559951039514), print each MeshPart Name/MeshId/Size/Material/TextureID, then Destroy the model. (2) Pick the internal mesh ID matching the 40x16x32 warehouse mesh. (3) Update src/Workspace/abandoned_warehouse.model.json MeshId to rbxassetid://<internal mesh ID>, keep Anchored/CanCollide/Size [40,16,32]/Position [0,8,20]. (4) Update src/ServerStorage/GeneratedAssets/abandoned_warehouse_01.model.json to final Ready state with real mesh ID, matching pattern in bunker_vent_grille_01.model.json (or call canonicalize_imported_model from /Users/Ori/Developer/roblox-assets/roblox_assets/integrations/imported_model.py via its venv python). (5) argon sync, then argon exec verify live MeshPart Warehouse has new MeshId and mesh loaded. Do NOT modify SpawnRoot.model.json or bunker-rooms.model.json. Report internal mesh ID + files changed. Always emit AGENT_HANDOFF.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame",
+    "/Users/Ori/Developer/roblox-assets"
+  ],
+  "acceptance_criteria": "ACCEPTANCE: (1) Workspace model.json MeshId is internal mesh ID not 73559951039514. (2) ServerStorage contract in Ready state with real mesh ID. (3) argon exec confirms live MeshPart has correct MeshId and mesh loaded. (4) SpawnRoot.model.json and bunker-rooms.model.json unchanged. (5) No regen/republish. (6) Temp imported model destroyed. (7) Handoff reports internal mesh ID and files changed.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T16:48:52.281955+00:00"
+}

@@ -1,0 +1,25 @@
+{
+  "task_id": "figma-cleanup-20261008-executor-tools",
+  "role": "implementer",
+  "run_id": "figma-cleanup-20261008-executor-tools-27d4f8a9b9df",
+  "status": "PASS",
+  "executed": "Extended Figma Design Executor v2 with two bounded MCP operations, figma_update_node and figma_delete_node, wired through the existing MCP -> bridge HTTP (Bearer token) -> plugin /next polling protocol. Added a strict allowlist (fileKey must equal rzVdCT73aztDRPsAWTdgrM; nodeId must be one of the 8 candidate IDs) and a hard protection list (3:313, 2:2, 2:37) that is rejected BEFORE any plugin/bridge call. Deletion captures rollback evidence (id, name, type, parentId, children summary) to the local evidence dir before the job is queued; the plugin captures the live node JSON and the bridge appends it on /complete. Update properties are restricted to a small allowlist of safe scalar fields. No arbitrary JS eval, no new network domains (still only 127.0.0.1:38477), and no filesystem access beyond the pairing-token file and the evidence dir. No Figma API was called and no node was deleted.\n",
+  "result": "Extended Figma Design Executor v2 with two bounded MCP operations, figma_update_node and figma_delete_node, wired through the existing MCP -> bridge HTTP (Bearer token) -> plugin /next polling protocol. Added a strict allowlist (fileKey must equal rzVdCT73aztDRPsAWTdgrM; nodeId must be one of the 8 candidate IDs) and a hard protection list (3:313, 2:2, 2:37) that is rejected BEFORE any plugin/bridge call. Deletion captures rollback evidence (id, name, type, parentId, children summary) to the local evidence dir before the job is queued; the plugin captures the live node JSON and the bridge appends it on /complete. Update properties are restricted to a small allowlist of safe scalar fields. No arbitrary JS eval, no new network domains (still only 127.0.0.1:38477), and no filesystem access beyond the pairing-token file and the evidence dir. No Figma API was called and no node was deleted.\n",
+  "files_changed": "/Users/Ori/Downloads/BunkerGame_Figma_Design_Executor_v2/figma-executor-v2/mcp.mjs\n/Users/Ori/Downloads/BunkerGame_Figma_Design_Executor_v2/figma-executor-v2/bridge.py\n/Users/Ori/Downloads/BunkerGame_Figma_Design_Executor_v2/figma-executor-v2/code.js\n/Users/Ori/Downloads/BunkerGame_Figma_Design_Executor_v2/figma-executor-v2/ui.html\n/Users/Ori/Downloads/BunkerGame_Figma_Design_Executor_v2/figma-executor-v2/allowlist.mjs (new)\n/Users/Ori/Downloads/BunkerGame_Figma_Design_Executor_v2/figma-executor-v2/test-allowlist.mjs (new)\n/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/tasks/rollback-evidence/ (dir created)\n",
+  "artifacts": "NONE",
+  "verification": "- node --check: PASS on mcp.mjs, code.js, allowlist.mjs, test-allowlist.mjs\n- python3 -m py_compile bridge.py: PASS\n- Allowlist dry-run test (node test-allowlist.mjs): 44 passed, 0 failed. Confirms rejection of protected nodes 3:313, 2:2, 2:37 (both update and delete -> node_protected), unknown IDs (9:999, 2:1, 1:1, abc, 2:72x, empty -> node_not_in_allowlist / nodeId_missing), and wrong/empty fileKey (file_key_not_allowed / fileKey_missing); accepts all 8 allowlisted IDs.\n- Bridge integration test (throwaway port 38999, NOT the real 38477): check_access unit checks PASS; HTTP /delete protected -> 403 node_protected; /delete unknown -> 403 node_not_in_allowlist; /update bad prop -> 400 property_not_allowed; /update valid -> 200 queued op=update; /delete valid -> 200 queued op=delete with evidence file written; unauthorized -> 401.\n- Rollback evidence dir exists: /Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/tasks/rollback-evidence (EVIDENCE_DIR_EXISTS=yes). Test-generated evidence artifacts were removed so the dir is clean.\n- No Figma file mutation occurred: only local node/python tests were run; the real bridge (port 38477) was never started and no node was deleted.\n",
+  "blockers": "NONE",
+  "completed_at": "2026-10-08T18:19:45.015761+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/9735eee1-80f4-445b-b4c2-a3ed582720cc.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/9735eee1-80f4-445b-b4c2-a3ed582720cc.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

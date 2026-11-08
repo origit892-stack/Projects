@@ -1,0 +1,1 @@
+Report: (a) BUILD_EXIT code, (b) the exact temp model path from UNIQUE_PATHS, (c) ls -laO flags/permissions of that path and TMPDIR, (d) whether uchg immutable flag or TCC permission is the EPERM cause. Read-only, no fixes.

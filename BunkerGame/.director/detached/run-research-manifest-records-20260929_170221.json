@@ -1,0 +1,12 @@
+{
+  "job_id": "run-research-manifest-records-20260929_170221",
+  "mode": "run",
+  "task_ids": [
+    "research-manifest-records"
+  ],
+  "pid": 16351,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-manifest-records-20260929_170221.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-manifest-records-20260929_170221.json",
+  "started_at": 1790690541.870625,
+  "launcher_status": "RUNNING"
+}

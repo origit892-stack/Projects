@@ -1,0 +1,17 @@
+{
+  "task_id": "warehouse-integrate-impl-001",
+  "role": "implementer",
+  "objective": "Integrate published Roblox asset 73559951039514 (Model) into BunkerGame as persistent filesystem/Argon-managed asset. READ FIRST: /Users/Ori/Documents/Projects/BunkerGame/.director/results/warehouse-integrate-research-001.json (full research: SpawnRoot pos, ground height, integration pattern, file paths, plan). Source of truth: default.project.json, Workspace maps to src/Workspace (has SpawnRoot.model.json + bunker-rooms.model.json). Argon 2.0.29 at /Users/Ori/.argon/bin/argon, 3 serve procs running, Studio on port 8000. Asset is a Model NOT MeshPart. Cube output: cube/outputs/warehouse_v1/. Factory: /Users/Ori/Developer/roblox-assets/assets/abandoned_warehouse_01/. roblox-assets CLI has integrate subcommand. 5 existing GeneratedAssets .model.json show the pattern. STEPS: 1) Read research file + existing .model.json files to learn exact pattern. 2) Create warehouse .model.json in src/Workspace/ referencing asset 73559951039514 as Model, following existing pattern. 3) Place near SpawnRoot on playable ground, clearly visible. 4) Preserve actual generated mesh (Model asset ref, not placeholder). 5) Do NOT modify SpawnRoot.model.json or bunker-rooms.model.json or unrelated content. 6) Apply via Argon sync. 7) Verify source file exists and is correct. 8) Run second Argon sync, confirm warehouse persists. 9) Do NOT regenerate Cube output or republish asset. Report: files created/modified, Instance structure, placement position, Argon commands, survival evidence.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src/Workspace",
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame",
+    "/Users/Ori/Developer/roblox-assets",
+    "/Users/Ori/Developer/roblox-cube"
+  ],
+  "acceptance_criteria": "PASS if: 1) New .model.json in src/Workspace/ references asset 73559951039514 as Model (not MeshId), follows existing pattern. 2) Placed near SpawnRoot on ground with concrete position. 3) Actual mesh preserved (Model ref, not placeholder). 4) SpawnRoot.model.json and bunker-rooms.model.json unchanged. 5) Argon sync applied, warehouse present. 6) Second sync run, warehouse persists. 7) Handoff reports files, structure, position, commands, survival evidence. 8) No Cube regen, no republish. FAILED/BLOCKED with specific error if any gate fails.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T10:52:39.871150+00:00"
+}

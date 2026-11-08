@@ -1,0 +1,1 @@
+Compact handoff: (1) transform root cause (specific property mismatch), (2) material root cause (specific mismatch), (3) exact fix applied (which parts, what CFrame/Material/SA values), (4) argon build result (exit code + output size), (5) live sync result (last_synced timestamp + /exec HTTP status). No other file changes.

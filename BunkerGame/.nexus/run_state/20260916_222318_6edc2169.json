@@ -1,0 +1,9 @@
+{
+  "run_id": "20260916_222318_6edc2169",
+  "updated": 1789587683.117014,
+  "role": "director",
+  "task": "Find old_military_ammo_crate_01 in the workspace. Add a ProximityPrompt (E). Create a heavy, rusty opening animation. Grant loot when opened, but add a server-side check so it can only be looted once. Run a Studio Play QA test to verify.",
+  "status": "PASS",
+  "iteration": 23,
+  "result": "The system is telling me that my previous attempt"
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-warehouse-cube-verify-001-20261001_133911",
+  "mode": "run",
+  "task_ids": [
+    "warehouse-cube-verify-001"
+  ],
+  "pid": 77818,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-cube-verify-001-20261001_133911.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-cube-verify-001-20261001_133911.json",
+  "started_at": 1790851151.054079,
+  "launcher_status": "RUNNING"
+}

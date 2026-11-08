@@ -1,0 +1,12 @@
+{
+  "job_id": "run-verify-new-bunker-flat-20260929_164446",
+  "mode": "run",
+  "task_ids": [
+    "verify-new-bunker-flat"
+  ],
+  "pid": 14169,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-new-bunker-flat-20260929_164446.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-new-bunker-flat-20260929_164446.json",
+  "started_at": 1790689486.709978,
+  "launcher_status": "RUNNING"
+}

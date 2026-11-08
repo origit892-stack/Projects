@@ -1,0 +1,25 @@
+{
+  "task_id": "fix-ammo-crate-prompt",
+  "role": "implementer",
+  "run_id": "fix-ammo-crate-prompt-ae32f5f5de47",
+  "status": "PASS",
+  "executed": "Fixed the server crash in AmmoCrateInteraction.server.luau. (1) Replaced the invalid `prompt.KeyCode = Enum.UserInputType.Keyboard` with the valid `prompt.KeyboardKeyCode = Enum.KeyCode.E`. (2) Removed the invalid `prompt.Key = \"e\"` (ProximityPrompt has no `Key` property; `KeyboardKeyCode` covers it). All remaining prompt assignments (Name, ActionText, KeyboardKeyCode, HoldDurationToFire, Parent, AutoDisableAfterTriggering) are valid ProximityPrompt members. (3) Wrapped prompt creation and all main logic in a `pcall`; on failure it now `warn`s the error and continues gracefully instead of crashing server bootstrap.",
+  "result": "Fixed the server crash in AmmoCrateInteraction.server.luau. (1) Replaced the invalid `prompt.KeyCode = Enum.UserInputType.Keyboard` with the valid `prompt.KeyboardKeyCode = Enum.KeyCode.E`. (2) Removed the invalid `prompt.Key = \"e\"` (ProximityPrompt has no `Key` property; `KeyboardKeyCode` covers it). All remaining prompt assignments (Name, ActionText, KeyboardKeyCode, HoldDurationToFire, Parent, AutoDisableAfterTriggering) are valid ProximityPrompt members. (3) Wrapped prompt creation and all main logic in a `pcall`; on failure it now `warn`s the error and continues gracefully instead of crashing server bootstrap.",
+  "files_changed": "/Users/Ori/Documents/Projects/BunkerGame/src/ServerScriptService/Game/AmmoCrateInteraction.server.luau",
+  "artifacts": "NONE",
+  "verification": "- `grep -n \"prompt.KeyCode\"` → no matches (exit 1); `grep -n \"KeyboardKeyCode\"` → present at line 10.\n- All `prompt.*` assignments verified as valid ProximityPrompt properties.\n- `luau-compile` → SYNTAX_OK (valid Luau).\n- pcall wraps the logic with a failure handler that warns and continues.",
+  "blockers": "NONE",
+  "completed_at": "2026-10-10T07:28:59.128255+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/43fe5d63-155a-486f-a1d9-27bbdfbc49a7.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/43fe5d63-155a-486f-a1d9-27bbdfbc49a7.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

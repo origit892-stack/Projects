@@ -1,0 +1,12 @@
+{
+  "job_id": "run-inv-v2-classic-roblox-20261011_223327",
+  "mode": "run",
+  "task_ids": [
+    "inv-v2-classic-roblox"
+  ],
+  "pid": 69713,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv-v2-classic-roblox-20261011_223327.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv-v2-classic-roblox-20261011_223327.json",
+  "started_at": 1791747207.775977,
+  "launcher_status": "RUNNING"
+}

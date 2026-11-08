@@ -1,0 +1,1 @@
+1) argon sourcemap shows abandoned_warehouse_interior_01 under Workspace. 2) default.project.json contains the reference. 3) argon build default.project.json -o /tmp/wh-check.rbxlx -x succeeds. 4) SpawnRoot and bunker-rooms unchanged. 5) No new Roblox asset published.

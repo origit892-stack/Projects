@@ -1,0 +1,25 @@
+{
+  "task_id": "warehouse-meshid-research-001",
+  "role": "researcher",
+  "run_id": "warehouse-meshid-research-001-f9eb88e7f2a8",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-10-01T12:09:26.208805+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/222ca529-f7b8-4858-b2fe-25b5035b0b57.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/222ca529-f7b8-4858-b2fe-25b5035b0b57.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

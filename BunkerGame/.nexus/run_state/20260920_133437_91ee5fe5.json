@@ -1,0 +1,8 @@
+{
+  "run_id": "20260920_133437_91ee5fe5",
+  "updated": 1789900531.0126238,
+  "role": "director",
+  "task": "NEXUS_MILESTONE_EXECUTION_V1\nNEXUS MASTER PROMPT MILESTONE MODE\n\nMASTER_PROMPT_SHA256=8596e091688863a99636ba851cd8e9d0c1e61c0965c3cc180bd8e42937896be5\n\nCURRENT_MILESTONE=M1\nTITLE=Initialize environment for read-only verification\n\nOBJECTIVE:\nSet up database connection and define verification criteria.\n\nREQUIREMENTS:\n[\n  \"R1\"\n]\n\nMILESTONE_RESTRICTIONS:\n[]\n\nGLOBAL_RESTRICTIONS:\n[\n  \"NEVER send the block through memory_add, memory tools, delegation, shell, files, acceptance tools, or any other tool.\",\n  \"NEVER store the block as memory instead of returning it.\",\n  \"NEVER ask another agent to return the block on your behalf.\",\n  \"Never claim completion, blocker resolution, or project facts without evidence from work actually performed.\",\n  \"Never emit more than one state-update block.\",\n  \"Do not redo completed work unnecessarily\",\n  \"NEVER send the block through memory_add, memory tools, delegation, shell, files, acceptance tools, or any other tool\",\n  \"NEVER store the block as memory instead of returning it\",\n  \"NEVER ask another agent to return the block on your behalf\",\n  \"Never claim completion, blocker resolution, or project facts without evidence from work actually performed\",\n  \"Never emit more than one state-update block\"\n]\n\nDEPENDENCIES:\n[]\n\nEVIDENCE_REQUIRED:\n[]\n\nCOMPLETION_DEFINITION:\n[]\n\nExecute ONLY this milestone. Do not silently execute later milestones. All global restrictions remain binding.",
+  "status": "RUNNING",
+  "iteration": 2
+}

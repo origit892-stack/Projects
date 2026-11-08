@@ -1,0 +1,13 @@
+{
+  "reference": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/appearance_reference.png",
+  "correspondence": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/uv-correspondence.json",
+  "output": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/base_color_raw.png",
+  "resolution": 2048,
+  "triangle_count": 77430,
+  "rasterized_triangles": 77430,
+  "degenerate_triangles": 0,
+  "written_pixels": 278964,
+  "written_ratio": 0.06651020050048828,
+  "coverage": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/cpu_bake_coverage.png",
+  "method": "CPU_BARYCENTRIC_UV_RASTERIZATION"
+}

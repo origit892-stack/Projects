@@ -1,0 +1,53 @@
+{
+  "objective_file": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/objectives/specialist-lifecycle-20260929_114309.objective.md",
+  "state": {
+    "run_id": "specialist-lifecycle-20260929_114309",
+    "status": "RUNNING",
+    "created_at": "2026-09-29T08:43:10.131022+00:00",
+    "updated_at": "2026-09-29T08:43:33.043968+00:00",
+    "cycle": 1,
+    "summary": "Cycle 0 of specialist-lifecycle-20260929_114309. No worker tasks have completed yet. The objective mandates a strict three-stage pipeline (researcher -> implementer -> verifier) with dependency ordering. Stage 1 (researcher) is the only task that can start now; the implementer and verifier must wait for prior PASS handoffs.",
+    "history_totals": {
+      "completed": 1,
+      "failed": 0,
+      "blocked": 0,
+      "archived": 0
+    },
+    "archived_summary": {
+      "completed_count": 0,
+      "failed_count": 0,
+      "blocked_count": 0,
+      "latest_archived_cycle": 0
+    },
+    "completed_tasks": [
+      {
+        "task_id": "sl-20260929-stage1-researcher",
+        "role": "researcher",
+        "status": "PASS",
+        "result": "Top-level 'name' field value is \"BunkerGame\"",
+        "verification": "VERIFIED_FACT: direct read of live file /Users/Ori/Documents/Projects/BunkerGame/default.project.json, line 2, JSON path $.name: `  \"name\": \"BunkerGame\",` (confirmed by grep -n showing line 2 and sed -n '1,3p' showing it as the first top-level key after the opening brace). No files created, modified, or deleted.",
+        "files_changed": "NONE",
+        "artifacts": "NONE",
+        "blockers": "NONE"
+      }
+    ],
+    "failed_tasks": [],
+    "blocked_tasks": [],
+    "last_handoffs": [
+      {
+        "task_id": "sl-20260929-stage1-researcher",
+        "role": "researcher",
+        "status": "PASS",
+        "executed": "Read-only inspection of /Users/Ori/Documents/Projects/BunkerGame/default.project.json via direct file read, plus targeted grep/sed verification of the exact line.",
+        "result": "Top-level 'name' field value is \"BunkerGame\"",
+        "files_changed": "NONE",
+        "artifacts": "NONE",
+        "verification": "VERIFIED_FACT: direct read of live file /Users/Ori/Documents/Projects/BunkerGame/default.project.json, line 2, JSON path $.name: `  \"name\": \"BunkerGame\",` (confirmed by grep -n showing line 2 and sed -n '1,3p' showing it as the first top-level key after the opening brace). No files created, modified, or deleted.",
+        "blockers": "NONE",
+        "completed_at": "2026-09-29T08:43:33.024089+00:00"
+      }
+    ],
+    "final_result": ""
+  },
+  "instruction": "Read the objective file. Use the bounded durable state and recent worker handoffs in this input. Decide the next bounded worker tasks or declare COMPLETE/BLOCKED. Historical details are archived on disk and are not automatically rehydrated."
+}

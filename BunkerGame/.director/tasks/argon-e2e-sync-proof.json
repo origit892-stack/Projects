@@ -1,0 +1,20 @@
+{
+  "task_id": "argon-e2e-sync-proof",
+  "objective": "Complete the Argon end-to-end sync proof per the objective file /Users/Ori/Documents/Projects/BunkerGame/.director/director/objectives/continue-20260925-190718-63753.objective.md, executing these steps in order: (1) Re-verify src/Workspace/ArgonProof.model.json is valid JSON with MeshId=rbxassetid://77990448573791 (gate 1). (2) Revert its Position from [0,55.5,0] to [0,55,0], preserving the MeshId exactly. (3) Restart the serve: kill PID 39326 only, relaunch in BACKGROUND (never foreground) with ROBLOX_STUDIO_PATH=/Users/Ori/argon-studio-shim, port 8000, higher verbosity, stdout/stderr redirected to a log file (e.g. /tmp/argon_serve.log), capture the new PID, and poll readiness with bounded commands. (4) Verify the plugin is connected by running: argon exec /tmp/readback_warn.luau 1 --yes --color never. If exec fails because no client is connected, the plugin needs a manual reconnect in Studio (AutoReconnect=false) — stop and report GENUINE_BLOCKER stating the user must click Connect in the Argon Studio plugin UI; do not fabricate a reconnect. (5) Once connected, re-run the readback and grep the Studio log (~/Library/Logs/Roblox/0.740.19.7400931_20260925T093526Z_Studio_764b1_last.log) for ARGONPROOF6 to confirm MESHID=rbxassetid://77990448573791 and POSITION=0, 55, 0 (gates 2 and 3). (6) If MeshId still does not appear after a clean re-sync with confirmed connection, inspect the serve's snapshot data for ArgonProofMeshPart01 and the plugin diff/apply path, and report the precise blocker with evidence. Hard constraints: never run argon serve in the foreground; do not kill the unrelated argon serves on ports 8001/8002 (PIDs 45150/45172); do not wrap terminal commands in outer double quotes (use heredocs for multi-line content); readback must use warn(); no destructive Git or terrain operations; only claim PASS for a gate directly verified with evidence.",
+  "write_scopes": [
+    "src/Workspace/ArgonProof.model.json",
+    "/tmp/argon_serve.log"
+  ],
+  "read_scopes": [
+    ".",
+    "/tmp/readback_warn.luau",
+    "/tmp/argon-cli-src",
+    "/tmp/argon-roblox-src",
+    "~/.argon/sessions.toml",
+    "~/.argon/stats.toml",
+    "~/Library/Logs/Roblox"
+  ],
+  "acceptance_criteria": "PASS requires all three gates with direct evidence: (1) FILE_VALID_JSON — src/Workspace/ArgonProof.model.json parses as valid JSON, contains MeshId=rbxassetid://77990448573791 and Position=[0,55,0]; (2) SYNC_APPLIED — serve restarted with a new PID listening on port 8000, and argon exec of /tmp/readback_warn.luau succeeds (proving the plugin is connected to the new serve); (3) STUDIO_MESHID_VERIFIED — a fresh grep of the Studio log for ARGONPROOF6 shows MESHID=rbxassetid://77990448573791 and POSITION=0, 55, 0. If the plugin is not connected after the serve restart, the task must return GENUINE_BLOCKER with evidence (exec failure output) and the exact user action required (click Connect in the Argon Studio plugin UI). Never convert UNKNOWN/FAILED/BLOCKED/UNVERIFIED into PASS.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-09-25T16:07:48.838004+00:00"
+}

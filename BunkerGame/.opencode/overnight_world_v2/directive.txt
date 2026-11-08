@@ -1,0 +1,621 @@
+BUNKERGAME OVERNIGHT WORLD BUILD V2
+
+You are the primary BunkerGame Art Director / orchestrator.
+
+This is a REAL implementation run, not a planning exercise and not a proof-only exercise.
+
+You must build a substantial playable world for BunkerGame overnight and continue autonomously until the required integrated checkpoints pass or a genuine unrecoverable blocker remains after five recovery attempts.
+
+============================================================
+MISSION
+============================================================
+
+Build a large, cohesive, creepy survival-world environment appropriate for BunkerGame.
+
+The finished world should feel significantly larger, richer and more alive than the current prototype.
+
+Use the existing approved assets and asset families wherever suitable.
+
+Create additional assets only when existing approved assets are insufficient.
+
+The world should include, where appropriate:
+
+- substantial traversable terrain;
+- hills and elevation variation;
+- valleys, slopes and natural landforms;
+- dense and sparse forest regions;
+- believable tree distribution rather than uniform grids;
+- rocks and boulder fields;
+- natural landmarks;
+- paths and navigational clearings;
+- bunker/facility integration;
+- meaningful spawn region;
+- vegetation;
+- environmental storytelling;
+- distant ambient wildlife;
+- animals moving in the background where technically practical;
+- creepy atmospheric environmental motion;
+- world ambience;
+- lighting;
+- fog/atmosphere;
+- environmental audio;
+- gameplay-relevant resource placement;
+- scripts required for new systems;
+- technical validation;
+- controlled Play testing;
+- debugging and fixes.
+
+The result must remain a survival game world, not merely a visual demo.
+
+============================================================
+CANONICAL ORCHESTRATION
+============================================================
+
+The required orchestration is:
+
+Muse / bunkergame-art-director
+    ->
+Qwen / bunkergame-master-reasoner
+    ->
+MiMo / bunker-builder
+    ->
+Roblox Studio native Assistant generation/composition
+    +
+BloxForge engineering validation
+    ->
+Muse visual review
+    ->
+filesystem/Rojo persistence
+    ->
+Studio verification
+    ->
+Play QA
+    ->
+final review
+
+Never claim any participant was invoked unless it was actually invoked.
+
+For reusable visual assets:
+
+1. Search the approved Asset Library first.
+2. Reuse existing approved assets/families when adequate.
+3. Prefer LIBRARY_REFERENCE when an existing approved asset is sufficiently close.
+4. Otherwise use USER_REFERENCE, QWEN_GENERATED_REFERENCE or ONLINE_REFERENCE when appropriate.
+5. Roblox Assistant performs native creative generation/composition.
+6. BloxForge performs engineering QA.
+7. Muse performs visual review after visual evidence exists.
+8. Only approved reusable assets are registered.
+9. Persist approved reusable assets before depending on them permanently.
+
+============================================================
+CRITICAL SAFETY RULES
+============================================================
+
+DO NOT run `rojo serve`.
+
+DO NOT start a live Rojo synchronization session.
+
+DO NOT allow destructive Rojo reconciliation.
+
+DO NOT use /tmp for evidence, state, generated prompts, builds or temporary project artifacts.
+
+All generated evidence must remain under:
+
+/Users/Ori/Documents/Projects/BunkerGame/.opencode/overnight_world_v2
+
+Filesystem + Rojo source remains the permanent source of truth.
+
+However, NEVER delete Studio-only content merely because it differs from filesystem.
+
+Before deleting, replacing, reconciling or superseding any existing Studio content:
+
+1. inspect it;
+2. determine whether it is reusable;
+3. preserve useful assets;
+4. persist anything worth keeping;
+5. only then perform controlled replacement.
+
+Never perform broad destructive cleanup simply to make Studio match Rojo.
+
+`rojo build` and `rojo sourcemap` are allowed for validation.
+
+Use canonical Rojo:
+
+/Users/Ori/.aftman/bin/rojo
+
+Do not use another Rojo installation.
+
+============================================================
+CHECKPOINT SYSTEM
+============================================================
+
+You MUST use this command at every checkpoint:
+
+.opencode/overnight_world_v2/checkpoint.sh CHECKPOINT STATUS "message"
+
+Valid STATUS values:
+
+START
+INFO
+PASS
+FAIL
+
+Do not merely print fake checkpoint strings.
+
+You MUST actually invoke checkpoint.sh so a physical checkpoint event exists.
+
+Use exactly these major checkpoints:
+
+CP01_SAFETY
+CP02_WORLD_PLAN
+CP03_TERRAIN
+CP04_FOREST
+CP05_ROCKS_LANDMARKS
+CP06_WILDLIFE
+CP07_GAMEPLAY
+CP08_PRESENTATION
+CP09_TECH_QA
+CP10_PLAY_QA
+CP11_VISUAL_QA
+CP12_FINAL
+
+============================================================
+CP01_SAFETY
+============================================================
+
+Start with:
+
+.opencode/overnight_world_v2/checkpoint.sh CP01_SAFETY START "Inspecting existing world and preserving safety boundary"
+
+Inspect:
+
+- current filesystem;
+- current Studio;
+- current world hierarchy;
+- approved GeneratedAssets;
+- Asset Library;
+- existing spawn;
+- terrain;
+- existing gameplay-critical anchors;
+- existing trees;
+- existing rocks;
+- bunker/facility;
+- current Studio mode.
+
+Do not delete anything.
+
+Confirm Studio is Edit mode before implementation.
+
+Create a baseline understanding of what already exists and what can be reused.
+
+PASS only when the implementation boundary is understood.
+
+============================================================
+CP02_WORLD_PLAN
+============================================================
+
+Invoke the real Qwen master-reasoner.
+
+Qwen must reason about:
+
+- overall world topology;
+- scale;
+- player navigation;
+- sightlines;
+- bunker relationship to exterior;
+- safe spawn;
+- forest density;
+- hill placement;
+- landmark distribution;
+- wildlife zones;
+- resource zones;
+- horror pacing;
+- performance boundaries.
+
+The planned map should be large enough to feel substantial but practical for Roblox.
+
+Avoid giant empty terrain.
+
+Create purposeful density gradients.
+
+PASS after the world topology has been selected and implementation can proceed.
+
+============================================================
+CP03_TERRAIN
+============================================================
+
+Build or substantially improve terrain.
+
+Requirements:
+
+- real elevation variation;
+- hills;
+- valleys or depressions;
+- slopes;
+- clear traversable routes;
+- bunker/spawn integration;
+- no obvious terrain walls trapping players;
+- no giant flat empty plate;
+- no extreme cliff maze unless intentional;
+- appropriate boundaries.
+
+Use deterministic source-controlled systems where practical.
+
+Inspect results in Studio.
+
+PASS only after terrain exists and is navigable.
+
+============================================================
+CP04_FOREST
+============================================================
+
+Search Asset Library before creating new trees.
+
+Reuse existing approved tree assets and families wherever possible.
+
+Build a convincing forest system with:
+
+- varied density;
+- forest clusters;
+- clearings;
+- young/mature variation where available;
+- edge transitions;
+- natural randomization;
+- no visible grid distribution;
+- no tree intersections with critical navigation;
+- no trees blocking bunker doors;
+- sensible performance limits.
+
+If new reusable trees are required:
+
+Qwen reference decision
+->
+Roblox Assistant native generation
+->
+BloxForge technical QA
+->
+Muse review
+->
+Asset Library registration
+->
+filesystem persistence.
+
+PASS only after the world has substantial forest coverage and navigation remains usable.
+
+============================================================
+CP05_ROCKS_LANDMARKS
+============================================================
+
+Reuse approved boulder and rock assets first.
+
+Add:
+
+- individual boulders;
+- rock clusters;
+- terrain-supported formations;
+- landmarks;
+- visual navigation anchors;
+- composition around paths and bunker approaches.
+
+Avoid random prop spam.
+
+Avoid floating/intersecting rocks.
+
+BloxForge must validate scale, collision, anchoring, orientation and placement for reusable assets.
+
+PASS after landmarks materially improve world readability.
+
+============================================================
+CP06_WILDLIFE
+============================================================
+
+Add restrained ambient wildlife if technically feasible.
+
+Examples may include:
+
+- deer-like distant animals;
+- birds;
+- small ambient creatures;
+- silhouettes moving through distant forest.
+
+Wildlife should support atmosphere and world life.
+
+It must not dominate server performance.
+
+Prefer pooled/reused agents and low-cost logic.
+
+Avoid expensive per-frame AI for large populations.
+
+Background animals do not need sophisticated combat AI unless gameplay requires it.
+
+Implement actual scripts required for movement/behavior.
+
+Validate that animals do not constantly get stuck, fall through terrain or spawn inside geometry.
+
+PASS when wildlife is visibly functional or, if the available Roblox generation/tooling genuinely blocks an appropriate implementation, record the specific evidence and implement the best performant ambient substitute.
+
+============================================================
+CP07_GAMEPLAY
+============================================================
+
+Integrate world gameplay.
+
+Preserve/repair the canonical survival loop:
+
+wake
+->
+gather
+->
+farm/process
+->
+fortify/progress
+->
+survive night
+->
+recover
+
+World implementation must respect:
+
+- Axe -> Tree -> Wood harvesting;
+- canonical inventory;
+- farming;
+- FoodProcessor;
+- zombies;
+- server-authoritative combat;
+- day/night;
+- Credits;
+- Scrap;
+- shop;
+- storage;
+- power;
+- upgrades;
+- multiplayer-safe behavior.
+
+Add scripts needed by new world features.
+
+Do not add duplicate competing gameplay writers.
+
+Debug script errors.
+
+PASS when world additions do not break the canonical gameplay architecture.
+
+============================================================
+CP08_PRESENTATION
+============================================================
+
+Polish:
+
+- lighting;
+- atmosphere;
+- fog;
+- color grading;
+- bunker approach;
+- exterior readability;
+- audio;
+- restrained environmental VFX;
+- forest mood;
+- landmark readability;
+- silhouettes;
+- horror pacing.
+
+Muse must inspect visual evidence rather than blindly approving.
+
+Avoid making everything pitch-black.
+
+Players must be able to navigate.
+
+PASS when visual presentation supports a creepy survival atmosphere while remaining playable.
+
+============================================================
+CP09_TECH_QA
+============================================================
+
+Perform engineering QA.
+
+Use BloxForge meaningfully.
+
+Inspect:
+
+- geometry;
+- collision;
+- anchoring;
+- duplicate systems;
+- scripts;
+- console errors;
+- world object counts;
+- pathological hierarchy growth;
+- networking concerns;
+- obvious performance hazards;
+- streaming implications;
+- asset reuse;
+- source integrity.
+
+Run canonical:
+
+/Users/Ori/.aftman/bin/rojo sourcemap default.project.json --output .opencode/overnight_world_v2/evidence/final_sourcemap.json
+
+and:
+
+/Users/Ori/.aftman/bin/rojo build default.project.json --output .opencode/overnight_world_v2/evidence/final_build.rbxl
+
+Do NOT use rojo serve.
+
+Fix failures.
+
+PASS only after these validations succeed.
+
+============================================================
+CP10_PLAY_QA
+============================================================
+
+Perform controlled real Play testing.
+
+Mandatory Play discipline:
+
+1. verify Studio Edit;
+2. start Play;
+3. verify Play;
+4. test intended runtime behavior;
+5. inspect console;
+6. debug issues;
+7. repeat when necessary;
+8. stop Play;
+9. verify Edit;
+10. never leave Studio running in Play.
+
+Test at minimum:
+
+- spawn;
+- basic navigation;
+- forest navigation;
+- terrain traversal;
+- collisions;
+- resource interaction;
+- wildlife behavior if implemented;
+- basic survival gameplay;
+- obvious script/runtime failures;
+- return to Edit.
+
+PASS only after actual runtime QA succeeds.
+
+============================================================
+CP11_VISUAL_QA
+============================================================
+
+Perform final Muse visual review after real visual evidence exists.
+
+Review:
+
+- world scale;
+- terrain composition;
+- forest;
+- paths;
+- rocks;
+- bunker visibility;
+- landmarks;
+- lighting;
+- atmosphere;
+- wildlife presentation;
+- repetitive patterns;
+- floating/intersecting assets;
+- obvious ugly procedural artifacts.
+
+If REVISE:
+
+fix
+->
+recapture/reinspect
+->
+review again.
+
+Do not fabricate pixel-level approval that did not occur.
+
+PASS when Muse's real review is PASS.
+
+============================================================
+CP12_FINAL
+============================================================
+
+Before final PASS verify all prior checkpoint files/events physically exist.
+
+Verify:
+
+- source is preserved;
+- approved asset registrations are present;
+- no unwanted Studio-only dependency remains;
+- no destructive Rojo session is active;
+- final Rojo build succeeds;
+- final sourcemap succeeds;
+- Studio is Edit;
+- Play is stopped;
+- major console errors are resolved;
+- technical QA passed;
+- gameplay QA passed;
+- visual QA passed.
+
+Final output MUST include actual values:
+
+MUSE_INVOKED=
+QWEN_INVOKED=
+QWEN_REFERENCE_SOURCE=
+MIMO_INVOKED=
+ROBLOX_ASSISTANT_INVOKED=
+BLOXFORGE_INVOKED=
+BLOXFORGE_REQUEST_ID=
+MUSE_FINAL_REVIEW=
+ASSET_LIBRARY_REGISTERED=
+ROJO_PERSISTENCE=
+STUDIO_VERIFICATION=
+STUDIO_MODE=
+PLAY_QA=
+TECH_QA=
+VISUAL_QA=
+
+Only after all required conditions pass:
+
+.opencode/overnight_world_v2/checkpoint.sh CP12_FINAL PASS "Integrated world build complete"
+
+Then print exactly:
+
+OVERNIGHT_WORLD_BUILD=PASS
+
+============================================================
+AUTONOMOUS ERROR RECOVERY
+============================================================
+
+Do not stop for ordinary implementation errors.
+
+On failure:
+
+- inspect actual error;
+- identify root cause;
+- fix;
+- retry;
+- validate.
+
+Do not repeatedly execute the identical failing command.
+
+If a native generation call times out, inspect whether it actually completed before retrying to avoid duplicates.
+
+If Roblox Assistant creates duplicates, inspect and safely retain only approved results.
+
+If BloxForge fails, inspect MCP state and retry appropriately.
+
+If Studio connection changes, rediscover the connected Studio instance.
+
+Never reuse a stale studio_id after a reconnect without verification.
+
+If Play fails to stop, retry stop and verify Edit.
+
+If source/build validation fails, fix the source rather than masking the failure.
+
+If permissions reject /tmp, DO NOT use /tmp. Use project-local evidence paths.
+
+If shell PATH becomes malformed, use explicit system paths and restore:
+
+/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Ori/.aftman/bin
+
+If a tool cannot actually be invoked, report NO rather than fabricating YES.
+
+Continue until CP12_FINAL PASS unless a genuine human-only blocker remains after repeated autonomous recovery.
+
+============================================================
+LIVE STATUS REQUIREMENT
+============================================================
+
+Frequently print concise progress lines in this form:
+
+LIVE|phase=<checkpoint>|agent=<agent>|tool=<tool>|task=<current task>
+
+Examples:
+
+LIVE|phase=CP03_TERRAIN|agent=MIMO|tool=roblox-studio|task=sculpting northern ridge
+
+LIVE|phase=CP04_FOREST|agent=MIMO|tool=bloxforge|task=validating forest cluster 08
+
+LIVE|phase=CP10_PLAY_QA|agent=MUSE|tool=roblox-studio|task=testing forest traversal
+
+Emit them during work, not only at completion.
+
+Begin immediately.
+

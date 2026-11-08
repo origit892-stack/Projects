@@ -1,0 +1,150 @@
+{
+  "mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_02_36518f0ce8ce/preprocessed.glb",
+  "center": [
+    0.0,
+    -0.2926504611968994,
+    2.971200466156006
+  ],
+  "dimensions": [
+    75.0,
+    0.585300087928772,
+    0.05760025978088379
+  ],
+  "longest": 75.0,
+  "views": {
+    "front": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_02_36518f0ce8ce/geometry_views/front.png",
+      "camera_location": [
+        0.0,
+        -210.2926483154297,
+        2.971200466156006
+      ],
+      "target": [
+        0.0,
+        -0.2926504611968994,
+        2.971200466156006
+      ],
+      "direction": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "ortho_scale": 101.25
+    },
+    "back": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_02_36518f0ce8ce/geometry_views/back.png",
+      "camera_location": [
+        0.0,
+        209.7073516845703,
+        2.971200466156006
+      ],
+      "target": [
+        0.0,
+        -0.2926504611968994,
+        2.971200466156006
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "ortho_scale": 101.25
+    },
+    "left": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_02_36518f0ce8ce/geometry_views/left.png",
+      "camera_location": [
+        -210.0,
+        -0.2926504611968994,
+        2.971200466156006
+      ],
+      "target": [
+        0.0,
+        -0.2926504611968994,
+        2.971200466156006
+      ],
+      "direction": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 101.25
+    },
+    "right": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_02_36518f0ce8ce/geometry_views/right.png",
+      "camera_location": [
+        210.0,
+        -0.2926504611968994,
+        2.971200466156006
+      ],
+      "target": [
+        0.0,
+        -0.2926504611968994,
+        2.971200466156006
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 101.25
+    },
+    "top": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_02_36518f0ce8ce/geometry_views/top.png",
+      "camera_location": [
+        0.0,
+        -0.2926504611968994,
+        212.97120666503906
+      ],
+      "target": [
+        0.0,
+        -0.2926504611968994,
+        2.971200466156006
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "ortho_scale": 101.25
+    },
+    "bottom": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_02_36518f0ce8ce/geometry_views/bottom.png",
+      "camera_location": [
+        0.0,
+        -0.2926504611968994,
+        -207.02879333496094
+      ],
+      "target": [
+        0.0,
+        -0.2926504611968994,
+        2.971200466156006
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "ortho_scale": 101.25
+    },
+    "hero": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_02_36518f0ce8ce/geometry_views/hero.png",
+      "camera_location": [
+        131.1859588623047,
+        -131.47860717773438,
+        101.36067199707031
+      ],
+      "target": [
+        0.0,
+        -0.2926504611968994,
+        2.971200466156006
+      ],
+      "direction": [
+        0.6246950626373291,
+        -0.6246950626373291,
+        0.4685212969779968
+      ],
+      "ortho_scale": 101.25
+    }
+  },
+  "all_exist": true
+}

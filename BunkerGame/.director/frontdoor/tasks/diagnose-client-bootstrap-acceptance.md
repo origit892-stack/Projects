@@ -1,0 +1,1 @@
+Handoff answers all 4 questions with quoted source lines + file paths + line numbers. Identifies the exact client-startup gate. Explains why minimal mode never sends it. Identifies root cause of missing GameWorld. Proposes minimal client-side fix for minimal mode. No files modified.

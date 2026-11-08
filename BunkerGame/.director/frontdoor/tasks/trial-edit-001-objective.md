@@ -1,0 +1,1 @@
+Trial file edit in BunkerGame to verify the edit pipeline. Create ONE new small marker file at /Users/Ori/Documents/Projects/BunkerGame/.director/EDIT-TEST.md containing a single line: TRIAL EDIT OK plus UTC timestamp. Do not modify any existing project files. Do not touch src, game files, Roblox assets, or Studio.

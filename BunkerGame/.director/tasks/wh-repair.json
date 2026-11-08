@@ -1,0 +1,15 @@
+{
+  "task_id": "wh-repair",
+  "role": "implementer",
+  "objective": "REPAIR src/Workspace/abandoned_warehouse_interior_01.model.json (flat, 62 MeshParts, all Concrete). GROUND TRUTH=src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx (XML, 107 Models, 62 MeshParts, WorldPivotData per Model, MeshPart CFrame relative to wrapper Model pivot). Studio: EXPLODED + WHITE. STEPS: (1) write /tmp/wh_fix.py: parse RBXMX XML, for each of 62 MeshParts compute WORLD CFrame (multiply ancestor WorldPivotData CFrames root-to-part, then * MeshPart.CFrame), parse model.json, print per-part diff table (name, canon_world_pos, mj_cframe_pos, pos_diff, canon_material, mj_material, canon_SA_count, mj_SA_count); (2) run python3 /tmp/wh_fix.py; (3) apply ONE bounded fix to model.json: re-bake all 62 MeshPart CFrames to canonical world CFrames + fix Material/SurfaceAppearance to match canonical (parent SAs to correct parts, restore texture props); (4) argon build default.project.json -o /tmp/wh_fix.rbxlx -x -y; (5) verify live sync: check /Users/Ori/.argon/stats.toml last_synced is recent + POST msgpack {code=\"return 1\",focus=false} to localhost:8001/exec returns HTTP 200; (6) STOP. No other project changes.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src/Workspace",
+    "/tmp"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "Compact handoff: (1) transform root cause (specific property mismatch), (2) material root cause (specific mismatch), (3) exact fix applied (which parts, what CFrame/Material/SA values), (4) argon build result (exit code + output size), (5) live sync result (last_synced timestamp + /exec HTTP status). No other file changes.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-04T15:35:39.210823+00:00"
+}

@@ -1,0 +1,9 @@
+Error: A prompt is required when using the -p/--print flag, unless --prompt, --agent, or --resume is provided.
+
+Usage examples:
+  cn -p "please review my current git diff"
+  echo "hello" | cn -p
+  cn -p "analyze the code in src/"
+  cn -p --agent my-org/my-agent
+  cn -p --prompt my-org/my-prompt
+  cn -p --resume

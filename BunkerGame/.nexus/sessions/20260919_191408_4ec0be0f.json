@@ -1,0 +1,53 @@
+{
+  "id": "20260919_191408_4ec0be0f",
+  "title": "master_promt_v1",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "Perform the definitive current-state development baseline audit for BunkerGame.",
+  "status": "INTERRUPTED",
+  "created_at": "2026-09-19T16:14:08.311022+00:00",
+  "updated_at": "2026-09-19T16:15:47.861097+00:00",
+  "run_id": null,
+  "last_result": "Session interrupted by user.",
+  "history": [
+    {
+      "type": "objective",
+      "text": "Perform the definitive current-state development baseline audit for BunkerGame.",
+      "created_at": "2026-09-19T16:14:08.311022+00:00"
+    },
+    {
+      "type": "interrupt",
+      "text": "Session interrupted by user.",
+      "created_at": "2026-09-19T16:15:47.860982+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "Perform the definitive current-state development baseline audit for BunkerGame.",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": null,
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "updated_at": null
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": null
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": "INTERRUPTED",
+    "last_instruction": "Perform the definitive current-state development baseline audit for BunkerGame.",
+    "continuation_point": "initial-turn-interrupted",
+    "interrupted": true,
+    "resume_requested_at": null,
+    "updated_at": "2026-09-19T16:15:47.861055+00:00"
+  }
+}

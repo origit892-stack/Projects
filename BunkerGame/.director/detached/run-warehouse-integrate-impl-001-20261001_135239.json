@@ -1,0 +1,12 @@
+{
+  "job_id": "run-warehouse-integrate-impl-001-20261001_135239",
+  "mode": "run",
+  "task_ids": [
+    "warehouse-integrate-impl-001"
+  ],
+  "pid": 79728,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-integrate-impl-001-20261001_135239.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-integrate-impl-001-20261001_135239.json",
+  "started_at": 1790851959.919521,
+  "launcher_status": "RUNNING"
+}

@@ -1,0 +1,1 @@
+1) UIController.luau _buildWeaponsButton: stud ImageLabel child of button (rbxassetid://7447638611, Tile, 32x32, ZIndex 0, ImageTransparency 0.5, BackgroundTransparency 1) placed before self._refs.WeaponsButton = button. 2) InventoryV2Module.luau: same stud ImageLabel child of rootCanvas. 3) No 3D Workspace parts created; both files valid Luau; no unrelated changes.

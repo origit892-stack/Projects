@@ -1,0 +1,36 @@
+{
+  "project_status": "CONTINUE",
+  "summary": "Cycle 0: no worker tasks completed. Live state matches the objective's verified baseline: src/Workspace contains only ArgonProof.model.json and SpawnRoot.model.json; no GameWorld, Runtime, or Lighting; src/ServerStorage absent; default.project.json lacks ServerStorage and Lighting mappings. The 5 accepted asset files exist only in the recovery artifact, and the builder (tools/builders/generate_full_game_world.py) is ready to run once assets are restored. Two non-overlapping work streams can proceed in parallel: (1) asset restore + world build, (2) additive project mapping edits. Verification will follow in the next cycle.",
+  "tasks": [
+    {
+      "task_id": "world-build-01",
+      "objective": "Restore the 5 accepted asset model.json files from artifacts/recovery_fixed_20260831_101945/current_filesystem/src/ServerStorage/GeneratedAssets/ into src/ServerStorage/GeneratedAssets/ (create the directory), verify all 5 are present and non-empty, then run `python3 tools/builders/generate_full_game_world.py` from the project root. The builder's internal validate_world() must pass (no AssertionError). Capture and report the builder's JSON summary output (sha256, counts, generatedFiles). Do not modify any .luau files, ArgonProof.model.json, SpawnRoot.model.json, or default.project.json. Do not regenerate assets; only copy the 5 accepted files.",
+      "write_scopes": [
+        "src/ServerStorage/GeneratedAssets/",
+        "src/Workspace/",
+        "src/Lighting/"
+      ],
+      "read_scopes": [
+        "artifacts/recovery_fixed_20260831_101945/current_filesystem/src/ServerStorage/GeneratedAssets/",
+        "tools/builders/generate_full_game_world.py",
+        "src/ReplicatedStorage/Game/WorldManifest.luau",
+        "src/ServerScriptService/Game/Services/WorldService.luau"
+      ],
+      "acceptance_criteria": "All 5 asset files (bunker_electrical_junction_box_01, bunker_valve_assembly_01, bunker_vent_grille_01, old_military_ammo_crate_01, pipeline_pipe_retry_02 .model.json) exist non-empty in src/ServerStorage/GeneratedAssets/; src/Workspace/GameWorld.model.json and src/Workspace/Runtime.model.json exist and are valid JSON; src/Lighting/init.meta.json exists and is valid JSON; builder exited 0 with a JSON summary and no validation errors. Report file sizes and the full builder JSON summary.",
+      "timeout_seconds": 7200
+    },
+    {
+      "task_id": "project-mapping-01",
+      "objective": "Edit default.project.json at the project root to add exactly two new mappings, preserving all existing mappings and content: \"ServerStorage\": {\"$path\": \"src/ServerStorage\"} and \"Lighting\": {\"$path\": \"src/Lighting\"}. Make no other changes to the file. After editing, validate the file is parseable JSON (e.g., python3 -m json.tool) and confirm all pre-existing mappings (ReplicatedStorage, ServerScriptService, StarterGui, StarterPlayer, Workspace) are unchanged.",
+      "write_scopes": [
+        "default.project.json"
+      ],
+      "read_scopes": [
+        "default.project.json"
+      ],
+      "acceptance_criteria": "default.project.json is valid JSON; contains the two new mappings ServerStorage -> src/ServerStorage and Lighting -> src/Lighting; all previously existing mappings are byte-for-byte preserved in meaning; report the final mappings section of the file.",
+      "timeout_seconds": 3600
+    }
+  ],
+  "final_result": ""
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-verify-bunker-to-ground-20260930_001555",
+  "mode": "run",
+  "task_ids": [
+    "verify-bunker-to-ground"
+  ],
+  "pid": 52029,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-bunker-to-ground-20260930_001555.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-bunker-to-ground-20260930_001555.json",
+  "started_at": 1790716555.8506181,
+  "launcher_status": "RUNNING"
+}

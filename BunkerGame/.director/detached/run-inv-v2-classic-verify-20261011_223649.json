@@ -1,0 +1,12 @@
+{
+  "job_id": "run-inv-v2-classic-verify-20261011_223649",
+  "mode": "run",
+  "task_ids": [
+    "inv-v2-classic-verify"
+  ],
+  "pid": 70398,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv-v2-classic-verify-20261011_223649.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv-v2-classic-verify-20261011_223649.json",
+  "started_at": 1791747409.018275,
+  "launcher_status": "RUNNING"
+}

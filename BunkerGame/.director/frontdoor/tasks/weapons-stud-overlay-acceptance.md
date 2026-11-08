@@ -1,0 +1,1 @@
+UIController.luau contains a StudOverlay ImageLabel created immediately before self._refs.WeaponsButton = button inside _buildWeaponsButton, with all 8 exact properties, parented to button. No other changes to the file. No Workspace parts. InventoryV2 untouched.

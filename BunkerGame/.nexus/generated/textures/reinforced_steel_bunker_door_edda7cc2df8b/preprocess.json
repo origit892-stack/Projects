@@ -1,0 +1,13 @@
+{
+  "source": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/source.obj",
+  "output": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/preprocessed.glb",
+  "objects": 1,
+  "vertices": 12484,
+  "faces": 24964,
+  "loops": 74892,
+  "uv_layers": 1,
+  "uv_loops": 74892,
+  "source_uv_valid": false,
+  "uv_generated": true,
+  "output_exists": true
+}

@@ -1,0 +1,18 @@
+{
+  "task_id": "warehouse-integrate-impl-004",
+  "role": "implementer",
+  "objective": "Integrate Roblox Model asset 73559951039514 into BunkerGame. Do NOT regenerate or republish. Do NOT modify unrelated content. You MUST emit AGENT_HANDOFF at the end (PASS/FAILED/BLOCKED). Key facts (no need to read large files): Source of truth is default.project.json; Workspace maps to src/Workspace (has SpawnRoot.model.json + bunker-rooms.model.json). Ground top at Y=0.0; SpawnRoot at (0,0.5,-10). Asset 73559951039514 is a Model NOT a MeshPart. Argon serve is running (port 8000, Studio connected) - new files auto-sync. Steps: 1) Run: /Users/Ori/Developer/roblox-assets/.venv/bin/roblox-assets integrate --id abandoned_warehouse_01 --project /Users/Ori/Documents/Projects/BunkerGame (this writes AssetRegistry.json/.luau + the .model.json contract in src/ServerStorage/GeneratedAssets/). 2) Read the created .model.json to see what it produced. 3) Create src/Workspace/abandoned_warehouse.model.json: a Model named abandoned_warehouse with a child MeshPart named Warehouse, Anchored=true, CanCollide=true, Size [40,16,32], Position [0,8,20] (base on ground Y=0, near SpawnRoot). Use the MeshId from the contract if available; if the contract has IntegrationState AwaitingModelImport or no MeshId, use the Model asset reference pattern from bunker-rooms.model.json (read it for the exact JSON structure). 4) Verify: run argon sourcemap default.project.json and confirm the new instances appear. 5) Run a second argon sourcemap to confirm persistence. Report: files created, Instance structure, placement position, commands used, verification evidence.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src/Workspace",
+    "/Users/Ori/Documents/Projects/BunkerGame/src/ServerStorage",
+    "/Users/Ori/Documents/Projects/BunkerGame/src/ReplicatedStorage",
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame",
+    "/Users/Ori/Developer/roblox-assets"
+  ],
+  "acceptance_criteria": "PASS if: 1) roblox-assets integrate ran successfully and created the contract in src/ServerStorage/GeneratedAssets/. 2) src/Workspace/abandoned_warehouse.model.json exists with a Model + MeshPart, Position [0,8,20], Size [40,16,32]. 3) SpawnRoot.model.json and bunker-rooms.model.json are unchanged. 4) argon sourcemap shows the new instances. 5) Second sourcemap confirms persistence. 6) Handoff reports files, structure, position, commands, evidence. 7) No Cube regen, no republish. FAILED/BLOCKED with specific error if any gate fails. You MUST emit AGENT_HANDOFF.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T11:39:52.723283+00:00"
+}

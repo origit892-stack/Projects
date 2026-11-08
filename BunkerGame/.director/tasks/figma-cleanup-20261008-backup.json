@@ -1,0 +1,14 @@
+{
+  "task_id": "figma-cleanup-20261008-backup",
+  "role": "implementer",
+  "objective": "GOAL: Create a recoverable backup of Figma file rzVdCT73aztDRPsAWTdgrM before any destructive changes. Use the Figma REST API (token from macOS Keychain: security find-generic-password -a Ori -s BunkerGame-Figma-API -w) to duplicate the file via POST https://api.figma.com/v1/files/rzVdCT73aztDRPsAWTdgrM/duplicate. Save the response (new file key, name, URL) to /Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/tasks/figma-backup-evidence.json. Also export the file structure (all pages, frames, node IDs) via GET https://api.figma.com/v1/files/rzVdCT73aztDRPsAWTdgrM?depth=3 to the same directory as figma-structure-snapshot.json. CHECKPOINT: Figma API token is in Keychain under service BunkerGame-Figma-API. CONSTRAINTS: Do not modify the original file. Do not delete anything. Only create the duplicate and save evidence files. ACCEPTANCE: figma-backup-evidence.json contains the duplicate file key and URL. figma-structure-snapshot.json contains the full node tree. Both files exist on disk.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/tasks"
+  ],
+  "read_scopes": [
+    "/Users/Ori"
+  ],
+  "acceptance_criteria": "Two evidence files exist: figma-backup-evidence.json (with duplicate file key/URL) and figma-structure-snapshot.json (full node tree). Original file unmodified.",
+  "timeout_seconds": 3600,
+  "created_at": "2026-10-08T18:09:15.944032+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-inv2-stud-texture-v2-20261010_194535",
+  "mode": "run",
+  "task_ids": [
+    "inv2-stud-texture-v2"
+  ],
+  "pid": 29467,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv2-stud-texture-v2-20261010_194535.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv2-stud-texture-v2-20261010_194535.json",
+  "started_at": 1791650735.8707352,
+  "launcher_status": "RUNNING"
+}

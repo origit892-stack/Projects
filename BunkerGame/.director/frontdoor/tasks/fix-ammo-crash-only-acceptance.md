@@ -1,0 +1,1 @@
+AmmoCrateInteraction.server.luau line 1 no longer references prompt before declaration. The AutoDisableAfterTriggering line is now after prompt.Parent=crate. Change is live in Studio. No other files modified.

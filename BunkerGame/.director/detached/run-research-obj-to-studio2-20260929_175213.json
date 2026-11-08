@@ -1,0 +1,12 @@
+{
+  "job_id": "run-research-obj-to-studio2-20260929_175213",
+  "mode": "run",
+  "task_ids": [
+    "research-obj-to-studio2"
+  ],
+  "pid": 22245,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-obj-to-studio2-20260929_175213.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-obj-to-studio2-20260929_175213.json",
+  "started_at": 1790693533.0472598,
+  "launcher_status": "RUNNING"
+}

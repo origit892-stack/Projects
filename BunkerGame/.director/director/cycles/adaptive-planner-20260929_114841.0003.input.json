@@ -1,0 +1,75 @@
+{
+  "objective_file": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/objectives/adaptive-planner-20260929_114841.objective.md",
+  "state": {
+    "run_id": "adaptive-planner-20260929_114841",
+    "status": "RUNNING",
+    "created_at": "2026-09-29T08:48:41.407099+00:00",
+    "updated_at": "2026-09-29T08:50:04.036404+00:00",
+    "cycle": 2,
+    "summary": "Implementer PASS: artifact /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt created with PROJECT_NAME=BunkerGame and BUILD_STATUS=READY (43 bytes, 2 lines, trailing newline). Implementation self-reported byte-level verification, but the objective explicitly requires independent verification and forbids assuming success from the implementation report alone. Remaining gate: independent read-only verification that the artifact exists at the exact path, contains exactly the two required lines, and that PROJECT_NAME matches the live top-level name in default.project.json. Next wave: one fresh read-only verifier.",
+    "history_totals": {
+      "completed": 2,
+      "failed": 0,
+      "blocked": 0,
+      "archived": 0
+    },
+    "archived_summary": {
+      "completed_count": 0,
+      "failed_count": 0,
+      "blocked_count": 0,
+      "latest_archived_cycle": 0
+    },
+    "completed_tasks": [
+      {
+        "task_id": "impl-create-project-info",
+        "role": "implementer",
+        "status": "PASS",
+        "result": "Acceptance artifact created. Exact name value read from live project file: BunkerGame. Exact bytes written (43 bytes, 2 lines, verified via od -c): line 1 \"PROJECT_NAME=BunkerGame\\n\", line 2 \"BUILD_STATUS=READY\\n\" (trailing newline present, no other content).",
+        "verification": "VERIFIED_FACT: od -c shows exact byte sequence P R O J E C T _ N A M E = B u n k e r G a m e \\n B U I L D _ S T A T U S = R E A D Y \\n (43 bytes per wc -c, 2 lines per wc -l). VERIFIED_FACT: grep confirms default.project.json line 2 is \"name\": \"BunkerGame\". VERIFIED_FACT: default.project.json was only read, never written; no files outside the sandbox work directory were modified.",
+        "files_changed": "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt",
+        "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt",
+        "blockers": "NONE"
+      },
+      {
+        "task_id": "verify-project-info-artifact",
+        "role": "verifier",
+        "status": "PASS",
+        "result": "PASS — artifact is byte-exact and matches live project name; no files outside the sandbox work directory were modified.",
+        "verification": "",
+        "files_changed": "NONE",
+        "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt",
+        "blockers": "NONE"
+      }
+    ],
+    "failed_tasks": [],
+    "blocked_tasks": [],
+    "last_handoffs": [
+      {
+        "task_id": "impl-create-project-info",
+        "role": "implementer",
+        "status": "PASS",
+        "executed": "Read live /Users/Ori/Documents/Projects/BunkerGame/default.project.json and extracted the exact top-level \"name\" value (\"BunkerGame\", line 2). Ensured sandbox directory /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work exists (created). Wrote the acceptance artifact project-info.txt with exactly two lines and a trailing newline. Did not modify default.project.json or anything outside the sandbox work directory.",
+        "result": "Acceptance artifact created. Exact name value read from live project file: BunkerGame. Exact bytes written (43 bytes, 2 lines, verified via od -c): line 1 \"PROJECT_NAME=BunkerGame\\n\", line 2 \"BUILD_STATUS=READY\\n\" (trailing newline present, no other content).",
+        "files_changed": "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt",
+        "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt",
+        "verification": "VERIFIED_FACT: od -c shows exact byte sequence P R O J E C T _ N A M E = B u n k e r G a m e \\n B U I L D _ S T A T U S = R E A D Y \\n (43 bytes per wc -c, 2 lines per wc -l). VERIFIED_FACT: grep confirms default.project.json line 2 is \"name\": \"BunkerGame\". VERIFIED_FACT: default.project.json was only read, never written; no files outside the sandbox work directory were modified.",
+        "blockers": "NONE",
+        "completed_at": "2026-09-29T08:49:22.252912+00:00"
+      },
+      {
+        "task_id": "verify-project-info-artifact",
+        "role": "verifier",
+        "status": "PASS",
+        "executed": "Read task file; verified artifact existence; read live top-level name from default.project.json (read-only via python3 json.load); performed byte-level inspection of artifact (od -c, wc -c, wc -l); checked default.project.json modification state (git status --porcelain, stat mtime) and sandbox work directory contents.",
+        "result": "PASS — artifact is byte-exact and matches live project name; no files outside the sandbox work directory were modified.",
+        "files_changed": "NONE",
+        "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt",
+        "verification": "",
+        "blockers": "NONE",
+        "completed_at": "2026-09-29T08:50:04.015673+00:00"
+      }
+    ],
+    "final_result": ""
+  },
+  "instruction": "Read the objective file. Use the bounded durable state and recent worker handoffs in this input. Decide the next bounded worker tasks or declare COMPLETE/BLOCKED. Historical details are archived on disk and are not automatically rehydrated."
+}

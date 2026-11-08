@@ -1,0 +1,12 @@
+{
+  "task_id": "invv2-viewport-verify",
+  "role": "verifier",
+  "objective": "Independently verify the ViewportFrame rendering fix in src/StarterGui/InventoryV2/InventoryV2Module.luau (project root /Users/Ori/Documents/Projects/BunkerGame). Read-only. Check on disk: 1) No PointLight/SpotLight/SurfaceLight instances are created for the viewport (comment mentions are acceptable). 2) ViewportFrame.Ambient and ViewportFrame.LightColor are set to Color3.new(1,1,1). 3) The Camera is explicitly assigned to ViewportFrame.CurrentCamera. 4) The camera CFrame is positioned in front of the dummy model and looks directly at it via CFrame.lookAt. 5) The dummy model is parented to the ViewportFrame. 6) File has no syntax errors (luau-analyze or equivalent). Report PASS/FAIL per requirement with line evidence.",
+  "write_scopes": [],
+  "read_scopes": [
+    "src/StarterGui/InventoryV2"
+  ],
+  "acceptance_criteria": "PASS only if all 6 requirements are verified on disk with concrete line references; otherwise FAIL with the specific unmet requirement(s).",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-10T10:02:40.338840+00:00"
+}

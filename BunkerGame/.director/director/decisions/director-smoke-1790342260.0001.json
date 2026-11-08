@@ -1,0 +1,19 @@
+{
+  "project_status": "CONTINUE",
+  "summary": "Cycle 0 of run director-smoke-1790342260. Objective: verify (read-only) that the BunkerGame project root exists and that a worker can use Bash to print DIRECTOR_WORKER_PASS. No worker tasks have completed yet; no handoffs exist.",
+  "tasks": [
+    {
+      "task_id": "verify-root-and-bash",
+      "objective": "Without modifying any project files, verify that the BunkerGame project root directory /Users/Ori/Documents/Projects/BunkerGame exists (e.g., via a read-only shell check such as test -d), and then use Bash to print the exact string DIRECTOR_WORKER_PASS. Report PASS only if both checks succeed, including the printed output as evidence.",
+      "write_scopes": [],
+      "read_scopes": [
+        "/Users/Ori/Documents/Projects/BunkerGame"
+      ],
+      "acceptance_criteria": "Handoff reports PASS with evidence that (1) the project root directory exists and (2) Bash printed DIRECTOR_WORKER_PASS; no project files were created, modified, or deleted.",
+      "timeout_seconds": 600
+    }
+  ],
+  "final_result": "",
+  "_director_seconds": 11.161,
+  "_director_output": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/cycles/director-smoke-1790342260.0001.director.out"
+}

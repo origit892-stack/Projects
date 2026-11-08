@@ -1,0 +1,1 @@
+Warehouse MeshPart uses a real internal MeshId (NOT 73559951039514) in persistent filesystem source. GeneratedAssets contract is Ready with the correct mesh. Argon sync completes cleanly. Warehouse visibly renders in connected Roblox Studio. SpawnRoot.model.json and bunker-rooms.model.json unchanged. No regeneration or republish occurred.

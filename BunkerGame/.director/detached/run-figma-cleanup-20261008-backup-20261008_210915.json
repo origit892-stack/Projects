@@ -1,0 +1,12 @@
+{
+  "job_id": "run-figma-cleanup-20261008-backup-20261008_210915",
+  "mode": "run",
+  "task_ids": [
+    "figma-cleanup-20261008-backup"
+  ],
+  "pid": 5634,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-figma-cleanup-20261008-backup-20261008_210915.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-figma-cleanup-20261008-backup-20261008_210915.json",
+  "started_at": 1791482955.997202,
+  "launcher_status": "RUNNING"
+}

@@ -1,0 +1,150 @@
+{
+  "mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/pipe_section_02_10d5e0941945/preprocessed.glb",
+  "center": [
+    0.0,
+    -0.388250470161438,
+    2.9489002227783203
+  ],
+  "dimensions": [
+    12.0,
+    0.7765001058578491,
+    0.10220026969909668
+  ],
+  "longest": 12.0,
+  "views": {
+    "front": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/pipe_section_02_10d5e0941945/geometry_views/front.png",
+      "camera_location": [
+        0.0,
+        -33.988250732421875,
+        2.9489002227783203
+      ],
+      "target": [
+        0.0,
+        -0.388250470161438,
+        2.9489002227783203
+      ],
+      "direction": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "ortho_scale": 16.200000000000003
+    },
+    "back": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/pipe_section_02_10d5e0941945/geometry_views/back.png",
+      "camera_location": [
+        0.0,
+        33.21174621582031,
+        2.9489002227783203
+      ],
+      "target": [
+        0.0,
+        -0.388250470161438,
+        2.9489002227783203
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "ortho_scale": 16.200000000000003
+    },
+    "left": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/pipe_section_02_10d5e0941945/geometry_views/left.png",
+      "camera_location": [
+        -33.599998474121094,
+        -0.388250470161438,
+        2.9489002227783203
+      ],
+      "target": [
+        0.0,
+        -0.388250470161438,
+        2.9489002227783203
+      ],
+      "direction": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 16.200000000000003
+    },
+    "right": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/pipe_section_02_10d5e0941945/geometry_views/right.png",
+      "camera_location": [
+        33.599998474121094,
+        -0.388250470161438,
+        2.9489002227783203
+      ],
+      "target": [
+        0.0,
+        -0.388250470161438,
+        2.9489002227783203
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 16.200000000000003
+    },
+    "top": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/pipe_section_02_10d5e0941945/geometry_views/top.png",
+      "camera_location": [
+        0.0,
+        -0.388250470161438,
+        36.54889678955078
+      ],
+      "target": [
+        0.0,
+        -0.388250470161438,
+        2.9489002227783203
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "ortho_scale": 16.200000000000003
+    },
+    "bottom": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/pipe_section_02_10d5e0941945/geometry_views/bottom.png",
+      "camera_location": [
+        0.0,
+        -0.388250470161438,
+        -30.651098251342773
+      ],
+      "target": [
+        0.0,
+        -0.388250470161438,
+        2.9489002227783203
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "ortho_scale": 16.200000000000003
+    },
+    "hero": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/pipe_section_02_10d5e0941945/geometry_views/hero.png",
+      "camera_location": [
+        20.98975372314453,
+        -21.37800407409668,
+        18.69121551513672
+      ],
+      "target": [
+        0.0,
+        -0.388250470161438,
+        2.9489002227783203
+      ],
+      "direction": [
+        0.6246950626373291,
+        -0.6246950626373291,
+        0.4685212969779968
+      ],
+      "ortho_scale": 16.200000000000003
+    }
+  },
+  "all_exist": true
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-research-worldmanifest-gate-20260929_165852",
+  "mode": "run",
+  "task_ids": [
+    "research-worldmanifest-gate"
+  ],
+  "pid": 15955,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-worldmanifest-gate-20260929_165852.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-worldmanifest-gate-20260929_165852.json",
+  "started_at": 1790690332.465557,
+  "launcher_status": "RUNNING"
+}

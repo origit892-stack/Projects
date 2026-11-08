@@ -1,0 +1,12 @@
+{
+  "task_id": "figma-cleanup-20261008-file-inspect",
+  "role": "researcher",
+  "objective": "GOAL: Inspect Figma file rzVdCT73aztDRPsAWTdgrM (read-only) and verify the exact id, name, type/class, and parent page for each of these node IDs: 3:313 (canonical final design), 2:2 and 2:37 (Inventory v1), and candidates 2:72, 2:95, 2:164, 2:233, 2:302, 2:306, 2:308, 2:311. Use the figma_qwen_figma_get_file and figma_qwen_figma_get_nodes MCP tools. Also record the file's top-level page structure (page names and their direct child frame names). CHECKPOINT: none yet. CONSTRAINTS: read-only; never modify the file; never infer identity from name alone - report the actual node data returned by the API for each ID. ACCEPTANCE: A report listing each of the 11 node IDs with VERIFIED id/name/type/parent-page or NOT_FOUND, plus the top-level page outline. No file changes.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "Report contains all 11 node IDs each with verified id, name, type, parent page (or NOT_FOUND), plus top-level page structure. Zero mutations to the Figma file.",
+  "timeout_seconds": 3600,
+  "created_at": "2026-10-08T18:05:53.428201+00:00"
+}

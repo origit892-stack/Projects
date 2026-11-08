@@ -1,0 +1,12 @@
+{
+  "task_id": "smoke-tests",
+  "run_id": "smoke-tests-1f49082cc7e3",
+  "status": "PASS",
+  "executed": "Read back and byte-verified backend.txt and frontend.txt in the sandbox work dir before writing; created tests.txt with exact content 'TESTS=PASS' (no trailing newline); read back tests.txt and verified byte-for-byte.",
+  "result": "tests.txt created in sandbox work dir with exact content 'TESTS=PASS'. Pre-write verification of backend.txt ('BACKEND=READY') and frontend.txt ('FRONTEND=READY') performed and confirmed. release.txt NOT created. No files outside the sandbox work dir created or modified.",
+  "files_changed": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/tests.txt",
+  "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/tests.txt",
+  "verification": "Pre-write: od -c backend.txt = 'BACKEND=READY' (13 bytes, wc -c=13); od -c frontend.txt = 'FRONTEND=READY' (14 bytes, wc -c=14). Post-write: od -c tests.txt = 'TESTS=PASS' (10 bytes); wc -c tests.txt = 10; printf 'TESTS=PASS' | cmp - tests.txt exit 0 (byte-for-byte match). NOTE: task text stated 'wc -c = 11', but the literal string 'TESTS=PASS' is 10 bytes; the authoritative byte-for-byte check (cmp against printf 'TESTS=PASS') passes with exit 0, and the file contains exactly 'TESTS=PASS' with no trailing newline or extra characters. The '11' appears to be a miscount in the task spec.",
+  "blockers": "NONE",
+  "completed_at": "2026-09-25T15:52:01.488440+00:00"
+}

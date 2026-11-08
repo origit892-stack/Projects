@@ -1,0 +1,33 @@
+[
+  {
+    "cycle": 1,
+    "status": "CONTINUE",
+    "tasks": [
+      {
+        "task_id": "impl-create-project-info",
+        "role": "implementer",
+        "write_scopes": [
+          "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work"
+        ],
+        "objective": "Create the acceptance artifact for run adaptive-planner-20260929_114841. Steps: (1) Read the live file /Users/Ori/Documents/Projects/BunkerGame/default.project.json and extract its current top-level 'name' value exactly as written (do not assume or guess it). (2) Ensure the directory /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work exists. (3) Create the file /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt containing exactly two lines: line 1 'PROJECT_NAME=<the exact current top-level name value>' and line 2 'BUILD_STATUS=READY', with a trailing newline after line 2 and no other content. (4) Do NOT modify default.project.json or anything outside the sandbox work directory /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work. In your handoff, report the exact name value you read from the project file and the exact bytes/lines written to the artifact."
+      }
+    ]
+  },
+  {
+    "cycle": 2,
+    "status": "CONTINUE",
+    "tasks": [
+      {
+        "task_id": "verify-project-info-artifact",
+        "role": "verifier",
+        "write_scopes": [],
+        "objective": "Independently verify the acceptance artifact. 1) Confirm the file /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt exists. 2) Read the live top-level \"name\" value from /Users/Ori/Documents/Projects/BunkerGame/default.project.json (read-only; do not modify it). 3) Verify the artifact contains exactly two lines and nothing else: line 1 'PROJECT_NAME=<live name value>' and line 2 'BUILD_STATUS=READY', with a trailing newline and no extra content (use byte-level inspection such as od -c and wc -c/wc -l). 4) Confirm no files outside /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work were modified by this objective (e.g., default.project.json is unmodified in content relative to the live name check). Report each check as VERIFIED_FACT or FAILED with the exact command output evidence. Do not repair or modify anything."
+      }
+    ]
+  },
+  {
+    "cycle": 3,
+    "status": "COMPLETE",
+    "tasks": []
+  }
+]

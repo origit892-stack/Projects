@@ -1,0 +1,25 @@
+{
+  "task_id": "warehouse-modeljson-cutover",
+  "role": "implementer",
+  "run_id": "warehouse-modeljson-cutover-8745a989fb91",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-10-03T13:01:45.854833+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/09ca05e2-c3d1-471a-9f4d-1bc5d3738688.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/09ca05e2-c3d1-471a-9f4d-1bc5d3738688.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

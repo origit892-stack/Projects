@@ -1,0 +1,12 @@
+{
+  "task_id": "figma-cleanup-20261008-executor-inspect",
+  "role": "researcher",
+  "objective": "GOAL: Inspect the local Figma Design Executor v2 source (read-only) and document: (1) where the plugin, MCP server, and bridge code live (exact paths); (2) the existing plugin communication protocol (message shapes, how MCP tools map to plugin commands, how results/errors are returned); (3) the existing read and submit operations (figma_qwen_figma_get_file, figma_qwen_figma_get_nodes, figma_design_executor_figma_submit_design, figma_design_executor_figma_design_status) - how they are implemented end-to-end; (4) any existing allowlist/permission/safety mechanisms; (5) how the plugin is paired/connected and whether it is currently reachable. Likely locations: search under /Users/Ori for 'figma' directories (e.g. ~/Developer, ~/Documents/Projects, ~/.local). CHECKPOINT: none. CONSTRAINTS: read-only; do not modify any source; do not run the plugin or submit designs. ACCEPTANCE: A report with exact file paths, protocol message shapes, end-to-end flow of existing ops, existing safety mechanisms, and current plugin reachability status. No source changes.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori"
+  ],
+  "acceptance_criteria": "Report contains exact paths for plugin/MCP/bridge, protocol message shapes, end-to-end flow of the 4 existing ops, existing safety/allowlist mechanisms, and plugin reachability status. Zero source changes.",
+  "timeout_seconds": 3600,
+  "created_at": "2026-10-08T18:06:09.714326+00:00"
+}

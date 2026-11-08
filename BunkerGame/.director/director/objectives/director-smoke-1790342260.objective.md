@@ -1,0 +1,1 @@
+Verify, without modifying project files, that the BunkerGame project root exists and that a worker can use Bash to print DIRECTOR_WORKER_PASS. Delegate the verification to a worker. After a verified PASS handoff, declare the objective COMPLETE.

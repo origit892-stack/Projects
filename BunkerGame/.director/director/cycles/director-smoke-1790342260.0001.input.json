@@ -1,0 +1,18 @@
+{
+  "objective_file": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/objectives/director-smoke-1790342260.objective.md",
+  "state": {
+    "run_id": "director-smoke-1790342260",
+    "status": "RUNNING",
+    "objective": "Verify, without modifying project files, that the BunkerGame project root exists and that a worker can use Bash to print DIRECTOR_WORKER_PASS. Delegate the verification to a worker. After a verified PASS handoff, declare the objective COMPLETE.",
+    "created_at": "2026-09-25T13:17:40.562540+00:00",
+    "updated_at": "2026-09-25T13:17:40.562707+00:00",
+    "cycle": 0,
+    "summary": "No worker tasks have completed yet.",
+    "completed_tasks": [],
+    "failed_tasks": [],
+    "blocked_tasks": [],
+    "last_handoffs": [],
+    "final_result": ""
+  },
+  "instruction": "Read the objective file. Use the durable state and worker handoffs in this input. Decide the next bounded worker tasks or declare COMPLETE/BLOCKED."
+}

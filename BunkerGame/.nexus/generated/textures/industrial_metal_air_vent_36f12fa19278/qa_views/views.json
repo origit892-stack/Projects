@@ -1,0 +1,150 @@
+{
+  "mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/textured.glb",
+  "center": [
+    -0.0016803145408630371,
+    0.001317054033279419,
+    -0.00013369321823120117
+  ],
+  "dimensions": [
+    1.9026060104370117,
+    1.9039287567138672,
+    1.9040199518203735
+  ],
+  "longest": 1.9040199518203735,
+  "views": {
+    "front": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/qa_views/front.png",
+      "camera_location": [
+        -0.0016803145408630371,
+        -5.329938888549805,
+        -0.00013369321823120117
+      ],
+      "target": [
+        -0.0016803145408630371,
+        0.001317054033279419,
+        -0.00013369321823120117
+      ],
+      "direction": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "ortho_scale": 2.5704269349575046
+    },
+    "back": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/qa_views/back.png",
+      "camera_location": [
+        -0.0016803145408630371,
+        5.332572937011719,
+        -0.00013369321823120117
+      ],
+      "target": [
+        -0.0016803145408630371,
+        0.001317054033279419,
+        -0.00013369321823120117
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "ortho_scale": 2.5704269349575046
+    },
+    "left": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/qa_views/left.png",
+      "camera_location": [
+        -5.3329362869262695,
+        0.001317054033279419,
+        -0.00013369321823120117
+      ],
+      "target": [
+        -0.0016803145408630371,
+        0.001317054033279419,
+        -0.00013369321823120117
+      ],
+      "direction": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 2.5704269349575046
+    },
+    "right": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/qa_views/right.png",
+      "camera_location": [
+        5.329575538635254,
+        0.001317054033279419,
+        -0.00013369321823120117
+      ],
+      "target": [
+        -0.0016803145408630371,
+        0.001317054033279419,
+        -0.00013369321823120117
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 2.5704269349575046
+    },
+    "top": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/qa_views/top.png",
+      "camera_location": [
+        -0.0016803145408630371,
+        0.001317054033279419,
+        5.331122398376465
+      ],
+      "target": [
+        -0.0016803145408630371,
+        0.001317054033279419,
+        -0.00013369321823120117
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "ortho_scale": 2.5704269349575046
+    },
+    "bottom": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/qa_views/bottom.png",
+      "camera_location": [
+        -0.0016803145408630371,
+        0.001317054033279419,
+        -5.331389427185059
+      ],
+      "target": [
+        -0.0016803145408630371,
+        0.001317054033279419,
+        -0.00013369321823120117
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "ortho_scale": 2.5704269349575046
+    },
+    "hero": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/industrial_metal_air_vent_36f12fa19278/qa_views/hero.png",
+      "camera_location": [
+        3.3287289142608643,
+        -3.329092264175415,
+        2.497673273086548
+      ],
+      "target": [
+        -0.0016803145408630371,
+        0.001317054033279419,
+        -0.00013369321823120117
+      ],
+      "direction": [
+        0.6246950626373291,
+        -0.6246950626373291,
+        0.4685212969779968
+      ],
+      "ortho_scale": 2.5704269349575046
+    }
+  },
+  "all_exist": true
+}

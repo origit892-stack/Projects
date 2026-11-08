@@ -1,0 +1,10 @@
+name: BunkerGame
+workspace_root: /Users/Ori/Documents/Projects/BunkerGame
+runtime: {}
+permissions:
+  sandbox: true
+  director_read_only: true
+  architect_read_only: true
+  qa_read_only: true
+  coder_single_writer: true
+  checkpoint_before_write: true

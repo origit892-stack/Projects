@@ -1,0 +1,29 @@
+{
+  "objective_file": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/objectives/specialist-lifecycle-20260929_114309.objective.md",
+  "state": {
+    "run_id": "specialist-lifecycle-20260929_114309",
+    "status": "RUNNING",
+    "created_at": "2026-09-29T08:43:10.131022+00:00",
+    "updated_at": "2026-09-29T08:43:10.131160+00:00",
+    "cycle": 0,
+    "summary": "No worker tasks have completed yet.",
+    "history_totals": {
+      "completed": 0,
+      "failed": 0,
+      "blocked": 0,
+      "archived": 0
+    },
+    "archived_summary": {
+      "completed_count": 0,
+      "failed_count": 0,
+      "blocked_count": 0,
+      "latest_archived_cycle": 0
+    },
+    "completed_tasks": [],
+    "failed_tasks": [],
+    "blocked_tasks": [],
+    "last_handoffs": [],
+    "final_result": ""
+  },
+  "instruction": "Read the objective file. Use the bounded durable state and recent worker handoffs in this input. Decide the next bounded worker tasks or declare COMPLETE/BLOCKED. Historical details are archived on disk and are not automatically rehydrated."
+}

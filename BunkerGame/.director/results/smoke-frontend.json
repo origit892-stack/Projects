@@ -1,0 +1,12 @@
+{
+  "task_id": "smoke-frontend",
+  "run_id": "smoke-frontend-604fa334e6b9",
+  "status": "PASS",
+  "executed": "Created sandbox work dir with mkdir -p; wrote frontend.txt via printf 'FRONTEND=READY' (no trailing newline); performed read-back verification with od -c, wc -c, and cmp against a here-string of the exact expected bytes.",
+  "result": "frontend.txt exists in /Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work and its bytes exactly equal 'FRONTEND=READY' (14 bytes, byte-for-byte match confirmed).",
+  "files_changed": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/frontend.txt",
+  "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/frontend.txt",
+  "verification": "od -c output: \"F R O N T E N D = R E A D Y\" ending at offset 0000016 (octal) = 14 bytes; wc -c = 14; cmp frontend.txt <(printf 'FRONTEND=READY') exited 0 with output \"CMP_EXACT_MATCH\". No files outside the sandbox work directory were created or modified.",
+  "blockers": "NONE",
+  "completed_at": "2026-09-25T15:51:21.523544+00:00"
+}

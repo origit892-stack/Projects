@@ -1,0 +1,16 @@
+{
+  "task_id": "wh-repair-08",
+  "role": "implementer",
+  "objective": "Fix warehouse model.json fidelity. Canonical source = src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx (18958 lines, 107 nested Models, 62 MeshParts, WorldPivotData per Model). Target = src/Workspace/abandoned_warehouse_interior_01.model.json (flat Model, 62 MeshParts, CFrame-only). CRITICAL ANTI-THRASH RULE: Do NOT read the RBXMX into your context (it will exhaust you). Your FIRST tool action must be writing a Python script to /tmp/wh_fix.py. The script must: (1) parse the RBXMX with xml.etree; (2) for each MeshPart extract Name, CFrame(12 vals), Size, MeshId, Material, Color; (3) load model.json; (4) compare each part by Name and print a diff table; (5) if CFrame mismatches are widespread, ALSO compute each part world CFrame by composing the ancestor Model WorldPivotData CFrame chain (root->part) and re-compare. Run the script. Then edit model.json so every MeshPart CFrame/Size/MeshId/Material/Color matches the RBXMX. PRESERVE the RBXMX byte-identical. Do NOT regenerate/republish assets. After the fix run: argon build, then argon live sync. STOP for manual inspection. Emit AGENT_HANDOFF.",
+  "write_scopes": [
+    "src/Workspace"
+  ],
+  "read_scopes": [
+    "src/ServerStorage/GeneratedAssets",
+    "src/Workspace",
+    "default.project.json"
+  ],
+  "acceptance_criteria": "model.json MeshPart CFrame/Size/MeshId/Material/Color match RBXMX; argon build succeeds; argon live sync completes; RBXMX byte-identical. Final success = warehouse visually correct in Studio (user manual inspection).",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-04T16:29:25.730100+00:00"
+}

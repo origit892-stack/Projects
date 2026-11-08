@@ -1,0 +1,12 @@
+{
+  "job_id": "run-plain-agent-clean-20261001_130742-20261001_130742",
+  "mode": "run",
+  "task_ids": [
+    "plain-agent-clean-20261001_130742"
+  ],
+  "pid": 74404,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-plain-agent-clean-20261001_130742-20261001_130742.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-plain-agent-clean-20261001_130742-20261001_130742.json",
+  "started_at": 1790849262.534668,
+  "launcher_status": "RUNNING"
+}

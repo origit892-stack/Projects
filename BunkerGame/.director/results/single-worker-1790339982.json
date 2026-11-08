@@ -1,0 +1,12 @@
+{
+  "task_id": "single-worker-1790339982",
+  "run_id": "single-worker-1790339982-d60d01ad9b37",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=-9",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-25T12:39:42.649688+00:00"
+}

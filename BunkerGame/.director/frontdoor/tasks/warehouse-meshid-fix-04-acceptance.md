@@ -1,0 +1,1 @@
+MeshId in src/Workspace/abandoned_warehouse.model.json is rbxassetid://<internal mesh ID>, != 73559951039514, with discovery evidence in handoff. GeneratedAssets contract Ready. Placement [0,8,20]/[40,16,32] unchanged. SpawnRoot.model.json and bunker-rooms.model.json unchanged. No Cube regeneration, no republish, no argon exec.

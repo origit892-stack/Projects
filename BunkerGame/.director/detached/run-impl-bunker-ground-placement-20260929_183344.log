@@ -1,0 +1,25 @@
+{
+  "task_id": "impl-bunker-ground-placement",
+  "role": "implementer",
+  "run_id": "impl-bunker-ground-placement-dee0d988f26d",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-29T15:39:35.331104+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/576d9dc0-ad52-4c62-a998-b81a5b3711da.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/576d9dc0-ad52-4c62-a998-b81a5b3711da.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

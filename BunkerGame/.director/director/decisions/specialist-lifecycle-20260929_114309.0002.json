@@ -1,0 +1,22 @@
+{
+  "project_status": "CONTINUE",
+  "summary": "Stage 1 researcher returned PASS with verified evidence: top-level name field in /Users/Ori/Documents/Projects/BunkerGame/default.project.json is \"BunkerGame\". Per the objective's mandatory dependency-ordered pipeline, Stage 2 (implementer) may now start. No implementer or verifier work has been done yet.",
+  "tasks": [
+    {
+      "task_id": "sl-20260929-stage2-implementer",
+      "role": "implementer",
+      "objective": "Using the Stage 1 researcher handoff (top-level name field of /Users/Ori/Documents/Projects/BunkerGame/default.project.json is \"BunkerGame\"), create the file /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/specialist-lifecycle-20260929_114309/work/specialist-result.txt containing exactly two lines: line 1 'RESEARCH_NAME=BunkerGame' and line 2 'IMPLEMENTER=PASS' (with a trailing newline after line 2). Create the parent directory if it does not exist. Do not modify any other file. After writing, read the file back and verify its exact contents before reporting.",
+      "write_scopes": [
+        "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/specialist-lifecycle-20260929_114309/work/specialist-result.txt"
+      ],
+      "read_scopes": [
+        "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/specialist-lifecycle-20260929_114309/work"
+      ],
+      "acceptance_criteria": "The file /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/specialist-lifecycle-20260929_114309/work/specialist-result.txt exists and contains exactly the two lines 'RESEARCH_NAME=BunkerGame' and 'IMPLEMENTER=PASS' in that order, verified by a read-back after writing. No files outside the single allowed write scope were created, modified, or deleted.",
+      "timeout_seconds": 7200
+    }
+  ],
+  "final_result": "",
+  "_director_seconds": 13.523,
+  "_director_output": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/cycles/specialist-lifecycle-20260929_114309.0002.director.out"
+}

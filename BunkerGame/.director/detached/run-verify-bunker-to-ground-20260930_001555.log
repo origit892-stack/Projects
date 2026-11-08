@@ -1,0 +1,25 @@
+{
+  "task_id": "verify-bunker-to-ground",
+  "role": "verifier",
+  "run_id": "verify-bunker-to-ground-3ac874617a33",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-29T21:16:18.330495+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/d2654786-1b35-4352-a58a-13ba509d9c5f.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/d2654786-1b35-4352-a58a-13ba509d9c5f.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

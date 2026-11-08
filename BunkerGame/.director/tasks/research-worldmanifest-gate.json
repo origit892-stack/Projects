@@ -1,0 +1,13 @@
+{
+  "task_id": "research-worldmanifest-gate",
+  "role": "researcher",
+  "objective": "# Task: Is WorldManifest.validateWorld a hard runtime gate? (FOCUSED)\n\nProject root: /Users/Ori/Documents/Projects/BunkerGame\nREAD-ONLY. Do NOT modify any file. Keep this SHORT and focused.\n\n## One question to answer\nA new bunker-only world was built at src/Workspace/GameWorld.model.json. Some folders\n(EnemySpawns, Objectives, Bunker.Spawns, Bunker.Stations) are empty stubs, and the\nStableGround slab is 240x240 at [0,52.5,0] (not the 640x640 at [0,52.5,80] that\nsrc/ReplicatedStorage/Game/WorldManifest.luau records). \n\nQUESTION: At server start, does the game CALL WorldManifest.validateWorld (or an\nequivalent full-world validation), and if it fails, does the game ABORT/CRASH (hard\ngate) or just WARN/LOG (soft check)?\n\n## Steps (minimal)\n1. Read src/ReplicatedStorage/Game/WorldManifest.luau. Find the validateWorld function\n   (or similar) and what it checks. Note line numbers.\n2. Grep all src/**/*.luau for calls to that validation function (e.g. validateWorld,\n   WorldManifest.validate, :Validate, etc.). Find WHERE it is called at runtime\n   (bootstrap / server-start service).\n3. At the call site, determine: is the result used to error/abort/pcall-fail (HARD_GATE),\n   or only to warn/print/log (SOFT_CHECK)? Quote the exact lines.\n4. Classify: HARD_GATE / SOFT_CHECK / UNKNOWN, with the quoted evidence.\n\n## Output\nCompact AGENT_HANDOFF. STATUS=PASS if you can classify it with quoted evidence.\nReport: the function name + line, the call site file + line, the HARD_GATE/SOFT_CHECK\nclassification, and the 3-5 quoted lines that prove it. Do NOT modify files.",
+  "write_scopes": [],
+  "read_scopes": [
+    "src",
+    ".director"
+  ],
+  "acceptance_criteria": "# Acceptance Criteria: research-worldmanifest-gate (focused)\n\nPASS requires:\n1. The validation function name + line in WorldManifest.luau.\n2. The runtime call site (file + line) where it is invoked at server start.\n3. A HARD_GATE / SOFT_CHECK / UNKNOWN classification.\n4. 3-5 quoted lines proving the classification (how the result is used: error/abort vs\n   warn/log).\n5. No file modified (read-only).\n\nFAIL if the classification is missing or unsupported by quoted lines, or any file changed.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-09-29T13:58:52.386949+00:00"
+}

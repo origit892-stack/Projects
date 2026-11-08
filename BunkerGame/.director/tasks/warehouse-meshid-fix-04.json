@@ -1,0 +1,18 @@
+{
+  "task_id": "warehouse-meshid-fix-04",
+  "role": "implementer",
+  "objective": "Fix BunkerGame abandoned warehouse MeshId. VERIFIED: Model 73559951039514 is published - do NOT republish, do NOT regenerate Cube. Defect: src/Workspace/abandoned_warehouse.model.json line 11 has MeshId rbxassetid://73559951039514 (the Model ID, not the internal mesh ID). TASK: 1) Discover the true internal mesh asset ID: check local artifacts first (project .director/, artifacts/, /Users/Ori/Developer/roblox-cube output) for the published mesh ID; if not found, query Roblox read-only (e.g. https://apis.roblox.com/assets/v1/assets/73559951039514/contents or the Model descendant instances) to read the MeshPart MeshId. NO publishing. 2) Set MeshId in src/Workspace/abandoned_warehouse.model.json to that internal mesh ID. 3) Ensure GeneratedAssets contract (src/ServerStorage/GeneratedAssets/abandoned_warehouse_01.model.json, AssetRegistry) is Ready. Preserve Position [0,8,20], Size [40,16,32]. Do NOT modify SpawnRoot.model.json or bunker-rooms.model.json. CRITICAL CONSTRAINT: Do NOT run argon exec, argon serve, or any argon connectivity test - that command hangs and blocks you. Work via direct file reads/edits and curl only.",
+  "write_scopes": [
+    "src/Workspace",
+    "src/ServerStorage/GeneratedAssets"
+  ],
+  "read_scopes": [
+    "src",
+    ".director",
+    "artifacts",
+    "/Users/Ori/Developer/roblox-cube"
+  ],
+  "acceptance_criteria": "MeshId in src/Workspace/abandoned_warehouse.model.json is rbxassetid://<internal mesh ID>, != 73559951039514, with discovery evidence in handoff. GeneratedAssets contract Ready. Placement [0,8,20]/[40,16,32] unchanged. SpawnRoot.model.json and bunker-rooms.model.json unchanged. No Cube regeneration, no republish, no argon exec.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T18:14:19.373652+00:00"
+}

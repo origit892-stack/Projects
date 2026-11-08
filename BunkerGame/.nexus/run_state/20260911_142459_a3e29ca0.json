@@ -1,0 +1,8 @@
+{
+  "run_id": "20260911_142459_a3e29ca0",
+  "updated": 1789125955.992398,
+  "role": "director",
+  "task": "תמצא את הקבצים pyproject.toml ו-README.md בפרויקט. תבדוק מה הגרסה שמופיעה ב-pyproject.toml ומה הכותרת הראשית ב-README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+  "status": "RUNNING",
+  "iteration": 11
+}

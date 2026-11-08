@@ -1,0 +1,12 @@
+{
+  "job_id": "run-wh-verify-08-20261002_144529",
+  "mode": "run",
+  "task_ids": [
+    "wh-verify-08"
+  ],
+  "pid": 2727,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-verify-08-20261002_144529.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-verify-08-20261002_144529.json",
+  "started_at": 1790941529.070397,
+  "launcher_status": "RUNNING"
+}

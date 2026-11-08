@@ -1,0 +1,1 @@
+model.json valid; argon build succeeds; Argon live sync completes; canonical RBXMX byte-identical (unchanged); no asset regeneration/republish. Final success = warehouse visually correct in Studio (manual inspection by user).

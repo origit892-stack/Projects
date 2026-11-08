@@ -1,0 +1,12 @@
+{
+  "job_id": "run-verify-prompt-text-ui-start-20261010_101943",
+  "mode": "run",
+  "task_ids": [
+    "verify-prompt-text-ui-start"
+  ],
+  "pid": 54516,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-prompt-text-ui-start-20261010_101943.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-prompt-text-ui-start-20261010_101943.json",
+  "started_at": 1791616783.374296,
+  "launcher_status": "RUNNING"
+}

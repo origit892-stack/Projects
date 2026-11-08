@@ -1,0 +1,12 @@
+{
+  "job_id": "run-fix-ui-start-20261010_100548",
+  "mode": "run",
+  "task_ids": [
+    "fix-ui-start"
+  ],
+  "pid": 52294,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-ui-start-20261010_100548.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-ui-start-20261010_100548.json",
+  "started_at": 1791615948.692818,
+  "launcher_status": "RUNNING"
+}

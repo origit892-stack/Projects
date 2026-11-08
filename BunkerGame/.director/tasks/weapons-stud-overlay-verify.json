@@ -1,0 +1,12 @@
+{
+  "task_id": "weapons-stud-overlay-verify",
+  "role": "verifier",
+  "objective": "Independently verify on disk the change in /Users/Ori/Documents/Projects/BunkerGame/src/StarterPlayer/StarterPlayerScripts/GameClient/UIController.luau. In function UIController:_buildWeaponsButton(), confirm an ImageLabel named StudOverlay is created immediately before the line self._refs.WeaponsButton = button and parented to button, with EXACTLY these properties: Image=rbxassetid://7447638611, ScaleType=Enum.ScaleType.Tile, TileSize=UDim2.new(0,32,0,32), Size=UDim2.fromScale(1,1), ZIndex=0, ImageTransparency=0.5, BackgroundTransparency=1. Also confirm: no 3D parts created in Workspace by this file, and InventoryV2 file was not modified (check git status/diff for the repo to confirm only UIController.luau changed). Read-only verification only.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "PASS only if: StudOverlay ImageLabel exists in _buildWeaponsButton immediately before self._refs.WeaponsButton = button with all 8 exact properties and parent button; git diff shows UIController.luau as the only modified file; no Workspace part creation; InventoryV2 untouched. Report any deviation as FAIL with specifics.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-11T12:49:48.041619+00:00"
+}

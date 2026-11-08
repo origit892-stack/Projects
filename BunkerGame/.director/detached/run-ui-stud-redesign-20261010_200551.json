@@ -1,0 +1,12 @@
+{
+  "job_id": "run-ui-stud-redesign-20261010_200551",
+  "mode": "run",
+  "task_ids": [
+    "ui-stud-redesign"
+  ],
+  "pid": 32196,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-ui-stud-redesign-20261010_200551.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-ui-stud-redesign-20261010_200551.json",
+  "started_at": 1791651951.2959082,
+  "launcher_status": "RUNNING"
+}

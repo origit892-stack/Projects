@@ -1,0 +1,13 @@
+{
+  "task_id": "project-mapping-01",
+  "objective": "Edit default.project.json at the project root to add exactly two new mappings, preserving all existing mappings and content: \"ServerStorage\": {\"$path\": \"src/ServerStorage\"} and \"Lighting\": {\"$path\": \"src/Lighting\"}. Make no other changes to the file. After editing, validate the file is parseable JSON (e.g., python3 -m json.tool) and confirm all pre-existing mappings (ReplicatedStorage, ServerScriptService, StarterGui, StarterPlayer, Workspace) are unchanged.",
+  "write_scopes": [
+    "default.project.json"
+  ],
+  "read_scopes": [
+    "default.project.json"
+  ],
+  "acceptance_criteria": "default.project.json is valid JSON; contains the two new mappings ServerStorage -> src/ServerStorage and Lighting -> src/Lighting; all previously existing mappings are byte-for-byte preserved in meaning; report the final mappings section of the file.",
+  "timeout_seconds": 3600,
+  "created_at": "2026-09-29T08:17:28.634505+00:00"
+}

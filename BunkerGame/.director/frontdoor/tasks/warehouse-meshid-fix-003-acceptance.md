@@ -1,0 +1,1 @@
+ACCEPTANCE: (1) Workspace model.json MeshId is internal mesh ID, not 73559951039514. (2) ServerStorage contract in Ready state with real mesh ID. (3) argon exec confirms live MeshPart has correct MeshId and mesh loaded. (4) SpawnRoot/bunker-rooms untouched. (5) No regen/republish. (6) Temp imported model destroyed. (7) Handoff reports mesh ID and files changed.

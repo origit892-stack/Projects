@@ -1,0 +1,25 @@
+{
+  "task_id": "wh-verify-08",
+  "role": "verifier",
+  "run_id": "wh-verify-08-c3201a4f135a",
+  "status": "PASS",
+  "executed": "Independently verified the abandoned_warehouse_interior_01 warehouse integration into BunkerGame Workspace: symlink exists and resolves, argon build completes, warehouse is a direct child of Workspace in the build output, and SpawnRoot/bunker-rooms are intact. No project files were modified and no asset was published.",
+  "result": "Independently verified the abandoned_warehouse_interior_01 warehouse integration into BunkerGame Workspace: symlink exists and resolves, argon build completes, warehouse is a direct child of Workspace in the build output, and SpawnRoot/bunker-rooms are intact. No project files were modified and no asset was published.",
+  "files_changed": "NONE",
+  "artifacts": "NONE",
+  "verification": "1) Symlink exists and resolves — VERIFIED_FACT\n   Command: `ls -la src/Workspace/abandoned_warehouse_interior_01.rbxmx && readlink ... && ls -laL ...`\n   Output: `lrwxr-xr-x ... abandoned_warehouse_interior_01.rbxmx -> ../ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx`; resolved target `src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx` is a regular file of exactly 858177 bytes (matches checkpoint).\n\n2) argon build completes — VERIFIED_FACT\n   Command: `argon build default.project.json -o /tmp/wh-verify08.rbxlx -x` (argon at /Users/Ori/.argon/bin/argon)\n   Output: 18 non-fatal warnings `ERROR: Failed to write MeshPart temporary model: Operation not permitted (os error 1)` (sandbox temp-dir restriction, pre-existing behavior), then `INFO: Successfully built project: .../default.project.json to: /tmp/wh-verify08.rbxlx`. Output file exists: 2041426 bytes, valid Roblox XML (`<roblox version=\"4\">`).\n\n3) Warehouse present as Workspace child in build output — VERIFIED_FACT\n   Python depth-tracking parse of /tmp/wh-verify08.rbxlx: `<Item class=\"Workspace\"` opens at line 25912; `<string name=\"Name\">abandoned_warehouse_interior_01</string>` at line 26110 at nesting depth 2 (direct child of Workspace, class Model, referent 263, with ModelMeshData/ModelMeshCFrame properties). A second occurrence at line 9487 is inside ServerStorage (line 9293) — the source asset copy, not a duplicate in Workspace.\n\n4) SpawnRoot and bunker-rooms unchanged — VERIFIED_FACT\n   Same parse: `SpawnRoot` (Model, referent 249, containing SpawnLocation PlayerSpawn) at line 25920 and `bunker-rooms` (Model, referent 251, containing Foundation Part, entrance MeshPart, etc.) at line 25941, both at depth 2 = direct children of Workspace. Source files `src/Workspace/SpawnRoot.model.json` and `src/Workspace/bunker-rooms.model.json` mtimes Sep 30 00:13 (untouched).\n\n5) No project files modified, no asset published — VERIFIED_FACT\n   `git status --porcelain -- src/ default.project.json` shows only pre-existing untracked entries (`?? BunkerGame/src/`, `?? BunkerGame/default.project.json` — the project is untracked in the parent repo; no modifications to tracked files). File mtimes confirm no writes during verification (symlink Oct 2 13:51, asset Oct 1 11:27, project.json Sep 29). Only artifact written was /tmp/wh-verify08.rbxlx (outside project). No publish/upload command was executed.",
+  "blockers": "NONE",
+  "completed_at": "2026-10-02T11:46:43.178542+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/8830e0d7-a645-4b2a-a17b-811a8d1db1a1.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/8830e0d7-a645-4b2a-a17b-811a8d1db1a1.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

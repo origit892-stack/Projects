@@ -1,0 +1,12 @@
+{
+  "task_id": "research-bunker-state",
+  "role": "researcher",
+  "objective": "Inspect the live BunkerGame source tree (project root /Users/Ori/Documents/Projects/BunkerGame, active source under src/) and produce a compact factual handoff covering: (1) the current bunker implementation — which scripts/instances create it, whether it is cube-based or otherwise, and exact file paths with line references; (2) the 'restored bunker' that was restored without being asked — its instances, scripts, and creation path (the user intentionally deleted it and a previous run restored it); (3) the floating yellow cube — its instance name, color/size properties, the script that creates it, and why it floats (no ground anchor); (4) the ground/terrain reference used for placement (e.g., terrain height, baseplate, or a ground part) so a new bunker can be placed on the ground; (5) any existing bunker-related assets or reusable parts already in the project. Do NOT modify anything. Do NOT treat backups/ or historical artifacts as active source. Classify each finding as VERIFIED_FACT or UNKNOWN.",
+  "write_scopes": [],
+  "read_scopes": [
+    "."
+  ],
+  "acceptance_criteria": "Compact handoff listing exact file paths and line references for: the restored bunker creation code, the floating yellow cube creation code, the current bunker build approach, and the ground placement reference. Each item classified VERIFIED_FACT or UNKNOWN. No modifications made.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-09-29T09:13:04.300031+00:00"
+}

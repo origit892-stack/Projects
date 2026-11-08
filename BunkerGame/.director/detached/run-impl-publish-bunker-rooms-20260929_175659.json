@@ -1,0 +1,12 @@
+{
+  "job_id": "run-impl-publish-bunker-rooms-20260929_175659",
+  "mode": "run",
+  "task_ids": [
+    "impl-publish-bunker-rooms"
+  ],
+  "pid": 22892,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-publish-bunker-rooms-20260929_175659.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-publish-bunker-rooms-20260929_175659.json",
+  "started_at": 1790693819.4313731,
+  "launcher_status": "RUNNING"
+}

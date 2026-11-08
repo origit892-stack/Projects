@@ -1,0 +1,12 @@
+{
+  "task_id": "sourcemap-verify-01",
+  "run_id": "sourcemap-verify-01-b99821ef68a6",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-29T08:21:19.123285+00:00"
+}

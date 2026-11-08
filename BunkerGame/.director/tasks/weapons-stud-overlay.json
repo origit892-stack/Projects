@@ -1,0 +1,14 @@
+{
+  "task_id": "weapons-stud-overlay",
+  "role": "implementer",
+  "objective": "Edit /Users/Ori/Documents/Projects/BunkerGame/src/StarterPlayer/StarterPlayerScripts/GameClient/UIController.luau. In function UIController:_buildWeaponsButton(), immediately before the line self._refs.WeaponsButton = button, create a new ImageLabel with exactly these properties: Name=StudOverlay, Image=rbxassetid://7447638611, ScaleType=Enum.ScaleType.Tile, TileSize=UDim2.new(0,32,0,32), Size=UDim2.fromScale(1,1), ZIndex=0, ImageTransparency=0.5, BackgroundTransparency=1. Parent it to button. Make ONLY this change to this single file. Do not create any 3D parts in Workspace. Do not modify InventoryV2.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src/StarterPlayer/StarterPlayerScripts/GameClient"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src"
+  ],
+  "acceptance_criteria": "UIController.luau contains a StudOverlay ImageLabel created immediately before self._refs.WeaponsButton = button inside _buildWeaponsButton, with all 8 exact properties, parented to button. No other changes to the file. No Workspace parts. InventoryV2 untouched.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-11T12:48:33.644281+00:00"
+}

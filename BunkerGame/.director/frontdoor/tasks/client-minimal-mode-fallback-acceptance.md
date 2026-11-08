@@ -1,0 +1,1 @@
+ClientBootstrap.client.luau modified: after 3 failed GetSnapshot attempts, client falls back to showing UI in minimal mode (ui:Start() called) instead of infinite retry. Full-mode path (GetSnapshot success) unchanged. Clear log message on fallback. Minimal reversible diff. Handoff notes: files changed, exact lines modified, and whether Studio sync was applied or pending.

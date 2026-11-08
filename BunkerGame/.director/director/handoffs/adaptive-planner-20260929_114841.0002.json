@@ -1,0 +1,14 @@
+[
+  {
+    "task_id": "verify-project-info-artifact",
+    "role": "verifier",
+    "status": "PASS",
+    "executed": "Read task file; verified artifact existence; read live top-level name from default.project.json (read-only via python3 json.load); performed byte-level inspection of artifact (od -c, wc -c, wc -l); checked default.project.json modification state (git status --porcelain, stat mtime) and sandbox work directory contents.",
+    "result": "PASS — artifact is byte-exact and matches live project name; no files outside the sandbox work directory were modified.",
+    "files_changed": "NONE",
+    "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt",
+    "verification": "",
+    "blockers": "NONE",
+    "completed_at": "2026-09-29T08:50:04.015673+00:00"
+  }
+]

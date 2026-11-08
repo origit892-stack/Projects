@@ -1,0 +1,14 @@
+{
+  "task_id": "fix-server-crash-client-bootstrap",
+  "role": "implementer",
+  "objective": "Fix BunkerGame server crash + client startup block. VERIFIED: UIController syntax error resolved (no UI errors in output log). Current failures: (1) ServerScriptService.Game.AmmoCrateInteraction:1 'attempt to index nil with AutoDisableAfterTriggering' halts the server; (2) ServerBootstrap logs 'Workspace.GameWorld not found. Minimal spawn mode; full service graph disabled'; (3) client never starts - likely ClientBootstrap waits for a server signal minimal mode never sends. The nil index in (1) is likely a downstream symptom of the missing GameWorld - confirm. GOAL: A) Neutralize the AmmoCrateInteraction crash with a minimal reversible nil guard or disable. B) Read ClientBootstrap.client.luau + ServerBootstrap and identify the exact client-startup gate. C) Make the client UI initialize in Minimal spawn mode without breaking full mode. D) Report the root cause of missing Workspace.GameWorld and the proper fix. Use the project source-to-Studio sync workflow; verify changes are live in Studio before finishing.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "AmmoCrateInteraction no longer errors at startup (minimal reversible diff). Diagnosis documented: exact client-startup gate (RemoteEvent/Value/etc.) and why minimal mode never sends it. Client UI initializes in Minimal spawn mode; full-mode path unchanged. Handoff lists files changed, sync method used, root cause of missing GameWorld, and recommended proper fix. No new server or client errors at startup.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-09T20:31:21.637345+00:00"
+}

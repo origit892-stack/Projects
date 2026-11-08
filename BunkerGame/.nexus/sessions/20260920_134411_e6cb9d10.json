@@ -1,0 +1,75 @@
+{
+  "id": "20260920_134411_e6cb9d10",
+  "title": "self improver",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "Implement a simplified Master Prompt Turn Checklist architecture for Nexus 7.0.",
+  "status": "INTERRUPTED",
+  "created_at": "2026-09-20T10:44:11.191088+00:00",
+  "updated_at": "2026-09-20T10:46:29.276571+00:00",
+  "run_id": null,
+  "last_result": "Session interrupted by user.",
+  "history": [
+    {
+      "type": "objective",
+      "text": "Implement a simplified Master Prompt Turn Checklist architecture for Nexus 7.0.",
+      "created_at": "2026-09-20T10:44:11.191088+00:00"
+    },
+    {
+      "type": "instruction",
+      "text": "Implement a simplified Master Prompt Turn Checklist architecture for Nexus 7.0.",
+      "created_at": "2026-09-20T10:44:11.419982+00:00"
+    },
+    {
+      "type": "interrupt",
+      "text": "Session interrupted by user.",
+      "created_at": "2026-09-20T10:46:29.276389+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "Implement a simplified Master Prompt Turn Checklist architecture for Nexus 7.0.",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": null,
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "updated_at": null,
+    "milestone_state": {
+      "version": 1,
+      "active": false,
+      "master_prompt_sha256": null,
+      "master_prompt": null,
+      "plan": null,
+      "current_milestone_index": null,
+      "milestones": [],
+      "final_verification": {
+        "status": "PENDING",
+        "run_id": null,
+        "result": null,
+        "evidence": []
+      },
+      "master_status": "PENDING",
+      "master_result": null
+    }
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": "2026-09-20T10:44:11.420813+00:00"
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": "INTERRUPTED",
+    "last_instruction": "Implement a simplified Master Prompt Turn Checklist architecture for Nexus 7.0.",
+    "continuation_point": "interrupted-turn",
+    "interrupted": true,
+    "resume_requested_at": null,
+    "updated_at": "2026-09-20T10:46:29.276452+00:00"
+  }
+}

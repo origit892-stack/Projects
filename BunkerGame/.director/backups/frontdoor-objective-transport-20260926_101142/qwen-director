@@ -1,0 +1,132 @@
+#!/bin/zsh
+set -euo pipefail
+
+PROJECT="/Users/Ori/Documents/Projects/BunkerGame"
+D="$PROJECT/.director"
+AUTODIRECTOR="$D/bin/autodirector"
+
+usage() {
+    cat <<'EOF'
+Usage:
+  qwen-director run <objective-file> [max-cycles]
+  qwen-director status <run-id>
+  qwen-director resume <run-id> [max-cycles]
+
+The run command creates a unique run id and executes the autonomous
+Qwen Director/Worker system.
+EOF
+}
+
+if (( $# < 1 )); then
+    usage
+    exit 2
+fi
+
+COMMAND="$1"
+shift
+
+case "$COMMAND" in
+    run)
+        if (( $# < 1 || $# > 2 )); then
+            usage
+            exit 2
+        fi
+
+        OBJECTIVE_FILE="$1"
+        MAX_CYCLES="${2:-50}"
+
+        if [[ ! -f "$OBJECTIVE_FILE" ]]; then
+            print -u2 -- "OBJECTIVE_FILE_NOT_FOUND=$OBJECTIVE_FILE"
+            exit 2
+        fi
+
+        if [[ ! "$MAX_CYCLES" =~ '^[0-9]+$' ]]; then
+            print -u2 -- "INVALID_MAX_CYCLES=$MAX_CYCLES"
+            exit 2
+        fi
+
+        OBJECTIVE="$(cat "$OBJECTIVE_FILE")"
+
+        if [[ -z "${OBJECTIVE//[[:space:]]/}" ]]; then
+            print -u2 -- "EMPTY_OBJECTIVE=YES"
+            exit 2
+        fi
+
+        RUN_ID="continue-$(date +%Y%m%d-%H%M%S)-$$"
+
+        print -- "DIRECTOR_RUN_ID=$RUN_ID"
+        print -- "DIRECTOR_OBJECTIVE_FILE=$OBJECTIVE_FILE"
+        print -- "DIRECTOR_MAX_CYCLES=$MAX_CYCLES"
+        print -- "DIRECTOR_START=YES"
+
+        "$AUTODIRECTOR" run \
+            "$RUN_ID" \
+            "$OBJECTIVE" \
+            --max-cycles "$MAX_CYCLES"
+
+        RC=$?
+
+        STATE="$D/director/$RUN_ID.state.json"
+
+        print -- "DIRECTOR_EXIT_CODE=$RC"
+
+        if [[ -f "$STATE" ]]; then
+            python3 - "$STATE" <<'PY'
+from pathlib import Path
+import json
+import sys
+
+state = json.loads(
+    Path(sys.argv[1]).read_text(encoding="utf-8")
+)
+
+print("DIRECTOR_STATUS=" + str(state.get("status")))
+print("DIRECTOR_CYCLE=" + str(state.get("cycle")))
+print(
+    "DIRECTOR_FINAL_RESULT="
+    + str(state.get("final_result", ""))
+)
+print(
+    "DIRECTOR_HISTORY_TOTALS="
+    + json.dumps(
+        state.get("history_totals", {}),
+        sort_keys=True,
+        ensure_ascii=False,
+    )
+)
+PY
+        else
+            print -- "DIRECTOR_STATE_MISSING=YES"
+        fi
+
+        exit "$RC"
+        ;;
+
+    status)
+        if (( $# != 1 )); then
+            usage
+            exit 2
+        fi
+
+        exec "$AUTODIRECTOR" status "$1"
+        ;;
+
+    resume)
+        if (( $# < 1 || $# > 2 )); then
+            usage
+            exit 2
+        fi
+
+        RUN_ID="$1"
+        MAX_CYCLES="${2:-50}"
+
+        exec "$AUTODIRECTOR" resume \
+            "$RUN_ID" \
+            --max-cycles "$MAX_CYCLES"
+        ;;
+
+    *)
+        usage
+        exit 2
+        ;;
+esac

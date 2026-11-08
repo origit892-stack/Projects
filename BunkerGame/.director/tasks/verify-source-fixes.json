@@ -1,0 +1,12 @@
+{
+  "task_id": "verify-source-fixes",
+  "role": "verifier",
+  "objective": "Verify two BunkerGame source changes are correct and consistent. FILES TO CHECK: (1) src/ServerScriptService/Game/AmmoCrateInteraction.server.luau - confirm prompt.AutoDisableAfterTriggering is now AFTER prompt.Parent=crate (not before prompt declaration). (2) src/StarterPlayer/StarterPlayerScripts/GameClient/ClientBootstrap.client.luau - confirm: MAX_SNAPSHOT_ATTEMPTS=3 exists; fallback block in failure branch sets Minimal mode after 3 attempts; full-mode success path is unchanged (success branch returns before fallback). Run luau-analyze on both files. Confirm no new syntax errors. READ-ONLY - do not modify files.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "Both files verified: AmmoCrateInteraction has AutoDisableAfterTriggering after prompt.Parent (no nil-index). ClientBootstrap has bounded 3-attempt fallback to Minimal mode; full-mode path unchanged. luau-analyze: 0 new syntax errors on both files. No files modified.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-09T21:52:23.350456+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-verify-ammo-crate-prompt-20261010_102923",
+  "mode": "run",
+  "task_ids": [
+    "verify-ammo-crate-prompt"
+  ],
+  "pid": 55891,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-ammo-crate-prompt-20261010_102923.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-ammo-crate-prompt-20261010_102923.json",
+  "started_at": 1791617363.557128,
+  "launcher_status": "RUNNING"
+}

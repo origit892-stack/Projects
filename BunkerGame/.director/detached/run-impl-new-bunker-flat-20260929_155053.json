@@ -1,0 +1,12 @@
+{
+  "job_id": "run-impl-new-bunker-flat-20260929_155053",
+  "mode": "run",
+  "task_ids": [
+    "impl-new-bunker-flat"
+  ],
+  "pid": 8952,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-new-bunker-flat-20260929_155053.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-new-bunker-flat-20260929_155053.json",
+  "started_at": 1790686253.923302,
+  "launcher_status": "RUNNING"
+}

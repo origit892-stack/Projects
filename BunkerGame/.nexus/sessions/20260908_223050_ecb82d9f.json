@@ -1,0 +1,23 @@
+{
+  "id": "20260908_223050_ecb82d9f",
+  "title": "Resume BunkerGame development from the current real project and Studio s",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "Resume BunkerGame development from the current real project and Studio state.",
+  "status": "INTERRUPTED",
+  "created_at": "2026-09-08T19:30:50.878248+00:00",
+  "updated_at": "2026-09-08T19:47:52.560767+00:00",
+  "run_id": null,
+  "last_result": "Session interrupted before Nexus lifecycle recovery.",
+  "history": [
+    {
+      "type": "objective",
+      "text": "Resume BunkerGame development from the current real project and Studio state.",
+      "created_at": "2026-09-08T19:30:50.878248+00:00"
+    },
+    {
+      "type": "interrupt",
+      "text": "Recovered from stale RUNNING state after Nexus restart.",
+      "created_at": "2026-09-08T19:30:51.088513+00:00"
+    }
+  ]
+}

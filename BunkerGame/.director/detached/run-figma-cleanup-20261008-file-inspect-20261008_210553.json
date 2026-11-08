@@ -1,0 +1,12 @@
+{
+  "job_id": "run-figma-cleanup-20261008-file-inspect-20261008_210553",
+  "mode": "run",
+  "task_ids": [
+    "figma-cleanup-20261008-file-inspect"
+  ],
+  "pid": 5002,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-figma-cleanup-20261008-file-inspect-20261008_210553.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-figma-cleanup-20261008-file-inspect-20261008_210553.json",
+  "started_at": 1791482753.4801972,
+  "launcher_status": "RUNNING"
+}

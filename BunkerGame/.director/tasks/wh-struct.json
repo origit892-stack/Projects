@@ -1,0 +1,12 @@
+{
+  "task_id": "wh-struct",
+  "role": "researcher",
+  "objective": "Read-only. Read the first 3000 chars of src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx and the first 3000 chars of src/Workspace/abandoned_warehouse_interior_01.model.json. Report: (1) RBXMX top-level structure: how many Model elements, how are MeshParts nested, what transform props (CFrame, PivotOffset, WorldPivot) are present on Models and MeshParts; (2) model.json structure: how many MeshParts, what transform props are present, are there any Model wrappers; (3) key structural difference between the two. Under 150 words. No file changes.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "Compact handoff: RBXMX structure summary, model.json structure summary, key structural difference. Under 150 words. No file changes.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-04T15:32:56.251671+00:00"
+}

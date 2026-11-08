@@ -1,0 +1,12 @@
+{
+  "task_id": "selftest-b-2f87d56c",
+  "run_id": "selftest-b-2f87d56c-9fe1dc05b7d7",
+  "status": "FAILED",
+  "executed": "Worker process exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=-9",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-25T11:54:52.690792+00:00"
+}

@@ -1,0 +1,22 @@
+{
+  "assets": [],
+  "blockers": [],
+  "created_at": 1787690723.9729438,
+  "goal": "Verify Environment Director state machine without modifying game source.",
+  "history": [
+    {
+      "event": "RUN_CREATED",
+      "stage": "INSPECT",
+      "time": 1787690723.9729438
+    },
+    {
+      "event": "SELF_TEST_COMPLETE",
+      "time": 1787690723.973829
+    }
+  ],
+  "run_id": "env-20260825-234523-dd8b3f",
+  "stage": "INSPECT",
+  "status": "SELF_TEST_COMPLETE",
+  "target": "SELF_TEST_ONLY",
+  "updated_at": 1787690723.973829
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-verify-source-fixes-20261010_005223",
+  "mode": "run",
+  "task_ids": [
+    "verify-source-fixes"
+  ],
+  "pid": 97180,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-source-fixes-20261010_005223.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-source-fixes-20261010_005223.json",
+  "started_at": 1791582743.3962188,
+  "launcher_status": "RUNNING"
+}

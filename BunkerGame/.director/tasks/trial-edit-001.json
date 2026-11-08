@@ -1,0 +1,14 @@
+{
+  "task_id": "trial-edit-001",
+  "role": "implementer",
+  "objective": "Trial file edit in BunkerGame to verify the edit pipeline. Create ONE new small marker file at /Users/Ori/Documents/Projects/BunkerGame/.director/EDIT-TEST.md containing a single line: TRIAL EDIT OK plus UTC timestamp. Do not modify any existing project files. Do not touch src, game files, Roblox assets, or Studio.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/.director"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/.director"
+  ],
+  "acceptance_criteria": "PASS if /Users/Ori/Documents/Projects/BunkerGame/.director/EDIT-TEST.md exists with the TRIAL EDIT marker and timestamp, and no other project files were modified.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-08T17:01:05.615423+00:00"
+}

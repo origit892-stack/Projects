@@ -1,0 +1,1 @@
+Run exactly: cd /Users/Ori/Documents/Projects/BunkerGame && python3 /tmp/wh_diag3.py 2>&1. Report the FULL output verbatim in SUMMARY. Do NOT modify any file. Do NOT run argon. If the script errors, report the exact traceback.

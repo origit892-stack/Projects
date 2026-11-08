@@ -1,0 +1,12 @@
+{
+  "task_id": "inv2-stud-texture-verify",
+  "role": "verifier",
+  "objective": "GOAL: Independently verify the stud-texture overlay added to the Tactical Inventory V2 background in src/StarterGui/InventoryV2/InventoryV2Module.luau. CHECKPOINT (implementer handoff): an ImageLabel named StudTexture was added as a child of rootCanvas with Image = rbxassetid://7447638611, Size = UDim2.fromScale(1,1), ScaleType = Tile, TileSize = UDim2.fromOffset(48,48), ZIndex = 0, ImageTransparency = 0.75, BackgroundTransparency = 1, BorderSizePixel = 0, inserted after rootCanvas.Parent = parent and before header/leftFrame/rightFrame. CONSTRAINTS: read-only; do not modify any file.",
+  "write_scopes": [],
+  "read_scopes": [
+    "src/"
+  ],
+  "acceptance_criteria": "Confirm on disk that (1) the StudTexture ImageLabel exists as a child of rootCanvas with the exact properties above; (2) it is created BEFORE header, leftFrame, and rightFrame so it renders behind them; (3) ZIndex 0 is below all other content ZIndex values in the file; (4) the Luau syntax check passes (luau --check or loadstring); (5) no other UI behavior, colors, or asset ids were changed. Report PASS or FAIL with the specific evidence (line numbers, property values, syntax-check output).",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-10T16:46:43.604605+00:00"
+}

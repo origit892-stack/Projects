@@ -1,0 +1,13 @@
+[
+  {
+    "task_id": "sourcemap-verify-02",
+    "status": "FAILED",
+    "executed": "",
+    "result": "",
+    "files_changed": "NONE",
+    "artifacts": "NONE",
+    "verification": "",
+    "blockers": "NONE",
+    "completed_at": "2026-09-29T08:22:58.847469+00:00"
+  }
+]

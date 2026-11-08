@@ -1,0 +1,12 @@
+{
+  "job_id": "run-warehouse-meshid-research-001-20261001_150032",
+  "mode": "run",
+  "task_ids": [
+    "warehouse-meshid-research-001"
+  ],
+  "pid": 85460,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-meshid-research-001-20261001_150032.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-meshid-research-001-20261001_150032.json",
+  "started_at": 1790856032.243708,
+  "launcher_status": "RUNNING"
+}

@@ -1,0 +1,14 @@
+{
+  "task_id": "warehouse-meshid-fix-02",
+  "role": "implementer",
+  "objective": "GOAL: Fix abandoned warehouse MeshId defect in BunkerGame (/Users/Ori/Documents/Projects/BunkerGame). src/Workspace/abandoned_warehouse.model.json sets MeshPart.MeshId to rbxassetid://73559951039514, but that is the published MODEL asset ID, not the internal mesh asset ID. Obtain the real internal MeshId through the connected Roblox Studio (Argon on port 8000; argon binary /Users/Ori/.argon/bin/argon), persist the correction in the filesystem source of truth, finalize the GeneratedAssets contract as Ready, let Argon synchronize, and verify the actual warehouse visibly renders in Studio. CHECKPOINT: Published Model asset 73559951039514 exists. src/Workspace/abandoned_warehouse.model.json and src/ServerStorage/GeneratedAssets/abandoned_warehouse_01.model.json exist. AssetRegistry entries exist. Placement Position [0,8,20], Size [40,16,32] established. CONSTRAINTS: Do not regenerate Cube output. Do not republish asset 73559951039514. Do not modify SpawnRoot.model.json or bunker-rooms.model.json. Preserve established placement. Filesystem remains source of truth.",
+  "write_scopes": [
+    "src"
+  ],
+  "read_scopes": [
+    "src"
+  ],
+  "acceptance_criteria": "Warehouse MeshPart uses a real internal MeshId (NOT 73559951039514) in persistent filesystem source. GeneratedAssets contract is Ready with the correct mesh. Argon sync completes cleanly. Warehouse visibly renders in connected Roblox Studio. SpawnRoot.model.json and bunker-rooms.model.json unchanged. No regeneration or republish occurred.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T17:45:28.906519+00:00"
+}

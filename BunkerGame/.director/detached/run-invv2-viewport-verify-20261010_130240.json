@@ -1,0 +1,12 @@
+{
+  "job_id": "run-invv2-viewport-verify-20261010_130240",
+  "mode": "run",
+  "task_ids": [
+    "invv2-viewport-verify"
+  ],
+  "pid": 74108,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-invv2-viewport-verify-20261010_130240.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-invv2-viewport-verify-20261010_130240.json",
+  "started_at": 1791626560.3884559,
+  "launcher_status": "RUNNING"
+}

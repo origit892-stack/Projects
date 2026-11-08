@@ -1,0 +1,68 @@
+# Production Acceptance Objective
+
+This is a controlled acceptance test of the autonomous
+Qwen Director/Worker architecture.
+
+All implementation work MUST remain inside:
+
+/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/production-acceptance-20260925_182701
+
+Do not modify game files, source files, Director runtime files,
+Continue configuration, prompts, or anything outside that sandbox.
+
+The Director itself must not implement the artifacts.
+Delegate implementation and verification to Workers.
+
+## Required final artifact
+
+Workers must collectively produce:
+
+/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/production-acceptance-20260925_182701/final-report.txt
+
+The exact required content is:
+
+ALPHA=PASS
+BETA=PASS
+INTEGRATION=PASS
+
+## Required work
+
+The project requires three bounded implementation/verification concerns.
+
+1. Produce:
+
+/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/production-acceptance-20260925_182701/alpha.txt
+
+with exact content:
+
+ALPHA=PASS
+
+2. Produce:
+
+/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/production-acceptance-20260925_182701/beta.txt
+
+with exact content:
+
+BETA=PASS
+
+3. After alpha.txt and beta.txt exist, independently verify both,
+then produce final-report.txt with the exact three lines:
+
+ALPHA=PASS
+BETA=PASS
+INTEGRATION=PASS
+
+## Orchestration requirements
+
+- Decide the Worker decomposition yourself.
+- alpha.txt and beta.txt have independent write scopes and SHOULD be
+  dispatched in parallel if the scheduler permits.
+- Integration verification depends on both and therefore must happen
+  only after both are complete.
+- Workers must actually use their executor/tools.
+- Verify exact file contents.
+- Do not declare COMPLETE until final-report.txt exists and has the
+  exact required content.
+- Do not modify anything outside the acceptance sandbox.
+- Return BLOCKED rather than inventing evidence if a genuine blocker
+  prevents completion.

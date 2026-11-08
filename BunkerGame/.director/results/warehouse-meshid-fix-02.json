@@ -1,0 +1,27 @@
+{
+  "task_id": "warehouse-meshid-fix-02",
+  "role": "implementer",
+  "run_id": "warehouse-meshid-fix-02-da55022b4844",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-10-01T17:56:19.678516+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 2,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/4f5a81da-760c-4709-a0fb-13a6b7048d55.json",
+      "/Users/Ori/.continue/sessions/dd3b5237-ee54-4458-b564-8ec52d613519.json"
+    ],
+    "deleted_session_count": 2,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/4f5a81da-760c-4709-a0fb-13a6b7048d55.json",
+      "/Users/Ori/.continue/sessions/dd3b5237-ee54-4458-b564-8ec52d613519.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

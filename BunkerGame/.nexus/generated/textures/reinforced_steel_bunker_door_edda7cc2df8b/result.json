@@ -1,0 +1,115 @@
+{
+  "ok": true,
+  "tool": "generate_texture",
+  "stage": "TEXTURE_COMPLETE",
+  "source_mesh": "/Users/Ori/Documents/Projects/BunkerGame/assets/generated_meshes/reinforced_steel_bunker_door.obj",
+  "source_sha256": "8461218ff221779c8cec124cb1acc66db1260e10b940ece0bc20e8f809609f81",
+  "source_mutated": false,
+  "working_source": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/source.obj",
+  "preprocessed_mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/preprocessed.glb",
+  "geometry_views": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/geometry_views",
+  "appearance_reference": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/appearance_reference.png",
+  "base_color": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/base_color.png",
+  "roughness": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/roughness.png",
+  "metallic": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/metallic.png",
+  "normal": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/normal_neutral.png",
+  "pbr_classification": "DERIVED_NOT_GROUND_TRUTH",
+  "normal_classification": "NEUTRAL_SAFE_FALLBACK",
+  "textured_glb": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/textured.glb",
+  "qa_views": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/qa_views",
+  "reference_qa": {
+    "width": 768,
+    "height": 768,
+    "bytes": 1008652,
+    "dynamic_range": 765,
+    "valid": true
+  },
+  "raw_base_color_qa": {
+    "width": 2048,
+    "height": 2048,
+    "bytes": 1754249,
+    "dynamic_range": 765,
+    "valid": true
+  },
+  "base_color_qa": {
+    "width": 2048,
+    "height": 2048,
+    "bytes": 1622554,
+    "dynamic_range": 749,
+    "valid": true
+  },
+  "qa_render_records": {
+    "front": {
+      "width": 768,
+      "height": 768,
+      "bytes": 617697,
+      "dynamic_range": 607,
+      "valid": true
+    },
+    "back": {
+      "width": 768,
+      "height": 768,
+      "bytes": 590538,
+      "dynamic_range": 625,
+      "valid": true
+    },
+    "left": {
+      "width": 768,
+      "height": 768,
+      "bytes": 410745,
+      "dynamic_range": 610,
+      "valid": true
+    },
+    "right": {
+      "width": 768,
+      "height": 768,
+      "bytes": 399881,
+      "dynamic_range": 627,
+      "valid": true
+    },
+    "top": {
+      "width": 768,
+      "height": 768,
+      "bytes": 377861,
+      "dynamic_range": 584,
+      "valid": true
+    },
+    "bottom": {
+      "width": 768,
+      "height": 768,
+      "bytes": 352996,
+      "dynamic_range": 580,
+      "valid": true
+    },
+    "hero": {
+      "width": 768,
+      "height": 768,
+      "bytes": 606017,
+      "dynamic_range": 604,
+      "valid": true
+    }
+  },
+  "backend": "FLUX2_KLEIN_4B_MFLUX",
+  "resolution": 2048,
+  "quality": "high",
+  "seed": 1701,
+  "pbr_requested": true,
+  "timings": {
+    "preprocess": 0.769,
+    "geometry_views": 2.483,
+    "appearance_generation": 24.581,
+    "uv_correspondence": 1.729,
+    "bake": 6.689,
+    "export": 0.935,
+    "qa_render": 2.684
+  },
+  "total_seconds": 40.415,
+  "output_directory": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b",
+  "texture_method": "CPU_BARYCENTRIC_UV_RASTERIZATION_V2",
+  "known_limitations": [
+    "Current production fallback uses one generated appearance reference projected from the hero camera.",
+    "PBR maps are derived proxies, not physically measured ground truth.",
+    "Multi-view image-conditioned fusion remains the next quality upgrade."
+  ],
+  "next_quality_upgrade": "MULTIVIEW_IMAGE_CONDITIONED_EDIT_AND_VISIBILITY_FUSION"
+}

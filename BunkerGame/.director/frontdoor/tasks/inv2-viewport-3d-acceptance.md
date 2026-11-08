@@ -1,0 +1,1 @@
+loadstring passes on InventoryV2Module.luau; placeholder text frame replaced by ViewportFrame; dummy 3D item visible with camera; rotation loop exists; cleanup destroys model and disconnects connection on UI close/destroy; no unrelated behavior changed.

@@ -1,0 +1,12 @@
+{
+  "task_id": "warehouse-transform-diag",
+  "role": "researcher",
+  "objective": "DIAGNOSE warehouse transform+material mismatch (read-only, NO mutation/build/sync). GROUND TRUTH=canonical RBXMX src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx (original correct warehouse, nested 107 wrapper Models). BROKEN=generated src/Workspace/abandoned_warehouse_interior_01.model.json (62 MeshParts, 2 SurfaceAppearance, all Material=Concrete/Anchored), made by flattening the 107 Models. Studio symptom: EXPLODED/DEFORMED/MISASSEMBLED + LARGELY WHITE. Do NOT assume flattening was lossless. Deterministic per-MeshPart compare (all 62) canonical vs model.json: Name, MeshId, Size, CFrame, parent hierarchy, accumulated ancestor transforms (bake ancestor CFrames to get each part WORLD CFrame), PivotOffset/WorldPivot/ModelMeshCFrame + other transform props, scale props, SurfaceAppearance parent+texture props, Color/Material/TextureID. RBXMX is plain XML (not zip) - parse with Python. Compute each canonical MeshPart WORLD CFrame (product of ancestor CFrames) vs model.json CFrame. Find EXACT root cause of (1) exploded/deformed (transform) and (2) largely white (material/texture). Report root cause per symptom + exact fix (which parts, what CFrame/Size/Material/TextureID/SurfaceAppearance values) + whether fix is a global rule (re-bake all CFrames from canonical) or per-part. No file changes.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "Compact handoff: (1) root cause of exploded/deformed with the specific transform property mismatch (ancestor CFrame not baked / wrong pivot / scale), (2) root cause of largely white with the specific material/texture mismatch (Material=Concrete overriding SurfaceAppearance / wrong TextureID / SA not parented), (3) exact deterministic fix: which parts + what values, and whether it is a global re-bake rule or a per-part list, (4) evidence: 3-5 sample MeshParts showing canonical world CFrame vs model.json CFrame + canonical material/texture vs model.json material/texture. No file changes made.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-04T14:24:21.687555+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-direct-agent-smoke-20261001_130407-20261001_130408",
+  "mode": "run",
+  "task_ids": [
+    "direct-agent-smoke-20261001_130407"
+  ],
+  "pid": 73925,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-direct-agent-smoke-20261001_130407-20261001_130408.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-direct-agent-smoke-20261001_130407-20261001_130408.json",
+  "started_at": 1790849048.006878,
+  "launcher_status": "RUNNING"
+}

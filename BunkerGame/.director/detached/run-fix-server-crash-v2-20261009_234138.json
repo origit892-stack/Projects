@@ -1,0 +1,12 @@
+{
+  "job_id": "run-fix-server-crash-v2-20261009_234138",
+  "mode": "run",
+  "task_ids": [
+    "fix-server-crash-v2"
+  ],
+  "pid": 88424,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-server-crash-v2-20261009_234138.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-server-crash-v2-20261009_234138.json",
+  "started_at": 1791578498.315101,
+  "launcher_status": "RUNNING"
+}

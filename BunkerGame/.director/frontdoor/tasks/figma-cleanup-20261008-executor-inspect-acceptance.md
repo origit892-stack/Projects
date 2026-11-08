@@ -1,0 +1,1 @@
+Report contains exact paths for plugin/MCP/bridge, protocol message shapes, end-to-end flow of the 4 existing ops, existing safety/allowlist mechanisms, and plugin reachability status. Zero source changes.

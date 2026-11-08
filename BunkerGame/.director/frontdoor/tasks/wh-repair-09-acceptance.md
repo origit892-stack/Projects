@@ -1,0 +1,1 @@
+model.json uses 3-element Position arrays (matching other files); argon build succeeds; argon live sync completes; RBXMX unchanged. Final success = warehouse visually correct in Studio (user manual inspection).

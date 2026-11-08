@@ -1,0 +1,12 @@
+{
+  "task_id": "ui-hud-removal",
+  "run_id": "ui-hud-removal-aabf1aed8979",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-28T20:01:41.837598+00:00"
+}

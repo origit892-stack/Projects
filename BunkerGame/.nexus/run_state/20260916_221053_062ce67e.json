@@ -1,0 +1,8 @@
+{
+  "run_id": "20260916_221053_062ce67e",
+  "updated": 1789586137.576053,
+  "role": "director",
+  "task": "Inspect the current assets in the BunkerGame workspace. Categorize and sort them into the canonical Asset Library based on their type (e.g., machinery, nature, architecture, interactive items). Extract or infer tags, families, and intended use for each asset, and update the Asset Library metadata. Do not modify the terrain and ensure all changes are compatible with the existing Rojo sync structure.",
+  "status": "RUNNING",
+  "iteration": 19
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-impl-bunker-to-ground-20260930_001331",
+  "mode": "run",
+  "task_ids": [
+    "impl-bunker-to-ground"
+  ],
+  "pid": 51802,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-bunker-to-ground-20260930_001331.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-bunker-to-ground-20260930_001331.json",
+  "started_at": 1790716411.912389,
+  "launcher_status": "RUNNING"
+}

@@ -1,0 +1,8 @@
+{
+  "run_id": "20260917_165946_33061f58",
+  "updated": 1789653714.7237928,
+  "role": "director",
+  "task": "Write and execute a python script that creates a file at src/ServerScriptService/Game/Services/CrateInteractionService.luau. The luau file must contain the logic for old_military_ammo_crate_01: use a lootedCrates table to ensure players can only loot it once, and handle the ProximityPrompt Triggered event to print a loot message. Do not run Studio tests, just create the file safely.",
+  "status": "RUNNING",
+  "iteration": 5
+}

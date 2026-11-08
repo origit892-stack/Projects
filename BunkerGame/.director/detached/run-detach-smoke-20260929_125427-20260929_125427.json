@@ -1,0 +1,12 @@
+{
+  "job_id": "run-detach-smoke-20260929_125427-20260929_125427",
+  "mode": "run",
+  "task_ids": [
+    "detach-smoke-20260929_125427"
+  ],
+  "pid": 96336,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-detach-smoke-20260929_125427-20260929_125427.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-detach-smoke-20260929_125427-20260929_125427.json",
+  "started_at": 1790675667.864311,
+  "launcher_status": "RUNNING"
+}

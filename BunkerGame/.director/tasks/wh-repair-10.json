@@ -1,0 +1,15 @@
+{
+  "task_id": "wh-repair-10",
+  "role": "implementer",
+  "objective": "The file src/Workspace/abandoned_warehouse_interior_01.model.json has ALREADY been converted from CFrame to Position format. Do NOT read, edit, or research any file. Do NOT run find. Do NOT search the filesystem. Your ONLY tasks are: (1) Run: cd /Users/Ori/Documents/Projects/BunkerGame && argon build 2>&1 | tail -20. (2) Run: cd /Users/Ori/Documents/Projects/BunkerGame && argon sync 2>&1 | tail -20. (3) Emit AGENT_HANDOFF with the output of both commands. If argon build fails, report the error. If argon sync fails, report the error. Do NOT do anything else.",
+  "write_scopes": [
+    "src/Workspace"
+  ],
+  "read_scopes": [
+    "src/Workspace",
+    "default.project.json"
+  ],
+  "acceptance_criteria": "argon build succeeds; argon sync completes; handoff contains both command outputs. No files modified.",
+  "timeout_seconds": 1800,
+  "created_at": "2026-10-04T17:18:54.538816+00:00"
+}

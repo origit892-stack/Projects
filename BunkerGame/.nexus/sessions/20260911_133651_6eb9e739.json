@@ -1,0 +1,53 @@
+{
+  "id": "20260911_133651_6eb9e739",
+  "title": "1.8_SMOKE_TEST",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "תמצא את הקבצים pyproject.toml ו־README.md בפרויקט. תבדוק מה גרסת Nexus שמופיעה ב־pyproject.toml ומה הכותרת הראשית ב־README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+  "status": "FAILED",
+  "created_at": "2026-09-11T10:36:51.331765+00:00",
+  "updated_at": "2026-09-11T10:37:33.344559+00:00",
+  "run_id": null,
+  "last_result": "NEXUS_PLANNING_FAILED: Corrected plan failed structural validation: missing field: approval_gates; missing field: targets; missing field: search_strategy; missing field: evidence_plan; missing field: evaluation_plan; missing field: selection_strategy; missing field: first_actions",
+  "history": [
+    {
+      "type": "objective",
+      "text": "תמצא את הקבצים pyproject.toml ו־README.md בפרויקט. תבדוק מה גרסת Nexus שמופיעה ב־pyproject.toml ומה הכותרת הראשית ב־README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+      "created_at": "2026-09-11T10:36:51.331765+00:00"
+    },
+    {
+      "type": "failure",
+      "text": "NEXUS_PLANNING_FAILED: Corrected plan failed structural validation: missing field: approval_gates; missing field: targets; missing field: search_strategy; missing field: evidence_plan; missing field: evaluation_plan; missing field: selection_strategy; missing field: first_actions",
+      "created_at": "2026-09-11T10:37:33.344514+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "תמצא את הקבצים pyproject.toml ו־README.md בפרויקט. תבדוק מה גרסת Nexus שמופיעה ב־pyproject.toml ומה הכותרת הראשית ב־README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": null,
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "updated_at": null
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": null
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": "FAILED",
+    "last_instruction": "תמצא את הקבצים pyproject.toml ו־README.md בפרויקט. תבדוק מה גרסת Nexus שמופיעה ב־pyproject.toml ומה הכותרת הראשית ב־README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+    "continuation_point": "failed-turn-recovery",
+    "interrupted": false,
+    "resume_requested_at": null,
+    "updated_at": "2026-09-11T10:37:33.344539+00:00"
+  }
+}

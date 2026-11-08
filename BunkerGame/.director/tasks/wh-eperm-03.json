@@ -1,0 +1,14 @@
+{
+  "task_id": "wh-eperm-03",
+  "role": "researcher",
+  "objective": "Run this ONE compound command from /Users/Ori/Documents/Projects/BunkerGame and report its output verbatim: argon build 2>/tmp/argon_err.txt; echo \"BUILD_EXIT=$?\"; echo \"===ERR_SAMPLE===\"; grep -iE \"temporary model|operation not permitted\" /tmp/argon_err.txt | head -3; echo \"===UNIQUE_PATHS===\"; grep -oE \"/[a-zA-Z0-9_./-]+\" /tmp/argon_err.txt | sort -u | head -20; echo \"===TMPDIR===\"; echo \"$TMPDIR\"; ls -laO \"$TMPDIR\" 2>/dev/null | head -8. Do NOT run find. Do NOT edit files. Report the exact temp path argon writes to and any uchg/permission flags.",
+  "write_scopes": [],
+  "read_scopes": [
+    ".",
+    "/tmp",
+    "/var/folders"
+  ],
+  "acceptance_criteria": "Report: (a) BUILD_EXIT code, (b) the exact temp model path from UNIQUE_PATHS, (c) ls -laO flags/permissions of that path and TMPDIR, (d) whether uchg immutable flag or TCC permission is the EPERM cause. Read-only, no fixes.",
+  "timeout_seconds": 300,
+  "created_at": "2026-10-05T16:14:42.706446+00:00"
+}

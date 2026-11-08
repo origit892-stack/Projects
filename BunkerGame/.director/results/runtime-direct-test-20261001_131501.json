@@ -1,0 +1,21 @@
+{
+  "task_id": "runtime-direct-test-20261001_131501",
+  "role": "researcher",
+  "run_id": "runtime-direct-test-20261001_131501-56b6ad56b5cc",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=-9",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-10-01T10:15:01.702165+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 0,
+    "matched_sessions": [],
+    "deleted_session_count": 0,
+    "deleted_sessions": [],
+    "refused": [],
+    "status": "NO_MATCH"
+  }
+}

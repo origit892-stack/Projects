@@ -1,0 +1,25 @@
+{
+  "task_id": "stdin-detached-20261001_132510",
+  "role": "researcher",
+  "run_id": "stdin-detached-20261001_132510-e0818a9cf7e3",
+  "status": "PASS",
+  "executed": "The live top-level project name in /Users/Ori/Documents/Projects/BunkerGame/default.project.json is exactly: BunkerGame",
+  "result": "The live top-level project name in /Users/Ori/Documents/Projects/BunkerGame/default.project.json is exactly: BunkerGame",
+  "files_changed": "NONE",
+  "artifacts": "NONE",
+  "verification": "Direct read of the live file shows the first top-level key: \"name\": \"BunkerGame\" (line 2 of the JSON). No other top-level name field exists; the only other top-level key is \"tree\".",
+  "blockers": "NONE",
+  "completed_at": "2026-10-01T10:25:30.514888+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/54ff76b9-7c29-41c1-99cf-787d3b08db1b.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/54ff76b9-7c29-41c1-99cf-787d3b08db1b.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

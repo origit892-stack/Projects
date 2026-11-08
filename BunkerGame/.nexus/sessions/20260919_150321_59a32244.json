@@ -1,0 +1,53 @@
+{
+  "id": "20260919_150321_59a32244",
+  "title": "reply with excacly \"Hello\"",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "reply with excacly \"Hello\"",
+  "status": "FAILED",
+  "created_at": "2026-09-19T12:03:21.622472+00:00",
+  "updated_at": "2026-09-19T12:04:23.558623+00:00",
+  "run_id": null,
+  "last_result": "NEXUS_UNDERSTANDING_FAILED: Understanding finalizer failed: missing field: recommended_plan; missing field: completion_definition",
+  "history": [
+    {
+      "type": "objective",
+      "text": "reply with excacly \"Hello\"",
+      "created_at": "2026-09-19T12:03:21.622472+00:00"
+    },
+    {
+      "type": "failure",
+      "text": "NEXUS_UNDERSTANDING_FAILED: Understanding finalizer failed: missing field: recommended_plan; missing field: completion_definition",
+      "created_at": "2026-09-19T12:04:23.558465+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "reply with excacly \"Hello\"",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": null,
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "updated_at": null
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": null
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": "FAILED",
+    "last_instruction": "reply with excacly \"Hello\"",
+    "continuation_point": "failed-turn-recovery",
+    "interrupted": false,
+    "resume_requested_at": null,
+    "updated_at": "2026-09-19T12:04:23.558539+00:00"
+  }
+}

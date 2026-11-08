@@ -1,0 +1,39 @@
+{
+  "name": "BunkerGame",
+  "tree": {
+    "$className": "DataModel",
+    "Players": {
+      "$properties": {
+        "CharacterAutoLoads": false
+      }
+    },
+    "ReplicatedStorage": {
+      "$path": "src/ReplicatedStorage"
+    },
+    "ServerScriptService": {
+      "$path": "src/ServerScriptService"
+    },
+    "StarterGui": {
+      "$path": "src/StarterGui"
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "$path": "src/StarterPlayer/StarterPlayerScripts"
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true,
+        "SignalBehavior": "Deferred",
+        "StreamingEnabled": false
+      },
+      "$path": "src/Workspace"
+    },
+    "ServerStorage": {
+      "$path": "src/ServerStorage"
+    },
+    "Lighting": {
+      "$path": "src/Lighting"
+    }
+  }
+}

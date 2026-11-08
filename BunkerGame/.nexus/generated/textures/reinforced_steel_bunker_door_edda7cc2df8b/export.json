@@ -1,0 +1,13 @@
+{
+  "mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/preprocessed.glb",
+  "base_color": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/base_color.png",
+  "roughness": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/roughness.png",
+  "metallic": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/metallic.png",
+  "normal": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/normal_neutral.png",
+  "output": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/textured.glb",
+  "vertices": 17227,
+  "faces": 24964,
+  "loops": 74892,
+  "uv": "UVMap",
+  "output_exists": true
+}

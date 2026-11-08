@@ -1,0 +1,1 @@
+{"ClassName":"Model","Children":[{"Name":"PlayerSpawn","ClassName":"SpawnLocation","Properties":{"Anchored":true,"CanCollide":false,"Neutral":true,"Enabled":true,"Duration":0,"Transparency":1,"Size":[6,1,6],"Position":[0,55,0]}},{"Name":"TestGround","ClassName":"Part","Properties":{"Anchored":true,"CanCollide":true,"Size":[40,1,40],"Position":[0,54.5,0],"Material":"Concrete"}}]}

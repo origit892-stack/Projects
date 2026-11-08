@@ -1,0 +1,196 @@
+{
+  "ClassName": "Model",
+  "Name": "bunker-rooms",
+  "Children": [
+    {
+      "Name": "entrance",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://72072909852991",
+        "Size": [
+          1.8269,
+          1.3864,
+          1.6135
+        ],
+        "Position": [
+          0,
+          54.6932,
+          0
+        ]
+      }
+    },
+    {
+      "Name": "foyer_west",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://74379665070277",
+        "Size": [
+          1.8841,
+          0.7269,
+          1.0557
+        ],
+        "Position": [
+          -24,
+          54.3635,
+          24
+        ]
+      }
+    },
+    {
+      "Name": "foyer_east",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://114816672219232",
+        "Size": [
+          1.8823,
+          0.6521,
+          1.1959
+        ],
+        "Position": [
+          24,
+          54.3261,
+          24
+        ]
+      }
+    },
+    {
+      "Name": "bedroom",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://107979362391141",
+        "Size": [
+          1.8709,
+          1.0272,
+          1.8698
+        ],
+        "Position": [
+          -24,
+          54.5136,
+          56
+        ]
+      }
+    },
+    {
+      "Name": "commons",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://74380053144953",
+        "Size": [
+          1.855,
+          0.5974,
+          1.8418
+        ],
+        "Position": [
+          0,
+          54.2987,
+          56
+        ]
+      }
+    },
+    {
+      "Name": "power",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://112875845069947",
+        "Size": [
+          1.8863,
+          0.9766,
+          1.8811
+        ],
+        "Position": [
+          24,
+          54.4883,
+          56
+        ]
+      }
+    },
+    {
+      "Name": "workshop",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://102395848289055",
+        "Size": [
+          1.8859,
+          1.195,
+          1.8782
+        ],
+        "Position": [
+          -24,
+          54.5975,
+          88
+        ]
+      }
+    },
+    {
+      "Name": "shop",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://73213778609663",
+        "Size": [
+          1.8356,
+          1.1014,
+          1.8605
+        ],
+        "Position": [
+          0,
+          54.5507,
+          88
+        ]
+      }
+    },
+    {
+      "Name": "storage",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://99324027907585",
+        "Size": [
+          1.8779,
+          0.9316,
+          1.8684
+        ],
+        "Position": [
+          24,
+          54.4658,
+          88
+        ]
+      }
+    },
+    {
+      "Name": "service_corridor",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://111364350595650",
+        "Size": [
+          1.8449,
+          0.5108,
+          0.8519
+        ],
+        "Position": [
+          0,
+          54.2554,
+          112
+        ]
+      }
+    }
+  ]
+}

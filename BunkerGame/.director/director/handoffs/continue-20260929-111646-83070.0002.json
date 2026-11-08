@@ -1,0 +1,24 @@
+[
+  {
+    "task_id": "contract-cross-check-01",
+    "status": "PASS",
+    "executed": "Created new verification script tools/verification/verify_world_contract.py (directory created; no existing files touched). Script implements all 8 checks: (1) GameWorld top-level children exactly Foundation/Bunker/Exterior/Farm/Resources/EnemySpawns/Objectives/Presentation; (2) Bunker contains all 14 required sections; (3) spawn container (resolved as 'Spawns' since no node named 'SpawnLocations' exists) has exactly 6 descendants; (4) Bunker.PoweredLights exists; (5) Presentation.AudioAnchors contains Sound instances BlastDoorOpenCueSound and BlastDoorCloseCueSound with non-empty SoundId and Looped=false; (6) Runtime.model.json is a Folder with 0 children; (7) all 5 generated asset files exist non-empty; (8) all 12 generated .model.json files (GameWorld, Runtime, 5 Lighting, 5 assets) parse as valid JSON. Ran `python3 tools/verification/verify_world_contract.py` from project root.",
+    "result": "All 8 checks PASS; script exit code 0. Per-check output: check1 PASS (actual order matches expected exactly); check2 PASS (all 14 required sections present; additional sections DirectorRework and EmergencyLights present and allowed); check3 PASS (6 SpawnLocation descendants: bedroom_01..bedroom_06); check4 PASS (PoweredLights Model found); check5 PASS (both Sounds found, SoundId rbxassetid://157167203 and rbxassetid://157167205, Looped=False); check6 PASS (Folder, 0 children); check7 PASS (5/5 assets non-empty); check8 PASS (12/12 files valid JSON).",
+    "files_changed": "tools/verification/verify_world_contract.py (new file only; no existing files modified — verified via mtime scan of src/ showing 0 files modified during task)",
+    "artifacts": "tools/verification/verify_world_contract.py",
+    "verification": "Direct terminal execution: `cd /Users/Ori/Documents/Projects/BunkerGame && python3 tools/verification/verify_world_contract.py` printed per-check PASS/FAIL report with details, \"summary: 8/8 checks passed\", \"RESULT: PASS\", EXIT_CODE=0. Underlying facts independently verified beforehand via direct JSON inspection (top-level children list, Bunker children list, 6 SpawnLocation descendants, PoweredLights presence, both Sound instances with SoundId/Looped values, Runtime Folder with 0 children, asset file sizes 848-1009 bytes).",
+    "blockers": "NONE",
+    "completed_at": "2026-09-29T08:21:09.051228+00:00"
+  },
+  {
+    "task_id": "sourcemap-verify-01",
+    "status": "FAILED",
+    "executed": "Worker exited without a valid handoff.",
+    "result": "PROCESS_EXIT_CODE=0",
+    "files_changed": "UNKNOWN",
+    "artifacts": "NONE",
+    "verification": "AGENT_HANDOFF missing.",
+    "blockers": "INVALID_COMPLETION_CONTRACT",
+    "completed_at": "2026-09-29T08:21:19.123285+00:00"
+  }
+]

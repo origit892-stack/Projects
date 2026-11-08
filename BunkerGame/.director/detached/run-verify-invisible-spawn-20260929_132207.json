@@ -1,0 +1,12 @@
+{
+  "job_id": "run-verify-invisible-spawn-20260929_132207",
+  "mode": "run",
+  "task_ids": [
+    "verify-invisible-spawn"
+  ],
+  "pid": 99363,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-invisible-spawn-20260929_132207.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-invisible-spawn-20260929_132207.json",
+  "started_at": 1790677327.8888042,
+  "launcher_status": "RUNNING"
+}

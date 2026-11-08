@@ -1,0 +1,12 @@
+{
+  "task_id": "smoke-release",
+  "run_id": "smoke-release-2a7796f9a837",
+  "status": "PASS",
+  "executed": "Byte-verified backend.txt (13 bytes, 'BACKEND=READY', no trailing newline), frontend.txt (14 bytes, 'FRONTEND=READY', no trailing newline), and tests.txt (10 bytes, 'TESTS=PASS', no trailing newline) via wc -c and od -c; all matched exactly. Then created release.txt with printf 'RELEASE=READY' (no trailing newline) and read it back for byte-for-byte verification.",
+  "result": "release.txt created in sandbox work directory with exact content 'RELEASE=READY' (13 bytes, no trailing newline); all three prerequisite artifacts verified before write.",
+  "files_changed": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/release.txt",
+  "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/release.txt",
+  "verification": "Pre-write: wc -c reported 13/14/10 bytes and od -c showed exact expected characters with no trailing newline for backend.txt, frontend.txt, tests.txt. Post-write: wc -c release.txt = 13; od -c showed R E L E A S E = R E A D Y with no trailing newline; cmp release.txt <(printf 'RELEASE=READY') exited 0. No files outside the sandbox work directory were created or modified.",
+  "blockers": "NONE",
+  "completed_at": "2026-09-25T15:52:31.267182+00:00"
+}

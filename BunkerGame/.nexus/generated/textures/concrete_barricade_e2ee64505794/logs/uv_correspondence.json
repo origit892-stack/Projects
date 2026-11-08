@@ -1,0 +1,6 @@
+{
+  "returncode": 0,
+  "seconds": 1.917,
+  "stdout": "13:23:03 | INFO: Data are loaded, start creating Blender stuff\n13:23:03 | INFO: Blender create Mesh node source\n13:23:03 | INFO: glTF import finished in 0.03s\nTRIANGLE_COUNT=15190\nLOOP_COUNT=45570\nFRONT_RATIO=1.0\nUV_CORRESPONDENCE_EXPORT=PASS\nBlender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)\n\nBlender quit\n",
+  "stderr": ""
+}

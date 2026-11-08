@@ -1,0 +1,33 @@
+{
+  "project_status": "CONTINUE",
+  "summary": "Fresh run continue-20260925-185036-61945, cycle 0, no worker tasks completed. Objective: create exactly four artifacts (backend.txt, frontend.txt, tests.txt, release.txt) with exact contents in the sandbox work directory, with mandatory dependency ordering: tests.txt only after backend+frontend verified, release.txt only after all three verified. backend.txt and frontend.txt are independent and may run in parallel; tests and release are gated on prior artifacts, so they are deferred to later cycles.",
+  "tasks": [
+    {
+      "task_id": "smoke-backend",
+      "objective": "In the sandbox directory /Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work (create it with mkdir -p if missing), create the file backend.txt containing exactly the bytes 'BACKEND=READY' (no trailing newline or other extra characters). Then perform real read-back verification: read the file's bytes back (e.g., od -c or cmp against a here-string of the exact expected content) and confirm an exact byte-for-byte match before declaring PASS. Do not create or modify anything outside the sandbox work directory.",
+      "write_scopes": [
+        "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/backend.txt"
+      ],
+      "read_scopes": [
+        "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005"
+      ],
+      "acceptance_criteria": "backend.txt exists in the sandbox work directory and its bytes exactly equal 'BACKEND=READY', verified by an actual read-back byte comparison performed by the worker (evidence: od/cmp output in handoff). No files outside the sandbox work directory were created or modified.",
+      "timeout_seconds": 600
+    },
+    {
+      "task_id": "smoke-frontend",
+      "objective": "In the sandbox directory /Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work (create it with mkdir -p if missing), create the file frontend.txt containing exactly the bytes 'FRONTEND=READY' (no trailing newline or other extra characters). Then perform real read-back verification: read the file's bytes back (e.g., od -c or cmp against a here-string of the exact expected content) and confirm an exact byte-for-byte match before declaring PASS. Do not create or modify anything outside the sandbox work directory.",
+      "write_scopes": [
+        "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/frontend.txt"
+      ],
+      "read_scopes": [
+        "/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005"
+      ],
+      "acceptance_criteria": "frontend.txt exists in the sandbox work directory and its bytes exactly equal 'FRONTEND=READY', verified by an actual read-back byte comparison performed by the worker (evidence: od/cmp output in handoff). No files outside the sandbox work directory were created or modified.",
+      "timeout_seconds": 600
+    }
+  ],
+  "final_result": "",
+  "_director_seconds": 28.15,
+  "_director_output": "/Users/Ori/Documents/Projects/BunkerGame/.director/director/cycles/continue-20260925-185036-61945.0001.director.out"
+}

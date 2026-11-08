@@ -1,0 +1,12 @@
+{
+  "task_id": "diagnose-client-bootstrap",
+  "role": "researcher",
+  "objective": "Read two BunkerGame source files and diagnose the client startup block. FILES: (1) src/StarterPlayer/StarterPlayerScripts/GameClient/ClientBootstrap.client.luau (2) src/ServerScriptService/Game/ServerBootstrap.server.luau. QUESTIONS TO ANSWER: (1) What EXACT client-startup gate does ClientBootstrap wait on (RemoteEvent name, Value name, flag, etc.)? Quote the relevant lines. (2) In ServerBootstrap, what does 'Workspace.GameWorld not found -> Minimal spawn mode' disable, and does it skip sending the client-startup signal? Quote the relevant lines. (3) What is the root cause of missing Workspace.GameWorld (is it a model that should exist in the place, a script that creates it, or a sync/rojo mapping issue)? (4) What is the minimal change to make the client UI initialize in Minimal spawn mode without breaking full mode? Report findings with file paths and line numbers. READ-ONLY - do not modify any files.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "Handoff answers all 4 questions with quoted source lines + file paths + line numbers. Identifies the exact client-startup gate. Explains why minimal mode never sends it. Identifies root cause of missing GameWorld. Proposes minimal client-side fix for minimal mode. No files modified.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-09T21:22:52.804274+00:00"
+}

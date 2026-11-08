@@ -1,0 +1,8 @@
+{
+  "run_id": "20260916_202718_f4cd4b9b",
+  "updated": 1789579686.241257,
+  "role": "director",
+  "task": "Read-only verification task. Determine whether any pyproject.toml exists anywhere under this workspace. Then read docs/agents/README.md and report its exact first Markdown heading. Use actual filesystem tools. Do not modify project files. Do not use memory_add or saved memory as evidence.",
+  "status": "RUNNING",
+  "iteration": 4
+}

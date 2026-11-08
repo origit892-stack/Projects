@@ -1,0 +1,12 @@
+{
+  "job_id": "run-research-spawn-platforms-20260929_130823",
+  "mode": "run",
+  "task_ids": [
+    "research-spawn-platforms"
+  ],
+  "pid": 98035,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-spawn-platforms-20260929_130823.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-spawn-platforms-20260929_130823.json",
+  "started_at": 1790676503.7717912,
+  "launcher_status": "RUNNING"
+}

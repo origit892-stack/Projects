@@ -1,0 +1,318 @@
+{
+  "id": "20260920_151722_2ae56365",
+  "title": "smoke_test_v10",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "Perform a comprehensive READ-ONLY BunkerGame inspection.\n\n==================================================\n1. PROJECT ARCHITECTURE\n==================================================\n\nInspect the project structure and determine the current architecture.\n\nDo not modify source.\n\n==================================================\n2. GAMEPLAY SYSTEMS\n==================================================\n\nInspect the existing gameplay systems and classify their implementation state.\n\nDo not implement or fix anything.\n\n==================================================\n3. WORLD STATE\n==================================================\n\nInspect the current world, bunker, environment, and terrain state.\n\nDo not modify Roblox Studio.\nDo not modify terrain.\n\n==================================================\n4. ASSET STATE\n==================================================\n\nInspect the currently available assets and their provenance.\n\nDo not generate assets.\nDo not import assets.\nDo not publish assets.\n\n==================================================\n5. UI STATE\n==================================================\n\nInspect the current UI architecture and identify which systems appear connected to gameplay.\n\nDo not modify UI.\n\n==================================================\n6. TOOLCHAIN STATE\n==================================================\n\nInspect the current development and QA tooling.\n\nDo not modify Nexus.\n\n==================================================\n7. SOURCE OF TRUTH\n==================================================\n\nDetermine the current relationship between filesystem, Rojo, and Roblox Studio.\n\nDo not synchronize anything.\n\n==================================================\n8. FINAL AUDIT\n==================================================\n\nSummarize the verified current state.\n\nEvery major conclusion must distinguish:\nVERIFIED_FACT\nINFERENCE\nUNKNOWN\nSTALE_OR_CONFLICTING\n\nRequired final markers:\n\nREAD_ONLY_AUDIT=PASS\nPROJECT_SOURCE_MUTATION=NO\nSTUDIO_MUTATION=NO\nTERRAIN_MUTATION=NO\nASSET_GENERATION=NO\nNEXUS_MUTATION=NO",
+  "status": "NEW",
+  "created_at": "2026-09-20T12:17:22.465388+00:00",
+  "updated_at": "2026-09-20T12:17:51.074599+00:00",
+  "run_id": null,
+  "last_result": null,
+  "history": [
+    {
+      "type": "objective",
+      "text": "Perform a comprehensive READ-ONLY BunkerGame inspection.\n\n==================================================\n1. PROJECT ARCHITECTURE\n==================================================\n\nInspect the project structure and determine the current architecture.\n\nDo not modify source.\n\n==================================================\n2. GAMEPLAY SYSTEMS\n==================================================\n\nInspect the existing gameplay systems and classify their implementation state.\n\nDo not implement or fix anything.\n\n==================================================\n3. WORLD STATE\n==================================================\n\nInspect the current world, bunker, environment, and terrain state.\n\nDo not modify Roblox Studio.\nDo not modify terrain.\n\n==================================================\n4. ASSET STATE\n==================================================\n\nInspect the currently available assets and their provenance.\n\nDo not generate assets.\nDo not import assets.\nDo not publish assets.\n\n==================================================\n5. UI STATE\n==================================================\n\nInspect the current UI architecture and identify which systems appear connected to gameplay.\n\nDo not modify UI.\n\n==================================================\n6. TOOLCHAIN STATE\n==================================================\n\nInspect the current development and QA tooling.\n\nDo not modify Nexus.\n\n==================================================\n7. SOURCE OF TRUTH\n==================================================\n\nDetermine the current relationship between filesystem, Rojo, and Roblox Studio.\n\nDo not synchronize anything.\n\n==================================================\n8. FINAL AUDIT\n==================================================\n\nSummarize the verified current state.\n\nEvery major conclusion must distinguish:\nVERIFIED_FACT\nINFERENCE\nUNKNOWN\nSTALE_OR_CONFLICTING\n\nRequired final markers:\n\nREAD_ONLY_AUDIT=PASS\nPROJECT_SOURCE_MUTATION=NO\nSTUDIO_MUTATION=NO\nTERRAIN_MUTATION=NO\nASSET_GENERATION=NO\nNEXUS_MUTATION=NO",
+      "created_at": "2026-09-20T12:17:22.465388+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "Perform a comprehensive READ-ONLY BunkerGame inspection.\n\n==================================================\n1. PROJECT ARCHITECTURE\n==================================================\n\nInspect the project structure and determine the current architecture.\n\nDo not modify source.\n\n==================================================\n2. GAMEPLAY SYSTEMS\n==================================================\n\nInspect the existing gameplay systems and classify their implementation state.\n\nDo not implement or fix anything.\n\n==================================================\n3. WORLD STATE\n==================================================\n\nInspect the current world, bunker, environment, and terrain state.\n\nDo not modify Roblox Studio.\nDo not modify terrain.\n\n==================================================\n4. ASSET STATE\n==================================================\n\nInspect the currently available assets and their provenance.\n\nDo not generate assets.\nDo not import assets.\nDo not publish assets.\n\n==================================================\n5. UI STATE\n==================================================\n\nInspect the current UI architecture and identify which systems appear connected to gameplay.\n\nDo not modify UI.\n\n==================================================\n6. TOOLCHAIN STATE\n==================================================\n\nInspect the current development and QA tooling.\n\nDo not modify Nexus.\n\n==================================================\n7. SOURCE OF TRUTH\n==================================================\n\nDetermine the current relationship between filesystem, Rojo, and Roblox Studio.\n\nDo not synchronize anything.\n\n==================================================\n8. FINAL AUDIT\n==================================================\n\nSummarize the verified current state.\n\nEvery major conclusion must distinguish:\nVERIFIED_FACT\nINFERENCE\nUNKNOWN\nSTALE_OR_CONFLICTING\n\nRequired final markers:\n\nREAD_ONLY_AUDIT=PASS\nPROJECT_SOURCE_MUTATION=NO\nSTUDIO_MUTATION=NO\nTERRAIN_MUTATION=NO\nASSET_GENERATION=NO\nNEXUS_MUTATION=NO",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": "M1",
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "milestone_state": {
+      "version": 1,
+      "active": true,
+      "master_prompt_sha256": "56da64e38fdc7d81d8af53a4068cb47600bb78b474f841c4512f303b3a6194f4",
+      "master_prompt": "Perform a comprehensive READ-ONLY BunkerGame inspection.\n\n==================================================\n1. PROJECT ARCHITECTURE\n==================================================\n\nInspect the project structure and determine the current architecture.\n\nDo not modify source.\n\n==================================================\n2. GAMEPLAY SYSTEMS\n==================================================\n\nInspect the existing gameplay systems and classify their implementation state.\n\nDo not implement or fix anything.\n\n==================================================\n3. WORLD STATE\n==================================================\n\nInspect the current world, bunker, environment, and terrain state.\n\nDo not modify Roblox Studio.\nDo not modify terrain.\n\n==================================================\n4. ASSET STATE\n==================================================\n\nInspect the currently available assets and their provenance.\n\nDo not generate assets.\nDo not import assets.\nDo not publish assets.\n\n==================================================\n5. UI STATE\n==================================================\n\nInspect the current UI architecture and identify which systems appear connected to gameplay.\n\nDo not modify UI.\n\n==================================================\n6. TOOLCHAIN STATE\n==================================================\n\nInspect the current development and QA tooling.\n\nDo not modify Nexus.\n\n==================================================\n7. SOURCE OF TRUTH\n==================================================\n\nDetermine the current relationship between filesystem, Rojo, and Roblox Studio.\n\nDo not synchronize anything.\n\n==================================================\n8. FINAL AUDIT\n==================================================\n\nSummarize the verified current state.\n\nEvery major conclusion must distinguish:\nVERIFIED_FACT\nINFERENCE\nUNKNOWN\nSTALE_OR_CONFLICTING\n\nRequired final markers:\n\nREAD_ONLY_AUDIT=PASS\nPROJECT_SOURCE_MUTATION=NO\nSTUDIO_MUTATION=NO\nTERRAIN_MUTATION=NO\nASSET_GENERATION=NO\nNEXUS_MUTATION=NO",
+      "plan": {
+        "master_prompt_sha256": "56da64e38fdc7d81d8af53a4068cb47600bb78b474f841c4512f303b3a6194f4",
+        "master_prompt": "Perform a comprehensive READ-ONLY BunkerGame inspection.\n\n==================================================\n1. PROJECT ARCHITECTURE\n==================================================\n\nInspect the project structure and determine the current architecture.\n\nDo not modify source.\n\n==================================================\n2. GAMEPLAY SYSTEMS\n==================================================\n\nInspect the existing gameplay systems and classify their implementation state.\n\nDo not implement or fix anything.\n\n==================================================\n3. WORLD STATE\n==================================================\n\nInspect the current world, bunker, environment, and terrain state.\n\nDo not modify Roblox Studio.\nDo not modify terrain.\n\n==================================================\n4. ASSET STATE\n==================================================\n\nInspect the currently available assets and their provenance.\n\nDo not generate assets.\nDo not import assets.\nDo not publish assets.\n\n==================================================\n5. UI STATE\n==================================================\n\nInspect the current UI architecture and identify which systems appear connected to gameplay.\n\nDo not modify UI.\n\n==================================================\n6. TOOLCHAIN STATE\n==================================================\n\nInspect the current development and QA tooling.\n\nDo not modify Nexus.\n\n==================================================\n7. SOURCE OF TRUTH\n==================================================\n\nDetermine the current relationship between filesystem, Rojo, and Roblox Studio.\n\nDo not synchronize anything.\n\n==================================================\n8. FINAL AUDIT\n==================================================\n\nSummarize the verified current state.\n\nEvery major conclusion must distinguish:\nVERIFIED_FACT\nINFERENCE\nUNKNOWN\nSTALE_OR_CONFLICTING\n\nRequired final markers:\n\nREAD_ONLY_AUDIT=PASS\nPROJECT_SOURCE_MUTATION=NO\nSTUDIO_MUTATION=NO\nTERRAIN_MUTATION=NO\nASSET_GENERATION=NO\nNEXUS_MUTATION=NO",
+        "milestones": [
+          {
+            "id": "M1",
+            "title": "Project Architecture Inspection",
+            "objective": "Inspect the project structure and determine the current architecture.",
+            "requirements": [
+              "Inspect project structure"
+            ],
+            "restrictions": [
+              "Do not modify source"
+            ],
+            "dependencies": [],
+            "evidence_required": [
+              "Inspect project structure"
+            ],
+            "completion_definition": [
+              "Complete and document the project architecture."
+            ]
+          },
+          {
+            "id": "M2",
+            "title": "Gameplay Systems Classification",
+            "objective": "Classify the existing gameplay systems' implementation state.",
+            "requirements": [
+              "Classify gameplay systems"
+            ],
+            "restrictions": [
+              "Do not implement or fix anything"
+            ],
+            "dependencies": [],
+            "evidence_required": [
+              "Classify gameplay systems"
+            ],
+            "completion_definition": [
+              "Complete and document gameplay system states."
+            ]
+          },
+          {
+            "id": "M3",
+            "title": "World State Inspection",
+            "objective": "Inspect the current world, bunker, environment, and terrain state.",
+            "requirements": [
+              "Inspect world state"
+            ],
+            "restrictions": [
+              "Do not modify Roblox Studio or terrain"
+            ],
+            "dependencies": [],
+            "evidence_required": [
+              "Inspect world state"
+            ],
+            "completion_definition": [
+              "Complete and document world state."
+            ]
+          },
+          {
+            "id": "M4",
+            "title": "Asset State Review",
+            "objective": "Inspect the currently available assets and their provenance.",
+            "requirements": [
+              "Inspect asset state"
+            ],
+            "restrictions": [
+              "Do not generate, import, or publish assets"
+            ],
+            "dependencies": [],
+            "evidence_required": [
+              "Inspect asset state"
+            ],
+            "completion_definition": [
+              "Complete and document asset state."
+            ]
+          },
+          {
+            "id": "M5",
+            "title": "UI State Analysis",
+            "objective": "Identify systems connected to gameplay in the UI.",
+            "requirements": [
+              "Analyze UI architecture"
+            ],
+            "restrictions": [
+              "Do not modify UI"
+            ],
+            "dependencies": [],
+            "evidence_required": [
+              "Analyze UI architecture"
+            ],
+            "completion_definition": [
+              "Complete and document UI connections."
+            ]
+          },
+          {
+            "id": "M6",
+            "title": "Toolchain State Inspection",
+            "objective": "Inspect current development and QA tooling.",
+            "requirements": [
+              "Inspect toolchain state"
+            ],
+            "restrictions": [
+              "Do not modify Nexus"
+            ],
+            "dependencies": [],
+            "evidence_required": [
+              "Inspect toolchain state"
+            ],
+            "completion_definition": [
+              "Complete and document toolchain state."
+            ]
+          },
+          {
+            "id": "M7",
+            "title": "Source of Truth Determination",
+            "objective": "Determine relationships between filesystem, Rojo, and Roblox Studio.",
+            "requirements": [
+              "Analyze filesystem and Rojo relationships"
+            ],
+            "restrictions": [
+              "Do not synchronize anything"
+            ],
+            "dependencies": [],
+            "evidence_required": [
+              "Analyze filesystem and Rojo relationships"
+            ],
+            "completion_definition": [
+              "Complete and document source of truth relationships."
+            ]
+          },
+          {
+            "id": "M8",
+            "title": "Final Audit Summary",
+            "objective": "Summarize the current state with specific markers.",
+            "requirements": [
+              "Summarize state"
+            ],
+            "restrictions": [
+              "Do not generate, import, or publish assets"
+            ],
+            "dependencies": [
+              "M1",
+              "M2",
+              "M3",
+              "M4",
+              "M5",
+              "M6",
+              "M7"
+            ],
+            "evidence_required": [
+              "Summarize state"
+            ],
+            "completion_definition": [
+              "Complete and verify all sections for final audit."
+            ]
+          }
+        ],
+        "global_restrictions": [
+          "Do not modify source",
+          "Do not modify UI",
+          "Do not modify Roblox Studio",
+          "Do not modify terrain",
+          "Do not generate assets",
+          "Do not import assets",
+          "Do not publish assets",
+          "Do not synchronize anything",
+          "Do not modify Nexus",
+          "Do not turn restrictions into optional guidance"
+        ],
+        "final_completion_definition": [
+          "Verify all sections are completed and pass the final audit with the specified markers."
+        ]
+      },
+      "current_milestone_index": 0,
+      "milestones": [
+        {
+          "index": 0,
+          "id": "M1",
+          "title": "Project Architecture Inspection",
+          "source_requirements": [],
+          "status": "RUNNING",
+          "run_id": null,
+          "result": null,
+          "evidence": []
+        },
+        {
+          "index": 1,
+          "id": "M2",
+          "title": "Gameplay Systems Classification",
+          "source_requirements": [],
+          "status": "PENDING",
+          "run_id": null,
+          "result": null,
+          "evidence": []
+        },
+        {
+          "index": 2,
+          "id": "M3",
+          "title": "World State Inspection",
+          "source_requirements": [],
+          "status": "PENDING",
+          "run_id": null,
+          "result": null,
+          "evidence": []
+        },
+        {
+          "index": 3,
+          "id": "M4",
+          "title": "Asset State Review",
+          "source_requirements": [],
+          "status": "PENDING",
+          "run_id": null,
+          "result": null,
+          "evidence": []
+        },
+        {
+          "index": 4,
+          "id": "M5",
+          "title": "UI State Analysis",
+          "source_requirements": [],
+          "status": "PENDING",
+          "run_id": null,
+          "result": null,
+          "evidence": []
+        },
+        {
+          "index": 5,
+          "id": "M6",
+          "title": "Toolchain State Inspection",
+          "source_requirements": [],
+          "status": "PENDING",
+          "run_id": null,
+          "result": null,
+          "evidence": []
+        },
+        {
+          "index": 6,
+          "id": "M7",
+          "title": "Source of Truth Determination",
+          "source_requirements": [],
+          "status": "PENDING",
+          "run_id": null,
+          "result": null,
+          "evidence": []
+        },
+        {
+          "index": 7,
+          "id": "M8",
+          "title": "Final Audit Summary",
+          "source_requirements": [],
+          "status": "PENDING",
+          "run_id": null,
+          "result": null,
+          "evidence": []
+        }
+      ],
+      "final_verification": {
+        "status": "PENDING",
+        "run_id": null,
+        "result": null,
+        "evidence": []
+      },
+      "master_status": "RUNNING",
+      "master_result": null
+    },
+    "updated_at": "2026-09-20T12:17:51.074466+00:00"
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": null
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": null,
+    "last_instruction": null,
+    "continuation_point": null,
+    "interrupted": false,
+    "resume_requested_at": null,
+    "updated_at": null
+  }
+}

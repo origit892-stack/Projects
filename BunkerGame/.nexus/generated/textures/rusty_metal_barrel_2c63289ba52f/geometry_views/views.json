@@ -1,0 +1,150 @@
+{
+  "mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/preprocessed.glb",
+  "center": [
+    -0.003837883472442627,
+    0.003443390130996704,
+    0.00017261505126953125
+  ],
+  "dimensions": [
+    1.371570348739624,
+    1.3675379753112793,
+    1.9033318758010864
+  ],
+  "longest": 1.9033318758010864,
+  "views": {
+    "front": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/geometry_views/front.png",
+      "camera_location": [
+        -0.003837883472442627,
+        -5.325886249542236,
+        0.00017261505126953125
+      ],
+      "target": [
+        -0.003837883472442627,
+        0.003443390130996704,
+        0.00017261505126953125
+      ],
+      "direction": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "ortho_scale": 2.5694980323314667
+    },
+    "back": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/geometry_views/back.png",
+      "camera_location": [
+        -0.003837883472442627,
+        5.332772731781006,
+        0.00017261505126953125
+      ],
+      "target": [
+        -0.003837883472442627,
+        0.003443390130996704,
+        0.00017261505126953125
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "ortho_scale": 2.5694980323314667
+    },
+    "left": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/geometry_views/left.png",
+      "camera_location": [
+        -5.333167552947998,
+        0.003443390130996704,
+        0.00017261505126953125
+      ],
+      "target": [
+        -0.003837883472442627,
+        0.003443390130996704,
+        0.00017261505126953125
+      ],
+      "direction": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 2.5694980323314667
+    },
+    "right": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/geometry_views/right.png",
+      "camera_location": [
+        5.325491428375244,
+        0.003443390130996704,
+        0.00017261505126953125
+      ],
+      "target": [
+        -0.003837883472442627,
+        0.003443390130996704,
+        0.00017261505126953125
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 2.5694980323314667
+    },
+    "top": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/geometry_views/top.png",
+      "camera_location": [
+        -0.003837883472442627,
+        0.003443390130996704,
+        5.329502105712891
+      ],
+      "target": [
+        -0.003837883472442627,
+        0.003443390130996704,
+        0.00017261505126953125
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "ortho_scale": 2.5694980323314667
+    },
+    "bottom": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/geometry_views/bottom.png",
+      "camera_location": [
+        -0.003837883472442627,
+        0.003443390130996704,
+        -5.329156875610352
+      ],
+      "target": [
+        -0.003837883472442627,
+        0.003443390130996704,
+        0.00017261505126953125
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "ortho_scale": 2.5694980323314667
+    },
+    "hero": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/geometry_views/hero.png",
+      "camera_location": [
+        3.3253679275512695,
+        -3.3257622718811035,
+        2.497076988220215
+      ],
+      "target": [
+        -0.003837883472442627,
+        0.003443390130996704,
+        0.00017261505126953125
+      ],
+      "direction": [
+        0.6246950626373291,
+        -0.6246950626373291,
+        0.4685212969779968
+      ],
+      "ortho_scale": 2.5694980323314667
+    }
+  },
+  "all_exist": true
+}

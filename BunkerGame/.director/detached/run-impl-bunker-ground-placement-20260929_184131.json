@@ -1,0 +1,12 @@
+{
+  "job_id": "run-impl-bunker-ground-placement-20260929_184131",
+  "mode": "run",
+  "task_ids": [
+    "impl-bunker-ground-placement"
+  ],
+  "pid": 27779,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-bunker-ground-placement-20260929_184131.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-bunker-ground-placement-20260929_184131.json",
+  "started_at": 1790696491.003925,
+  "launcher_status": "RUNNING"
+}

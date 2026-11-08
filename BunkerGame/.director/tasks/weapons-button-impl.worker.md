@@ -1,0 +1,42 @@
+# Worker Task
+
+TASK_ID=weapons-button-impl
+
+PROJECT_ROOT=/Users/Ori/Documents/Projects/BunkerGame
+
+## Objective
+
+Implement the Weapons side-menu button per the objective file /Users/Ori/Documents/Projects/BunkerGame/.director/director/objectives/continue-20260926-103001-25294.objective.md, then validate it. (1) Add the button as a new self-contained element inside the existing OutskirtsHUD ScreenGui in src/StarterPlayer/StarterPlayerScripts/GameClient/UIController.luau (or a new module under src/StarterPlayer/StarterPlayerScripts/GameClient/ required and wired into UIController:Start/Stop). Reuse existing helpers (create, addCorner, addStroke, label) and the _connections/_dynamicConnections/_refs cleanup pattern; all TweenService/Heartbeat-driven animations must be cleaned up on Stop(). Do NOT rebuild or alter the existing dark HUD panels (PhaseReadout, ResourceReadout, SurvivalReadout, EquipmentHotbar, InteractionPrompt, ModalLayer) or any other behavior. (2) Visual spec: true square ~120x120 px, UICorner radius ~11, UIStroke ApplyStrokeMode=Border color ~Color3.fromRGB(10,12,16) thickness ~4-5, vertical UIGradient from ~Color3.fromRGB(70,135,240) top to ~Color3.fromRGB(20,35,196) bottom, subtle white glossy top highlight (~15-25% opacity, top ~40%). Position on the LEFT edge of the screen (vertically centered or upper area) as a side-menu element, non-overlapping existing panels; verify placement against _updateLayout() viewport logic. (3) Procedural stylized assault rifle (side profile) built from Frames with UICorner (receiver, barrel, magazine, stock, grip, sight) in dark gray/black with lighter metallic highlights, centered, occupying most of the button interior with ~12-16px padding, composed under a single 'Rifle' Frame for unit animation. No external image assets. (4) Procedural spider-webs from button corners (thin 1-2px Frames, 4-6 spokes per corner, 1-2 concentric arc segments, low opacity) plus a tiny cartoon spider (small Frames/Circles). (5) Animations via TweenService/Heartbeat: web breathing loop (~4-6s), spider crawl every ~6-10s, rifle sine bob (~2-3s, ~3-4px), hover scale 1.0->1.05 + brighten, click compress 1.0->0.92 with bounce-back, post-click glint sweep (~0.4s). Respect GuiService.ReducedMotionEnabled (disable/reduce idle motion). (6) 'Weapons' TextLabel: GothamBlack/GothamBold, white, very thick black outline (UIStroke or duplicated offset label), centered overlapping the button's bottom edge. (7) Click is client-side only: safe no-op or existing ShowNotification; do NOT invent server remotes or change any network/data contract. (8) Validation: run a Luau syntax/compile check on every changed/new .luau file. NOTE: no luau binary is currently on PATH — install one (e.g. `brew install luau-lang` or download an official luau release binary) and run `luau --compile <file>` (or luau-analyze); report the exact command and output. If installation is impossible, perform a best-effort static check and explicitly classify syntax validation as UNVERIFIED with the reason — never claim PASS. (9) Runtime: attempt Roblox Studio verification via the project's established path (rojo at /Users/Ori/.aftman/bin/rojo; note the prior run was blocked on a manual Studio Argon plugin reconnect — do not assume Studio is connected). If runtime/Studio verification is not possible, save a written UNVERIFIED statement (what was/wasn't verified and why) under visual-qa/ or .director/ and say so in the handoff. (10) Write a short completion report (files changed, verification results, every important conclusion classified VERIFIED_FACT/INFERENCE/UNKNOWN/STALE_OR_CONFLICTING, any UNVERIFIED items) under .director/ or visual-qa/. Constraints: no Terrain operations, no destructive Git operations, no force-push, no modification of files outside the write scopes, keep the change minimal and additive.
+
+## Write scopes
+
+["src/StarterPlayer/StarterPlayerScripts/GameClient/UIController.luau", "src/StarterPlayer/StarterPlayerScripts/GameClient/WeaponsButton.luau", "visual-qa/", ".director/"]
+
+## Read scopes
+
+[".", "src/", ".director/frontdoor/ref/weapons-button-reference.png", "docs/"]
+
+## Acceptance criteria
+
+Handoff contains: (a) list of changed/created files, all within write scopes; (b) the Weapons button exists in the OutskirtsHUD ScreenGui per spec (square ~120x120, corner ~11, dark border stroke ~4-5px, blue gradient 70,135,240 -> 20,35,196, glossy top highlight, left-edge placement not overlapping existing panels); (c) procedural rifle + corner webs + spider built from UI objects only (no external assets); (d) all six animations implemented with TweenService/Heartbeat, ReducedMotion respected, and all connections/tweens/instances cleaned up in Stop() via the existing _connections/_dynamicConnections pattern; (e) 'Weapons' label with thick black outline at the button's bottom edge; (f) click is client-side only (no new remotes, no contract changes); (g) exact syntax-check command + output for each changed .luau file, or an explicit UNVERIFIED classification with reason; (h) runtime evidence saved under visual-qa/ or .director/, or an explicit UNVERIFIED statement with reasons; (i) completion report with VERIFIED_FACT/INFERENCE/UNKNOWN/STALE_OR_CONFLICTING classifications; (j) confirmation that no existing HUD panel, terrain, or network/data contract was modified.
+
+## Rules
+
+Work autonomously until PASS, BLOCKED, or FAILED.
+Use your available tools directly.
+Do not perform unrelated project work.
+Verify before PASS.
+Return only the final handoff to the Director.
+
+## Final handoff
+
+<AGENT_HANDOFF>
+STATUS=PASS|BLOCKED|FAILED
+TASK_ID=<task id>
+EXECUTED=<what was performed>
+RESULT=<final result>
+FILES_CHANGED=<paths or NONE>
+ARTIFACTS=<paths/ids or NONE>
+VERIFICATION=<objective evidence>
+BLOCKERS=<NONE or blocker>
+</AGENT_HANDOFF>

@@ -1,0 +1,18 @@
+אני רוצה שתבצע משימת implementation קטנה אבל מלאה בפרויקט.
+
+בתוך הספרייה הזאת בלבד:
+
+/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/frontdoor-smoke-20260925_184530/work
+
+צור מערכת דוגמה שמורכבת משלושה artifacts נפרדים:
+
+- config.txt שמכיל בדיוק CONFIG=READY
+- feature.txt שמכיל בדיוק FEATURE=READY
+- verification.txt שמאמת ששני הקבצים קיימים ומכיל בדיוק VERIFIED=PASS
+
+config ו-feature בלתי תלויים וניתן לבצע אותם במקביל.
+verification חייב להתבצע רק אחרי ששניהם הושלמו ונבדקו.
+
+אל תשנה שום קובץ משחק או קובץ אחר מחוץ ל-sandbox הזה.
+
+בצע את המשימה בפועל עד להשלמה מאומתת.

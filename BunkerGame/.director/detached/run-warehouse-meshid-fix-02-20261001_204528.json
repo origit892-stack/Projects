@@ -1,0 +1,12 @@
+{
+  "job_id": "run-warehouse-meshid-fix-02-20261001_204528",
+  "mode": "run",
+  "task_ids": [
+    "warehouse-meshid-fix-02"
+  ],
+  "pid": 20399,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-meshid-fix-02-20261001_204528.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-meshid-fix-02-20261001_204528.json",
+  "started_at": 1790876728.9619641,
+  "launcher_status": "RUNNING"
+}

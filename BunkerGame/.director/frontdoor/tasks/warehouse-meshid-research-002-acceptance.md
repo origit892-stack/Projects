@@ -1,0 +1,1 @@
+PASS if the handoff either (A) reports a concrete internal mesh asset ID (numeric, distinct from 73559951039514) with the download command+endpoint+auth and XML evidence, OR (B) definitively confirms the internal mesh ID is NOT obtainable without Studio, with evidence of every method tried. State clearly which applies. Do NOT modify project files. You MUST emit AGENT_HANDOFF.

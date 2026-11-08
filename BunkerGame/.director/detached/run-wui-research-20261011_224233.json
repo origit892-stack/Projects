@@ -1,0 +1,12 @@
+{
+  "job_id": "run-wui-research-20261011_224233",
+  "mode": "run",
+  "task_ids": [
+    "wui-research"
+  ],
+  "pid": 71195,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wui-research-20261011_224233.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wui-research-20261011_224233.json",
+  "started_at": 1791747753.067807,
+  "launcher_status": "RUNNING"
+}

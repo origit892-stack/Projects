@@ -1,0 +1,13 @@
+{
+  "source": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/source.obj",
+  "output": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/preprocessed.glb",
+  "objects": 1,
+  "vertices": 7597,
+  "faces": 15190,
+  "loops": 45570,
+  "uv_layers": 1,
+  "uv_loops": 45570,
+  "source_uv_valid": false,
+  "uv_generated": true,
+  "output_exists": true
+}

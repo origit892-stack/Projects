@@ -1,0 +1,21 @@
+{
+  "task_id": "wh-eperm-03",
+  "role": "researcher",
+  "run_id": "wh-eperm-03-eab72faa4b9c",
+  "status": "FAILED",
+  "executed": "Worker exceeded execution timeout.",
+  "result": "TIMEOUT",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "No valid final handoff.",
+  "blockers": "TIMEOUT_SECONDS=300",
+  "completed_at": "2026-10-05T16:19:42.843771+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 0,
+    "matched_sessions": [],
+    "deleted_session_count": 0,
+    "deleted_sessions": [],
+    "refused": [],
+    "status": "NO_MATCH"
+  }
+}

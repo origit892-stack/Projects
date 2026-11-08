@@ -1,0 +1,25 @@
+{
+  "task_id": "inv2-viewport-3d-qa",
+  "role": "verifier",
+  "run_id": "inv2-viewport-3d-qa-fe6656b3e377",
+  "status": "PASS",
+  "executed": "Verified /Users/Ori/Documents/Projects/BunkerGame/src/StarterGui/InventoryV2/InventoryV2Module.luau: the [ 3D MODEL PENDING ] placeholder is fully replaced by a live ViewportFrame 3D preview with a dummy rifle model, dedicated camera/lights, a RenderStepped rotation loop, and teardown wired to both the Visible toggle path (close button + B/Tab) and Destroying. Syntax validation passes. No unrelated regressions found in the UI layout or toggle wiring.",
+  "result": "Verified /Users/Ori/Documents/Projects/BunkerGame/src/StarterGui/InventoryV2/InventoryV2Module.luau: the [ 3D MODEL PENDING ] placeholder is fully replaced by a live ViewportFrame 3D preview with a dummy rifle model, dedicated camera/lights, a RenderStepped rotation loop, and teardown wired to both the Visible toggle path (close button + B/Tab) and Destroying. Syntax validation passes. No unrelated regressions found in the UI layout or toggle wiring.",
+  "files_changed": "NONE",
+  "artifacts": "NONE",
+  "verification": "1. No placeholder remains: PASS — `grep -i \"pending\\|placeholder\"` on the module returns no matches (exit 1); repo-wide grep for \"3D MODEL PENDING\" under src/ also returns none.\n2. ViewportFrame in item preview panel: PASS — line 367 `Instance.new(\"ViewportFrame\")` named \"ItemViewport\", full-size child of modelBox (\"Item Model Viewport Preview Box\", lines 358-365) inside rightFrame/InspectPanel.\n3. Dummy 3D item + framing camera: PASS — `createItemPreview(viewport)` (line 54) builds Model \"DummyGun\" with 7 Parts (Body/Barrel/Muzzle/Stock/Grip/Magazine/Sight, lines 73-79), a Camera with FieldOfView 32 and `CFrame.lookAt(Vector3.new(5.5,3.5,7), Vector3.new(0.4,-0.1,0))` (lines 84-87) framing the model, plus keyLight/fillLight PointLights (lines 90-103).\n4. Rotation loop: PASS — line 105 `RunService.RenderStepped:Connect(function(dt) angle += dt * math.rad(35); model:PivotTo(CFrame.Angles(0, angle, 0)) end)` — slow ~35 deg/s rotation.\n5. Cleanup/teardown: PASS — returned teardown fn (lines 110-124) calls `connection:Disconnect()` then destroys model, camera, keyLight, fillLight (each guarded by Parent check). Wiring: line 470 `rootCanvas:GetPropertyChangedSignal(\"Visible\")` → setupPreview/teardownPreview; close button (line 199-201) sets `rootCanvas.Visible = false`, and UIController._toggleInventory (UIController.luau lines 587-613, B/Tab handler lines 620-628) toggles `root.Visible` — both covered by the Visible signal. Line 477 `rootCanvas.Destroying:Connect(teardownPreview)` covers full GUI teardown (UIController:Stop destroys the ScreenGui). Idempotent guards (previewTeardown nil-checks) prevent double-setup/teardown; initial setup at line 480 if visible.\n6. Syntax validation: PASS — `luau-analyze --mode=nonstrict` reports zero syntax errors (only expected \"Unknown global/type\" noise for Roblox globals outside the Roblox environment, plus pre-existing unused `Players` local at line 3).\n7. No UI regressions: PASS — layout math: modelBox occupies y=62..212 in rightFrame; stat bars start at y=226 (line 379), action buttons anchored at bottom (1,-50) — no overlap. Mount remains idempotent (`_mounted` guard, line 131) and still returns rootCanvas; UIController require path (line 616) and toggle flow unchanged.",
+  "blockers": "NONE",
+  "completed_at": "2026-10-10T09:54:27.610921+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/778ba399-2a5f-4494-a2e1-90a332d92478.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/778ba399-2a5f-4494-a2e1-90a332d92478.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

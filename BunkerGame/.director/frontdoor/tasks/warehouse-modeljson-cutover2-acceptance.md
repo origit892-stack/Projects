@@ -1,0 +1,1 @@
+backup created+verified; canonical sha256 unchanged; symlink removed; .model.json with 62 MeshParts + 62 distinct MeshIds + 2 SurfaceAppearances; argon build PASS; SpawnRoot+bunker-rooms untouched. Report backup path, .model.json path, MeshPart count, distinct MeshId count, SA count, argon build result, canonical hash before/after, deviations.

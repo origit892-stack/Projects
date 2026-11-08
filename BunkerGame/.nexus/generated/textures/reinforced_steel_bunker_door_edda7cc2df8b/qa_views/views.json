@@ -1,0 +1,150 @@
+{
+  "mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/textured.glb",
+  "center": [
+    -0.003761470317840576,
+    0.004535391926765442,
+    -0.0012193918228149414
+  ],
+  "dimensions": [
+    1.4004348516464233,
+    0.5112518072128296,
+    1.9059754610061646
+  ],
+  "longest": 1.9059754610061646,
+  "views": {
+    "front": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/qa_views/front.png",
+      "camera_location": [
+        -0.003761470317840576,
+        -5.332196235656738,
+        -0.0012193918228149414
+      ],
+      "target": [
+        -0.003761470317840576,
+        0.004535391926765442,
+        -0.0012193918228149414
+      ],
+      "direction": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "ortho_scale": 2.5730668723583223
+    },
+    "back": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/qa_views/back.png",
+      "camera_location": [
+        -0.003761470317840576,
+        5.341266632080078,
+        -0.0012193918228149414
+      ],
+      "target": [
+        -0.003761470317840576,
+        0.004535391926765442,
+        -0.0012193918228149414
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "ortho_scale": 2.5730668723583223
+    },
+    "left": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/qa_views/left.png",
+      "camera_location": [
+        -5.3404927253723145,
+        0.004535391926765442,
+        -0.0012193918228149414
+      ],
+      "target": [
+        -0.003761470317840576,
+        0.004535391926765442,
+        -0.0012193918228149414
+      ],
+      "direction": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 2.5730668723583223
+    },
+    "right": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/qa_views/right.png",
+      "camera_location": [
+        5.332970142364502,
+        0.004535391926765442,
+        -0.0012193918228149414
+      ],
+      "target": [
+        -0.003761470317840576,
+        0.004535391926765442,
+        -0.0012193918228149414
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "ortho_scale": 2.5730668723583223
+    },
+    "top": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/qa_views/top.png",
+      "camera_location": [
+        -0.003761470317840576,
+        0.004535391926765442,
+        5.335512161254883
+      ],
+      "target": [
+        -0.003761470317840576,
+        0.004535391926765442,
+        -0.0012193918228149414
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "ortho_scale": 2.5730668723583223
+    },
+    "bottom": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/qa_views/bottom.png",
+      "camera_location": [
+        -0.003761470317840576,
+        0.004535391926765442,
+        -5.337950706481934
+      ],
+      "target": [
+        -0.003761470317840576,
+        0.004535391926765442,
+        -0.0012193918228149414
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "ortho_scale": 2.5730668723583223
+    },
+    "hero": {
+      "path": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/qa_views/hero.png",
+      "camera_location": [
+        3.330068349838257,
+        -3.329294443130493,
+        2.4991531372070312
+      ],
+      "target": [
+        -0.003761470317840576,
+        0.004535391926765442,
+        -0.0012193918228149414
+      ],
+      "direction": [
+        0.6246950626373291,
+        -0.6246950626373291,
+        0.4685212969779968
+      ],
+      "ortho_scale": 2.5730668723583223
+    }
+  },
+  "all_exist": true
+}

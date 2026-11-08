@@ -1,0 +1,6 @@
+{
+  "returncode": 0,
+  "seconds": 6.689,
+  "stdout": "{\n  \"reference\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/appearance_reference.png\",\n  \"correspondence\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/uv-correspondence.json\",\n  \"output\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/base_color_raw.png\",\n  \"resolution\": 2048,\n  \"triangle_count\": 24964,\n  \"rasterized_triangles\": 24964,\n  \"degenerate_triangles\": 0,\n  \"written_pixels\": 824624,\n  \"written_ratio\": 0.19660568237304688,\n  \"coverage\": \"/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/reinforced_steel_bunker_door_edda7cc2df8b/cpu_bake_coverage.png\",\n  \"method\": \"CPU_BARYCENTRIC_UV_RASTERIZATION\"\n}\nCPU_UV_BAKE=PASS\n",
+  "stderr": ""
+}

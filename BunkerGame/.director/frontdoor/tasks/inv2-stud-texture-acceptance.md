@@ -1,0 +1,1 @@
+InventoryV2Module.luau is modified on disk and rootCanvas has a stud-texture ImageLabel overlay with a ZIndex below all content and a subtle ImageTransparency. The Luau syntax check passes. The handoff reports the exact stud texture source used (live-Studio-extracted properties or a valid asset id) plus the ZIndex and ImageTransparency values.

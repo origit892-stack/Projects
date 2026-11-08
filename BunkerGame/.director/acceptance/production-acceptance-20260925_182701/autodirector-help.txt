@@ -1,0 +1,7 @@
+usage: autodirector.py [-h] {run,resume,status} ...
+
+positional arguments:
+  {run,resume,status}
+
+options:
+  -h, --help           show this help message and exit

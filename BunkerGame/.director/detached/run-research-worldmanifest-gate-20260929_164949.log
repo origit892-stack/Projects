@@ -1,0 +1,25 @@
+{
+  "task_id": "research-worldmanifest-gate",
+  "role": "researcher",
+  "run_id": "research-worldmanifest-gate-05bb17498588",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-29T13:54:25.894290+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/391e37a1-3c9c-4824-b311-31cfedd71502.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/391e37a1-3c9c-4824-b311-31cfedd71502.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

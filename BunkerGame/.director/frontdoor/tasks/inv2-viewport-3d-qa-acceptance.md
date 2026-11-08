@@ -1,0 +1,1 @@
+Report PASS/FAIL per check with file/line evidence; syntax validation passes; rotation loop and teardown both present and correctly wired to UI close/destroy paths; no placeholder remains; no unrelated regressions.

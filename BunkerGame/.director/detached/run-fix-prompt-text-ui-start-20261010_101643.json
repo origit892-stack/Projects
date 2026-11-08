@@ -1,0 +1,12 @@
+{
+  "job_id": "run-fix-prompt-text-ui-start-20261010_101643",
+  "mode": "run",
+  "task_ids": [
+    "fix-prompt-text-ui-start"
+  ],
+  "pid": 53945,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-prompt-text-ui-start-20261010_101643.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-fix-prompt-text-ui-start-20261010_101643.json",
+  "started_at": 1791616603.089078,
+  "launcher_status": "RUNNING"
+}

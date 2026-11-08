@@ -1,0 +1,12 @@
+{
+  "job_id": "run-inv-v2-ui-20261009_123148",
+  "mode": "run",
+  "task_ids": [
+    "inv-v2-ui"
+  ],
+  "pid": 5323,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv-v2-ui-20261009_123148.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv-v2-ui-20261009_123148.json",
+  "started_at": 1791538308.264041,
+  "launcher_status": "RUNNING"
+}

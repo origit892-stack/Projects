@@ -1,0 +1,1 @@
+PASS requires concrete evidence for all 5 checks: (1) grep proof no prompt.KeyCode; (2) KeyboardKeyCode line with valid Enum.KeyCode; (3) each prompt property listed with validity verdict; (4) pcall wrapper with non-crashing failure handler; (5) syntax check result.

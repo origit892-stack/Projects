@@ -1,0 +1,27 @@
+{
+  "task_id": "inv-v2-ui",
+  "role": "implementer",
+  "run_id": "inv-v2-ui-f3fef3b3ca55",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-10-09T09:38:46.722075+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 2,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/43977ddf-3359-44e3-9f50-317ee3fc0320.json",
+      "/Users/Ori/.continue/sessions/e43ade25-b3fa-4ad9-9a17-0c1bcc9431c7.json"
+    ],
+    "deleted_session_count": 2,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/43977ddf-3359-44e3-9f50-317ee3fc0320.json",
+      "/Users/Ori/.continue/sessions/e43ade25-b3fa-4ad9-9a17-0c1bcc9431c7.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "task_id": "inv2-roblox-audit",
+  "role": "researcher",
+  "objective": "Audit BunkerGame Roblox Studio + filesystem state for Inventory v2 preview work. READ-ONLY. Project root /Users/Ori/Documents/Projects/BunkerGame. 1) robridge_system_info (preflight) + robridge_workspace_state summary: Studio mode, place info, top-level services. 2) Inspect existing UI: find all ScreenGuis (StarterGui, StarterPlayerScripts, CoreGui, Workspace) - list names, parents, child structure depth 2-3. Identify any existing inventory UI (v1) and any existing BunkerInventoryV2_Preview. 3) Inspect existing inventory systems: scripts, remotes (RemoteEvents/RemoteFunctions), inventory data modules - list paths only, do not modify. 4) Check filesystem source of truth: how is Roblox UI persisted to disk? Look for Argon config (argon.toml or similar), legacy Rojo (default.project.json), or sync dirs under .director or sync/. Determine the canonical persistence mechanism and where a new ScreenGui would be persisted (e.g. src/Client/... path mapping). 5) Check git status of project (non-destructive) to know working tree state. Deliver compact report: Studio mode, existing ScreenGui inventory, existing inventory system paths, persistence mechanism + exact target path for new UI, git state.",
+  "write_scopes": [],
+  "read_scopes": [
+    "."
+  ],
+  "acceptance_criteria": "Report contains: (1) current Studio mode (Edit/Play); (2) list of existing ScreenGuis with names+parents; (3) existing inventory scripts/remotes/data module paths; (4) canonical persistence mechanism (Argon/Rojo/sync) with exact filesystem path where a new ScreenGui BunkerInventoryV2_Preview should be persisted; (5) git working tree state summary; (6) no mutations performed.",
+  "timeout_seconds": 3600,
+  "created_at": "2026-10-08T18:30:14.876510+00:00"
+}

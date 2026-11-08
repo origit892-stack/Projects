@@ -1,0 +1,70 @@
+{
+  "id": "20260920_150557_e684af6d",
+  "title": "smoke_test_v8",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "Perform a comprehensive READ-ONLY BunkerGame inspection: 1. Inspect project architecture and major dependencies. 2. Inspect existing gameplay systems. 3. Inspect bunker, world, environment, and terrain state. 4. Inspect assets and their current usage. 5. Inspect UI architecture and gameplay connections. 6. Inspect development, build, synchronization, and QA tooling. 7. Determine the relationship between filesystem, Rojo, and Roblox Studio. 8. Produce a verified current-state audit. Do not modify source. Do not modify Studio. Do not modify terrain. Do not generate or import assets. Do not modify UI. Do not modify Nexus. Do not synchronize or publish anything. Complete every milestone in order. Do not declare the master turn complete until every milestone and final verification pass.",
+  "status": "INTERRUPTED",
+  "created_at": "2026-09-20T12:05:57.982407+00:00",
+  "updated_at": "2026-09-20T12:06:37.429669+00:00",
+  "run_id": null,
+  "last_result": "Session interrupted by user.",
+  "history": [
+    {
+      "type": "objective",
+      "text": "Perform a comprehensive READ-ONLY BunkerGame inspection: 1. Inspect project architecture and major dependencies. 2. Inspect existing gameplay systems. 3. Inspect bunker, world, environment, and terrain state. 4. Inspect assets and their current usage. 5. Inspect UI architecture and gameplay connections. 6. Inspect development, build, synchronization, and QA tooling. 7. Determine the relationship between filesystem, Rojo, and Roblox Studio. 8. Produce a verified current-state audit. Do not modify source. Do not modify Studio. Do not modify terrain. Do not generate or import assets. Do not modify UI. Do not modify Nexus. Do not synchronize or publish anything. Complete every milestone in order. Do not declare the master turn complete until every milestone and final verification pass.",
+      "created_at": "2026-09-20T12:05:57.982407+00:00"
+    },
+    {
+      "type": "interrupt",
+      "text": "Session interrupted by user.",
+      "created_at": "2026-09-20T12:06:37.429608+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "Perform a comprehensive READ-ONLY BunkerGame inspection: 1. Inspect project architecture and major dependencies. 2. Inspect existing gameplay systems. 3. Inspect bunker, world, environment, and terrain state. 4. Inspect assets and their current usage. 5. Inspect UI architecture and gameplay connections. 6. Inspect development, build, synchronization, and QA tooling. 7. Determine the relationship between filesystem, Rojo, and Roblox Studio. 8. Produce a verified current-state audit. Do not modify source. Do not modify Studio. Do not modify terrain. Do not generate or import assets. Do not modify UI. Do not modify Nexus. Do not synchronize or publish anything. Complete every milestone in order. Do not declare the master turn complete until every milestone and final verification pass.",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": null,
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "milestone_state": {
+      "version": 1,
+      "active": false,
+      "master_prompt_sha256": null,
+      "master_prompt": null,
+      "plan": null,
+      "current_milestone_index": null,
+      "milestones": [],
+      "final_verification": {
+        "status": "PENDING",
+        "run_id": null,
+        "result": null,
+        "evidence": []
+      },
+      "master_status": "PENDING",
+      "master_result": null
+    },
+    "updated_at": null
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": null
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": "INTERRUPTED",
+    "last_instruction": "Perform a comprehensive READ-ONLY BunkerGame inspection: 1. Inspect project architecture and major dependencies. 2. Inspect existing gameplay systems. 3. Inspect bunker, world, environment, and terrain state. 4. Inspect assets and their current usage. 5. Inspect UI architecture and gameplay connections. 6. Inspect development, build, synchronization, and QA tooling. 7. Determine the relationship between filesystem, Rojo, and Roblox Studio. 8. Produce a verified current-state audit. Do not modify source. Do not modify Studio. Do not modify terrain. Do not generate or import assets. Do not modify UI. Do not modify Nexus. Do not synchronize or publish anything. Complete every milestone in order. Do not declare the master turn complete until every milestone and final verification pass.",
+    "continuation_point": "initial-turn-interrupted",
+    "interrupted": true,
+    "resume_requested_at": null,
+    "updated_at": "2026-09-20T12:06:37.429628+00:00"
+  }
+}

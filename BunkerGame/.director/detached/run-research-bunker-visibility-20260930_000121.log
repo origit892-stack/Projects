@@ -1,0 +1,25 @@
+{
+  "task_id": "research-bunker-visibility",
+  "role": "researcher",
+  "run_id": "research-bunker-visibility-ca2a81a7135f",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-29T21:03:08.969732+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/aa3ce3d8-22f2-4f9d-971d-8d543dbcbb4c.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/aa3ce3d8-22f2-4f9d-971d-8d543dbcbb4c.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

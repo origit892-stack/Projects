@@ -1,0 +1,13 @@
+{
+  "mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/preprocessed.glb",
+  "base_color": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/base_color.png",
+  "roughness": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/roughness.png",
+  "metallic": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/metallic.png",
+  "normal": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/normal_neutral.png",
+  "output": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/textured.glb",
+  "vertices": 9103,
+  "faces": 15190,
+  "loops": 45570,
+  "uv": "UVMap",
+  "output_exists": true
+}

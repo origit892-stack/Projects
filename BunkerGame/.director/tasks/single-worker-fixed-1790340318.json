@@ -1,0 +1,11 @@
+{
+  "task_id": "single-worker-fixed-1790340318",
+  "objective": "Use your Bash terminal tool. Run pwd. Then run printf 'SINGLE_WORKER_FIXED_PASS\\n'. Do not modify project files. Return PASS only after observing the terminal output.",
+  "write_scopes": [],
+  "read_scopes": [
+    "."
+  ],
+  "acceptance_criteria": "Bash must execute successfully and output SINGLE_WORKER_FIXED_PASS.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-09-25T12:45:18.142286+00:00"
+}

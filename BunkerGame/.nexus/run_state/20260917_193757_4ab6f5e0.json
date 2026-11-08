@@ -1,0 +1,9 @@
+{
+  "run_id": "20260917_193757_4ab6f5e0",
+  "updated": 1789663161.912531,
+  "role": "coder",
+  "task": "Create a Server Script file for Ammo Crate at /Users/Ori/Documents/Projects/BunkerGame/src/ServerScriptService/Game/AmmoCrateInteraction.server.luau with the following content:\n\n-- Ammo Crate Server Script\nlocal crate = script.Parent\nlocal lid = crate:FindFirstChild(\"Lid\")\nlocal prompt = Instance.new(\"ProximityPrompt\")\n\nprompt.Name = \"OpenCratePrompt\"\nprompt.Text = \"Open\"\nprompt.KeyCode = Enum.UserInputType.Keyboard\nprompt.Key = \"e\"\nprompt.HoldDurationToFire = 1\nprompt.Parent = crate\n\nlocal function OpenLid()\n\tif lid then\n\t\tlocal tweenService = game:GetService(\"TweenService\")\n\t\tlocal tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)\n\t\tlocal properties = {CFrame = lid.CFrame * CFrame.Angles(0, math.rad(90), 0)}\n\t\tlocal tween = tweenService:Create(lid, tweenInfo, properties)\n\t\ttween:Play()\n\tend\n\t\n\tprint(\"Ammo Crate Opened!\")\nend\n\nprompt.Triggered:Connect(function()\n\tOpenLid()\n\tprompt:Destroy()\nend)",
+  "status": "PASS",
+  "iteration": 3,
+  "result": "The file has been successfully created and verified. The Server Script for Ammo Crate is now in place at the specified path with all the required functionality:\n\n1. ✅ Finds the first child object named \"Lid\"\n2. ✅ Creates a ProximityPrompt with 'e' key (KeyCode = Enum.UserInputType.Keyboard, Key = \"e\")\n3. ✅ Connects prompt to OpenLid function via Triggered event\n4. ✅ Implements OpenLid function with TweenService animation\n\nThe script is complete and ready for use in the game environment."
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "task_id": "impl-create-project-info",
+    "role": "implementer",
+    "status": "PASS",
+    "executed": "Read live /Users/Ori/Documents/Projects/BunkerGame/default.project.json and extracted the exact top-level \"name\" value (\"BunkerGame\", line 2). Ensured sandbox directory /Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work exists (created). Wrote the acceptance artifact project-info.txt with exactly two lines and a trailing newline. Did not modify default.project.json or anything outside the sandbox work directory.",
+    "result": "Acceptance artifact created. Exact name value read from live project file: BunkerGame. Exact bytes written (43 bytes, 2 lines, verified via od -c): line 1 \"PROJECT_NAME=BunkerGame\\n\", line 2 \"BUILD_STATUS=READY\\n\" (trailing newline present, no other content).",
+    "files_changed": "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt",
+    "artifacts": "/Users/Ori/Documents/Projects/BunkerGame/.director/acceptance/adaptive-planner-20260929_114841/work/project-info.txt",
+    "verification": "VERIFIED_FACT: od -c shows exact byte sequence P R O J E C T _ N A M E = B u n k e r G a m e \\n B U I L D _ S T A T U S = R E A D Y \\n (43 bytes per wc -c, 2 lines per wc -l). VERIFIED_FACT: grep confirms default.project.json line 2 is \"name\": \"BunkerGame\". VERIFIED_FACT: default.project.json was only read, never written; no files outside the sandbox work directory were modified.",
+    "blockers": "NONE",
+    "completed_at": "2026-09-29T08:49:22.252912+00:00"
+  }
+]

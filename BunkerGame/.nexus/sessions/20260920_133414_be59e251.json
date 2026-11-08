@@ -1,0 +1,75 @@
+{
+  "id": "20260920_133414_be59e251",
+  "title": "milestone_real_smoke_700",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "Perform a READ-ONLY verification of the current BunkerGame project.",
+  "status": "INTERRUPTED",
+  "created_at": "2026-09-20T10:34:14.726419+00:00",
+  "updated_at": "2026-09-20T10:35:35.397143+00:00",
+  "run_id": null,
+  "last_result": "Session interrupted by user.",
+  "history": [
+    {
+      "type": "objective",
+      "text": "Perform a READ-ONLY verification of the current BunkerGame project.",
+      "created_at": "2026-09-20T10:34:14.726419+00:00"
+    },
+    {
+      "type": "instruction",
+      "text": "Perform a READ-ONLY verification of the current BunkerGame project.",
+      "created_at": "2026-09-20T10:34:14.956526+00:00"
+    },
+    {
+      "type": "interrupt",
+      "text": "Session interrupted by user.",
+      "created_at": "2026-09-20T10:35:35.396673+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "Perform a READ-ONLY verification of the current BunkerGame project.",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": null,
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "updated_at": null,
+    "milestone_state": {
+      "version": 1,
+      "active": false,
+      "master_prompt_sha256": null,
+      "master_prompt": null,
+      "plan": null,
+      "current_milestone_index": null,
+      "milestones": [],
+      "final_verification": {
+        "status": "PENDING",
+        "run_id": null,
+        "result": null,
+        "evidence": []
+      },
+      "master_status": "PENDING",
+      "master_result": null
+    }
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": "2026-09-20T10:34:14.957434+00:00"
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": "INTERRUPTED",
+    "last_instruction": "Perform a READ-ONLY verification of the current BunkerGame project.",
+    "continuation_point": "interrupted-turn",
+    "interrupted": true,
+    "resume_requested_at": null,
+    "updated_at": "2026-09-20T10:35:35.396853+00:00"
+  }
+}

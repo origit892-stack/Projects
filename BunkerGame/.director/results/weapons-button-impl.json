@@ -1,0 +1,12 @@
+{
+  "task_id": "weapons-button-impl",
+  "run_id": "weapons-button-impl-ae1627140a44",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-26T07:51:45.356799+00:00"
+}

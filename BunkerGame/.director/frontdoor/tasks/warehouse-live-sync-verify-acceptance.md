@@ -1,0 +1,1 @@
+compact handoff with exact evidence per gate: argon build result, canonical sha256, .model.json MeshPart+SA counts, Studio MeshPart count, Studio SA count, position range, SpawnRoot present, bunker-rooms present, SharedString error status.

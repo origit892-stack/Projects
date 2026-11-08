@@ -1,0 +1,15 @@
+{
+  "task_id": "ui-stud-redesign-001",
+  "role": "implementer",
+  "objective": "GOAL: Add classic Roblox stud texture to two 2D UI files. (1) src/StarterPlayer/StarterPlayerScripts/GameClient/UIController.luau: inside UIController:_buildWeaponsButton(), immediately before the line self._refs.WeaponsButton = button, insert a new ImageLabel as a child of button with Image=rbxassetid://7447638611, ScaleType=Enum.ScaleType.Tile, TileSize=UDim2.new(0,32,0,32), Size=UDim2.fromScale(1,1), ZIndex=0, ImageTransparency=0.5, BackgroundTransparency=1. (2) src/StarterGui/InventoryV2/InventoryV2Module.luau: at the creation of rootCanvas, insert the same stud ImageLabel as a child of rootCanvas. CONSTRAINTS: Do not create any physical 3D parts in the Workspace. Only modify these two existing 2D UI files using atomic edits. Do not change any other behavior. ACCEPTANCE: Both files contain the stud ImageLabel with the exact properties above; both files remain valid Luau; no Workspace parts are created.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src/StarterPlayer/StarterPlayerScripts/GameClient",
+    "/Users/Ori/Documents/Projects/BunkerGame/src/StarterGui/InventoryV2"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src"
+  ],
+  "acceptance_criteria": "1) UIController.luau _buildWeaponsButton: stud ImageLabel child of button (rbxassetid://7447638611, Tile, 32x32, ZIndex 0, ImageTransparency 0.5, BackgroundTransparency 1) placed before self._refs.WeaponsButton = button. 2) InventoryV2Module.luau: same stud ImageLabel child of rootCanvas. 3) No 3D Workspace parts created; both files valid Luau; no unrelated changes.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-10T17:20:01.010879+00:00"
+}

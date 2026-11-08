@@ -1,0 +1,13 @@
+{
+  "task_id": "warehouse-meshid-research-001",
+  "role": "researcher",
+  "objective": "Find the internal Roblox mesh asset ID for published Model asset 73559951039514 WITHOUT using Roblox Studio. Context: this Model was published from a Cube-generated warehouse mesh. A MeshPart.MeshId requires the internal mesh asset ID; the Model asset ID 73559951039514 CANNOT be used as a MeshId (verified constraint in the project tooling). The factory manifest /Users/Ori/Developer/roblox-assets/assets/abandoned_warehouse_01/final/manifest.json does NOT contain the internal mesh ID (only the GLB source + sha256). Roblox Open Cloud API key: security find-generic-password -s ROBLOX_OPEN_CLOUD_API_KEY -w (creator userId 7177096046). A first probe at https://assetdelivery.roblox.com/v1/asset/73559951039514 with x-api-key returned HTTP 404 (empty error) - that endpoint/auth may be wrong; investigate the correct one. The project uses .rbxmx files (example: src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx). Studio is NOT connected to argon (verified), so the Studio-import path is currently blocked - that is why you must find a Studio-free method. Steps: 1) Determine the correct Roblox API endpoint + auth to download Model 73559951039514 as .rbxmx (try assetdelivery variants, the Open Cloud assets API, and inspect /Users/Ori/Developer/roblox-assets/roblox_assets/ for any download/inspect code the CLI uses). 2) If you can download the .rbxmx, parse the XML to find the MeshPart instance and read its MeshId (the internal mesh asset ID). 3) Report the exact internal mesh asset ID, OR confirm it is NOT obtainable without Studio (with evidence of what you tried). Do NOT modify any project files. Do NOT regenerate or republish the asset.",
+  "write_scopes": [],
+  "read_scopes": [
+    "/Users/Ori/Developer/roblox-assets",
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "PASS if the handoff either (A) reports a concrete internal Roblox mesh asset ID (a numeric ID distinct from 73559951039514) extracted from the published Model .rbxmx XML, with the exact download command + endpoint + auth used and the XML evidence (the MeshPart MeshId line), OR (B) definitively confirms the internal mesh ID is NOT obtainable without a live Studio import, with evidence of every endpoint/method tried (including the assetdelivery 404) and the exact Studio steps that would be required. The handoff must state clearly which of (A) or (B) applies. Do NOT modify project files. Do NOT regenerate or republish.",
+  "timeout_seconds": 3600,
+  "created_at": "2026-10-01T12:00:32.191991+00:00"
+}

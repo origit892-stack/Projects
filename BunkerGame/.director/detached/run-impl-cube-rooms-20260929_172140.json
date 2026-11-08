@@ -1,0 +1,12 @@
+{
+  "job_id": "run-impl-cube-rooms-20260929_172140",
+  "mode": "run",
+  "task_ids": [
+    "impl-cube-rooms"
+  ],
+  "pid": 18120,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-cube-rooms-20260929_172140.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-cube-rooms-20260929_172140.json",
+  "started_at": 1790691700.416845,
+  "launcher_status": "RUNNING"
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "run-warehouse-rbxmx-inspect-20261003_153852",
+  "mode": "run",
+  "task_ids": [
+    "warehouse-rbxmx-inspect"
+  ],
+  "pid": 17249,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-rbxmx-inspect-20261003_153852.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-rbxmx-inspect-20261003_153852.json",
+  "started_at": 1791031132.97262,
+  "launcher_status": "RUNNING"
+}

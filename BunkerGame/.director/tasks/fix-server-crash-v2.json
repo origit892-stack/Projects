@@ -1,0 +1,14 @@
+{
+  "task_id": "fix-server-crash-v2",
+  "role": "implementer",
+  "objective": "BunkerGame: stop server crash + unblock client UI in Minimal spawn mode. VERIFIED CRASH CAUSE: src/ServerScriptService/Game/AmmoCrateInteraction.server.luau line 1 is 'prompt.AutoDisableAfterTriggering = false' but 'prompt' is only declared on line 5 (Instance.new) - so line 1 indexes nil and halts the server. GOAL: (1) Fix that crash with a minimal reversible edit (move the AutoDisableAfterTriggering line to after prompt.Parent=crate, or guard it). (2) Read src/ServerScriptService/Game/ServerBootstrap.server.luau and src/StarterPlayer/StarterPlayerScripts/GameClient/ClientBootstrap.client.luau; identify the EXACT client-startup gate (RemoteEvent/Value/flag) and why 'Workspace.GameWorld not found -> Minimal spawn mode' never sends it. (3) Make the client UI initialize in Minimal spawn mode without breaking full mode. (4) Report root cause of missing Workspace.GameWorld + proper fix. Apply changes via the project source-to-Studio sync workflow and confirm they are live in Studio before finishing. Keep diffs minimal and reversible.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "AmmoCrateInteraction no longer errors at startup (minimal reversible diff). Handoff documents: exact client-startup gate + why minimal mode never sends it; client UI initializes in Minimal spawn mode with full-mode path unchanged; root cause of missing Workspace.GameWorld + recommended proper fix; files changed + sync method + confirmation changes are live in Studio. No new server/client startup errors.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-09T20:41:38.266792+00:00"
+}

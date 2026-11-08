@@ -1,0 +1,15 @@
+{
+  "project_status": "CONTINUE",
+  "summary": "Cycle 1: smoke-backend and smoke-frontend both PASS with byte-exact verification (backend.txt = 'BACKEND=READY' 13 bytes; frontend.txt = 'FRONTEND=READY' 14 bytes) in the sandbox work directory. Per the mandatory dependency ordering, tests.txt is now unblocked (both prerequisites verified); release.txt remains gated on tests.txt and is deferred to a later cycle.",
+  "tasks": [
+    {
+      "task_id": "smoke-tests",
+      "objective": "In the sandbox work directory /Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work: (1) read back backend.txt and frontend.txt and verify their exact byte contents ('BACKEND=READY' and 'FRONTEND=READY') before writing anything; (2) only if both verify, create tests.txt with exact content 'TESTS=PASS' (no trailing newline, no extra characters); (3) read back tests.txt and verify byte-for-byte equality (e.g., od -c, wc -c = 11, cmp against printf 'TESTS=PASS'). Do not create or modify anything outside the sandbox work directory. Do not create release.txt in this task.",
+      "write_scopes": ["/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work/tests.txt"],
+      "read_scopes": ["/Users/Ori/Documents/Projects/BunkerGame/.director/frontdoor/mandatory-router-file-smoke-20260925_185005/work"],
+      "acceptance_criteria": "tests.txt exists in the sandbox work directory with exactly 11 bytes equal to 'TESTS=PASS' (byte-for-byte match confirmed by read-back: od -c, wc -c = 11, cmp exit 0). The pre-write verification of backend.txt ('BACKEND=READY') and frontend.txt ('FRONTEND=READY') was actually performed and its evidence is reported. No files outside the sandbox work directory were created or modified. release.txt was NOT created.",
+      "timeout_seconds": 7200
+    }
+  ],
+  "final_result": ""
+}

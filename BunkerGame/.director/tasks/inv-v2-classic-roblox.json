@@ -1,0 +1,12 @@
+{
+  "task_id": "inv-v2-classic-roblox",
+  "role": "implementer",
+  "objective": "Rewrite src/StarterGui/InventoryV2/InventoryV2Module.luau to use a classic Roblox playful aesthetic (Grow & Garden / Stolen Egg style) instead of the current dark tactical theme. PRESERVE: the exact same layout structure (root CanvasGroup 920x610, header bar, left container with category tabs + 5x4 slot grid, right inspect panel with item viewport + stat bars + action buttons), the createItemPreview() function and its 3D red cube ViewportFrame logic, the Mount/Init/new API, the Visible-based preview lifecycle, and the close button behavior. CHANGE: Replace the THEME table with bright fun colors (e.g. bright blue #4A90D9, green #5CB85C, yellow #F0C040, white text). Use Enum.Font.FredokaOne or Enum.Font.Cartoon for all text. Add thick UIStroke (Thickness 3-4, dark outline color like #2C3E50) to all frames and buttons for a cartoonish pop-out feel. Keep the stud texture overlay (rbxassetid://7447638611, Tile, 32x32, transparency 0.5) on the root background. Change header title text to something fun like 'MY INVENTORY' or 'GEAR UP!'. Change category tabs to fun names (WEAPONS, TOOLS, FOOD, PETS, MISC). Change action buttons to EQUIP, USE, GIFT. Change stat labels to fun names (POWER, SPEED, LUCK, FUN). Make slot hover effects use bright yellow/green highlights instead of amber. Remove all military/tactical text references. No 3D parts in Workspace - everything is 2D ScreenGui. The file must be valid Luau with --!strict.",
+  "write_scopes": [],
+  "read_scopes": [
+    "."
+  ],
+  "acceptance_criteria": "File src/StarterGui/InventoryV2/InventoryV2Module.luau exists on disk with valid Luau syntax (--!strict). Contains bright fun color palette (no dark/tactical colors). Uses FredokaOne or Cartoon font. Has thick UIStroke (Thickness >= 3) on main frames and buttons. Has stud texture overlay with rbxassetid://7447638611. Preserves createItemPreview() with red cube + camera + rotation loop. Preserves Mount(parent) API returning CanvasGroup. Preserves Visible-based preview lifecycle. No references to military/tactical/void/steel/olive/amber theme names.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-11T19:33:27.721123+00:00"
+}

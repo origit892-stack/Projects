@@ -1,0 +1,25 @@
+{
+  "task_id": "verify-prompt-text-ui-start",
+  "role": "verifier",
+  "run_id": "verify-prompt-text-ui-start-c453636964ef",
+  "status": "PASS",
+  "executed": "Independently verified both fixes on disk in BunkerGame. (1) AmmoCrateInteraction.server.luau: no 'prompt.Text' reference remains; ProximityPrompt label is set via 'prompt.ActionText = \"Open\"' at line 7. (2) ClientBootstrap.client.luau: UIController is required (line 6), instantiated (line 7), and ui:Start() is called exactly once at top level (line 8), before any WaitForChild (first at line 10), before any network-module require (lines 11-12), and before any InvokeServer (line 135, inside a later-running function). The ui:Start() call is not nested inside any function.",
+  "result": "Independently verified both fixes on disk in BunkerGame. (1) AmmoCrateInteraction.server.luau: no 'prompt.Text' reference remains; ProximityPrompt label is set via 'prompt.ActionText = \"Open\"' at line 7. (2) ClientBootstrap.client.luau: UIController is required (line 6), instantiated (line 7), and ui:Start() is called exactly once at top level (line 8), before any WaitForChild (first at line 10), before any network-module require (lines 11-12), and before any InvokeServer (line 135, inside a later-running function). The ui:Start() call is not nested inside any function.",
+  "files_changed": "NONE",
+  "artifacts": "NONE",
+  "verification": "File 1 — src/ServerScriptService/Game/AmmoCrateInteraction.server.luau:\n- grep -n \"prompt\\.Text\" → no matches (exit code 1): prompt.Text is ABSENT. PASS\n- grep -n \"prompt\\.ActionText\" → \"7:prompt.ActionText = \\\"Open\\\"\": present at line 7 as expected. PASS\n- Full file read confirms the ProximityPrompt is created (line 4), named \"OpenCratePrompt\" (line 6), labeled via ActionText (line 7), and no other Text property assignment exists.\n\nFile 2 — src/StarterPlayer/StarterPlayerScripts/GameClient/ClientBootstrap.client.luau:\n- grep -n \"ui:Start()\" → exactly one match: \"8:ui:Start()\". PASS (exactly one call)\n- Line-numbered ordering evidence:\n  - 6: local UIController = require(script.Parent.UIController)\n  - 7: local ui = UIController.new(nil)\n  - 8: ui:Start()\n  - 10: local Game = ReplicatedStorage:WaitForChild(\"Game\")  ← first WaitForChild\n  - 11: local Config = require(Game:WaitForChild(\"Config\"))  ← first network-module require\n  - 12: local NetTypes = require(Game:WaitForChild(\"NetTypes\"))\n  - 135: return getSnapshot:InvokeServer()  ← first InvokeServer (inside requestSnapshot, runs later)\n- ui:Start() at line 8 is at file top level (column 0, outside startClient and all other functions), so it executes synchronously before any WaitForChild, network require, or InvokeServer. PASS\n- Note: ui:Stop() appears in teardown() (line ~84) — that is a Stop call, not a second Start; no other ui:Start() exists.\nNo files were modified during verification (read-only inspection + grep only).",
+  "blockers": "NONE",
+  "completed_at": "2026-10-10T07:20:05.564407+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/a414268d-a3fa-4c86-8aae-e908630eb521.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/a414268d-a3fa-4c86-8aae-e908630eb521.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

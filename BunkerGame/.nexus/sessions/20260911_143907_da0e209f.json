@@ -1,0 +1,73 @@
+{
+  "id": "20260911_143907_da0e209f",
+  "title": "1.8_EXECUTION_SMOKE_3",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "תמצא את הקבצים pyproject.toml ו-README.md בפרויקט. תבדוק מה הגרסה שמופיעה ב-pyproject.toml ומה הכותרת הראשית ב-README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+  "status": "FAILED",
+  "created_at": "2026-09-11T11:39:07.281536+00:00",
+  "updated_at": "2026-09-11T11:54:08.179897+00:00",
+  "run_id": null,
+  "last_result": "AGENT_EXCEPTION=TypeError: _load_model_cached() missing 1 required positional argument: 'model_path'",
+  "history": [
+    {
+      "type": "objective",
+      "text": "תמצא את הקבצים pyproject.toml ו-README.md בפרויקט. תבדוק מה הגרסה שמופיעה ב-pyproject.toml ומה הכותרת הראשית ב-README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+      "created_at": "2026-09-11T11:39:07.281536+00:00"
+    },
+    {
+      "type": "result",
+      "text": "AGENT_EXCEPTION=TypeError: _load_model_cached() missing 1 required positional argument: 'model_path'",
+      "created_at": "2026-09-11T11:40:46.103632+00:00"
+    },
+    {
+      "type": "instruction",
+      "text": "NEXUS 1.8 EXECUTION LOOP RESET. Stop patching the existing completion branches incrementally. Preserve the current Understanding, Planner, reconciliation, TaskContract, EvidenceLedger, speed governor, tool execution and failure handling. Rewrite only the normal Director execution/success path around a single explicit state machine: TOOL_CALLS → EXECUTE/RECORD/CONTINUE; NO_TOOL_CALLS → mandatory evaluate_execution_completion; CONTINUE → append focused continuation and loop; PASS + empty final → request final answer and loop; PASS + non-empty final → the only normal success return. No other normal-success return is allowed. task_progress must not return. ExecutionState must not gate success. Add deterministic E2E tests proving all four transitions and statically prove there is exactly one normal success return. Preserve existing failure exits. Run the full regression suite. Do not run a live smoke test until all deterministic execution-loop tests pass. No version bump, commit, tag or publish.",
+      "created_at": "2026-09-11T11:42:24.171409+00:00"
+    },
+    {
+      "type": "failure",
+      "text": "AGENT_EXCEPTION=TypeError: _load_model_cached() missing 1 required positional argument: 'model_path'",
+      "created_at": "2026-09-11T11:44:12.225406+00:00"
+    },
+    {
+      "type": "instruction",
+      "text": "NEXUS 1.8 EXECUTION COMPLETION LOADER RECOVERY.\n\nThe execution-loop reset has now exposed the first real failure inside the single completion authority. Do not modify Understanding, Planner, reconciliation, TaskContract, EvidenceLedger, Director tool execution, speed governor, or the new single-authority control-flow architecture.\n\nThe exact live failure is:\n\nAGENT_EXCEPTION=TypeError: _load_model_cached() missing 1 required positional argument: 'model_path'\n\nIt occurs when the Director reaches the no-tool completion path and evaluate_execution_completion() is invoked.\n\nFirst inspect nexus/runtime/execution_completion.py, nexus/runtime/understanding.py, and every current call site of _load_model_cached. Determine the exact current loader signature and the canonical way Understanding/Planner obtain local_path. Do not guess the API.\n\nFix execution_completion.py so it loads the same configured Understanding model through the current canonical loader contract. Preserve caching. Do not introduce a second model configuration mechanism.\n\nThen audit every call from execution_completion.py into shared Understanding generation helpers for API drift, including _load_model_cached, _generate, _generate_final_answer, JSON extraction, tokenizer/model tuple shape, temperature/top_p parameters, and configuration key names. Fix only demonstrated incompatibilities.\n\nAdd deterministic regression tests that exercise evaluate_execution_completion() far enough to prove the real loader call shape. Mock the model generation itself, but do not mock _load_model_cached in a way that would hide an incorrect signature. Assert that the configured local_path is passed to the loader.\n\nAlso add an integration-level execution-loop test for the critical no-tool path:\n\ntool evidence exists -> Director returns no tool calls -> evaluate_execution_completion is invoked -> CONTINUE loops OR PASS + non-empty final becomes the sole normal success return.\n\nProve that a completion-evaluator exception becomes a failure and cannot silently become normal completion.\n\nPreserve the current architecture:\n\nTOOL_CALLS -> execute/record/continue\n\nNO_TOOL_CALLS -> mandatory evaluate_execution_completion\n\nCONTINUE -> focused continuation -> loop\n\nPASS + empty final -> request final answer -> loop\n\nPASS + non-empty final -> sole normal success return\n\ntask_progress must remain absent from the critical path. ExecutionState must not gate success. Do not restore any second completion gate.\n\nRun targeted tests, then the complete deterministic regression suite. Perform git diff --check.\n\nDo not run a live smoke test. Do not bump version. Do not commit, tag, push, or publish.\n\nFinal report must include:\n\nROOT_CAUSE\n\nLOADER_SIGNATURE\n\nCANONICAL_MODEL_PATH_SOURCE\n\nEXECUTION_COMPLETION_LOADER_FIX\n\nSHARED_API_DRIFT_FOUND\n\nNO_TOOL_COMPLETION_PATH_TEST\n\nCOMPLETION_EXCEPTION_FAILS_CLOSED\n\nTASK_PROGRESS_CRITICAL_PATH=NO\n\nSECOND_COMPLETION_GATE=NO\n\nTARGETED_TESTS\n\nFULL_REGRESSION\n\nDIFF_CHECK\n\nLIVE_SMOKE_RUN=NO",
+      "created_at": "2026-09-11T11:50:09.219113+00:00"
+    },
+    {
+      "type": "failure",
+      "text": "AGENT_EXCEPTION=TypeError: _load_model_cached() missing 1 required positional argument: 'model_path'",
+      "created_at": "2026-09-11T11:54:08.179757+00:00"
+    }
+  ],
+  "schema_version": 2,
+  "working_state": {
+    "objective": "תמצא את הקבצים pyproject.toml ו-README.md בפרויקט. תבדוק מה הגרסה שמופיעה ב-pyproject.toml ומה הכותרת הראשית ב-README.md, ואז תסכם לי את שניהם. אל תשנה שום קובץ.",
+    "current_plan": [],
+    "completed_work": [],
+    "pending_work": [],
+    "blockers": [],
+    "last_checkpoint": null,
+    "active_item": null,
+    "last_completed_item": null,
+    "checkpoint_serial": 0,
+    "auto_checkpoint": true,
+    "updated_at": null
+  },
+  "context_state": {
+    "summary": null,
+    "durable_facts": [],
+    "compacted_through": 0,
+    "recent_window": 12,
+    "updated_at": "2026-09-11T11:50:09.220688+00:00"
+  },
+  "resume_state": {
+    "last_run_id": null,
+    "last_status": "FAILED",
+    "last_instruction": "NEXUS 1.8 EXECUTION COMPLETION LOADER RECOVERY.\n\nThe execution-loop reset has now exposed the first real failure inside the single completion authority. Do not modify Understanding, Planner, reconciliation, TaskContract, EvidenceLedger, Director tool execution, speed governor, or the new single-authority control-flow architecture.\n\nThe exact live failure is:\n\nAGENT_EXCEPTION=TypeError: _load_model_cached() missing 1 required positional argument: 'model_path'\n\nIt occurs when the Director reaches the no-tool completion path and evaluate_execution_completion() is invoked.\n\nFirst inspect nexus/runtime/execution_completion.py, nexus/runtime/understanding.py, and every current call site of _load_model_cached. Determine the exact current loader signature and the canonical way Understanding/Planner obtain local_path. Do not guess the API.\n\nFix execution_completion.py so it loads the same configured Understanding model through the current canonical loader contract. Preserve caching. Do not introduce a second model configuration mechanism.\n\nThen audit every call from execution_completion.py into shared Understanding generation helpers for API drift, including _load_model_cached, _generate, _generate_final_answer, JSON extraction, tokenizer/model tuple shape, temperature/top_p parameters, and configuration key names. Fix only demonstrated incompatibilities.\n\nAdd deterministic regression tests that exercise evaluate_execution_completion() far enough to prove the real loader call shape. Mock the model generation itself, but do not mock _load_model_cached in a way that would hide an incorrect signature. Assert that the configured local_path is passed to the loader.\n\nAlso add an integration-level execution-loop test for the critical no-tool path:\n\ntool evidence exists -> Director returns no tool calls -> evaluate_execution_completion is invoked -> CONTINUE loops OR PASS + non-empty final becomes the sole normal success return.\n\nProve that a completion-evaluator exception becomes a failure and cannot silently become normal completion.\n\nPreserve the current architecture:\n\nTOOL_CALLS -> execute/record/continue\n\nNO_TOOL_CALLS -> mandatory evaluate_execution_completion\n\nCONTINUE -> focused continuation -> loop\n\nPASS + empty final -> request final answer -> loop\n\nPASS + non-empty final -> sole normal success return\n\ntask_progress must remain absent from the critical path. ExecutionState must not gate success. Do not restore any second completion gate.\n\nRun targeted tests, then the complete deterministic regression suite. Perform git diff --check.\n\nDo not run a live smoke test. Do not bump version. Do not commit, tag, push, or publish.\n\nFinal report must include:\n\nROOT_CAUSE\n\nLOADER_SIGNATURE\n\nCANONICAL_MODEL_PATH_SOURCE\n\nEXECUTION_COMPLETION_LOADER_FIX\n\nSHARED_API_DRIFT_FOUND\n\nNO_TOOL_COMPLETION_PATH_TEST\n\nCOMPLETION_EXCEPTION_FAILS_CLOSED\n\nTASK_PROGRESS_CRITICAL_PATH=NO\n\nSECOND_COMPLETION_GATE=NO\n\nTARGETED_TESTS\n\nFULL_REGRESSION\n\nDIFF_CHECK\n\nLIVE_SMOKE_RUN=NO",
+    "continuation_point": "failed-turn-recovery",
+    "interrupted": false,
+    "resume_requested_at": null,
+    "updated_at": "2026-09-11T11:54:08.179837+00:00"
+  }
+}

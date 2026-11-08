@@ -1,0 +1,1 @@
+compact handoff with exact evidence per gate: argon build result, canonical sha256, .model.json MeshPart+SA counts, argon serve last_synced timestamp, /exec HTTP status, built rbxlx MeshPart count, SpawnRoot present, bunker-rooms present, SA count, mesh asset IDs found, snapshot endpoint result.

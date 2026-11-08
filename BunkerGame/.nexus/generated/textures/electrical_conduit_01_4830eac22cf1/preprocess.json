@@ -1,0 +1,13 @@
+{
+  "source": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_01_4830eac22cf1/source.obj",
+  "output": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/electrical_conduit_01_4830eac22cf1/preprocessed.glb",
+  "objects": 1,
+  "vertices": 3,
+  "faces": 1,
+  "loops": 3,
+  "uv_layers": 1,
+  "uv_loops": 3,
+  "source_uv_valid": false,
+  "uv_generated": true,
+  "output_exists": true
+}

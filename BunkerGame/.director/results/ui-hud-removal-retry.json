@@ -1,0 +1,12 @@
+{
+  "task_id": "ui-hud-removal-retry",
+  "run_id": "ui-hud-removal-retry-559d0233cfad",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-28T20:13:05.053680+00:00"
+}

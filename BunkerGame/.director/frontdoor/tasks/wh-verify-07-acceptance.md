@@ -1,0 +1,1 @@
+1) Symlink exists and resolves to the RBXMX. 2) argon build completes. 3) Warehouse present as Workspace child in build output. 4) SpawnRoot and bunker-rooms unchanged. 5) No project files modified, no asset published.

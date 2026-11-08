@@ -1,0 +1,481 @@
+#!/bin/bash
+
+set -u
+
+ROOT="/Users/Ori/Documents/Projects/BunkerGame"
+BASE="http://127.0.0.1:4098"
+
+RUNROOT="$ROOT/.opencode/overnight_world"
+PROMPTFILE="$RUNROOT/world_directive.txt"
+LOG="$RUNROOT/watchdog.log"
+STATEFILE="$RUNROOT/state.txt"
+PROGRESS="$RUNROOT/progress.txt"
+PIDFILE="$RUNROOT/watchdog.pid"
+OCLOG="$RUNROOT/opencode4098.log"
+
+RUNS="$RUNROOT/runs"
+EVIDENCE="$RUNROOT/evidence"
+CHECKPOINTS="$RUNROOT/checkpoints"
+LOCK="$RUNROOT/watchdog.lock"
+
+ROJO="$HOME/.aftman/bin/rojo"
+
+MAX_RECOVERY=5
+STALL_SECONDS=1200
+CHECK_INTERVAL=60
+
+mkdir -p "$RUNROOT" "$RUNS" "$EVIDENCE" "$CHECKPOINTS"
+
+cd "$ROOT" || exit 1
+
+ts() {
+    date '+%Y-%m-%d %H:%M:%S'
+}
+
+epoch() {
+    date '+%s'
+}
+
+log() {
+    echo "[$(ts)] $*" >> "$LOG"
+}
+
+set_state() {
+    echo "$*" > "$STATEFILE"
+    log "STATE=$*"
+}
+
+cleanup() {
+    rm -rf "$LOCK"
+}
+
+trap cleanup EXIT INT TERM
+
+# ------------------------------------------------------------
+# SINGLE WATCHDOG INSTANCE
+# ------------------------------------------------------------
+
+if ! mkdir "$LOCK" 2>/dev/null; then
+    echo "OVERNIGHT_WORLD_WATCHDOG_ALREADY_RUNNING=YES"
+    exit 0
+fi
+
+echo $$ > "$PIDFILE"
+
+log "============================================================"
+log "OVERNIGHT WORLD WATCHDOG START"
+log "PID=$$"
+log "ROOT=$ROOT"
+log "============================================================"
+
+# ------------------------------------------------------------
+# BASIC HEALTH
+# ------------------------------------------------------------
+
+health_4098() {
+    curl -fsS --max-time 4 \
+        "$BASE/global/health" \
+        >/dev/null 2>&1
+}
+
+wait_for_4098() {
+    local i
+
+    for i in $(seq 1 40); do
+        if health_4098; then
+            return 0
+        fi
+        sleep 2
+    done
+
+    return 1
+}
+
+recover_4098() {
+    if health_4098; then
+        return 0
+    fi
+
+    log "4098 unhealthy; attempting recovery."
+
+    local pid
+    pid="$(pgrep -f 'opencode serve --hostname 127.0.0.1 --port 4098' | head -1 || true)"
+
+    if [ -n "$pid" ]; then
+        log "Stopping stale 4098 PID=$pid"
+        kill "$pid" 2>/dev/null || true
+        sleep 4
+
+        if kill -0 "$pid" 2>/dev/null; then
+            log "4098 PID still alive; force terminating."
+            kill -9 "$pid" 2>/dev/null || true
+            sleep 2
+        fi
+    fi
+
+    if lsof -nP -iTCP:4098 -sTCP:LISTEN >>"$LOG" 2>&1; then
+        log "Port 4098 still occupied."
+        return 1
+    fi
+
+    log "Starting fresh OpenCode 4098."
+
+    nohup opencode serve \
+        --hostname 127.0.0.1 \
+        --port 4098 \
+        >>"$OCLOG" 2>&1 &
+
+    if wait_for_4098; then
+        log "4098_RECOVERY=PASS"
+        return 0
+    fi
+
+    log "4098_RECOVERY=FAIL"
+    tail -100 "$OCLOG" >> "$LOG" 2>&1 || true
+    return 1
+}
+
+mcp_health() {
+    local f="$EVIDENCE/mcp_latest.txt"
+
+    opencode mcp list >"$f" 2>&1 || true
+
+    if grep -q 'roblox-studio connected' "$f" &&
+       grep -q 'bloxforge connected' "$f"; then
+        log "MCP_HEALTH=PASS"
+        return 0
+    fi
+
+    log "MCP_HEALTH=FAIL"
+    cat "$f" >> "$LOG"
+    return 1
+}
+
+rojo_health() {
+    if [ ! -x "$ROJO" ]; then
+        log "ROJO_MISSING=$ROJO"
+        return 1
+    fi
+
+    "$ROJO" --version >>"$LOG" 2>&1 || return 1
+    return 0
+}
+
+# ------------------------------------------------------------
+# PROJECT-LOCAL VALIDATION
+# ------------------------------------------------------------
+
+validate_project() {
+    local stamp
+    stamp="$(date '+%Y%m%d_%H%M%S')"
+
+    local sm="$CHECKPOINTS/sourcemap_$stamp.json"
+    local build="$CHECKPOINTS/world_$stamp.rbxlx"
+
+    log "Running Rojo sourcemap checkpoint."
+
+    if ! "$ROJO" sourcemap default.project.json \
+        --output "$sm" >>"$LOG" 2>&1; then
+        log "ROJO_SOURCEMAP_CHECKPOINT=FAIL"
+        return 1
+    fi
+
+    if [ ! -s "$sm" ]; then
+        log "ROJO_SOURCEMAP_EMPTY=FAIL"
+        return 1
+    fi
+
+    log "Running Rojo build checkpoint."
+
+    if ! "$ROJO" build default.project.json \
+        --output "$build" >>"$LOG" 2>&1; then
+        log "ROJO_BUILD_CHECKPOINT=FAIL"
+        return 1
+    fi
+
+    if [ ! -s "$build" ]; then
+        log "ROJO_BUILD_EMPTY=FAIL"
+        return 1
+    fi
+
+    log "ROJO_CHECKPOINT=PASS sourcemap=$sm build=$build"
+    return 0
+}
+
+# ------------------------------------------------------------
+# RESULT VALIDATION
+# ------------------------------------------------------------
+
+is_true_final_pass() {
+    local f="$1"
+
+    grep -q 'WORLD_MACRO_LAYOUT=PASS' "$f" &&
+    grep -q 'TERRAIN_PASS=PASS' "$f" &&
+    grep -q 'FOREST_PASS=PASS' "$f" &&
+    grep -q 'GEOLOGY_PASS=PASS' "$f" &&
+    grep -q 'LANDMARK_NAVIGATION_PASS=PASS' "$f" &&
+    grep -q 'AMBIENT_CREATURE_FRAMEWORK=PASS' "$f" &&
+    grep -q 'AMBIENT_CREATURES=PASS' "$f" &&
+    grep -q 'GAMEPLAY_WORLD_INTEGRATION=PASS' "$f" &&
+    grep -q 'LIGHTING_ATMOSPHERE_AUDIO=PASS' "$f" &&
+    grep -q 'PERFORMANCE_QA=PASS' "$f" &&
+    grep -q 'PLAYTEST_QA=PASS' "$f" &&
+    grep -q 'TECHNICAL_QA=PASS' "$f" &&
+    grep -q 'GAMEPLAY_UX_QA=PASS' "$f" &&
+    grep -q 'VISUAL_QA=PASS' "$f" &&
+    grep -q 'ROJO_PERSISTENCE=YES' "$f" &&
+    grep -q 'ROJO_VALIDATION=PASS' "$f" &&
+    grep -q 'STUDIO_VERIFICATION=YES' "$f" &&
+    grep -q 'STUDIO_MODE=Edit' "$f" &&
+    grep -q 'OVERNIGHT_WORLD_BUILD=PASS' "$f" &&
+    grep -q 'DIRECTOR_CHECKPOINT=READY' "$f"
+}
+
+extract_final() {
+    local f="$1"
+
+    grep -E \
+'MUSE_INVOKED=|MUSE_SESSION_ID=|QWEN_INVOKED=|QWEN_SESSION_IDS=|QWEN_REFERENCE_SOURCES=|MIMO_INVOKED=|MIMO_SESSION_IDS=|ROBLOX_ASSISTANT_INVOKED=|ROBLOX_GENERATION_IDS=|BLOXFORGE_INVOKED=|BLOXFORGE_TOOLS=|BLOXFORGE_REQUEST_IDS=|ASSET_LIBRARY_REGISTERED=|ASSET_FAMILIES=|ASSET_VARIANTS=|WORLD_MACRO_LAYOUT=|TERRAIN_PASS=|FOREST_PASS=|GEOLOGY_PASS=|LANDMARK_NAVIGATION_PASS=|AMBIENT_CREATURE_FRAMEWORK=|AMBIENT_CREATURES=|GAMEPLAY_WORLD_INTEGRATION=|LIGHTING_ATMOSPHERE_AUDIO=|PERFORMANCE_QA=|PLAYTEST_QA=|TECHNICAL_QA=|GAMEPLAY_UX_QA=|VISUAL_QA=|ROJO_PERSISTENCE=|ROJO_VALIDATION=|STUDIO_VERIFICATION=|STUDIO_MODE=|OVERNIGHT_WORLD_BUILD=|DIRECTOR_CHECKPOINT=' \
+        "$f" | tail -200 > "$EVIDENCE/final_result.txt" || true
+}
+
+# ------------------------------------------------------------
+# PREFLIGHT RECOVERY
+# ------------------------------------------------------------
+
+set_state "PREFLIGHT"
+
+RECOVERY=0
+
+while ! recover_4098; do
+    RECOVERY=$((RECOVERY + 1))
+
+    if [ "$RECOVERY" -ge "$MAX_RECOVERY" ]; then
+        set_state "BLOCKED_4098"
+        log "error debug maxed out"
+        exit 10
+    fi
+
+    sleep 10
+done
+
+RECOVERY=0
+
+while ! mcp_health; do
+    RECOVERY=$((RECOVERY + 1))
+    log "MCP recovery attempt $RECOVERY/$MAX_RECOVERY"
+
+    if [ "$RECOVERY" -ge "$MAX_RECOVERY" ]; then
+        set_state "BLOCKED_MCP"
+        log "error debug maxed out"
+        exit 11
+    fi
+
+    sleep 15
+done
+
+if ! rojo_health; then
+    set_state "BLOCKED_ROJO"
+    log "error debug maxed out"
+    exit 12
+fi
+
+# Baseline validation is useful but not allowed to destroy the run if the
+# repository already contains a known unrelated source issue.
+if validate_project; then
+    log "BASELINE_ROJO_VALIDATION=PASS"
+else
+    log "BASELINE_ROJO_VALIDATION=WARNING"
+fi
+
+# ------------------------------------------------------------
+# MAIN AUTONOMOUS ATTEMPTS
+# ------------------------------------------------------------
+
+ATTEMPT=1
+
+while [ "$ATTEMPT" -le "$MAX_RECOVERY" ]; do
+
+    set_state "RUNNING_ATTEMPT_$ATTEMPT"
+
+    STAMP="$(date '+%Y%m%d_%H%M%S')"
+    OUT="$RUNS/world_attempt_${ATTEMPT}_${STAMP}.jsonl"
+
+    log "Starting Muse world execution attempt=$ATTEMPT output=$OUT"
+
+    START_SIZE=0
+    LAST_SIZE=0
+    LAST_PROGRESS="$(epoch)"
+
+    # Run Muse in background so watchdog can observe it.
+    opencode run \
+        --attach "$BASE" \
+        --dir "$ROOT" \
+        --agent bunkergame-art-director \
+        --model opencode/muse-spark-1.2-contributor-free \
+        --format json \
+        "$(cat "$PROMPTFILE")" \
+        >"$OUT" 2>&1 &
+
+    RUNPID=$!
+
+    log "Muse run PID=$RUNPID"
+
+    echo "$RUNPID" > "$RUNROOT/current_run.pid"
+    echo "$OUT" > "$RUNROOT/current_run_file.txt"
+
+    # --------------------------------------------------------
+    # WATCH CURRENT MUSE RUN
+    # --------------------------------------------------------
+
+    while kill -0 "$RUNPID" 2>/dev/null; do
+
+        sleep "$CHECK_INTERVAL"
+
+        # 4098 recovery.
+        if ! health_4098; then
+            log "4098 became unhealthy during active run."
+
+            # Do not instantly kill Muse; first try server recovery.
+            if ! recover_4098; then
+                log "4098 recovery failed during active run."
+            fi
+        fi
+
+        # Observe output size as one signal of progress.
+        if [ -f "$OUT" ]; then
+            SIZE="$(wc -c < "$OUT" | tr -d ' ')"
+        else
+            SIZE=0
+        fi
+
+        if [ "$SIZE" -gt "$LAST_SIZE" ]; then
+            LAST_SIZE="$SIZE"
+            LAST_PROGRESS="$(epoch)"
+            echo "$(ts) attempt=$ATTEMPT bytes=$SIZE" > "$PROGRESS"
+        fi
+
+        NOW="$(epoch)"
+        IDLE=$((NOW - LAST_PROGRESS))
+
+        # Check for concrete evidence events too.
+        if tail -120 "$OUT" 2>/dev/null | grep -Eq \
+            '"type":"tool_use"|state="completed"|ROJO_|PASS|generation|BloxForge|Play|Studio Mode'; then
+            LAST_PROGRESS="$NOW"
+        fi
+
+        if [ "$IDLE" -ge "$STALL_SECONDS" ]; then
+            log "STALL_DETECTED attempt=$ATTEMPT idle_seconds=$IDLE"
+
+            tail -200 "$OUT" \
+                >"$EVIDENCE/stall_attempt_${ATTEMPT}_${STAMP}.txt" 2>/dev/null || true
+
+            # End only the stuck opencode run, not Studio/BloxForge.
+            kill "$RUNPID" 2>/dev/null || true
+            sleep 5
+
+            if kill -0 "$RUNPID" 2>/dev/null; then
+                kill -9 "$RUNPID" 2>/dev/null || true
+            fi
+
+            break
+        fi
+    done
+
+    wait "$RUNPID" 2>/dev/null
+    RUN_RC=$?
+
+    log "Muse attempt=$ATTEMPT exited rc=$RUN_RC"
+
+    extract_final "$OUT"
+
+    # --------------------------------------------------------
+    # VERIFY TRUE PASS
+    # --------------------------------------------------------
+
+    if is_true_final_pass "$OUT"; then
+
+        log "Agent reported all required gates. Running independent local Rojo validation."
+
+        if validate_project; then
+            log "INDEPENDENT_ROJO_VALIDATION=PASS"
+        else
+            log "INDEPENDENT_ROJO_VALIDATION=FAIL"
+            ATTEMPT=$((ATTEMPT + 1))
+            continue
+        fi
+
+        # Re-check MCP health after long run.
+        if ! mcp_health; then
+            log "Final MCP health check failed."
+            ATTEMPT=$((ATTEMPT + 1))
+            continue
+        fi
+
+        set_state "PASS"
+        log "OVERNIGHT_WORLD_BUILD=PASS"
+        log "DIRECTOR_CHECKPOINT=READY"
+        log "Overnight world build completed successfully."
+
+        exit 0
+    fi
+
+    # --------------------------------------------------------
+    # RECOVERY / CONTINUATION
+    # --------------------------------------------------------
+
+    log "Attempt $ATTEMPT did not reach full verified PASS."
+
+    tail -250 "$OUT" \
+        >"$EVIDENCE/attempt_${ATTEMPT}_tail.txt" 2>/dev/null || true
+
+    # If the run itself explicitly hit the recovery ceiling, preserve it.
+    if grep -q 'error debug maxed out' "$OUT" 2>/dev/null; then
+        log "Inner orchestrator reported debug ceiling."
+    fi
+
+    # Ensure infrastructure is healthy before next continuation.
+    recover_4098 || true
+    mcp_health || true
+
+    ATTEMPT=$((ATTEMPT + 1))
+
+    if [ "$ATTEMPT" -le "$MAX_RECOVERY" ]; then
+        log "Preparing autonomous continuation attempt=$ATTEMPT"
+
+        # Amend prompt with continuation instructions based on evidence.
+        cat >> "$PROMPTFILE" <<CONTINUE
+
+============================================================
+AUTONOMOUS RECOVERY CONTINUATION
+============================================================
+
+A prior overnight execution attempt ended before all required gates were
+verified.
+
+DO NOT restart completed work from zero.
+
+Inspect:
+    $RUNROOT/evidence/
+    $RUNROOT/runs/
+
+Recover from the latest actual filesystem/Studio/Rojo checkpoint.
+
+Determine which waves are already genuinely complete and continue from the
+first incomplete/failed gate.
+
+Do not regenerate approved assets unnecessarily.
+Do not undo valid world work merely because the previous orchestration process
+ended.
+Freshly discover Studio again before using Studio tools.
+Continue toward the same final success gate.
+CONTINUE
+
+        sleep 10
+    fi
+
+done
+
+set_state "BLOCKED_AFTER_5_ATTEMPTS"
+log "error debug maxed out"
+exit 20

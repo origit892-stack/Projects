@@ -1,0 +1,11 @@
+{
+  "task_id": "single-worker-1790339982",
+  "objective": "Use your Bash terminal tool to run pwd and then printf 'SINGLE_WORKER_EXECUTOR_PASS\\n'. Do not modify project files. Return PASS only after both terminal commands succeed.",
+  "write_scopes": [],
+  "read_scopes": [
+    "."
+  ],
+  "acceptance_criteria": "Bash execution must output SINGLE_WORKER_EXECUTOR_PASS.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-09-25T12:39:42.552694+00:00"
+}

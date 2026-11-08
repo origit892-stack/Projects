@@ -1,0 +1,12 @@
+{
+  "job_id": "run-warehouse-cube-upload-001-20261001_133414",
+  "mode": "run",
+  "task_ids": [
+    "warehouse-cube-upload-001"
+  ],
+  "pid": 77124,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-cube-upload-001-20261001_133414.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-warehouse-cube-upload-001-20261001_133414.json",
+  "started_at": 1790850854.969364,
+  "launcher_status": "RUNNING"
+}

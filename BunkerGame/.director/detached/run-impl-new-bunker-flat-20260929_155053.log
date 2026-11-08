@@ -1,0 +1,25 @@
+{
+  "task_id": "impl-new-bunker-flat",
+  "role": "implementer",
+  "run_id": "impl-new-bunker-flat-65bc55c40b27",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-09-29T13:08:43.212249+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/71e323b9-978c-4434-8a0a-68204eeb72df.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/71e323b9-978c-4434-8a0a-68204eeb72df.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "ClassName": "Model",
+  "attributes": {
+    "GeneratedAssetId": "bunker_electrical_junction_box_01",
+    "RobloxAssetId": "97313747351940",
+    "RobloxAssetType": "Model",
+    "IntegrationState": "Ready",
+    "CanonicalSource": "RobloxImportedModelInspection"
+  },
+  "Children": [
+    {
+      "Name": "Mesh_0",
+      "ClassName": "MeshPart",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": true,
+        "MeshId": "rbxassetid://138460865383806",
+        "Size": [
+          1.9609707593917847,
+          1.848098874092102,
+          0.9006204605102539
+        ]
+      },
+      "Children": [
+        {
+          "Name": "SurfaceAppearance",
+          "ClassName": "SurfaceAppearance",
+          "Properties": {
+            "ColorMap": "rbxassetid://139579734340579",
+            "NormalMap": "rbxassetid://101009095631637",
+            "RoughnessMap": "rbxassetid://73092764580147",
+            "MetalnessMap": "rbxassetid://129094780313320"
+          }
+        }
+      ]
+    }
+  ]
+}

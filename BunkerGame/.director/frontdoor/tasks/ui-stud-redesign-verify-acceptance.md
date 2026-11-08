@@ -1,0 +1,1 @@
+PASS only if all 6 acceptance criteria verified on disk with evidence (grep/code excerpts). Report each criterion as PASS/FAIL with the exact line evidence. FAIL if any criterion fails or is unverifiable.

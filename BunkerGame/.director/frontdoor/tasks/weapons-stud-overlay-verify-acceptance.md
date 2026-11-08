@@ -1,0 +1,1 @@
+PASS only if: StudOverlay ImageLabel exists in _buildWeaponsButton immediately before self._refs.WeaponsButton = button with all 8 exact properties and parent button; git diff shows UIController.luau as the only modified file; no Workspace part creation; InventoryV2 untouched. Report any deviation as FAIL with specifics.

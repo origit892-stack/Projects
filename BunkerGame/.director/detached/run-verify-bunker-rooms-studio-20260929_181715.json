@@ -1,0 +1,12 @@
+{
+  "job_id": "run-verify-bunker-rooms-studio-20260929_181715",
+  "mode": "run",
+  "task_ids": [
+    "verify-bunker-rooms-studio"
+  ],
+  "pid": 25595,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-bunker-rooms-studio-20260929_181715.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-verify-bunker-rooms-studio-20260929_181715.json",
+  "started_at": 1790695035.3427598,
+  "launcher_status": "RUNNING"
+}

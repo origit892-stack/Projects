@@ -1,0 +1,12 @@
+{
+  "job_id": "run-wh-diag3-20261004_182451",
+  "mode": "run",
+  "task_ids": [
+    "wh-diag3"
+  ],
+  "pid": 7132,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-diag3-20261004_182451.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-diag3-20261004_182451.json",
+  "started_at": 1791127491.7938712,
+  "launcher_status": "RUNNING"
+}

@@ -1,0 +1,1 @@
+Report contains: (1) exact node ID of canonical 3:313 with name/type; (2) exact node IDs of all Inventory v1 frames; (3) exact node IDs of all duplicate/experimental frames; (4) explicit capability verdicts SAFE_DELETE, IN_PLACE_EDIT, BACKUP each yes/no with method or blocker; (5) no Figma mutations performed; (6) rate limits respected (no repeated identical API calls).

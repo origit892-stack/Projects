@@ -1,0 +1,115 @@
+{
+  "ok": true,
+  "tool": "generate_texture",
+  "stage": "TEXTURE_COMPLETE",
+  "source_mesh": "/Users/Ori/Documents/Projects/BunkerGame/assets/generated_meshes/concrete_barricade.obj",
+  "source_sha256": "a0f979a8bd03c68f2a6c3ed9dd62faa3db0da9cf7695ee682724e081f6ebfc08",
+  "source_mutated": false,
+  "working_source": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/source.obj",
+  "preprocessed_mesh": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/preprocessed.glb",
+  "geometry_views": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/geometry_views",
+  "appearance_reference": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/appearance_reference.png",
+  "base_color": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/base_color.png",
+  "roughness": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/roughness.png",
+  "metallic": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/metallic.png",
+  "normal": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/normal_neutral.png",
+  "pbr_classification": "DERIVED_NOT_GROUND_TRUTH",
+  "normal_classification": "NEUTRAL_SAFE_FALLBACK",
+  "textured_glb": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/textured.glb",
+  "qa_views": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794/qa_views",
+  "reference_qa": {
+    "width": 768,
+    "height": 768,
+    "bytes": 1230933,
+    "dynamic_range": 765,
+    "valid": true
+  },
+  "raw_base_color_qa": {
+    "width": 2048,
+    "height": 2048,
+    "bytes": 3912601,
+    "dynamic_range": 754,
+    "valid": true
+  },
+  "base_color_qa": {
+    "width": 2048,
+    "height": 2048,
+    "bytes": 3742657,
+    "dynamic_range": 742,
+    "valid": true
+  },
+  "qa_render_records": {
+    "front": {
+      "width": 768,
+      "height": 768,
+      "bytes": 446961,
+      "dynamic_range": 583,
+      "valid": true
+    },
+    "back": {
+      "width": 768,
+      "height": 768,
+      "bytes": 423270,
+      "dynamic_range": 570,
+      "valid": true
+    },
+    "left": {
+      "width": 768,
+      "height": 768,
+      "bytes": 340591,
+      "dynamic_range": 578,
+      "valid": true
+    },
+    "right": {
+      "width": 768,
+      "height": 768,
+      "bytes": 333829,
+      "dynamic_range": 620,
+      "valid": true
+    },
+    "top": {
+      "width": 768,
+      "height": 768,
+      "bytes": 434835,
+      "dynamic_range": 583,
+      "valid": true
+    },
+    "bottom": {
+      "width": 768,
+      "height": 768,
+      "bytes": 395646,
+      "dynamic_range": 564,
+      "valid": true
+    },
+    "hero": {
+      "width": 768,
+      "height": 768,
+      "bytes": 462893,
+      "dynamic_range": 585,
+      "valid": true
+    }
+  },
+  "backend": "FLUX2_KLEIN_4B_MFLUX",
+  "resolution": 2048,
+  "quality": "high",
+  "seed": 1701,
+  "pbr_requested": true,
+  "timings": {
+    "preprocess": 1.904,
+    "geometry_views": 2.575,
+    "appearance_generation": 27.981,
+    "uv_correspondence": 1.917,
+    "bake": 10.118,
+    "export": 0.968,
+    "qa_render": 2.978
+  },
+  "total_seconds": 49.127,
+  "output_directory": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/concrete_barricade_e2ee64505794",
+  "texture_method": "CPU_BARYCENTRIC_UV_RASTERIZATION_V2",
+  "known_limitations": [
+    "Current production fallback uses one generated appearance reference projected from the hero camera.",
+    "PBR maps are derived proxies, not physically measured ground truth.",
+    "Multi-view image-conditioned fusion remains the next quality upgrade."
+  ],
+  "next_quality_upgrade": "MULTIVIEW_IMAGE_CONDITIONED_EDIT_AND_VISIBILITY_FUSION"
+}

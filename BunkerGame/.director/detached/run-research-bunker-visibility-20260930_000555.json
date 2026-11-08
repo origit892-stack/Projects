@@ -1,0 +1,12 @@
+{
+  "job_id": "run-research-bunker-visibility-20260930_000555",
+  "mode": "run",
+  "task_ids": [
+    "research-bunker-visibility"
+  ],
+  "pid": 51115,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-bunker-visibility-20260930_000555.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-research-bunker-visibility-20260930_000555.json",
+  "started_at": 1790715955.965861,
+  "launcher_status": "RUNNING"
+}

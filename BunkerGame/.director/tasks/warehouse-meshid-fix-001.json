@@ -1,0 +1,15 @@
+{
+  "task_id": "warehouse-meshid-fix-001",
+  "role": "implementer",
+  "objective": "Fix MeshId defect in warehouse integration. Studio PID 68485 is CONNECTED to argon serve port 8000. argon=/Users/Ori/.argon/bin/argon. Project=/Users/Ori/Documents/Projects/BunkerGame. Model asset 73559951039514 (do NOT regenerate/republish). DEFECT: src/Workspace/abandoned_warehouse.model.json MeshPart Warehouse MeshId=rbxassetid://73559951039514 is the MODEL id not a mesh id. Use argon exec to run Luau in Studio: InsertService:LoadAsset(73559951039514), print each MeshPart Name/MeshId/Size/Material/TextureID, then Destroy. Pick the internal mesh id (single mesh, 40x16x32). Update that file MeshId to rbxassetid://<mesh id>. Update src/ServerStorage/GeneratedAssets/abandoned_warehouse_01.model.json to Ready state with real mesh id (see canonicalize_imported_model in /Users/Ori/Developer/roblox-assets/roblox_assets/integrations/imported_model.py or match bunker_vent_grille_01.model.json pattern). Keep placement Size [40,16,32] Pos [0,8,20] Anchored CanCollide. Do NOT modify SpawnRoot.model.json or bunker-rooms.model.json. Verify via argon exec live MeshPart has new MeshId and mesh loaded. Emit AGENT_HANDOFF.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame",
+    "/Users/Ori/Developer/roblox-assets"
+  ],
+  "acceptance_criteria": "1. src/Workspace/abandoned_warehouse.model.json MeshPart Warehouse MeshId is the internal mesh asset ID, NOT 73559951039514. 2. src/ServerStorage/GeneratedAssets/abandoned_warehouse_01.model.json is in final Ready state with the real mesh ID. 3. argon exec confirms live workspace MeshPart Warehouse has the correct MeshId and mesh is loaded (not nil). 4. SpawnRoot.model.json and bunker-rooms.model.json byte-identical to before. 5. No regeneration or republish. 6. Temporary imported model destroyed from Studio. 7. Handoff reports internal mesh ID and all files changed.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T12:57:47.045743+00:00"
+}

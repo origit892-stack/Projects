@@ -1,0 +1,12 @@
+{
+  "job_id": "run-wh-eperm-03-20261005_191442",
+  "mode": "run",
+  "task_ids": [
+    "wh-eperm-03"
+  ],
+  "pid": 1681,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-eperm-03-20261005_191442.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-eperm-03-20261005_191442.json",
+  "started_at": 1791216882.760962,
+  "launcher_status": "RUNNING"
+}

@@ -1,0 +1,302 @@
+#!/bin/zsh
+
+set -u
+
+ROOT="/Users/Ori/Documents/Projects/BunkerGame"
+R="$ROOT/.opencode/overnight_world_v2"
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.aftman/bin:$PATH"
+
+LOG="$R/watchdog.log"
+STATE="$R/state.txt"
+DIRECTIVE="$R/directive.txt"
+
+log() {
+  TS="$(/bin/date '+%Y-%m-%d %H:%M:%S')"
+  printf '[%s] %s\n' "$TS" "$*" | /usr/bin/tee -a "$LOG"
+}
+
+state() {
+  printf '%s\n' "$1" > "$STATE"
+  log "STATE=$1"
+}
+
+strip_ansi() {
+  /usr/bin/sed $'s/\033\\[[0-9;]*[a-zA-Z]//g'
+}
+
+mcp_ok() {
+  OUT="$(opencode mcp list 2>&1 | strip_ansi)"
+  printf '%s\n' "$OUT" > "$R/evidence/mcp_latest.txt"
+
+  printf '%s\n' "$OUT" | /usr/bin/grep -qi "roblox-studio" || return 1
+  printf '%s\n' "$OUT" | /usr/bin/grep -qi "bloxforge" || return 1
+  printf '%s\n' "$OUT" | /usr/bin/grep -qi "connected" || return 1
+
+  return 0
+}
+
+server_ok() {
+  /usr/bin/curl -fsS \
+    --max-time 5 \
+    http://127.0.0.1:4098/global/health \
+    > "$R/evidence/opencode_health.json" \
+    2>/dev/null
+}
+
+snapshot_source() {
+  TS="$(/bin/date '+%Y%m%d_%H%M%S')"
+  D="$R/backups/pre_run_$TS"
+
+  /bin/mkdir -p "$D"
+
+  if [ -d "$ROOT/src" ]; then
+    log "Creating immutable pre-run source snapshot"
+    /usr/bin/tar -czf "$D/src.tar.gz" -C "$ROOT" src || return 1
+  fi
+
+  [ -f "$ROOT/default.project.json" ] && /bin/cp "$ROOT/default.project.json" "$D/" || true
+  [ -f "$ROOT/opencode.json" ] && /bin/cp "$ROOT/opencode.json" "$D/" || true
+
+  /usr/bin/find "$ROOT/src" \
+    -type f \
+    -print \
+    2>/dev/null \
+    | /usr/bin/sort \
+    > "$D/source_files.txt"
+
+  printf '%s\n' "$D" > "$R/pre_run_backup.txt"
+
+  log "PRE_RUN_BACKUP=$D"
+}
+
+required_checkpoints_passed() {
+  E="$R/events.log"
+
+  for CP in \
+    CP01_SAFETY \
+    CP02_WORLD_PLAN \
+    CP03_TERRAIN \
+    CP04_FOREST \
+    CP05_ROCKS_LANDMARKS \
+    CP06_WILDLIFE \
+    CP07_GAMEPLAY \
+    CP08_PRESENTATION \
+    CP09_TECH_QA \
+    CP10_PLAY_QA \
+    CP11_VISUAL_QA \
+    CP12_FINAL
+  do
+    /usr/bin/grep -q "|$CP|PASS|" "$E" || return 1
+  done
+
+  return 0
+}
+
+terminate_run() {
+  PID="$1"
+
+  log "Attempting graceful termination of stalled run PID=$PID"
+
+  for CHILD in $(/usr/bin/pgrep -P "$PID" 2>/dev/null); do
+    /bin/kill -TERM "$CHILD" 2>/dev/null || true
+  done
+
+  /bin/kill -TERM "$PID" 2>/dev/null || true
+  /bin/sleep 5
+
+  if /bin/kill -0 "$PID" 2>/dev/null; then
+    log "Run still alive after TERM; sending KILL to run process only"
+    /bin/kill -KILL "$PID" 2>/dev/null || true
+  fi
+}
+
+state PREFLIGHT
+
+log "============================================================"
+log "OVERNIGHT WORLD V2 WATCHDOG START"
+log "ROOT=$ROOT"
+log "PID=$$"
+log "============================================================"
+
+printf '%s\n' "$$" > "$R/watchdog.pid"
+
+if ! server_ok; then
+  state BLOCKED_OPENCODE
+  log "OpenCode 4098 is not healthy."
+  exit 1
+fi
+
+log "OPENCODE_4098=PASS"
+
+MCP_PASS=0
+
+for N in 1 2 3 4 5; do
+  if mcp_ok; then
+    MCP_PASS=1
+    log "MCP_HEALTH=PASS"
+    break
+  fi
+
+  log "MCP_HEALTH=FAIL recovery=$N/5"
+  /bin/sleep 10
+done
+
+if [ "$MCP_PASS" -ne 1 ]; then
+  state BLOCKED_MCP
+  log "error debug maxed out"
+  exit 1
+fi
+
+if [ ! -f "$R/pre_run_backup.txt" ]; then
+  if ! snapshot_source; then
+    state BLOCKED_BACKUP
+    log "Pre-run source backup failed. Refusing implementation."
+    exit 1
+  fi
+fi
+
+ATTEMPT=1
+MAX_ATTEMPTS=6
+
+while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
+
+  printf '%s\n' "$ATTEMPT" > "$R/attempt.txt"
+
+  TS="$(/bin/date '+%Y%m%d_%H%M%S')"
+  RUN="$R/runs/world_v2_attempt_${ATTEMPT}_${TS}.jsonl"
+
+  printf '%s\n' "$RUN" > "$R/current_run_file.txt"
+
+  if [ "$ATTEMPT" -eq 1 ]; then
+    PROMPT="$(/bin/cat "$DIRECTIVE")"
+  else
+    PROMPT="$(/bin/cat "$DIRECTIVE")
+
+RECOVERY CONTINUATION ATTEMPT $ATTEMPT.
+
+Inspect the physical checkpoints and project state already created by prior attempts.
+
+Do NOT restart completed work.
+
+Continue from the latest actually verified PASS checkpoint.
+
+Diagnose the prior interruption before continuing.
+
+Do not duplicate assets or systems already completed.
+
+Do not delete useful existing work.
+
+Fix the root cause and continue toward CP12_FINAL."
+  fi
+
+  state "RUN_ATTEMPT_$ATTEMPT"
+
+  log "STARTING_ATTEMPT=$ATTEMPT"
+  log "RUN_FILE=$RUN"
+
+  (
+    set -o pipefail
+
+    opencode run \
+      --attach http://127.0.0.1:4098 \
+      --dir "$ROOT" \
+      --agent bunkergame-art-director \
+      --format json \
+      "$PROMPT" \
+      2>&1 \
+      | /usr/bin/tee "$RUN"
+
+    printf '%s\n' "${pipestatus[1]:-1}" > "$R/last_run_exit.txt"
+  ) &
+
+  RUN_PID=$!
+  printf '%s\n' "$RUN_PID" > "$R/active_run.pid"
+
+  LAST_SIZE=-1
+  LAST_PROGRESS="$(/bin/date +%s)"
+  LAST_HEARTBEAT=0
+  STALLED=0
+
+  while /bin/kill -0 "$RUN_PID" 2>/dev/null; do
+
+    NOW="$(/bin/date +%s)"
+
+    if [ -f "$RUN" ]; then
+      SIZE="$(/usr/bin/stat -f '%z' "$RUN" 2>/dev/null || printf '0')"
+    else
+      SIZE=0
+    fi
+
+    if [ "$SIZE" != "$LAST_SIZE" ]; then
+      LAST_SIZE="$SIZE"
+      LAST_PROGRESS="$NOW"
+    fi
+
+    IDLE=$(( NOW - LAST_PROGRESS ))
+
+    if [ $(( NOW - LAST_HEARTBEAT )) -ge 300 ]; then
+      CP="$(/bin/cat "$R/current_checkpoint.txt" 2>/dev/null || printf 'NONE')"
+      ACT="$(/bin/cat "$R/current_activity.txt" 2>/dev/null || printf 'NONE')"
+
+      log "HEARTBEAT attempt=$ATTEMPT checkpoint=$CP idle=${IDLE}s log_bytes=$SIZE activity=$ACT"
+      LAST_HEARTBEAT="$NOW"
+
+      server_ok || log "WARNING_OPENCODE_HEALTH=FAIL"
+
+      if ! mcp_ok; then
+        log "WARNING_MCP_HEALTH=FAIL"
+      fi
+    fi
+
+    if [ "$IDLE" -ge 1200 ]; then
+      log "NO_MEANINGFUL_OUTPUT_FOR_20_MINUTES"
+      STALLED=1
+      terminate_run "$RUN_PID"
+      break
+    fi
+
+    /bin/sleep 5
+  done
+
+  /bin/wait "$RUN_PID" 2>/dev/null || true
+  /bin/rm -f "$R/active_run.pid"
+
+  if required_checkpoints_passed && /usr/bin/grep -q "OVERNIGHT_WORLD_BUILD=PASS" "$RUN"; then
+
+    state PASS
+
+    log "ALL_PHYSICAL_CHECKPOINTS=PASS"
+    log "FINAL_MARKER=PASS"
+
+    FINAL="$R/evidence/final_result.txt"
+
+    {
+      printf '%s\n' "OVERNIGHT_WORLD_BUILD=PASS"
+      printf 'FINISHED_AT=%s\n' "$(/bin/date '+%Y-%m-%d %H:%M:%S')"
+      printf 'FINAL_RUN=%s\n' "$RUN"
+      printf 'ATTEMPTS=%s\n' "$ATTEMPT"
+      printf 'PRE_RUN_BACKUP=%s\n' "$(/bin/cat "$R/pre_run_backup.txt" 2>/dev/null)"
+      printf '\nCHECKPOINTS:\n'
+      /bin/cat "$R/events.log"
+    } > "$FINAL"
+
+    exit 0
+  fi
+
+  if [ "$STALLED" -eq 1 ]; then
+    log "ATTEMPT_$ATTEMPT=STALLED"
+  else
+    log "ATTEMPT_$ATTEMPT=INCOMPLETE"
+  fi
+
+  if [ "$ATTEMPT" -ge "$MAX_ATTEMPTS" ]; then
+    state ERROR_DEBUG_MAXED_OUT
+    log "error debug maxed out"
+    exit 1
+  fi
+
+  ATTEMPT=$((ATTEMPT + 1))
+  log "RECOVERY_NEXT_ATTEMPT=$ATTEMPT"
+  /bin/sleep 10
+done

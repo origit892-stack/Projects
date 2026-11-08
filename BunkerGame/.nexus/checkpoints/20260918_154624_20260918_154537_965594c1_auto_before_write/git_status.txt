@@ -1,0 +1,29 @@
+EXIT_CODE=0
+## main...origin/main
+ M ../.DS_Store
+ D ../__pycache__/massive_game_studio.cpython-312.pyc
+ D ../backups/.DS_Store
+ D ../coffee_manager/.DS_Store
+ D ../color_complete/.DS_Store
+ M ../europa-park-planner/app.js
+ M ../europa-park-planner/index.html
+ M ../europa-park-planner/map.html
+ M ../europa-park-planner/map.js
+ D ../fail_games/.DS_Store
+ D "../fail_games/2d survivale game/.DS_Store"
+ D "../fail_games/2d survivale game/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/.DS_Store"
+ D "../fail_games/2d survivale game/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/.DS_Store"
+ D ../games/.DS_Store
+ M ../ori-projects/europa-park-planner/admin.html
+ M ../ori-projects/europa-park-planner/app.js
+ M ../ori-projects/europa-park-planner/index.html
+ M ../ori-projects/europa-park-planner/map.html
+ M ../ori-projects/europa-park-planner/map.js
+ D "../\327\244\327\231\327\240\327\240\327\241\327\231\327\224/.DS_Store"
+ D "../\327\244\327\231\327\240\327\240\327\241\327\231\327\224/trading_ai/.DS_Store"
+?? ../.vscode/settings.json
+?? ../3D_models/
+?? ./
+?? ../roblox-pi-template/
+?? ../skills/
+

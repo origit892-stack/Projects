@@ -1,0 +1,18 @@
+{
+  "id": "20260908_230830_7280f802",
+  "title": "reply with hello",
+  "project_path": "/Users/Ori/Documents/Projects/BunkerGame",
+  "objective": "reply with hello",
+  "status": "COMPLETED",
+  "created_at": "2026-09-08T20:08:30.795371+00:00",
+  "updated_at": "2026-09-08T20:08:42.491227+00:00",
+  "run_id": null,
+  "last_result": "hello\n\nNEXUS_EVIDENCE_SUMMARY={\"tool_calls\": 0, \"successful\": 0, \"failed\": 0, \"tools\": []}\nNEXUS_TIMING_SUMMARY={\"events\": [{\"kind\": \"inference\", \"name\": \"director\", \"started\": 1788898111.065313, \"finished\": 1788898122.487551, \"elapsed\": 11.422237873077393, \"metadata\": {\"iteration\": 1}}], \"totals\": {\"inference\": 11.4222}, \"event_count\": 1}",
+  "history": [
+    {
+      "type": "objective",
+      "text": "reply with hello",
+      "created_at": "2026-09-08T20:08:30.795371+00:00"
+    }
+  ]
+}

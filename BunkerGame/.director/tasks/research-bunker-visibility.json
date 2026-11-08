@@ -1,0 +1,14 @@
+{
+  "task_id": "research-bunker-visibility",
+  "role": "researcher",
+  "objective": ".director/frontdoor/tasks/research-bunker-visibility/objective.md",
+  "write_scopes": [],
+  "read_scopes": [
+    "src/Workspace",
+    "default.project.json",
+    ".director"
+  ],
+  "acceptance_criteria": ".director/frontdoor/tasks/research-bunker-visibility/acceptance.md",
+  "timeout_seconds": 7200,
+  "created_at": "2026-09-29T21:05:53.186386+00:00"
+}

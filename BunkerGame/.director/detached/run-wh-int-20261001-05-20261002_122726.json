@@ -1,0 +1,12 @@
+{
+  "job_id": "run-wh-int-20261001-05-20261002_122726",
+  "mode": "run",
+  "task_ids": [
+    "wh-int-20261001-05"
+  ],
+  "pid": 88561,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-int-20261001-05-20261002_122726.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-int-20261001-05-20261002_122726.json",
+  "started_at": 1790933246.197257,
+  "launcher_status": "RUNNING"
+}

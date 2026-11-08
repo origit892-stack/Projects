@@ -1,0 +1,25 @@
+{
+  "task_id": "warehouse-transform-diag",
+  "role": "researcher",
+  "run_id": "warehouse-transform-diag-243cbb83d117",
+  "status": "FAILED",
+  "executed": "Worker exited without a valid handoff.",
+  "result": "PROCESS_EXIT_CODE=0",
+  "files_changed": "UNKNOWN",
+  "artifacts": "NONE",
+  "verification": "AGENT_HANDOFF missing.",
+  "blockers": "INVALID_COMPLETION_CONTRACT",
+  "completed_at": "2026-10-04T14:38:54.086902+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/7990689b-4cdb-40a3-ac8c-ea11427315fa.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/7990689b-4cdb-40a3-ac8c-ea11427315fa.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "reference": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/appearance_reference.png",
+  "correspondence": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/uv-correspondence.json",
+  "output": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/base_color_raw.png",
+  "resolution": 2048,
+  "triangle_count": 44630,
+  "rasterized_triangles": 44630,
+  "degenerate_triangles": 0,
+  "written_pixels": 1052456,
+  "written_ratio": 0.25092506408691406,
+  "coverage": "/Users/Ori/Documents/Projects/BunkerGame/.nexus/generated/textures/rusty_metal_barrel_2c63289ba52f/cpu_bake_coverage.png",
+  "method": "CPU_BARYCENTRIC_UV_RASTERIZATION"
+}

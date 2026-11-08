@@ -1,0 +1,12 @@
+{
+  "task_id": "project-mapping-01",
+  "run_id": "project-mapping-01-95ffd8b91f6b",
+  "status": "PASS",
+  "executed": "Read default.project.json, appended exactly two new mappings (ServerStorage -> src/ServerStorage, Lighting -> src/Lighting) to the tree section after Workspace, preserving all existing content.",
+  "result": "File now contains 7 tree mappings: Players, ReplicatedStorage, ServerScriptService, StarterGui, StarterPlayer, Workspace, ServerStorage, Lighting. All pre-existing mappings unchanged.",
+  "files_changed": "default.project.json",
+  "artifacts": "NONE",
+  "verification": "python3 -m json.tool parsed the file successfully (valid JSON). Final mappings section: Players (CharacterAutoLoads=false), ReplicatedStorage -> src/ReplicatedStorage, ServerScriptService -> src/ServerScriptService, StarterGui -> src/StarterGui, StarterPlayer/StarterPlayerScripts -> src/StarterPlayer/StarterPlayerScripts, Workspace (FilteringEnabled=true, SignalBehavior=Deferred, StreamingEnabled=false, $path=src/Workspace), ServerStorage -> src/ServerStorage, Lighting -> src/Lighting.",
+  "blockers": "NONE",
+  "completed_at": "2026-09-29T08:17:49.607969+00:00"
+}

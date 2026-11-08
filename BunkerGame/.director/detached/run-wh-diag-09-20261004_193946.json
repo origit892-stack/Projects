@@ -1,0 +1,12 @@
+{
+  "job_id": "run-wh-diag-09-20261004_193946",
+  "mode": "run",
+  "task_ids": [
+    "wh-diag-09"
+  ],
+  "pid": 13746,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-diag-09-20261004_193946.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-wh-diag-09-20261004_193946.json",
+  "started_at": 1791131986.277236,
+  "launcher_status": "RUNNING"
+}

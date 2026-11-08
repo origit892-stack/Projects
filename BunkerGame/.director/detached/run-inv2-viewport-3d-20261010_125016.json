@@ -1,0 +1,12 @@
+{
+  "job_id": "run-inv2-viewport-3d-20261010_125016",
+  "mode": "run",
+  "task_ids": [
+    "inv2-viewport-3d"
+  ],
+  "pid": 72163,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv2-viewport-3d-20261010_125016.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-inv2-viewport-3d-20261010_125016.json",
+  "started_at": 1791625816.015189,
+  "launcher_status": "RUNNING"
+}

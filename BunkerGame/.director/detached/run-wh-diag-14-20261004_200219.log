@@ -1,0 +1,25 @@
+{
+  "task_id": "wh-diag-14",
+  "role": "researcher",
+  "run_id": "wh-diag-14-3b1165158b4c",
+  "status": "PASS",
+  "executed": "(1) src/Workspace/bunker-rooms.model.json: NO CFrame property exists anywhere in the file (0 occurrences). Parts use a 3-element \"Position\" property instead. First child \"Foundation\" (Part): \"Position\": [0, -1.5, 60]. First MeshPart \"entrance\": \"Position\": [0, 0.6932, 0]. No rotation data is stored at all.\n(2) src/Workspace/SpawnRoot.model.json: NO CFrame property (0 occurrences). Single child \"PlayerSpawn\" (SpawnLocation): \"Position\": [0, 0.5, -10].\n(3) src/ServerStorage/GeneratedAssets/bunker_vent_grille_01.model.json: NO CFrame property (0 occurrences). First part \"Mesh_0\" (MeshPart) has only \"Size\": [1.979069471359253, 1.7752920389175415, 1.9706876277923584] and no Position or CFrame (defaults to identity/origin).\n(4) src/Workspace/abandoned_warehouse_interior_01.model.json: uses 12-element \"CFrame\" arrays (62 occurrences). First part \"TexturesCom_WindowsBacklit0019_13_M_0\" (MeshPart) CFrame verbatim: [-179.996277, 13.861822, 249.238327, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]. This is POSITION-FIRST format: [X, Y, Z, R00, R01, R02, R10, R11, R12, R20, R21, R22] (position -179.996277, 13.861822, 249.238327 followed by identity rotation matrix).\nCONCLUSION: The warehouse file's CFrame is position-first. It is NOT the same representation as the other three files, which do not use CFrame at all — they use 3-element \"Position\" arrays (and no rotation). So a tool expecting the warehouse's 12-element position-first CFrame format will not find CFrame keys in bunker-rooms, SpawnRoot, or bunker_vent_grille_01; those files would need Position (and implicit identity rotation) converted to the 12-element position-first CForm to match.",
+  "result": "(1) src/Workspace/bunker-rooms.model.json: NO CFrame property exists anywhere in the file (0 occurrences). Parts use a 3-element \"Position\" property instead. First child \"Foundation\" (Part): \"Position\": [0, -1.5, 60]. First MeshPart \"entrance\": \"Position\": [0, 0.6932, 0]. No rotation data is stored at all.\n(2) src/Workspace/SpawnRoot.model.json: NO CFrame property (0 occurrences). Single child \"PlayerSpawn\" (SpawnLocation): \"Position\": [0, 0.5, -10].\n(3) src/ServerStorage/GeneratedAssets/bunker_vent_grille_01.model.json: NO CFrame property (0 occurrences). First part \"Mesh_0\" (MeshPart) has only \"Size\": [1.979069471359253, 1.7752920389175415, 1.9706876277923584] and no Position or CFrame (defaults to identity/origin).\n(4) src/Workspace/abandoned_warehouse_interior_01.model.json: uses 12-element \"CFrame\" arrays (62 occurrences). First part \"TexturesCom_WindowsBacklit0019_13_M_0\" (MeshPart) CFrame verbatim: [-179.996277, 13.861822, 249.238327, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]. This is POSITION-FIRST format: [X, Y, Z, R00, R01, R02, R10, R11, R12, R20, R21, R22] (position -179.996277, 13.861822, 249.238327 followed by identity rotation matrix).\nCONCLUSION: The warehouse file's CFrame is position-first. It is NOT the same representation as the other three files, which do not use CFrame at all — they use 3-element \"Position\" arrays (and no rotation). So a tool expecting the warehouse's 12-element position-first CFrame format will not find CFrame keys in bunker-rooms, SpawnRoot, or bunker_vent_grille_01; those files would need Position (and implicit identity rotation) converted to the 12-element position-first CForm to match.",
+  "files_changed": "NONE",
+  "artifacts": "NONE",
+  "verification": "- Read all four files directly (warehouse via head/grep due to size: 2,325 lines).\n- grep -c '\"CFrame\"' results: bunker-rooms.model.json:0, SpawnRoot.model.json:0, bunker_vent_grille_01.model.json:0, abandoned_warehouse_interior_01.model.json:62.\n- Warehouse first CFrame at line 15 matches the assignment's quoted values exactly, confirming position-first ordering (X,Y,Z then 3x3 rotation rows).",
+  "blockers": "NONE",
+  "completed_at": "2026-10-04T17:02:43.547090+00:00",
+  "worker_context_cleanup": {
+    "matched_session_count": 1,
+    "matched_sessions": [
+      "/Users/Ori/.continue/sessions/38169663-ebe3-4183-9523-079c4833b3b2.json"
+    ],
+    "deleted_session_count": 1,
+    "deleted_sessions": [
+      "/Users/Ori/.continue/sessions/38169663-ebe3-4183-9523-079c4833b3b2.json"
+    ],
+    "refused": [],
+    "status": "PASS"
+  }
+}

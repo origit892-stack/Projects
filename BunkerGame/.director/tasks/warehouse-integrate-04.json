@@ -1,0 +1,14 @@
+{
+  "task_id": "warehouse-integrate-04",
+  "role": "implementer",
+  "objective": "GOAL: Retire the failed Cube warehouse (asset 73559951039514) and integrate the high-quality imported warehouse as the actual warehouse in the playable world. VERIFIED CHECKPOINT: Failed Cube integration = src/Workspace/abandoned_warehouse.model.json plus references to 73559951039514 in src/ReplicatedStorage/GeneratedAssets/AssetRegistry.json and AssetRegistry.luau. Good asset = src/ServerStorage/GeneratedAssets/abandoned_warehouse_interior_01.rbxmx (verified byte-identical to the captured Roblox import; contains real hierarchy, MeshParts, SurfaceAppearances, Roblox asset refs). CONSTRAINTS: Do NOT regenerate geometry. Do NOT publish any Roblox asset. Do NOT touch SpawnRoot or unrelated world content. Preserve the imported model hierarchy, meshes, materials/textures, and proportions. Persist placement through the filesystem/Argon source of truth (default.project.json), then sync to Studio using the established Argon workflow. ACCEPTANCE: Cube warehouse fully retired from src/; abandoned_warehouse_interior_01 instantiated in Workspace on playable ground near SpawnRoot; placement persisted in Argon source; Studio sync completed; report exact files changed and sync evidence.",
+  "write_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame/src"
+  ],
+  "read_scopes": [
+    "/Users/Ori/Documents/Projects/BunkerGame"
+  ],
+  "acceptance_criteria": "ACCEPTANCE: 1) No 73559951039514 references remain in src/ and src/Workspace/abandoned_warehouse.model.json is gone. 2) abandoned_warehouse_interior_01 is instantiated in Workspace via Argon source, placed on playable ground near SpawnRoot, hierarchy/meshes/materials/proportions preserved. 3) Placement persisted in filesystem/Argon source of truth. 4) Argon sync to Studio completed with evidence. 5) SpawnRoot and unrelated world content unchanged. 6) No Cube generation, no new Roblox asset published.",
+  "timeout_seconds": 7200,
+  "created_at": "2026-10-01T19:17:38.027403+00:00"
+}

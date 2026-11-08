@@ -1,0 +1,12 @@
+{
+  "job_id": "run-impl-invisible-spawn-20260929_131855",
+  "mode": "run",
+  "task_ids": [
+    "impl-invisible-spawn"
+  ],
+  "pid": 99072,
+  "log": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-invisible-spawn-20260929_131855.log",
+  "record": "/Users/Ori/Documents/Projects/BunkerGame/.director/detached/run-impl-invisible-spawn-20260929_131855.json",
+  "started_at": 1790677135.12313,
+  "launcher_status": "RUNNING"
+}
