@@ -75,7 +75,7 @@ The map is **Containment Deck 07** — a sealed industrial platform floating in 
 | Path surface | **2 tiles wide = 8 studs**, raised 0.25 (y 0→0.25) | `#1E2A45` — *brighter than enemies* (`#1A1F2E`) so silhouettes read; GDD §20.2 rule 3 |
 | Curb | 0.3-stud raised edge both sides | emissive `#19D3FF` 20% |
 | Lane arrows | 4×0.5 stud floor decals every 8 studs, pointing toward Core | `#19D3FF` 15%; brighten to 60% at Speed ×2 (GDD §5.6) |
-| Path length | 40–120 tiles (GDD §5.2) | reference maps: A=42, B=40, C≈60 (see §3) |
+| Path length | 40–120 tiles (GDD §5.2) | reference maps: A=71, B=67, C=74 (see §3) |
 | Enemies on path | 1.5–3 studs tall bodies, dark + rim light | unique silhouette per archetype (art spec §9) |
 
 ### 2.6 Pads (build sites)
@@ -103,44 +103,66 @@ The map is **Containment Deck 07** — a sealed industrial platform floating in 
 
 ## 3. Reference path layouts (13×13, tile coords c=0..12 E-W, r=0..12 N-S)
 
-Legend: `P` path tile (2-wide lanes as drawn) · `C` Core (tiles 5–6 × 5–6) · `S`/`W` spawn gap in the ring · `F` fork · `M` merge · `.` empty deck (pads where adjacent to path)
+Legend: `P` path tile (2-wide lanes) · `C` Core (tiles cols 5–6 × rows 5–6) · `.` empty deck (pads placed on empty tiles adjacent to path, GDD §5.5).
 
-### Map A — "The Ring Run" (default; single north spawn; 42 path tiles)
-```
-        0 1 2 3 4 5 6 7 8 9 10 11 12
- r0     . . . . . S S . . . . . .     S: north spawn (cols 5-6)
- r1     . . . . . P P . . . . . .
- r2     . . . . . P P P P P . . .
- r3     . . . . . . . . . P P . . .
- r4     . . . P P P P P . P P . . .
- r5     . . . P P C C . . . . . . .
- r6     . . . P P C C . . . . . . .
- r7     . . . P P P P P P P P . . .
- r8     . . . . . P P . . P P . . .
- r9     . . . . . P P . . P P . . .
- r10    . . . . . P P P P P . . . .
- r11    . . . . . . . . . . . . . .
- r12    . . . . . . . . . . . . . .
-```
-**Trace:** N-gap → down cols 5–6 → right r2 → down cols 8–9 → left r4 → down cols 3–4 → right r7 → down cols 8–9 → left r10 → up cols 5–6 → Core (south). No loops, no self-cross. **Character:** readable first run — the whole snake is visible at default zoom; teaches the loop without tricks. Pads concentrate in the two large empty halves (rows 8–12 W, rows 0–4 E) → early build choices are spatial.
+> **Verified, not hand-waved.** All three layouts below were generated from lane-centerline waypoints and checked by code: single connected route, no self-cross / T-branch, no tile touches the Core, 40–120 tiles (GDD §5.2), spawn at the ring edge, route terminates adjacent to the Core. Enemy routing is precomputed from these waypoints (GDD §22.3: no pathfinding). **Pad capacity** = count of empty tiles 4-adjacent to the path = the max pads the "1–3 per path tile" rule can place on that layout.
 
-### Map B — "Double Gate" (two spawns: N + W; one fork that re-merges; 40 path tiles)
+### Map A — "The Ring Run" (71 tiles · 1 spawn N · enters Core WEST · pad capacity 39)
 ```
-        0 1 2 3 4 5 6 7 8 9 10 11 12
- r0     . . . . . S S . . . . . .     S: north spawn (cols 5-6)
- r1     . . . . . P P . . . . . .
- r2     . . . . . P P P P P P . .     F: fork
- r3     . . . P P . . . . P P . .
- r4     . . . P P . . . . P P . .
- r5     W P P P P . . . . P P . .     W: west spawn (cols 0-1)
- r6     . . . P P C C . . P P . .
- r7     . . . P P P P P P P P . .     M: merge row → Core (cols 5-6)
- r8     . . . . . . . . . . . . . .
+     0 1 2 3 4 5 6 7 8 9 10 11 12
+ 0   . . . . . P P . . . . . .
+ 1   . . . . . P P . . . . . .
+ 2   . . . . . P P . . . . P P
+ 3   . . . . P P P P P P P P P
+ 4   . . . . P P P P P P P P P
+ 5   . . . P P C C . . . . P P
+ 6   . . . P P C C . . . . P P
+ 7   . . . P P . . . . . . P P
+ 8   . . . P P . . . . . . P P
+ 9   . . . P P . . . . . . P P
+10   . . . P P . . . . . . P P
+11   . . P P P P P P P P P P P
+12   . . P P P P P P P P P P .
 ```
-**Trace:** N-gap → fork at r2 into west lane (cols 3–4) and east lane (cols 9–10); W-gap joins the west lane at r5; both lanes merge at r7 under the Core. **Character:** pressure from two directions; the fork forces split defense (AoE on the merge row is the optimal read) — this is the map that teaches *spatial economy*.
+**Trace:** N-gap (cols 5–6, top edge) → drop rows 0–3 → sweep east along rows 3–4 → down the east edge (cols 11–12, rows 2–12) → across the bottom (rows 11–12) → up the west edge (cols 3–4, rows 5–12) → **breaches the Core's west face at rows 5–6**. One big clockwise ring. **Character:** the readable first run — the entire loop is visible at default zoom, and the huge central open plaza (rows 5–10, cols 6–10) is all pad space: early build choices are pure spatial optimization. Lowest pad count of the three (39) — if a map must hit the 45–70 pad target of GDD §5.1, prefer B or C.
 
-### Map C — "The Long Way" (single N spawn, S-coil, ≈60 tiles, template)
-Long double-U: N spawn enters top-right, sweeps the full width top, drops down the west edge, crosses the bottom, climbs the east edge, then coils once through the middle band (rows 4–8) before arriving at the Core from the south. No forks. **Character:** maximum path length → maximum pad count (up to ~70) → the "build a lot, build smart" map; mid-map it carries a **Bridge** over the coolant channel (visual landmark) and a **Tunnel** section (sensor dead-zone) as its set-pieces. *(Exact tile map generated at Stage 1 by MapGenerator per GDD §5.4 rules; the template defines character, the generator enforces the 40–120 tile rule.)*
+### Map B — "Double Gate" (67 tiles · 2 spawns N + W · merge · enters Core SOUTH · pad capacity 49)
+```
+     0 1 2 3 4 5 6 7 8 9 10 11 12
+ 0   . . . . . . P P . . . . .
+ 1   . . . . . . P P . . . . .
+ 2   . . . . . . P P . . P P .
+ 3   . . . . . P P P P P P . .
+ 4   . . . . . P P P P P P . .
+ 5   . . . P P C C . . . P P .
+ 6   P P P P P C C . . . P P .
+ 7   P P P P P . P P . . P P .
+ 8   . . . P P . P P . . P P .
+ 9   . . P P P P P P P P P P .
+10   . . P P P P P P P P P . .
+11   . . . . . . . . . . . . .
+12   . . . . . . . . . . . . .
+```
+**Trace:** N-gap (cols 6–7, top edge) → east along rows 3–4 → down the east edge (cols 10–11) → west along rows 9–10 · W-gap (cols 0–1, west edge, rows 6–7) → east along rows 6–7 → down (cols 3–4) → east along rows 9–10 · **both branches merge on rows 9–10, then a single lane climbs cols 6–7 and breaches the Core's south face (row 7)**. **Character:** pressure from two directions; the merge corridor is the optimal AoE/chain read — the map that teaches *spatial economy*. The only reference map with a fork/merge (GDD §5.3 #3/#4: the fork is at the N-branch start, the merge before the Core ✓).
+
+### Map C — "The Long Way" (74 tiles · 1 spawn N · enters Core EAST · pad capacity 47)
+```
+     0 1 2 3 4 5 6 7 8 9 10 11 12
+ 0   . . . . . P P . . . . . .
+ 1   . . P P . P P . . . . . .
+ 2   . P P P P P P . . . . . .
+ 3   . P P P P P . . . . . . .
+ 4   . . P P . . . . . . . . .
+ 5   . . P P . C C . . . . P P
+ 6   . . P P . C C P P P P P P
+ 7   . . P P . . . P P P P P P
+ 8   . . P P . . . . . . . P P
+ 9   . . P P . . . . . . . P P
+10   . . P P . . . . . . . P P
+11   . P P P P P P P P P P P P
+12   . P P P P P P P P P P . .
+```
+**Trace:** N-gap (cols 5–6, top edge) → short drop → west along rows 2–3 → down the west edge (cols 2–3, rows 2–12) → across the bottom (rows 11–12) → up the east edge (cols 11–12, rows 5–12) → west along rows 6–7 → **breaches the Core's east face (cols 7, rows 6–7)**. One long counter-clockwise double-U, no forks. **Character:** the longest reference route → the most tower coverage per enemy; mid-path it carries the **Bridge** over the coolant channel (visual landmark) and the **Tunnel** section (sensor dead-zone) as set-pieces.
 
 **Run-start choice:** the 3 map options offered per run are A/B/C permuted across biomes, with the biome's **known modifier** shown before the run (GDD §4.2 step 1) — e.g. "Frozen Archive — freeze durations +10%".
 
@@ -272,5 +294,5 @@ Camera shake: breach ≤1 stud / boss slam ≤2 studs — both disable-able (GDD
 ## 11. Open items for user sign-off
 1. **[WORLD-V1]** Core identity = quantum power lattice that feeds the region; enemies = collapse manifestations (not aliens). — approve/adjust?
 2. **[WORLD-V1]** Sign language: dry industrial protocol tone with exactly one dry-irony A.R.I.A. line per run (ticker #5/Act II/Act III lines). — approve tone?
-3. Map C exact tiles: generate at Stage 1 (template above defines character).
+3. Pad target: reference maps hold 39/49/47 pads (B and C are inside the GDD §5.1 45–70 band). If the 45–70 floor must hold for Map A too, add pad-adjacent open space or shorten the route.
 4. Spawn-SE (3rd gap) unlock condition: tie to biome/Act or to Boss Gate tile? (GDD says 1–3 spawn points "per opening tile" — needs a one-line rule.)
