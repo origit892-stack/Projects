@@ -11,13 +11,13 @@
     {
       "id": "L-20261109-01",
       "created": "2026-11-09 09:20 IST",
-      "updated": "2026-11-09 09:20 IST",
+      "updated": "2026-11-09T15:13:15.976068+00:00",
       "source": "https://community.n8n.io/t/327481/can-n8n-reliably-automate-complex-todois",
       "fit": "A",
       "title": "n8n evaluation: autonomous Todoist + Google Calendar planning system (580 tasks, 24.5h cap, HITL)",
       "draft": "You're evaluating n8n as plumbing for an autonomous planning system — 580 Todoist tasks, multiple calendars, a 24.5h cap, and 'never silently drop a mandatory task'. I operate exactly this class of system in production.\n\nn8n Cloud works as the orchestrator, but it is not the constraint solver — the rescheduling logic needs a small planner with a database (plan + approvals). For subtasks, recurrences and no-date items, use Todoist's REST API directly — the node drops data. Persistent state, execution logs, error alerts and a heartbeat are what make it 'reliable'.\n\nProof: a 24/7 multi-agent ops desk — 71 specialized agents with checkpointed state, runs verified daily — plus an unattended publishing pipeline with failure alerts.\nhttps://origit892-stack.github.io/agent-operator/ · github.com/origit892-stack/Projects\n\nOne question: is the 24.5h a hard cap the planner must never breach, or a target it may exceed with your explicit approval? That decides the state machine.",
-      "status": "new",
-      "notes": "Reply in the community thread (comment). OP is in evaluation phase, asked for technical guidance before a trial — high-intent Agent System ($2,000+) prospect. Posted 2026-11-08 14:47 UTC by @Stephanie_Sabatie. Another user (@TaskToAgent) already answered technically; our reply adds the operator angle."
+      "status": "approved",
+      "notes": "APPROVED by user 2026-11-09 (pricing talk). Board lead — no chat_id. Reply prepared: leads/replies/L-20261109-01.md. Send = user posts to thread via community.n8n.io account."
     },
     {
       "id": "L-20261109-02",
