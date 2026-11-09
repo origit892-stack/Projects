@@ -1,0 +1,244 @@
+{
+ "schemaVersion": 1,
+ "count": 20,
+ "cards": [
+  {
+   "id": "C01",
+   "name": "Dual Frame",
+   "rarity": "Common",
+   "type": "Structure",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "ADD_GEM_SLOT",
+    "value": 1
+   },
+   "note": "required for T3"
+  },
+  {
+   "id": "C02",
+   "name": "Rapid Cycling",
+   "rarity": "Common",
+   "type": "Passive",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "FIRE_RATE_PCT_PER_STACK",
+    "value": 0.15,
+    "scope": "chosen_tower_type"
+   }
+  },
+  {
+   "id": "C03",
+   "name": "Sharpened Core",
+   "rarity": "Common",
+   "type": "Passive",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "DAMAGE_PCT_ALL",
+    "value": 0.12
+   }
+  },
+  {
+   "id": "C04",
+   "name": "Extended Range",
+   "rarity": "Common",
+   "type": "Passive",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "RANGE_TILES_ADD",
+    "value": 1
+   }
+  },
+  {
+   "id": "C05",
+   "name": "Field Repair",
+   "rarity": "Common",
+   "type": "Economy",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "CORE_HP_RESTORE",
+    "value": 3
+   }
+  },
+  {
+   "id": "C06",
+   "name": "Scavenger Protocol",
+   "rarity": "Common",
+   "type": "Economy",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "BOUNTY_PCT",
+    "value": 0.12
+   }
+  },
+  {
+   "id": "C07",
+   "name": "Reinforced Chassis",
+   "rarity": "Common",
+   "type": "Passive",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "UPGRADE_COST_PCT",
+    "value": -0.1
+   }
+  },
+  {
+   "id": "C08",
+   "name": "Cooling Loop",
+   "rarity": "Common",
+   "type": "Passive",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "ABILITY_CD_PCT_PER_STACK",
+    "value": -0.12,
+    "cap": -0.24
+   }
+  },
+  {
+   "id": "C09",
+   "name": "Targeting Array",
+   "rarity": "Common",
+   "type": "Passive",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "ADD_TARGETING_MODE",
+    "value": "priority"
+   }
+  },
+  {
+   "id": "C10",
+   "name": "Kinetic Plating",
+   "rarity": "Common",
+   "type": "Passive",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "CORE_MAX_HP_ADD",
+    "value": 2
+   }
+  },
+  {
+   "id": "C11",
+   "name": "Prospector's Eye",
+   "rarity": "Common",
+   "type": "Economy",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "TILE_OPTIONS_ADD",
+    "value": 1
+   }
+  },
+  {
+   "id": "C12",
+   "name": "Overclock Capacitor",
+   "rarity": "Common",
+   "type": "Passive",
+   "maxStacks": 3,
+   "effect": {
+    "kind": "OVERCLOCK_DURATION_ADD",
+    "value": 3,
+    "cap": 6
+   }
+  },
+  {
+   "id": "R01",
+   "name": "Deep Freeze",
+   "rarity": "Rare",
+   "type": "Passive",
+   "maxStacks": 2,
+   "effect": {
+    "kind": "FROZEN_TAKEN_PCT_FROM_EXPLOSIVE",
+    "value": 0.2
+   }
+  },
+  {
+   "id": "R02",
+   "name": "Chain Reaction",
+   "rarity": "Rare",
+   "type": "Passive",
+   "maxStacks": 2,
+   "effect": {
+    "kind": "OVERKILL_SPREAD_PCT_TO_2",
+    "value": 0.25,
+    "cap": 0.5
+   }
+  },
+  {
+   "id": "R03",
+   "name": "Acid Bath",
+   "rarity": "Rare",
+   "type": "Passive",
+   "maxStacks": 2,
+   "effect": {
+    "kind": "CORRODE_STACK_ADD",
+    "value": 1,
+    "durationAddSec": 2,
+    "capStacks": 6
+   }
+  },
+  {
+   "id": "R04",
+   "name": "Compound Interest",
+   "rarity": "Rare",
+   "type": "Economy",
+   "maxStacks": 2,
+   "effect": {
+    "kind": "GOLD_INTEREST_PCT_PER_WAVE",
+    "value": 0.05,
+    "cap": 120
+   }
+  },
+  {
+   "id": "R05",
+   "name": "Twin Cores",
+   "rarity": "Rare",
+   "type": "Manipulation",
+   "maxStacks": 2,
+   "effect": {
+    "kind": "DUPLICATE_LAST_PICKED_CARD",
+    "value": 1
+   }
+  },
+  {
+   "id": "E01",
+   "name": "Total Synergy",
+   "rarity": "Epic",
+   "type": "Passive",
+   "maxStacks": 2,
+   "effect": {
+    "kind": "SAME_HYBRID_PAIR_DAMAGE_PCT",
+    "value": 0.25,
+    "cap": 0.5
+   }
+  },
+  {
+   "id": "E02",
+   "name": "Temporal Anchor",
+   "rarity": "Epic",
+   "type": "Manipulation",
+   "maxStacks": 2,
+   "effect": {
+    "kind": "FREE_REROLL_PLUS_TILE_OPTION_EVERY_5W",
+    "value": 1
+   }
+  },
+  {
+   "id": "L01",
+   "name": "Omni-Architect",
+   "rarity": "Legendary",
+   "type": "Economy",
+   "maxStacks": 1,
+   "effect": {
+    "kind": "FREEZE_CHASSIS_COST",
+    "value": 100
+   },
+   "note": "chassis cost stays 100 x typeMultiplier for the run"
+  }
+ ],
+ "balanceRules": [
+  "no card gives more than +25% power per stack (except Legendary)",
+  "economy cards never buy power directly",
+  "every card has a counter or opportunity cost (stack, reroll, deck space)",
+  "no card disables an entire mechanic except Omni-Architect",
+  "a Common card picked 3 times is removed (enforced by stack caps)"
+ ],
+ "stackCapRuling": "GDD §2.12 (ruling section) overrides §10.4 per-card lower values: uniform caps C3/R2/E2/L1 = 51 slots guarantees >=1 offer on all 50 waves. Idempotent effects (e.g. C09 targeting mode) apply once; extra stacks are slot-fill only."
+}

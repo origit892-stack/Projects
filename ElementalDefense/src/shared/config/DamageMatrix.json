@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "matrix": {
+    "flesh":    { "fire": 1.25, "frost": 1.0, "acid": 1.0, "lightning": 0.9, "earth": 1.0, "void": 1.0 },
+    "metal":    { "fire": 0.75, "frost": 0.9, "acid": 1.5, "lightning": 1.25, "earth": 1.25, "void": 0.8 },
+    "energy":   { "fire": 0.8, "frost": 1.0, "acid": 1.0, "lightning": 1.5, "earth": 0.6, "void": 1.5 },
+    "ethereal": { "fire": 0.6, "frost": 1.25, "acid": 0.6, "lightning": 0.8, "earth": 0.5, "void": 1.5 },
+    "swarm":    { "fire": 1.1, "frost": 1.0, "acid": 1.0, "lightning": 1.1, "earth": 0.9, "void": 0.9 }
+  },
+  "swarmAoeBonusPct": 0.5,
+  "damageFormula": "damage = base * elementMultiplier * (1 - armorReduction) * statusAmplifiers * crit",
+  "armorReductionFormula": "armorReduction = min(0.75, flatArmor + 0.12 * corrodeStacks)",
+  "armorReductionCap": 0.75
+}

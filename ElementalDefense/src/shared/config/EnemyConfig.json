@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "count": 10,
+  "enemies": [
+    { "id": "runt", "name": "Runt", "role": "grunt", "hpMultiplier": 1.0, "speedTilesPerSec": 1.2, "armorType": "flesh", "flatArmor": 0.0, "breachDamage": 1, "bountyGold": 2, "budgetCost": 1, "flying": false, "abilities": [] },
+    { "id": "runner", "name": "Runner", "role": "fast", "hpMultiplier": 0.6, "speedTilesPerSec": 2.0, "armorType": "flesh", "flatArmor": 0.0, "breachDamage": 1, "bountyGold": 2, "budgetCost": 1.5, "flying": false, "abilities": [] },
+    { "id": "brute", "name": "Brute", "role": "light_tank", "hpMultiplier": 2.5, "speedTilesPerSec": 0.9, "armorType": "metal", "flatArmor": 0.10, "breachDamage": 2, "bountyGold": 4, "budgetCost": 3, "flying": false, "abilities": [] },
+    { "id": "goliath", "name": "Goliath", "role": "heavy_tank", "hpMultiplier": 4.0, "speedTilesPerSec": 0.6, "armorType": "metal", "flatArmor": 0.30, "breachDamage": 3, "bountyGold": 7, "budgetCost": 5, "flying": false, "abilities": [] },
+    { "id": "drone", "name": "Drone", "role": "air", "hpMultiplier": 0.8, "speedTilesPerSec": 1.5, "armorType": "energy", "flatArmor": 0.0, "breachDamage": 1, "bountyGold": 3, "budgetCost": 2, "flying": true, "abilities": ["immune_to_earth"] },
+    { "id": "sentinel", "name": "Sentinel", "role": "shielded", "hpMultiplier": 1.5, "speedTilesPerSec": 0.8, "armorType": "metal", "flatArmor": 0.20, "breachDamage": 2, "bountyGold": 6, "budgetCost": 4, "flying": false, "abilities": ["shield_50pct_max_hp_regen_6s"] },
+    { "id": "weaver", "name": "Weaver", "role": "healer", "hpMultiplier": 1.2, "speedTilesPerSec": 1.0, "armorType": "flesh", "flatArmor": 0.05, "breachDamage": 1, "bountyGold": 5, "budgetCost": 4, "flying": false, "abilities": ["heal_3pct_hp_per_sec_5_ally"] },
+    { "id": "splitter", "name": "Splitter", "role": "splitter", "hpMultiplier": 1.8, "speedTilesPerSec": 1.1, "armorType": "flesh", "flatArmor": 0.0, "breachDamage": 2, "bountyGold": 4, "budgetCost": 3, "flying": false, "abilities": ["splits_into_2_runt_on_death"] },
+    { "id": "phantom", "name": "Phantom", "role": "phase", "hpMultiplier": 1.0, "speedTilesPerSec": 1.4, "armorType": "ethereal", "flatArmor": 0.0, "breachDamage": 2, "bountyGold": 5, "budgetCost": 3, "flying": false, "abilities": ["phase_out_every_4s_for_1.5s"] },
+    { "id": "juggernaut", "name": "Juggernaut", "role": "elite", "hpMultiplier": 6.0, "speedTilesPerSec": 0.5, "armorType": "metal", "flatArmor": 0.40, "breachDamage": 4, "bountyGold": 12, "budgetCost": 8, "flying": false, "abilities": ["stun_immune", "disable_tower_2s"] }
+  ],
+  "behaviorCounters": {
+    "drone": "Coil, Prism, Turret with Target Flying",
+    "sentinel": "Lightning, Void, Corrode",
+    "weaver": "kill priority; Strongest targeting",
+    "splitter": "AoE, Lightning",
+    "phantom": "Totem detection, AoE",
+    "juggernaut": "Prism, Frost+Earth"
+  }
+}

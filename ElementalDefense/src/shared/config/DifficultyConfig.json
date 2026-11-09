@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "difficulties": [
+    { "id": "normal", "enemyHpMult": 1.0, "goldMult": 1.0, "breachDamageMult": 1.0, "shardMult": 1.0, "audience": "80% of players" },
+    { "id": "hard", "enemyHpMult": 1.35, "goldMult": 0.90, "breachDamageMult": 1.0, "shardMult": 1.25, "audience": "optimizers" },
+    { "id": "expert", "enemyHpMult": 1.65, "goldMult": 0.80, "breachDamageMult": 1.25, "shardMult": 1.60, "audience": "deep matrix" },
+    { "id": "nightmare", "enemyHpMult": 2.10, "goldMult": 0.70, "breachDamageMult": 1.50, "shardMult": 2.00, "audience": "endless / event" }
+  ],
+  "coopScaling": {
+    "enemyHp": "x (1 + 0.35 * (players - 1))",
+    "gold": "x (1 - 0.08 * (players - 1))",
+    "coreHp": "20 + 5 * (players - 1)"
+  }
+}

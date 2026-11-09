@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "elements": [
+    { "id": "fire", "name": "Fire", "color": "#FF6B2C", "role": "sustained_damage", "baseStatus": "burning", "strongAgainst": ["flesh", "swarm"] },
+    { "id": "frost", "name": "Frost", "color": "#59D8FF", "role": "control", "baseStatus": "chill", "strongAgainst": ["ethereal", "fast"] },
+    { "id": "acid", "name": "Acid", "color": "#7CFF4F", "role": "armor_strip", "baseStatus": "corrode", "strongAgainst": ["metal", "energy"] },
+    { "id": "lightning", "name": "Lightning", "color": "#FFD84D", "role": "chain", "baseStatus": "shock", "strongAgainst": ["energy", "swarm"] },
+    { "id": "earth", "name": "Earth", "color": "#C08A5A", "role": "slow", "baseStatus": "root", "strongAgainst": ["metal", "ground"] },
+    { "id": "void", "name": "Void", "color": "#B45CFF", "role": "guard_break", "baseStatus": "warp", "strongAgainst": ["ethereal", "energy"] }
+  ],
+  "gemEconomy": [
+    { "tier": 1, "gemCost": 60, "mergeFee": 0, "baseDPS": 22, "maxLevel": 5 },
+    { "tier": 2, "gemCost": 180, "mergeFee": 100, "baseDPS": 90, "maxLevel": 5 },
+    { "tier": 3, "gemCost": 540, "mergeFee": 350, "baseDPS": 320, "maxLevel": 5 },
+    { "tier": 4, "gemCost": 1200, "mergeFee": 900, "baseDPS": 1200, "maxLevel": 3 }
+  ]
+}

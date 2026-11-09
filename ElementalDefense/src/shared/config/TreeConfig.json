@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "currency": "shards",
+  "totalCostAllNodes": 23250,
+  "branches": {
+    "might": {
+      "name": "Might", "identity": "damage", "maxBonus": "+18% damage",
+      "nodes": [
+        { "id": "M1", "cost": 100, "effect": { "damagePct": 0.02 } },
+        { "id": "M2", "cost": 250, "effect": { "damagePct": 0.03 } },
+        { "id": "M3", "cost": 600, "effect": { "damagePct": 0.04 } },
+        { "id": "M4", "cost": 1200, "effect": { "damagePct": 0.04 } },
+        { "id": "M5", "cost": 2500, "effect": { "damagePct": 0.05, "unlocks": "stronger_T4_effect" } }
+      ]
+    },
+    "flow": {
+      "name": "Flow", "identity": "economy", "maxBonus": "+14% gold, -9% chassis cost",
+      "nodes": [
+        { "id": "F1", "cost": 100, "effect": { "goldPct": 0.02 } },
+        { "id": "F2", "cost": 250, "effect": { "goldPct": 0.03 } },
+        { "id": "F3", "cost": 600, "effect": { "chassisCostPct": -0.03 } },
+        { "id": "F4", "cost": 1200, "effect": { "goldPct": 0.04 } },
+        { "id": "F5", "cost": 2500, "effect": { "goldPct": 0.05, "chassisCostPct": -0.06 } }
+      ]
+    },
+    "control": {
+      "name": "Control", "identity": "status", "maxBonus": "+18% duration, +12% status damage",
+      "nodes": [
+        { "id": "C1", "cost": 100, "effect": { "statusDurationPct": 0.05 } },
+        { "id": "C2", "cost": 250, "effect": { "statusDurationPct": 0.06 } },
+        { "id": "C3", "cost": 600, "effect": { "statusDamagePct": 0.04 } },
+        { "id": "C4", "cost": 1200, "effect": { "statusDurationPct": 0.07 } },
+        { "id": "C5", "cost": 2500, "effect": { "statusDamagePct": 0.08, "freezeDurationAddSec": 0.3 } }
+      ]
+    },
+    "aegis": {
+      "name": "Aegis", "identity": "core", "maxBonus": "+5 HP max, +10% repair, Nano-Repair -30s",
+      "nodes": [
+        { "id": "A1", "cost": 100, "effect": { "coreMaxHp": 1 } },
+        { "id": "A2", "cost": 250, "effect": { "coreMaxHp": 1 } },
+        { "id": "A3", "cost": 600, "effect": { "repairPct": 0.10 } },
+        { "id": "A4", "cost": 1200, "effect": { "coreMaxHp": 1, "emergencyShieldPct": 0.10 } },
+        { "id": "A5", "cost": 2500, "effect": { "coreMaxHp": 2, "nanoRepairCdSubSec": 30 } }
+      ]
+    },
+    "insight": {
+      "name": "Insight", "identity": "draft", "maxBonus": "+2 Reroll, +8% Rare weight, +2% Epic, +1 tile",
+      "nodes": [
+        { "id": "I1", "cost": 100, "effect": { "freeRerollPerRun": 1 } },
+        { "id": "I2", "cost": 250, "effect": { "rareWeightPct": 0.03 } },
+        { "id": "I3", "cost": 600, "effect": { "rareWeightPct": 0.05 } },
+        { "id": "I4", "cost": 1200, "effect": { "tileOptionEveryNWaves": 10 } },
+        { "id": "I5", "cost": 2500, "effect": { "epicWeightPct": 0.02, "freeRerollThird": true } }
+      ]
+    }
+  }
+}

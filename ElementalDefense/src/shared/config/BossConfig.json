@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "count": 5,
+  "bosses": [
+    {
+      "id": "goliath_prime", "name": "Goliath Prime", "wave": 10, "hpMultOfWavePool": 1.5, "flatArmor": 0.40,
+      "mechanic": "slam_disables_tower_2s", "phases": 2,
+      "reward": { "gold": 300, "card": { "rarity": "Rare" } }
+    },
+    {
+      "id": "hive_queen", "name": "Hive Queen", "wave": 20, "hpMultOfWavePool": 2.0, "flatArmor": 0.15,
+      "mechanic": "spawns_4_runts_every_5s", "phases": 3,
+      "reward": { "gold": 500, "card": { "rarity": "Epic", "choice": true } }
+    },
+    {
+      "id": "the_architect", "name": "The Architect", "wave": 30, "hpMultOfWavePool": 2.0, "flatArmor": 0.30,
+      "mechanic": "rotates_element_immune_every_8s", "phases": 3,
+      "reward": { "gold": 700, "card": { "id": "C01" } }
+    },
+    {
+      "id": "mirror_core", "name": "Mirror Core", "wave": 40, "hpMultOfWavePool": 2.0, "flatArmor": 0.25,
+      "mechanic": "copies_strongest_tower_and_immune_to_it", "phases": 3,
+      "reward": { "gold": 900, "card": { "rarity": "Legendary", "offer": true } }
+    },
+    {
+      "id": "core_eater", "name": "Core-Eater", "wave": 50, "hpMultOfWavePool": 2.0, "flatArmor": 0.50,
+      "mechanic": "destroys_pads; enrages_below_30pct_hp", "phases": 4,
+      "reward": { "gold": 1500, "cosmetic": true }
+    }
+  ],
+  "bossRules": {
+    "stun": "fully immune to full stun, not to slows",
+    "shard": "each boss drops a shard granting +1% fixed damage to the player for the rest of the run",
+    "breachDamage": 10
+  }
+}

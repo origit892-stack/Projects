@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "count": 5,
+  "abilities": [
+    { "id": "overclock", "name": "Overclock", "effect": "fire_rate_all_towers_pct", "value": 0.40, "durationSec": 8, "cooldownSec": 45, "chargeCost": 0, "unlockWave": 1, "combatOnly": true },
+    { "id": "gravity_well", "name": "Gravity Well", "effect": "enemy_speed_pct_in_radius", "value": -0.60, "radiusTiles": 4, "durationSec": 4, "cooldownSec": 60, "chargeCost": 0, "unlockWave": 3, "combatOnly": true },
+    { "id": "emergency_shield", "name": "Emergency Shield", "effect": "absorb_breach_damage", "value": 6, "durationSec": 6, "cooldownSec": 120, "chargeCost": 0, "unlockWave": 5, "combatOnly": true },
+    { "id": "emp", "name": "EMP", "effect": "disable_shields_and_enemy_abilities", "durationSec": 5, "cooldownSec": 90, "chargeCost": 0, "unlockWave": 15, "combatOnly": true },
+    { "id": "nano_repair", "name": "Nano-Repair", "effect": "core_hp_restore", "value": 3, "instant": true, "cooldownSec": 180, "chargeCost": 0, "unlockWave": 25, "combatOnly": false }
+  ],
+  "rules": [
+    "gold cost is always 0; balance is cooldowns",
+    "active only during Combat, except Nano-Repair",
+    "tree can upgrade: -10% CD, +2s duration",
+    "co-op: each player activates independently; warn when two activate the same ability simultaneously"
+  ]
+}

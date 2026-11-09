@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "statuses": [
+    { "id": "burning", "source": "fire", "effect": "damage_per_sec_pct_of_applied", "value": 0.30, "durationSec": 3, "maxStacks": 3, "bossStackCap": 2 },
+    { "id": "chill", "source": "frost", "effect": "speed_pct_per_stack", "value": -0.20, "durationSec": 3, "maxStacks": 3 },
+    { "id": "frozen", "source": "3x chill", "effect": "full_stop", "durationSec": 1.5, "maxStacks": 0, "note": "+20% damage from shatter sources" },
+    { "id": "corrode", "source": "acid", "effect": "armor_reduction_pct_per_stack", "value": -0.12, "durationSec": 6, "maxStacks": 4, "cap": -0.48 },
+    { "id": "shock", "source": "lightning", "effect": "damage_taken_pct; chain_damage_pct", "value": 0.10, "chainPct": 0.40, "durationSec": 4, "maxStacks": 2 },
+    { "id": "root", "source": "earth", "effect": "full_stop", "durationSec": 1.2, "maxStacks": 0, "groundOnly": true },
+    { "id": "warp", "source": "void", "effect": "damage_out_pct; damage_taken_pct", "value": -0.15, "takenPct": 0.10, "durationSec": 4, "maxStacks": 2 },
+    { "id": "brittle", "source": "frost+acid (Cryo-Corrosion)", "effect": "crit_damage_pct", "value": 0.25, "durationSec": 4, "maxStacks": 1 }
+  ]
+}

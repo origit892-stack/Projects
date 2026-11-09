@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "modes": [
+    { "id": "standard", "waves": 50, "avgMinutes": 32, "players": [1, 4], "shardMult": 1.0, "unlock": "start" },
+    { "id": "quick", "waves": 25, "avgMinutes": 13, "players": [1, 4], "shardMult": 0.6, "unlock": "wave 10 reached" },
+    { "id": "daily_matrix", "waves": 30, "avgMinutes": 18, "players": [1, 4], "shardMult": 1.5, "unlock": "wave 15 reached", "note": "1 per 24h, shared daily mutator, catch-up: 2 runs/48h allowed" },
+    { "id": "endless", "waves": null, "avgMinutes": null, "players": [1, 4], "shardMult": 0.05, "shardMode": "per_wave", "unlock": "first win" },
+    { "id": "deep_matrix", "waves": 50, "avgMinutes": 35, "players": [2, 4], "shardMult": 1.8, "unlock": "wave 30 reached", "note": "Expert difficulty" },
+    { "id": "private_code", "waves": null, "avgMinutes": null, "players": [1, 4], "shardMult": "per_mode", "unlock": "wave 5 reached" }
+  ],
+  "mutatorsCount": 10,
+  "mutatorsRef": "GDD v3 §13.3 (10 mutators for Daily Matrix; one per daily run, shared globally)"
+}

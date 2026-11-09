@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "startingGold": 300,
+  "goldCap": 99999,
+  "chassisCost": {
+    "formula": "100 * typeMultiplier * 1.15^N",
+    "base": 100,
+    "growth": 1.15,
+    "N_definition": "total chassis built in this run (monotonic; selling does NOT reduce N)"
+  },
+  "waveIncome": {
+    "formula": "150 + 35*w",
+    "base": 150,
+    "perWave": 35
+  },
+  "bountySplit": { "bountyPct": 0.30, "waveBonusPct": 0.70 },
+  "reroll": { "baseCost": 25, "growthPerUse": 1.5, "sequence": [25, 38, 56, 84] },
+  "banishCost": 80,
+  "skipDraftGoldReward": 20,
+  "compoundInterest": { "pct": 0.05, "perWaveCap": 120 },
+  "tileEconomy": {
+    "goldMine": { "oneTimeGold": 120 },
+    "tradingPost": { "goldPctPerWave": 0.08 }
+  },
+  "shards": {
+    "perWave": 5,
+    "actCompletionBonus": 100,
+    "runComplete": 250,
+    "dailyFirstWin": 150,
+    "fullRunTotalApprox": 950
+  },
+  "resultShardMult": { "standard": 1.0, "quick": 0.6, "endlessPerWave": 0.05 },
+  "runtimeChecks": {
+    "hoardWarning": { "goldOverTimesNextChassis": 3, "minWave": 10, "action": "analytics_only" },
+    "weakArrayWarning": { "dpsBelowReqTimes": 0.55, "action": "aria_warning" }
+  }
+}

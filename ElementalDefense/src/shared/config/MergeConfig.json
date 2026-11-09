@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "count": 15,
+  "fusions": [
+    { "id": "steam_burst", "pair": ["fire", "frost"], "name": "Steam Burst", "effect": "aoe_damage_plus_chill; detonates on frozen targets", "dpsMult": 1.6 },
+    { "id": "napalm_launcher", "pair": ["fire", "acid"], "name": "Napalm Launcher", "effect": "burning_plus_corrode; melts armor", "dpsMult": 1.8 },
+    { "id": "plasma_lance", "pair": ["fire", "lightning"], "name": "Plasma Lance", "effect": "burning_chain_to_3_targets", "dpsMult": 1.8 },
+    { "id": "magma_pool", "pair": ["fire", "earth"], "name": "Magma Pool", "effect": "damage_pool_plus_slow", "dpsMult": 1.5 },
+    { "id": "eclipse", "pair": ["fire", "void"], "name": "Eclipse", "effect": "fire_damage_ignores_50pct_armor", "dpsMult": 1.7 },
+    { "id": "cryo_corrosion", "pair": ["frost", "acid"], "name": "Cryo-Corrosion", "effect": "applies_brittle_+25pct_crit_damage", "dpsMult": 1.5 },
+    { "id": "superconductor", "pair": ["frost", "lightning"], "name": "Superconductor", "effect": "freeze_plus_chain; stun 0.8s", "dpsMult": 1.6 },
+    { "id": "permafrost", "pair": ["frost", "earth"], "name": "Permafrost", "effect": "root 1.5s; frozen surface", "dpsMult": 1.4 },
+    { "id": "absolute_zero", "pair": ["frost", "void"], "name": "Absolute Zero", "effect": "kills_enemies_below_12pct_hp", "dpsMult": 1.7 },
+    { "id": "electrolyte", "pair": ["acid", "lightning"], "name": "Electrolyte", "effect": "corrode_spreads_as_chain", "dpsMult": 1.5 },
+    { "id": "toxic_bloom", "pair": ["acid", "earth"], "name": "Toxic Bloom", "effect": "poison_cloud; -20pct_enemy_accuracy", "dpsMult": 1.4 },
+    { "id": "entropy", "pair": ["acid", "void"], "name": "Entropy", "effect": "removes_shield_and_30pct_armor", "dpsMult": 1.5 },
+    { "id": "tesla_fault", "pair": ["lightning", "earth"], "name": "Tesla Fault", "effect": "chain_plus_stun_1s", "dpsMult": 1.6 },
+    { "id": "dark_lightning", "pair": ["lightning", "void"], "name": "Dark Lightning", "effect": "bypasses_shields; +30pct_vs_energy", "dpsMult": 1.7 },
+    { "id": "singularity", "pair": ["earth", "void"], "name": "Singularity", "effect": "pull_to_center_plus_dot", "dpsMult": 1.5 }
+  ]
+}

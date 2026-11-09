@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "draftPerWave": true,
+  "offers": 3,
+  "pick": 1,
+  "skipRewardGold": 20,
+  "rarityWeights": { "Common": 65, "Rare": 25, "Epic": 8, "Legendary": 2 },
+  "stackCapsByRarity": { "Common": 3, "Rare": 2, "Epic": 2, "Legendary": 1 },
+  "rules": [
+    "roll rarity with weights, then random card of that rarity still under its stack cap",
+    "if none available in rarity, fallback down: Legendary -> Epic -> Rare -> Common",
+    "Legendary offered only from wave 15 and only if not picked this run (max 1 per run, removed from deck after pick)",
+    "at least one offer is always Common",
+    "no duplicate card within the 3 offers"
+  ],
+  "reroll": { "baseCost": 25, "growthPerUse": 1.5 },
+  "banish": { "cost": 80, "scope": "removed_from_deck_for_run" },
+  "freeCardSources": ["tile:relic", "boss:hive_queen_epic_choice"]
+}

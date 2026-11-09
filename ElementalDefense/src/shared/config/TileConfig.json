@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "count": 12,
+  "tiles": [
+    { "id": "straight", "kind": "path", "pathDelta": 4, "reward": null, "unlockWave": 1 },
+    { "id": "curve", "kind": "path", "pathDelta": 5, "reward": null, "unlockWave": 1 },
+    { "id": "fork", "kind": "path", "pathDelta": 2, "branchCount": 2, "reward": { "pads": 2, "gold": 40 }, "unlockWave": 5 },
+    { "id": "merge", "kind": "path", "pathDelta": 0, "note": "rejoins 2 branches; only valid after a fork", "reward": null, "unlockWave": 6 },
+    { "id": "shortcut", "kind": "path", "pathLengthPct": -0.15, "reward": { "pads": 2, "gold": 60 }, "unlockWave": 8 },
+    { "id": "bridge", "kind": "path", "pathDelta": 5, "note": "bypasses obstacle", "reward": { "pads": 1 }, "unlockWave": 10 },
+    { "id": "tunnel", "kind": "path", "pathDelta": 4, "note": "enemies invisible inside", "reward": { "gold": 80 }, "unlockWave": 12 },
+    { "id": "trading_post", "kind": "economy", "pathDelta": 0, "reward": { "goldPctPerWave": 0.08 }, "unlockWave": 6 },
+    { "id": "gold_mine", "kind": "economy", "pathDelta": 1, "reward": { "goldOneTime": 120 }, "unlockWave": 4 },
+    { "id": "relic", "kind": "economy", "pathDelta": 1, "reward": { "freeCardChoice": true }, "unlockWave": 10 },
+    { "id": "arena", "kind": "military", "pathDelta": 1, "reward": { "strongPad": 1, "padTier": 2 }, "unlockWave": 15 },
+    { "id": "boss_gate", "kind": "event", "pathDelta": 3, "reward": { "earlyBoss": true, "rewardMult": 2 }, "unlockWave": 18 }
+  ],
+  "generator": {
+    "seedFormula": "runSeed + wave",
+    "optionsPerOffer": 3,
+    "retries": 20,
+    "guarantees": [
+      "at least one simple option (straight/curve)",
+      "never 3 economy options in a row",
+      "if player has <6 pads, at least one option grants a pad"
+    ],
+    "validation": "BFS from new edge to core; invalid tile rejected; if all 3 invalid, force a Straight",
+    "pathLengthBounds": [40, 120],
+    "maxForks": 2,
+    "noLoop": true
+  }
+}

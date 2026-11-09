@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "count": 6,
+  "biomes": [
+    { "id": "neon_foundry", "name": "Neon Foundry", "palette": { "accent": "#9D4EDD", "grid": "#19D3FF" }, "modifier": { "element": "lightning", "damagePct": 0.10 }, "season": 1 },
+    { "id": "frozen_archive", "name": "Frozen Archive", "palette": { "accent": "#59D8FF", "grid": "#FFFFFF" }, "modifier": { "status": "frozen", "durationPct": 0.10 }, "season": 1 },
+    { "id": "acid_gardens", "name": "Acid Gardens", "palette": { "accent": "#7CFF4F", "grid": "#FFD84D" }, "modifier": { "element": "acid", "damagePct": 0.10 }, "season": 2 },
+    { "id": "magma_core", "name": "Magma Core", "palette": { "accent": "#FF6B2C", "grid": "#FF3B5C" }, "modifier": { "element": "fire", "damagePct": 0.10 }, "season": 2 },
+    { "id": "void_reef", "name": "Void Reef", "palette": { "accent": "#B45CFF", "grid": "#0B0F1A" }, "modifier": { "element": "void", "damagePct": 0.10 }, "season": 3 },
+    { "id": "solar_citadel", "name": "Solar Citadel", "palette": { "accent": "#FFC857", "grid": "#FFFFFF" }, "modifier": { "goldPct": 0.05 }, "season": 3 }
+  ],
+  "basePalette": {
+    "background": "#0B0F1A", "surface": "#121A2B", "grid": "#19D3FF",
+    "fire": "#FF6B2C", "frost": "#59D8FF", "acid": "#7CFF4F", "lightning": "#FFD84D",
+    "earth": "#C08A5A", "void": "#B45CFF", "core": ["#FFFFFF", "#FFC857"], "danger": "#FF3B5C",
+    "enemy": "#1A1F2E"
+  }
+}

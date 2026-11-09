@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "count": 6,
+  "requirements": {
+    "requiresCard": "C01",
+    "note": "T3 requires a Dual Frame card (opens 3rd gem slot) + 2 gems + merge fee. T3 = +50% DPS over the T2 base and grants one apex effect."
+  },
+  "t3DpsBonusPct": 0.5,
+  "apexes": [
+    { "id": "quantum_napalm", "triple": ["fire", "acid", "lightning"], "name": "Quantum Napalm", "effect": "chain_damage_that_melts_armor_and_applies_burning" },
+    { "id": "null_storm", "triple": ["frost", "lightning", "void"], "name": "Null Storm", "effect": "freeze_plus_stun_plus_shield_bypass" },
+    { "id": "geothermal", "triple": ["fire", "frost", "earth"], "name": "Geothermal", "effect": "aoe_meltdown; mutable_terrain_surfaces" },
+    { "id": "black_bloom", "triple": ["acid", "earth", "void"], "name": "Black Bloom", "effect": "cloud_damage_scales_with_enemy_count" },
+    { "id": "triple_point", "triple": ["fire", "frost", "acid"], "name": "Triple Point", "effect": "alternates_damage_and_control_state_every_5s" },
+    { "id": "singularity_engine", "triple": ["lightning", "earth", "void"], "name": "Singularity Engine", "effect": "pulls_all_enemies_and_crushes_them" }
+  ]
+}
