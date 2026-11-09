@@ -2,3 +2,7 @@
 **/node_modules/
 **/__pycache__/
 *.pyc
+
+# leads console local-only files (client conversations, logs)
+freelance-income/leads/INBOX.jsonl
+freelance-income/leads/bot.log

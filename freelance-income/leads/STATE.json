@@ -2,7 +2,10 @@
   "config": {
     "site_url": "https://origit892-stack.github.io/agent-operator/",
     "payment_link": null,
-    "send_channels": []
+    "send_channels": [
+      "telegram:agentoperator123456_bot"
+    ],
+    "telegram_token_file": "~/.hermes/freelance-income/telegram_bot.token"
   },
   "leads": [
     {
