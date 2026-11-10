@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="popup.css"><title>Chat Bridge</title></head>
+<body>
+  <header><div class="mark">CB</div><div><h1>Chat Bridge</h1><p>Local ChatGPT memory</p></div></header>
+  <div id="status" class="status">Checking local bridge…</div>
+  <section><div class="label">Current conversation</div><div id="conversation" class="conversation">Open a ChatGPT conversation.</div></section>
+  <label class="toggle"><span><strong>Allow Agent to send messages</strong><small>Agents can send only to the currently open matching chat.</small></span><input id="allowSend" type="checkbox"></label>
+  <div class="notice">Text messages shown in the page are saved locally. Attachments, images and messages not loaded in the page are not captured.</div>
+  <button id="settings">Settings</button>
+  <script src="popup.js"></script>
+</body></html>

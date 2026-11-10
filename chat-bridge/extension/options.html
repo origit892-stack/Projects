@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="popup.css"><title>Chat Bridge Settings</title><style>body{width:min(560px,calc(100vw - 40px));margin:32px auto}.field{display:block;margin:18px 0}.field span{display:block;font-weight:600;margin-bottom:7px}.field input{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font:13px monospace}.help{font-size:12px;line-height:1.5;color:#64748b}.saved{min-height:18px;color:#047857;font-size:12px;margin-top:10px}</style></head>
+<body><header><div class="mark">CB</div><div><h1>Chat Bridge settings</h1><p>Connect the extension to your local computer service.</p></div></header>
+<label class="field"><span>Local bridge token</span><input id="token" type="password" autocomplete="off" placeholder="Paste the token printed by install_mac.sh"></label>
+<p class="help">The token is stored in Chrome's extension storage and is used only to authenticate requests to 127.0.0.1 on this computer. Do not share it or paste it into a chat.</p>
+<button id="save">Save settings</button><div id="saved" class="saved"></div>
+<script src="options.js"></script></body></html>

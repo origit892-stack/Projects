@@ -7,6 +7,16 @@ All project memory for this repository lives here (in-repo, versioned) — not o
 - Files >100 MB go through **git-lfs** (GitHub free tier: 1 GB LFS storage).
 - Keep `MEMORY/` updated when project state changes (checkpoints, decisions, verified facts).
 
+## 2026-11-10 — chat-bridge added (synced from live copy)
+**What:** Chat Bridge (v0.1.1) — Chrome extension + local daemon (`127.0.0.1:8765`) exposing the user's OPEN ChatGPT conversation over MCP to Hermes/OpenCode. 21 files synced from the live operational copy at `~/Downloads/chat-bridge`. No secrets in the tree (token lives only in `~/.chat-bridge/config.json`, mode 0600; sample configs are placeholders only).
+
+**Included 2026-11-10 patch (not in the upstream 0.1.0 release):**
+- `extension/content.js` re-mapped to the current ChatGPT DOM: `data-chatgpt-search-unit-key` (role) + `data-chatgpt-search-message-ids` (stable UUIDs, upsert by key); `cleanText()`; ProseMirror composer detection; send-button detection (data-testid → aria-label → composer footer). Old selectors kept as fallback.
+- `extension/manifest.json` bumped 0.1.0 → 0.1.1 (version marker, forces Chrome to notice changes).
+- Verified live end-to-end that day: auto-capture (12 messages), read, send (test round-trip, ChatGPT replied), DB auto-update.
+
+**Operating model (important):** the OPERATIONAL copy is `~/Downloads/chat-bridge` (the Chrome extension loads from there; the daemon runs from there). The repo copy is the versioned source. Change flow: edit in `~/Downloads/chat-bridge` → **reload the extension in chrome://extensions** (Chrome caches content scripts until extension reload — page reload is NOT enough) → verify in daemon log/DB → re-sync to repo + commit.
+
 ## 2026-11-08 — Two-copy merge + full push (COMPLETE)
 **Problem:** two copies of this project — `~/Documents/Projects` (M1 Pro, 18 GB) and `Projects 2.zip` (snapshot of the other machine, zipped 2026-11-02). Both were on the same git commit `4ff775d`, so no history divergence — only working-tree differences.
 

@@ -1,0 +1,8 @@
+# Merge this block into ~/.hermes/config.yaml under the existing mcp_servers key.
+mcp_servers:
+  chat-bridge:
+    command: "/ABSOLUTE/PATH/TO/chat-bridge/run_mcp.command"
+    args: []
+    enabled: true
+    timeout: 150
+    connect_timeout: 30
