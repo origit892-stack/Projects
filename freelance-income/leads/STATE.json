@@ -51,6 +51,39 @@
       "draft": "You're hand-writing the schedule for your family's plumbing and heating business and want online booking — I build and operate exactly this class of system in production: customers book 24/7, the schedule fills itself, and follow-ups run without you.\n\nProof you can check today:\n- 24/7 multi-agent ops desk — 71 specialized agents with checkpointed state; scheduled runs verified daily.\n- Unattended publishing pipeline running twice daily with failure alerts.\n\nApproach: I map your job types, working hours and how customers reach you, then send back the plan + fixed price + done-definition in 24-48h. Timeline: ~5 days, with handover docs and a walkthrough video.\n\nhttps://origit892-stack.github.io/agent-operator/ · github.com/origit892-stack/Projects\n\nOne question: how do customers reach you today — phone calls, texts, or a web form? That decides whether the first build is a phone/text AI responder or a web booking flow.",
       "status": "new",
       "notes": "Reply in the r/smallbusiness thread. Posted 2026-11-09 04:13 UTC. Fit B: One Task class build (booking system + AI triage/follow-up); not explicitly an AI ask but squarely in the automation family. SEND CHANNEL: Reddit — user account still on the 21-day karma plan (reddit/REDDIT.md); parks here until the account passes the gate."
+    },
+    {
+      "id": "L-20261110-01",
+      "created": "2026-11-10 09:08 IST",
+      "updated": "2026-11-10T07:08:24+00:00",
+      "source": "https://www.reddit.com/r/AI_Agents/comments/1xs9iai/ai_agents_using_hippa_info/",
+      "fit": "A",
+      "title": "r/AI_Agents: AI agent that calls insurance companies for HIPAA-compliant verification of benefits (same 15 questions every time → sheet)",
+      "draft": "You want an AI agent that calls insurance companies, asks the same 15 verification-of-benefits questions every time and puts the answers on a sheet — HIPAA-clean and cheap per minute. I build and operate this class of unattended agent system in production.\n\nProof you can check today:\n- 24/7 multi-agent ops desk — 71 specialized agents with checkpointed state; scheduled runs verified OK daily.\n- Unattended publishing pipeline running twice daily with a dedupe ledger and failure alerts.\n\nBuild: a voice front that navigates hold menus, runs your 15-question script, extracts answers into a fixed schema, writes the sheet row, and escalates anything ambiguous to you. HIPAA side: BAA-covered telephony and model providers; PHI stays in your accounts.\n\nhttps://origit892-stack.github.io/agent-operator/ · github.com/origit892-stack/Projects\n\nOne question: how do payer phone numbers and member details reach you today — a pasted spreadsheet, or a system I could pull from via API? That decides how I wire the call trigger.",
+      "status": "new",
+      "notes": "Reply in the r/AI_Agents thread (primary). Same OP cross-posted to r/automation: https://www.reddit.com/r/automation/comments/1xs9hda/ai_agent/ — reply ONCE, not twice. Posted 2026-11-10 01:04 UTC. Fit A: AI voice agent for insurance verification of benefits (15 fixed questions → sheet), HIPAA-compliant, low cost/minute, holds up to 2h. Package: AI Employee $900 / Agent System $2,000+ (voice front + hold handling + sheet write). Voice-agent domain is new to the proof list — draft claims 'this class of unattended agent system' (honest: we operate 24/7 multi-agent systems in production), no invented voice-client claims. SEND CHANNEL: Reddit — user account still on the 21-day karma plan (reddit/REDDIT.md); parks here until the account passes the gate."
+    },
+    {
+      "id": "L-20261110-02",
+      "created": "2026-11-10 09:08 IST",
+      "updated": "2026-11-10T07:08:24+00:00",
+      "source": "https://www.reddit.com/r/smallbusiness/comments/1xs3fm0/has_anyone_successfully_automated_profit_first/",
+      "fit": "B",
+      "title": "r/smallbusiness: Estonian company automating Profit First (5/50/15/30 splits) on Revolut Business — hitting Revolut rule limits, open to integrations/alternatives",
+      "draft": "You're setting up Profit First on Revolut Business for your Estonian company and hitting the wall — one income-sorting rule per source account, and transfers between your own accounts don't trigger rules, so the 5/50/15/30 split stays manual. I build exactly this class of workflow: trigger, route, split, verify.\n\nProof you can check today:\n- 124-product store operated end-to-end via its official API — GET before write, read-back after every change.\n- Unattended publishing pipeline running twice daily with failure alerts.\n\nApproach: I map the Revolut rules and API against your allocation flow, then send back the plan + fixed price + done-definition in 24-48h — including whether to fix it inside Revolut, automate the splits with scheduled transfers, or use a reliable alternative an Estonian company can open.\n\nhttps://origit892-stack.github.io/agent-operator/ · github.com/origit892-stack/Projects\n\nOne question: are subcontractor costs known before the client money lands, or do they arrive after? That decides the order of the splits.",
+      "status": "new",
+      "notes": "Reply in the r/smallbusiness thread. Posted 2026-11-09 20:53 UTC. Fit B: automation ask (Profit First auto-split on Revolut Business, Estonian company, all EUR); hit Revolut limits (one income-sort rule per source account; own-account transfers don't trigger rules); explicitly open to 'reliable integrations or alternatives'. Package: One Task $300 / AI Employee $900 class. SEND CHANNEL: Reddit — user account still on the 21-day karma plan (reddit/REDDIT.md); parks here until the account passes the gate."
+    },
+    {
+      "id": "L-20261110-03",
+      "created": "2026-11-10 09:08 IST",
+      "updated": "2026-11-10T07:08:24+00:00",
+      "source": "https://www.reddit.com/r/AI_Agents/comments/1xs52yf/ia_in_my_job/",
+      "fit": "B",
+      "title": "r/AI_Agents: wants a lookup agent — input name + postal code, agent scours the internet for property owners' phone numbers",
+      "draft": "You're typing names and addresses into one website after another to find property owners' phone numbers, and you want to input a name + postal code and have an agent scour the internet and come back with the contact. I build exactly this class of system — a lookup pipeline that searches, extracts and verifies, instead of manual one-by-one hunting.\n\nProof you can check today:\n- 24/7 multi-agent ops desk — 71 specialized agents with checkpointed state; scheduled runs verified OK daily.\n- 124-product store operated end-to-end via its official API — GET before write, read-back after every change.\n\nApproach: I map the sources you check today and the output format you need, then send back the plan + fixed price + done-definition in 24-48h.\n\nhttps://origit892-stack.github.io/agent-operator/ · github.com/origit892-stack/Projects\n\nOne question: how many lookups a day — tens or hundreds? That decides whether I build an on-demand agent or a batch pipeline.",
+      "status": "new",
+      "notes": "Reply in the r/AI_Agents thread. Posted 2026-11-09 21:57 UTC. Fit B: data-enrichment build (name + address → owner phone/email via public sources; 'perhaps AI-based'). Package: One Task $300 class, scales with volume (asked lookups/day in the draft's question). SEND CHANNEL: Reddit — user account still on the 21-day karma plan (reddit/REDDIT.md); parks here until the account passes the gate."
     }
   ]
 }
