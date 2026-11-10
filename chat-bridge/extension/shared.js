@@ -80,19 +80,28 @@
 
   function reportDiag(adapter) {
     const conversationId = adapter.conversationId(location);
-    if (!conversationId || !adapter.diagnose) return;
-    const raw = adapter.diagnose(document);
+    if (!adapter.diagnose) return;
+    let raw;
+    let reasonPrefix = "";
+    if (!conversationId) {
+      // Not a conversation page (or the URL shape is unknown) — report once per
+      // path so a URL-shape miss is visible instead of silent.
+      raw = { capture_failed: true, reason: `no conversation id in URL (path: ${location.pathname})`, candidates: {} };
+      reasonPrefix = "noid:" + location.pathname;
+    } else {
+      raw = adapter.diagnose(document);
+    }
     const payload = {
       version: VERSION,
       provider: adapter.id,
-      conversation_id: conversationId,
+      conversation_id: conversationId || "",
       url: location.href,
       ts: new Date().toISOString(),
       capture_failed: !!raw.capture_failed,
       reason: raw.reason || "",
       candidates: raw.candidates || {}
     };
-    const sig = JSON.stringify([payload.capture_failed, payload.reason, payload.candidates]);
+    const sig = reasonPrefix + JSON.stringify([payload.capture_failed, payload.reason, payload.candidates]);
     const s = st(adapter.id);
     if (s.diagSig === sig) return;
     s.diagSig = sig;

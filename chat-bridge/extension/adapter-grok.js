@@ -6,8 +6,8 @@
   "use strict";
 
   function conversationId(loc) {
-    // grok.com/chat/<id>
-    const match = loc.pathname.match(/\/chat\/([^/?#]+)/);
+    // grok.com/c/<uuid> (current DOM); /chat/<id> kept as fallback candidate
+    const match = loc.pathname.match(/\/c\/([^/?#]+)/) || loc.pathname.match(/\/chat\/([^/?#]+)/);
     return match ? match[1] : null;
   }
 

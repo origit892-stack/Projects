@@ -219,7 +219,8 @@ section("conversation id parsing");
   check("gemini /app/<id> (u/0)", cid(registry.get("gemini"), "https://gemini.google.com/app/def") === "def");
   check("gemini home -> null", cid(registry.get("gemini"), "https://gemini.google.com/") === null);
 
-  check("grok /chat/<id>", cid(registry.get("grok"), "https://grok.com/chat/42") === "42");
+  check("grok /c/<uuid> (current DOM)", cid(registry.get("grok"), "https://grok.com/c/81c8ed73-7a06-4275-aa96-1bc0d3b95a93?rid=x") === "81c8ed73-7a06-4275-aa96-1bc0d3b95a93");
+  check("grok /chat/<id> (fallback)", cid(registry.get("grok"), "https://grok.com/chat/42") === "42");
   check("grok home -> null", cid(registry.get("grok"), "https://grok.com/") === null);
 }
 
