@@ -75,7 +75,8 @@ async function refresh() {
     $("providers").innerHTML = "<p class='hint'>Provider status is available once the daemon is running.</p>";
   }
   const cfg = await chrome.storage.local.get({ allowAgentSend: false });
-  $("allowSend").checked = Boolean(cfg.allowAgentSend);
+  const allowEl = $("allowSend");
+  if (allowEl) allowEl.checked = Boolean(cfg.allowAgentSend);
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -83,18 +84,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   $("settings").addEventListener("click", () => { window.open("options.html", "_blank"); });
 
   const allow = $("allowSend");
-  allow.addEventListener("change", async () => {
-    await chrome.storage.local.set({ allowAgentSend: allow.checked });
-    if (allow.checked) {
-      const statusEl = $("status");
-      statusEl.classList.add("warn");
-      const note = document.createElement("p");
-      note.className = "hint warn-note";
-      note.textContent = "Enabled — the agent may send in the visible provider tab. Drafts are never touched.";
-      statusEl.append(note);
-      setTimeout(() => note.remove(), 4000);
-    }
-  });
+  if (allow) {
+    allow.addEventListener("change", async () => {
+      await chrome.storage.local.set({ allowAgentSend: allow.checked });
+      if (allow.checked) {
+        const statusEl = $("status");
+        statusEl.classList.add("warn");
+        const note = document.createElement("p");
+        note.className = "hint warn-note";
+        note.textContent = "Enabled — the agent may send in the visible provider tab. Drafts are never touched.";
+        statusEl.append(note);
+        setTimeout(() => note.remove(), 4000);
+      }
+    });
+  }
 
   $("rotate").addEventListener("click", async () => {
     const result = await chrome.runtime.sendMessage({ type: "CHAT_BRIDGE_ROTATE" });
