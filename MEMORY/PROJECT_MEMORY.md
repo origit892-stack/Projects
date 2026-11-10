@@ -17,6 +17,15 @@ All project memory for this repository lives here (in-repo, versioned) — not o
 
 **Operating model (important):** the OPERATIONAL copy is `~/Downloads/chat-bridge` (the Chrome extension loads from there; the daemon runs from there). The repo copy is the versioned source. Change flow: edit in `~/Downloads/chat-bridge` → **reload the extension in chrome://extensions** (Chrome caches content scripts until extension reload — page reload is NOT enough) → verify in daemon log/DB → re-sync to repo + commit.
 
+**Known bug (user-confirmed 2026-11-10 — DO NOT fix in v0.1.x, superseded by v2):**
+- Symptom: extension popup shows `Bridge unavailable: Failed to fetch`.
+- Confirmed trigger: the daemon process was down (port 8765 connection-refused; happened once in-session after a process-session cleanup). The popup has no graceful degraded state — no retry/auto-reconnect, no hint to restart the daemon.
+- User order: leave it; v2 replaces the transport/architecture anyway. (Restarting a dead daemon is normal ops, not "fixing" the bug.)
+
+**v2 requirements (user, 2026-11-10):**
+- Multi-provider support: **Claude, Gemini, ChatGPT, Grok** — the bridge must work with the user's open conversations on all four web UIs (per-provider DOM adapters + unified capture/storage/MCP). Design should also subsume the known bug (robust daemon-status/transport handling).
+
+
 ## 2026-11-08 — Two-copy merge + full push (COMPLETE)
 **Problem:** two copies of this project — `~/Documents/Projects` (M1 Pro, 18 GB) and `Projects 2.zip` (snapshot of the other machine, zipped 2026-11-02). Both were on the same git commit `4ff775d`, so no history divergence — only working-tree differences.
 
