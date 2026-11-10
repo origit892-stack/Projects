@@ -1,12 +1,28 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="popup.css"><title>Chat Bridge</title></head>
+<head>
+  <meta charset="utf-8" />
+  <title>Chat Bridge</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
 <body>
-  <header><div class="mark">CB</div><div><h1>Chat Bridge</h1><p>Local ChatGPT memory</p></div></header>
-  <div id="status" class="status">Checking local bridge…</div>
-  <section><div class="label">Current conversation</div><div id="conversation" class="conversation">Open a ChatGPT conversation.</div></section>
-  <label class="toggle"><span><strong>Allow Agent to send messages</strong><small>Agents can send only to the currently open matching chat.</small></span><input id="allowSend" type="checkbox"></label>
-  <div class="notice">Text messages shown in the page are saved locally. Attachments, images and messages not loaded in the page are not captured.</div>
-  <button id="settings">Settings</button>
+  <header>
+    <div class="brand"><span class="logo">⇄</span><h1>Chat Bridge</h1><span class="ver">v2</span></div>
+  </header>
+  <main>
+    <section id="status" class="card muted">Checking…</section>
+    <section id="providers" class="card"></section>
+    <section id="send-box" class="card hidden">
+      <label for="allowSend">Allow Agent to send messages</label>
+      <p class="hint">Only in the open, visible provider tab. The agent never reads typed-but-unsent drafts.</p>
+    </section>
+    <section id="last-error" class="error hidden"></section>
+  </main>
+  <footer>
+    <a id="settings" href="options.html">Settings</a>
+    <button id="rotate" class="ghost">Rotate token</button>
+    <button id="retry" class="ghost hidden">Retry</button>
+  </footer>
   <script src="popup.js"></script>
-</body></html>
+</body>
+</html>

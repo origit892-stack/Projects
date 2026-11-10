@@ -1,7 +1,7 @@
-# Chat Bridge 0.1 — local Chrome extension + MCP server
+# Chat Bridge 2.0 — local Chrome extension + MCP server (multi-provider)
 
-Chat Bridge links the **currently open ChatGPT web conversation** to local AI agents such as Hermes and OpenCode.
-It stores captured text in a local SQLite database and exposes MCP tools for listing, searching, reading and (with permission) sending messages in the matching open ChatGPT tab.
+Chat Bridge links the **currently open web conversations on ChatGPT, Claude, Gemini, and Grok** to local AI agents such as Hermes and OpenCode.
+It stores captured text in a local SQLite database and exposes MCP tools for listing, searching, reading and (with permission) sending messages in the matching open provider tab.
 
 ## What this MVP does
 
@@ -82,6 +82,18 @@ If your config already contains an `mcp` object, add only the named child. Resta
 3. Use `chatbridge_search_messages` to locate older decisions across chats.
 4. To talk to ChatGPT, keep the matching conversation open in Chrome, enable **Allow Agent to send messages** in the extension popup, then call `chatbridge_send_message` with the conversation ID and message.
 
+## v2: multi-provider (2.0.0)
+
+- **Providers:** ChatGPT (`chatgpt.com`, `chat.openai.com`), Claude (`claude.ai`), Gemini (`gemini.google.com`), Grok (`grok.com`).
+- **Architecture:** one shared transport (`extension/shared.js`) plus one DOM adapter per provider (`extension/adapter-*.js`). The active adapter is chosen by hostname; each registers extraction, composer/send, and diagnostic hooks.
+- **Storage:** the SQLite schema now carries a `provider` column (composite primary keys). An existing v1 database migrates automatically on daemon start, with all legacy rows recorded as `provider='chatgpt'`.
+- **Daemon:** new endpoints `GET /healthz` (no token needed), `GET /providers` (stats + latest capture diagnostics), `POST /diag`. Both auth styles work: v2 `Authorization: Bearer <token>` and v1 `X-Chat-Bridge-Token: <token>`.
+- **MCP:** every tool accepts an optional `provider` argument (empty = all providers / auto-infer). New tool `chatbridge_provider_status` reports per-provider counts, last capture time, and the latest capture diagnostic.
+- **Popup:** shows a proper **Daemon offline** state with start instructions (the old "Failed to fetch" dead end), plus a per-provider status list. If a provider's page layout changes, the adapter reports `capture_failed` with the candidate-selector counts, so the breakage is visible instead of silent.
+- **Provider verification status:** the ChatGPT adapter ports the verified 2026-11-10 selectors verbatim. The Claude, Gemini, and Grok adapters are **best-effort candidates** — if one of them reports `capture_failed` in the popup or `chatbridge_provider_status`, update `extension/adapter-<provider>.js` with the selectors found in DevTools and reload the extension.
+- **Compatibility:** the v1 extension keeps working against the v2 daemon (same token file, same DB, same message flow). The v2 extension works against a v1 daemon for read/status (sending new providers obviously requires v2).
+- **Test port:** test the v2 daemon on port 8766 to avoid disturbing a running v1 bridge: `python3 host/bridge_daemon.py --port 8766 --db /tmp/cb2.sqlite3 --config /tmp/cb2-config.json`.
+
 ## Local tests
 
 From the project folder:
@@ -89,12 +101,14 @@ From the project folder:
 ```bash
 python3 -m unittest discover -s host/tests -v
 python3 -m py_compile host/db.py host/bridge_daemon.py host/mcp_server.py
+node --check extension/shared.js extension/adapter-chatgpt.js extension/adapter-claude.js extension/adapter-gemini.js extension/adapter-grok.js extension/background.js extension/popup.js extension/options.js
+node host/tests/node/adapters.test.js
 ```
 
 ## Security model
 
 - The local HTTP service binds only to `127.0.0.1:8765`.
 - Browser requests require a random token and a `chrome-extension://` origin.
-- The extension's permission scope is limited to ChatGPT domains and the local loopback bridge.
+- The extension's permission scope is limited to the four provider domains (ChatGPT, Claude, Gemini, Grok) and the local loopback bridge.
 - MCP access is local stdio: there is no public endpoint and no cloud sync.
 - Agent sending is off by default and must be enabled in the extension popup.

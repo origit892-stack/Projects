@@ -1,34 +1,42 @@
 {
   "manifest_version": 3,
   "name": "Chat Bridge",
-  "version": "0.1.1",
-  "description": "Save the visible ChatGPT conversation locally and expose it to local AI agents through MCP.",
-  "permissions": [
-    "storage"
-  ],
+  "version": "2.0.0",
+  "description": "Captures local provider conversations (ChatGPT, Claude, Gemini, Grok) and lets the local agent read them or send a message.",
+  "permissions": ["storage", "tabs", "scripting", "alarms"],
   "host_permissions": [
+    "http://127.0.0.1:8765/*",
+    "http://localhost:8765/*",
     "https://chatgpt.com/*",
     "https://chat.openai.com/*",
-    "http://127.0.0.1:8765/*"
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://grok.com/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://grok.com/*"
+      ],
+      "js": ["shared.js", "adapter-chatgpt.js", "adapter-claude.js", "adapter-gemini.js", "adapter-grok.js"],
+      "run_at": "document_idle"
+    }
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Chat Bridge"
   },
   "options_page": "options.html",
-  "content_scripts": [
-    {
-      "matches": [
-        "https://chatgpt.com/*",
-        "https://chat.openai.com/*"
-      ],
-      "js": [
-        "content.js"
-      ],
-      "run_at": "document_idle"
-    }
-  ]
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }

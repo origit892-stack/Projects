@@ -25,6 +25,11 @@ All project memory for this repository lives here (in-repo, versioned) — not o
 **v2 requirements (user, 2026-11-10):**
 - Multi-provider support: **Claude, Gemini, ChatGPT, Grok** — the bridge must work with the user's open conversations on all four web UIs (per-provider DOM adapters + unified capture/storage/MCP). Design should also subsume the known bug (robust daemon-status/transport handling).
 
+**v2 built (2026-11-10, in this repo copy; live copy in `~/Downloads/chat-bridge` still runs v1 on port 8765):**
+- Spec: `docs/v2-spec.md`. Implementation completed 2026-11-10 evening: `host/db.py` (provider column, composite PKs, v1→v2 auto-migration), `host/bridge_daemon.py` (`/healthz`, `/providers`, `/diag`, dual auth: Bearer + X-Chat-Bridge-Token, v1-compatible `/next-action` action shape), `host/mcp_server.py` (optional `provider` on all tools + `chatbridge_provider_status`), `extension/shared.js` (transport), `extension/adapter-{chatgpt,claude,gemini,grok}.js` (content.js deleted), v2 service worker + popup with proper Daemon-offline state.
+- Test evidence (all in-repo): 9/9 python unittest (incl. v1→v2 migration), py_compile clean, node --check clean on all 8 extension JS, 36/36 node adapter tests, live daemon verified on port 8766 (healthz/capture/diag/providers/next-action/action-result), MCP stdio smoke vs the live v1 daemon (status reads 16 chatgpt messages correctly).
+- Deployment is NOT done: v2 is uncommitted in this working tree until the user's verification pass. **ChatGPT selectors are verified; Claude/Gemini/Grok selectors are best-effort candidates** — after deploying, check popup / `chatbridge_provider_status` for `capture_failed` per provider and update the matching adapter file.
+
 
 ## 2026-11-08 — Two-copy merge + full push (COMPLETE)
 **Problem:** two copies of this project — `~/Documents/Projects` (M1 Pro, 18 GB) and `Projects 2.zip` (snapshot of the other machine, zipped 2026-11-02). Both were on the same git commit `4ff775d`, so no history divergence — only working-tree differences.

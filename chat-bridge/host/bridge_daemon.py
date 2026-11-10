@@ -1,131 +1,195 @@
 #!/usr/bin/env python3
-"""Local loopback HTTP bridge between the Chrome extension and SQLite."""
-from __future__ import annotations
-
-import hmac
+"""Local bridge daemon for Chat Bridge v2 (multi-provider). Listens on 127.0.0.1 only."""
+import argparse
 import json
 import os
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import sys
+import time
+import uuid
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlsplit
 
-from db import claim_action, complete_action, conversation_count, init_db, save_snapshot
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import db
 
-CONFIG_PATH = Path(os.environ.get("CHAT_BRIDGE_CONFIG", "~/.chat-bridge/config.json")).expanduser()
+VERSION = db.VERSION
+STARTED_AT = time.time()
 
+def utc_now():
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
-def load_config():
-    if not CONFIG_PATH.exists():
-        raise SystemExit(f"Missing {CONFIG_PATH}. Run install_mac.sh first.")
-    cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-    if not cfg.get("token") or len(cfg["token"]) < 32:
-        raise SystemExit("Invalid local token in config.json")
-    cfg["db_path"] = str(Path(cfg.get("db_path", "~/.chat-bridge/chat-bridge.sqlite3")).expanduser())
-    return cfg
+DEFAULT_CONFIG = Path.home() / ".chat-bridge" / "config.json"
+DEFAULT_DB = Path.home() / ".chat-bridge" / "chat-bridge.sqlite3"
 
-
-CONFIG = load_config()
-DB_PATH = CONFIG["db_path"]
-TOKEN = CONFIG["token"]
-init_db(DB_PATH)
-
-
-class Handler(BaseHTTPRequestHandler):
-    server_version = "ChatBridge/0.1"
-
-    def log_message(self, fmt, *args):
-        # Do not log message bodies, tokens or conversation content.
-        print(f"[chat-bridge] {self.address_string()} {fmt % args}")
-
-    def _origin_headers(self):
-        origin = self.headers.get("Origin", "")
-        if origin.startswith("chrome-extension://"):
-            self.send_header("Access-Control-Allow-Origin", origin)
-            self.send_header("Vary", "Origin")
-            self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-            self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Chat-Bridge-Token")
-            self.send_header("Access-Control-Max-Age", "600")
-
-    def _send(self, code: int, payload: dict):
-        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        self.send_response(code)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
-        self.send_header("Content-Length", str(len(data)))
-        self._origin_headers()
-        self.end_headers()
-        self.wfile.write(data)
-
-    def _authorized(self) -> bool:
-        origin = self.headers.get("Origin", "")
-        # Browser requests must originate from the extension, not an arbitrary web page.
-        if origin and not origin.startswith("chrome-extension://"):
-            return False
-        supplied = self.headers.get("X-Chat-Bridge-Token", "")
-        return hmac.compare_digest(supplied, TOKEN)
-
-    def do_OPTIONS(self):
-        origin = self.headers.get("Origin", "")
-        if not origin.startswith("chrome-extension://"):
-            self._send(403, {"error": "Origin not allowed"})
-            return
-        self.send_response(204)
-        self._origin_headers()
-        self.send_header("Content-Length", "0")
-        self.end_headers()
-
-    def do_GET(self):
-        if urlparse(self.path).path != "/health":
-            self._send(404, {"error": "Not found"})
-            return
-        if not self._authorized():
-            self._send(401, {"error": "Unauthorized"})
-            return
-        self._send(200, {"ok": True, "conversation_count": conversation_count(DB_PATH), "storage": "local SQLite"})
-
-    def do_POST(self):
-        if not self._authorized():
-            self._send(401, {"error": "Unauthorized"})
-            return
-        try:
-            size = int(self.headers.get("Content-Length", "0"))
-            if size <= 0 or size > 2_000_000:
-                self._send(413, {"error": "Request body must be between 1 byte and 2 MB"})
-                return
-            payload = json.loads(self.rfile.read(size).decode("utf-8"))
-            path = urlparse(self.path).path
-            if path == "/capture":
-                self._send(200, {"ok": True, **save_snapshot(DB_PATH, payload)})
-            elif path == "/next-action":
-                action = claim_action(DB_PATH, str(payload.get("conversation_id", "")), bool(payload.get("allow_agent_send")))
-                if action:
-                    action["timeout_ms"] = 90000
-                self._send(200, {"action": action})
-            elif path == "/action-result":
-                changed = complete_action(DB_PATH, str(payload.get("action_id", "")),
-                    str(payload.get("status", "")), str(payload.get("response", "")), str(payload.get("error", "")))
-                self._send(200, {"ok": changed})
-            else:
-                self._send(404, {"error": "Not found"})
-        except (ValueError, TypeError, json.JSONDecodeError) as exc:
-            self._send(400, {"error": str(exc)[:500]})
-        except Exception as exc:
-            self._send(500, {"error": f"Internal error: {type(exc).__name__}"})
-
-
-def main():
-    host = "127.0.0.1"
-    port = int(os.environ.get("CHAT_BRIDGE_PORT", "8765"))
-    server = ThreadingHTTPServer((host, port), Handler)
-    print(f"Chat Bridge local service listening on http://{host}:{port}")
-    print(f"SQLite archive: {DB_PATH}")
-    print("Keep this terminal window open while using Chat Bridge. Press Ctrl+C to stop.")
+def load_token(config_path):
     try:
-        server.serve_forever(poll_interval=0.5)
+        with open(config_path, "r", encoding="utf-8") as f:
+            return str(json.load(f).get("token") or "").strip()
+    except Exception:
+        return ""
+
+def create_token():
+    return uuid.uuid4().hex + uuid.uuid4().hex
+
+def save_token(config_path, token):
+    config_path = Path(config_path)
+    config_path.parent.mkdir(parents=True, exist_ok=True)
+    existing = {}
+    if config_path.exists():
+        try:
+            existing = json.loads(config_path.read_text(encoding="utf-8"))
+        except Exception:
+            existing = {}
+    existing["token"] = token
+    config_path.write_text(json.dumps(existing, indent=2) + "\n", encoding="utf-8")
+    os.chmod(config_path, 0o600)
+
+class Api:
+    def __init__(self, db_path, token, config_path):
+        self.db_path = str(db_path)
+        self.token = token
+        self.config_path = str(config_path)
+        self.started_at = utc_now()
+        self.diags = {}  # provider -> latest diagnostic payload from the extension
+
+    def authed(self, raw):
+        if not self.token:
+            return False
+        return raw == f"Bearer {self.token}"
+
+    def authed_from(self, headers):
+        """Accept both the v2 Authorization header and the v1 X-Chat-Bridge-Token header."""
+        return (self.authed(headers.get("authorization", ""))
+                or headers.get("x-chat-bridge-token", "") == self.token)
+
+    def healthz(self):
+        return {"ok": True, "version": VERSION, "storage": self.db_path,
+                "uptime_s": int(time.time() - STARTED_AT), "providers": db.provider_stats(self.db_path)}
+
+    def providers(self):
+        stats = db.provider_stats(self.db_path)
+        out = {}
+        for provider, info in stats.items():
+            diag = self.diags.get(provider)
+            out[provider] = {**info, "capture_failed": bool(diag and diag.get("capture_failed")),
+                             "diag": diag}
+        return out
+
+    def handle(self, method, path, headers, body):
+        if path == "/healthz":
+            return 200, self.healthz()
+        if not self.authed_from(headers):
+            return 401, {"ok": False, "error": "invalid token"}
+        try:
+            if method == "GET" and path == "/health":
+                return 200, self.healthz()
+            if method == "GET" and path == "/providers":
+                return 200, {"ok": True, "providers": self.providers()}
+            if method == "POST" and path == "/diag":
+                payload = json.loads(body.decode("utf-8"))
+                provider = db.normalize_provider(payload.get("provider"))
+                self.diags[provider] = {"ts": utc_now(), **payload}
+                return 200, {"ok": True}
+            if method == "POST" and path == "/capture":
+                payload = json.loads(body.decode("utf-8"))
+                result = db.save_snapshot(self.db_path, payload)
+                return 200, {"ok": True, **result}
+            if method == "POST" and path == "/next-action":
+                payload = json.loads(body.decode("utf-8"))
+                provider = db.normalize_provider(payload.get("provider") or "chatgpt")
+                conversation_id = str(payload.get("conversation_id") or "")
+                allow = bool(payload.get("allow_agent_send"))
+                action = db.claim_action(self.db_path, conversation_id, allow, provider=provider)
+                if not action:
+                    return 200, {"status": "idle", "action": None}
+                # The `action` object keeps the v1 extension working against the v2 daemon;
+                # v2's service worker consumes the same shape.
+                return 200, {"status": "send", "action": {"id": action["id"],
+                                                          "provider": provider,
+                                                          "conversation_id": action["conversation_id"],
+                                                          "message": action["message"],
+                                                          "timeout_ms": 90000}}
+            if method == "POST" and path == "/action-result":
+                payload = json.loads(body.decode("utf-8"))
+                action_id = str(payload.get("action_id") or "")
+                changed = db.complete_action(self.db_path, action_id,
+                                             str(payload.get("status") or "failed"),
+                                             str(payload.get("response") or ""),
+                                             str(payload.get("error") or ""))
+                return 200, {"ok": changed}
+            if method == "GET" and path.startswith("/actions/"):
+                row = db.get_action(self.db_path, path.rsplit("/", 1)[-1])
+                if not row:
+                    return 404, {"ok": False, "error": "not found"}
+                return 200, {"ok": True, "action": row}
+            if method == "POST" and path == "/rotate-token":
+                new_token = create_token()
+                save_token(self.config_path, new_token)
+                self.token = new_token
+                return 200, {"ok": True, "token": new_token}
+        except ValueError as e:
+            return 400, {"ok": False, "error": str(e)}
+        return 404, {"ok": False, "error": "unknown endpoint"}
+
+def run(port, db_path, config_path, verbose=True):
+    config_path = Path(config_path)
+    token = load_token(config_path)
+    if not token:
+        token = create_token()
+        save_token(config_path, token)
+        print(f"Created local token at {config_path}", flush=True)
+    api = Api(db_path, token, config_path)
+    db.init_db(db_path)
+    print(f"Chat Bridge daemon v{VERSION} listening on 127.0.0.1:{port}", flush=True)
+
+    class Handler(BaseHTTPRequestHandler):
+        server_version = f"ChatBridge/{VERSION}"
+
+        def _respond(self, code, payload):
+            data = json.dumps(payload).encode("utf-8")
+            self.send_response(code)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Access-Control-Allow-Origin", f"http://127.0.0.1:{port}")
+            self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+            self.end_headers()
+            self.wfile.write(data)
+
+        def do_OPTIONS(self):
+            self._respond(204, {})
+
+        def do_GET(self):
+            code, payload = api.handle("GET", urlsplit(self.path).path, self.headers, b"")
+            self._respond(code, payload)
+
+        def do_POST(self):
+            length = min(int(self.headers.get("Content-Length") or 0), 30 * 1024 * 1024)
+            body = self.rfile.read(length)
+            code, payload = api.handle("POST", urlsplit(self.path).path, self.headers, body)
+            if verbose and code == 200:
+                print(f"{self.path} -> {json.dumps(payload)[:220]}", flush=True)
+            self._respond(code, payload)
+
+        def log_message(self, format, *args):
+            pass
+
+    server = HTTPServer(("127.0.0.1", port), Handler)
+    try:
+        server.serve_forever()
     except KeyboardInterrupt:
-        print("\nStopping Chat Bridge.")
+        pass
     finally:
         server.server_close()
 
+def main():
+    parser = argparse.ArgumentParser(description="Chat Bridge local daemon (v2)")
+    parser.add_argument("--port", type=int, default=int(os.environ.get("CHAT_BRIDGE_PORT", "8765")))
+    parser.add_argument("--db", default=str(DEFAULT_DB))
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG))
+    args = parser.parse_args()
+    run(args.port, args.db, args.config)
 
 if __name__ == "__main__":
     main()
