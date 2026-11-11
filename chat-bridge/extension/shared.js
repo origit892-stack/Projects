@@ -224,6 +224,21 @@
 
   // ---- Per-provider polling ----
 
+  // Shared by the poll loop and the SW push (CHAT_BRIDGE_ACTION). executeAgentMessage
+  // is guarded by s.busy, so a double-delivery can never double-send.
+  async function handleAction(adapter, action) {
+    try {
+      const answer = await executeAgentMessage(adapter, action);
+      await chrome.runtime.sendMessage({ type: "CHAT_BRIDGE_ACTION_RESULT", result: {
+        action_id: action.id, status: "completed", response: answer
+      } });
+    } catch (error) {
+      await chrome.runtime.sendMessage({ type: "CHAT_BRIDGE_ACTION_RESULT", result: {
+        action_id: action.id, status: "failed", error: String(error?.message || error)
+      } });
+    }
+  }
+
   async function poll(provider) {
     const adapter = registry.get(provider);
     const s = st(provider);
@@ -236,16 +251,7 @@
         type: "CHAT_BRIDGE_POLL", provider, conversation_id: conversationId
       });
       if (response?.ok && response.action) {
-        try {
-          const answer = await executeAgentMessage(adapter, response.action);
-          await chrome.runtime.sendMessage({ type: "CHAT_BRIDGE_ACTION_RESULT", result: {
-            action_id: response.action.id, status: "completed", response: answer
-          } });
-        } catch (error) {
-          await chrome.runtime.sendMessage({ type: "CHAT_BRIDGE_ACTION_RESULT", result: {
-            action_id: response.action.id, status: "failed", error: String(error?.message || error)
-          } });
-        }
+        await handleAction(adapter, response.action);
       }
     } catch (_) {
       // Daemon may be stopped; keep the content script alive and retry.
@@ -263,6 +269,25 @@
     observer.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
     snapshotNow(adapter);
     reportDiag(adapter);
+
+    // SW push path: the service worker claims actions proactively (immune to
+    // background-tab timer throttling) and forwards them here. Message
+    // delivery is immediate even in background tabs, so the tab does not have
+    // to be in the foreground.
+    chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+      if (message?.type !== "CHAT_BRIDGE_ACTION") return false;
+      const conversationId = adapter.conversationId(location);
+      if (message.provider !== adapter.id || !conversationId ||
+          message.action?.conversation_id !== conversationId) {
+        sendResponse({ ok: false, error: "Not the tab for this conversation." });
+        return false;
+      }
+      handleAction(adapter, message.action)
+        .then(() => sendResponse({ ok: true }))
+        .catch((error) => sendResponse({ ok: false, error: String(error?.message || error) }));
+      return true;
+    });
+
     setInterval(() => {
       const s = st(adapter.id);
       if (adapter.conversationId(location)) {

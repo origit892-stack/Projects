@@ -135,3 +135,45 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 // Keep the service worker alive so content-script messages are never lost.
 chrome.alarms.create("chat-bridge-keepalive", { periodInMinutes: 0.4 });
 chrome.alarms.onAlarm.addListener(() => {});
+
+// ---- Proactive action claiming ----
+// Chrome intensively throttles timers in background tabs (~1/minute), so a
+// content-script-only poll can miss the 90s action window while the user works
+// in another app. The SW (kept warm by the alarm above) claims queued actions
+// itself and pushes them to the owning tab; message delivery is not throttled.
+const PROVIDER_TAB_PATTERNS = {
+  chatgpt: "https://chatgpt.com/*",
+  claude: "https://claude.ai/*",
+  gemini: "https://gemini.google.com/*",
+  grok: "https://grok.com/*"
+};
+
+async function claimActions() {
+  let cfg;
+  try { cfg = await settings(); } catch (_) { return; }
+  if (!cfg.allowAgentSend) return;
+  const stored = await chrome.storage.local.get(null);
+  for (const provider of Object.keys(PROVIDER_TAB_PATTERNS)) {
+    const conv = stored[`lastConversation_${provider}`];
+    if (!conv || !conv.id) continue;
+    let action = null;
+    try {
+      const result = await request("/next-action", {
+        method: "POST",
+        body: JSON.stringify({ provider, conversation_id: conv.id, allow_agent_send: true })
+      });
+      action = result.action || null;
+    } catch (_) { continue; } // daemon offline; retry next tick
+    if (!action) continue;
+    try {
+      const tabs = await chrome.tabs.query({ url: PROVIDER_TAB_PATTERNS[provider] });
+      const tab = tabs.find((t) => t.url && t.url.includes(conv.id));
+      if (!tab) continue; // action stays claimed; the daemon TTL will recycle it
+      await chrome.tabs.sendMessage(tab.id, { type: "CHAT_BRIDGE_ACTION", provider, action });
+      // The content script executes it and posts /action-result.
+    } catch (_) { /* no live content script in that tab; retry next tick */ }
+  }
+}
+
+claimActions();
+setInterval(claimActions, 15000);
