@@ -125,3 +125,20 @@
 > https://origit892-stack.github.io/agent-operator/ · github.com/origit892-stack/Projects
 >
 > One question: how many lookups a day — tens or hundreds? That decides whether I build an on-demand agent or a batch pipeline.
+
+## 2026-11-11
+
+### L-20261111-01 — FIT C — DRAFT
+**Title:** n8n [HIRING]: multi-channel marketing attribution + automated lead engine (one-time project, Indonesia)
+**Source:** https://community.n8n.io/t/328000/hiring-freelancer-for-custom-ai-powered-marketing-attribution-lead-automation-pipeline-project (n8n community · Jobs, posted 2026-11-11 04:42 UTC)
+**Send:** ⚠ thread replies CLOSED — OP's channel is email: oktarina.nurhayati@gratyo.id (user sends from their own account)
+**Draft:**
+> You're building a multi-channel attribution + lead engine — Meta/TikTok/LinkedIn/YouTube into BigQuery/Supabase via self-hosted n8n, AI schema standardization and Hot/Warm/Cold scoring, phone/email dedup with round-robin rotator, multi-touch journey logging, Mekari Qontak/WAHA WhatsApp, and a Looker Studio dashboard. That's exactly the class of system I design and operate in production.
+>
+> Proof you can check today:
+> - 24/7 multi-agent ops desk — 71 specialized agents with checkpointed state; scheduled runs verified daily.
+> - 124-product store operated end-to-end via its official API — GET before write, read-back after every change.
+>
+> Approach: I map the ad APIs + your lead form, send back the plan + fixed price + done-definition in 24-48h. Timeline: ~20 days.
+>
+> One question: does the Bahasa Indonesia requirement apply to the customer-facing WhatsApp copy and dashboard, or to project communication? That decides how I scope the deliverable.
