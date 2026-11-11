@@ -1,0 +1,6 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {normalizeTask,parseImported,mergeTasks,classroomToTask,safeUrl} from '../core.mjs';
+test('validates and normalizes assignments',()=>{const t=normalizeTask({title:'  מבחן   היסטוריה ',due:'2026-11-20'});assert.equal(t.title,'מבחן היסטוריה');assert.equal(t.source,'manual');assert.equal(t.due_at,'2026-11-20T00:00:00.000Z')});
+test('rejects unsafe links',()=>{assert.equal(safeUrl('javascript:alert(1)'),null);assert.equal(safeUrl('https://example.com/'),'https://example.com/')});
+test('imports source-marked JSON',()=>{assert.equal(parseImported('{"tasks":[{"title":"א","source":"ofek"}]}')[0].source,'ofek');assert.throws(()=>parseImported('{}'))});
+test('upserts and keeps completed progress',()=>{const a=normalizeTask({title:'A',external_id:'1',status:'done'},'petel');const b=normalizeTask({title:'A changed',external_id:'1'},'petel');const merged=mergeTasks([a],[b]);assert.equal(merged.length,1);assert.equal(merged[0].status,'done');assert.equal(merged[0].title,'A changed')});
+test('maps Classroom course work and submission',()=>{const t=classroomToTask({id:'w1',title:'Exercise',dueDate:{year:2026,month:12,day:5}}, {id:'c1',name:'Physics'},{state:'TURNED_IN'});assert.equal(t.external_id,'c1:w1');assert.equal(t.status,'done');assert.equal(t.source,'classroom')});

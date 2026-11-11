@@ -1,0 +1,1 @@
+{"manifest_version":3,"name":"Lumio Reader - ייבוא משימות","version":"3.2.0","description":"קורא רק תוכן משימות גלוי בעמוד שהתלמיד בחר, לאחר פעולה יזומה. אינו קורא סיסמאות או עוגיות.","permissions":["activeTab","scripting","downloads","storage"],"action":{"default_title":"Lumio Reader","default_popup":"popup.html"},"icons":{}}
