@@ -100,10 +100,72 @@ afterwards: 3 real task rows, real users intact, 0 temp-user leftovers.
    the 3 real task rows and the 2 real users were verified untouched (the QA
    guerrillamail user was deleted).
 
+## Lumio 4.3 — Direct Mashov connect from the app (transient login, no password storage)
+
+**What it is.** The Mashov card now has an in-app connect that works from the
+PHONE or the PC: the student types their own Mashov username (ת.ז.), password
+and school ONCE; the `mashov-connect` edge function performs a single login
+against Mashov's own (undocumented) web API — the same API the Mashov web app
+itself uses — pulls homework / grades / timetable, upserts the rows under the
+student's Lumio account, and discards the password and session immediately.
+
+**Iron-rule compliance (the hard part).**
+- The password is NEVER written to the database, NEVER logged, NEVER stored in
+  secrets. It exists only in request memory for the duration of the call.
+  No stored credential ⇒ no server-side re-login is even possible.
+- The next refresh asks for the password again (one tap, any device) — or the
+  optional PC script does it hands-free in the background (old path, unchanged).
+- Provenance is honest: rows are marked `retrieval_method='unofficial_api'`
+  (new CHECK value, `database-upgrade-3.sql`) + `live_verified` (a real read
+  happened) — never `official_api`, never fake-`connected`.
+
+**How it works (verified against Mashov's own code, 2026-11-12).**
+- `POST https://web.mashov.info/api/login` `{username, password, semel, year}`
+  → session via `Set-Cookie` + `x-csrf-token` response header (verified from
+  the live Angular bundle of `web.mashov.info/students/` — no Authorization
+  header exists in the app; cookies + CSRF only — and from the community
+  library `t0mer/pymashov`, Apache-2.0).
+- School resolution: `GET /api/schools` is PUBLIC (live-verified: 200,
+  ~345 KB list of `{semel, name, years}`) — the student's school name or
+  semel is matched there; no credentials needed for this step.
+- Student discovery: the login body is `{credential, accessToken}`; a student
+  account carries its own `studentGuid` in `credential`, a parent account
+  lists children via `GET /api/user/bindings` (both endpoints verified from
+  the live app bundle).
+- Data: `GET /api/students/{guid}/homework`, `.../grades` (fallback
+  `.../gradingPeriods`), `.../timetable`.
+- MFA accounts: detected (`mfaChallengeId` in the login body) and reported
+  honestly as unsupported for the in-app path, with pointers to the PC script
+  or manual import.
+
+**Live verification (2026-11-12, temp account, full cleanup):**
+- `unauthenticated → 401` (student JWT gate; this path has no cron mode — a
+  transient login can never run unattended).
+- `no credentials → 400 MISSING_CREDENTIALS`; `unknown school → 400
+  SCHOOL_NOT_FOUND` (proves Supabase→Mashov egress + the public schools path);
+  `fake credentials vs the public demo school (semel 100026) → 401
+  LOGIN_FAILED` (proves the /api/login round trip + CSRF/cookie handling).
+- CHECK constraint accepts `unofficial_api` (insert → readback → delete cycle
+  under the temp user).
+- Cleanup: temp user deleted, 0 rows left, 0 `lumio-tmp-*` users; the 3 real
+  task rows and real users verified untouched afterwards.
+
+**What is NOT verified (stated, not hidden).** A REAL student login end-to-end
+(has not been run — it needs a real account; one attempt with dummy
+credentials only). Response field shapes beyond the verified ones are handled
+defensively (multiple candidate keys, per-endpoint try/catch, honest
+`NO_DATA_PARSED` error if nothing recognized).
+
+**Files:** `supabase-functions/mashov-connect/index.ts` (new),
+`database-upgrade-3.sql` (applied live), `app.mjs` (mashov row + API call),
+`connectors.mjs` (honest copy + `unofficial_api` provenance), tests
+`connectors.test.mjs` (new 4.3 test block: 40/40).
+
 ## Evidence
-- `npm test`: 39/39 pass (incl. katzirb live-shape fixture, subpath regression
+- `npm test`: 40/40 pass (incl. katzirb live-shape fixture, subpath regression
   guard, ingest static checks for ALLOWED_SOURCES/local_sync/provider-row,
-  feed-sync on-demand mode + student scoping assertions).
+  feed-sync on-demand mode + student scoping assertions, and the 4.3
+  mashov-connect no-credential-persistence / scoping / honest-provenance block).
 - `node --check`: 10/10 modules. `deno check` (2.9): feed-sync +
   apps-script-ingest both clean. `python3 -m py_compile`: 3/3 scripts.
 - 4.2 live CORS probes (2026-11-12): `katzirb.shahaf.site` → 200, no

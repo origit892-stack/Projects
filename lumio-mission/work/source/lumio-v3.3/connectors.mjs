@@ -8,7 +8,7 @@ import {parseICS} from './importers.mjs';
 
 export const CONNECTION_STATES=['not_connected','login_only','awaiting_consent','requires_admin','connected_unverified','syncing','synced','needs_reauth','manual_import_only','unavailable','error'];
 export const ERROR_TYPES=['PERMISSION_DENIED','AUTH_EXPIRED','ADMIN_APPROVAL_REQUIRED','API_NOT_AVAILABLE','RATE_LIMITED','SOURCE_NOT_FOUND','SOURCE_CHANGED','NETWORK_ERROR','DATA_VALIDATION_FAILED'];
-export const RETRIEVAL_METHODS=['official_api','public_school_feed','local_sync','user_import','user_entry'];
+export const RETRIEVAL_METHODS=['official_api','public_school_feed','local_sync','user_import','user_entry','unofficial_api'];
 export const VERIFICATION_STATES=['live_verified','sandbox_verified','fixture_only','user_imported_unverified'];
 export const FEED_TYPES=['ics_url','public_page'];
 
@@ -26,9 +26,9 @@ export const PROVIDERS=[
  {id:'mashov',name:'משו״ב',icon:'📊',sourceLink:'https://web.mashov.info/students/login',
   capabilities:{login:true,apiRead:false,backgroundSync:false,assignments:true,exams:true,grades:true,announcements:true,timetable:false,deepLinks:true},
   defaultState:'manual_import_only',
-  heDescription:'ציונים, משימות והודעות. למשו״ב אין API ציבורי ולומיו מעולם לא שומר את הסיסמה שלך — לכן אין חיבור שרת 100% אוטומטי למשו״ב (אף אפליקציה לא יכולה לעשות זאת בלי שאתה מעביר את החשבון שלה). המסלול הקצר ביותר: הפעלה אחת של סקריפט הסנכרון במחשב שלך (כ-30 שניות, הוראות בתוך האפליקציה) — מרגע זה הוא מתוכנן ומסנכרן לבד, והטלפון מציג אוטומטית את הנתונים העדכניים בלי אף פעולה. הסיסמה נשארת אצלך, במחשב.',
-  howToConnect:'פעולה אחת במחשב: local-sync/mashov_sync.py עם מפתח הסנכרון מהכרטיס (הוראות: local-sync/README-HE.md). מרגע זה — אוטומטי. אין זמן? ייבא ידנית (הדבקת טקסט) או דרך "משימה חדשה".',
-  dataPaths:[{label:'משימות',method:'local_sync'},{label:'ציונים',method:'local_sync'},{label:'הודעות',method:'user_import'}]},
+  heDescription:'ציונים, משימות ומערכת שעות. חיבור ישיר מהאפליקציה — גם מהטלפון: מזינים פעם אחת את חשבון משו״ב שלך, השרת מתחבר ומשקף את הנתונים, ואז הסיסמה מושלכת (לא נשמרת, לא מתועדת — חוק הברזל). משו״ב ללא API רשמי, ולכן זה חיבור דרך אתר משו״ב עצמו, לא שירות רשמי של המערכת.',
+  howToConnect:'🔑 "חבר למשו״ב" — משתמש (ת.ז.), סיסמה ושם בית הספר, פעם אחת. לעדכון: "רענן נתונים" (לחיצה אחת, מכל מכשיר). רוצה בלי הקלדה בכלל? סקריפט מתוכנן במחשב (local-sync/README-HE.md) עושה זאת ברקע.',
+  dataPaths:[{label:'משימות',method:'unofficial_api'},{label:'ציונים',method:'unofficial_api'},{label:'מערכת שעות',method:'unofficial_api'},{label:'הודעות',method:'user_import'}]},
  {id:'ofek',name:'אופק',icon:'🌅',sourceLink:'https://ofek.cet.ac.il/',
   capabilities:{login:true,apiRead:false,backgroundSync:false,assignments:true,exams:false,grades:false,announcements:false,timetable:false,deepLinks:true},
   defaultState:'manual_import_only',
@@ -131,7 +131,7 @@ export function provenanceFor(task,method){
   provider:t.source||'manual',
   capability:t.kind||'assignments',
   retrieval_method:m,
-  verification_state:VERIFICATION_STATES.includes(t.verification_state)?t.verification_state:(m==='official_api'||m==='public_school_feed'?'live_verified':'user_imported_unverified')
+  verification_state:VERIFICATION_STATES.includes(t.verification_state)?t.verification_state:(m==='official_api'||m==='public_school_feed'||m==='unofficial_api'?'live_verified':'user_imported_unverified')
  };
 }
 

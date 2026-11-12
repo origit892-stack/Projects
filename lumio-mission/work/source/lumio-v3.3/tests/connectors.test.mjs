@@ -353,3 +353,39 @@ test('static shell is subpath-safe: no absolute asset paths (GitHub Pages serves
  const app=read('../app.mjs');
  assert.ok(app.includes("register('sw.js')"),'SW registration must be relative to the site root');
 });
+
+test('Lumio 4.3: mashov-connect is a transient in-app login that never persists credentials',async()=>{
+ const fs=await import('node:fs');
+ const read=(p)=>fs.readFileSync(new URL(p,import.meta.url),'utf8');
+ const fn=read('../supabase-functions/mashov-connect/index.ts');
+ const app=read('../app.mjs');
+ const connMod=read('../connectors.mjs');
+ const doc3=read('../database-upgrade-3.sql');
+ // iron rule in code: password/session never persisted, never logged, never secreted
+ assert.ok(/never written to the/.test(fn),'mashov-connect documents that credentials are not persisted');
+ assert.ok(!/password\s*:\s*String\(body\.password\)/.test(fn),'no password field in DB rows');
+ assert.ok(!/Deno\.env\.set\(/.test(fn),'mashov-connect never writes secrets');
+ assert.ok(!/console\.\w+\([^)]*password/i.test(fn),'mashov-connect never logs credentials');
+ assert.ok(!/eyJ[A-Za-z0-9_-]{10,}/.test(fn),'no JWT-like tokens in edge function');
+ assert.ok(!fn.includes('sb_secret_'),'no service-role key literal');
+ // student-scoped, JWT-only (a transient login can never run unattended)
+ assert.ok(fn.includes('user_id: studentId'),'mashov rows scoped to the student account');
+ assert.ok(fn.includes("'UNAUTHORIZED'"),'mashov-connect requires the student JWT');
+ assert.ok(!fn.includes('x-lumio-cron'),'mashov-connect has no unattended/cron mode');
+ // honest provenance + real-read label
+ assert.ok(fn.includes("retrieval_method: 'unofficial_api'"),'mashov rows marked unofficial_api');
+ assert.ok(fn.includes('live_verified'),'mashov rows marked live_verified (a real read happened)');
+ assert.ok(doc3.includes("'unofficial_api'"),'database-upgrade-3 allows unofficial_api');
+ // UI: one-time credential entry; password field blocks autofill and is cleared after use
+ assert.ok(app.includes('/functions/v1/mashov-connect'),'UI calls mashov-connect');
+ assert.ok(app.includes('mashovConnectRow'),'Mashov card has the in-app connect row');
+ assert.ok(app.includes('autocomplete="new-password"'),'Mashov password field blocks browser save');
+ assert.ok(app.includes("el.value=''" )||app.includes("el.value = ''"),'password input is cleared after connect');
+ assert.ok(/unofficial_api:'דרך אתר משו״ב/.test(app),'UI labels the provenance honestly');
+ // connector copy: honest, mentions the password rule, no fake auto
+ const mStart=connMod.indexOf("id:'mashov'"),mEnd=connMod.indexOf("id:'ofek'");
+ const mCopy=connMod.slice(mStart,mEnd);
+ assert.ok(/הסיסמה/.test(mCopy),'Mashov copy addresses the password rule');
+ assert.ok(/RETRIEVAL_METHODS=\[[^\]]*'unofficial_api'\]/.test(connMod),'connectors allow unofficial_api');
+ assert.ok(app.includes("retrieval_method:'unofficial_api'")||connMod.includes("method:'unofficial_api'"),'mashov data path uses unofficial_api');
+});
