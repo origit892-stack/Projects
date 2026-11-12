@@ -297,6 +297,11 @@ test('edge functions ship SSRF guard + cron token + body cap (static checks only
  assert.ok(feed.includes('await assertSafeFeedUrl(c.feed_url, isShahaf)'),'guard not invoked before fetch');
  assert.ok(feed.includes('LUMIO_CRON_TOKEN'),'feed-sync missing cron token gate');
  assert.ok(feed.includes("u.protocol !== 'https:'"),'feed-sync must allow https only');
+ // 4.2: on-demand modes (phone/PC CORS fix — the server fetches, not the browser)
+ assert.ok(feed.includes("body.mode === 'check' || body.mode === 'commit'"),'feed-sync missing on-demand check/commit modes');
+ assert.ok(feed.includes('typeof payload.sub === \'string\''),'feed-sync on-demand must scope to the JWT user (sub)');
+ assert.ok(feed.includes("base.eq('user_id', studentId)"),'feed-sync on-demand refresh must be scoped to the student');
+ assert.ok(!feed.includes("mode:'cron'") && feed.includes('x-lumio-cron'),'cron token header check present');
  const ingest=read('../supabase-functions/apps-script-ingest/index.ts');
  assert.ok(ingest.includes('MAX_BODY_BYTES'),'ingest missing body cap');
  assert.ok(ingest.includes('Number.isNaN(d.getTime())'),'ingest missing due_at validation');

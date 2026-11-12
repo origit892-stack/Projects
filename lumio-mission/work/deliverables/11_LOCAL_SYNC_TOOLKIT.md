@@ -43,6 +43,48 @@ existing browser session.
 - **Mashov / Moodle / Ofek**: student-machine automation (loop / scheduler /
   one-click button) — the honest limit while passwords stay off Lumio's servers.
 
+## 4.2 update (2026-11-12) — "connect once, automatic on phone AND PC"
+The data layer was already cross-device (connections + items live in Supabase,
+per ACCOUNT, not per device). What was missing was making the feed path work
+from a phone browser — and a live CORS probe proved why: the school pages send
+**no `Access-Control-Allow-Origin`** (`katzirb.shahaf.site`: HTTP 200, zero
+CORS headers; `web.mashov.info` preflight: HTTP 204, zero CORS headers).
+Cross-origin fetches from any browser (phone or PC) are therefore blocked, so
+the in-app feed buttons previously could not work from the browser at all.
+
+**Fix (live + verified 2026-11-12):** all feed operations now run through the
+`feed-sync` edge function with the student's own gateway-verified JWT
+(`verify_jwt: true`):
+- `POST {mode:'check', url, kind}` — server fetches + parses, returns a
+  preview (no save).
+- `POST {mode:'commit', provider, url, kind}` — the one-time connect: server
+  fetches, upserts the student's rows (same dedup keys as before), and sets the
+  connection facts incl. `feed_url` → pg_cron picks it up from the next run.
+- `POST {mode:'refresh'}` — re-fetch the student's stored feeds on demand
+  (the in-app "רענן פיד" button, now working from any device).
+Security: no auth → 401 (gateway); a student JWT scopes every operation to that
+student's rows only; the SSRF guard (`assertSafeFeedUrl`) runs on the
+user-supplied URL in every mode; Shahaf stays host-allowlisted
+(`*.shahaf.site`), ICS stays https-only.
+
+**Live verification (same HTTP a phone browser issues, temp account, fully
+cleaned up afterwards):** unauth → 401; `check` katzirb → 200, 39 items,
+stamp `11.11.2026, שעה: 20:35`; `commit` → 200, saved 39, readback 39
+school_items rows + connection `state=synced` with feed_url/stamp;
+`refresh` → 200 `{ok:true, feeds:1, okFeeds:1}`; SSRF probe
+(`http://127.0.0.1/`) → 400 `NOT_HTTPS`. Real data verified untouched
+afterwards: 3 real task rows, real users intact, 0 temp-user leftovers.
+
+**Resulting UX (stated in the app per connection):**
+- Feed systems (Shahaf/Petel-ICS): "אוטומטי — השרת מעדכן כל בוקר ~06:15,
+  גם כשטלפון/מחשב כבויים" + "רענן פיד" = instant server refresh from ANY device.
+- Mashov/Ofek/Petel (no API, no password storage): the PC's scheduled local
+  script pushes to the cloud; the phone simply shows the latest data when the
+  app opens — zero action on the phone. "מתחברים פעם אחת למערכת — לא לכל
+  מכשיר."
+- Mashov specifically: in-browser phone sync is impossible (no CORS, verified)
+  without storing the password server-side — which the iron rule forbids.
+
 ## Remaining verification (needs the student/user, cannot be done by the agent)
 1. First `mashov_sync.py --dry-run` with the real account (endpoint drift → `pip install -U pymashov`).
 2. First `moodle_sync.py --dry-run` on the school Moodle (markup drift → adjust parser, output is the contract).
@@ -59,9 +101,15 @@ existing browser session.
    guerrillamail user was deleted).
 
 ## Evidence
-- `npm test`: 38/38 pass (incl. katzirb live-shape fixture, ingest static checks
-  for ALLOWED_SOURCES/local_sync/provider-row).
-- `node --check`: 10/10 modules. `python3 -m py_compile`: 3/3 scripts.
+- `npm test`: 39/39 pass (incl. katzirb live-shape fixture, subpath regression
+  guard, ingest static checks for ALLOWED_SOURCES/local_sync/provider-row,
+  feed-sync on-demand mode + student scoping assertions).
+- `node --check`: 10/10 modules. `deno check` (2.9): feed-sync +
+  apps-script-ingest both clean. `python3 -m py_compile`: 3/3 scripts.
+- 4.2 live CORS probes (2026-11-12): `katzirb.shahaf.site` → 200, no
+  `Access-Control-Allow-Origin`; `web.mashov.info/api/login` preflight → 204,
+  no CORS headers; `OPTIONS` with `Origin: https://origit892-stack.github.io`
+  → no `Access-Control-Allow-*` at all.
 - `deno check` (scratch copy, both functions): clean.
 - Live site `origit892-stack.github.io/lumio-site/` serves 4.1: `/connectors.mjs`
   and `/app.mjs` verified 200 with katzirb + local_sync markers (commit `6e1d704`).

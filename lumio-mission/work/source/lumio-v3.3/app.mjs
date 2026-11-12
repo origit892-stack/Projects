@@ -62,6 +62,13 @@ function connCard(p){
  const c=state.connections.find(x=>x.provider===p.id);
  const s=connState(c,p);
  const f=connFacts(c,p);
+ // 4.2: the "connect once" UX, stated explicitly per connection — the
+ // connection lives in the CLOUD (per account, not per device), so one
+ // connection = both phone and PC read it; feeds additionally refresh on the
+ // server (pg_cron) without any device being on.
+ const autoNote=c?.feed_url
+  ?`<div class="desc tiny muted">⚡ <b>אוטומטי</b> — השרת מעדכן את המקור הזה כל בוקר (~06:15) בלי אף פעולה, גם כשהטלפון והמחשב כבוים. בטלפון: פתח את לומיו והנתונים העדכניים כבר שם. כפתור "רענן פיד" מעדכן מיד, מכל מכשיר.</div>`
+  :(c?`<div class="desc tiny muted">⚡ <b>אוטומטי מהמחשב שלך</b> — סקריפט מתוזמן מעלה את הנתונים לענן בלי פעולה; הטלפון מציג אוטומטית את העדכון האחרון ברגע שנכנסים לאפליקציה. מתחברים פעם אחת למערכת — לא לכל מכשיר.</div>`:'');
  const btns=[`<a class="btn alt small" href="${esc(p.sourceLink)}" target="_blank" rel="noopener noreferrer">פתיחת האתר ↗</a>`];
  if(p.id==='classroom'){
   if(state.config.google){
@@ -74,7 +81,7 @@ function connCard(p){
  btns.push(`<button class="btn alt small" data-action="disconnect" data-provider="${p.id}">נתק</button>`);
  btns.push(`<button class="btn danger small" data-action="deleteSource" data-provider="${p.id}">מחק נתונים ממערכת זו</button>`);
  const feed=p.id==='petel'?petelFeedRow():p.id==='shahaf'?shahafFeedRow():'';
- return `<div class="conn"><div class="round">${p.icon}</div><main><h3>${p.name}</h3><div class="desc">${p.heDescription}</div><div class="desc"><b>${esc(heStatus(s,c?.last_sync_at))}</b></div><div class="desc tiny muted">עובדות חיבור — זהות: ${factMark(f.identityAuthenticated)} · הרשאה: ${factMark(f.permissionGranted)} · קריאת נתונים: ${factMark(f.dataReadable)} · סנכרון: ${factMark(f.syncWorking)}</div><div class="desc tiny muted">יכולות: ${esc(capabilityList(p))}</div>${feed}<p class="tiny">${p.howToConnect}</p></main><div class="buttons">${btns.join('')}</div></div>`
+ return `<div class="conn"><div class="round">${p.icon}</div><main><h3>${p.name}</h3><div class="desc">${p.heDescription}</div><div class="desc"><b>${esc(heStatus(s,c?.last_sync_at))}</b></div>${autoNote}<div class="desc tiny muted">עובדות חיבור — זהות: ${factMark(f.identityAuthenticated)} · הרשאה: ${factMark(f.permissionGranted)} · קריאת נתונים: ${factMark(f.dataReadable)} · סנכרון: ${factMark(f.syncWorking)}</div><div class="desc tiny muted">יכולות: ${esc(capabilityList(p))}</div>${feed}<p class="tiny">${p.howToConnect}</p></main><div class="buttons">${btns.join('')}</div></div>`
 }
 function connectionsHTML(){return `<div class="warning">התחברות באתר מקור ≠ הרשאת קריאה ללומיו. אפשר להשתמש ב־API הרשמי של Classroom, או לייבא נתונים שהאתר מציג באמצעות תוסף לומיו. לא נדרשות סיסמאות משרד החינוך. כרטיס מציג רק "מחובר/סנכרון הצליח" אחרי קריאת נתונים שנבדקה באמת.</div><section class="panel"><h2>מערכות הלימוד שלי</h2><div class="connections">${PROVIDERS.map(connCard).join('')}</div></section><section class="panel"><h2>העברת משימות ישירות מהדפדפן או מקובץ</h2><p class="muted">במחשב: תוסף Lumio Reader מאפשר לסרוק עמוד פתוח, לבדוק את המשימות ולהעביר אותן ישירות ללומיו בלחיצה אחת. לחלופין אפשר לייבא JSON, CSV או ICS. אפשר לבצע זאת גם בטלפון. הייבוא אינו יוצר סנכרון אוטומטי.</p><label class="field">מקור הקובץ<select id="fileSource"><option value="manual">משימות כלליות</option><option value="classroom">Classroom</option><option value="mashov">משו״ב</option><option value="ofek">אופק</option><option value="petel">פטל</option><option value="shahaf">שחף</option></select></label><div class="buttons"><label class="btn" for="importFile">ייבוא JSON / CSV / ICS</label><input style="display:none" type="file" id="importFile" accept=".json,.csv,.ics,application/json,text/csv,text/calendar"><button class="btn alt" data-action="export">ייצוא המשימות שלי</button></div><p class="tiny">ייבוא מקומי לא אומר שהחיבור מסנכרן ברקע. ב־Classroom אפשר לסנכרן שוב בלחיצה כל עוד ההרשאה תקפה.</p></section><section class="panel"><h2>ייבוא מהיר גם בטלפון — בלי תוסף</h2><p class="muted">פתח את המשימה באתר הרשמי, העתק את הטקסט והדבק כאן. כל שורה תהפוך למשימה שתישמר בחשבון שלך. אפשר להוסיף מקצוע ותאריך בפורמט: <code>שם משימה | מקצוע | 2026-11-20</code>.</p><form id="pasteForm"><label class="field">מהיכן המשימות?<select name="source"><option value="mashov">משו״ב</option><option value="ofek">אופק</option><option value="petel">פטל</option><option value="shahaf">שחף</option><option value="classroom">Classroom — ייבוא ידני</option><option value="manual">אחר</option></select></label><label class="field full">הדבק כאן את המשימות<textarea name="pasted" required rows="6" maxlength="25000" placeholder="לקרוא פרק 3 | היסטוריה | 2026-11-20\nלפתור עמוד 42 | מתמטיקה"></textarea></label><button class="btn" type="submit">שמור משימות בחשבון שלי</button></form><p class="tiny">זהו ייבוא ידני, לא קריאה אוטומטית של חשבון משרד החינוך. אל תדביק סיסמאות או פרטים אישיים של תלמידים אחרים.</p></section>`}
 const schoolKinds={exam:'מבחנים',grade:'ציונים',announcement:'הודעות',timetable:'מערכת שעות'};
@@ -131,6 +138,20 @@ function fetchFailureHint(e){
  const m={AUTH_EXPIRED:'ההרשאה בקובץ פגה — יש לייצר קישור חדש',PERMISSION_DENIED:'השרת סירב לקריאה (אין הרשאה)',SOURCE_NOT_FOUND:'הכתובת לא נמצאה (404)',RATE_LIMITED:'יותר מדי בקשות — נסה שוב מאוחר יותר',NETWORK_ERROR:'בעיה ברשת או שהשרת חוסם שליפה מהדפדפן — אפשרות: הורדת קובץ ICS וייבוא',DATA_VALIDATION_FAILED:'הפיד גדול מדי או בתוכן לא תקין'};
  return m[e.message]||('שגיאה בשליפת הפיד: '+(e.message||e));
 }
+// 4.2: feed operations run through the feed-sync edge function — the school
+// pages (e.g. katzirb.shahaf.site) send no CORS headers, so a phone/PC
+// browser cannot fetch them cross-origin; the server is the fetcher. The
+// student's own JWT (gateway-verified) scopes every operation to their
+// account: check (preview) / commit (one-time connect) / refresh (on demand).
+async function feedApi(payload){
+ if(!state.client||!state.auth)throw Error('יש להתחבר תחילה');
+ const s=await state.client.auth.getSession();const token=s?.data?.session?.access_token;
+ if(!token)throw Error('יש להתחבר תחילה');
+ const resp=await fetch(state.config.url+'/functions/v1/feed-sync',{method:'POST',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(payload||{})});
+ const d=await resp.json().catch(()=>({ok:false,error:'HTTP '+resp.status}));
+ if(!d.ok)throw Error(d.error||('HTTP '+resp.status));
+ return d;
+}
 async function feedCheck(providerId){
  const p=PROVIDERS.find(x=>x.id===providerId);
  if(!p||state.feedBusy)return;
@@ -141,16 +162,15 @@ async function feedCheck(providerId){
  state.feedPreview=null;
  state.feedBusy=providerId;render();
  try{
-  const text=await fetchFeed(v.url);
-  const result=importFeedItems(text,p.id,kind);
+  const d=await feedApi({mode:'check',provider:providerId,url:v.url,kind});
   state.feedBusy=null;
-  if(!result.items.length){state.feedPreview=null;render();return notice('לא זוהו פריטים תקינים בפיד — לא נשמר דבר.','error')}
-  state.feedPreview={provider:providerId,kind,url:v.url,items:result.items,stamp:result.stamp};
+  if(!d.items?.length){state.feedPreview=null;render();return notice('לא זוהו פריטים בפיד — לא נשמר דבר.','error')}
+  state.feedPreview={provider:providerId,kind,url:v.url,items:d.items,stamp:d.stamp};
   render();
-  notice(`זוהו ${result.items.length} פריטים מהפיד${result.skipped?` (${result.skipped} שורות פוסלו)`:''}. בדוק ולחץ "הוסף לחשבון שלי".`);
+  notice(`זוהו ${d.items.length} פריטים מהפיד. בדוק ולחץ "הוסף לחשבון שלי".`);
  }catch(e){
   state.feedBusy=null;state.feedPreview=null;render();
-  notice(fetchFailureHint(e),'error');
+  notice('הבדיקה נכשלה: '+e.message,'error');
  }
 }
 function shahafRowsToItems(items,url){return items.map(it=>({kind:'timetable',source:'shahaf',external_id:it.external_id,title:it.title,subject:it.subject||it.title,description:'',event_date:null,source_url:url,day_of_week:it.day_of_week,start_time:it.start_time,end_time:it.end_time||null,room:it.room||null,change_type:it.change_type||'normal'}))}
@@ -158,48 +178,30 @@ async function feedAdd(){
  const pv=state.feedPreview;
  if(!pv||state.feedBusy)return;
  state.feedBusy=pv.provider;render();
- const now=new Date().toISOString();
- const prov={retrieval_method:'public_school_feed',verification_state:'live_verified',synced_at:now};
  try{
-  if(pv.kind==='ics_url'){
-   await upsertTasks(pv.items,prov);
-  }else{
-   if(!state.schoolDataReady)throw Error('יש להריץ קודם את database-upgrade.sql ב־Supabase כדי להפעיל מערכת שעות');
-   await upsertSchoolRows(shahafRowsToItems(pv.items,pv.url),prov);
-  }
-  const facts=connectionFacts('synced',false,now);
-  await trackConnection(pv.provider,'synced',facts,null,{feed_url:pv.url,feed_stamp:pv.stamp||null});
+  // One-time connect: the server fetches the feed, stores the rows under
+  // this ACCOUNT (cloud → visible on phone and PC alike) and registers
+  // feed_url so pg_cron refreshes it automatically every morning.
+  const d=await feedApi({mode:'commit',provider:pv.provider,url:pv.url,kind:pv.kind});
   state.feedPreview=null;
-  notice(`נשמרו ${pv.items.length} פריטים מהפיד לחשבון שלך. רענון ידני זמין בכל עת.`);
- }catch(e){notice(e.message,'error')}
+  notice(`נחבר: ${d.saved} פריטים נשמרו לחשבון. השרת יעדכן אוטומטית כל בוקר — בלי פעולה, גם מהטלפון.`);
+ }catch(e){notice('החיבור נכשל: '+e.message,'error')}
  state.feedBusy=null;render();
 }
 async function feedRefresh(providerId){
  const p=PROVIDERS.find(x=>x.id===providerId);
  const c=state.connections.find(x=>x.provider===providerId);
- const url=c?.feed_url;
- if(!p||!url||state.feedBusy)return notice('אין פיד מחובר למערכת זו — חבר פיד קודם.','error');
- const kind=p.id==='petel'?'ics_url':'public_page';
+ if(!p||!c?.feed_url||state.feedBusy)return notice('אין פיד מחובר למערכת זו — חבר פיד קודם.','error');
  state.feedBusy=providerId;state.feedPreview=null;render();
  try{
-  const text=await fetchFeed(url);
-  const result=importFeedItems(text,p.id,kind);
+  // Server-side refresh (works from phone or PC regardless of school CORS):
+  // the function re-fetches the stored feed_url(s) and upserts with the same
+  // dedup keys — no duplicates.
+  const d=await feedApi({mode:'refresh'});
   state.feedBusy=null;
-  if(!result.items.length){render();return notice('הפיד לא החזיר פריטים — לא השתנה דבר.','error')}
-  const now=new Date().toISOString();
-  const prov={retrieval_method:'public_school_feed',verification_state:'live_verified',synced_at:now};
-  if(kind==='ics_url'){
-   await upsertTasks(result.items,prov);
-  }else{
-   if(!state.schoolDataReady)throw Error('יש להריץ קודם את database-upgrade.sql ב־Supabase כדי להפעיל מערכת שעות');
-   await upsertSchoolRows(shahafRowsToItems(result.items,url),prov);
-  }
-  const facts=connectionFacts('synced',false,now);
-  const stampChanged=!c.feed_stamp||c.feed_stamp!==result.stamp;
-  await trackConnection(providerId,'synced',facts,null,{feed_url:url,feed_stamp:result.stamp||null});
   render();
-  notice(stampChanged?`הפיד עודכן${result.stamp?` (מעודכן ל: ${result.stamp})`:''} — נשמרו ${result.items.length} פריטים ללא כפילויות.`:'לא זוהה שינוי במערכת השעות — הנתונים נשארו כפי שהיו.');
- }catch(e){state.feedBusy=null;render();notice(fetchFailureHint(e),'error')}
+  notice(`השרת עדכן את המקורות המחוברים: ${d.okFeeds} מתוך ${d.feeds}.`);
+ }catch(e){state.feedBusy=null;render();notice('הרענון נכשל: '+e.message,'error')}
 }
 async function disconnectProvider(providerId){
  const p=PROVIDERS.find(x=>x.id===providerId);

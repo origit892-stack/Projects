@@ -190,19 +190,107 @@ Deno.serve(async (req: Request) => {
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
   const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
   if (!supabaseUrl || !serviceKey) return json({ ok: false, error: 'SERVER_NOT_CONFIGURED' }, 500);
-  // M1 fix: the function URL is derivable (project ref is public) — require the
-  // dedicated cron token (set LUMIO_CRON_TOKEN in the function secrets).
+  // M1 fix: the function URL is derivable (project ref is public). Two paths:
+  //  (a) cron — the dedicated LUMIO_CRON_TOKEN (server-side, all users);
+  //  (b) on-demand — a student's own gateway-verified JWT, scoped strictly to
+  //      that student's feeds (this is what the in-app "סנכרן עכשיו" button
+  //      on phone/PC uses — no PC required for feed refresh).
   const cronToken = Deno.env.get('LUMIO_CRON_TOKEN');
-  if (cronToken && req.headers.get('x-lumio-cron') !== cronToken) {
-    return json({ ok: false, error: 'UNAUTHORIZED' }, 401);
+  let studentId: string | null = null;
+  if (cronToken && req.headers.get('x-lumio-cron') === cronToken) {
+    studentId = null; // cron path — all feeds
+  } else {
+    const m = (req.headers.get('authorization') || '').match(/^Bearer (.+)$/);
+    if (m) {
+      try {
+        const b64 = m[1].split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+        const payload = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b64 + '='.repeat((4 - (b64.length % 4)) % 4)), c => c.charCodeAt(0))));
+        if (typeof payload.sub === 'string') studentId = payload.sub;
+      } catch { /* malformed — rejected below */ }
+    }
+    if (!studentId) return json({ ok: false, error: 'UNAUTHORIZED' }, 401);
   }
   const db = createClient(supabaseUrl, serviceKey, { auth: { persistSession: false } });
 
-  const { data: conns, error } = await db
+  // ---- On-demand modes (student's own gateway-verified JWT only) ----
+  // 'check'  — fetch+parse a URL, return items WITHOUT saving (the "בדוק פיד"
+  //            preview on phone/PC; the school page has no CORS headers, so the
+  //            browser itself can't fetch it — the server is the fetcher).
+  // 'commit' — same, plus upsert the student's rows + connection facts (the
+  //            "הוסף לחשבון שלי" step; one connection = stored in the cloud =
+  //            visible on every device).
+  // (no mode  — refresh the student's stored feeds; handled below.)
+  let body: { mode?: string; url?: string; kind?: string; provider?: string } = {};
+  try { body = await req.clone().json(); } catch { body = {}; }
+  if (studentId && (body.mode === 'check' || body.mode === 'commit')) {
+    const url = typeof body.url === 'string' ? body.url.trim() : '';
+    const kind = body.kind === 'ics_url' ? 'ics_url' : 'public_page';
+    const provider = (['shahaf', 'petel', 'mashov', 'ofek', 'classroom'].includes(body.provider || '') ? body.provider : 'shahaf')!;
+    let u: URL;
+    try { u = new URL(url); } catch { return json({ ok: false, error: 'BAD_URL' }, 400); }
+    const isShahaf = kind !== 'ics_url';
+    try { await assertSafeFeedUrl(url, isShahaf); } catch (e) { return json({ ok: false, error: (e as Error).message }, 400); }
+    let text: string;
+    try { text = await fetchText(url); } catch (e) { return json({ ok: false, error: 'FETCH_FAILED:' + (e as Error).message }, 502); }
+    const now = new Date().toISOString();
+    if (isShahaf) {
+      const parsed = shahafItems(text);
+      const items = parsed.items.map(x => ({
+        kind: 'timetable', source: 'shahaf', external_id: x.external_id, title: x.title,
+        subject: x.subject || x.title, description: '', event_date: null, source_url: url,
+        day_of_week: x.day, start_time: x.start, end_time: x.end ?? null, room: x.room,
+        change_type: x.change_type || 'normal',
+      }));
+      if (body.mode === 'check') return json({ ok: true, mode: 'check', items, stamp: parsed.stamp });
+      const rows = items.map(x => ({
+        user_id: studentId, kind: 'timetable', source: 'shahaf', external_id: x.external_id,
+        title: x.title, subject: String(x.subject), description: '', event_date: null,
+        source_url: url, day_of_week: x.day_of_week, start_time: x.start_time, end_time: x.end_time ?? null,
+        room: x.room, change_type: x.change_type || 'normal',
+        retrieval_method: 'public_school_feed', verification_state: 'live_verified',
+        synced_at: now, updated_at: now,
+      }));
+      if (rows.length) {
+        const { error: e1 } = await db.from('school_items').upsert(rows, { onConflict: 'user_id,kind,source,external_id' });
+        if (e1) return json({ ok: false, error: 'DB_WRITE_FAILED' }, 500);
+      }
+      const { error: e2 } = await db.from('connections').upsert(
+        { user_id: studentId, provider: 'shahaf', state: 'synced', data_readable: rows.length > 0, sync_working: rows.length > 0, last_sync_at: now, last_error: null, feed_url: url, feed_stamp: parsed.stamp },
+        { onConflict: 'user_id,provider' });
+      if (e2) return json({ ok: false, error: 'DB_WRITE_FAILED' }, 500);
+      return json({ ok: true, mode: 'commit', saved: rows.length, stamp: parsed.stamp });
+    }
+    const items = icsItems(text, provider).map(x => ({
+      kind: 'task', source: provider, external_id: x.external_id, title: x.title,
+      subject: x.subject || '', description: x.description ?? '', event_date: null,
+      source_url: x.source_url ?? null, day_of_week: null, start_time: null, end_time: null,
+      room: null, change_type: 'normal', due_at: x.due_at,
+    }));
+    if (body.mode === 'check') return json({ ok: true, mode: 'check', items, stamp: null });
+    const rows = items.map(x => ({
+      user_id: studentId, source: provider, external_id: x.external_id, title: x.title,
+      subject: String(x.subject), description: String(x.description ?? ''),
+      due_at: x.due_at ?? null, source_url: x.source_url ?? null,
+      retrieval_method: 'public_school_feed', verification_state: 'live_verified',
+      synced_at: now, updated_at: now,
+    }));
+    if (rows.length) {
+      const { error: e1 } = await db.from('tasks').upsert(rows, { onConflict: 'user_id,source,external_id' });
+      if (e1) return json({ ok: false, error: 'DB_WRITE_FAILED' }, 500);
+    }
+    const { error: e2 } = await db.from('connections').upsert(
+      { user_id: studentId, provider, state: 'synced', data_readable: rows.length > 0, sync_working: rows.length > 0, last_sync_at: now, last_error: null, feed_url: url, feed_stamp: null },
+      { onConflict: 'user_id,provider' });
+    if (e2) return json({ ok: false, error: 'DB_WRITE_FAILED' }, 500);
+    return json({ ok: true, mode: 'commit', saved: rows.length, stamp: null });
+  }
+
+  const base = db
     .from('connections')
     .select('user_id,provider,feed_url,feed_stamp')
-    .not('feed_url', 'is', null)
-    .limit(MAX_FEEDS);
+    .not('feed_url', 'is', null);
+  const q = studentId ? base.eq('user_id', studentId).limit(4) : base.limit(MAX_FEEDS);
+  const { data: conns, error } = await q;
   if (error || !conns) return json({ ok: false, error: 'DB_READ_FAILED' }, 500);
 
   const now = new Date().toISOString();
