@@ -10,7 +10,7 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
 const MAX_ITEMS = 500;
-const ALLOWED_ITEM_KINDS = new Set(['task', 'grade']);
+const ALLOWED_ITEM_KINDS = new Set(['task', 'grade', 'timetable']);
 // Sources this endpoint accepts. 'classroom' is the Apps Script template
 // (official API). The rest are student-local sync scripts pushing with the
 // student's own account — labeled honestly as local_sync downstream.
@@ -53,12 +53,14 @@ Deno.serve(async (req: Request) => {
   const rawItems: unknown[] = Array.isArray(body?.items) ? body.items : [];
   const partial = rawItems.length > MAX_ITEMS;
   const items = rawItems.slice(0, MAX_ITEMS);
-  // Source: who is pushing. Untrusted — whitelist, default 'classroom'
-  // (backward compatible with the Apps Script template).
-  const source = ALLOWED_SOURCES.has(typeof body?.source === 'string' ? body.source : '')
-    ? body.source as string
+  // Source: who is pushing. The client value is a fallback only — once the
+  // key is resolved the connection row's own provider is authoritative, so a
+  // key can never be used to write another source's rows.
+  const bodySource = ALLOWED_SOURCES.has(typeof body?.source === 'string' ? body.source : '')
+    ? (body.source as string)
     : 'classroom';
-  const retrievalMethod = source === 'classroom' ? 'official_api' : 'local_sync';
+  let source = bodySource;
+  let retrievalMethod = source === 'classroom' ? 'official_api' : 'local_sync';
 
   // Binding lookup: the key identifies the connection row; its user_id is the only
   // user this function may write to. Missing key or a disconnected source → 401.
@@ -71,10 +73,19 @@ Deno.serve(async (req: Request) => {
     return json({ ok: false, error: 'LUMIO_BINDING_INVALID' }, 401);
   }
 
+  // Authoritative source: the provider the key belongs to (key → provider).
+  if (ALLOWED_SOURCES.has(conn.provider)) {
+    source = conn.provider as string;
+    retrievalMethod = source === 'classroom' ? 'official_api' : 'local_sync';
+  }
+
   const userId: string = conn.user_id; // never from the client
   const now = new Date().toISOString();
   const taskRows: Record<string, unknown>[] = [];
   const gradeRows: Record<string, unknown>[] = [];
+  const timetableRows: Record<string, unknown>[] = [];
+  const hhmm = (v: unknown): string | null =>
+    typeof v === 'string' && /^\d{1,2}:\d{2}$/.test(v.trim()) ? v.trim() : null;
 
   for (const it of items) {
     if (!it || typeof it !== 'object') continue;
@@ -101,6 +112,29 @@ Deno.serve(async (req: Request) => {
         event_date: null,
         score,
         source_url: null,
+        retrieval_method: retrievalMethod,
+        verification_state: 'live_verified',
+        synced_at: now,
+        updated_at: now,
+      });
+    } else if (kind === 'timetable') {
+      const dayRaw = Number(item.day_of_week);
+      const day = Number.isInteger(dayRaw) && dayRaw >= 0 && dayRaw <= 6 ? dayRaw : null;
+      const room = typeof item.room === 'string' ? item.room.trim().slice(0, 60) : '';
+      timetableRows.push({
+        user_id: userId,
+        kind: 'timetable',
+        source,
+        external_id,
+        title,
+        subject: room,
+        description: typeof item.description === 'string' ? item.description.trim().slice(0, 200) : '',
+        event_date: null,
+        day_of_week: day,
+        start_time: hhmm(item.start_time),
+        end_time: hhmm(item.end_time),
+        room: room || null,
+        change_type: item.change_type === 'change' ? 'change' : 'normal',
         retrieval_method: retrievalMethod,
         verification_state: 'live_verified',
         synced_at: now,
@@ -134,6 +168,10 @@ Deno.serve(async (req: Request) => {
     const { error } = await db.from('school_items').upsert(gradeRows, { onConflict: 'user_id,kind,source,external_id' });
     if (error) return json({ ok: false, error: 'DB_GRADES_FAILED' }, 500);
   }
+  if (timetableRows.length) {
+    const { error } = await db.from('school_items').upsert(timetableRows, { onConflict: 'user_id,kind,source,external_id' });
+    if (error) return json({ ok: false, error: 'DB_TIMETABLE_FAILED' }, 500);
+  }
 
   // Facts + last_sync. Wrapped: if the fact columns are not there yet
   // (upgrade-2 not run) the data was already saved — do not fail the run.
@@ -157,5 +195,5 @@ Deno.serve(async (req: Request) => {
     // fact columns missing — data upsert above already succeeded
   }
 
-  return json({ ok: true, saved: { tasks: taskRows.length, grades: gradeRows.length }, partial });
+  return json({ ok: true, saved: { tasks: taskRows.length, grades: gradeRows.length, timetable: timetableRows.length }, partial });
 });

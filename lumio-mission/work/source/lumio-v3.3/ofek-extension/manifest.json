@@ -1,24 +1,25 @@
 {
   "manifest_version": 3,
-  "name": "Lumio Ofek Bridge",
-  "version": "1.0.0",
-  "description": "שולח את המשימות שלך מאופק (מטח) לחשבון לומיו שלך. לחיצה אחת, ללא שמירת סיסמאות.",
+  "name": "Lumio MOE Sync",
+  "version": "2.0.0",
+  "description": "כל פעם שפותחים את משו״ב / אופק / פטל, לומיו סונכרן אוטומטי מהחשבון שלך במשרד החינוך — בלי לשמור סיסמאות בלומיו.",
   "permissions": ["storage"],
   "host_permissions": [
     "*://*.cet.ac.il/*",
     "*://*.matan.co.il/*",
+    "https://web.mashov.info/*",
     "https://zijinurzzwkuqxwhkiuw.supabase.co/*"
   ],
   "content_scripts": [
     {
-      "matches": ["*://*.cet.ac.il/*", "*://*.matan.co.il/*"],
+      "matches": ["*://*.cet.ac.il/*", "*://*.matan.co.il/*", "https://web.mashov.info/*"],
       "js": ["capture.js"],
       "run_at": "document_start",
       "world": "MAIN"
     },
     {
-      "matches": ["*://*.cet.ac.il/*", "*://*.matan.co.il/*"],
-      "js": ["content.js"],
+      "matches": ["*://*.cet.ac.il/*", "*://*.matan.co.il/*", "https://web.mashov.info/*"],
+      "js": ["map.js", "content.js"],
       "run_at": "document_idle"
     }
   ],

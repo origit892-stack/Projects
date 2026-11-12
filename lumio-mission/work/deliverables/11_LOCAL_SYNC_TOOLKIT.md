@@ -161,20 +161,114 @@ defensively (multiple candidate keys, per-endpoint try/catch, honest
 `connectors.mjs` (honest copy + `unofficial_api` provenance), tests
 `connectors.test.mjs` (new 4.3 test block: 40/40).
 
+## Lumio 4.4 — "Lumio MOE Sync" extension (the automatic-vacuum bridge) + ingest upgrade
+
+**What it is.** This is the mechanism behind "connect through משרד החינוך and
+Lumio vacuums the information automatically." Mashov, Ofek (Matan) and PeTeL all
+log in through the MOE single sign-on (`lgn.edu.gov.il`); the student is already
+logged into that session in their browser every day. `Lumio MOE Sync` is the
+rebuilt browser extension (was "Lumio Ofek Bridge"): while the student simply
+opens Mashov / Ofek / PeTeL as usual, the extension observes the JSON the page
+itself receives from the school system's own API and pushes it to Lumio
+**automatically** — no button, no per-refresh action, and **no password ever
+touches Lumio** (the extension only rides the existing browser session).
+
+**Why an in-browser bridge is the only honest way to do this.** The iron rule
+forbids Lumio from storing the MOE/Mashov password, and `lgn.edu.gov.il`
+exposes no self-service SSO/OAuth API a third-party app can log into
+programmatically (MFA-gated, no public OAuth client). The MOE session exists
+only inside the student's browser. So the code that can read that session must
+run in the student's browser context — an extension (or the app's own JS, which
+is blocked by CORS from another origin). There is no server-side,
+hands-off path that does not store credentials. The one-time install + key
+paste is the unavoidable cost of "automatic without a stored password"; after
+that it is genuinely automatic.
+
+**Files (all under `ofek-extension/`, rebuilt):**
+- `manifest.json` — MV3 "Lumio MOE Sync" v2.0.0. host_permissions:
+  `web.mashov.info`, `*.cet.ac.il`, `*.matan.co.il`, the Supabase project only.
+  Two content scripts: `capture.js` (MAIN world, document_start) and
+  `[map.js, content.js]` (isolated world, document_idle).
+- `capture.js` — MAIN world. Wraps `fetch` + `XHR`; forwards only
+  task/grade/timetable-shaped JSON (URL signal + shape heuristic), never
+  credential fields. Hands each capture to the isolated world via a DOM
+  `CustomEvent('__lumio_capture')` — **this fixes the v1 bug** where the
+  isolated-world `content.js` tried to read `window.__lumioCaptured` (a
+  MAIN-world global it cannot see), which is why v1 was never live-verifiable.
+- `map.js` — PURE mapping (no browser globals at load → unit-testable in Node):
+  `{url, data}` → Lumio ingest items `{kind, external_id, title, course_title,
+  due_at, status, score, room, day_of_week, start_time, end_time, ...}`.
+  Handles Mashov homework/grades/timetable + Ofek/PeTeL task shapes (multiple
+  candidate keys, Hebrew weekday names, ISO/dd.mm.yyyy/epoch dates). Stable
+  `external_id` per record ⇒ idempotent upserts.
+- `content.js` — isolated world. Listens for captures, maps them, buffers per
+  source, and auto-pushes on a 3s debounce + on `pagehide`. Reads only the
+  per-system **sync key** (capability token, not a password) from
+  `chrome.storage.local`. Small floating status chip (מחובר / מסנכרן / ✓ סונכרן).
+- `options.html` / `options.js` — **one sync key per system** (mashov / ofek /
+  petel), matching Lumio's per-connection key model; each provided key is
+  validated live against the ingest before saving.
+- `README-HE.md` — install, how-it-works, security.
+
+**Ingest upgrade (`apps-script-ingest`, live + E2E-verified 2026-11-12):**
+- Now accepts `kind='timetable'` (Mashov's personal timetable flows too), not
+  just task/grade — written to `school_items` with `day_of_week`/`start_time`/
+  `end_time`/`room`/`change_type`.
+- **Authoritative source:** the pushed `source` field is now taken from the
+  sync key's own connection row (`provider`), not from the (untrusted) request
+  body — a key can no longer be used to write another source's rows.
+- Deployed with `verify_jwt:false` (it self-authenticates via the
+  key→user binding; the pushers use the public anon key, not a user JWT).
+
+**Live E2E verification (2026-11-12, throwaway user + connection + key, full
+cleanup — real rows untouched):**
+- deploy → `201 OK`; anon-key probe → `401 LUMIO_BINDING_INVALID` (new code
+  live, still reachable with the anon key the extension/scripts send).
+- push `{key, source:'mashov', items:[1 task,1 grade,1 timetable]}` → `200
+  {ok:true, saved:{tasks:1, grades:1, timetable:1}}`; read-back 1/1/1 rows for
+  the temp user; timetable row `day=2, start=09:00, room=12` as sent.
+- authoritative-source rule: same mashov key with body `source:'ofek'` → row
+  stored as `source=mashov` (rows with `source=ofek`: 0, `source=mashov`: 1).
+- cleanup: temp user + connection + rows deleted (`200`), 0 leftovers; the 3
+  real task rows and real users verified intact.
+
+**App copy (connectors.mjs + app.mjs):** Mashov / Ofek / PeTeL cards now lead
+with the extension as the **automatic** path (one-time install + key paste),
+with Mashov's no-extension transient login (4.3) kept as the alternative. The
+top warning line reflects "install once → automatic." No new CSS classes, no
+layout/palette change.
+
+**What is NOT verified (stated, not hidden).** The extension has **not** been
+run in a real Chrome against a live MOE-logged-in Mashov/Ofek/PeTeL session
+(no student credentials available to the agent; MoE SSO is by design out of
+agent scope). The mapper is unit-tested against the known Mashov API shapes
+(11 tests) and the ingest is E2E-tested live, but the in-browser capture
+hit-rate and any JSON-shape drift must be confirmed on first real use (the
+README documents the fallback + adaptation path). The 4.3 real-Mashov-login
+E2E is likewise still pending a real account.
+
+**Files (4.4):** `ofek-extension/*` (manifest, capture.js, map.js, content.js,
+options.html, options.js, README-HE.md), `supabase-functions/apps-script-ingest/
+index.ts` (timetable + authoritative source), `connectors.mjs` + `app.mjs`
+(copy), `tests/extension-map.test.mjs` (new, 11 tests).
+
 ## Evidence
-- `npm test`: 40/40 pass (incl. katzirb live-shape fixture, subpath regression
-  guard, ingest static checks for ALLOWED_SOURCES/local_sync/provider-row,
-  feed-sync on-demand mode + student scoping assertions, and the 4.3
-  mashov-connect no-credential-persistence / scoping / honest-provenance block).
-- `node --check`: 10/10 modules. `deno check` (2.9): feed-sync +
-  apps-script-ingest both clean. `python3 -m py_compile`: 3/3 scripts.
+- `npm test`: 51/51 pass (40 prior + 11 new `extension-map.test.mjs`: source
+  detection, Mashov homework/grades/timetable mapping, Hebrew weekday
+  normalization, Ofek tasks, dedupe, empty/junk robustness, due-date parsing).
+- `node --check`: all extension JS (capture/map/content/options) + app.mjs +
+  connectors.mjs clean; `ofek-extension/manifest.json` valid JSON.
+- `deno check` (2.9): feed-sync + apps-script-ingest both clean (ingest now
+  with timetable + authoritative-source logic).
+- Ingest live E2E (temp user, full cleanup): deploy 201, push saved
+  task/grade/timetable, timetable fields intact, authoritative-source rule
+  proven, 3 real tasks + real users verified untouched, 0 temp leftovers.
+- `python3 -m py_compile`: 3/3 local-sync scripts.
 - 4.2 live CORS probes (2026-11-12): `katzirb.shahaf.site` → 200, no
   `Access-Control-Allow-Origin`; `web.mashov.info/api/login` preflight → 204,
   no CORS headers; `OPTIONS` with `Origin: https://origit892-stack.github.io`
   → no `Access-Control-Allow-*` at all.
-- `deno check` (scratch copy, both functions): clean.
-- Live site `origit892-stack.github.io/lumio-site/` serves 4.1: `/connectors.mjs`
-  and `/app.mjs` verified 200 with katzirb + local_sync markers (commit `6e1d704`).
-- Projects repo commit `422564b` (all of the above).
+- Live site `origit892-stack.github.io/lumio-site/` serves 4.4: `/connectors.mjs`
+  + `/app.mjs` with the MOE Sync copy (verified after deploy).
 - No secrets in any of these files (scan: no `sb_secret_`, no JWTs; only the
   publishable `sb_publishable_...` key, which is public by design).
