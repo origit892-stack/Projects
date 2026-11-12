@@ -49,9 +49,10 @@
 7. **Two-step data control**: "נתק" (stops sync, clears binding/feed) and "מחק נתונים ממערכת" (deletes that user's rows from that source) are separate actions with separate confirmations.
 8. **PWA**: shell-only service worker cache (`lumio-shell-v4.0`), network-first, no student data cached; offline state is transparent.
 
-## Deployment checklist (user actions, 0₪)
-1. Run `database.sql` → `database-upgrade.sql` → `database-upgrade-2.sql` in Supabase SQL editor (after backup; all additive, re-runnable). **Required before the new UI columns appear** (the app degrades gracefully until then — with a one-time notice).
-2. Deploy the two Edge Functions (supabase-functions/README-HE.md) + set `SUPABASE_SERVICE_ROLE_KEY` secret.
-3. (Optional, for ICS/public-page auto-refresh) enable `pg_cron` via the README snippet.
-4. Upload the site to Cloudflare Pages (Direct Upload) — all files static.
+## Deployment checklist (0₪) — **STATUS: items 1-4 DONE 2026-11-12 (agent-executed, all verified live)**
+1. ~~Run `database.sql` → `database-upgrade.sql` → `database-upgrade-2.sql`~~ — **DONE** (Management API `database/query`; additive, re-runnable; `school_items` + all new columns verified present).
+2. ~~Deploy the two Edge Functions + set `SUPABASE_SERVICE_ROLE_KEY` secret~~ — **DONE** (Management API deploy endpoint, raw file part; `SUPABASE_SERVICE_ROLE_KEY` is a built-in edge env; custom secret `LUMIO_CRON_TOKEN` set; token gate verified 401/200).
+3. ~~(Optional) enable `pg_cron`~~ — **DONE** (job `lumio-feed-sync` @ `15 4 * * *` UTC; full chain verified: stored command → pg_net → function → 200 ok:true).
+4. ~~Upload the site~~ — **DONE** (GitHub Pages, `origit892-stack.github.io/lumio-site/`, 4.1 modules verified live; GitHub Pages instead of Cloudflare — also 0₪, user's existing account).
 5. (Per student, optional) Apps Script Classroom auto-sync per apps-script/README-HE.md.
+6. (Per student, optional) local-sync scripts / Ofek extension per `11_LOCAL_SYNC_TOOLKIT.md`.

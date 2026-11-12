@@ -47,10 +47,16 @@ existing browser session.
 1. First `mashov_sync.py --dry-run` with the real account (endpoint drift → `pip install -U pymashov`).
 2. First `moodle_sync.py --dry-run` on the school Moodle (markup drift → adjust parser, output is the contract).
 3. Ofek extension loaded in Chrome on a logged-in student session (capture hit-rate; JSON shape adaptation if needed).
-4. Supabase deploy (SQL upgrades incl. the `local_sync` CHECK value, both edge
-   functions incl. the new multi-source ingest, secrets, pg_cron) — **blocked on
-   one admin action** (sbp_ access token or a dashboard sign-in); the one-shot
-   script is ready at `~/.hermes/cache/scratch/deploy_supabase.py`.
+4. ~~Supabase deploy~~ — **DONE 2026-11-12 (night)**: SQL upgrades applied live
+   (incl. the `local_sync` CHECK value), both edge functions deployed via the
+   Management API, `LUMIO_CRON_TOKEN` secret set, pg_cron job `lumio-feed-sync`
+   live (`15 4 * * *` UTC ≈ 06:15 IST). **Full chain verified by executing the
+   exact stored cron command**: pg_cron → pg_net → edge gateway (JWT) →
+   feed-sync token gate → `200 {"ok":true,"feeds":0}` (read back from
+   `net._http_response`). A full E2E (temp user → katzirb live feed → 39
+   timetable rows → fact columns → complete cleanup) passed in the same session;
+   the 3 real task rows and the 2 real users were verified untouched (the QA
+   guerrillamail user was deleted).
 
 ## Evidence
 - `npm test`: 38/38 pass (incl. katzirb live-shape fixture, ingest static checks

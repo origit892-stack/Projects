@@ -66,5 +66,5 @@ Deliberately NOT changed: `importers.mjs` ICS `+02:00` floating-time convention 
 1. "הכול עובד" — not claimed. Live integration verification is provider-by-provider above; anything `not_verified` stays so until a real authorized source is exercised.
 2. Mobile-device (real phone) pass — desktop + 390×844 emulated captures done; a real iPhone/Android pass is a pre-rollout item.
 3. PWA installability on a real device — manifest + SW present and cached-shell-verified; install test deferred to rollout checklist.
-4. Edge functions deployed to the live project — not done (user action, steps in READMEs); `deno check` + static tests only.
-5. pg_cron anti-pause over 7+ days — designed, not stress-tested.
+4. ~~Edge functions deployed~~ — **DONE 2026-11-12**: both functions live via Management API (deploy endpoint, raw file part — the zip-upload path is a known upstream bug, supabase/supabase#41290); token gate verified (wrong token → 401, right → 200).
+5. pg_cron job **created live 2026-11-12** (`lumio-feed-sync`, `15 4 * * *` UTC) and the full chain verified by executing the stored command (200 ok:true via pg_net). Long-term (7+ day) anti-pause behavior — still not stress-tested.
