@@ -95,6 +95,50 @@
       "draft": "You're building a multi-channel attribution + lead engine — Meta/TikTok/LinkedIn/YouTube into BigQuery/Supabase via self-hosted n8n, AI schema standardization and Hot/Warm/Cold scoring, phone/email dedup with round-robin rotator, multi-touch journey logging, Mekari Qontak/WAHA WhatsApp, and a Looker Studio dashboard. That's exactly the class of system I design and operate in production.\n\nProof you can check today:\n- 24/7 multi-agent ops desk — 71 specialized agents with checkpointed state; scheduled runs verified daily.\n- 124-product store operated end-to-end via its official API — GET before write, read-back after every change.\n\nApproach: I map the ad APIs + your lead form, send back the plan + fixed price + done-definition in 24-48h. Timeline: ~20 days.\n\nOne question: does the Bahasa Indonesia requirement apply to the customer-facing WhatsApp copy and dashboard, or to project communication? That decides how I scope the deliverable.",
       "status": "new",
       "notes": "Board lead — THREAD REPLIES CLOSED; OP channel = email oktarina.nurhayati@gratyo.id (posted by 'Riena', biggest business coaching company in Indonesia, 2026-11-11 04:42 UTC). Fit C: tech is an exact match (self-hosted n8n on VPS + AI Agent node + BigQuery/Supabase + Looker Studio + Mekari Qontak/WAHA — precisely the stack we operate; Agent System $2,000+ class, one-time project) BUT OP's hard screening asks: fluent Bahasa Indonesia + living in Jakarta time zone (GMT+7); user is Israel (GMT+2) — confirm language/timezone feasibility BEFORE replying (draft's closing question addresses the language scope). Full scope: scheduled ad-API ingestion (Meta Insights, TikTok Marketing, LinkedIn Ads, YouTube Data), LLM schema standardization + UTM parsing + Hot/Warm/Cold scoring, phone/email dedup + weighted round-robin rep assignment, event-based multi-touch journey table, outbound WA auto-replies/broadcasts, Looker Studio CPM/CTR/CPL/CPLPV/CPP/ROAS. User sends the email from their own account — nothing sent by the machine."
+    },
+    {
+      "id": "L-20261112-01",
+      "created": "2026-11-12 09:06 IST",
+      "updated": "2026-11-12 09:06 IST",
+      "source": "https://www.reddit.com/r/zapier/comments/1xtsdfe/spent_the_weekend_getting_whatsapp_chats_into_our/",
+      "fit": "B",
+      "title": "r/zapier: home-cleaning ops — WhatsApp→CRM via Zapier: one booking = 25 tiny notes, eats tasks; wants wait-and-group note",
+      "draft": "One booking turning into 25 tiny notes and eating your Zapier tasks — that's what you're describing: every webhook message is one action, one task. The fix has two halves: a quiet window, and extraction.\n\nI build and operate this class of pipeline in production: a small webhook service collects the chat, waits ~1 hour of silence, then an LLM writes exactly what your boss wants — quote requested?, date, booked? — as ONE structured CRM note. Runs on your infra, flat cost, no per-message tax, replayed webhooks never double-write.\n\nProof you can check today:\n- 24/7 multi-agent ops desk — 71 specialized agents, checkpointed state; runs verified daily.\n- Unattended publishing pipeline running twice daily with a dedupe ledger and failure alerts.\nhttps://origit892-stack.github.io/agent-operator/\n\nOne question: which CRM are you writing the notes to — HubSpot, GoHighLevel, or something else? That decides the write path for the grouped note.",
+      "status": "new",
+      "notes": "Reply in the r/zapier thread. Posted 2026-11-11 20:15 UTC (flavia-f, ops at a small home-cleaning company, 6 cleaners; ~30 WhatsApp chats/week; Zapier catch-hook writes every message as its own CRM note; overage task costs; boss wants 'asked for a quote / what date / booked' in the CRM; explicitly asks how to wait-an-hour-then-group 'without it getting fragile' and welcomes 'use a different tool'). Fit B: exact pain class (quiet-window + LLM extraction into one structured note) — One Task $300 / AI Employee $900 class; 6 comments already, thread open. SEND CHANNEL: Reddit — user account still on the 21-day karma plan (reddit/REDDIT.md); parks here until the account passes the gate."
+    },
+    {
+      "id": "L-20261112-02",
+      "created": "2026-11-12 09:06 IST",
+      "updated": "2026-11-12 09:06 IST",
+      "source": "https://www.reddit.com/r/automation/comments/1xtfpf1/hiring_freelance_ai_workflow_engineer_developer/",
+      "fit": "C",
+      "title": "r/automation [HIRING]: Freelance AI Workflow Engineer (SaaS marketing agency, Delhi, India) — $15 per completed workflow",
+      "draft": "Custom AI workflows in Python/JS with LLM APIs and n8n, tested and delivered project-based — that's the scope I work in, day to day. One number doesn't fit: $15 per completed workflow is below my floor. My rate is $300 fixed per completed, tested, documented workflow — you get a working deliverable plus handover notes. If you batch several workflows at once, I'll quote a package price.\n\nProof you can check today:\n- 24/7 multi-agent ops desk — 71 specialized agents with checkpointed state; scheduled runs verified daily.\n- Unattended publishing pipeline with a dedupe ledger and failure alerts.\nhttps://origit892-stack.github.io/agent-operator/\n\nOne question: how many workflows a week does the agency typically ship — a couple, or 20+? That decides whether a batch price is worth quoting.",
+      "status": "new",
+      "notes": "Reply in the r/automation thread (post also says DMs open). Posted 2026-11-11 11:46 UTC (Designer-Mirror-8823; SaaS marketing agency, Delhi, India; wants Python/JS + LLM APIs + n8n/Make/Zapier, project-based, volume depends on incoming projects). Fit C: scope match is exact BUT compensation is $15 per completed workflow — far below the $300 floor; draft states the floor + offers a batch package price. Registered for the user's decision — likely reject. SEND CHANNEL: Reddit — karma gate pending (reddit/REDDIT.md)."
+    },
+    {
+      "id": "L-20261112-03",
+      "created": "2026-11-12 09:06 IST",
+      "updated": "2026-11-12 09:06 IST",
+      "source": "https://community.n8n.io/t/328205/create-newsletters-with-n8n",
+      "fit": "C",
+      "title": "n8n community: two weekly local-events newsletters (scraped websites + Instagram) — move from ChatGPT to n8n server?",
+      "draft": "Two weekly newsletters, and you don't want to start paying the ChatGPT API for what your subscription already does. Short answer: pennies either way (a few thousand tokens per run); for zero cost, Gemini's free tier or DeepSeek generate the HTML just as well.\n\nIf I moved it: start with the website-scraping one. Cron trigger → fetch the page as text → model extracts the events and writes the HTML → push it to your email tool as a DRAFT via its API, so you still review before send. Keep the Instagram one on ChatGPT until it runs clean.\n\nI operate this class of unattended pipeline in production (twice daily, with failure alerts); I can wire the first one for you, ~$300 fixed.\nhttps://origit892-stack.github.io/agent-operator/\n\nOne question: which email software are you pasting into — Mailchimp, Brevo, or something else? That decides the API push node.",
+      "status": "new",
+      "notes": "Reply in the n8n community thread (open, replies enabled). Posted 2026-11-11 17:53 UTC (JackBauer; two weekly newsletters — local events from local-website scraping + Instagram via ScrapeCreators; ChatGPT makes the HTML, he pastes it into his email software; has his own n8n server; cost-sensitive about ChatGPT API). Fit C: advice question, small scope (~$300 One Task if he wants it built); 7 helpful replies already in the thread — reply adds value (draft gives the concrete n8n design + free-tier model option) with a low-key build offer. SEND CHANNEL: n8n community thread (user's own account)."
+    },
+    {
+      "id": "L-20261112-04",
+      "created": "2026-11-12 09:06 IST",
+      "updated": "2026-11-12 09:06 IST",
+      "source": "https://community.n8n.io/t/328131/hiring-founding-n8n-builders-for-us-small-business-client-work-freelance-remote",
+      "fit": "C",
+      "title": "n8n [HIRING] (thread CLOSED): Founding n8n Builders for US small-business work — AutoMatch marketplace",
+      "draft": "I'd like to join as a builder. I design and operate AI automations for small businesses in production — missed-call handling, lead follow-up, appointment booking — n8n-based, with error workflows and failure alerts, and I explain every system to non-technical owners in plain language.\n\nProof you can check today:\n- 24/7 multi-agent ops desk — 71 specialized agents, checkpointed state; runs verified daily.\n- 124-product store operated end-to-end via its official API — GET before write, read-back after every change.\nhttps://origit892-stack.github.io/agent-operator/\n\nOne question before I commit: what percentage does the platform hold on each completed project, and when does a builder's payout release after client approval?",
+      "status": "new",
+      "notes": "⚠ THREAD CLOSED (created 2026-11-11 14:47 UTC, Aidan, founder of AutoMatch — marketplace matching US small businesses with AI/automation builders; work class = missed-call handling, lead follow-up, appointment booking; remote, US time zones). Fit C: work class is an exact match BUT (1) thread closed — no reply channel; OP's channel = builder application via useautomatch.com (draft doubles as the application text); (2) payments run through the platform — fee cut must be verified against actual terms BEFORE committing (zero-cost rule; the draft's closing question asks exactly this); (3) OP states 'project volume isn't guaranteed'. User action: decide whether to apply on their own account after fee check."
     }
   ]
 }
