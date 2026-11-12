@@ -65,6 +65,10 @@ export function connectionFacts(state,hasToken=false,lastSyncAt=null,lastError=n
   case 'requires_admin':facts.identityAuthenticated=true;break;
   case 'awaiting_consent':if(hasToken)facts.identityAuthenticated=true;break;
   case 'error':if(lastSyncAt)facts.dataReadable=true;break;
+  // Legacy v3.3 states (widened CHECK keeps them on old rows): honest facts so
+  // the status line and the four-fact row never contradict each other.
+  case 'api_connected':if(lastSyncAt){facts.identityAuthenticated=true;facts.permissionGranted=true;facts.dataReadable=true;facts.syncWorking=true}break;
+  case 'imported':facts.dataReadable=true;break;
   default:break; // not_connected, login_only, needs_reauth, manual_import_only, unavailable
  }
  return facts;
@@ -136,7 +140,8 @@ export function normalizeShahafRow(raw){
  const r=raw||{};
  const title=String(r.title||r.subject||'').trim().slice(0,240);
  if(!title)throw Error('חסרה כותרת לשיעור');
- const day=Number(r.day_of_week??r.day);
+ const dayRaw=r.day_of_week??r.day;
+ const day=(dayRaw==null||dayRaw==='')?NaN:Number(dayRaw);
  if(!Number.isInteger(day)||day<0||day>6)throw Error('יום השבוע אינו תקין (0=ראשון עד 6=שבת)');
  const start=String(r.start_time||'').slice(0,5);
  if(!TIME_RE.test(start))throw Error('שעת התחלה אינה תקינה (HH:MM)');
@@ -212,7 +217,7 @@ export function validateFeedUrl(raw,kind){
  if(!FEED_TYPES.includes(kind))return {ok:false,error:'סוג פיד לא מוכר'};
  let u;
  try{u=new URL(s)}catch{return {ok:false,error:'הכתובת אינה תקינה'}}
- if(!['http:','https:'].includes(u.protocol))return {ok:false,error:'יש להשתמש בכתובת http או https בלבד'};
+ if(u.protocol!=='https:')return {ok:false,error:'יש להשתמש בכתובת https בלבד'};
  if(u.username||u.password)return {ok:false,error:'הכתובת מכילה פרטי הגשה — יש להסירם'};
  if(kind==='public_page'){
   if(!/^([a-z0-9-]+\.shahaf\.site|shahaf\.site)$/i.test(u.hostname))return {ok:false,error:'כתובת מערכת שעות חייבת להיות באתר שחף (…shahaf.site)'};
@@ -295,7 +300,7 @@ export function parseShahafPage(htmlText){
 export function buildShahafUrl(schoolSubdomain,cls,tab='timetable',week=0){
  const school=String(schoolSubdomain||'').trim().toLowerCase();
  if(!/^[a-z0-9-]+$/.test(school))throw Error('שם בית הספר אינו תקין (אותיות, ספרות ומקף בלבד)');
- const n=Number(cls);
+ const n=/^\d+$/.test(String(cls).trim())?Number(String(cls).trim()):NaN;
  if(!Number.isInteger(n)||n<=0)throw Error('מספר כיתה אינו תקין');
  const t=['timetable','announcements','calendar'].includes(tab)?tab:'timetable';
  const w=Number(week)||0;

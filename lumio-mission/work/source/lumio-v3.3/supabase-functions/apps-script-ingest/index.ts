@@ -27,9 +27,20 @@ Deno.serve(async (req: Request) => {
   if (!supabaseUrl || !serviceKey) return json({ ok: false, error: 'SERVER_NOT_CONFIGURED' }, 500);
   const db = createClient(supabaseUrl, serviceKey, { auth: { persistSession: false } });
 
+  // L3 fix: size-cap the raw body before parsing (self-DoS guard).
+  const MAX_BODY_BYTES = 1_500_000;
+  const cl = Number(req.headers.get('content-length') || 0);
+  if (cl > MAX_BODY_BYTES) return json({ ok: false, error: 'BODY_TOO_LARGE' }, 413);
+  let rawBody = '';
+  try {
+    rawBody = await req.text();
+  } catch {
+    return json({ ok: false, error: 'BAD_BODY' }, 400);
+  }
+  if (rawBody.length > MAX_BODY_BYTES) return json({ ok: false, error: 'BODY_TOO_LARGE' }, 413);
   let body: any;
   try {
-    body = await req.json();
+    body = JSON.parse(rawBody);
   } catch {
     return json({ ok: false, error: 'BAD_BODY' }, 400);
   }
@@ -93,7 +104,8 @@ Deno.serve(async (req: Request) => {
         title,
         subject,
         description: '',
-        due_at: typeof item.due_at === 'string' ? item.due_at : null,
+        // L2 fix: validate/normalize due_at — garbage must not sink the batch.
+        due_at: (() => { const d = new Date(item.due_at as string); return item.due_at && !Number.isNaN(d.getTime()) ? d.toISOString() : null; })(),
         source_url: null,
         status: item.status === 'done' ? 'done' : 'todo',
         retrieval_method: 'official_api',
@@ -119,6 +131,9 @@ Deno.serve(async (req: Request) => {
     await db
       .from('connections')
       .update({
+        // MAJOR-2 fix: the daily sync succeeded — the state must say so,
+        // otherwise the card shows "awaiting consent" next to four ✓ facts.
+        state: 'synced',
         identity_authenticated: true,
         permission_granted: true,
         data_readable: true,

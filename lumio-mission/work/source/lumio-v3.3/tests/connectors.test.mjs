@@ -178,6 +178,7 @@ test('validateFeedUrl rejects unsafe and wrong-host URLs',()=>{
  assert.equal(validateFeedUrl('data:text/calendar,hi','ics_url').ok,false);
  assert.equal(validateFeedUrl('ftp://example.com/ics','ics_url').ok,false);
  assert.equal(validateFeedUrl('https://user:pass@example.com/ics','ics_url').ok,false);
+ assert.equal(validateFeedUrl('http://petel.example.org/ics/personal','ics_url').ok,false);
  assert.equal(validateFeedUrl('https://example.com/','public_page').ok,false);
  assert.equal(validateFeedUrl('https://notshahaf.site/x','public_page').ok,false);
  assert.equal(validateFeedUrl('https://evil.com/shahaf.site/','public_page').ok,false);
@@ -251,6 +252,30 @@ test('PROVIDERS: 5 providers with honest capabilities and Hebrew copy',()=>{
  assert.equal(PROVIDERS.find(p=>p.id==='mashov').capabilities.apiRead,false);
  assert.equal(PROVIDERS.find(p=>p.id==='classroom').capabilities.apiRead,true);
  assert.equal(PROVIDERS.find(p=>p.id==='shahaf').capabilities.timetable,true);
+});
+
+test('legacy v3.3 states get honest facts; shahaf guards reject junk (QA round 2)',()=>{
+ const sync=new Date().toISOString();
+ const a=connectionFacts('api_connected',false,sync);
+ assert.deepEqual(a,{identityAuthenticated:true,permissionGranted:true,dataReadable:true,syncWorking:true});
+ assert.deepEqual(connectionFacts('api_connected',false,null),{identityAuthenticated:false,permissionGranted:false,dataReadable:false,syncWorking:false});
+ assert.equal(connectionFacts('imported').dataReadable,true);
+ assert.throws(()=>buildShahafUrl('katzir','0x10'),/מספר כיתה/);
+ assert.throws(()=>normalizeShahafRow({title:'x',day:'',start_time:'08:00'}),/יום/);
+});
+
+test('edge functions ship SSRF guard + cron token + body cap (static checks only, no execution)',async()=>{
+ const fs=await import('node:fs');
+ const read=(p)=>fs.readFileSync(new URL(p,import.meta.url),'utf8');
+ const feed=read('../supabase-functions/feed-sync/index.ts');
+ assert.ok(feed.includes('function assertSafeFeedUrl'),'feed-sync missing SSRF guard');
+ assert.ok(feed.includes('function isPrivateIp'),'feed-sync missing private-IP check');
+ assert.ok(feed.includes('await assertSafeFeedUrl(c.feed_url, isShahaf)'),'guard not invoked before fetch');
+ assert.ok(feed.includes('LUMIO_CRON_TOKEN'),'feed-sync missing cron token gate');
+ assert.ok(feed.includes("u.protocol !== 'https:'"),'feed-sync must allow https only');
+ const ingest=read('../supabase-functions/apps-script-ingest/index.ts');
+ assert.ok(ingest.includes('MAX_BODY_BYTES'),'ingest missing body cap');
+ assert.ok(ingest.includes('Number.isNaN(d.getTime())'),'ingest missing due_at validation');
 });
 
 test('deployment artifacts exist and contain no secrets (static checks only, no execution)',async()=>{

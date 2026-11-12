@@ -90,19 +90,19 @@ function sync(){
 }
 
 /**
- * תאריך Classroom ({year,month,day}, שעון ישראל) → ISO בסוף היום (+02:00).
- * תמיד שומר על אותו יום מקומי — אין החלקה בין תאריכים.
+ * תאריך Classroom ({year,month,day}, שעון ישראל) → ISO.
+ * שומר את התאריך כ־"שעון-ישראל-כ־UTC" (T00:00:00Z) — בדיוק כמו core.mjs באתר,
+ * כך ששני מסלולי הסנכרון כותבים את אותו ערך ולא משנים יום.
  */
 function dueISO(d){
   if (!d || !d.year || !d.month || !d.day) return null;
   const iso = d.year + '-' + String(d.month).padStart(2, '0') + '-' + String(d.day).padStart(2, '0');
-  return iso + 'T23:59:59+02:00';
+  return iso + 'T00:00:00Z';
 }
 
 /**
  * שליחה ללומיו. נסיון חוזר אחד על תשובת 5xx (עם המתנה קצרה).
- * הערה: ל־URLFetchApp אין פרמטר timeout; התקלה/עדכנות מבוטלת על ידי הגבלת
- * הפלטפורמה של גוגל. התקשורת עצמה מוגבלת בכ־10 שניות של התנהגות רגילה.
+ * הערה: ל־URLFetchApp אין פרמטר timeout; ברירת המחדל של גוגל היא כ־20 שניות.
  * 401/404 = המפתח או הכתובת אינם תקינים → רושם LUMIO_BINDING_INVALID.
  */
 function postToLumio(items){
