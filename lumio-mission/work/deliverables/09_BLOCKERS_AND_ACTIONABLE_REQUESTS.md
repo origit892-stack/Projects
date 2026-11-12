@@ -1,5 +1,11 @@
 # 09 — Blockers & Actionable Requests
 
+> **תיקון (12.11.2026, בעקבות בדיקה חיה):** כתובת שחף העובדת של בית הספר היא
+> **`katzirb.shahaf.site`** (ללא מקף) — היא **מפרסמת את מערכת השעות** ובדיקה חיה
+> נלקחה בהצלחה (39 שיעורים, timestamp "מעודכן ל: 11.11.2026"). כל שורה במסמך הזה
+> שאומרת "katzir-b.shahaf.site אינו פועל" הייתה נכונה לכתובת שהבחנו אז, אך
+> הכתובת המתקנת היא katzirb — ולכן חוסם "המחכה לפרסום" **הוסר**.
+
 Each blocker: what blocks it, why alternatives were exhausted, and ONE focused ask (letters ready to send, no personal data included).
 
 ## C1 — Classroom in-app flow: admin OAuth client (process blocker, free)
@@ -29,12 +35,8 @@ Each blocker: what blocks it, why alternatives were exhausted, and ONE focused a
 ### Letter B3 (Hebrew, to petel@weizmann.ac.il)
 > שלום, אנו פונים בשאלה ממערכת תלמידים: האם ניתן לתלמיד לקבל קישור ICS אישי ליומן (Moodle calendar subscription) כדי לצפות בו בכלי לוח שנה חיצוני, ובמה נדרש אישור? כמו כן, האם פטל מפעילה Moodle Web Services (External Services) עבור צרכנים מורשים, ואם כן מהי פניית הפתיחה — אנו עוסקים בקריאה של נתוני התלמיד עצמו בלבד, בהסכמתו, בלי שימור נתונים חוץ מחשבון הפרטי שלו. תודה.
 
-## C5 — Shahaf: Katzir B-track timetable not published (school decision)
-**What:** `katzir-b.shahaf.site` → HTTP 404 (verified 2026-11-12); the school's public site (katzir.shahaf.site) publishes grades 10-12 only. The parser is verified against published schools (dror, katzir-a) — the connector goes live with ZERO code changes the moment the B-track schedule is published.
-**Ask (school admin):** publish the B-track timetable on the school's Shahaf site (Shahaf desktop → Internet → Communication settings → site URL; per official wiki docs).
-
-### Letter B4 (Hebrew, to Katzir B admin — 08-9471653 / katzirb@educ.org.il)
-> שלום רב, בתלמיד חטיבה ב' בקציר ב' מנצל כלי לימודי שמשלב את מערכת השעות של הכיתה במקום אחד. נראה כי מערכת השעות של חטיבת הביניים אינה פורסמת באתר בית הספר (katzir-b.shahaf.site אינו זמין; האתר הפעיל מפרסם כיתות י׳-יב׳ בלבד). האם ניתן לפרסם את מערכת השעות של חטיבה ב׳ באתר הציבורי, דרך מודול האתר של שחף? הנתונים המוצגים הם כיתתיים בלבד (מקצוע/שעה/חדר) בלי פרטים אישיים של תלמידים. תודה.
+## C5 — ~~Shahaf: Katzir B-track timetable not published~~ — **RESOLVED 2026-11-12**
+**Status:** the school's working Shahaf subdomain is **`katzirb.shahaf.site`** (no hyphen) and it **is publishing** the full timetable — live fetch verified 2026-11-12 (39 periods parsed, stamp "מעודכן ל: 11.11.2026", `?cls=N` selects the class). The earlier 404 on `katzir-b.shahaf.site` was a wrong-guess subdomain, not a real blocker. The Ofek-extension-era assumption ("await publication") is obsolete; the admin letter B4 is retired (kept for other schools that truly do not publish). The connector is wired in-app: paste `https://katzirb.shahaf.site/` (optionally `?cls=N`), "בדוק פיד" — and once the Supabase scheduler is live, it refreshes automatically server-side (pg_cron → feed-sync), PC off.
 
 ## C6 — Ministry of Education IDM: SP registration is vendor-gated (process blocker)
 **What:** an official SP/IDM connection path EXISTS (sapakim.education.gov.il/tech/idm — SAML/OIDC/federation) but it is for MoE-approved vendors with forms + security review (GR_IDM_Team@education.gov.il); there is no self-service individual registration. "ED-DATA" as a public student-data API: no such official system found. MoE LRS: vendor→MoE telemetry push only, no read access.

@@ -1,5 +1,11 @@
 # 10 — Implementation Log (Lumio 4.0)
 
+> **תיקון (12.11.2026, בעקבות בדיקה חיה):** כתובת שחף העובדת של בית הספר היא
+> **`katzirb.shahaf.site`** (ללא מקף) — היא **מפרסמת את מערכת השעות** ובדיקה חיה
+> נלקחה בהצלחה (39 שיעורים, timestamp "מעודכן ל: 11.11.2026"). כל שורה במסמך הזה
+> שאומרת "katzir-b.shahaf.site אינו פועל" הייתה נכונה לכתובת שהבחנו אז, אך
+> הכתובת המתקנת היא katzirb — ולכן חוסם "המחכה לפרסום" **הוסר**.
+
 **Working dir:** `~/Documents/Projects/lumio-mission/work/source/lumio-v3.3/` · baseline commit `bac1f4e` · 4.0 commit `7dd260e` (pushed to `origit892-stack/Projects`).
 
 ## New files

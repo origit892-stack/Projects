@@ -1,4 +1,10 @@
 # 01 — Provider Matrix (Lumio 4.0)
+
+> **תיקון (12.11.2026, בעקבות בדיקה חיה):** כתובת שחף העובדת של בית הספר היא
+> **`katzirb.shahaf.site`** (ללא מקף) — היא **מפרסמת את מערכת השעות** ובדיקה חיה
+> נלקחה בהצלחה (39 שיעורים, timestamp "מעודכן ל: 11.11.2026"). כל שורה במסמך הזה
+> שאומרת "katzir-b.shahaf.site אינו פועל" הייתה נכונה לכתובת שהבחנו אז, אך
+> הכתובת המתקנת היא katzirb — ולכן חוסם "המחכה לפרסום" **הוסר**.
 **Status as of 2026-11-12.** Every claim traces to a source in `02_SOURCES_AND_EVIDENCE.md`. "Supported in code" ≠ "works with live account" — each row separates the two.
 
 | provider | status (code) | status (live) | supported_data | auth_protocol | permissions | requires_vendor_approval | server_sync_possible | mobile_supported | verified_live | test_evidence | blocker | exact_next_action |

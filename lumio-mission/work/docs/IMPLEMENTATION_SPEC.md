@@ -1,4 +1,10 @@
 # Lumio 4.0 Implementation Spec (engineer brief)
+
+> **תיקון (12.11.2026, בעקבות בדיקה חיה):** כתובת שחף העובדת של בית הספר היא
+> **`katzirb.shahaf.site`** (ללא מקף) — היא **מפרסמת את מערכת השעות** ובדיקה חיה
+> נלקחה בהצלחה (39 שיעורים, timestamp "מעודכן ל: 11.11.2026"). כל שורה במסמך הזה
+> שאומרת "katzir-b.shahaf.site אינו פועל" הייתה נכונה לכתובת שהבחנו אז, אך
+> הכתובת המתקנת היא katzirb — ולכן חוסם "המחכה לפרסום" **הוסר**.
 **USER DIRECTIVE (2026-11-11): "Build Lumio 4 with everything connected."** Interpretation (fixed, no fakes): every REAL data path is a first-class connection — (a) live API sync (Classroom), (b) user-authorized feed (PeTeL ICS URL the student generates for their own calendar; Shahaf public page if research verifies one), (c) fast one-tap import (Mashov/Ofek, no official API exists). UI must make the difference unmistakable. Version bump: **4.0** (README, footer "לומיו 4.0", SW cache `lumio-shell-v4.0`, package.json version 4.0.0).
 **Working dir (ONLY place to write):** `~/Documents/Projects/lumio-mission/work/source/lumio-v3.3/`
 **Baseline:** v3.3, 25 files, 19/19 tests passing. UI/design must be preserved (no palette/typography/layout changes; reuse existing CSS classes: `.conn`, `.cardline`, `.pill`, `.warning`, `.taskfilters`, `.tabbar`).
