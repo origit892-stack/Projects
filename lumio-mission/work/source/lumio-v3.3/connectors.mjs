@@ -26,7 +26,7 @@ export const PROVIDERS=[
  {id:'mashov',name:'משו״ב',icon:'📊',sourceLink:'https://web.mashov.info/students/login',
   capabilities:{login:true,apiRead:false,backgroundSync:false,assignments:true,exams:true,grades:true,announcements:true,timetable:false,deepLinks:true},
   defaultState:'manual_import_only',
-  heDescription:'ציונים, משימות ומערכת שעות. מסלול עיקרי — **חיבור ישיר מהאפליקציה, גם מהטלפון בלי שום תוסף**: מזינים שם משתמש + סיסמה + ביה״ס פעם אחת (שם המשתמש שנותנים במשו״ב — לא חייב ת.ז.), השרת משקף את הנתונים ואז מושלך את הסיסמה (לא נשמרת); לעדכון מספיקה הסיסמה בלבד. מסלול נוסף — התוסף "Lumio MOE Sync" במחשב (התקנה פעם אחת) = אוטומטי מלא, והטלפון קורא מהענן. משו״ב ללא API רשמי, לכן זה דרך אתר משו״ב עצמו.',
+  heDescription:'ציונים, משימות ומערכת שעות. שני מסלולים: <b>(א) חיבור ישיר מהאפליקציה (גם מהטלפון, בלי תוסף)</b> — מזינים שם משתמש + סיסמה + ביה״ס פעם אחת (השם שמזינים במשו״ב, לא חייב ת.ז.); השרת משקף ואז מושלך את הסיסמה (לא נשמרת), ולעדכון מספיקה הסיסמה בלבד. <b>חשוב:</b> אם ביה״ס מתחבר דרך "הזדהות משרד החינוך" (SSO) — אין סיסמת משו״ב נפרדת והחיבור הישיר לא יעבוד. <b>(ב) התוסף "Lumio MOE Sync" במחשב (התקנה פעם אחת)</b> — אוטומטי מלא: מתחבר דרך ההזדהות שלכם במשרד החינוך (כולל SSO/MFA), והטלפון קורא מהענן. זה המסלול הנכון לביה״ס עם הזדהות משרד החינוך.',
   howToConnect:'📱 מהטלפון: "חבר למשו״ב" — שם משתמש + סיסמה + ביה״ס פעם אחת (לא חייבים ת.ז.), ואז "רענן" = סיסמה בלבד. 🖥️ אוטומטי מלא: התוסף "Lumio MOE Sync" במחשב (פעם אחת) → הטלפון מציג אוטומטי.',
   dataPaths:[{label:'משימות',method:'unofficial_api'},{label:'ציונים',method:'unofficial_api'},{label:'מערכת שעות',method:'unofficial_api'},{label:'הודעות',method:'user_import'}]},
  {id:'ofek',name:'אופק',icon:'🌅',sourceLink:'https://ofek.cet.ac.il/',

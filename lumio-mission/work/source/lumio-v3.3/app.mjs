@@ -177,7 +177,7 @@ async function mashovConnect(){
  const u=document.getElementById('mashovUser')?.value?.trim();
  const p2=document.getElementById('mashovPass')?.value;
  const sc=document.getElementById('mashovSchool')?.value?.trim();
- if(!u||!p2)return notice('יש להקליד משתמש (ת.ז.) וסיסמת משו״ב','error');
+ if(!u||!p2)return notice('יש להקליד משתמש וסיסמת משו״ב','error');
  state.feedBusy='mashov';render();
  notice('מתחבר למשו״ב… (הסיסמה משמשת פעם אחת בלבד)');
  try{

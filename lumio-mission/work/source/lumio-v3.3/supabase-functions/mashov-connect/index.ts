@@ -144,7 +144,7 @@ Deno.serve(async (req: Request) => {
       if (sc) setCookies = sc.split(/,(?=\s*[A-Za-z0-9._~-]+=)/).map(x => x.trim());
     }
     if (!li.ok || !csrf || setCookies.length === 0) {
-      return json({ ok: false, error: li.ok ? 'LOGIN_NO_SESSION' : 'LOGIN_FAILED', hint: 'פרטי משו״ב אינם תקפים — בדוק משתמש/סיסמה ובית ספר.' }, 401);
+      return json({ ok: false, error: li.ok ? 'LOGIN_NO_SESSION' : 'LOGIN_FAILED', hint: 'פרטי משו״ב אינם תקפים — בדוק משתמש/סיסמה ובית ספר. אם ביה״ס שלכם מתחבר דרך "הזדהות משרד החינוך" (SSO), אין סיסמת משו״ב נפרדת והחיבור הישיר לא יעבוד — השתמשו בתוסף "Lumio MOE Sync" במחשב (הוא מתחבר דרך ההזדהות שלכם).' }, 401);
     }
     const cookie = setCookies.map(c => c.split(';')[0]).join('; ');
     const H: Record<string, string> = { Accept: 'application/json', Cookie: cookie, 'x-csrf-token': csrf };
@@ -153,11 +153,11 @@ Deno.serve(async (req: Request) => {
     let bodyObj: Record<string, unknown> = {};
     try { bodyObj = (JSON.parse(await li.text()) || {}) as Record<string, unknown>; } catch { bodyObj = {}; }
     if (bodyObj.mfaChallengeId || bodyObj.requiresMfa) {
-      return json({ ok: false, error: 'MFA_REQUIRED', hint: 'חשבון משו״ב שלכם דורש אימות שני (MFA) — חיבור מהאפליקציה לא תומך בזה עדיין. אפשרי: סקריפט סנכרון במחשב או ייבוא ידני.' }, 401);
+      return json({ ok: false, error: 'MFA_REQUIRED', hint: 'חשבון משו״ב שלכם דורש אימות שני (MFA) — החיבור הישיר לא תומך בזה. הפתרון: התוסף "Lumio MOE Sync" במחשב (מתחבר דרך ההזדהות שלכם במשרד החינוך, כולל MFA) — או ייבוא ידני.' }, 401);
     }
     const credential = (bodyObj.credential || {}) as Record<string, unknown>;
     if (!Object.keys(credential).length) {
-      return json({ ok: false, error: 'LOGIN_FAILED', hint: 'פרטי משו״ב אינם תקפים — בדוק משתמש/סיסמה ובית ספר.' }, 401);
+      return json({ ok: false, error: 'LOGIN_FAILED', hint: 'פרטי משו״ב אינם תקפים — בדוק משתמש/סיסמה ובית ספר. אם ביה״ס שלכם מתחבר דרך "הזדהות משרד החינוך" (SSO), אין סיסמת משו״ב נפרדת והחיבור הישיר לא יעבוד — השתמשו בתוסף "Lumio MOE Sync" במחשב (הוא מתחבר דרך ההזדהות שלכם).' }, 401);
     }
     // 4) discover the account's students:
     //    student account → the credential itself holds studentGuid;
