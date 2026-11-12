@@ -252,6 +252,37 @@ options.html, options.js, README-HE.md), `supabase-functions/apps-script-ingest/
 index.ts` (timetable + authoritative source), `connectors.mjs` + `app.mjs`
 (copy), `tests/extension-map.test.mjs` (new, 11 tests).
 
+## Lumio 4.4.1 — phone‑first Mashov connect (no extension, password‑only refresh)
+The 4.4 extension is **PC‑only** (mobile Chrome/Edge has no "Load unpacked").
+So phone‑only students get the automatic path from the **app itself**, via the
+4.3 `mashov-connect` edge function — no extension, no dev mode. 4.4.1 makes it
+a first‑class phone flow and closes the "re‑type everything" gap:
+
+- **Device‑local remember of the non‑secret parts** (`app.mjs`): after a
+  successful connect, the student's **username (ID number) + school** are stored
+  in the phone's `localStorage` (keys `lumio_mashov_user` / `lumio_mashov_school`).
+  The **password is never stored** (iron rule). A refresh ("רענן נתונים") on the
+  same device now only re‑asks for the **password**. A "מחק מידע שמור במכשיר"
+  button clears the stored identifiers. `localStorage` is per‑origin, per‑device,
+  and nothing is sent anywhere but the student's own connect call — this is
+  standard "remember username", not credential storage.
+- **Device‑honest copy** (`connectors.mjs` + `app.mjs`): each card now states
+  plainly what a phone‑only student can and can't do:
+  - **Mashov** → in‑app connect, **phone, no extension** (ID+password+school once;
+    then password‑only refresh). The extension is listed as the optional
+    desktop full‑auto path (phone then reads from the cloud).
+  - **PeTeL** → **deadlines automatic from the phone**: paste the personal
+    ICS diary link once → server refreshes daily (even with phone/PC off).
+    Homework = desktop extension or manual import.
+  - **Ofek** → no public API; automatic = desktop extension (phone reads from
+    cloud); **no PC?** manual import from the phone.
+  - **Shahaf** → one‑click auto (server public feed) — already phone‑automatic.
+- **No fake connected states**: a card only shows ✓ after a real data read
+  succeeds (unchanged rule).
+
+**Files (4.4.1):** `app.mjs` (localStorage pre‑fill + clear action + copy),
+`connectors.mjs` (device‑honest copy).
+
 ## Evidence
 - `npm test`: 51/51 pass (40 prior + 11 new `extension-map.test.mjs`: source
   detection, Mashov homework/grades/timetable mapping, Hebrew weekday
@@ -270,5 +301,10 @@ index.ts` (timetable + authoritative source), `connectors.mjs` + `app.mjs`
   → no `Access-Control-Allow-*` at all.
 - Live site `origit892-stack.github.io/lumio-site/` serves 4.4: `/connectors.mjs`
   + `/app.mjs` with the MOE Sync copy (verified after deploy).
+- Live site serves **4.4.1** (verified after deploy, 2026-11-13): `/connectors.mjs`
+  has the phone‑first Mashov copy ("גם מהטלפון בלי שום תוסף", "ללא מחשב");
+  `/app.mjs` has the `lumio_mashov_user` localStorage pre‑fill (3 refs), the
+  "מחק מידע שמור במכשיר" clear action, and the "רענן נתונים (סיסמה בלבד)"
+  password‑only refresh. `npm test` 51/51; `node --check` clean.
 - No secrets in any of these files (scan: no `sb_secret_`, no JWTs; only the
   publishable `sb_publishable_...` key, which is public by design).
