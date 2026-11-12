@@ -259,13 +259,20 @@ So phone‑only students get the automatic path from the **app itself**, via the
 a first‑class phone flow and closes the "re‑type everything" gap:
 
 - **Device‑local remember of the non‑secret parts** (`app.mjs`): after a
-  successful connect, the student's **username (ID number) + school** are stored
+  successful connect, the student's **username + school** are stored
   in the phone's `localStorage` (keys `lumio_mashov_user` / `lumio_mashov_school`).
   The **password is never stored** (iron rule). A refresh ("רענן נתונים") on the
   same device now only re‑asks for the **password**. A "מחק מידע שמור במכשיר"
   button clears the stored identifiers. `localStorage` is per‑origin, per‑device,
   and nothing is sent anywhere but the student's own connect call — this is
   standard "remember username", not credential storage.
+- **4.4.2 — the username is ANY Mashov login, not only a ת.ז.** The edge
+  function already accepts a free‑text `username` (≤60 chars) and passes it
+  straight to Mashov's `POST /api/login`; there is no numeric/ת.ז. validation
+  (the only numeric check is the *school* semel). 4.4.2 fixes the misleading UI
+  that said "משתמש משו״ב (ת.ז.)": the field is now "משתמש משו״ב" with a hint that
+  it's whatever login the school gives you (ת.ז., student number, or a username)
+  — **a student who doesn't have a ת.ז. can still connect**.
 - **Device‑honest copy** (`connectors.mjs` + `app.mjs`): each card now states
   plainly what a phone‑only student can and can't do:
   - **Mashov** → in‑app connect, **phone, no extension** (ID+password+school once;
