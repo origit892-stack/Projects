@@ -157,8 +157,10 @@ function shahafItems(html: string): { items: Record<string, unknown>[]; stamp: s
       if (!tm) continue;
       const start = tm[1].padStart(2, '0') + ':' + tm[2];
       if (!TIME_OK.test(start)) continue; // TS L3: skip bad rows, never sink the feed
-      const em = label.match(/([0-9]{1,2}):([0-9]{2})\s*[-–—]\s*([0-9]{1,2}):([0-9]{2})/);
-      const end = em && TIME_OK.test(em[3].padStart(2, '0') + ':' + em[4]) ? em[3].padStart(2, '0') + ':' + em[4] : null;
+      const em = label.match(/([0-9]{1,2}):([0-9]{2})\s*[-–—]\s*([0-9]{1,2}):([0-9]{2})/)
+        || label.match(/([0-9]{1,2}):([0-9]{2})\s+([0-9]{1,2}):([0-9]{2})/);
+      const cand = em ? em[3].padStart(2, '0') + ':' + em[4] : null;
+      const end = cand && TIME_OK.test(cand) && cand !== start ? cand : null;
       for (const { col, day } of dayCols) {
         const cell = (row[col] || '').trim();
         if (!cell) continue;

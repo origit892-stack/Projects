@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Lumio Ofek Bridge",
+  "version": "1.0.0",
+  "description": "שולח את המשימות שלך מאופק (מטח) לחשבון לומיו שלך. לחיצה אחת, ללא שמירת סיסמאות.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "*://*.cet.ac.il/*",
+    "*://*.matan.co.il/*",
+    "https://zijinurzzwkuqxwhkiuw.supabase.co/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.cet.ac.il/*", "*://*.matan.co.il/*"],
+      "js": ["capture.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["*://*.cet.ac.il/*", "*://*.matan.co.il/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html"
+}

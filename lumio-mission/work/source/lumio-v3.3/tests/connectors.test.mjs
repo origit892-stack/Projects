@@ -184,7 +184,7 @@ test('validateFeedUrl rejects unsafe and wrong-host URLs',()=>{
  assert.equal(validateFeedUrl('https://evil.com/shahaf.site/','public_page').ok,false);
  const okPetel=validateFeedUrl('https://petel.example.org/ics/personal','ics_url');
  assert.equal(okPetel.ok,true);
- const okShahaf=validateFeedUrl('https://katzir-b.shahaf.site/?cls=5&tab=timetable&mode=student','public_page');
+ const okShahaf=validateFeedUrl('https://katzirb.shahaf.site/?cls=1&tab=timetable&mode=student','public_page');
  assert.equal(okShahaf.ok,true);
  assert.match(okShahaf.url,/shahaf\.site/);
 });
@@ -264,6 +264,30 @@ test('legacy v3.3 states get honest facts; shahaf guards reject junk (QA round 2
  assert.throws(()=>normalizeShahafRow({title:'x',day:'',start_time:'08:00'}),/יום/);
 });
 
+// Live-verified shape of katzirb.shahaf.site (fetched 2026-11-12, 39 items):
+// header cells carry day name + date, period labels are "N HH:MM HH:MM"
+// (space-separated, no dash), a 00:00 filler row exists, stamp at page bottom.
+const KATZIRB_HTML=`<html dir="rtl"><body>
+<table class="TTTable"><tr><td></td><td>יום ראשון 08.11</td><td>יום שני 09.11 חג הסיגד</td><td>יום שלישי 10.11</td></tr>
+<tr><td>0 07:50 08:25</td><td></td><td>חג הסיגד</td><td></td></tr>
+<tr><td>1 08:30 09:15</td><td><b>אנגלית</b> (ז1) בורג רוית</td><td><b>אנגלית</b> (ז1) בורג רוית</td><td>בוברמן רז -&gt; חדר: ז5</td></tr>
+<tr><td>10 00:00 00:00</td><td></td><td></td><td></td></tr></table>
+<div>מעודכן ל: 11.11.2026, שעה: 20:35</div></body></html>`;
+test('katzirb.shahaf.site live shape: dated headers, space-separated end time, stamp, filler row',()=>{
+ const out=importFeedItems(KATZIRB_HTML,'shahaf','public_page');
+ assert.equal(out.stamp,'11.11.2026, שעה: 20:35');
+ assert.equal(out.skipped,0);
+ assert.equal(out.items.length,4);
+ const eng=out.items.find(i=>i.title.includes('אנגלית'));
+ assert.equal(eng.start_time,'08:30');
+ assert.equal(eng.end_time,'09:15');
+ assert.equal(eng.day_of_week,0);
+ const hag=out.items.find(i=>i.title.includes('חג הסיגד'));
+ assert.equal(hag.day_of_week,1);
+ assert.equal(hag.end_time,'08:25');
+ assert.ok(!out.items.some(i=>i.start_time==='00:00'),'filler 00:00 row must yield nothing');
+});
+
 test('edge functions ship SSRF guard + cron token + body cap (static checks only, no execution)',async()=>{
  const fs=await import('node:fs');
  const read=(p)=>fs.readFileSync(new URL(p,import.meta.url),'utf8');
@@ -276,6 +300,9 @@ test('edge functions ship SSRF guard + cron token + body cap (static checks only
  const ingest=read('../supabase-functions/apps-script-ingest/index.ts');
  assert.ok(ingest.includes('MAX_BODY_BYTES'),'ingest missing body cap');
  assert.ok(ingest.includes('Number.isNaN(d.getTime())'),'ingest missing due_at validation');
+ assert.ok(ingest.includes('ALLOWED_SOURCES'),'ingest missing source whitelist');
+ assert.ok(ingest.includes("'local_sync'"),'ingest must label local-script pushes honestly');
+ assert.ok(ingest.includes(".eq('provider', source)"),'ingest must update the right provider row');
 });
 
 test('deployment artifacts exist and contain no secrets (static checks only, no execution)',async()=>{

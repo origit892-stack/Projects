@@ -11,6 +11,10 @@ import { createClient } from 'npm:@supabase/supabase-js@2';
 
 const MAX_ITEMS = 500;
 const ALLOWED_ITEM_KINDS = new Set(['task', 'grade']);
+// Sources this endpoint accepts. 'classroom' is the Apps Script template
+// (official API). The rest are student-local sync scripts pushing with the
+// student's own account — labeled honestly as local_sync downstream.
+const ALLOWED_SOURCES = new Set(['classroom', 'mashov', 'ofek', 'petel']);
 
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
@@ -49,6 +53,12 @@ Deno.serve(async (req: Request) => {
   const rawItems: unknown[] = Array.isArray(body?.items) ? body.items : [];
   const partial = rawItems.length > MAX_ITEMS;
   const items = rawItems.slice(0, MAX_ITEMS);
+  // Source: who is pushing. Untrusted — whitelist, default 'classroom'
+  // (backward compatible with the Apps Script template).
+  const source = ALLOWED_SOURCES.has(typeof body?.source === 'string' ? body.source : '')
+    ? body.source as string
+    : 'classroom';
+  const retrievalMethod = source === 'classroom' ? 'official_api' : 'local_sync';
 
   // Binding lookup: the key identifies the connection row; its user_id is the only
   // user this function may write to. Missing key or a disconnected source → 401.
@@ -83,7 +93,7 @@ Deno.serve(async (req: Request) => {
       gradeRows.push({
         user_id: userId,
         kind: 'grade',
-        source: 'classroom',
+        source,
         external_id,
         title,
         subject,
@@ -91,7 +101,7 @@ Deno.serve(async (req: Request) => {
         event_date: null,
         score,
         source_url: null,
-        retrieval_method: 'official_api',
+        retrieval_method: retrievalMethod,
         verification_state: 'live_verified',
         synced_at: now,
         updated_at: now,
@@ -99,7 +109,7 @@ Deno.serve(async (req: Request) => {
     } else {
       taskRows.push({
         user_id: userId,
-        source: 'classroom',
+        source,
         external_id,
         title,
         subject,
@@ -108,7 +118,7 @@ Deno.serve(async (req: Request) => {
         due_at: (() => { const d = new Date(item.due_at as string); return item.due_at && !Number.isNaN(d.getTime()) ? d.toISOString() : null; })(),
         source_url: null,
         status: item.status === 'done' ? 'done' : 'todo',
-        retrieval_method: 'official_api',
+        retrieval_method: retrievalMethod,
         verification_state: 'live_verified',
         synced_at: now,
         updated_at: now,
@@ -142,7 +152,7 @@ Deno.serve(async (req: Request) => {
         last_error: null,
       })
       .eq('user_id', userId)
-      .eq('provider', 'classroom');
+      .eq('provider', source);
   } catch {
     // fact columns missing — data upsert above already succeeded
   }

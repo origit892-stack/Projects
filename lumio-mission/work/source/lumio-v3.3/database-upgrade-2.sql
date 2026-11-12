@@ -8,12 +8,12 @@
 -- No new tables. RLS is unchanged — the existing table-level owner policies
 -- already cover the new columns.
 
-alter table public.tasks add column if not exists retrieval_method text not null default 'user_entry' check (retrieval_method in ('official_api','public_school_feed','user_import','user_entry'));
+alter table public.tasks add column if not exists retrieval_method text not null default 'user_entry' check (retrieval_method in ('official_api','public_school_feed','local_sync','user_import','user_entry'));
 alter table public.tasks add column if not exists verification_state text not null default 'user_imported_unverified' check (verification_state in ('live_verified','sandbox_verified','fixture_only','user_imported_unverified'));
 alter table public.tasks add column if not exists synced_at timestamptz;
 alter table public.tasks add column if not exists created_at timestamptz not null default now();
 
-alter table public.school_items add column if not exists retrieval_method text not null default 'user_entry' check (retrieval_method in ('official_api','public_school_feed','user_import','user_entry'));
+alter table public.school_items add column if not exists retrieval_method text not null default 'user_entry' check (retrieval_method in ('official_api','public_school_feed','local_sync','user_import','user_entry'));
 alter table public.school_items add column if not exists verification_state text not null default 'user_imported_unverified' check (verification_state in ('live_verified','sandbox_verified','fixture_only','user_imported_unverified'));
 alter table public.school_items add column if not exists synced_at timestamptz;
 alter table public.school_items add column if not exists created_at timestamptz not null default now();

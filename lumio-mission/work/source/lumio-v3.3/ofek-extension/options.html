@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Lumio Ofek Bridge — הגדרות</title>
+<style>
+body{font-family:system-ui,-apple-system,sans-serif;max-width:560px;margin:40px auto;padding:0 16px;color:#111}
+h1{font-size:20px}
+label{display:block;margin-top:14px;font-weight:600;font-size:14px}
+input{width:100%;box-sizing:border-box;padding:8px;margin-top:4px;border:1px solid #bbb;border-radius:8px;font-size:13px;direction:ltr;text-align:left}
+.muted{color:#666;font-size:12px;font-weight:400}
+button{margin-top:18px;padding:10px 22px;background:#1d4ed8;color:#fff;border:none;border-radius:10px;font-size:15px;cursor:pointer}
+#status{margin-top:10px;font-size:13px;font-weight:600}
+#status.ok{color:#166534} #status.err{color:#b91c1c}
+.box{background:#f5f7fb;border-radius:10px;padding:12px 14px;margin-top:16px;font-size:13px;line-height:1.6}
+</style>
+</head>
+<body>
+<h1>📤 Lumio Ofek Bridge</h1>
+<p class="muted">תוסף שסופג את המשימות שלך מאופק (מטח) ושולח אותן ללומיו — עם הסשן הקיים בדפדפן, בלי שמירת סיסמאות.</p>
+<label>מפתח סנכרון (מלומיו)
+<input id="syncKey" type="password" placeholder="הועתק מכרטיס המערכת בלומיו">
+</label>
+<label>כתובת ה־API (ברירת המחדל תקינה)
+<input id="ingestUrl" type="text" placeholder="https://zijinurzzwkuqxwhkiuw.supabase.co/functions/v1/apps-script-ingest">
+</label>
+<button id="save">שמירה</button>
+<div id="status"></div>
+<div class="box">
+<b>איך משתמשים:</b><br>
+1. שמור את מפתח הסנכרון (יוצר בלומיו: כרטיס אופק → מפתח סנכרון).<br>
+2. התחבר לאופק כרגיל.<br>
+3. פתח את דף המשימות שלך.<br>
+4. לחץ על כפתור <b>📤 לומיו</b> הפיני — המשימות תישמרנה בלומיו.
+</div>
+<script src="options.js"></script>
+</body>
+</html>

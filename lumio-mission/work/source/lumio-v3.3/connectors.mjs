@@ -8,7 +8,7 @@ import {parseICS} from './importers.mjs';
 
 export const CONNECTION_STATES=['not_connected','login_only','awaiting_consent','requires_admin','connected_unverified','syncing','synced','needs_reauth','manual_import_only','unavailable','error'];
 export const ERROR_TYPES=['PERMISSION_DENIED','AUTH_EXPIRED','ADMIN_APPROVAL_REQUIRED','API_NOT_AVAILABLE','RATE_LIMITED','SOURCE_NOT_FOUND','SOURCE_CHANGED','NETWORK_ERROR','DATA_VALIDATION_FAILED'];
-export const RETRIEVAL_METHODS=['official_api','public_school_feed','user_import','user_entry'];
+export const RETRIEVAL_METHODS=['official_api','public_school_feed','local_sync','user_import','user_entry'];
 export const VERIFICATION_STATES=['live_verified','sandbox_verified','fixture_only','user_imported_unverified'];
 export const FEED_TYPES=['ics_url','public_page'];
 
@@ -26,25 +26,25 @@ export const PROVIDERS=[
  {id:'mashov',name:'משו״ב',icon:'📊',sourceLink:'https://web.mashov.info/students/login',
   capabilities:{login:true,apiRead:false,backgroundSync:false,assignments:true,exams:true,grades:true,announcements:true,timetable:false,deepLinks:true},
   defaultState:'manual_import_only',
-  heDescription:'ציונים, משימות והודעות. אין חיבור אוטומטי רשמי — כפתור ההתחברות באתר הוא הזדהות בלבד, לא הרשאה לקריאת נתונים.',
-  howToConnect:'אין חיבור אוטומטי רשמי כרגע — פתח את האתר, והעתק/ייבא משימות (קובץ או הדבקה).',
-  dataPaths:[{label:'משימות',method:'user_import'},{label:'ציונים',method:'user_import'},{label:'הודעות',method:'user_import'}]},
+  heDescription:'ציונים, משימות והודעות. אין API רשמי פתוח — אבל יש סקריפט סנכרון מקומי (תיקיית local-sync) שעובד עם ספריית pymashov: אתה רץ אותו פעם אחת במחשב שלך, והוא ממשיך לסנכרן אוטומטית (גם כמתוכנן). הסיסמה נשמרת רק אצלך במחשב, מעולם לא בלומיו.',
+  howToConnect:'הפעל את local-sync/mashov_sync.py פעם אחת (הוראות ב־local-sync/README-HE.md) עם מפתח הסנכרון מהכרטיס. או ייבא ידנית.',
+  dataPaths:[{label:'משימות',method:'local_sync'},{label:'ציונים',method:'local_sync'},{label:'הודעות',method:'user_import'}]},
  {id:'ofek',name:'אופק',icon:'🌅',sourceLink:'https://ofek.cet.ac.il/',
   capabilities:{login:true,apiRead:false,backgroundSync:false,assignments:true,exams:false,grades:false,announcements:false,timetable:false,deepLinks:true},
   defaultState:'manual_import_only',
-  heDescription:'מטלות מתוקשבות. אין API ציבורי; המורה יכול לשתף מטלות אופק בכיתה Classroom — ואז הן מגיעות ללומיו דרך Classroom.',
-  howToConnect:'ייבא משימות ידנית, או ביקש מהמורה לשתף מטלות אופק בכיתה Classroom — שם הן יופיעו אוטומטית.',
+  heDescription:'מטלות מתוקשבות. אין API ציבורי — הכניסה דרך הזדהות משרד החינוך. פתרון: תוסף דפדפן (תיקיית ofek-extension) שמתקין פעם אחת וסופג את המשימות מהדף שלך כשאתה פתוח באופק.',
+  howToConnect:'התקן את התוסף ofek-extension (הוראות בתיקייה), הקלד את מפתח הסנכרון, פתח את המשימות באופק ולחץ על כפתור "לומיו". או ייבא ידנית.',
   dataPaths:[{label:'מטלות',method:'user_import'}]},
  {id:'petel',name:'פטל',icon:'🧪',sourceLink:'https://stweizmann.proj.ac.il/petel/',
   capabilities:{login:true,apiRead:false,backgroundSync:false,assignments:true,exams:false,grades:false,announcements:false,timetable:false,deepLinks:true},
   defaultState:'manual_import_only',
   heDescription:'תרגולים, מעבדות ומטלות (Moodle). קיימת כתובת יומן ICS אישית שאתה יכול לייצר ולחבר כאן כפיד — זה ייבוא של הנתונים שלך, לא API רשמי (שנעול על ידי מנהל המערכת).',
-  howToConnect:'ייצר קישור ICS של היומן שלך בפתל והדבק אותו כאן, או ייבא קובץ ידנית.',
+  howToConnect:'ייצר קישור ICS של היומן שלך בפתל והדבק אותו כאן, או השתמש בסקריפט local-sync/moodle_sync.py (לוח + ציונים), או ייבא קובץ ידנית.',
   dataPaths:[{label:'מועדים מיומן אישי (ICS)',method:'public_school_feed'},{label:'משימות',method:'user_import'}]},
  {id:'shahaf',name:'שחף',icon:'🗓️',sourceLink:'https://play.google.com/store/apps/details?id=com.shahafsoft.timetableapp',
   capabilities:{login:false,apiRead:false,backgroundSync:false,assignments:false,exams:false,grades:false,announcements:true,timetable:true,deepLinks:false},
   defaultState:'not_connected',
-  heDescription:'מערכת שעות, שינויים והודעות. מחוברת דרך הדף הציבורי של בית הספר (…shahaf.site) — אין התחברות ואין הרשאות. אם בית הספר לא מפרסם את מערכת השעות, אין חיבור (ובדיקה 12.11.2026: katzir-b.shahaf.site אינו פועל).',
+  heDescription:'מערכת שעות, שינויים והודעות. מחוברת דרך הדף הציבורי של בית הספר (…shahaf.site) — אין התחברות ואין הרשאות. בית הספר שלכם מפרסם: katzirb.shahaf.site (בדיקה 12.11.2026 — 39 שיעורים נלקחו בהצלחה). אם בית הספר לא מפרסם — אין חיבור.',
   howToConnect:'הדבק את כתובת מערכת השעות של בית הספר (…shahaf.site) ובדוק את הפיד. אם בית הספר לא מפרסם — ייבא ידנית או שלח לבית הספר את הבקשה המוכנה.',
   dataPaths:[{label:'מערכת שעות ושינויים',method:'public_school_feed'},{label:'הודעות',method:'public_school_feed'}]}
 ];
@@ -174,8 +174,9 @@ export function parseShahafTimetableTable(rows){
   if(!tm){skipped.push({row:i,reason:'לא זוהתה שעה בשורת התווית'});continue}
   const start=`${tm[1].padStart(2,'0')}:${tm[2]}`;
   if(!TIME_RE.test(start)){skipped.push({row:i,reason:'לא זוהתה שעת התחלה תקינה (HH:MM) בשורת התווית'});continue}
-  const em=label.match(/([0-9]{1,2}):([0-9]{2})\s*[-–—]\s*([0-9]{1,2}):([0-9]{2})/);
-  const end=em?`${em[3].padStart(2,'0')}:${em[4]}`:null;
+  const em=label.match(/([0-9]{1,2}):([0-9]{2})\s*[-–—]\s*([0-9]{1,2}):([0-9]{2})/)||label.match(/([0-9]{1,2}):([0-9]{2})\s+([0-9]{1,2}):([0-9]{2})/);
+  let end=null;
+  if(em){const cand=`${em[3].padStart(2,'0')}:${em[4]}`;if(TIME_RE.test(cand)&&cand!==start)end=cand;}
   for(const {col,day} of dayCols){
    const cell=String(row[col]||'').trim();
    if(!cell)continue;
