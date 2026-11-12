@@ -1,3 +1,16 @@
+# לומיו 4.0 — הוראות התקנה ופרסום
+
+## לומיו 4.0 — הערות פריסה
+- **SQL:** לאחר `database.sql` + `database-upgrade.sql`, הרץ **פעם אחת** את
+  `database-upgrade-2.sql` (עמודות provenance + עובדות חיבור + feed_url + מפתח סנכרון;
+  ADDITIVE בלבד, ריצה חוזרת בטוחה). עד הרצה האתר ממשיך לעבוד עם הודעת השלמה.
+- **פריסת Cloudflare static אינה משתנה:** האתר מורכב מקבצים סטטיים בלבד
+  (כולל `connectors.mjs`; אין build). העלה את תוכן התיקייה כ־Direct Upload.
+  קובץ `sw.js` עדכן לגרסת cache `lumio-shell-v4.0`.
+- **אופציונלי (מנהל):** Edge Functions `apps-script-ingest` + `feed-sync` + pg_cron —
+  ראה `supabase-functions/README-HE.md`. ללא פריסה: רענון ידני ("רענן פיד")
+  והסנכרון הישיר של Classroom ממשיכים לעבוד.
+
 # לומיו 3.0 — הוראות התקנה ופרסום
 
 ## הפעלה מהירה על Mac

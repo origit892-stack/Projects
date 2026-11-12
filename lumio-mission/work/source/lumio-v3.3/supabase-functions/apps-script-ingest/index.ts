@@ -1,0 +1,136 @@
+// Lumio 4.0 — Supabase Edge Function: apps-script-ingest
+// Deploy to your own Supabase project (steps in supabase-functions/README-HE.md).
+//
+// Receives POST {key, items[]} from the student-owned Apps Script.
+// The user_id is ALWAYS taken from the connections row matched by apps_script_key
+// (unique) — a client-supplied user_id is never trusted.
+// No secrets in this file: SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY come from the
+// function environment, which the Supabase runtime injects (service role).
+
+import { createClient } from 'npm:@supabase/supabase-js@2';
+
+const MAX_ITEMS = 500;
+const ALLOWED_ITEM_KINDS = new Set(['task', 'grade']);
+
+function json(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
+
+Deno.serve(async (req: Request) => {
+  if (req.method !== 'POST') return json({ ok: false, error: 'METHOD_NOT_ALLOWED' }, 405);
+
+  const supabaseUrl = Deno.env.get('SUPABASE_URL');
+  const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if (!supabaseUrl || !serviceKey) return json({ ok: false, error: 'SERVER_NOT_CONFIGURED' }, 500);
+  const db = createClient(supabaseUrl, serviceKey, { auth: { persistSession: false } });
+
+  let body: any;
+  try {
+    body = await req.json();
+  } catch {
+    return json({ ok: false, error: 'BAD_BODY' }, 400);
+  }
+
+  const syncKey = typeof body?.key === 'string' ? body.key.trim() : '';
+  const rawItems: unknown[] = Array.isArray(body?.items) ? body.items : [];
+  const partial = rawItems.length > MAX_ITEMS;
+  const items = rawItems.slice(0, MAX_ITEMS);
+
+  // Binding lookup: the key identifies the connection row; its user_id is the only
+  // user this function may write to. Missing key or a disconnected source → 401.
+  const { data: conn, error: connErr } = await db
+    .from('connections')
+    .select('user_id,provider,state')
+    .eq('apps_script_key', syncKey)
+    .maybeSingle();
+  if (connErr || !conn || conn.state === 'not_connected') {
+    return json({ ok: false, error: 'LUMIO_BINDING_INVALID' }, 401);
+  }
+
+  const userId: string = conn.user_id; // never from the client
+  const now = new Date().toISOString();
+  const taskRows: Record<string, unknown>[] = [];
+  const gradeRows: Record<string, unknown>[] = [];
+
+  for (const it of items) {
+    if (!it || typeof it !== 'object') continue;
+    const item = it as Record<string, unknown>;
+    const kind = typeof item.kind === 'string' ? item.kind : 'task';
+    if (!ALLOWED_ITEM_KINDS.has(kind)) continue;
+    const external_id =
+      typeof item.external_id === 'string' && item.external_id.trim() ? item.external_id.trim().slice(0, 200) : null;
+    const title = typeof item.title === 'string' ? item.title.trim().slice(0, 240) : '';
+    if (!external_id || !title) continue;
+    const subject = typeof item.course_title === 'string' ? item.course_title.trim().slice(0, 100) : '';
+
+    if (kind === 'grade') {
+      const score = Number(item.score ?? item.assignedGrade);
+      if (!Number.isFinite(score) || score < 0 || score > 100) continue;
+      gradeRows.push({
+        user_id: userId,
+        kind: 'grade',
+        source: 'classroom',
+        external_id,
+        title,
+        subject,
+        description: '',
+        event_date: null,
+        score,
+        source_url: null,
+        retrieval_method: 'official_api',
+        verification_state: 'live_verified',
+        synced_at: now,
+        updated_at: now,
+      });
+    } else {
+      taskRows.push({
+        user_id: userId,
+        source: 'classroom',
+        external_id,
+        title,
+        subject,
+        description: '',
+        due_at: typeof item.due_at === 'string' ? item.due_at : null,
+        source_url: null,
+        status: item.status === 'done' ? 'done' : 'todo',
+        retrieval_method: 'official_api',
+        verification_state: 'live_verified',
+        synced_at: now,
+        updated_at: now,
+      });
+    }
+  }
+
+  if (taskRows.length) {
+    const { error } = await db.from('tasks').upsert(taskRows, { onConflict: 'user_id,source,external_id' });
+    if (error) return json({ ok: false, error: 'DB_TASKS_FAILED' }, 500);
+  }
+  if (gradeRows.length) {
+    const { error } = await db.from('school_items').upsert(gradeRows, { onConflict: 'user_id,kind,source,external_id' });
+    if (error) return json({ ok: false, error: 'DB_GRADES_FAILED' }, 500);
+  }
+
+  // Facts + last_sync. Wrapped: if the fact columns are not there yet
+  // (upgrade-2 not run) the data was already saved — do not fail the run.
+  try {
+    await db
+      .from('connections')
+      .update({
+        identity_authenticated: true,
+        permission_granted: true,
+        data_readable: true,
+        sync_working: true,
+        last_sync_at: now,
+        last_error: null,
+      })
+      .eq('user_id', userId)
+      .eq('provider', 'classroom');
+  } catch {
+    // fact columns missing — data upsert above already succeeded
+  }
+
+  return json({ ok: true, saved: { tasks: taskRows.length, grades: gradeRows.length }, partial });
+});

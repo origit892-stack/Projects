@@ -26,7 +26,16 @@
 - לפני פרסום מערכת לקטינים נדרשים ביקורת אבטחה, מדיניות פרטיות והסדרת הרשאות.
 
 
-## 3.2 - Connector implementation status
+## 4.0 - Connector implementation status (12.11.2026)
+| Provider | Default state in 4.0 | Live path | Background sync | Source of claim |
+|---|---|---|---|---|
+| classroom | `awaiting_consent` (OAuth client set) / `manual_import_only` | official API (OAuth) | student-owned Apps Script → `apps-script-ingest` | research reports (FINAL) |
+| mashov | `manual_import_only` | user import (no official API) | none | research reports (FINAL) |
+| ofek | `manual_import_only` | user import; teacher share → Classroom bridge | none | research reports (FINAL) |
+| petel | `manual_import_only` + feed `ics_url` | personal ICS feed (user-authorized) | on-demand "רענן פיד" / future cron | research reports (FINAL) |
+| shahaf | `not_connected` (public_page connector, generic for `*.shahaf.site`) | public page feed when school publishes (Katzir B: not published, 404 verified 12.11.2026) | none (stamp-driven, 15–30 min) | research reports (FINAL) |
+
+<!-- RESEARCH-REFS -->
 - Mashov, Ofek, PeTeL: user-initiated Chrome extension reads user-visible page elements and supports one-click handoff into Lumio, requiring confirmation. Not automatic background sync and not validated against live school pages.
 - Shahaf: same reader if timetable is visible in browser; Android app itself is not accessible to this extension.
 - Classroom: existing official API client remains dependent on OAuth client registration and user consent. No shortcut using Ministry-of-Education session.
