@@ -201,3 +201,47 @@
 > https://origit892-stack.github.io/agent-operator/
 >
 > One question before I commit: what percentage does the platform hold on each completed project, and when does a builder's payout release after client approval?
+
+## 2026-11-13
+
+### L-20261113-01 — FIT B — DRAFT
+**Title:** n8n Telegram bot for a fitness studio — class scheduling, booking/reschedule/cancel, multi-room, double-booking prevention, reminders, roles
+**Source:** https://community.n8n.io/t/328331/looking-for-an-n8n-telegram-bot-workflow-for-class-scheduling-booking (n8n community · Help me Build, posted 2026-11-12 12:01 UTC)
+**Send:** reply in the thread (open, replies enabled) — OP asked for a template / GitHub / architecture
+**Draft:**
+> Your Telegram bot for a fitness studio — schedule, book/reschedule/cancel, multiple rooms, double-booking prevention, reminders, role-based access — is exactly the class of n8n system I build and operate in production.
+>
+> Architecture I'd use: all state (classes, rooms, bookings, users+roles) in PostgreSQL, not Google Calendar — Calendar can't hold room+role+booking metadata. Double-booking guard: one SQL transaction with a unique (slot, room) constraint — the database rejects the conflict, the bot never has to. Reminders: a scheduled check 24h/1h before class → Telegram to booked members + trainers. Roles enforced per command in the DB.
+>
+> Proof you can check today: a 24/7 multi-agent ops desk — 71 specialized agents, checkpointed state, runs verified daily. A 124-product store operated end-to-end via its official API.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: who enters the class schedules — the trainers, or are they already in Google Calendar? That decides which one is the source of truth.
+
+### L-20261113-02 — FIT B — DRAFT
+**Title:** r/AI_Agents: AI that watches saved Instagram Reels and ranks business ideas 1–10 with explanation + one concrete action
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1xv0v97/is_there_an_ai_that_watches_my_saved_instagram/ (r/AI_Agents, posted 2026-11-13 06:46 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> You save loads of Reels on marketing, AI tools and business ideas — you want each rated 1-10 against the projects you actually run, the score explained, plus one concrete action. I build exactly this class of pipeline in production.
+>
+> Honest constraint first: Instagram has no API for saved Reels. The setup that works: share the Reel link into a Sheet or Notion (one tap); the pipeline transcribes it (Whisper), scores it against your goals and constraints with a fixed rubric — relevance, feasibility, cost, impact — and writes back score, reasoning, one next action. Not a summary.
+>
+> Proof: an unattended publishing pipeline running twice daily with a dedupe ledger and failure alerts; a 24/7 multi-agent ops desk — 71 agents, checkpointed state.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: should it score everything you save, or only the Reels you explicitly flag? That decides whether it's a nightly batch or a per-Reel trigger.
+
+### L-20261113-03 — FIT C — DRAFT
+**Title:** r/automation: automating small purchases — agent finds item + checkout works, payment is the blocker (Oobit "Agent Pay" one-time virtual cards)
+**Source:** https://www.reddit.com/r/automation/comments/1xuuj3d/anyone_managed_to_get_an_ai_agent_to_actually/ (r/automation, posted 2026-11-13 01:16 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> The payment part is where this breaks, and your instinct is right: a single-use virtual card with a hard spend cap is the right shape — worst case is one bad order. The part nobody mentions is 3DS: many merchants throw a one-time-code challenge at checkout, and the agent stalls there before the card even matters.
+>
+> The sequence that works: pre-test the exact checkout in a dry run to find which merchants throw 3DS; the agent picks the item and reaches checkout, then stops and pings you for one-tap approval; it pays with the capped one-time card, verifies the order confirmation, logs it.
+>
+> I build and operate this class of HITL agent system in production. If you want it built: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: which merchant do you buy from most — that's the one to 3DS-test first.
