@@ -245,3 +245,68 @@
 > https://origit892-stack.github.io/agent-operator/
 >
 > One question: which merchant do you buy from most — that's the one to 3DS-test first.
+
+## 2026-11-14
+
+### L-20261114-01 — FIT B — DRAFT
+**Title:** n8n runtime-based HVAC maintenance reminders — per-customer runtime totals from smart thermostats (Ecobee/Honeywell), 300-400h triggers, reset via technician webhook, PSEG rebate nudges
+**Source:** https://community.n8n.io/t/328494/hvac-company-question-high-efficiency-rebates-n8n-workflow-to-remind-pseg-customers-about-upgrades-and-service (n8n community · Help me Build, posted 2026-11-13 12:27 UTC)
+**Send:** reply in the thread (open, replies enabled — verified 2026-11-14)
+**Draft:**
+> Runtime-based reminders is the right design — your three questions have clean answers:
+>
+> 1. Per-customer total: a database table, one row per customer (counter + last reset). Static data can't survive overlapping runs, and a webhook workflow elsewhere can't touch it. On n8n Cloud: Data Tables.
+> 2. Reset: the scheduling-form webhook -> one transaction: zero the counter, log the visit, timestamp it. Idempotent on job ID so a resubmitted form can't double-reset.
+> 3. Token refresh: keep Ecobee/Honeywell credentials in n8n's credential store; a small scheduled workflow refreshes ahead of expiry.
+>
+> I build and operate this class of n8n system in production — 24/7 multi-agent ops desk (71 agents, checkpointed, verified daily), unattended pipeline with failure alerts. Happy to build this one; fixed quote after a quick mapping.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: which brand do most customers actually run — Ecobee or Honeywell? That decides which runtime API I test first.
+
+### L-20261114-02 — FIT C — DRAFT
+**Title:** r/n8n: family 'tech person' asked to pick a voice AI for sister's home-services company drowning in phone calls
+**Source:** https://www.reddit.com/r/n8n/comments/1xvd98e/how_do_you_even_pick_a_voice_ai_for_a_small/ (r/n8n, posted 2026-11-13 17:00 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Your sister's home-services company drowning in phone calls — what actually matters when picking a voice AI:
+>
+> 1. Answer rate — does it pick up on the 2nd-3rd ring after hours? Test on real missed calls, not a demo.
+> 2. The 2-3 outcomes a call must achieve: book? callback? emergency dispatch? The system is built around those.
+> 3. Human escalation — upset caller: live transfer, or a flagged text to her phone?
+> 4. Cost — per-minute; a busy line burns hundreds of minutes a month.
+>
+> I operate this class of unattended agent system in production: a 24/7 multi-agent ops desk (verified daily) and a publishing pipeline with failure alerts. If she wants it set up: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how many calls a day is she missing, and what do callers need most on the line — booking, pricing, or a callback?
+
+### L-20261114-03 — FIT C — DRAFT
+**Title:** r/automation: insurer's test-automation lead — which AI testing tools give auditable step-by-step run reports (screenshots + failure analysis) that internal audit accepts
+**Source:** https://www.reddit.com/r/automation/comments/1xvibii/which_ai_testing_tools_give_auditable_step_by/ (r/automation, posted 2026-11-13 20:10 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> You've hit the core issue: auditors don't accept the agent's explanation — they accept a deterministic record. My rule in production: every step logged before the model's commentary — exact input, tool call, expected vs actual, screenshot hash, timestamp; the LLM's 'reasoning' is an attachment, never the evidence.
+>
+> The pattern that passes audit: an append-only run log (one signed/timestamped line per step), screenshots keyed to step IDs, PASS/FAIL from assertions, not the model. AskUI's report is closest — what to demand from any vendor is the deterministic core under it.
+>
+> I run this in production: a 24/7 multi-agent ops desk (71 agents, checkpointed state, execution logs verified daily) plus an unattended pipeline with failure alerts. I can build that evidence layer for your agent runs.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: does your audit side require an immutable run log (append-only/signed), or is a timestamped archive with access control enough?
+
+### L-20261114-04 — FIT C — DRAFT
+**Title:** r/AI_Agents: planning a team of 7 AI agents to automate the entire software QA lifecycle (BRD/SDD analysis, test generation, execution, automation) — looking for suggestions
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1xvhhm6/i_want_to_build_a_team_of_7_ai_agents_to_automate/ (r/AI_Agents, posted 2026-11-13 19:38 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Your 7-agent QA split (BRD -> SDD -> strategy -> execution -> automation) is solid. From running similar systems in production:
+>
+> 1. Give every agent a contract: fixed input/output schemas + a done-definition. Multi-agent systems die at the seams, not the models — prose between agents.
+> 2. One shared artifact store, not message passing: each agent reads/writes structured artifacts (traceability table, test-case JSON, execution reports); the orchestrator only routes.
+> 3. Traceability is what clients pay for: requirement ID -> test case ID -> execution result, in a table from agent 3 onward.
+>
+> I operate this class of system in production: a 24/7 multi-agent ops desk — 71 specialized agents, checkpointed state, runs verified daily. Happy to review the spec and send back plan + fixed price.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what's the source of truth for your BRDs/SDDs — Confluence, SharePoint, or PDF drops? That decides the intake design.
