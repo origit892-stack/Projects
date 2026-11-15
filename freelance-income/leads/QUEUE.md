@@ -310,3 +310,71 @@
 > https://origit892-stack.github.io/agent-operator/
 >
 > One question: what's the source of truth for your BRDs/SDDs — Confluence, SharePoint, or PDF drops? That decides the intake design.
+
+## 2026-11-15
+
+### L-20261115-01 — FIT A — DRAFT
+**Title:** r/n8n: n8n Cloud (no VM) — extract SLAs, penalties + tech requirements from 30-page tenders with messy tables; Textract/LlamaParse/vision API? cost + security approval
+**Source:** https://www.reddit.com/r/n8n/comments/1xwox45/can_n8n_handle_tender_documents_on_its_own_with/ (r/n8n, posted 2026-11-15 06:58 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> n8n Cloud, no VM, pulling SLAs, penalties and tech requirements out of 30-page tenders — the realistic route is a parse/vision API from an HTTP Request node: Textract handles clean tables but struggles with messy merged cells; LlamaParse has the best messy-table accuracy; a plain vision LLM fed the page as an image is cheapest to start and fine if you need structured fields, not perfect layout. Per-tender cost is cents to ~$0.50 — trivial vs the analyst time it replaces. Security usually asks: data classification, DPA with the provider, no-retention/no-training, access logs, redaction before storage.
+>
+> I build and operate this class of document pipeline in production: a 24/7 multi-agent ops desk (71 agents, checkpointed state, verified daily) and an unattended pipeline with a dedupe ledger + failure alerts. If you want it wired end-to-end — intake → parse → structured schema → gap alerts: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what does the output have to look like — a structured JSON per tender, or a filled comparison sheet for humans? That decides which parse path I'd build first.
+
+### L-20261115-02 — FIT B — DRAFT
+**Title:** r/automation: 17-person startup, non-technical — wants recurring ops handled "without babysitting or a complicated setup"; asks what people actually used
+**Source:** https://www.reddit.com/r/automation/comments/1xw53g3/how_to_create_an_ai_agent_that_actually_does/ (r/automation, posted 2026-11-14 15:27 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> A 17-person startup that just wants recurring ops handled without babysitting — skip the tool tour; that rabbit hole is real. The pattern that actually holds: pick the single most-recurring ops process (not three) and build it as one workflow with three guarantees — persistent state so nothing is dropped, error alerts when something fails, and a human-approval queue for anything customer-facing. Everything else is decoration until that one runs for two unattended weeks.
+>
+> I operate exactly this class of system in production: a 24/7 multi-agent ops desk — 71 specialized agents with checkpointed state, scheduled runs verified daily — plus an unattended pipeline with a dedupe ledger and failure alerts.
+>
+> If you'd rather have it built than figured out: I map the process and send back the plan + fixed price + done-definition in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what's the single most-recurring ops task right now — invoice chasing, onboarding, status updates, data entry? I'd start there.
+
+### L-20261115-03 — FIT B — DRAFT
+**Title:** r/smallbusiness: retail business (POS) with inventory off + manual EOD low-stock email lists, items getting missed before the holidays
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1xwm1yu/advice_needed_inventorylow_stock_monitoring/ (r/smallbusiness, posted 2026-11-15 04:13 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Inventory off the POS, manual EOD lists, items getting missed before the holidays — the fix is to stop making lists and start getting alerts. The setup: pull inventory levels from the POS daily (API or its nightly export), compare against a per-item low-stock threshold, and send one digest — what's low, what's out, suggested reorder counts. A scheduled cycle count on your 10 most-moved items catches the receiving errors while they're still small.
+>
+> I build and operate this class of unattended pipeline in production: a 24/7 multi-agent ops desk (71 agents, checkpointed state, verified daily) and a publishing pipeline with failure alerts — the same shape: scheduled pull, check, alert, log.
+>
+> I can build this for you: plan + fixed price + done-definition in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: which POS are you on, and does it have an API or a nightly CSV export? That decides whether the pull is live or once-a-day.
+
+### L-20261115-04 — FIT B — DRAFT
+**Title:** r/smallbusiness: painting business — leads get quoted fast but are ghosted after slow follow-ups; "what are you using to help follow up on estimates?"
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1xwjfic/estimate_follow_ups/ (r/smallbusiness, posted 2026-11-15 01:54 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> You give quotes fast but the follow-up drags and leads ghost — on painting jobs, timing is the whole game: the first follow-up wins most of the "we're thinking about it" pile, and a second touch at 3-5 days wins more. The system: every estimate gets logged with a date; day-1 "any questions?" touch; day-4 value-add ("here's a start timeline for this week"); day-9 close-the-loop; anything still silent goes to a short call list for you.
+>
+> I build and operate this class of follow-up system in production — a 24/7 multi-agent ops desk (71 agents, checkpointed state, runs verified daily) and an unattended pipeline with failure alerts. I can wire it to how you actually quote: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: where do your estimates live today — paper, texts, or a CRM? That decides whether the first build starts with logging or with the follow-up sequence alone.
+
+### L-20261115-05 — FIT C — DRAFT
+**Title:** r/smallbusiness (Canada): "Help with receipts, I'm drowning" — too many random paper receipts, needs a system
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1xwivhu/help_with_receipts_im_drowning/ (r/smallbusiness, posted 2026-11-15 01:26 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Drowning in paper receipts — the system is simple: photograph them as they come in (camera roll works), and a nightly job extracts date, merchant, amount and category into one sheet or your bookkeeping tool. Nothing is "random" anymore — the sheet is the system, and month-end becomes one export instead of a shoebox.
+>
+> I build and operate this class of extraction pipeline in production: a 24/7 multi-agent ops desk (71 agents, checkpointed state, verified daily) and an unattended pipeline with a dedupe ledger and failure alerts — same pattern: collect, extract, verify, log.
+>
+> I can build the full receipt-to-sheets/bookkeeping flow: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what do the receipts end up feeding — a bookkeeper, QuickBooks, or a personal ledger? That decides the output format.
