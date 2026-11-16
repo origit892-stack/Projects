@@ -378,3 +378,60 @@
 > https://origit892-stack.github.io/agent-operator/
 >
 > One question: what do the receipts end up feeding — a bookkeeper, QuickBooks, or a personal ledger? That decides the output format.
+
+## 2026-11-16
+
+### L-20261116-01 — FIT B — DRAFT
+**Title:** r/smallbusiness: online tutoring company — parents message evenings/weekends about the software; site chatbot helps a bit but reschedule requests go unanswered; can't justify a support hire at low unpredictable volume
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1xx93xv/question_about_support_queries/ (r/smallbusiness, posted 2026-11-15 22:46 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Parents messaging evenings and weekends — most questions quick, but they still need answering, and reschedules are exactly what your site chatbot misses. When volume is low and unpredictable, the answer is rarely a hire: one message endpoint (WhatsApp, where they already write) that answers your software FAQ from your help docs, plus a 'move lesson' flow — parent picks a new slot, the agent checks it against the calendar, updates the booking, both sides get a confirmation. Low-confidence messages land in one morning inbox for you. You never cover a shift again.
+>
+> I build and operate this class of unattended system in production — a 24/7 multi-agent ops desk (71 agents, checkpointed state, runs verified daily) and an unattended pipeline with failure alerts.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what runs your lesson scheduling today — a calendar, a SaaS, or a spreadsheet? That decides whether reschedules update automatically or come back for your confirmation.
+
+### L-20261116-02 — FIT C — DRAFT
+**Title:** r/LLMDevs: perfume-comparison app — can't reliably extract BHD prices from local Bahrain store sites; tried 7 scraping stacks + LLM fallback, still misses
+**Source:** https://www.reddit.com/r/LLMDevs/comments/1xx1uxv/cant_reliably_get_local_store_prices_in_bahrain/ (r/LLMDevs, posted 2026-11-15 17:50 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Prices are where it falls apart — and you've already tried the generic pipeline the hard way: JSON-LD/OpenGraph/microdata, Shopify/Woo JSON, LLM fallback, plus seven scraping stacks. The pattern that actually holds when the store set is small (and Bahrain's is): stop detecting, start specializing. One hand-written extractor per store — twenty stores = twenty tiny functions that beat a hundred generic detectors — each with a price-change canary that alerts you the day a store redesigns. For pasted links or bottle photos: match the input against your own catalog first, then run that SKU's extractors — no open-web search at runtime. LLM stays the last resort, with a strict schema and a confidence threshold; every miss gets logged as the next canary's training data.
+>
+> I operate this class of unattended extraction pipeline in production — publishing twice daily with a dedupe ledger and failure alerts. Happy to build the store-adapter layer for you.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how many distinct store sites are in the corpus — under 20, or hundreds? That decides per-store adapters vs a generic detector.
+
+### L-20261116-03 — FIT C — DRAFT
+**Title:** r/smallbusiness: traveling makeup artist, first business — missed a Zoom with a potential client; tracking clients/calls/payments across planner + notebook + Google Docs
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1xxf4lv/tips_on_keeping_all_info_organized/ (r/smallbusiness, posted 2026-11-16 03:34 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> You missed a Zoom call with a potential client because the planner + notebook + Google Docs mix can't keep up — the fix isn't more discipline, it's one source of truth. One sheet (or Notion) with three small tables: clients (who, service, how they want to be reached), calls (date, link, what they wanted), payments (paid vs owed). Then two automations: a reminder fires before every scheduled call, and a weekly digest tells you who owes what and who hasn't been followed up with. The planner stays as backup; the sheet is the system.
+>
+> I build and operate this class of unattended pipeline in production — a 24/7 multi-agent ops desk (71 agents, checkpointed state, verified daily) and a publishing pipeline with failure alerts. I can set this up for you end-to-end: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how do clients pay you today — Zelle, PayPal, card, or a mix? That decides which payment ledger I build first.
+
+### L-20261116-04 — FIT C — DRAFT
+**Title:** r/n8n: experimenting with Meta Muse, wants to pair it with a phone agent that handles calls (not just chat) — asks what's actually working
+**Source:** https://www.reddit.com/r/n8n/comments/1xwzyma/what_are_the_most_useful_phone_agents_to_use_with/ (r/n8n, posted 2026-11-15 16:36 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Pairing Muse with something that actually takes calls — what matters when picking the phone-agent layer:
+>
+> 1. Pickup — does it answer on the 2nd-3rd ring, or bounce to voicemail mid-test?
+> 2. Barge-in — can a caller interrupt, or does the agent monologue? On real calls this is make-or-break.
+> 3. Handoff — human needed: live transfer, or a flagged message with full context?
+> 4. Per-minute cost — a busy line burns hundreds of minutes a month.
+>
+> Purpose-built voice platforms win on 1-3; a general AI agent only holds up on 4.
+>
+> I operate this class of unattended agent system in production (24/7 multi-agent ops desk, verified daily). If you want the whole thing wired — Muse + voice front + handoff: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what should a successful call end in — a booking, a callback request, or a message to a human? That decides which layer is worth testing first.
