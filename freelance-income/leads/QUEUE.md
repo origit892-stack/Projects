@@ -435,3 +435,163 @@
 > https://origit892-stack.github.io/agent-operator/
 >
 > One question: what should a successful call end in — a booking, a callback request, or a message to a human? That decides which layer is worth testing first.
+
+## 2026-11-17
+
+### L-20261117-01 — FIT B — DRAFT
+**Title:** r/AI_Agents: supplier ordering — 7 suppliers, 500+ SKUs, days-of-supply floor → full truckloads → order forms; "would an AI agent make quick work of this?"
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1xy86e3/supplier_ordering/ (r/AI_Agents, posted 2026-11-17 02:04 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> You want Excel to take over ordering from your 7 suppliers — 500+ SKUs, days-of-supply floors, full semi truckloads, order forms. Honest answer: an AI agent is overkill here — a deterministic pipeline does it faster and never drifts.
+>
+> The build: your inventory report in → rules engine computes per-SKU reorder quantities from each supplier's lead time and your days-of-supply floor → bin-packs into full truckloads per supplier → writes the order forms in your exact layout → flags the near-empty trucks for a human look.
+>
+> Proof you can check today:
+> - 24/7 multi-agent ops desk — 71 specialized agents, checkpointed state, runs verified daily.
+> - Unattended pipeline publishing twice daily with a dedupe ledger and failure alerts.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how does the inventory report arrive today — an export from your system, or a sheet someone maintains? That decides where the pull starts.
+
+### L-20261117-02 — FIT B — DRAFT
+**Title:** r/smallbusiness: 15-person ecommerce — order checks, invoice matching, ticket follow-ups eat the week; tried Codex + others, syncs break; maintenance + cost worries
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1xyahsx/running_a_business_is_starting_to_feel_like_a/ (r/smallbusiness, posted 2026-11-17 03:58 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Orders, supplier payments, invoices — "there's always something to check, match or follow up on," and the tools you've tried stop halfway and still need manual checking. The fix is to stop automating three things at once:
+>
+> 1. One flow first: invoice matching is usually the cleanest win — pull the supplier invoice, match it against order and receipt, flag only the mismatches. Your team stops checking everything and only checks what doesn't match.
+> 2. Maintenance is the product: every system I ship runs unattended in my own 24/7 production first — error alerts, checkpointed recovery, written runbook — and the ongoing care is a small fixed monthly plan, not an in-house tech team.
+> 3. Cost: it runs on your own API keys, pay-per-use — for this volume, low dollars per day, no per-seat subscription.
+>
+> Proof: a 24/7 multi-agent ops desk (71 agents, checkpointed, verified daily); an unattended pipeline with failure alerts.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: which of the three — order checks, invoice matching, or ticket follow-ups — eats the most hours per week? I'd build that one first.
+
+### L-20261117-03 — FIT B — DRAFT
+**Title:** r/smallbusiness: solo mobile mechanic — separate advertising phone line + after-hours "robo secretary" that screens calls and gathers customer info
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1xy5vin/small_business_phone_line/ (r/smallbusiness, posted 2026-11-17 00:16 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> A separate advertising line plus "a robo secretary to screen calls and gather customer information" — for a one-man mobile mechanic that's the right shape, and the robo part is what stops after-hours customers going to whoever answers.
+>
+> The phone: keep it simple — one VoIP business number on your existing phone. Skip the dumb phone: customers will want to text a photo of the leak or the engine.
+>
+> The robo: after hours (or while you're under the hood), an AI receptionist answers on the 2nd–3rd ring, confirms the job — vehicle, what's wrong, address, urgency — books a slot or a morning callback, and texts you the summary. Anything urgent or unclear goes straight to your phone.
+>
+> Proof you can check today: a 24/7 multi-agent ops desk (71 agents, checkpointed state, runs verified daily); an unattended pipeline with failure alerts.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: when a customer calls after hours, what's the ideal outcome — a booked service slot, a morning callback, or just the details captured? That decides how much the booking flow has to do.
+
+### L-20261117-04 — FIT B — DRAFT
+**Title:** r/automation: recruiting sourcing agent — needs structured people data (title, past employers + dates, location, work email) at thousands of lookups/day; Exa too weak
+**Source:** https://www.reddit.com/r/automation/comments/1xximwz/whats_a_good_exa_alternative_for_people_data/ (r/automation, posted 2026-11-16 06:52 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Filtering "past company with dates" by stuffing it into a semantic query string is the failure mode you've hit — Exa's work-history fields are sparse, so the search returns current Stripe people and people who merely wrote about Stripe. At a few thousand lookups a day, don't let the search layer do structured filtering:
+>
+> The build: a fixed source stack, each with a hand-written extractor into one schema — current title, past companies with dates, location, work email. Your agent then filters the schema in code (deterministic, cheap, testable); the LLM only touches the ambiguous rows. Rate-limit per source, cache by person, and log which source provided each field — weak sources get swapped out on evidence, not guesswork.
+>
+> Proof: an unattended extraction pipeline running twice daily with a dedupe ledger and failure alerts; a 24/7 multi-agent ops desk (71 agents, checkpointed state).
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: is the few-thousand-a-day a one-time list or a rolling pool — and which source does your team currently hand-verify against? That decides the schema's ground truth.
+
+### L-20261117-05 — FIT C — DRAFT
+**Title:** r/AI_Agents: production voice agent — 15 metrics all green, customers still complain, hundreds of calls/day; how to find failure modes no metric covers
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1xydhou/our_voice_agent_passes_every_metric_we_wrote_and/ (r/AI_Agents, posted 2026-11-17 06:44 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> All-green metrics with live complaints means you're measuring what you wrote, not what confuses the customer. For hundreds of calls a day, the layer that scales past listening one-by-one:
+>
+> 1. Sample both directions: a few random "green" calls plus every call tied to a complaint, daily.
+> 2. Transcribe, then run an open-ended critic — not a rubric: "what in this call could have frustrated the caller?"
+> 3. Cluster the free-text notes nightly; a recurring new phrase becomes a metric candidate — you discover failure modes from the language of complaints instead of guessing them.
+> 4. Weekly: the top-5 confusion patterns with timestamps into the recordings, so your team listens to five clips, not five hundred calls.
+>
+> I run this class of audit layer in production (checkpointed multi-agent desk, execution logs verified daily). Happy to wire it against your call data — plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: do your recordings and your complaint tickets already share a call ID, or is matching them manual today? That decides how much of step 1 is plumbing.
+
+### L-20261117-06 — FIT C — DRAFT
+**Title:** r/AI_Agents: voice customer queries → end-of-day top-10 common points summary ("can we create a customer based ai system")
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1xy6vxs/solve_customer_problem/ (r/AI_Agents, posted 2026-11-17 01:03 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Customers send their problems by voice, and at end of day you get the top 10 common points — yes, buildable, and as your thread's comments say: a pipeline, not a full agent.
+>
+> The shape: each call → transcription → one short structured note per call (topic tag + two-line summary) → a nightly job clusters the tags and counts distinct customers per topic, so one frustrated caller reporting the same issue five times counts once → your top-10 sheet with a redacted example quote per row.
+>
+> The trap: if the model "summarizes the day" directly, it echoes the loudest complaints. Tag-then-count is what makes the top-10 honest.
+>
+> Proof: an unattended pipeline running twice daily with a dedupe ledger and failure alerts; a 24/7 multi-agent ops desk (71 agents, checkpointed state).
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how do the calls arrive today — a phone line, WhatsApp voice notes, or a ticketing system? That decides the ingestion step.
+
+### L-20261117-07 — FIT C — DRAFT
+**Title:** r/n8n (cross-posted r/nocode): building voice agents — how to handle call-drop / bad-network scenarios, dry-running them
+**Source:** https://www.reddit.com/r/n8n/comments/1xxrp0c/if_you_are_building_automation_with_voice_agents/ (r/n8n, posted 2026-11-16 15:06 UTC; same OP cross-posted r/nocode: https://www.reddit.com/r/nocode/comments/1xxrnr4/if_you_are_building_automation_with_voice_agents/ — reply ONCE, primary = r/n8n)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> For call drops and bad-network runs, you can't dry-run every failure — but you can make each class of drop do the right thing automatically:
+>
+> 1. Drop before the caller confirms → the downstream action must not fire (commit only after confirmation).
+> 2. Drop after the action but before they hear the confirmation → store the result keyed to the call; on reconnect, look it up and tell them what happened instead of re-running.
+> 3. The silent drop — provider sends no end event at all (this is the one that bites): a watchdog timer per call; no status in the window = treat as dropped, same recovery path.
+>
+> Plus a small nightly dry-run of the two real disconnect scenarios against a test number, so regressions show up before customers do.
+>
+> I build and operate this class of unattended agent system in production (24/7 multi-agent desk, verified daily). If you want it wired into your flow: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: which voice provider are you on — does it webhook mid-call drops, or only end-of-call? That decides whether the watchdog is the safety net or the primary detector.
+
+### L-20261117-08 — FIT C — DRAFT
+**Title:** r/automation: cross-portal RPA without APIs (login-gated partner portals) — Viktor vs n8n+Claude+Playwright, token-vs-speed trade-off
+**Source:** https://www.reddit.com/r/automation/comments/1xxlfng/how_do_you_make_rpa_faster_when_there_is_no_api/ (r/automation, posted 2026-11-16 09:50 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Your token-vs-speed trade-off has a standard resolution: stop paying model tokens for data that is already structured.
+>
+> The pattern: per partner portal, one hand-written extractor (deterministic fields — the layout is stable per portal even when the values aren't), Playwright only for the login-gated navigation, and the LLM only the rows the extractor can't parse with high confidence. Batch: one model call per page, not per record. And split extraction from submission at the page level, not the record level — your split idea is right, it just needs the right seam.
+>
+> Result: Viktor-level speed with N8n-level visibility, and a logged decision trail per record.
+>
+> Proof: an unattended extraction pipeline running twice daily with a dedupe ledger and failure alerts; a 24/7 multi-agent ops desk (71 agents, checkpointed state).
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how many distinct partner portals are in the loop — under 5, or 10+? That decides whether per-portal extractors pay off immediately or you need a generic-parser-first approach.
+
+### L-20261117-09 — FIT C — DRAFT
+**Title:** r/AI_Agents: "10 agents running, half waiting on me" — managing agent escalations is a full-time job
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1xy1quh/im_the_bottleneck_of_my_own_company/ (r/AI_Agents, posted 2026-11-16 21:24 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> "10 agents and half are waiting on me" — the problem isn't the count, it's that all 10 escalate to you the same way, no matter what's at stake. What I run in production (a 71-agent desk, higher stakes):
+>
+> 1. Split by reversibility. Anything an agent can undo, or that costs nothing if wrong, proceeds and just logs — only irreversible or customer-facing actions hit your queue.
+> 2. One inbox, not 10 threads: each escalation is one structured line — decision needed, what's pending, cost of waiting — so triage takes minutes.
+> 3. Timeouts: nothing waits forever. An unanswered approval auto-escalates (or auto-approves, for the low-risk tier) after a set window. A 48-hour stuck loop is a missing timeout, not a missing person.
+>
+> I operate this class of multi-agent system in production — checkpointed state, runs verified daily. Happy to review your escalation design and send back a plan + fixed price.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: of the 10, how many would lose nothing by proceeding without you for a full day? That's your reversible tier — its size decides the queue design.
+
+### L-20261117-10 — FIT C — DRAFT
+**Title:** r/n8n: seeking technical co-founder for B2B sales/GTM automation (equity partnership, not a paid build)
+**Source:** https://www.reddit.com/r/n8n/comments/1xxi884/looking_for_a_technical_cofounder_partner_to/ (r/n8n, posted 2026-11-16 06:26 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Your technical side reads exactly like what I build and operate in production — n8n-scale workflow systems, Python/JS data pipelines, enrichment and LLM orchestration: a 24/7 multi-agent ops desk (71 agents, checkpointed state, verified daily), an unattended pipeline with failure alerts.
+>
+> One honest note first: I work as an operator, not an equity co-founder — fixed-price builds and care plans, where you keep 100% of the business and I'm paid for systems that run. If that shape works — you own the GTM vision and the customers, I build and operate the prospecting/enrichment engine — we can start on working software instead of promises: a paid discovery build for one ICP (account research + enrichment + scoring), plan + fixed price in 24-48h.
+>
+> Proof: github.com/origit892-stack/Projects · https://origit892-stack.github.io/agent-operator/
+>
+> One question: what's the first industry + size band you'd target? That decides whether the first build is a prospecting engine or a buying-signal monitor.
