@@ -595,3 +595,29 @@
 > Proof: github.com/origit892-stack/Projects · https://origit892-stack.github.io/agent-operator/
 >
 > One question: what's the first industry + size band you'd target? That decides whether the first build is a prospecting engine or a buying-signal monitor.
+
+## 2026-11-18
+
+### L-20261118-01 — FIT C — DRAFT
+**Title:** r/smallbusiness: solo owners & small crews — untracked "small" costs (supply runs, truck receipts, owner hours) eating job margin; asks for peers' tagging routines
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1xya9vz/solo_owners_small_crews_how_do_you_keep_small/ (r/smallbusiness, posted 2026-11-17 03:46 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> You named three leaks and they share one root: the cost happened before the job got tagged. The routine that closes them: log at the moment it happens, not at day's end. The supply run gets one tap (part + job number + receipt photo) before the truck leaves; the truck receipt gets a 10-second job-tag scan within 10 minutes; owner hours get a start/stop toggle on the job — that's what surfaces the "$12/hr" jobs. One weekly report per job: cost vs billed.
+>
+> I build and operate this class of unattended pipeline in production — a 24/7 multi-agent ops desk (71 agents, checkpointed state, verified daily). I can build it for you: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what's the system of record for the jobs today — Housecall Pro, ServiceTitan, a sheet, or paper? That decides where the one-tap log lives.
+
+### L-20261118-02 — FIT C — DRAFT
+**Title:** n8n [HIRING] (thread CLOSED): commission-based BD / AI-implementation consultant + unpaid portfolio AI engineers — Meridian AI LLC (water utilities, pre-revenue, Tempe AZ)
+**Source:** https://community.n8n.io/t/329316/ (n8n community · Jobs, posted 2026-11-18 03:15 UTC)
+**Send:** ⚠ THREAD CLOSED — channel = the interest form (Google Form) linked in the post; user decision likely reject (no guaranteed pay — commission on pre-revenue + unpaid work)
+**Draft:**
+> Straight from me: I work as an operator on fixed-price builds and care plans — not commission, and I don't take unpaid builds. So the BD half isn't a fit.
+>
+> If you're still looking for the prototype work (public water-system data), here's what I run in production: a 24/7 multi-agent ops desk — 71 specialized agents with checkpointed state, execution verified daily — plus unattended pipelines with failure alerts. For one clearly scoped deliverable I can send a fixed quote — e.g. the follow-up-provenance loop (alert → who owns it → what proves it's done) as an n8n workflow + database, with execution logs.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what does "done" look like for the first deliverable — the full alert→assignment→proof loop for one utility, or just the tracking table behind it?
