@@ -427,17 +427,6 @@
       "draft": "Your technical side reads exactly like what I build and operate in production — n8n-scale workflow systems, Python/JS data pipelines, enrichment and LLM orchestration: a 24/7 multi-agent ops desk (71 agents, checkpointed state, verified daily), an unattended pipeline with failure alerts.\n\nOne honest note first: I work as an operator, not an equity co-founder — fixed-price builds and care plans, where you keep 100% of the business and I'm paid for systems that run. If that shape works — you own the GTM vision and the customers, I build and operate the prospecting/enrichment engine — we can start on working software instead of promises: a paid discovery build for one ICP (account research + enrichment + scoring), plan + fixed price in 24-48h.\n\nProof: github.com/origit892-stack/Projects · https://origit892-stack.github.io/agent-operator/\n\nOne question: what's the first industry + size band you'd target? That decides whether the first build is a prospecting engine or a buying-signal monitor."
     },
     {
-      "id": "L-20261118-01",
-      "created": "2026-11-18 09:15 IST",
-      "updated": "2026-11-18 09:15 IST",
-      "source": "https://www.reddit.com/r/smallbusiness/comments/1xya9vz/solo_owners_small_crews_how_do_you_keep_small/",
-      "fit": "C",
-      "title": "r/smallbusiness: solo owners & small crews — untracked \"small\" costs (supply runs, truck receipts, owner hours) eating job margin; asks for peers' tagging routines",
-      "draft": "You named three leaks and they share one root: the cost happened before the job got tagged. The routine that closes them: log at the moment it happens, not at day's end. The supply run gets one tap (part + job number + receipt photo) before the truck leaves; the truck receipt gets a 10-second job-tag scan within 10 minutes; owner hours get a start/stop toggle on the job — that's what surfaces the \"$12/hr\" jobs. One weekly report per job: cost vs billed.\n\nI build and operate this class of unattended pipeline in production — a 24/7 multi-agent ops desk (71 agents, checkpointed state, verified daily). I can build it for you: plan + fixed price in 24-48h.\nhttps://origit892-stack.github.io/agent-operator/\n\nOne question: what's the system of record for the jobs today — Housecall Pro, ServiceTitan, a sheet, or paper? That decides where the one-tap log lives.",
-      "status": "new",
-      "notes": "Reply in the r/smallbusiness thread. Posted 2026-11-17 03:46 UTC (u/Total_Bicycle_7024, 22 comments). Three named margin leaks: supply-house runs never logged to the job; truck receipts sitting 2 weeks with no job tag; owner hours left out of the cost math (\"a job look profitable when it really just paid $12/hr\"); asks what people's actual daily routine is for tagging receipts and hours (\"log it before leaving the driveway, or eat the variance?\"). OP phrasing \"I've been digging into how small trade businesses actually track job profitability\" reads research-mode (possibly an agency owner exploring the space) — hence Fit C, not B. If built: One Task $300 class (point-of-incurrence one-tap cost logging + per-job cost-vs-billed weekly report). SEND CHANNEL: Reddit — user account still on the 21-day karma plan (reddit/REDDIT.md); parks here until the account passes the gate."
-    },
-    {
       "id": "L-20261118-02",
       "created": "2026-11-18 09:15 IST",
       "updated": "2026-11-18 09:15 IST",
