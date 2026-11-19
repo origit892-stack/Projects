@@ -609,3 +609,41 @@
 > https://origit892-stack.github.io/agent-operator/
 >
 > One question: what does "done" look like for the first deliverable — the full alert→assignment→proof loop for one utility, or just the tracking table behind it?
+
+## 2026-11-19
+
+### L-20261119-01 — FIT C — DRAFT
+**Title:** n8n: automate supermarket cart from a Google Sheet (product/qty/brand -> add to cart) — beginner asking which nodes
+**Source:** https://community.n8n.io/t/329458/ (n8n community · Help me Build, posted 2026-11-18 15:59 UTC)
+**Send:** reply in the thread (open, replies enabled — verified 2026-11-19)
+**Draft:**
+> "Automate the purchase of products at a supermarket" — a Google Sheet in, the cart out — is the class of workflow I build and run in production.
+> 
+> Honest constraint first: a headless run starts logged out, and most supermarket sites block headless Chrome or throw a CAPTCHA once requests repeat. So the robust shape:
+> 1. Google Sheets node (From Sheet) -> Loop Over Items, one product per row.
+> 2. Browser Tool node navigates to the product page, sets quantity from the row, clicks Add to cart — drive React/Vue quantity fields from the node's JS action, not plain typing.
+> 3. If the chain exposes a commerce API, an HTTP Request node with Header Auth outlives every CSS selector — that's the version I'd build.
+> 
+> Proof you can check today: a 124-product store I run end-to-end via its official API — GET before write, read-back after every change — plus an unattended pipeline with failure alerts. I can wire the first one for you, ~$300 fixed.
+> https://origit892-stack.github.io/agent-operator/
+> 
+> One question: which supermarket, and does it expose any commerce/partner API, or is it website-only? That decides the API path vs the browser path.
+
+### L-20261119-02 — FIT B — DRAFT
+**Title:** n8n [HIRING] (thread CLOSED): Gumroad sales data -> Airtable (email/date/amount/product id) — $1,000 budget, was scammed before
+**Source:** https://community.n8n.io/t/329131/ (n8n community · Jobs, posted 2026-11-17 02:14 UTC — ~52h gap-miss, still live)
+**Send:** ⚠ THREAD CLOSED — channel = Airtable form: https://airtable.com/appkK1MZ2cLhJYQlR/pagE4pCmCjCzloG9u/form (user applies from their own account)
+**Draft:**
+> You're opening a Gumroad store and want to "export sales data from Gumroad to Airtable" to follow up with customers — email, transaction date, amount, product id. That's a clean, well-scoped data-sync workflow I build and run in production.
+> 
+> You've been burned by a workflow that "looked like it worked" but didn't — so this one is built to prove it actually works:
+> 1. Gumroad webhook on each new sale (API poll as the fallback) -> one row per transaction.
+> 2. Map to your Airtable fields -> write.
+> 3. Read-back verification: after every write, GET the row and confirm it landed, plus a daily recount of Gumroad vs Airtable so a missed event can't hide. Idempotent on transaction id — replayed webhooks never double-write.
+> 
+> Proof you can check today: I run a 124-product store end-to-end via its official API — GET before write, read-back after every change. Read-back is exactly what rules out a workflow that "looks like it worked."
+> https://origit892-stack.github.io/agent-operator/ · github.com/origit892-stack/Projects
+> 
+> Your $1,000 budget covers this with room — I'll send the exact fixed price after a quick mapping. Timeline: ~3 days.
+> 
+> One question: is the Gumroad store already live with API/webhook access, or still pre-launch? That decides whether I wire the webhook now or start from the API poll.
