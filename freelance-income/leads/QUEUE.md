@@ -647,3 +647,89 @@
 > Your $1,000 budget covers this with room — I'll send the exact fixed price after a quick mapping. Timeline: ~3 days.
 > 
 > One question: is the Gumroad store already live with API/webhook access, or still pre-launch? That decides whether I wire the webhook now or start from the API poll.
+
+## 2026-11-21
+
+### L-20261121-01 — FIT B — DRAFT
+**Title:** r/AI_Agents: healthcare system (Michigan, IT Governance) mandated audit of every AI agent/app/automation — 2,000+ Power Apps est., needs accurate inventory (owners, assets, data sources, live permissions, orphaned flows)
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1y12z0c/trying_to_get_an_accurate_inventory_of_every_ai/ (r/AI_Agents, posted 2026-11-20 13:05 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Leadership mandated an audit of every automation and employee-built tool, and the real count already blew past your 2,000-Power-Apps estimate — a "superficial environment count" won't hold up. I build and operate exactly this class of pipeline in production: pull from the platform APIs (Power Platform admin / Dataverse), normalize into one inventory table — owner, asset, connected data sources, live permissions, orphaned flows — with read-back verification, so no row is written blind.
+>
+> Proof you can check today: a 24/7 multi-agent ops desk (71 agents, checkpointed state, runs verified daily); a 124-product store run end-to-end via its official API — GET before write, read-back after every change.
+>
+> If you want it built: plan + fixed price in 24-48h. Timeline: ~10 days for a first full sweep plus the audit report.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: does the audit also have to cover non-Microsoft builds — custom scripts, apps on employee machines, Zapier/n8n/Make accounts? That decides how much of the inventory comes from discovery instead of APIs.
+
+### L-20261121-02 — FIT B — DRAFT
+**Title:** r/automation: client onboarding pipeline (Jotform → Zapier → Google Docs template → DocuSign → HubSpot) — "when it breaks nobody knows which piece did it"; wants one tool for form + docs
+**Source:** https://www.reddit.com/r/automation/comments/1y1pw8a/zapier_alternative/ (r/automation, posted 2026-11-21 06:13 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Your client onboarding — Jotform, Zapier, a Google Docs template, DocuSign, then back into HubSpot — has the classic failure mode: five handoffs, zero ownership when something breaks. The fix is collapsing form + document + signature into one place, and making the rest observable — not swapping one five-tool chain for another.
+>
+> The build: one intake form → document set generated from your template with the client data → e-signature → completed packet synced to HubSpot — with one run log per client, so any failure names the exact stage. I operate this class of unattended pipeline in production: a 24/7 multi-agent ops desk with execution logs verified daily, and a store run via its official API with read-back after every write.
+>
+> I can map your five tools and send back the plan + fixed price + done-definition in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what's in the "document part" — a fixed set of templates, or does the document set change per client type? That decides whether I build the generator around templates or a data-driven document spec.
+
+### L-20261121-03 — FIT B — DRAFT
+**Title:** r/n8n: landscaping company (OP = same user as L-20261116-04) — 15-20 calls/wk, misses most while on jobs; voice AI pricing "is wild"; what's worth paying vs fluff
+**Source:** https://www.reddit.com/r/n8n/comments/1y17rrw/is_voice_ai_actually_worth_the_cost_for_small/ (r/n8n, posted 2026-11-20 16:25 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> 15-20 calls a week, most of them missed because you're out on jobs — the math is simple: one missed call that was a 20% chance at a $500 job is already paying for the voice line. On the "wild pricing": you only need three things — a number that answers on the 2nd-3rd ring, a script that takes name, phone, job type and address, and a text to you with the lead. Everything else (dashboards, CRM integrations, custom branding) is the fluff you're right to skip. That three-piece core is per-minute telephony plus one LLM call per call — low single-digit dollars a month at your volume.
+>
+> I build and operate this class of unattended system in production: a 24/7 multi-agent ops desk, runs verified daily; an unattended pipeline with failure alerts. I can wire the whole thing: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: what should a missed call end in — an auto-booked slot, a scheduled callback, or just the lead details texted to you? That decides how much the booking flow has to do.
+
+### L-20261121-04 — FIT C — DRAFT
+**Title:** r/AI_Agents: invoice-reminder agent silently dead for 9 days (expired API token, no alert); current fix = 6 "I ran" messages a day, too noisy; asks about heartbeats/dashboards/dead man's switch
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1y0x7r1/how_do_you_find_out_your_agent_silently_failed/ (r/AI_Agents, posted 2026-11-20 07:23 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> The expired-token-silent-for-9-days failure has a name: no dead man's switch. Your "I ran, did X" message is the right primitive — you just need to stop delivering it as six messages. The pattern I run in production (71-agent desk, verified daily):
+>
+> 1. Each agent pings a heartbeat store — one row: run id, status, count, duration — not your inbox.
+> 2. One monitor job checks every hour: no fresh heartbeat in the window → one alert, with a retry. For the token-expiry class specifically: wrap the API calls so an auth-class error alerts on the FIRST failed call, not after the window.
+> 3. Your inbox gets at most one digest — "X agents ran, 0 exceptions" — or silence, plus one alert per real failure.
+>
+> Proof: the ops desk runs exactly this — scheduled runs, execution logs verified daily. I can wire the same layer around your agents: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: where do your agents run — n8n, cron scripts, or something else? That decides whether the heartbeat store is a table, a file, or the platform's own logs.
+
+### L-20261121-05 — FIT C — DRAFT
+**Title:** r/automation: Fyxer alternatives — wants AI email management: sort/prioritize, email→tasks, replies + follow-ups, calendar connect, less manual checking
+**Source:** https://www.reddit.com/r/automation/comments/1y1g0jm/what_are_some_good_fyxer_alternatives_for/ (r/automation, posted 2026-11-20 21:56 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Sort, prioritize, turn into tasks, handle replies and follow-ups, connect to the calendar — that's five jobs, and each tool you've shortlisted (Fyxer, Shortwave, Lindy) covers two or three of them, which is exactly why manual work survives. The honest comparison:
+>
+> 1. Inbox triage tools (Fyxer, Shortwave) — zero follow-up automation.
+> 2. AI-staff tools (Lindy) — closest to your list, but per-action pricing adds up, and it's only as good as your prompts.
+> 3. A thin custom layer — one LLM pass over your new mail against your fixed rules (what's urgent, what's a task, what needs a reply) writing ONE structured row per email: action, due date, draft reply. You approve, it executes. Runs on your own API keys, no per-seat SaaS.
+>
+> Proof: I operate unattended pipelines in production — a 24/7 multi-agent ops desk with runs verified daily; a store run via its official API with read-back after every change. If you want option 3 built: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: which mail backend do you run — Gmail, Microsoft 365, or something else? That decides the ingestion path.
+
+### L-20261121-06 — FIT C — DRAFT
+**Title:** r/smallbusiness: nearly double-paid a $2,400 vendor bill ($800 deposit paid earlier "vanished into the checkbook"); asks where to put deposits so the payer sees them when the final bill lands (Ramp Bill Pay)
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1y1ce2b/how_do_i_keep_from_paying_the_same_deposit_twice/ (r/smallbusiness, posted 2026-11-20 19:25 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> The $800 you paid while the installer was still on site vanished into the checkbook — the fix is a deposit ledger that shows up at payment time, not better memory. The build: one table (vendor, deposit date, amount, reference, what it applies to); every final invoice in Ramp's Bill Pay gets matched against open deposits before the check is cut — match found → the net amount shows ($1,600, not $2,400); no match but the vendor has history → one nudge to you. Ten minutes a week instead of a checkbook archaeology dig.
+>
+> Proof: I run this class of unattended reconciliation pipeline in production — scheduled pull, match, alert, log (a 24/7 multi-agent ops desk, verified daily; a store run via its official API with read-back after every change). I can build the ledger + the match: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how do the deposits actually get paid today — checks, ACH through Ramp, or a mix? That decides where the deposit record gets written.
