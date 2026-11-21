@@ -67,6 +67,17 @@ def test_ui_studio_stage_builds_valid_ui(tmp_path):
     assert result["codegen"]["validation"]["passed"], result["codegen"]["validation"]["issues"]
 
 
+def test_asset_engine_stage_is_honest(tmp_path):
+    result = _run(tmp_path)
+    ae = result.get("asset_engine") or {}
+    # no MESHY_API_KEY in the test env -> layered recipes are the live route
+    assert ae["external"]["engine"] in ("meshy", "recipes")
+    assert ae["external"]["status"] in ("ok", "skipped", "simulated")
+    assert ae["local_recipes"]["status"] == "ok"
+    toolchain = {t["engine"]: t for t in ae["toolchain"]}
+    assert "meshy" in toolchain and "live" in toolchain["meshy"]
+
+
 def test_bloxui_blueprint_written_when_both(tmp_path):
     result = _run(tmp_path)
     ui = result.get("ui_studio") or {}

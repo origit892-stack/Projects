@@ -183,6 +183,7 @@ tbody tr:hover { background: #141a26; }
 .field label { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
 .field input[type=range] { width: 100%; accent-color: var(--accent); }
 .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
 textarea { min-height: 120px; resize: vertical; }
 .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .empty { padding: 28px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); }

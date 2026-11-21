@@ -181,6 +181,31 @@ function renderCurrent() {
 }
 
 /* ------------------------------------------------------------------ dashboard */
+function toolchainCard(tc) {
+  if (!tc || !tc.tools) return '';
+  const rows = tc.tools.map((t) => {
+    const dot = t.live ? 'ok' : 'bad';
+    return `<div class="row small" style="padding:5px 0;border-bottom:1px solid var(--border)">
+      <span class="pill ${dot}" style="margin-right:8px">${t.live ? 'live' : 'off'}</span>
+      <strong>${esc(t.engine)}</strong>
+      <span class="muted" style="margin-left:8px">${esc(t.reason || '')}</span>
+    </div>`;
+  }).join('');
+  const engines = tc.engines || {};
+  return `<div class="card" style="margin-bottom:16px">
+    <h3>Toolchain</h3>
+    <p class="small">What runs right now, and why each tool is or isn't live. No key = honest skip, never a fake.</p>
+    <div class="row small" style="margin-bottom:8px">
+      <span class="muted">Routing →</span>
+      <span>world: <strong>${esc(engines.world || 'auto')}</strong></span>
+      <span style="margin-left:14px">assets: <strong>${esc(engines.assets || 'auto')}</strong></span>
+      <span style="margin-left:14px">ui: <strong>${esc(engines.ui || 'native')}</strong></span>
+      <span style="margin-left:14px">keys: bloxmaps ${tc.keys?.bloxmaps ? '✓' : '—'} · meshy ${tc.keys?.meshy ? '✓' : '—'}</span>
+    </div>
+    ${rows}
+  </div>`;
+}
+
 async function renderDashboard(root) {
   const cards = state.projects.map((p) => {
     const score = p.scores?.visual;
@@ -208,6 +233,7 @@ async function renderDashboard(root) {
         <p>${state.status?.studio?.available ? 'Roblox Studio MCP detected' : 'enable Studio as MCP server'}</p></div>
       <div class="card"><h3>Quality bar</h3><div class="big">${state.status?.quality_threshold || 85}</div><p>project threshold, no critical defects</p></div>
     </div>
+    ${toolchainCard(state.status?.toolchain)}
     ${state.projects.length ? `<div class="grid three">${cards}</div>` : `
       <div class="empty">
         <p>No worlds yet.</p>
@@ -276,6 +302,26 @@ function renderCreate(root) {
                 ${[0, 1, 2, 3].map((n) => `<option value="${n}" ${n === d.repair_iterations ? 'selected' : ''}>${n}</option>`).join('')}
               </select></div>
           </div>
+          <div class="row-3" style="margin-top:4px">
+            <div class="field"><label>World tool</label>
+              <select id="world_engine">
+                <option value="auto" selected>Auto (local builder; BloxMaps if key set)</option>
+                <option value="bloxmaps">BloxMaps (needs BLOXMAPS_API_KEY)</option>
+                <option value="local">Local procedural builder only</option>
+              </select></div>
+            <div class="field"><label>Asset tool</label>
+              <select id="asset_engine">
+                <option value="auto" selected>Auto (layered recipes; Meshy if key set)</option>
+                <option value="meshy">Meshy hero model (needs MESHY_API_KEY)</option>
+                <option value="recipes">Layered part recipes only</option>
+              </select></div>
+            <div class="field"><label>UI backend</label>
+              <select id="ui_engine">
+                <option value="native" selected>Native in-game UI (server-validated)</option>
+                <option value="bloxui">BloxUI blueprint + hooks</option>
+                <option value="both">Both native + BloxUI blueprint</option>
+              </select></div>
+          </div>
           <label class="small muted"><input id="mesh_generation" type="checkbox" /> Ask Studio to generate meshes for hero assets</label>
           <div class="actions"><button class="primary" id="start">Create world</button>
             <span class="small muted">Runs in the background; you can watch each stage.</span></div>
@@ -309,6 +355,9 @@ async function startJob(root) {
     studio_mode: $('#studio_mode', root).value,
     repair_iterations: Number($('#repair_iterations', root).value),
     mesh_generation: $('#mesh_generation', root).checked,
+    world_engine: $('#world_engine', root).value,
+    asset_engine: $('#asset_engine', root).value,
+    ui_engine: $('#ui_engine', root).value,
   };
   try {
     const { job } = await api('/api/create', { method: 'POST', body: { idea, settings } });
@@ -380,6 +429,11 @@ function describeEvent(event) {
     case 'stage_failed': return `✗ ${event.stage}: ${event.error}`;
     case 'stage_timeout': return `✗ ${event.stage}: ${event.error}`;
     case 'stage_skipped': return `– ${event.stage} skipped (dependency failed)`;
+    case 'engine_attempt': return `⚙ engine ${event.engine}: ${event.prompt || ''}`;
+    case 'engine_result': return `⚙ engine ${event.engine} → ${event.status}${event.notes ? ` — ${event.notes}` : ''}`;
+    case 'ui_spec': return `🖥 UI: screens [${(event.screens || []).join(', ')}] · ${event.shop_items || 0} shop items · backend ${event.backend}`;
+    case 'ui_sim': return `🖥 UI sim: ${event.passed ? '✓ passed' : '✗ failed'} · ${event.screens || 0} screens · buys ${event.buy}`;
+    case 'ui_bloxui': return `🖥 BloxUI blueprint → ${event.status}`;
     case 'agent': return `  ${event.agent}: ${event.detail}`;
     case 'repair_start': return `↻ repair pass ${event.iteration}: ${(event.actions || []).join(', ')}`;
     case 'repair_done': return `↻ repair pass ${event.iteration} → score ${event.score}`;

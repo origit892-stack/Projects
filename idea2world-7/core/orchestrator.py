@@ -19,7 +19,9 @@ from agents import (art_director, asset_artist, creative_director, game_designer
 from assets import asset_validator, material_generator
 from codegen import luau_generator, luau_validator, module_assembler
 from core.decision_engine import DecisionEngine
-from core.pipeline_7 import run_ui_studio as _run_ui_studio_bridge, run_world_engine as _run_world_engine_bridge
+from core.pipeline_7 import (run_asset_engine as _run_asset_engine_bridge,
+                             run_ui_studio as _run_ui_studio_bridge,
+                             run_world_engine as _run_world_engine_bridge)
 from core.project_memory import ProjectStore, atomic_write_json
 from core.provider_router import ProviderRouter
 from core.task_scheduler import TaskScheduler
@@ -47,6 +49,7 @@ DEFAULT_SETTINGS = {
     "mesh_generation": False,
     # 7.0 tool routing (defaults keep the 6.0 build path intact)
     "world_engine": "auto",     # auto | bloxmaps | local
+    "asset_engine": "auto",     # auto | meshy | recipes
     "ui_engine": "native",      # native | bloxui | both
     "ui_install_studio": False,
     "confirm_bloxmaps_export": False,
@@ -112,6 +115,9 @@ class Pipeline:
 
     def _run_world_engine(self, spec, settings: dict, events) -> dict:
         return _run_world_engine_bridge(spec, settings, self._engine_registry(), events)
+
+    def _run_asset_engine(self, spec, settings: dict, events) -> dict:
+        return _run_asset_engine_bridge(spec, settings, self._engine_registry(), events)
 
     def _run_ui_studio(self, spec, project, design: dict, art: dict, settings: dict, events) -> dict:
         return _run_ui_studio_bridge(spec, project, design, art, settings,
@@ -198,6 +204,10 @@ class Pipeline:
             spec, self.brain if self.brain.available else None, agent_events))
         spec.data["material_plan"] = asset_plan["material_plan"]
         spec.data["asset_reuse"] = asset_plan["reuse"]
+        # 3b. Asset engine stage (7.0): Meshy for the hero model when configured, else recipes.
+        asset_engine_report = self._stage("asset_engine", lambda: self._run_asset_engine(
+            spec, settings, agent_events))
+        project.save_artifact("asset_engine", asset_engine_report)
         self._stage("placement", lambda: self._place(spec))
         nav = self._stage("navigation_validation", lambda: navigation_validator.validate_navigation(spec))
         decisions.record("district_ring", f"{len(spec.regions)} districts",
@@ -330,6 +340,7 @@ class Pipeline:
             "codegen": {"files": codegen["manifest"]["files"], "total_bytes": codegen["manifest"]["total_bytes"],
                         "validation": luau_check, "engineer": engineer},
             "world_engine": world_engine_report,
+            "asset_engine": asset_engine_report,
             "ui_studio": ui_report,
             "visual": visual,
             "performance": perf,

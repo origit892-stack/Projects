@@ -108,6 +108,48 @@ def run_world_engine(spec, settings: dict, registry: EngineRegistry, events=None
 
 
 # ---------------------------------------------------------------------------
+# Asset engine stage (Meshy for real 3D models when configured, recipes always)
+# ---------------------------------------------------------------------------
+
+def run_asset_engine(spec, settings: dict, registry: EngineRegistry, events=None) -> dict:
+    """Attempt Meshy for the hero asset when requested; local recipes are always the base.
+
+    Layered part recipes (6.0 core) are what every built asset actually uses. Meshy, when a key
+    is present and requested, generates the hero asset for real and reports the model URLs.
+    A missing key is ``skipped`` -- never faked.
+    """
+    started = time.time()
+    requested = settings.get("asset_engine", "auto")
+    external = {"engine": "recipes", "status": "ok",
+                "note": "Layered part recipes (6.0 core) build every asset; no external key needed."}
+    if requested == "meshy":
+        if registry.meshy.available()["live"]:
+            # The hero asset is the one the art direction puts on the map's main landmark.
+            hero = spec.data.get("hero_prompt") or (
+                f"A stylized {spec.data.get('genre', 'game')} hero asset, low-poly, "
+                f"{spec.data.get('theme', 'natural')} look")
+            _emit(events, "engine_attempt", engine="meshy", prompt=hero[:120])
+            result = registry.meshy.build(hero, textured=True)
+            external = result.to_dict()
+            _emit(events, "engine_result", engine="meshy", status=result.status,
+                  notes="; ".join(result.notes)[:200])
+        else:
+            external = {"engine": "meshy", "status": "skipped",
+                        "note": "Meshy requested but MESHY_API_KEY is not configured -- "
+                                "layered part recipes were used instead (honest fallback)."}
+            _emit(events, "engine_result", engine="meshy", status="skipped")
+    return {
+        "requested_asset_engine": requested,
+        "external": external,
+        "local_recipes": {"status": "ok",
+                          "note": "Deterministic layered recipes (wedges, cylinders, balls) -- "
+                                  "the built-in route every asset uses."},
+        "toolchain": registry.status(),
+        "seconds": round(time.time() - started, 2),
+    }
+
+
+# ---------------------------------------------------------------------------
 # UI Studio stage (native backend always; BloxUI blueprint alongside)
 # ---------------------------------------------------------------------------
 

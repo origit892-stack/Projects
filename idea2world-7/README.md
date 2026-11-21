@@ -26,10 +26,15 @@ adds the UI Studio and the external tool engines as additive, honestly-reported 
 
 ```
 world_engine: "auto" | "bloxmaps" | "local"     # which map tool to attempt first
+asset_engine: "auto" | "meshy" | "recipes"      # hero-asset tool (layered recipes always the base)
 ui_engine:    "native" | "bloxui" | "both"      # UI backend(s)
 ui_install_studio: true/false                   # push the BloxUI blueprint into a live Studio session
 confirm_bloxmaps_export: true/false             # spend BloxMaps credits to export (default false)
 ```
+
+The app exposes these in the **Create** form (World tool / Asset tool / UI backend) and shows the
+live toolchain in the **Dashboard** (which tool is live and why each other isn't) via
+`GET /api/toolchain`.
 
 ---
 

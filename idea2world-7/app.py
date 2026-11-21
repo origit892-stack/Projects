@@ -92,10 +92,25 @@ def studio_status() -> dict:
     }
 
 
+def toolchain_status() -> dict:
+    """Which of the 7.0 tools are live right now, and why the rest aren't (honest)."""
+    from engines.registry import EngineRegistry
+    registry = EngineRegistry(studio_client=None)
+    return {
+        "tools": registry.status(),
+        "engines": {"world": registry.world_engine(os.environ.get("IDEA2WORLD_WORLD_ENGINE") or "auto"),
+                     "assets": registry.asset_engine(os.environ.get("IDEA2WORLD_ASSET_ENGINE") or "auto"),
+                     "ui": registry.ui_engine(os.environ.get("IDEA2WORLD_UI_ENGINE") or "native")},
+        "keys": {"bloxmaps": bool(os.environ.get("BLOXMAPS_API_KEY")),
+                  "meshy": bool(os.environ.get("MESHY_API_KEY"))},
+    }
+
+
 def slim_result(result: dict) -> dict:
     """Keep the API response small; full data stays in project artifacts."""
     keep = ("project", "title", "idea", "settings", "brain", "design", "art_direction", "references",
-            "world", "plan", "preview_svg", "navigation", "assets", "codegen", "world_engine", "ui_studio",
+            "world", "plan", "preview_svg", "navigation", "assets", "codegen", "world_engine",
+            "asset_engine", "ui_studio",
             "visual", "performance",
             "structural", "gameplay", "qa", "studio", "screenshots", "repair", "export", "approval",
             "decisions", "timeline", "seconds")
@@ -155,7 +170,10 @@ class Handler(BaseHTTPRequestHandler):
                     "defaults": DEFAULT_SETTINGS,
                     "jobs": JOBS.list(5),
                     "quality_threshold": visual_qa.TARGET_SCORE,
+                    "toolchain": toolchain_status(),
                 })
+            if path == "/api/toolchain":
+                return self.send_json(toolchain_status())
             if path == "/api/projects":
                 return self.send_json({"projects": STORE.list()})
             if path == "/api/jobs":
