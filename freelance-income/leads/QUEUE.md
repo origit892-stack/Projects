@@ -733,3 +733,149 @@
 > https://origit892-stack.github.io/agent-operator/
 >
 > One question: how do the deposits actually get paid today — checks, ACH through Ramp, or a mix? That decides where the deposit record gets written.
+
+### L-20261121-07 — FIT B — DRAFT (gap-miss: 11-20 radar run missing)
+**Title:** r/n8n: Google Calendar → Sheets/Docs → NotebookLM pipeline — ICS handling is the blocker; "tell me if there is anything wrong in my thinking"
+**Source:** https://www.reddit.com/r/n8n/comments/1y0tll3/need_help_with_creating_a_google_calendar_sheets/ (r/n8n, posted 2026-11-20 03:54 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> The hard part you named is the right one: NotebookLM doesn't care about your calendar, it cares about a file it can read. The clean shape:
+>
+> 1. A scheduled n8n trigger pulls your Google Calendar (Calendar API node) for the window you care about.
+> 2. Convert to plain text in a Code node — one line per event: date, time, title, location, description. Skip the binary-ics round-trip; text is what NotebookLM reads best.
+> 3. Write it into the Sheet cell / Doc you import (your "easy" step), let NotebookLM ingest. Refresh on a schedule and the source is always current.
+>
+> Proof: I run this class of unattended pipeline in production — a 24/7 multi-agent ops desk (71 agents, checkpointed, verified daily) plus a store run via its official API with read-back after every change. Happy to wire the full calendar→NotebookLM flow: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: which window does NotebookLM need — today + tomorrow, the week, or the full month? That decides how often the refresh has to run.
+
+### L-20261121-08 — FIT B — DRAFT (gap-miss)
+**Title:** r/automation: enterprise QA — evaluating agentic test platforms; demo agent "marked a step passed when it typed into the wrong panel"; needs forensics, Windows client, runtime at hundreds of cases (AskUI in production, replacing Tosca/Ranorex)
+**Source:** https://www.reddit.com/r/automation/comments/1y0vcnx/best_agentic_test_automation_platforms_for/ (r/automation, posted 2026-11-20 05:30 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> The panel thing is the tell — "marked a step passed when it typed into the wrong panel" is exactly where a forensic layer earns its keep. From operating this class of system in production (71-agent desk, execution logs verified daily), the three criteria I'd judge any platform on:
+>
+> 1. Reconstructability — every step stores exact input, the action taken, the field actually hit, expected vs actual, so a pass is re-derivable, not just asserted.
+> 2. Out-of-UI verification for money/critical steps — query the backend after the run (payment API, order status), not just the screen.
+> 3. Bounded behavior — hard caps on retries and runtime; an agent that tries six paths until one looks green is unbounded retry, not intelligence.
+>
+> I run this evidence pattern daily and can build it around your AskUI/Playwright setup — including the Windows client side. Plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how many of your hundreds of cases touch the Windows client vs the browser? That decides whether the evidence layer instruments the desktop automation or just the Playwright side.
+
+### L-20261121-09 — FIT B — DRAFT (gap-miss)
+**Title:** r/AI_Agents: QuickBooks DESKTOP bank-upload automation — multiple entities, "not interested in moving to QB Online"; manually downloading + reloading each account file, "very time consuming"
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1y06qye/quickbooks_desktop_bank_upload_automation/ (r/AI_Agents, posted 2026-11-19 11:10 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Manually downloading and reloading bank files for every entity is exactly the kind of deterministic, no-LLM-needed automation I build in production:
+>
+> 1. A scheduled job per entity pulls the bank feed (your bank's file/API, read-only credentials per entity).
+> 2. Normalize into QuickBooks Desktop's import format — one mapping table per bank, so a new account is a row, not a rebuild.
+> 3. Push into QB Desktop's import path, then read back: transaction count in QB must match the file, or the run alerts instead of logging success. Idempotent on transaction ID — a re-run can't double-import. No QB Online migration required.
+>
+> Proof: an unattended pipeline publishing twice daily with a dedupe ledger and failure alerts; a 124-product store run via its official API — GET before write, read-back after every change. Same pattern, applied to your banks.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how many entities and bank accounts total, and does each bank give you a file export (CSV/QFX) or only online banking? That decides whether the pull is a file drop or a browser step.
+
+### L-20261121-10 — FIT B — DRAFT (gap-miss)
+**Title:** r/n8n: internal app on n8n Cloud (webhook → HTML → SQL via Power Automate) on email + shared password — "anyone with the password can sign in as a colleague and approve things in their name"; wants Microsoft Entra ID login
+**Source:** https://www.reddit.com/r/n8n/comments/1y09pcq/microsoft_login_for_an_app_hosted_in_n8n/ (r/n8n, posted 2026-11-19 13:45 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> "Anyone with the password can sign in as a colleague and approve things in their name" — that's the real bug, and it has a clean fix: the HTML page authenticates against Microsoft Entra ID, and n8n learns the identity from the token, not from a form field.
+>
+> 1. The page signs in via MSAL (Entra ID) — no n8n credentials involved.
+> 2. The page carries the ID token to your webhooks; a small auth middleware (an n8n Code node, or a tiny service in front) validates it against Entra and extracts the verified email.
+> 3. Your existing security-table lookup keys off the validated identity — approvals now carry a name that can't be spoofed by a shared password.
+>
+> I build and operate this class of system in production — a 24/7 multi-agent ops desk with checkpointed, verified runs; a store run via its official API with read-back after every change. I can wire the Entra layer for you: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: is the app on a single Entra tenant with everyone in one work/school account, or are guest/external accounts involved? That decides which MSAL flow I set up.
+
+### L-20261121-11 — FIT C — DRAFT (gap-miss)
+**Title:** r/AI_Agents: agent-based UI regression passed a checkout that never charged the card (payment timeout, agent saw an order number and called it done); OP enumerating fixes; asks what makes a pass trustworthy
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1y0oxf9/how_do_ai_testing_agents_prevent_false_passes_and/ (r/AI_Agents, posted 2026-11-20 00:04 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> "The run log said 'checkout completed successfully' — that's the agent telling us what it thinks happened, not proof that it happened." Your four changes are the right ones; the pattern behind them is what I run in production (checkpointed 71-agent desk, execution logs verified daily):
+>
+> 1. A pass is an assertion, not a narrative — every step carries an expected result and the verdict comes from checking it; the model's summary is an attachment, never the evidence.
+> 2. Out-of-UI checks for anything that moves money — query the payment API after the run. A green screen is not proof the charge landed.
+> 3. Bounded attempts — hard caps on retries and paths; an agent that wanders six routes until one looks green is hiding the failure, not finding it.
+> 4. One artifact per step — screenshot keyed to the step ID plus expected/actual — so a reviewer of a green run sees exactly what the agent saw.
+>
+> I can build that evidence layer around your agent: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how many of your regression cases touch payment or other money steps? That decides how much of the out-of-UI verification layer I'd build first.
+
+### L-20261121-12 — FIT C — DRAFT (gap-miss)
+**Title:** r/smallbusiness: launching a local scrap (paper/cardboard) pickup service, "zero budget to build a custom app"; wants a cheap no-app way for families to book pickups without phone tag / messy text threads
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1y0tih1/need_a_cheap_noapp_way_for_local_families_to/ (r/smallbusiness, posted 2026-11-20 03:49 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> "Zero budget" + "no phone tag, no messy text threads" — the honest answer: a booking app is not the first step. The cheapest thing that kills phone tag is a two-step free setup:
+>
+> 1. A free Google Form with three fields: name, phone, what you're picking up (paper / cardboard / both).
+> 2. A free Google Calendar with a published "pickups this week" view — the form auto-creates the event (one ~20-line Apps Script), so every request lands in one place with an address and a slot.
+>
+> That's $0 today and it ends the text threads. If it outgrows that — which it will — the paid step is a real booking page: customer picks a slot, you get a notification, no app store, no per-booking fee. I build and operate that class of unattended pipeline in production (24/7 ops desk, verified daily; a store run via its official API). Paid version when you want it: fixed quote after a quick mapping.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how many pickups a week are you expecting at launch — a handful, or 50+? That decides whether the free setup holds or you should skip straight to the booking page.
+
+### L-20261121-13 — FIT C — DRAFT (gap-miss)
+**Title:** r/smallbusiness: messy supplier Excel sheets — merged cells, 3-row headers, dimensions in descriptions, prices change monthly; "is everyone still stuck doing copy-paste / hiring VAs?"
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1y0ck2p/how_do_you_actually_handle_messy_supplier_excel/ (r/smallbusiness, posted 2026-11-19 15:44 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> Merged cells, 3-row headers, dimensions buried in descriptions — that's not a spreadsheet problem, it's a normalization problem, and the clean-it-manually-every-month loop is the bottleneck to kill. The pattern that works:
+>
+> 1. Per supplier, one hand-written parser (their layout is stable even when the values aren't) into one fixed schema: SKU, description, dimensions, unit, price, currency, effective date.
+> 2. Price changes become dated rows, not overwrites — you keep history, and "what changed this month" is a query, not a memory.
+> 3. Two outputs fall out for free: the store price update (a diff vs current — you approve the deltas) and the clean PDF catalog / quote (template + data).
+>
+> The LLM only touches rows the parser can't place with high confidence; everything else is deterministic and logged.
+>
+> Proof: I run unattended extraction pipelines in production — a 24/7 multi-agent ops desk (verified daily), a store run via its official API with read-back after every change. I can build your supplier-normalization layer: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how many suppliers send these sheets, and does every supplier use a different layout? That decides whether it's N small parsers or one generic one with per-supplier overrides.
+
+### L-20261121-14 — FIT C — DRAFT (gap-miss)
+**Title:** r/smallbusiness: invoicing is easy but "following up afterwards is where things fall apart — it's manual, it's uncomfortable, and the first thing to slip when I'm busy"
+**Source:** https://www.reddit.com/r/smallbusiness/comments/1y0i410/whats_your_process_for_following_up_on_overdue/ (r/smallbusiness, posted 2026-11-19 19:16 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> "Following up is where things fall apart — manual, uncomfortable, the first thing to slip" — that's a system problem, not a willpower problem, and the uncomfortable part is exactly why manual follow-up fails: it depends on you feeling like it. The setup that actually works:
+>
+> 1. Every invoice gets a dated touch plan at creation: day 1 (thanks / received?), day 7 (friendly nudge), day 14 (firm, with the next step), day 21 (final + what happens next).
+> 2. The sequence runs itself — personal-sounding email from your name (not "billing@"), each step references the invoice and amount, replies route to you, and a paid invoice stops the chain immediately.
+> 3. One morning digest: who's late, by how much, what's queued next.
+>
+> I build and operate this class of unattended system in production — a 24/7 multi-agent ops desk with execution logs verified daily, and an unattended pipeline with failure alerts. I can wire it to your invoicing tool: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: where do your invoices live today — an accounting tool (which one), spreadsheets, or invoiced by hand? That decides where the touch plan hooks in.
+
+### L-20261121-15 — FIT C — DRAFT (gap-miss)
+**Title:** r/AI_Agents: gym chatbot invented a free 3-month membership pause → screenshot went viral in the town's Facebook group; now running an Orq-AI terms guardrail that's "either too strict or too loose"; considering checking only yes-answers
+**Source:** https://www.reddit.com/r/AI_Agents/comments/1y0akr8/how_do_teams_catch_ai_chatbots_giving_customers/ (r/AI_Agents, posted 2026-11-19 14:22 UTC)
+**Send:** reply in the thread — ⚠ user's Reddit account still on the 21-day karma plan (reddit/REDDIT.md); parks until the account passes the gate
+**Draft:**
+> A bot inventing a free 3-month pause and the town Facebook group getting the screenshot — your calibration problem (too strict blocks "bring a friend on Saturday," too loose lets "free locker" through) has a standard resolution: stop checking every answer, check the risk class.
+>
+> 1. A cheap first pass classifies each answer: does it grant, waive, extend, or promise anything — a yes to a request, a price, a policy, an exception? No → it ships. Yes → it goes to the guardrail.
+> 2. The guardrail checks that specific claim against the terms with a narrow question — "is this exact offer in the terms, and where?" — not "does this answer match the terms." That kills both failure modes: normal questions never reach the strictness, invented offers get checked precisely. Your yes-only instinct is the right one, formalized.
+> 3. Every guardrail decision logs the terms section it cited — when the bot is wrong, you see why in one line.
+>
+> I run this class of verification layer in production (71-agent desk, execution logs verified daily; a store run via its official API with read-back after every change). I can build the two-stage guardrail for your Orq setup: plan + fixed price in 24-48h.
+> https://origit892-stack.github.io/agent-operator/
+>
+> One question: how many distinct offers or policies in your terms doc are "yes"-granting — a dozen, or hundreds? That decides how the guardrail indexes the terms.
