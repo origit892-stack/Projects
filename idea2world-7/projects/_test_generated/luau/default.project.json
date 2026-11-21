@@ -1,0 +1,9 @@
+{
+  "name": "test_world",
+  "tree": {
+    "$className": "DataModel",
+    "ServerScriptService": {
+      "$path": "."
+    }
+  }
+}

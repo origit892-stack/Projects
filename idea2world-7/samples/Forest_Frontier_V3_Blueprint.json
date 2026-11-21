@@ -1,0 +1,214 @@
+{
+  "schema_version": 3,
+  "title": "Verdant Frontier",
+  "overview": "Verdant Frontier: A huge fantasy forest frontier with layered mountain ranges, dramatic cliffs, caves, waterfalls, an ancient citadel and a natural village. Authored with a focal landmark, readable districts, natural terrain silhouettes, exploration loops and sightline hierarchy.",
+  "style": "Stylized Low Poly",
+  "biomes": [
+    "Highlands",
+    "River Basin",
+    "Woodlands",
+    "Ancient Ruins"
+  ],
+  "landmarks": [
+    {
+      "id": "poi_01",
+      "name": "Beacon Spire",
+      "type": "tower",
+      "x": 0.0,
+      "z": 0.0,
+      "scale": 1.21,
+      "priority": "primary",
+      "description": "Tower landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_02",
+      "name": "Pinewatch",
+      "type": "village",
+      "x": 0.253,
+      "z": 0.061,
+      "scale": 1.3,
+      "priority": "major",
+      "description": "Village landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_03",
+      "name": "Sunken Shrine",
+      "type": "temple",
+      "x": -0.373,
+      "z": 0.263,
+      "scale": 1.27,
+      "priority": "major",
+      "description": "Temple landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_04",
+      "name": "Hidden Cascade",
+      "type": "waterfall",
+      "x": -0.009,
+      "z": -0.608,
+      "scale": 1.62,
+      "priority": "major",
+      "description": "Waterfall landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_05",
+      "name": "Old Stone Bridge",
+      "type": "bridge",
+      "x": 0.299,
+      "z": 0.475,
+      "scale": 1.08,
+      "priority": "major",
+      "description": "Bridge landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_06",
+      "name": "Echo Caverns",
+      "type": "cave",
+      "x": -0.648,
+      "z": -0.061,
+      "scale": 1.23,
+      "priority": "minor",
+      "description": "Cave landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_07",
+      "name": "Broken Gate",
+      "type": "ruins",
+      "x": 0.59,
+      "z": -0.399,
+      "scale": 1.62,
+      "priority": "minor",
+      "description": "Ruins landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_08",
+      "name": "Elderwood",
+      "type": "giant_tree",
+      "x": -0.126,
+      "z": 0.704,
+      "scale": 1.01,
+      "priority": "minor",
+      "description": "Giant Tree landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_09",
+      "name": "World Pillar",
+      "type": "monument",
+      "x": -0.258,
+      "z": -0.75,
+      "scale": 1.42,
+      "priority": "minor",
+      "description": "Monument landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_10",
+      "name": "Mirror Lake",
+      "type": "lake",
+      "x": 0.785,
+      "z": 0.302,
+      "scale": 1.58,
+      "priority": "minor",
+      "description": "Lake landmark designed as a readable destination."
+    }
+  ],
+  "routes": [
+    {
+      "name": "Grand Exploration Loop",
+      "type": "loop",
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.253,
+          0.061
+        ],
+        [
+          -0.373,
+          0.263
+        ],
+        [
+          -0.009,
+          -0.608
+        ],
+        [
+          0.299,
+          0.475
+        ],
+        [
+          -0.648,
+          -0.061
+        ],
+        [
+          0.59,
+          -0.399
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "name": "Ridge Traverse",
+      "type": "scenic",
+      "waypoints": [
+        [
+          -0.88,
+          -0.45
+        ],
+        [
+          -0.45,
+          -0.1
+        ],
+        [
+          0.1,
+          0.2
+        ],
+        [
+          0.48,
+          0.48
+        ],
+        [
+          0.88,
+          0.65
+        ]
+      ]
+    }
+  ],
+  "palette": [
+    "#426b48",
+    "#80a85d",
+    "#b6a06d",
+    "#638da0"
+  ],
+  "archetype": "temperate",
+  "seed": 123,
+  "composition": {
+    "focal_point": "center",
+    "layout": "irregular radial districts",
+    "sightline_priority": [
+      "primary landmark",
+      "ridge silhouettes",
+      "watercourse"
+    ],
+    "negative_space": "preserve clearings around POIs and along routes"
+  },
+  "systems": [
+    "ridge mountain chains",
+    "stratified cliff faces",
+    "carved cave entrances",
+    "clustered forest groves",
+    "architectural landmark kits",
+    "curated exploration routes"
+  ],
+  "settings": {
+    "size": 2400,
+    "grid": 80,
+    "seed": 123,
+    "style": "Stylized Low Poly",
+    "relief": 1.15,
+    "decor": 80
+  }
+}

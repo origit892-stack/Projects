@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://idea2world.local/schemas/asset_manifest.schema.json",
+  "title": "Idea2World Asset Manifest",
+  "description": "Every unique asset the world needs, how it will be produced, and its budget.",
+  "type": "object",
+  "required": ["assets"],
+  "properties": {
+    "engine": {"type": "string"},
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "category", "method", "recipe"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^asset_[a-z0-9_]+$"},
+          "kind": {"type": "string"},
+          "name": {"type": "string"},
+          "category": {"enum": ["structure", "prop", "vegetation", "rock", "creature", "vfx"]},
+          "method": {"enum": ["recipe", "mesh"]},
+          "mesh_prompt": {"type": "string"},
+          "footprint": {"type": "number", "minimum": 0},
+          "triangles": {"type": "integer", "minimum": 0},
+          "tags": {"type": "array", "items": {"type": "string"}},
+          "recipe": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["name", "shape", "size", "offset"],
+              "properties": {
+                "name": {"type": "string"},
+                "shape": {"enum": ["Block", "Wedge", "Cylinder", "Ball", "CornerWedge", "Part"]},
+                "size": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+                "offset": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+                "rot": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+                "color": {"type": "string"},
+                "material": {"type": "string"},
+                "role": {"type": "string"},
+                "emissive": {"type": "boolean"}
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"category": {"const": "structure"}}},
+            "then": {"required": ["footprint"]}
+          }
+        ]
+      }
+    }
+  }
+}

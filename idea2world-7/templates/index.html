@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Idea2World 7.0 — Autonomous Game Studio</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">I2W</div>
+      <div>
+        <strong>Idea2World</strong>
+        <span>7.0 · Autonomous Game Studio</span>
+      </div>
+    </div>
+
+    <button id="new-project" class="primary">+ New world</button>
+
+    <nav id="nav">
+      <button data-screen="dashboard" class="active"><i>01</i> Dashboard</button>
+      <button data-screen="create"><i>02</i> Create</button>
+      <button data-screen="thinking"><i>03</i> AI Thinking</button>
+      <button data-screen="art"><i>04</i> Art Direction</button>
+      <button data-screen="plan"><i>05</i> World Plan</button>
+      <button data-screen="assets"><i>06</i> Asset Library</button>
+      <button data-screen="luau"><i>07</i> Luau Workspace</button>
+      <button data-screen="studio"><i>08</i> Live Studio</button>
+      <button data-screen="review"><i>09</i> Visual Review</button>
+      <button data-screen="qa"><i>10</i> QA Report</button>
+      <button data-screen="export"><i>11</i> Export</button>
+    </nav>
+
+    <div class="side-foot">
+      <div id="brain-chip" class="chip">brain: checking…</div>
+      <div id="studio-chip" class="chip">studio: checking…</div>
+      <a class="chip link" href="/api/status" target="_blank">raw status</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1 id="screen-title">Dashboard</h1>
+        <p id="screen-sub">Projects, versions and where each world stands.</p>
+      </div>
+      <div class="top-actions">
+        <select id="project-select" aria-label="Select project"></select>
+        <div id="quality-badge" class="badge">—</div>
+        <button id="refresh" class="ghost" title="Refresh">⟳</button>
+      </div>
+    </header>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <section id="screen-dashboard" class="screen active"></section>
+    <section id="screen-create" class="screen"></section>
+    <section id="screen-thinking" class="screen"></section>
+    <section id="screen-art" class="screen"></section>
+    <section id="screen-plan" class="screen"></section>
+    <section id="screen-assets" class="screen"></section>
+    <section id="screen-luau" class="screen"></section>
+    <section id="screen-studio" class="screen"></section>
+    <section id="screen-review" class="screen"></section>
+    <section id="screen-qa" class="screen"></section>
+    <section id="screen-export" class="screen"></section>
+  </main>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

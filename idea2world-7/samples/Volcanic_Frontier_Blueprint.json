@@ -1,0 +1,102 @@
+{
+  "title": "Volcanic Frontier",
+  "overview": "A large Stylized Low Poly adventure world inspired by: A volcano with lava rivers and a lost village. Designed with distinct biomes, landmarks, exploration routes, and a readable central focal point.",
+  "style": "Stylized Low Poly",
+  "biomes": [
+    "Mountain",
+    "Lava Fields",
+    "Ash Forest"
+  ],
+  "landmarks": [
+    {
+      "name": "The Ember Crown",
+      "type": "volcano",
+      "x": 0.0,
+      "z": 0.0,
+      "scale": 1.06,
+      "description": "Explore the The Ember Crown landmark."
+    },
+    {
+      "name": "Forgotten Gate",
+      "type": "ruins",
+      "x": -0.68,
+      "z": -0.494,
+      "scale": 0.86,
+      "description": "Explore the Forgotten Gate landmark."
+    },
+    {
+      "name": "Skyspan Crossing",
+      "type": "bridge",
+      "x": 0.559,
+      "z": -0.4,
+      "scale": 1.08,
+      "description": "Explore the Skyspan Crossing landmark."
+    },
+    {
+      "name": "Crystal Hollow",
+      "type": "cave",
+      "x": -0.763,
+      "z": 0.477,
+      "scale": 1.15,
+      "description": "Explore the Crystal Hollow landmark."
+    },
+    {
+      "name": "Stone Ring",
+      "type": "arena",
+      "x": 0.586,
+      "z": 0.499,
+      "scale": 1.14,
+      "description": "Explore the Stone Ring landmark."
+    },
+    {
+      "name": "World Pillar",
+      "type": "monument",
+      "x": 0.012,
+      "z": 0.828,
+      "scale": 1.13,
+      "description": "Explore the World Pillar landmark."
+    },
+    {
+      "name": "Traveler's Rest",
+      "type": "village",
+      "x": 0.149,
+      "z": -0.746,
+      "scale": 0.87,
+      "description": "Explore the Traveler's Rest landmark."
+    },
+    {
+      "name": "Hidden Cascade",
+      "type": "waterfall",
+      "x": -0.825,
+      "z": 0.023,
+      "scale": 0.88,
+      "description": "Explore the Hidden Cascade landmark."
+    }
+  ],
+  "routes": [
+    {
+      "name": "Main exploration trail",
+      "type": "trail"
+    },
+    {
+      "name": "Scenic overlook route",
+      "type": "ridge path"
+    }
+  ],
+  "palette": [
+    "#507b48",
+    "#8bbf65",
+    "#6f9ec6",
+    "#d7b878",
+    "#625b73"
+  ],
+  "settings": {
+    "size": 1000,
+    "grid": 26,
+    "seed": 8,
+    "style": "Stylized Low Poly",
+    "detail": "high"
+  },
+  "idea": "A volcano with lava rivers and a lost village",
+  "engine": "Built-in procedural planner"
+}

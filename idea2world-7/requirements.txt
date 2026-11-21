@@ -1,0 +1,12 @@
+# Idea2World 6.0 has no third-party Python dependencies.
+#
+# The studio server, the MCP server, every agent and every checker run on the Python standard
+# library (urllib, http.server, json, subprocess, math, random, zipfile).
+#
+# Optional external tools, discovered at runtime:
+#   luau, luau-compile, luau-analyze   static validation + the DataModel simulator
+#                                    (macOS: brew install luau)
+#   Blender                          FBX/GLTF normalisation for imported meshes
+#   Roblox Studio + StudioMCP        live build, capture and playtest
+#
+# Install nothing here; requirements.txt is intentionally empty.

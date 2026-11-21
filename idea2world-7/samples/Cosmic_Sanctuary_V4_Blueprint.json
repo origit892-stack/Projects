@@ -1,0 +1,239 @@
+{
+  "schema_version": 4,
+  "visual_theme": "cosmic",
+  "visual_profile": {
+    "accent": "#8b5cf6",
+    "props": [
+      "floating_obelisk",
+      "star_orb",
+      "crystal_cluster",
+      "rift_arch"
+    ],
+    "vfx": [
+      "stardust",
+      "nebula_mist",
+      "arcane_rings",
+      "meteor_sparks"
+    ]
+  },
+  "title": "Verdant Frontier",
+  "overview": "Verdant Frontier: A cosmic celestial sanctuary with floating crystal islands, star portals, nebula waterfalls, ancient observatories and glowing astral forests. Authored with a focal landmark, readable districts, natural terrain silhouettes, exploration loops and sightline hierarchy.",
+  "style": "Stylized Low Poly",
+  "biomes": [
+    "Highlands",
+    "River Basin",
+    "Woodlands",
+    "Ancient Ruins"
+  ],
+  "landmarks": [
+    {
+      "id": "poi_01",
+      "name": "Beacon Spire",
+      "type": "tower",
+      "x": 0.0,
+      "z": 0.0,
+      "scale": 1.37,
+      "priority": "primary",
+      "description": "Tower landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_02",
+      "name": "Traveler’s Rest",
+      "type": "village",
+      "x": 0.293,
+      "z": -0.052,
+      "scale": 1.17,
+      "priority": "major",
+      "description": "Village landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_03",
+      "name": "Sunken Shrine",
+      "type": "temple",
+      "x": -0.359,
+      "z": 0.329,
+      "scale": 1.1,
+      "priority": "major",
+      "description": "Temple landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_04",
+      "name": "Hidden Cascade",
+      "type": "waterfall",
+      "x": 0.147,
+      "z": -0.495,
+      "scale": 1.04,
+      "priority": "major",
+      "description": "Waterfall landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_05",
+      "name": "Skyspan Crossing",
+      "type": "bridge",
+      "x": 0.407,
+      "z": 0.422,
+      "scale": 1.49,
+      "priority": "major",
+      "description": "Bridge landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_06",
+      "name": "Crystal Hollow",
+      "type": "cave",
+      "x": -0.645,
+      "z": -0.099,
+      "scale": 1.12,
+      "priority": "minor",
+      "description": "Cave landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_07",
+      "name": "Broken Gate",
+      "type": "ruins",
+      "x": 0.534,
+      "z": -0.451,
+      "scale": 1.77,
+      "priority": "minor",
+      "description": "Ruins landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_08",
+      "name": "Elderwood",
+      "type": "giant_tree",
+      "x": -0.255,
+      "z": 0.68,
+      "scale": 1.31,
+      "priority": "minor",
+      "description": "Giant Tree landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_09",
+      "name": "World Pillar",
+      "type": "monument",
+      "x": -0.345,
+      "z": -0.694,
+      "scale": 1.25,
+      "priority": "minor",
+      "description": "Monument landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_10",
+      "name": "Blue Basin",
+      "type": "lake",
+      "x": 0.754,
+      "z": 0.297,
+      "scale": 1.67,
+      "priority": "minor",
+      "description": "Lake landmark designed as a readable destination."
+    }
+  ],
+  "routes": [
+    {
+      "name": "Grand Exploration Loop",
+      "type": "loop",
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.293,
+          -0.052
+        ],
+        [
+          -0.359,
+          0.329
+        ],
+        [
+          0.147,
+          -0.495
+        ],
+        [
+          0.407,
+          0.422
+        ],
+        [
+          -0.645,
+          -0.099
+        ],
+        [
+          0.534,
+          -0.451
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "name": "Ridge Traverse",
+      "type": "scenic",
+      "waypoints": [
+        [
+          -0.88,
+          -0.45
+        ],
+        [
+          -0.45,
+          -0.1
+        ],
+        [
+          0.1,
+          0.2
+        ],
+        [
+          0.48,
+          0.48
+        ],
+        [
+          0.88,
+          0.65
+        ]
+      ]
+    }
+  ],
+  "palette": [
+    "#426b48",
+    "#80a85d",
+    "#b6a06d",
+    "#638da0"
+  ],
+  "archetype": "temperate",
+  "seed": 314,
+  "composition": {
+    "focal_point": "center",
+    "layout": "irregular radial districts",
+    "sightline_priority": [
+      "primary landmark",
+      "ridge silhouettes",
+      "watercourse"
+    ],
+    "negative_space": "preserve clearings around POIs and along routes"
+  },
+  "systems": [
+    "modular cosmetic prop kits",
+    "layered VFX emitters",
+    "themed lighting accents",
+    "ridge mountain chains",
+    "stratified cliff faces",
+    "carved cave entrances",
+    "clustered forest groves",
+    "architectural landmark kits",
+    "curated exploration routes"
+  ],
+  "settings": {
+    "size": 2200,
+    "grid": 48,
+    "seed": 314,
+    "style": "Stylized Low Poly",
+    "detail": "high",
+    "relief": 1.0,
+    "decor": 65,
+    "visual_theme": "cosmic",
+    "vfx_density": 82,
+    "cosmetic_detail": 95
+  },
+  "idea": "A cosmic celestial sanctuary with floating crystal islands, star portals, nebula waterfalls, ancient observatories and glowing astral forests",
+  "engine": "Procedural World Engine v4"
+}

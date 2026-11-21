@@ -1,0 +1,165 @@
+{
+  "title": "Verdant Frontier",
+  "overview": "Verdant Frontier: A stylized forest frontier with dramatic hills, winding river, ancient ruins, a giant tree and waterfall. Designed with strong focal hierarchy, separated biome zones, terrain elevation, exploration loops, and landmarks.",
+  "style": "Stylized Low Poly",
+  "biomes": [
+    "Highlands",
+    "River Basin",
+    "Woodlands",
+    "Ancient Ruins"
+  ],
+  "landmarks": [
+    {
+      "name": "Beacon Spire",
+      "type": "tower",
+      "x": 0,
+      "z": 0,
+      "scale": 1.54,
+      "description": "Tower destination and landmark."
+    },
+    {
+      "name": "Pinewatch",
+      "type": "village",
+      "x": -0.702,
+      "z": -0.338,
+      "scale": 1.5,
+      "description": "Village destination and landmark."
+    },
+    {
+      "name": "Sunken Shrine",
+      "type": "temple",
+      "x": 0.541,
+      "z": -0.647,
+      "scale": 1.58,
+      "description": "Temple destination and landmark."
+    },
+    {
+      "name": "Hidden Cascade",
+      "type": "waterfall",
+      "x": -0.596,
+      "z": 0.582,
+      "scale": 1.44,
+      "description": "Waterfall destination and landmark."
+    },
+    {
+      "name": "Skyspan Crossing",
+      "type": "bridge",
+      "x": 0.672,
+      "z": 0.404,
+      "scale": 1.56,
+      "description": "Bridge destination and landmark."
+    },
+    {
+      "name": "Crystal Hollow",
+      "type": "cave",
+      "x": -0.017,
+      "z": 0.706,
+      "scale": 1.17,
+      "description": "Cave destination and landmark."
+    },
+    {
+      "name": "Broken Gate",
+      "type": "ruins",
+      "x": 0.06,
+      "z": -0.864,
+      "scale": 1.2,
+      "description": "Ruins destination and landmark."
+    },
+    {
+      "name": "Elderwood",
+      "type": "giant_tree",
+      "x": -0.83,
+      "z": 0.062,
+      "scale": 1.32,
+      "description": "Giant Tree destination and landmark."
+    },
+    {
+      "name": "World Pillar",
+      "type": "monument",
+      "x": 0.829,
+      "z": -0.075,
+      "scale": 1.56,
+      "description": "Monument destination and landmark."
+    },
+    {
+      "name": "Blue Basin",
+      "type": "lake",
+      "x": -0.358,
+      "z": 0.09,
+      "scale": 1.1,
+      "description": "Lake destination and landmark."
+    }
+  ],
+  "routes": [
+    {
+      "name": "Grand Exploration Loop",
+      "type": "loop",
+      "waypoints": [
+        [
+          0,
+          0
+        ],
+        [
+          -0.68,
+          -0.42
+        ],
+        [
+          0.64,
+          -0.55
+        ],
+        [
+          0.65,
+          0.43
+        ],
+        [
+          -0.67,
+          0.5
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "Scenic Ridge Trail",
+      "type": "scenic",
+      "waypoints": [
+        [
+          -0.91,
+          0.05
+        ],
+        [
+          -0.38,
+          0.18
+        ],
+        [
+          0.37,
+          0.16
+        ],
+        [
+          0.91,
+          -0.08
+        ]
+      ]
+    }
+  ],
+  "palette": [
+    "#426b48",
+    "#80a85d",
+    "#b6a06d",
+    "#638da0"
+  ],
+  "archetype": "temperate",
+  "seed": 271828,
+  "settings": {
+    "size": 2000,
+    "grid": 40,
+    "seed": 271828,
+    "relief": 1.25,
+    "decor": 80,
+    "style": "Stylized Low Poly"
+  },
+  "idea": "A stylized forest frontier with dramatic hills, winding river, ancient ruins, a giant tree and waterfall",
+  "engine": "Procedural World Engine v2"
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://idea2world.local/schemas/layout_graph.schema.json",
+  "title": "Idea2World Layout Graph",
+  "description": "Navigation graph derived from WorldSpec. Used to prove there are no dead ends or unreachable landmarks before any Luau is generated.",
+  "type": "object",
+  "required": ["nodes", "edges"],
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["id", "x", "z"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["region", "poi", "spawn", "waypoint"]},
+          "x": {"type": "number"},
+          "z": {"type": "number"},
+          "y": {"type": "number"}
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["a", "b", "length"],
+        "properties": {
+          "a": {"type": "string"},
+          "b": {"type": "string"},
+          "length": {"type": "number", "exclusiveMinimum": 0},
+          "kind": {"enum": ["main", "branch", "loop"]}
+        }
+      }
+    },
+    "components": {"type": "integer", "minimum": 1},
+    "has_cycle": {"type": "boolean"},
+    "dead_ends": {"type": "array", "items": {"type": "string"}}
+  }
+}

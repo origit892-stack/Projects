@@ -1,0 +1,291 @@
+{
+  "schema_version": 5,
+  "game_design": {
+    "genre_profile": "throw_collect_sim",
+    "research_inspirations": [
+      "Throw Food for Animals",
+      "Grow a Garden",
+      "Pet Simulator-style collection loops"
+    ],
+    "core_loop": [
+      "Earn or obtain a resource",
+      "Aim / throw / perform a short skill action",
+      "Reach a new zone or attract a rarer creature",
+      "Collect and display the creature",
+      "Earn passive rewards and upgrade range / power"
+    ],
+    "gameplay_systems": [
+      "skill-based throw arc",
+      "rarity-weighted creature attraction",
+      "collection book",
+      "habitat display",
+      "upgrade stations",
+      "zone gates",
+      "daily discoveries"
+    ],
+    "target_audience": "Broad casual Roblox audience; collection, discovery and satisfying progression; mobile-first.",
+    "map_design_requirements": "Readable hub with a clear throwing lane, visible distant targets, distinct habitat islands, safe return path and one obvious next unlock.",
+    "ui_ux_requirements": [
+      "large throw / action button",
+      "power and distance meter",
+      "currency and next-zone goal",
+      "creature collection grid",
+      "upgrade cards",
+      "simple rarity reveal"
+    ],
+    "session_design": "A 2–5 minute first success, then repeatable 7–12 minute upgrade and collection sessions.",
+    "art_direction": {
+      "label": "Classic Roblox Stud",
+      "geometry": "chunky modular forms, visible stud language, simple readable silhouettes",
+      "materials": "matte plastic, restrained metal, clean color blocks",
+      "lighting": "bright readable daylight, soft ambient shadows",
+      "ui": "bold playful panels, thick outlines, large icons",
+      "avoid": "tiny noisy details, photoreal textures"
+    },
+    "design_principles": [
+      "Get to the first satisfying action quickly",
+      "Make the next goal visible in-world and in UI",
+      "Use a small number of distinct visual signals for rarity and importance",
+      "Design mobile-first touch targets and keep the central play area unobstructed",
+      "Keep visual effects subordinate to gameplay readability",
+      "Create short-, medium- and long-term goals without forcing purchases"
+    ]
+  },
+  "visual_theme": "natural",
+  "visual_profile": {
+    "accent": "#86b96b",
+    "props": [
+      "stone_shrine",
+      "fallen_log",
+      "rock_garden",
+      "watch_post"
+    ],
+    "vfx": [
+      "fireflies",
+      "pollen",
+      "water_spray"
+    ]
+  },
+  "title": "Verdant Frontier",
+  "overview": "Verdant Frontier: Throw food as far as possible to attract and collect animals from different habitats. Train throw power, buy better food, reach new areas, collect rare creatures and earn cash from them.. Authored with a focal landmark, readable districts, natural terrain silhouettes, exploration loops and sightline hierarchy.",
+  "style": "Stylized Low Poly",
+  "biomes": [
+    "Highlands",
+    "River Basin",
+    "Woodlands",
+    "Ancient Ruins"
+  ],
+  "landmarks": [
+    {
+      "id": "poi_01",
+      "name": "Beacon Spire",
+      "type": "tower",
+      "x": 0.0,
+      "z": 0.0,
+      "scale": 1.26,
+      "priority": "primary",
+      "description": "Tower landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_02",
+      "name": "Pinewatch",
+      "type": "village",
+      "x": 0.293,
+      "z": 0.09,
+      "scale": 1.72,
+      "priority": "major",
+      "description": "Village landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_03",
+      "name": "Sunken Shrine",
+      "type": "temple",
+      "x": -0.37,
+      "z": 0.314,
+      "scale": 1.6,
+      "priority": "major",
+      "description": "Temple landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_04",
+      "name": "Silverfall",
+      "type": "waterfall",
+      "x": 0.035,
+      "z": -0.537,
+      "scale": 1.23,
+      "priority": "major",
+      "description": "Waterfall landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_05",
+      "name": "Old Stone Bridge",
+      "type": "bridge",
+      "x": 0.38,
+      "z": 0.479,
+      "scale": 1.54,
+      "priority": "major",
+      "description": "Bridge landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_06",
+      "name": "Crystal Hollow",
+      "type": "cave",
+      "x": -0.692,
+      "z": -0.002,
+      "scale": 1.64,
+      "priority": "minor",
+      "description": "Cave landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_07",
+      "name": "Forgotten Citadel",
+      "type": "ruins",
+      "x": 0.656,
+      "z": -0.328,
+      "scale": 1.07,
+      "priority": "minor",
+      "description": "Ruins landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_08",
+      "name": "Elderwood",
+      "type": "giant_tree",
+      "x": -0.228,
+      "z": 0.686,
+      "scale": 1.02,
+      "priority": "minor",
+      "description": "Giant Tree landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_09",
+      "name": "World Pillar",
+      "type": "monument",
+      "x": -0.332,
+      "z": -0.734,
+      "scale": 1.71,
+      "priority": "minor",
+      "description": "Monument landmark designed as a readable destination."
+    },
+    {
+      "id": "poi_10",
+      "name": "Blue Basin",
+      "type": "lake",
+      "x": 0.812,
+      "z": 0.289,
+      "scale": 1.32,
+      "priority": "minor",
+      "description": "Lake landmark designed as a readable destination."
+    }
+  ],
+  "routes": [
+    {
+      "name": "Grand Exploration Loop",
+      "type": "loop",
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.293,
+          0.09
+        ],
+        [
+          -0.37,
+          0.314
+        ],
+        [
+          0.035,
+          -0.537
+        ],
+        [
+          0.38,
+          0.479
+        ],
+        [
+          -0.692,
+          -0.002
+        ],
+        [
+          0.656,
+          -0.328
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "name": "Ridge Traverse",
+      "type": "scenic",
+      "waypoints": [
+        [
+          -0.88,
+          -0.45
+        ],
+        [
+          -0.45,
+          -0.1
+        ],
+        [
+          0.1,
+          0.2
+        ],
+        [
+          0.48,
+          0.48
+        ],
+        [
+          0.88,
+          0.65
+        ]
+      ]
+    }
+  ],
+  "palette": [
+    "#426b48",
+    "#80a85d",
+    "#b6a06d",
+    "#638da0"
+  ],
+  "archetype": "temperate",
+  "seed": 2026,
+  "composition": {
+    "focal_point": "center",
+    "layout": "irregular radial districts",
+    "sightline_priority": [
+      "primary landmark",
+      "ridge silhouettes",
+      "watercourse"
+    ],
+    "negative_space": "preserve clearings around POIs and along routes"
+  },
+  "systems": [
+    "genre-aware gameplay design brief",
+    "mobile-first UI/UX specification",
+    "modular cosmetic prop kits",
+    "layered VFX emitters",
+    "themed lighting accents",
+    "ridge mountain chains",
+    "stratified cliff faces",
+    "carved cave entrances",
+    "clustered forest groves",
+    "architectural landmark kits",
+    "curated exploration routes"
+  ],
+  "settings": {
+    "size": 2400,
+    "grid": 64,
+    "seed": 2026,
+    "style": "Stylized Low Poly",
+    "game_style": "stud",
+    "relief": 1.15,
+    "decor": 75,
+    "visual_theme": "auto",
+    "vfx_density": 72,
+    "cosmetic_detail": 90
+  },
+  "idea": "Throw food as far as possible to attract and collect animals from different habitats. Train throw power, buy better food, reach new areas, collect rare creatures and earn cash from them.",
+  "engine": "Idea2World 5.0 | Genre-Aware Procedural Architect"
+}
